@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+  <link href="main.css"></link>
+
+  <script src="jquery-2.1.3.js"></script>
+  <script src="underscore.js"></script>
+
+  <script src="main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('Page3b.html')
+      })
+
+      $('#button-2').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('room-2.html')
+      })
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+
+<p>Admirals log. Avolc
+
+Chillmane Cove
+
+Day 2
+
+We have set sail. Role call went mostly fine, except some tittering in the ranks they seemed a behaved bunch. But i got a slight impression it'll take time until they fully take me seriously.
+
+I report the numbers of crew now are 151, a solid number. Before lifting anchor we were joined by 3 young officer cadets right out of the Academy. They will observe and assist, learn about command so they too might receive their own commission someday. I was immediately skeptical to bring such young cabin-fledglings along to the rough Sea of fangs. But their attentive eagerness to serve and fresh loyalty might make them the first allies I have on this ship.  
+
+This is also the first voyage I have been on with an attending chaplain of "The order" along. We conferred briefly before she retired to her cabin and she offered me her services and a blessing of fortune of sorts.
+
+Im doubtful about the new laws of every ship having to have to include a representative of The order. It seems like a waste of space and resources on an already crowded and sparse ship to me. But I suppose its all politics now. There’s no denying the influence of this new faith has grown over the last few years in our society. I can see, having met the chaplain, how they are more often referred to as the “Soft-spoken”, they have a way with words that sets you at ease.
+
+I will keep this journal updated on their usefulness, for ships morale and general order.
+
+I will also make an effort to write down some personnel records. A initial assessment on the cadets will follow.
+
+
+
+
+
+
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button id="button-1"> Continue </button>
+
+</body>
+</html>

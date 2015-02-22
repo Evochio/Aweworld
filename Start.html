@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+  <link href="main.css"></link>
+
+  <script src="jquery-2.1.3.js"></script>
+  <script src="underscore.js"></script>
+
+  <script src="main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('Rooms/Day1.html')
+      })
+
+      $('#button-2').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('room-2.html')
+      })
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+
+<p>Here starts the log of Captain ‘Admiral’ Avolc, to be regularly maintained as per request of High Admiralty due to inquest 24 (see Court ruling #4231:0024).</p>
+
+<p> I mark here my objection to the lack of trust bestowed by command; my service record and rank of Field-admiral should speak for itself.</p>
+
+<p>I will however abide the terms  given of High Admiralty for a new ship and crew. I shall strive to keep activities, command and progress logged as detailed as possible, as per settlement.</p>
+
+<p>My decisions that caused the loss of the ‘Barristan’ and its crew were regretful but necessary for the good of the nation and success of the mission. The circumstances were difficult and dire, but were i do it all again i dont see how it could have gone different. I will carry them with me always.</p>
+
+<p>I shall however not go into further detail about it here and refer to the full debrief filed with the Admiralty. </p>
+
+<p>I will only conclude that i shall take the lessons learned with me to my new commission and do better.</p>
+
+
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button id="button-1">Day 1</button>
+
+</body>
+</html>

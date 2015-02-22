@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+  <link href="main.css"></link>
+
+  <script src="jquery-2.1.3.js"></script>
+  <script src="underscore.js"></script>
+
+  <script src="main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('Page4.html')
+      })
+
+      $('#button-2').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('room-2.html')
+      })
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+
+<p>Admirals log. Avolc
+
+Safepouch gulf
+
+Day 4
+
+We have made good progress; favorable winds have put us ahead of schedule. The ship is fast and the crew knows her well. I expect us to arrive at the Sea of fangs in 3 weeks.
+
+ Im pleased to report the crew has showed no further reproach or signs of animosity towards me or the cadets. The cadets are in fact blending in well and have become something of good luck charms for the crew.  I have made sure to patrol the ship daily, learn its ins and outs and make myself seen and learn names. Lt.Tung has at least served me well as a visible reminder of authority.
+
+My hunger finally returned last night and I joined the senior crew in the joint mess for the first time. Ship-rations never sat with me well, a fact doubtless shared by all as my urging for someone else to break the rules and replace my plate was received with genuine merriment, even among the Raptorians. The ice seems to have been broken.
+
+
+
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button id="button-1"> Continue </button>
+
+</body>
+</html>
