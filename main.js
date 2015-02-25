@@ -27,6 +27,9 @@ lib.goTo = function (href) {
 // initialState is how you want the state to be at the beginning of the game.
 var initialState = {
   crewMorale: 6,
+  vore: 0,
+  piety: 0,
+  raptorians: 3,
   inventory: []
 }
 ///////////////////////////

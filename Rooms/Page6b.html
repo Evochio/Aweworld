@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+ <link rel="stylesheet" href="/main.css">
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-theme.min.css">
+  <script src="/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('Page7.html')
+      })
+
+    
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+
+<p><em>To poor Glints chagrin i turned her down on the evening service. I have more important work to do then to pretend to listen to supposed ancient scriptures.</em></p>
+
+<p><em>Besides, the small hold they keep the services are stuffy at best. There&#39;s not a lot of room in the hold of this frigate for larger gatherings.</em></p>
+
+<p><em>The Perked ear is an interesting ship though, very different from my old 2nd generation Sloop &#39;Barristan&#39; which i stubborn stuck with till the end. These 3rd generation Frigates are built for endurance and speed, an odd mix considering the extra weight usually needed to make her tough. </em></p>
+
+<p><em>But the shipbuilders have employed tricks of engineering that are both admirable and grating. The thick hull holds metal plates in its center, sandwiched between wood and the ship is long and thin. This however makes us slow to maneuver and gives us tight compartments down below with reduced cargo hold for supplies. </em></p>
+
+<p><em>The perked ear is like an avian raptor that will spot prey and give fast chase. Catching its prey in bursts of speed before it runs out stamina. </em></p>
+
+<p><em>Fluff help me if our target is both fast and maneuverable however, it feels like my old Barristan could have easily out-danced this ship if the initial charge would to fail. I suppose thats were the toughness comes in. Boarding action will be a vital weapon for success for this ship. </em></p>
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1"> Continue </button>
+
+
+</body>
+</html>

@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <title>Admiral Avolc Game</title>
 
-  <link href="/main.css"></link>
+  <link rel="stylesheet" href="/main.css"></link>
 
   <script src="/jquery-2.1.3.js"></script>
   <script src="/underscore.js"></script>
-
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css"></link>
+  <link rel="stylesheet" href="/bootstrap-theme.min.css"></link>
   <script src="/main.js"></script>
 
   <script>
@@ -29,6 +31,9 @@
         // end by using lib.goTo
         lib.goTo('Page2b.html')
       })
+	 	  if (state.crewMorale >= 7 && state.crewMorale < 9 ) {
+		$(".Crew-morale-description").text("Good");
+	  } 
     })
   </script>
   
@@ -38,6 +43,7 @@
 
 </head>
 <body>
+<div class="alert alert-success" role="alert">...</div>
 <h1>Admiral Avolc</h1>
 <hr />
 
@@ -66,8 +72,10 @@ Day 1 (69-4-35)
 <hr />
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button id="button-3">Set examples</button>
-<button id="button-2">Be lenient</button> 
-
+<button class="btn btn-default" id="button-3">Set examples</button>
+<button class="btn btn-default" id="button-2">Be lenient</button> 
+<p> Crew morale:
+<span class="Crew-morale-description"></span>
+  </p>
 </body>
 </html>

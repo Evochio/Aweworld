@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+ <link rel="stylesheet" href="/main.css">
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-theme.min.css">
+  <script src="/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('Page10.html')
+      })
+
+    
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+<p>I decided to let the matter go. Raptorians should know better then to engage a Wulf in a game of chance and cunning. Lets hope this has taught them to be more wary, or i&#39;d no doubt hear more of their digestive demise to Wulf stomach.</p>
+
+<p>From what i understood, the particular game of chance they play have been an ongoing thing for a long time before i arrived. Crew matters are the First-officers duty, so I&#39;ll accept his judgment.</p>
+
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1"> Continue </button>
+
+
+</body>
+</html>
