@@ -30,6 +30,7 @@ var initialState = {
   vore: 0,
   piety: 0,
   raptorians: 3,
+  delay: 0,
   inventory: []
 }
 ///////////////////////////

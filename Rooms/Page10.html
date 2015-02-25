@@ -20,8 +20,21 @@
       
       $('#button-1').on('click', function() {
         // change state here
+		state.crewMorale -= 1;
         // end by using lib.goTo
-        lib.goTo('.html')
+        lib.goTo('Page11a.html')
+      })
+	   $('#button-2').on('click', function() {
+        // change state here
+			state.delay += 1;
+        // end by using lib.goTo
+        lib.goTo('Page11b.html')
+      })
+	   $('#button-3').on('click', function() {
+        // change state here
+		state.delay += 2;
+        // end by using lib.goTo
+        lib.goTo('Page11c.html')
       })
 
     
@@ -54,8 +67,9 @@
 <hr />
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default" id="button-1"> Continue </button>
-
+<button class="btn btn-default" id="button-1"> Get information, then leave </button>
+<button class="btn btn-default" id="button-2"> Trade supplies, help fix sail. </button>
+<button class="btn btn-default" id="button-3"> Help as much as you can so they get home safe. </button>
 
 </body>
 </html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+ <link rel="stylesheet" href="/main.css">
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-theme.min.css">
+  <script src="/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('Page11ba.html')
+      })
+		$('#button-2').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('Page11bb.html')
+		})
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+<p>We retired to my cabin, as the crew set to their extensive repair work and hauling some of our supplies over to the merchant ships hold. I have also ensured their injured are offered care with our Pouch-Matron and physician.</p>
+
+<p>Captain Russel brought his daughter along, introducing her proudly and he seemed ecstatic for the aid offered, thanking me profusely.</p>
+
+<p>He began recounting his tale while little Melon cheerfully roamed cabin, fascinated by my knickknacks.</p>
+
+<p>&quot;We were 2 months into our journey, just past Howlers point which separates the Sea of fangs from The great null sea. They were on us barely a day in, like they were watching the inlet. We tried to outrun them, but we had heavy cargo and trade from the Butterlands, we were low in the water...&quot;</p>
+
+<p>The captain looked glum then. I could imagine what they were forced to do.</p>
+
+<p>&quot;As they got closer they sent flyers to harass us, Gryphs by the look of it. Getting at our sails and dropping fire. It was pretty clear then they had no good intentions for any of my crew, i ordered the cargo dumped overboard, to get speed. Our men tried to hold the fliers off valiantly, alas some were carried off. We are not fighters!&quot;</p>
+
+<p>He fixed me with a look, there was pain there and he no doubt wished we&#39;d been there sooner. But he said nothing and continued his tale.</p>
+
+<p>&quot;There must have been something in the cargo we threw overboard that they valued higher then our ship and men. They soon veered off and gave up chase. Perhaps they thought they could catch up too us soon, a fire was blazing and we were taking in water from a hit of some sort of ballista on their forward bow.&quot;</p>
+
+<p>I asked him about further armaments and crew compliment, but the captain had nothing much useful to add, seeming distraught. Perhaps he lost more then just cargo.</p>
+
+<p>&quot;I want to be an Admiral!&quot; Little Melon suddenly squeaked with full conviction. This quickly brought a smile to both of us, the dark mood instantly dissipated.</p>
+
+<p>&quot;One day, im sure you will be.&quot; I assured her and this made her beam and purr adorably.</p>
+
+<p>It will take 3 days to do repairs enough to see the ship make it safely to closest port.</p>
+
+<p>Melon has asked to spend the night in the captains cabin. I appear to have become her idol.</p>
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1"> Let Melon stay the night </button>
+<button class="btn btn-default" id="button-2"> Decline graciously, work to be overseen. </button>
+
+</body>
+</html>

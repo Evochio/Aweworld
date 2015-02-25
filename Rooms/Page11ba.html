@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+ <link rel="stylesheet" href="/main.css">
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-theme.min.css">
+  <script src="/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('Page11baa.html')
+      })
+	$('#button-2').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('Page11bb.html')
+      })
+    
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+<p>I was unsure at first on what to do with the request, i&#39;ve yet to have children of my own. But something about Melon reminded me of myself when i was but a wee floof.</p>
+
+<p>Captain Russel was grateful and honored i chose to entertain his daughter and promised he&#39;d let me know if he remembered or found out any more facts about the pirate vessel from his remaining crew.</p>
+
+<p>I spent the evening telling tales and going through admiralty protocol to the attentive little youngling.</p>
+
+<p>I can almost swear the cadets are jealous. Its most amusing.</p>
+
+<p>Of course there&#39;s no end to a younglings play, the next morning she wants to stay in my company and play more.</p>
+
+<p>The cadets and First-officer Arn claim to have things under control.</p>
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1"> Entertain the girl</button>
+<button class="btn btn-default" id="button-2"> Decline graciously, work to be overseen. </button>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+Aweworld todo: 
+
+-- Finnish moving rooms from old platform to new html files. 
+	+ Finnish writing chapter 1
+	+ Revise and improve story
+		+Improve terminology and wordings. Awes instead of men and so on.  
+
+
+-- Create acceptable design
+	+Add images
+
+-- Add cadets functionality. 
+	+Dialogue
+	+Icons
+
+-- Make functions status summaries for crew and ship 
+
+-- Make a minigame for the gambling episode. 
+
+-- Get a worldmap made

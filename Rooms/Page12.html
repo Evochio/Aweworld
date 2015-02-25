@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+ <link rel="stylesheet" href="/main.css">
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-theme.min.css">
+  <script src="/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('Page13.html')
+      })
+	
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+<p>Repairs were soon completed and Captain Russel vigorously shook my paw, glad for our help and service. They would now surely make it to port.</p>
+
+<p>He also reported, after having asked around his crew that some new information did come up regarding that pirate ship.</p>
+
+<p>The firebombs they used were devious and made out of some sort of oil, it was in trying to put out the fire with water that it actually spread the fire further. It was only after it spread that it became a danger, if left alone most went out on their own.</p>
+
+<p>I thanked him for the valuable information and we parted ways. Melon waved us off vigorously and many of the crew, including me, waved back; Sure now that they&#39;d make it safely to harbor.</p>
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1"> Storm </button>
+
+
+</body>
+</html>
