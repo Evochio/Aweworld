@@ -4,7 +4,7 @@ Aweworld todo:
 	+ Finnish writing chapter 1
 	+ Revise and improve story
 		+Improve terminology and wordings. Awes instead of men and so on.  
-
+	+Fix variables for rooms and ensure functions for right rooms to come up. Example Page14 and Page14b for what happened in page 8
 
 -- Create acceptable design
 	+Add images

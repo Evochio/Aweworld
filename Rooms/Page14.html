@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+ <link rel="stylesheet" href="/main.css">
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-theme.min.css">
+  <script src="/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function() {
+        // change state here
+	        // end by using lib.goTo
+        lib.goTo('Page15.html')
+      })
+	   $('#button-2').on('click', function() {
+        // change state here
+		        // end by using lib.goTo
+        lib.goTo('Page15b.html')
+      })
+	   $('#button-3').on('click', function() {
+        // change state here
+	        // end by using lib.goTo
+        lib.goTo('Page15c.html')
+      })
+
+    
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+<p><em>Admirals log. Avolc</em></p>
+
+<p>I am furious! Its come to my attention that we are yet again down another Raptorian! And to nothing less than those infernal gambling hazard games. The culprit is none other then Keeper once more. I had expressly forbidden this from happening and they dare to defy me.</p>
+
+<p>I had half a mind to march right down there when i got the news. But such a reaction would have looked foolish as it appears its old news. For whatever reason my usually astute cadets have failed to report this little tidbit to me and i had to overhear the news from Sergeant Evoc in passing conversation.</p>
+
+<p>The reason no one had raised a general hubbub about it is because First-officer Arn has at some point rescinded my orders and allowed the games again. He&#39;s the one ultimately responsible for this.</p>
+
+<p>I need to consider my course of action in this carefully.</p>
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1"> Confront Arn in private</button>
+<button class="btn btn-default" id="button-2"> Drop in on a Game unannounced</button>
+<button class="btn btn-default" id="button-3"> Ask Ziggy to give Raptorians gambling lessons. </button>
+
+</body>
+</html>
