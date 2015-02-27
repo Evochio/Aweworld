@@ -39,6 +39,17 @@ var parts = document.location.href.split('/');
 var lastPart = parts[parts.length-1];
 state = lib.load('state-'+lastPart) || initialState;
 
+displayMoraleStatus = function () {
+	if (state.crewMorale >= 7 && state.crewMorale < 9 ) {
+		$(".Crew-morale-description").text("Good");
+	  } 
+	else if (state.crewMorale >= 5 && state.crewMorale < 7 ) {
+		$(".Crew-morale-description").text("Average");
+	  } 
+	else if (state.crewMorale >= 3 && state.crewMorale < 5 ) {
+		$(".Crew-morale-description").text("Poor");
+	  } 
+	}
 
 $(document).ready(function() {
   // EDIT THIS ///////////////

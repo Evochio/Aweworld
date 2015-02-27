@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+ <link rel="stylesheet" href="/main.css">
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-theme.min.css">
+  <script src="/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('Page18.html')
+      })
+	    $('#button-2').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('Page18.html')
+      })
+	 })
+	
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+<p>The Wreckage</p>
+
+<p>Early in the morning, before the sun had even started to properly light the horizon. A look-out signaled the sign of wreckage in the water.</p>
+
+<p>We have properly arrived at Sea of Fangs now, this is not an uncommon sight around here. But this wreckage was fresh as parts were ominously smoldering in the water.</p>
+
+<p>Whoever this wreckage belonged to had met their demise recently and probably quite violently.</p>
+
+<p>It is unlikely they ran ashore on some reef or one of the smaller craggy islands. They cannot be honestly called islands though, most are mere jagged jutting cliffs poking out of the sea. But larger parts of the wreckage might have washed ashore on one of them.</p>
+
+<p>However, searching all the nearby islands is risky, as its outside the safe and mapped sailing lane and could potentially take us all day and lead us nowhere.</p>
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1"> Search </button>
+<button class="btn btn-default" id="button-1"> Move on </button>
+
+</body>
+</html>

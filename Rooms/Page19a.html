@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+ <link rel="stylesheet" href="/main.css">
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-theme.min.css">
+  <script src="/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('Page18.html')
+      })
+	  
+	    $('#button-2').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('Page18.html')
+      })
+	 })
+	
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+<p>I order a search and plot a new course which will take us past the larger and most likely nearby islands that might have caught the wreckage.</p>
+
+<p>I&#39;d send up able male flyers, but i&#39;d be more likely to end up searching and rescuing them instead if i did. The winds are too hard out here, with sudden dangerous up and down drafts which might toss them far out of range of the ship or worse, into the water.</p>
+
+<p>The search is perilous and on several occasions the lookouts up in the mast shout out warnings for course changes to avoid collisions with treacherous reefs. I have map-readers note everything down for future referances, if we&#39;re braving these dangers we might aswell make the best of it.</p>
+
+<p>The wreckage in the water increase, we are close.</p>
+
+<p>A loud thud, creak and long scrape has the whole crew cringing all of a sudden. We&#39;ve brushed against one of the reefs. I immediately order crew to check for major damage but its quickly apparent there are no major leaks.</p>
+
+<p>I clench my jaw. The ship is fast and sturdy. Im glad for the later. But at this moment i wish we were on my old smaller and maneuverable &#39;Barristan&#39;.</p><hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1"> Keep searching </button>
+<button class="btn btn-default" id="button-1"> Abandon Search, too risky! </button>
+
+</body>
+</html>
