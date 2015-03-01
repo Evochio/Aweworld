@@ -40,7 +40,10 @@ var lastPart = parts[parts.length-1];
 state = lib.load('state-'+lastPart) || initialState;
 
 displayMoraleStatus = function () {
-	if (state.crewMorale >= 7 && state.crewMorale < 9 ) {
+	if (state.crewMorale >= 9 && state.crewMorale < 13 ) {
+		$(".Crew-morale-description").text("Great");
+		
+	else if (state.crewMorale >= 7 && state.crewMorale < 9 ) {
 		$(".Crew-morale-description").text("Good");
 	  } 
 	else if (state.crewMorale >= 5 && state.crewMorale < 7 ) {
@@ -49,15 +52,25 @@ displayMoraleStatus = function () {
 	else if (state.crewMorale >= 3 && state.crewMorale < 5 ) {
 		$(".Crew-morale-description").text("Poor");
 	  } 
+	  else if (state.crewMorale >= 1 && state.crewMorale < 3 ) {
+		$(".Crew-morale-description").text("Mutinous");
+	  } 
+	   else if (state.crewMorale >= -5 && state.crewMorale < 1 ) {
+		$(".Crew-morale-description").text("Open rebellion");
+	  } 
 	}
+moraleFailureCheck = function() {
+	if (state.crewMorale < -4) {
+	document.location.href = '/terrible-end.html'; }
+}
 
 $(document).ready(function() {
   // EDIT THIS ///////////////
   // Code you want to run at the beginning of every page load goes here.
   // For example, code that tests the state to see if morale is low enough to redirect you to an ending.
   
-  if (state.crewMorale < -4) {
-    document.location.href = '/terrible-end.html';
+ // if (state.crewMorale < -4) {
+   // document.location.href = '/terrible-end.html';
   }
   
   console.log('Current state:', JSON.stringify(state, null, '\t'))
