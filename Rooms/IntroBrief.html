@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+  <link rel="stylesheet" href="/main.css"></link>
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css"></link>
+  <link rel="stylesheet" href="/bootstrap-theme.min.css"></link>
+  <script src="/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('IntroBrief1.html')
+      })
+
+      $('#button-2').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('IntroBrief2.html')
+      })
+	  $('#button-3').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('IntroBrief3.html')
+      })
+	  $('#button-4').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('IntroBrief4.html')
+      })
+	  $('#button-5').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('IntroBriefEnd1.html')
+      })
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+<p>An imposing figure stands before you. Age has given this Matron-Awe an enviable wild mane of fluffy fur that refuse containment of the sparse clothing and any effort of grooming. Time has also given her strength, mass and the wide hips of a matron.</p>
+
+<p>Elaborate and decorative epaulets and heavy cloak with golden embroideries signify her rank and status.</p>
+
+<p>&nbsp;</p>
+
+<p>&ldquo;Captain Avolc.&rdquo; She nods as you give your salute. &ldquo;You arrive well one time.&rdquo;</p>
+<p>&ldquo;Yes, Matron Admiral.&rdquo;</p>
+<p>&ldquo;I will be brief and direct. You will listen closely, you may ask questions afterwards.&rdquo;</p>
+
+<p>&nbsp;</p>
+
+<p>You can but nod in acknowledgment as the grand Admiral shifts her hefty and somewhat rounded figure. No doubt many a disobedient underling adorn her frame. You wish not to be among them.</p>
+
+<p>&nbsp;</p>
+
+<p>&ldquo;I am sending you west, to replace a captain of a new ship and crew. I am sending all of my best captains out past the Sea of fangs on assignment and patrol. Your new ship &ldquo;Perked ear&rdquo; waits at port and for your arrival. It is stocked and ready to go, awaiting only your arrival. You will leave immediately after our meeting.&rdquo;</p>
+
+<p>&nbsp;</p>
+
+<p>You tense. This is quite sudden. And the west sea does not have the best reputation in terms of being very hospitable to captains with any form of retirement plans. It was more often a rumored punishment to be sent west.</p>
+<p>The Grand Admiral gauges your reaction, something tells you that she will not take no for an answer. You manage a nod.</p>
+
+<p>&nbsp;</p>
+
+<p>&ldquo;Good.&rdquo; She states curtly before continuing. &ldquo;Your assignment is three-fold.</p>
+
+<p>Firstly, you are to rendezvous with a Wulf-fleet contact beyond the Sea of Fangs at the west end of Pale-rock. They carry important intelligence for us that we have traded expensively for. Our contact should be there in three weeks.</p>
+
+<p>Secondly, you are to investigate suspected piracy issues plaguing the growing west trade. There are troubling rumors related to the Gator empire which must be unveiled. We can not be in the blind or trust conflicting second-hand information. A wulf liason called &ldquo;Keeper&rdquo; have been assigned to the crew, he carries more information.</p>
+
+<p>Thirdly, you are to establish Admiralty presence and security. We need to show that we are a force. Rendevouz with the other Admirality ships that have gone ahead of you and aid eachother in patrolling and mapping the Archipelago sea so we in the future may construct a naval base there.&rdquo;</p>
+
+<p>The great Admiral sighed. &ldquo;You may ask questions&rdquo;</p>
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1">Why is the west now so important?</button>
+<button class="btn btn-default" id="button-2">“New Ship and crew?”</button>
+<button class="btn btn-default" id="button-3">“We are working with the Wulf-fleet now?”</button>
+<button class="btn btn-default" id="button-4">”What happened to the captain?”</button>
+<button class="btn btn-default" id="button-5">“I have no questions Admiral”</button>
+</body>
+</html>

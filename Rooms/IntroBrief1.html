@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+  <link rel="stylesheet" href="/main.css"></link>
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css"></link>
+  <link rel="stylesheet" href="/bootstrap-theme.min.css"></link>
+  <script src="/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('IntroBrief1.html')
+      })
+
+      $('#button-2').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('IntroBrief2.html')
+      })
+	  $('#button-3').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('IntroBrief3.html')
+      })
+	  $('#button-4').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('IntroBrief4.html')
+      })
+	  $('#button-5').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('IntroBriefEnd1.html')
+      })
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+<p><strong>-&ldquo;Why is the west now so important?&rdquo;</strong></p>
+
+<p>&nbsp;</p>
+
+<p>&ldquo;For long the west sea has been closed to us. Wild weather and currents of the cold North sea and a myriad of treacherous shoals in the Sea of fangs have made sailing and exploration more dangerous then we are willing to risk ship and crew.</p>
+
+<p>So most of our trade and contact with the west have lain in the calmer east, with the Wulfs as expensive proxy. Their connection westward in the southern seas are safer.</p>
+
+<p>&nbsp;</p>
+
+<p>You glance at a elaborate map hanging off the wall in the office. You wonder what point the Admiral wants to make.</p>
+
+<p>&nbsp;</p>
+
+<p>&ldquo;But times change and we must change with it or tempt the fate of the old Plains-awes. As you may well know, trade routes westwards have grown substantially over only the last decade. Mapped paths through the sea of fangs, closely guarded by Gryph trade-houses opened the way. These maps have now somehow been revealed for all, suddenly the west is no longer closed to us. Nor others who might exploit it.&rdquo; &nbsp;</p>
+
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+
+<button id="button-1">“Why is the west now so important?”</button>
+<button id="button-2">“New Ship and crew?”</button>
+<button id="button-3">“We are working with the Wulf-fleet now?”</button>
+<button id="button-4">”What happened to the captain?”</button>
+<button id="button-5">“I have no more questions Admiral”</button>
+</body>
+</html>

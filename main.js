@@ -22,10 +22,46 @@ lib.goTo = function (href) {
   document.location.href = href;
 }
 
+lib.makeCadetButtons = function () {
+  var buttons = $("<div id='cadet-buttons'></div>");
+  buttons.append(lib.makeCadetButton('Glint'));
+  buttons.append(lib.makeCadetButton('Ziggy'));
+  buttons.append(lib.makeCadetButton('Valnos'));
+  $("body").append(buttons);
+};
 
+lib.makeCadetButton = function(cadetName) {
+  // cadetName is either 'Glint', 'Ziggy', 'Valnos'
+  var button = $();
+  if (state[cadetName].status == "available") {
+    var button = $("<button>" + cadetName + "</button>"); //Put image here
+    var content = $("#" + cadetName + "-dialogue").text() || cadetName + " has nothing to add";
+    button.popover({
+      placement: "top",
+      title: cadetName + " says:",
+      content: content
+    });
+  }
+  return button;
+};
 // EDIT THIS //////////////
 // initialState is how you want the state to be at the beginning of the game.
 var initialState = {
+	Glint: {
+		status: "Invisible", 
+		Loyalty: 5
+		
+	},
+	Valnos: {
+		status: "Invisible", 
+		Loyalty: 5
+		
+	},
+	Ziggy: {
+		status: "Invisible", 
+		Loyalty: 5
+		
+	},
   crewMorale: 6,
   vore: 0,
   piety: 0,
@@ -42,7 +78,7 @@ state = lib.load('state-'+lastPart) || initialState;
 displayMoraleStatus = function () {
 	if (state.crewMorale >= 9 && state.crewMorale < 13 ) {
 		$(".Crew-morale-description").text("Great");
-		
+	}
 	else if (state.crewMorale >= 7 && state.crewMorale < 9 ) {
 		$(".Crew-morale-description").text("Good");
 	  } 
@@ -59,19 +95,18 @@ displayMoraleStatus = function () {
 		$(".Crew-morale-description").text("Open rebellion");
 	  } 
 	}
+
+
 moraleFailureCheck = function() {
 	if (state.crewMorale < -4) {
 	document.location.href = '/terrible-end.html'; }
 }
-
 $(document).ready(function() {
   // EDIT THIS ///////////////
   // Code you want to run at the beginning of every page load goes here.
   // For example, code that tests the state to see if morale is low enough to redirect you to an ending.
-  
- // if (state.crewMorale < -4) {
-   // document.location.href = '/terrible-end.html';
-  }
+lib.makeCadetButtons();
+ 
   
   console.log('Current state:', JSON.stringify(state, null, '\t'))
   

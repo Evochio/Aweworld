@@ -23,6 +23,12 @@
 		
     $(document).ready(function() {
       $('#reset').on('click', function() { localStorage.clear() });
+	  
+	  $('#button-1').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('Rooms/IntroBrief.html')
+      })
     })
   </script>
   
@@ -30,16 +36,22 @@
 <body>
 <h1>Admiral Avolc Game</h1>
 <hr />
-<p> Admiral Avolcs log. </p>
+<p>You are Avolc, experienced captain of the east sea admiralty and newly branded hero.<br />
+You have just recently limped back to port, barely afloat but in triumph for well earned reprieve. The dread pirate Nipfang who long plagued the coasts and evaded capture for many a years have been vanquished. The east sea trade collectively breathe a sigh of relief and praise your efforts.</p>
 
-<p>This follows the voyage of Admiral Avolc and her mission to patrol the Sea of fangs with a new crew. Your choices will affect the outcome and certain choices are recorded in points. Some are visible, others are not. </p>
+<p>You manage but a few steps onto land before a courier hands you immediate summons from the Grand Admiral Weatherough herself. And its to the city of Hrystcrags that you are called to, a city far away on the west-coast.&nbsp;</p>
+
+<p>After an uneventful journey and in the presence of the Grand Admiral a fateful task is bestowed upon you. One who&#39;s importance might involve the safety of the whole continent.</p>
+
+<p>Your choices will affect the outcome and certain choices are recorded in points. Some are visible, others are not. </p>
 
 <p>You will be measured in various stats. For now Crew morale is the only one visible. </p>
 
 <p>But there is Piety, injury, reputation with various characters, time and other secrets being measured from your choices that might lead you down different paths or unexpected ends. </p>
-<hr />
-<a href="start.html">Begin</a>
-<button id="reset">Reset</button>
 
+<hr />
+<button id="button-1">Begin</button>
+<button id="reset">Reset</button>
+<p><img src="Rooms/images/Admiral Avolc.png" /></p>
 </body>
 </html>

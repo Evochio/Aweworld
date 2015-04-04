@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+  <link rel="stylesheet" href="/main.css"></link>
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css"></link>
+  <link rel="stylesheet" href="/bootstrap-theme.min.css"></link>
+  <script src="/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('IntroBrief1.html')
+      })
+
+      $('#button-2').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('IntroBrief2.html')
+      })
+	  $('#button-3').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('IntroBrief3.html')
+      })
+	  $('#button-4').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('IntroBrief4.html')
+      })
+	  $('#button-5').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('IntroBriefEnd1.html')
+      })
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+<p><strong>-&rdquo;What happened to the captain?&rdquo;</strong></p>
+
+<p>&nbsp;</p>
+
+<p>The Grand Admiral began to pace behind her desk, a paw suggestively on her gut. &ldquo;I wont go into too much detail, I believe the less you know the better. So no more questions about that!&rdquo;</p>
+
+<p>But I&#39;ll reveal he did not gel well with the crew. There had been problems even before this journey. He lacked... Leadership.</p>
+
+<p>A Captain stands above her crew, she is the authority of the ship. But if a captain does not have the respect of the crew then she has authority over none. &ldquo;</p>
+
+<p>&nbsp;</p>
+
+<p>The grand admirals pacing brought her to a halt and she turned to face you.</p>
+
+<p>&nbsp;</p>
+
+<p>&ldquo;Good leadership is hard to come by! Most Awes would rather follow then lead. And among those who desire to lead, the traits of selfishness and greed are often dominant. Such leaders lack the vision for the greater good of all. That&#39;s why the Admiralty and the Academy was created. We find, nurture and grow those potential few among us who are capable. Those who are just and those who would put a foot down and deal with trouble before it grows.&rdquo;</p>
+
+
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+
+<button id="button-1">“Why is the west now so important?”</button>
+<button id="button-2">“New Ship and crew?”</button>
+<button id="button-3">“We are working with the Wulf-fleet now?”</button>
+<button id="button-4">”What happened to the captain?”</button>
+<button id="button-5">“I have no more questions Admiral”</button>
+</body>
+</html>

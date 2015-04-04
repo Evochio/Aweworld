@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+  <link rel="stylesheet" href="/main.css"></link>
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css"></link>
+  <link rel="stylesheet" href="/bootstrap-theme.min.css"></link>
+  <script src="/main.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+       $('#button-1').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('IntroBrief1.html')
+      })
+
+      $('#button-2').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('IntroBrief2.html')
+      })
+	  $('#button-3').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('IntroBrief3.html')
+      })
+	  $('#button-4').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('IntroBrief4.html')
+      })
+	  $('#button-5').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('IntroBriefEnd1.html')
+      })
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+<p><strong>-&ldquo;We are working with the Wulf-fleet now?&rdquo;</strong></p>
+
+<p>&nbsp;</p>
+
+<p>&ldquo;I know the Admiraltys dealings and relationship with the Wulf &ldquo;Fleet&rdquo; has been tenuous at best in the East sea. They have never quite seen eye to eye with us, seeing that they are more a mob of cooperating privateers then an organization like us.&rdquo;</p>
+
+<p>&nbsp;</p>
+
+<p>&ldquo;But of late our diplomatic contacts have, for a price, come to an arrangement with them in regards of the security of the west sea. And we know only that they have asked for one of our ships to meet with theirs. Your Wulf liaison aboard will provide you with more information as you approach Pale rock. Keep him in one piece.&rdquo;</p>
+
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+
+<button id="button-1">“Why is the west now so important?”</button>
+<button id="button-2">“New Ship and crew?”</button>
+<button id="button-3">“We are working with the Wulf-fleet now?”</button>
+<button id="button-4">”What happened to the captain?”</button>
+<button id="button-5">“I have no more questions Admiral”</button>
+</body>
+</html>

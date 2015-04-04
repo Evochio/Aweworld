@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+    <link rel="stylesheet" href="main.css">
+
+  <script src="jquery-2.1.3.js"></script>
+  <script src="underscore.js"></script>
+	<script src="bootstrap.min.js"></script>
+ <link rel="stylesheet" href="bootstrap.min.css">
+  <link rel="stylesheet" href="bootstrap-theme.min.css">
+  <script src="main.js"></script>
+  
+  <script>
+   /*
+    $(document).ready(function() {
+      $('#to-room-2').on('click', function() {
+        state.crewMorale += 2;
+        state.inventory.push('Sword');
+        lib.goTo('room-2.html') */
+		
+    $(document).ready(function() {
+      $('#reset').on('click', function() { localStorage.clear() });
+    })
+  </script>
+  
+</head>
+<body>
+<h1>Admiral Avolc Game</h1>
+<hr />
+<p> Admiral Avolcs log. </p>
+
+<p>This follows the voyage of Admiral Avolc and her mission to patrol the Sea of fangs with a new crew. Your choices will affect the outcome and certain choices are recorded in points. Some are visible, others are not. </p>
+
+<p>You will be measured in various stats. For now Crew morale is the only one visible. </p>
+
+<p>But there is Piety, injury, reputation with various characters, time and other secrets being measured from your choices that might lead you down different paths or unexpected ends. </p>
+<hr />
+<a href="start.html">Begin</a>
+<button id="reset">Reset</button>
+
+</body>
+</html>
