@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+  <link rel="stylesheet" href="/main.css"></link>
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css"></link>
+  <link rel="stylesheet" href="/bootstrap-theme.min.css"></link>
+  <script src="/main.js"></script>
+  <script>
+		state.Glint.status = "invisible"
+		state.Valnos.status = "invisible"
+	
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+    
+		  
+      $('#button-1').on('click', function(e) {
+		
+	
+       lib.dialogue(e, "round1"),
+		$("#button-2").removeClass("hidden")
+		$("#button-3").removeClass("hidden")
+		$("#button-4").removeClass("hidden")
+		$("#button-1").addClass("hidden")
+			
+      })
+
+      $('#button-2').on('click', function(e) {
+        lib.dialogue(e, "round1-10")
+		state.game += 10;
+		$("#button-5").removeClass("hidden")
+		$("#button-2").addClass("hidden")
+		$("#button-3").addClass("hidden")
+		$("#button-4").addClass("hidden")
+      })
+	  $('#button-3').on('click', function(e) {
+         lib.dialogue(e, "round1-5")
+		$("#button-5").removeClass("hidden")
+		$("#button-2").addClass("hidden")
+		$("#button-3").addClass("hidden")
+		$("#button-4").addClass("hidden")
+      })
+	  $('#button-4').on('click', function(e) {
+	  lib.dialogue(e, "round1-3")
+		$("#button-5").removeClass("hidden")
+		$("#button-2").addClass("hidden")
+		$("#button-3").addClass("hidden")
+		$("#button-4").addClass("hidden")
+		
+      })
+	  $('#button-5').on('click', function(e) {
+        lib.dialogue(e, "round2"),
+		$("#button-6").removeClass("hidden")
+		$("#button-7").removeClass("hidden")
+		$("#button-8").removeClass("hidden")
+		$("#button-5").addClass("hidden")
+      })
+	   $('#button-6').on('click', function() {
+       lib.dialogue(e, "round2-10")
+		$("#button-9").removeClass("hidden")
+		$("#button-6").addClass("hidden")
+		$("#button-7").addClass("hidden")
+		$("#button-8").addClass("hidden")
+      })
+	    $('#button-7').on('click', function(e) {
+        lib.dialogue(e, "round2-5")
+		$("#button-9").removeClass("hidden")
+		$("#button-6").addClass("hidden")
+		$("#button-7").addClass("hidden")
+		$("#button-8").addClass("hidden")
+      })
+	    $('#button-8').on('click', function(e) {
+         lib.dialogue(e, "round2-3")
+		$("#button-9").removeClass("hidden")
+		$("#button-6").addClass("hidden")
+		$("#button-7").addClass("hidden")
+		$("#button-8").addClass("hidden")
+      })
+	    $('#button-9').on('click', function(e) {
+        lib.dialogue(e, "round3"),
+		$("#button-10").removeClass("hidden")
+		$("#button-11").removeClass("hidden")
+		$("#button-9").addClass("hidden")
+      })
+	    $('#button-10').on('click', function(e) {
+        lib.dialogue(e, "round3-bet"),
+		$("#button-12").removeClass("hidden")
+		$("#button-10").addClass("hidden")
+		$("#button-11").addClass("hidden")
+      })
+	    $('#button-11').on('click', function(e) {
+        lib.dialogue(e, "round3-nobet"),
+		$("#button-12").removeClass("hidden")
+		$("#button-10").addClass("hidden")
+		$("#button-11").addClass("hidden")
+      })
+	    $('#button-12').on('click', function(e) {
+        lib.dialogue(e, "round4"),
+		$("#button-13").removeClass("hidden")
+		$("#button-14").removeClass("hidden")
+		$("#button-15").removeClass("hidden")
+		$("#button-12").addClass("hidden")
+      })
+	    $('#button-13').on('click', function(e) {
+        lib.dialogue(e, "round4-10"),
+		$("#button-16").removeClass("hidden")
+		$("#button-13").addClass("hidden")
+		$("#button-14").addClass("hidden")
+		$("#button-15").addClass("hidden")
+      })
+	    $('#button-14').on('click', function(e) {
+        lib.dialogue(e, "round4-5"),
+		$("#button-16").removeClass("hidden")
+		$("#button-13").addClass("hidden")
+		$("#button-14").addClass("hidden")
+		$("#button-15").addClass("hidden")
+      })
+	    $('#button-15').on('click', function(e) {
+        lib.dialogue(e, "round4-3"),
+		$("#button-16").removeClass("hidden")
+		$("#button-13").addClass("hidden")
+		$("#button-14").addClass("hidden")
+		$("#button-15").addClass("hidden")
+      })
+	   $('#button-16').on('click', function(e) {
+        lib.dialogue(e, "conclusion"),
+		$("#button-16").addClass("hidden")
+		$("#button-17").removeClass("hidden")
+		
+      })
+	    $('#button-17').on('click', function(e) {
+        lib.dialogue(e, "conclusion"),
+		$("#button-17").addClass("hidden")
+		lib.goTo('Page18.html')
+      })
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+<div id="story-text">
+<p>The game started. In many ways it was a offshoot of the very common &#39;Hold &#39;im down!&#39; card game where you received two cards, bet and then everyone shared a pool of cards.</p>
+
+<p>But in this variation there were currency chips to bet. Instead you had 6 bet cards in form of an All-in bet (10 points), 2 high bets (5 points) and 3 low bets (3 points). Over 4 rounds you bet minimum of one of your bet cards blind against the others bets, except your All-in 10 pointer, which is always counted as first bet and done openly. The others have to then either match it with their own All-in card and hope to win with higher cards or be forced to ceede a high card. If you do not have a high card, you must match with your own All-in or you are bust and have to give all your winnings over. After the fourth round, the one holding the biggest pool of value bets of another player win whatever was at stake in this game.</p>
+
+<p>For example, if Keeper was so confident in his cards he bet his All-in bet in round one. Ziggy then challenges him with her own 10 pointer and wins the winning hand and reaped everyone bets. Keeper would have to win two following High bets from Ziggy to get back on even stakes and points with her and cancel it out. Similarly a high bet is worth two low bets. If Ziggy chooses to do an All in in the next round, Keeper will have no choice to either give up a high card or try his luck with two high cards or one high card and two low cards to match the value of the all-in card.&nbsp;</p>
+
+<p>The final crux is that betting a single low bet card can only win you a low bet cards in return.</p>
+
+<p>The open stakes on the table were:</p>
+
+<p>Resumed unhindered gambling for 10 points</p>
+
+<p>Resumed gaming with restrictions on high-stakes 5 points.</p>
+
+<p>These had to be won from either me or Ziggy by Keeper and Arn. While the reverse,</p>
+
+<p>The games is forbidden 10 points and</p>
+
+<p>No more stakes allowed in gaming 5 points were held by Keeper and Arn.</p>
+
+<p>I was glad i had Ziggy by my side. I glanced toward her and it seemed she had something on her mind, her brow furrowed. I&#39;d rarely seen her with a serious face on, but it seemed she was in her element now.</p>
+</div>
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1">The Game - Ship rules - Round 1</button>
+<button class="btn btn-default hidden" id="button-2">Round 1 bet: All-in 10 points. </button>
+<button class="btn btn-default hidden" id="button-3">Round 1 bet: High 5 points</button>
+<button class="btn btn-default hidden" id="button-4">Round 1 bet: Low 3 points</button>
+<button class="btn btn-default hidden" id="button-5">The Game - Ship rules - Round 2</button>
+<button class="btn btn-default hidden" id="button-6">Round 2 bet: All-in 10 points</button>
+<button class="btn btn-default hidden" id="button-7">Round 2 bet: High 5 points</button>
+<button class="btn btn-default hidden" id="button-8">Round 2 bet: Low 3 points</button>
+<button class="btn btn-default hidden" id="button-9">The game - Ship rules - Round 3</button>
+<button class="btn btn-default hidden" id="button-10">Round 3 bet: Challenge</button>
+<button class="btn btn-default hidden" id="button-11">Round 3 bet: Do not challenge. Give high card</button>
+<button class="btn btn-default hidden" id="button-12">The Game - Ship Rules - Round 4</button>
+<button class="btn btn-default hidden" id="button-13">Round 4 bet: All-in 10 points</button>
+<button class="btn btn-default hidden" id="button-14">Round 4 bet: High 5 points</button>
+<button class="btn btn-default hidden" id="button-15">Round 4 bet: Low 3 points</button>
+<button class="btn btn-default hidden" id="button-16">The Game - Ship rules - Conclusion</button>
+<button class="btn btn-default hidden" id="button-17">Getting things back to normal</button>
+
+<!--GAMESCORES HERE? -->
+
+
+<div class="round1 hidden"><p><strong>The Game - Ship rules - Round 1</strong></p>
+
+<p>The cards were distributed by a neutral dealer. In this case a cheery looking Awe private both Ziggy and Arn vouched for. She distributed the cards with practiced dexterity.</p>
+
+<p>I glanced around the table quickly before lifting my cards while the others checked theirs. Arn looked stony-faced, but then again he always did. Keeper was stiffling a hiccup or belch of sorts while he looked over his cards with one brow furrowed.</p>
+
+<p>Ziggy had a blank serious face on, betraying nothing. One i wished she&#39;d use more during our weekly debriefings.</p>
+
+<p>My cards were of decent value. A pair of half-moons.</p>
+</div>
+
+<div class="round1-10 hidden"> <p><strong>Round 1 bet: All-in 10 points</strong></p>
+
+<p>I announced my All-in bet and it immediately raised head on the table. Apparently a round 1 All-in bet was very bold or stupid.</p>
+
+<p>The others considered their hands for a moment before placing their own bet cards. No one challenged my All-in with one of their own.</p>
+
+<p>As result i reaped a high-bet card from all three. Now i just needed one more high card or two low cards from either Arn or Keeper to have 10 points.</p>
+
+</div>
+
+<div class="round1-5 hidden"> <p><strong>Round 1 bet: High 5 points</strong></p>
+
+<p>&nbsp;</p>
+
+<p>&ldquo;I know the Admiraltys dealings and relationship with the Wulf &ldquo;Fleet&rdquo; has been tenuous at best in the East sea. They have never quite seen eye to eye with us, seeing that they are more a mob of cooperating privateers then an organization like us.&rdquo;</p>
+
+<p>&nbsp;</p>
+
+<p>&ldquo;But of late our diplomatic contacts have, for a price, come to an arrangement with them in regards of the security of the west sea. And we know only that they have asked for one of our ships to meet with theirs. Your Wulf liaison aboard will provide you with more information as you approach Pale rock. Keep him in one piece.&rdquo;</p>
+ </div>
+ 
+ <div class="round1-3 hidden"> <p><strong>Round 1 bet: Low 3 points</strong></p>
+
+<p>Everyone put down their bet cards and then turned their play cards.</p>
+
+<p>I had the winning hand. So i reaped the bet cards on the table into my win-pile.</p>
+
+<p>I got a low card from Arn and Keeper and a high card from Ziggy. The high card cant be won with a low card so it goes back in Ziggys hand. Overall a low win.&nbsp;</p>
+
+<p>Ziggy keeps her straight face on. She must have noticed my glance as the cadet gives me a wink and then turns her eyes back to Keepers cards intently.</p>
+</div>
+ 
+
+ <div class="round2 hidden"> <p><strong>The Game - Ship rules - Round 2</strong></p>
+<p>The dealer distributes a new set of card for everyone. I glance around again, but this time they seem to be staring back, i catch both Arns and Keepers eyes as they had been trying to catch a hint of my reaction to my cards.</p>
+
+<p>He &#39;Hmph&#39; quietly to myself and raise my cards to have a look. A very poor hand. A Tail and a coin.</p>
+
+<p>I look back to catch them glancing at their own cards. One of Arns big brows are twitching. Keeper rights himself in his chair with a sigh, heaving his big gut up slightly. He looks like he wants to take a long nap.</p>
+<p> <span class="current-score"><script>theGame()</script></span> </p>
+</div>
+<div class="round2-10 hidden"> <p><strong>Round 2 bet: All-in 10 points</strong></p>
+<p>I play it bold, poor hand or not i can bluff.</p>
+
+<p>I announce my All-in bet and Arn immediately counters with his own bet.</p>
+
+<p>Arn has a bigger hand and wins, taking my 10 point card.</p>
+
+<p>Under the table i get a quick kick from Ziggy. It makes me jolt and i give her a glare. Whether that was for loosing such a big hand or something else, im not sure.</p>
+</div>
+<div class="round2-5 hidden"> <p><strong>Round 2 bet: High 5 points</strong></p>
+<p>I feel confident and play a high card bet.</p>
+
+<p>Arn has the larger hand and reaps the betting pool. No winnings.</p>
+
+<p>Under the table i get a quick kick from Ziggy. It makes me jolt and i give her a glare. Whether that was for loosing a hand or something else, im not sure.</p>
+</div>
+<div class="round2-3 hidden"> <p><strong>Round 2 bet: Low 3 points</strong></p>
+<p>I play it safe and only bet a low card.</p>
+
+<p>Turns out to have been a good choice. Arn has the larger hand and reaps the betting pool.</p>
+
+<p>Under the table i get a quick kick from Ziggy. It makes me jolt and i give her a glare. Its not like i lost a big hand or did anything wrong.</p>
+</div>
+
+
+
+
+<div class="round3 hidden"> <p><strong>The game - Ship rules - Round 3</strong></p>
+<p>The dealer distributes the cards and this time i picked them up quickly, eager to see their worth.</p>
+
+<p>I have a pretty good hand. Two gold coins.</p>
+
+<p>Before i can decide what to bet Arn announces he&#39;s going all in, looking pretty confident.</p>
+
+<p>I have to decide wether to challenge or give up a high card.</p>
+</div>
+<div class="round3-bet hidden"> <p><strong>Round 3 bet: Challenge</strong></p>
+<p>I challenge Arns hand and slam down enough bet cards to match him.&nbsp;</p>
+
+<p>However, he turns out to have a double star and I loose the challenge and loose 10 points. Arn chuckles triumphantly and gives me a nod as he collects the bets. This is not good, i do not have many bet cards left.</p>
+</div>
+
+<div class="round3-nobet hidden"> <p><strong>Round 3 bet: Do not challenge. Give high card</strong></p>
+<p>Arn reaps a high card from all players and chuckled grimly, no one choosing to challenge him. Things were looking up for their team.</p>
+
+<p>I was starting to wonder if this game was such a good idea.</p>
+</div>
+
+<div class="round4 hidden"> <p><strong>The game - Ship rules - Round 4</strong></p>
+<p>Final round. The room is tense as the ships future gambling pass-time is decided.</p>
+
+<p>Even the dealer realizes it might be the last time she&#39;s officially distributing cards on this journey as she fumbles and throws Ziggys card too far, forcing a reshuffle and new set of cards to be redealt.</p>
+
+<p>I get a mediocre hand. Two tails. Weakest combination, but at least something. I look over my winnings and remaining bet cards.</p>
+</div>
+<div class="round4-10 hidden"> <p><strong>Round 4 bet: All-in 10 points</strong></p>
+<p>I take a final chance, i need as much points i can get, its not or never.</p>
+
+<p>Both Ziggy and Arn challenge me while Keeper looks sleepy, leaned back in his chair with his sagging stomach in his lap. I win both their hands.</p>
+
+<p>The dealer counts our results.</p>
+
+</div>
+<div class="round4-5 hidden"> <p><strong>Round 4 bet: High 5 points</strong></p>
+<p>I give it a try and use my final cards as a high bet, almost throwing the card onto the table.</p>
+
+<p>I loose the hand to Keeper who had the highest hand. Not good.</p>
+
+<p>The dealer counts the winnings.</p>
+</div>
+<div class="round4-3 hidden"> <p><strong>Round 4 bet: Low 3 points</strong></p>
+<p>I make a low bet. Lets hope Ziggy has better winnings then me.</p>
+
+<p>Keeper wins the pot.</p>
+
+<p>The dealer counts the winnings.</p>
+</div>
+
+<div class="conclusion hidden"> <p><strong>The Game - Ship rules - Conclusion</strong></p>
+<p>Our winnings were not enough. One of us ended up below 10 points and thus the games continue unhindered.</p>
+
+<p>This was a blow to my authority. I had let myself get carried away and fallen for their little plot to skirt my commands. In hindsight it might have seemed like a slightly foolish decisions. Especially as i just learned Ships rules means High-stakes. Had i lost with too many points, who knows what they could have demanded.</p>
+
+<p>I suppose i could decide to stop it anyway, despite how spiteful it would seem to be. But this whole thing had left a sour taste in my mouth.</p>
+</div>
+
+
+</body>
+</html>

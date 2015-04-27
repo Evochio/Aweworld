@@ -15,6 +15,9 @@ Aweworld todo:
 
 -- Make functions status summaries for crew and ship 
 
+-- Fix dialogue classes and buttons
+
 -- Make a minigame for the gambling episode. 
+	+Display game score and Have talking to Viska bring alternate path
 
 -- Get a worldmap made

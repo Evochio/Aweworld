@@ -21,6 +21,14 @@ lib.goTo = function (href) {
   lib.save('state-'+lastPart, state);
   document.location.href = href;
 }
+lib.dialogue = function(e, className) { 
+	var answer1 = $("."+ className).html()
+	$("#story-text").animate({opacity: 0}, function(){$(this).html(answer1)}).animate({opacity: 1})
+	$("."+ className+":first").remove()
+	if (!$("."+ className).length) {
+		$(e.target).removeClass("btn-default").addClass("btn-info")
+	}
+}
 
 lib.makeCadetButtons = function () {
   var buttons = $("<div id='cadet-buttons'></div>");
@@ -67,6 +75,7 @@ var initialState = {
   piety: 0,
   raptorians: 3,
   delay: 0,
+  game: 0,
   inventory: []
 }
 ///////////////////////////
@@ -74,6 +83,10 @@ var initialState = {
 var parts = document.location.href.split('/');
 var lastPart = parts[parts.length-1];
 state = lib.load('state-'+lastPart) || initialState;
+
+theGame = function () {
+	$(".current-score").text(blah);
+}
 
 displayMoraleStatus = function () {
 	if (state.crewMorale >= 9 && state.crewMorale < 13 ) {
