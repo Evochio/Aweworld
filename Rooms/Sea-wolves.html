@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+ <link rel="stylesheet" href="/main.css">
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-theme.min.css">
+  <script src="/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function() {
+        // change state here
+		
+        // end by using lib.goTo
+        lib.goTo('Seaoffangs.html')
+      })
+		
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+<p><strong>Encountering Sea Wolfs</strong></p>
+
+<p>
+</p>
+
+<p>Its apparently an inevitable fact on the western sea to have your ship at some point stalked by Sea wolfs. Its not unheard of that some packs follow a ship almost on its entire journey or take turn with other packs to keep them under watch. At least so Sergeant Mirr claimed while we at the stern of the ship observed their ominously large black dorsal fins breaking along with the loud &ldquo;chuffs&rdquo; of their breaths.</p>
+
+<p>We were safe from them on the ship. But if we are to ever take a smaller boat ashore, we must make certain they are nowhere near. They are intelligent, savage and always looking to fill their bellies.</p>
+
+<p>While they represent no direct threat, they are considered a omen of the sea by the sailors. An inevitable looming danger and the jaws that lurk beneath the waves for any unlucky enough to fall into the sea.</p>
+
+<p>I could already see Awes walking with more care around the railings and climbing slowly along the sails.</p>
+
+<p>The timing could not be worse either. The sea of fangs and its spiny white cliffs of which it got its name loom ahead. Ill portents or not, now is the time the crew and charts are put to the test. </p>
+
+<p></p>
+<p>I hope the clear skies hold </p>
+
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1">Sea of Fangs</button>
+
+<div class="hidden" id="Glint-dialogue">There is little to be done about baseless superstition. The crew will be spooked for a while.</div>
+<div class="hidden" id="Ziggy-dialogue">Those big fish dont scare me! Its not like they can punch through the hull and getcha....Right?</div>
+<div class="hidden" id="Valnos-dialogue">The Sea of fangs long represented an impassable barrier for all ships. I wonder how they managed to chart a route through it and who did it.</div>
+
+</body>
+</html>

@@ -43,11 +43,12 @@ lib.makeCadetButton = function(cadetName) {
   var button = $();
   if (state[cadetName].status == "available") {
     var button = $("<button>" + cadetName + "</button>"); //Put image here
-    var content = $("#" + cadetName + "-dialogue").text() || cadetName + " has nothing to add";
+    var content = $("#" + cadetName + "-dialogue").html() || cadetName + " has nothing to add";
     button.popover({
       placement: "top",
       title: cadetName + " says:",
-      content: content
+      content: content,
+	  html: true
     });
   }
   return button;
@@ -76,6 +77,9 @@ var initialState = {
   raptorians: 3,
   delay: 0,
   game: 0,
+  cardMatron: 1,
+  cardHigh: 2,
+  cardLow: 3,
   inventory: []
 }
 ///////////////////////////
@@ -84,11 +88,10 @@ var parts = document.location.href.split('/');
 var lastPart = parts[parts.length-1];
 state = lib.load('state-'+lastPart) || initialState;
 
-theGame = function () {
-	$(".current-score").text(blah);
-}
+
 
 displayMoraleStatus = function () {
+	console.trace();
 	if (state.crewMorale >= 9 && state.crewMorale < 13 ) {
 		$(".Crew-morale-description").text("Great");
 	}

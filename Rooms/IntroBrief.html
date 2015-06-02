@@ -12,7 +12,7 @@
  <link rel="stylesheet" href="/bootstrap.min.css"></link>
   <link rel="stylesheet" href="/bootstrap-theme.min.css"></link>
   <script src="/main.js"></script>
-<script>var buttonAppearance = true</script>
+
   <script>
  
 	
@@ -20,30 +20,30 @@
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
     
-		  
-      $('#button-1').on('click', function(e) {
-		
-		buttonAppearance = false;
-       lib.dialogue(e, "WhyWest"),
+	var onQuestionAsked = function(){
 		$("#button-6").removeClass("hidden")
 		$("#button-5").addClass("hidden")
-			
+	}
+	
+      $('#button-1').on('click', function(e) {
+		
+		
+       lib.dialogue(e, "WhyWest"),
+		
+		onQuestionAsked();
       })
 
       $('#button-2').on('click', function(e) {
         lib.dialogue(e, "ship-crew")
-		$("#button-6").removeClass("hidden")
-		$("#button-5").addClass("hidden")
+		onQuestionAsked();
       })
 	  $('#button-3').on('click', function(e) {
          lib.dialogue(e, "working-wulf")
-		 $("#button-6").removeClass("hidden")
-		 $("#button-5").addClass("hidden")
+		onQuestionAsked();
       })
 	  $('#button-4').on('click', function(e) {
         lib.dialogue(e, "missing-captain")
-		$("#button-6").removeClass("hidden")
-		$("#button-5").addClass("hidden")
+		onQuestionAsked();
 		
 		// Secret ending
 		$("#button-4").addClass("hidden")

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+ <link rel="stylesheet" href="/main.css">
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-theme.min.css">
+  <script src="/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function() {
+        // change state here
+		
+        // end by using lib.goTo
+        lib.goTo('Rendezvous.html')
+      })
+		$('#button-2').on('click', function() {
+        // change state here
+		
+        // end by using lib.goTo
+        lib.goTo('.html')
+      })
+      $('#button-3').on('click', function() {
+        // change state here
+		
+        // end by using lib.goTo
+        lib.goTo('.html')
+      })
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+<p>The vast jutting white cliffs of Pale Rock lay before us. As long as we make sure the currents do not smash us against the steep walls of this island this should be easy sailing.</p>
+
+<p>Pale rock lays just between the north and south halves of Western sea. On the map it looks like an ideal place to construct a port of trade, but reality is a different place. This is a harsh windswept place, the island looks like a flat cliff-face has simply risen out of the sea, there is no shore to speak off.</p>
+
+<p>We are getting close to our first objective and our meeting with our Wulf-fleet contact beckons.</p>
+
+<p>I have summoned Keeper, no matter how I feel about him, he has vital information about the coming rendezvous and advice in how to deal with Wulfs.</p>
+
+<p>Unlike Keeper, who is born and raised in Awe, mainland Wulfs are a very different breed indeed. Diplomacy with them have always been hindered by cultural differences.</p>
+
+<p>My dealings with them on the East sea were seldom of the diplomatic kind.&nbsp;</p>
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1">Rendezvous</button>
+
+
+</body>
+</html>

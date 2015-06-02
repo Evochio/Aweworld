@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+ <link rel="stylesheet" href="/main.css">
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-theme.min.css">
+  <script src="/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function(e) {
+		lib.dialogue(e, "break"),
+		
+		$("#button-3").addClass("hidden")
+		$("#button-1").addClass("hidden")
+		$("#button-2").addClass("hidden")
+		$("#Elda").removeClass("hidden")
+	})
+		
+		$('#button-2').on('click', function(e) {
+		lib.dialogue(e, "wait"),
+		
+        $("#button-3").addClass("hidden")
+		$("#button-1").addClass("hidden")
+		$("#button-2").addClass("hidden")
+		$("#Judgement").removeClass("hidden")
+      })
+      $('#button-3').on('click', function(e) {
+       lib.dialogue(e, "order"),
+		
+        $("#button-3").addClass("hidden")
+		$("#button-1").addClass("hidden")
+		$("#button-2").addClass("hidden")
+		$("#Judgement").removeClass("hidden")
+      })
+	   $('#Elda').on('click', function(e) {
+       lib.dialogue(e, "elda"),
+		$("#Elda").addClass("hidden")
+        $("#Judgement").removeClass("hidden")
+		
+      })
+	  $('#Judgement').on('click', function(e) {
+       lib.dialogue(e, "judgement"),
+		$("#Judgement").addClass("hidden")
+		$("#Labor").removeClass("hidden")
+		$("#Eat").removeClass("hidden")
+		$("#Overboard").removeClass("hidden")
+      })
+	   $('#Labor').on('click', function(e) {
+       lib.dialogue(e, "labor"),
+		$("#Labor").addClass("hidden")
+		$("#Eat").addClass("hidden")
+		$("#Overboard").addClass("hidden")
+		$("#button-4").removeClass("hidden")
+      })
+	  $('#Eat').on('click', function(e) {
+       lib.dialogue(e, "eat"),
+		$("#Labor").addClass("hidden")
+		$("#Eat").addClass("hidden")
+		$("#Overboard").addClass("hidden")
+		$("#button-4").removeClass("hidden")
+      })
+	  $('#Overboard').on('click', function(e) {
+       lib.dialogue(e, "overboard"),
+		$("#Labor").addClass("hidden")
+		$("#Eat").addClass("hidden")
+		$("#Overboard").addClass("hidden")
+		$("#button-4").removeClass("hidden")
+      })
+	   $('#button-4').on('click', function() {
+        // change state here
+		
+        // end by using lib.goTo
+        lib.goTo('PaleRock.html')
+      })
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+<div id="story-text">
+<p>A commotion alerted me as I was making my rounds around the deck with cadet Valnos in tow.</p>
+
+<p>The unmistakable snarls of agitated Raptorians is enough to put ones fur on end, if there was trouble with the normally placid Raptorians it was best dealt with quickly.</p>
+
+<p>Two Raptorians were at each other in the main stairway down to the cargo storage. Wood splintered as tails lashed and one tackled into the other. Their scuffle was getting increasingly violent and soon they might not only damage themselves but important supplies and equipment.</p>
+
+<p>This was unacceptable and the gathering crowd were looking toward me for a solution.&nbsp;</p>
+</div>
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1">Break up the fight yourself</button>
+<button class="btn btn-default" id="button-2">Wait for Sergeant Evoc</button>
+<button class="btn btn-default" id="button-3">Order them stopped</button>
+<button class="btn btn-default hidden" id="Elda">Pouch-Matron Elda</button>
+<button class="btn btn-default hidden" id="Judgement">Judgment for Raptorians</button>
+<button class="btn btn-default hidden" id="Labor">Extra labor</button>
+<button class="btn btn-default hidden" id="Eat">Eat one of them</button>
+<button class="btn btn-default hidden" id="Overboard">Throw them both overboard to the sea wolves.</button>
+<button class="btn btn-default hidden" id="button-4">Pale Rock</button>
+
+<div class="break hidden"><p><strong>Break up the fight yourself</strong></p>
+<p>I could not stand idle and look powerless. With a loud snap of command I shouted for them to &ldquo;CEASE!&rdquo;, while stepping in between them.</p>
+
+<p>But my voice got drowned out by a particularly loud roar from one of the combatants who had been downed onto his back. I jumped its wildly lashing tail to interpose myself against the more dominant Raptorian, but did not see the back swing of the tail until too late.</p>
+
+<p>The smack of the tail knocked me against a wall and dazed me pretty good. The world spun and my shoulder stung but I had wits in me enough to yell in outrage before one of them stepped on me in the commotion. &ldquo;HOW DARE YOU!?&rdquo; came out of me and only then did they pause to notice their Captain and what they&#39;d done.</p>
+
+<p>Sergeant Evoc arrived shortly after and hissed his disapproval at them. I left him to deal with them as I returned to my cabin with Valnoses help. My shoulder was on fire and my right wing sagged pitifully.</p>
+
+<p>I might have been foolish in trying to deal with Raptorians on my own, but crew seemed to mutter approvingly. At least I&#39;ve shown I&#39;m not afraid of them.</p>
+
+<p>Valnos: That was brave captain. I didnt think any one Awe could stand up to a Raptorian, let alone two! Lets get you to Elda for some treatment.</p>
+</div>
+
+<div class="wait hidden"><p><strong>Wait for Sergeant Evoc</strong></p>
+<p>Dealing with the Raptorian grunts was the sergeants job. It would be foolish to try to go between two angry Raptorians. I crossed my arms and counted the seconds it would take for the sergeant to arrive, this would be on his hide.</p>
+
+<p>Their scuffle grew alarmingly violent as neither seemed to want to yield to the other. Before the sergeant arrived they had smashed against walls and into crates and barrels, spilling important supplies of drinking water.</p>
+
+<p>To his credit, once he arrived he dealt with them quickly and efficiently. He was on them both, dragged them onto the ground and had them both pinned and submissive in moments. He was a formidable fighter.</p>
+
+<p>I ordered him to report to me once he had the troublemakers locked up and returned to my cabin.</p>
+
+<p>Valnos: It was problably smart to wait for Evoc, glad no one was seriously hurt. Too bad about the damage to the supplies, we&#39;ll be eating some drier rations for a while.&nbsp;</p>
+
+</div>
+
+<div class="order hidden"><p><strong>Order them stopped</strong></p>
+<p>This disorderly behavior was unacceptable. I barked &ldquo;CEASE IMMEDIATELY!&rdquo; at them but they either didnt listen or hear me through their growls and snarls.</p>
+
+<p>Others were just standing about, looking on, it would not do well to seem to not be in charge of the situation so I ordered them to intervene before their crashing struggle got too close to valuable supplies.</p>
+
+<p>The attending Awes were slow to obey, hesitating to follow orders, perhaps understandably so. But before I had to order them twice, the normally timid Valnos dove straight into the fray in surprising obedience. Seeing a junior sailor and officer hop too it got their legs in order, soon the two Raptorians were overwhelmed by numbers. They seemed more surprised about being smothered in Awes then actually subdued, but at least the results where the same, they forgot their fight and calmed.</p>
+
+<p>Sergeant Evoc arrived shortly afterwards and hissed his disapproval at the two troublemakers. I ordered him to report to me once he had them locked up.</p>
+
+<p>Unfortunately, Valnos and a few other Awes did not quite make it unscathed. A bit squashed and limping I sent them to Pouch-Matron Eldas care.</p>
+
+<p>Valnos: Ow... N-no.. dont worry about me. J-just twisted my leg a bit. Why I jumped in? I... eh... Didnt want you to loose face when no one obeyed. &nbsp;</p>
+</div>
+
+<div class="elda hidden"><p><strong>Pouch-Matron Elda</strong></p>
+
+<p>Elda tut-tutted and made a quick token check over my shoulder, I tried to remain stoic as she gently tugged and poked at the throbbing injury.</p>
+
+<p>&ldquo;Your shoulder and wing-base are luckily not dislocated. It seems like a bad sprain, possibly some fracturing.&rdquo; She cooed with her practiced reassuring calmness. She could most likely make a missing arm seem like not so big of a deal.</p>
+
+<p>&ldquo;And you recommend?&rdquo; I could already guess her chosen treatment.</p>
+
+<p>&ldquo;Why 3-day Pouch-rest of-course, my dear brave captain.&rdquo; She purred as she said it. &ldquo;The injury would heal well on its own too in about 2 weeks, as long as you did not move much and rested plenty. While pouch-rest will still leave you stiff you&#39;d be up and about sooner.&rdquo;</p>
+
+<p>&ldquo;Ofcourse&rdquo; I muttered.</p>
+
+<p>&ldquo;Oh, dont pout, high-metabolic sleep is a gift we should consider ourselves lucky for as Awes, others are not so fortunate. Get all your things in order, have a big hearty meal with plenty sugars and lets get you tucked in.&rdquo; Elda smiled warmly while she out of habit gripped the lip of her sizable pouch in both paws, she loved her job.</p>
+
+<p>I spent the following three days curled and asleep in the good matrons sagging pouch.&nbsp;</p>
+</div>
+
+<div class="judgement hidden"><p><strong>Judgement for Raptorians</strong></p>
+<p>Cowed, bruised and heads held down, the two Raptorians who were at each other stood before me, awaiting judgment. Their fight were about trivial hierarchical matters, apparently they disagreed on who had the right of way up and down the stairs. Evoc assured me this does not normally happen, the two of them only happen to have some bad history.</p>
+
+<p>Their little personal feud caused trouble for others, its a crowded ship, we cant have conflict between ourselves. I had to choose appropriate action.&nbsp;</p>
+</div>
+
+<div class="labor hidden"><p><strong>Extra labor</strong></p>
+<p>Raptorian Teef and Raptorian Talo. Hard labor should see these two troublemakers see reason. I order them given extra shifts in manual work, with only enough sleep and food in-between to keep them on their feet.</p>
+
+<p>What they did was serious. This is a very lenient punishment all things considered. Other captains would have been well in their rights in having them demoted to rations, to feed an officer or the captain itself and ensure that no future problems other then the grumblies would be coming from them.</p>
+
+<p>But we have a long journey and assignement ahead, I need every Awe and Raptorian I can keep.</p>
+</div>
+
+<div class="eat hidden"><p><strong>Eat one of them</strong></p>
+<p>I had them thoroughly questioned. The cause of the strife and the main instigator had to be puzzled out. It did not take long, the problems between these two were well known among the other Raptorians.</p>
+
+<p>The issue apperently lay in both having the same interest in a prospecting females attention back at shore.</p>
+
+<p>All serving Raptorians are promised a mate at the end of their service. There is no better force of motivation for their kind. Like with Awes, its the females who rule among them, though their numbers are far fewer then the males. They only pick the strongest among them.</p>
+
+<p>In this case, Raptorian Teef had been the main antagonizer. Always seeking an excuse to scuffle or make things hard for Raptorian Talo.</p>
+
+<p>Uncontrolled aggressiveness like that is a dangerous thing, damage could have been much worse. The decision to relieve the him from all burdens were easy to make and I sentenced him to my stomach as ration.</p>
+
+<p>With Sergeant Evoc overseeing the punishment, I devoured the Raptorian with relative calm on the main-deck. I did not wish to make a spectacle of the matter so did not call for any gathering or pause in daily duties.</p>
+
+<p>Swallowing a Raptorian whole is an art not all Awes can manage. They are larger, heavier and wider then any Awe, it takes a practised gullet and stomach to accommodate their large frames. Luckily, Teef was subdued and submissive through the act and let himself be eaten. He understood his responsibilities and duty and I will mark down a commendation for that. I dont see how this could have done if he put up a fight.</p>
+
+<p>The heavy fullness that followed is one that i&#39;ll not soon forget. Raptorians take tremendous effort of the body to digest. Their reputation for toughness is not unwarranted.&nbsp;</p>
+
+</div>
+
+<div class="overboard hidden"><p><strong>Throw them both overboard to the sea wolves.</strong></p>
+<p>These two have committed a cardinal sin in their actions. They showed complete disregard to the ship and their crew in their petty conflict. I was enraged by how they did not calm down a direct order and it took having a dozen Awes pinning them down for them to see reason. Valuable obedient crewmembers got hurt, an officer gut hurt.</p>
+
+<p>The stalking sea-wolfs have been on our heel for weeks now. I admit I might have have been slightly flustered when I made the orders, but no one objected when I made the call for them to be thrown overboard to sate our fearsome stalkers.</p>
+
+<p>It was a grim and brief proceeding. Many of the Raptorians attended, to show loyalty toward the Admirality and ensure no further trouble.</p>
+
+<p>An emissary of the soft-spoken did arrive to present their formal objections to the sentence but otherwise there was less fuss then I had thought.</p>
+
+<p>It was as if they knew what was to come. They are intellegent these beasts of the sea, thats for sure. They waited in the rugged sea below as the two raptorians were made to leap, jaws agape and ready.</p>
+
+<p>One was seemingly swallowed before he even touched the sea. Two smaller ones converged on the other Raptorian from either side. The waves concealed the rest.</p>
+
+<p>I ordered the attending crew back to their duties and retired to my cabin. I had reports later of the sea-wolves being back on our tail a few days later.</p>
+
+</div>
+
+</body>
+</html>

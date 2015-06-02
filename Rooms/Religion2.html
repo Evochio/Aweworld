@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+ <link rel="stylesheet" href="/main.css">
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-theme.min.css">
+  <script src="/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function(e) {
+		lib.dialogue(e, "sermon"),
+		state.crewMorale += 1;
+		state.piety += 1;
+		$("#button-3").removeClass("hidden")
+		$("#button-1").addClass("hidden")
+		$("#button-2").addClass("hidden")
+	})
+		
+		$('#button-2').on('click', function(e) {
+		lib.dialogue(e, "nosermon"),
+		state.crewMorale -= 1;
+		state.shipHealth += 1;
+        $("#button-3").removeClass("hidden")
+		$("#button-1").addClass("hidden")
+		$("#button-2").addClass("hidden")
+      })
+      $('#button-3').on('click', function() {
+        // change state here
+		
+        // end by using lib.goTo
+        lib.goTo('Raptorianscuffle.html')
+      })
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+<div id="story-text">
+<p> We're out of the fangs and the ship is still in one piece. </p>
+
+<p> The relief in the crew is visible. Bristled manes are smoothed and Awes look like they've been able to sleep for a full night for once. </p>
+
+<p> With the state of high-alert being called off, an "acolyte" of the order has approached me to request the permission for their order to have a gathering on-deck after sundown. Apperently the gathering has grown and the mess-hall will not be accommodating enough </p>
+
+<p> I'll admit im annoyed that the Soft-spoken herself did not approach me for this request. Since when had they gained acolytes? But its not against Admiralty rules to create and join social clubs, so I let it pass. </p>
+
+<p> Perhaps the crew needs some time to relax after the fangs. But on another hand there is much to do. The ship requires thorough inspection from damages, especially now after the fangs. There's probably enough space below-deck in the mess. </p>
+</div>
+<hr />
+
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1">Permit the meet on-deck</button>
+<button class="btn btn-default" id="button-2">Enough is enough. They can meet below-deck.</button>
+<button class="btn btn-default hidden" id="button-3">Continue</button>
+
+<div class="sermon hidden"><p><strong>A sermon under the stars</strong></p>
+<p>The gathering might have grown since last time. There were even some Raptorians in the crowd lined up for the meet.</p>
+
+<p>The soft-spoken let no one wait. Wearing her ceremonial robe that hid most of her features but her snout, she reached up her arms for silence. She had a commanding presence about her, mysterious as she was underneath that covering robe.</p>
+
+<p>&ldquo;We&#39;ve come far from our homelands. Yet all who departed with us are still among us&rdquo; She said. Before anyone could think too deeply on the matter she continued. &ldquo;Even those who might not be here in person, they are among us still, part of us.&rdquo;</p>
+
+<p>&ldquo;In the same way, those who came before us, those who brought us to this world and built what we today cherish are also among us. We Awes and kin alike.&rdquo; She gave a courteous nod toward the small bunch of Raptorians seated in a cluster together. &ldquo;We FEAR NOT the end. Whether or not it be on your own paws, as long as we have Awe or kin to carry us beyond, we will always be part of the journey of life. &rdquo;</p>
+
+<p>The soft-spoken wandered among the front row of attendees of the most devoted, giving a light touch here and there.</p>
+
+<p>&ldquo;The highest responsibility of those who yet walk this world is to ensure that no one looses their way. Kin must always be returned to the circle. Let no one be lost to wander the afters in darkness, solitude or among strangers. Your duty is to have a belly ready, as much as it in the end is to seek yourself to one yourself.&rdquo;</p>
+
+<p>She stood at the makeshift podium, arms in the air and at the stars in the sky. <strong>&ldquo;Together we are strong. Together we are warm. Together we will see the cold and dark gone.&rdquo;</strong></p>
+
+
+</div>
+
+<div class="nosermon hidden"><p><strong>Permission denied</strong></p>
+<p>Much to the acolytes surprise I have her a firm no. We might have been out of the worst of the fangs, but I cant allow the whole deck to be packed and crowded with distractions. </p>
+
+<p> They will have to confide themselves to bellow deck as per usual. If all can not join the meet as a result, they'll have to find other solutions. </p>
+
+<p> Regular work schedule proceeded as planned. I patrolled the ship with sergeant Mirr while work-crews carefully hanged over the sides of the ship to check the hull for anything we might not noticed. </p>
+
+<p> As it would happen a weakened piece of hull was located near the bow. It did not look like much and could have easily been missed, but in a hard storm it could have been the cause for much unneeded trouble. <p>
+
+<p> I caught the end of the meeting while passing through the mess back to my cabin. Things looked tight, the place was packed and it was near impossible to pass through. The gathering had grown considerably since last. <p>
+
+<P> The soft-spoken murmured her closing words of the evening. </p>
+
+<p>&ldquo;The highest responsibility of those who yet walk this world is to ensure that no one looses their way. Kin must always be returned to the circle. Let no one be lost to wander the afters in darkness, solitude or among strangers. Your duty is to have a belly ready, as much as it in the end is to seek yourself to one yourself.&rdquo;</p>
+
+<p>She raised her arms in a beckoning manner. <strong>&ldquo;Together we are strong. Together we are warm. Together we will see the cold and dark gone.&rdquo;</strong></p>
+
+
+</div>
+
+
+</body>
+</html>

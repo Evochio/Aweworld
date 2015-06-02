@@ -14,14 +14,16 @@
   <script src="/main.js"></script>
 
   <script>
-    $(document).ready(function() {
+		state.Glint.status = "available"
+		state.Valnos.status = "available"
+	$(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
       
       $('#button-1').on('click', function() {
         // change state here
         // end by using lib.goTo
-        lib.goTo('Page19.html')
+        lib.goTo('Sea-wolves.html')
       })
 	 })
 	

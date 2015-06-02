@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+ <link rel="stylesheet" href="/main.css">
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-theme.min.css">
+  <script src="/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function() {
+        // change state here
+		
+        // end by using lib.goTo
+        lib.goTo('seaoffangs2.html')
+      })
+		
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+<p> Finding the landmarks for the entry of the charted route turned out to be easy. Navigator Mirr steered us true and we found the marked cliff ominously named "The wailer". Apparently strong enough wind will cause it to howl. </p> 
+
+<p>The sea is well named, white fangs and spines regularly rise from beneath the waves, some as tall forlorn sentinels, worn down by wind and wave. Some barely above sea-level, glimpsed only briefly like the teeth lurking and waiting to gnash the hull of a careless ship.</p>
+
+<p>As I watch the odd landscape stretch into the horizon, particularly in the south, I wonder idly what kind of calamity caused a place like this to come to be. </p> 
+
+<p> The crew is now on high alert, we are pulling double-shifts to make sure we are ready to respond to any contingency with speed. </p>
+
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1">Continue</button>
+
+
+</body>
+</html>

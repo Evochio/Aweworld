@@ -2,6 +2,7 @@ Aweworld todo:
 
 -- Finish moving rooms from old platform to new html files. 
 	+ Finish writing chapter 1
+		+lore & history
 	+ Revise and improve story
 		+Improve terminology and wordings. Awes instead of men and so on.  
 	+Fix variables for rooms and ensure functions for right rooms to come up. Example Page14 and Page14b for what happened in page 8
@@ -18,6 +19,6 @@ Aweworld todo:
 -- Fix dialogue classes and buttons
 
 -- Make a minigame for the gambling episode. 
-	+Display game score and Have talking to Viska bring alternate path
+	+Display game score and Have talking to Ziggy bring alternate path
 
 -- Get a worldmap made

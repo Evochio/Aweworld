@@ -20,10 +20,16 @@
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
     
+	var updateGameScore = function() {
+	$(".current-score").text(state.game);
+		}
+	updateGameScore();
+	var updateCard = function() {
+			$(".current-cards").text("Your cards:", state.cardMatron);
+		}
+		updateCard();
 		  
       $('#button-1').on('click', function(e) {
-		
-	
        lib.dialogue(e, "round1"),
 		$("#button-2").removeClass("hidden")
 		$("#button-3").removeClass("hidden")
@@ -35,6 +41,7 @@
       $('#button-2').on('click', function(e) {
         lib.dialogue(e, "round1-10")
 		state.game += 10;
+		updateGameScore();
 		$("#button-5").removeClass("hidden")
 		$("#button-2").addClass("hidden")
 		$("#button-3").addClass("hidden")
@@ -42,6 +49,8 @@
       })
 	  $('#button-3').on('click', function(e) {
          lib.dialogue(e, "round1-5")
+		 state.game += 8;
+		updateGameScore();
 		$("#button-5").removeClass("hidden")
 		$("#button-2").addClass("hidden")
 		$("#button-3").addClass("hidden")
@@ -49,6 +58,8 @@
       })
 	  $('#button-4').on('click', function(e) {
 	  lib.dialogue(e, "round1-3")
+	   state.game += 6;
+		updateGameScore();
 		$("#button-5").removeClass("hidden")
 		$("#button-2").addClass("hidden")
 		$("#button-3").addClass("hidden")
@@ -62,8 +73,10 @@
 		$("#button-8").removeClass("hidden")
 		$("#button-5").addClass("hidden")
       })
-	   $('#button-6').on('click', function() {
+	   $('#button-6').on('click', function(e) {
        lib.dialogue(e, "round2-10")
+	   state.game -= 10;
+		updateGameScore();
 		$("#button-9").removeClass("hidden")
 		$("#button-6").addClass("hidden")
 		$("#button-7").addClass("hidden")
@@ -71,6 +84,8 @@
       })
 	    $('#button-7').on('click', function(e) {
         lib.dialogue(e, "round2-5")
+		state.game -= 5;
+		updateGameScore();
 		$("#button-9").removeClass("hidden")
 		$("#button-6").addClass("hidden")
 		$("#button-7").addClass("hidden")
@@ -78,6 +93,8 @@
       })
 	    $('#button-8').on('click', function(e) {
          lib.dialogue(e, "round2-3")
+		 state.game -= 3;
+		updateGameScore();
 		$("#button-9").removeClass("hidden")
 		$("#button-6").addClass("hidden")
 		$("#button-7").addClass("hidden")
@@ -91,12 +108,16 @@
       })
 	    $('#button-10').on('click', function(e) {
         lib.dialogue(e, "round3-bet"),
+		state.game -= 10;
+		updateGameScore();
 		$("#button-12").removeClass("hidden")
 		$("#button-10").addClass("hidden")
 		$("#button-11").addClass("hidden")
       })
 	    $('#button-11').on('click', function(e) {
         lib.dialogue(e, "round3-nobet"),
+		state.game -= 5;
+		updateGameScore();
 		$("#button-12").removeClass("hidden")
 		$("#button-10").addClass("hidden")
 		$("#button-11").addClass("hidden")
@@ -110,6 +131,8 @@
       })
 	    $('#button-13').on('click', function(e) {
         lib.dialogue(e, "round4-10"),
+		state.game += 15;
+		updateGameScore();
 		$("#button-16").removeClass("hidden")
 		$("#button-13").addClass("hidden")
 		$("#button-14").addClass("hidden")
@@ -117,6 +140,8 @@
       })
 	    $('#button-14').on('click', function(e) {
         lib.dialogue(e, "round4-5"),
+		state.game -= 5;
+		updateGameScore();
 		$("#button-16").removeClass("hidden")
 		$("#button-13").addClass("hidden")
 		$("#button-14").addClass("hidden")
@@ -124,6 +149,8 @@
       })
 	    $('#button-15').on('click', function(e) {
         lib.dialogue(e, "round4-3"),
+		state.game -= 3;
+		updateGameScore();
 		$("#button-16").removeClass("hidden")
 		$("#button-13").addClass("hidden")
 		$("#button-14").addClass("hidden")
@@ -149,14 +176,16 @@
 
 </head>
 <body>
-<h1>Admiral Avolc</h1>
+<h1>Admiral Avolc</h1> 
+<p> Your score: <div class="current-score"></div></p>
+<div class="current-cards"></div>
 <hr />
 <div id="story-text">
 <p>The game started. In many ways it was a offshoot of the very common &#39;Hold &#39;im down!&#39; card game where you received two cards, bet and then everyone shared a pool of cards.</p>
 
 <p>But in this variation there were currency chips to bet. Instead you had 6 bet cards in form of an All-in bet (10 points), 2 high bets (5 points) and 3 low bets (3 points). Over 4 rounds you bet minimum of one of your bet cards blind against the others bets, except your All-in 10 pointer, which is always counted as first bet and done openly. The others have to then either match it with their own All-in card and hope to win with higher cards or be forced to ceede a high card. If you do not have a high card, you must match with your own All-in or you are bust and have to give all your winnings over. After the fourth round, the one holding the biggest pool of value bets of another player win whatever was at stake in this game.</p>
 
-<p>For example, if Keeper was so confident in his cards he bet his All-in bet in round one. Ziggy then challenges him with her own 10 pointer and wins the winning hand and reaped everyone bets. Keeper would have to win two following High bets from Ziggy to get back on even stakes and points with her and cancel it out. Similarly a high bet is worth two low bets. If Ziggy chooses to do an All in in the next round, Keeper will have no choice to either give up a high card or try his luck with two high cards or one high card and two low cards to match the value of the all-in card.&nbsp;</p>
+<p>For example, if Keeper was so confident in his cards he bet his All-in bet in round one. Ziggy then challenges him with her own 10 pointer and wins the winning hand and reaped everyones bets. Keeper would have to win two following High bets from Ziggy to get back on even stakes and points with her and cancel it out. Similarly a high bet is worth two low bets. If Ziggy chooses to do an All in in the next round, Keeper will have no choice to either give up a high card or try his luck with two high cards or one high card and two low cards to match the value of the all-in card.&nbsp;</p>
 
 <p>The final crux is that betting a single low bet card can only win you a low bet cards in return.</p>
 
@@ -220,15 +249,14 @@
 </div>
 
 <div class="round1-5 hidden"> <p><strong>Round 1 bet: High 5 points</strong></p>
+<p>Everyone put down their bet cards and then turned their play cards.</p>
 
-<p>&nbsp;</p>
+<p>I had the winning hand. So i reaped the bet cards on the table into my win-pile.</p>
 
-<p>&ldquo;I know the Admiraltys dealings and relationship with the Wulf &ldquo;Fleet&rdquo; has been tenuous at best in the East sea. They have never quite seen eye to eye with us, seeing that they are more a mob of cooperating privateers then an organization like us.&rdquo;</p>
+<p>I got a low card from Arn and a high card from Ziggy and Keeper. A decent win, Ziggys high card was denied from Arn and Keeper atleast. She must have noticed my glance as the cadet gives me a wink and then turns her eyes back to Keepers cards intently.</p>
 
-<p>&nbsp;</p>
 
-<p>&ldquo;But of late our diplomatic contacts have, for a price, come to an arrangement with them in regards of the security of the west sea. And we know only that they have asked for one of our ships to meet with theirs. Your Wulf liaison aboard will provide you with more information as you approach Pale rock. Keep him in one piece.&rdquo;</p>
- </div>
+</div>
  
  <div class="round1-3 hidden"> <p><strong>Round 1 bet: Low 3 points</strong></p>
 
@@ -248,12 +276,12 @@
 <p>He &#39;Hmph&#39; quietly to myself and raise my cards to have a look. A very poor hand. A Tail and a coin.</p>
 
 <p>I look back to catch them glancing at their own cards. One of Arns big brows are twitching. Keeper rights himself in his chair with a sigh, heaving his big gut up slightly. He looks like he wants to take a long nap.</p>
-<p> <span class="current-score"><script>theGame()</script></span> </p>
+
 </div>
 <div class="round2-10 hidden"> <p><strong>Round 2 bet: All-in 10 points</strong></p>
 <p>I play it bold, poor hand or not i can bluff.</p>
 
-<p>I announce my All-in bet and Arn immediately counters with his own bet.</p>
+<p>I announce my All-in bet and Arn immediately counters with his own all-in bet.</p>
 
 <p>Arn has a bigger hand and wins, taking my 10 point card.</p>
 
@@ -301,12 +329,12 @@
 <div class="round4 hidden"> <p><strong>The game - Ship rules - Round 4</strong></p>
 <p>Final round. The room is tense as the ships future gambling pass-time is decided.</p>
 
-<p>Even the dealer realizes it might be the last time she&#39;s officially distributing cards on this journey as she fumbles and throws Ziggys card too far, forcing a reshuffle and new set of cards to be redealt.</p>
+<p>Even the dealer realizes it might be the last time she&#39;s officially distributing cards on this journey as she fumbles and throws Ziggys card too far, forcing a reshuffle and new set of cards to be re-dealt.</p>
 
 <p>I get a mediocre hand. Two tails. Weakest combination, but at least something. I look over my winnings and remaining bet cards.</p>
 </div>
 <div class="round4-10 hidden"> <p><strong>Round 4 bet: All-in 10 points</strong></p>
-<p>I take a final chance, i need as much points i can get, its not or never.</p>
+<p>I take a final chance, I need as much points I can get, its not or never.</p>
 
 <p>Both Ziggy and Arn challenge me while Keeper looks sleepy, leaned back in his chair with his sagging stomach in his lap. I win both their hands.</p>
 
