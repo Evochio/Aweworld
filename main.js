@@ -49,6 +49,7 @@ lib.makeCadetButton = function(cadetName) {
       title: cadetName + " says:",
       content: content,
 	  html: true
+	
     });
   }
   return button;
@@ -72,6 +73,7 @@ var initialState = {
 		
 	},
   crewMorale: 6,
+  shipHealth: 10,
   vore: 0,
   piety: 0,
   raptorians: 3,
@@ -93,25 +95,46 @@ state = lib.load('state-'+lastPart) || initialState;
 displayMoraleStatus = function () {
 	console.trace();
 	if (state.crewMorale >= 9 && state.crewMorale < 13 ) {
-		$(".Crew-morale-description").text("Great");
+		$(".Crew-morale-description").text("Great").css('color', 'darkgreen');;
 	}
 	else if (state.crewMorale >= 7 && state.crewMorale < 9 ) {
-		$(".Crew-morale-description").text("Good");
+		$(".Crew-morale-description").text("Good").css('color', 'green');;
 	  } 
 	else if (state.crewMorale >= 5 && state.crewMorale < 7 ) {
-		$(".Crew-morale-description").text("Average");
+		$(".Crew-morale-description").text("Normal").css('color', 'greenYellow');
 	  } 
 	else if (state.crewMorale >= 3 && state.crewMorale < 5 ) {
-		$(".Crew-morale-description").text("Poor");
+		$(".Crew-morale-description").text("Poor").css('color', 'Yellow');
 	  } 
 	  else if (state.crewMorale >= 1 && state.crewMorale < 3 ) {
-		$(".Crew-morale-description").text("Mutinous");
+		$(".Crew-morale-description").text("Mutinous").css('color', 'Orange');
 	  } 
 	   else if (state.crewMorale >= -5 && state.crewMorale < 1 ) {
-		$(".Crew-morale-description").text("Open rebellion");
+		$(".Crew-morale-description").text("Open rebellion").css('color', 'red');
 	  } 
 	}
-
+displayShipStatus = function () {
+	console.trace();
+	if (state.shipHealth >= 9 && state.shipHealth < 13 ) {
+		$(".Ship-Health-description").text("Great").css('color', 'darkgreen');
+	}
+	else if (state.shipHealth >= 7 && state.shipHealth < 9 ) {
+		$(".Ship-Health-description").text("Serviceable").css('color', 'green');
+	  } 
+	else if (state.shipHealth >= 5 && state.shipHealth < 7 ) {
+		$(".Ship-Health-description").text("Poor").css('color', 'Yellow');
+	  } 
+	else if (state.shipHealth >= 3 && state.shipHealth < 5 ) {
+		$(".Ship-Health-description").text("Listing in the water").css('color', 'Orange');
+	  } 
+	  else if (state.shipHealth >= 1 && state.shipHealth < 3 ) {
+		$(".Ship-Health-description").text("Disastrous").css('color', 'OrangeRed');
+	  } 
+	   else if (state.shipHealth >= -5 && state.shipHealth < 1 ) {
+		$(".Ship-Health-description").text("About to sink").css('color', 'red');
+	  } 
+	}
+	
 
 moraleFailureCheck = function() {
 	if (state.crewMorale < -4) {

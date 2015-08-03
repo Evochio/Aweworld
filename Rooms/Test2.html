@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+ <link rel="stylesheet" href="/main.css">
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-theme.min.css">
+
+  <script>
+
+var ziggy = {};
+var glint = {};
+
+var cadet = [ziggy, glint];
+
+var cadetIndex;
+
+var dialogueIndex0 = function() {
+    cadetIndex = 0;
+    showNextDialogue();
+}
+var dialogueIndex1 = function() {
+    cadetIndex = 1;
+    showNextDialogue();
+}
+
+
+cadet[0].banter = [
+    { target: '#Ziggy', text: 'Yakkity yak'},
+    { target: '#Ziggy', text: 'Don\'t talk back.'}
+];
+
+cadet[1].banter = [
+    { target: '#Glint', text: 'Hello hello'},
+    { target: '#Ziggy', text: 'No no'}
+];
+
+var i = 0;
+
+var options = {
+    container: 'body',
+    placement: 'bottom',
+    content: function() {
+        return cadet[cadetIndex].banter[i].text;
+    },
+    trigger: 'manual'
+};
+
+$('#Glint').popover(options);
+$('#Ziggy').popover(options);
+
+var showNextDialogue = function () {
+    var previousTarget = null; // figure this out
+    var currentTarget = null; // figure this out
+    if(i > 0 && previousTarget !== currentTarget) {
+        $(cadet[cadetIndex].banter[i-1].target).popover('hide');
+    }
+    if(i >= cadet[cadetIndex].banter.length) {
+        i = 0;
+     
+        return;
+    }
+    $(cadet[cadetIndex].banter[i].target).popover('show');
+    i += 1;
+};
+
+$('#Ziggy').on('click', dialogueIndex0);
+$('#Glint').on('click', dialogueIndex1);
+
+
+  </script>
+  
+</head>
+<body>
+<hr />
+<hr />
+<button id="Glint" class="btn btn-default">
+  Glint.
+</button>
+<button id="Ziggy" class="btn btn-default">
+  Ziggy.
+</button>
+
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1">1</button>
+<button class="btn btn-default" id="button-2">2</button>
+<button class="btn btn-default" id="button-3">3</button>
+
+
+
+</body>
+</html>

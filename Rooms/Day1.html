@@ -31,6 +31,11 @@
         // end by using lib.goTo
         lib.goTo('Page2b.html')
       })
+	   $('#button-4').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('Shipreport.html')
+      })
 
     })
   </script>
@@ -68,6 +73,7 @@
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-3">Set examples</button>
 <button class="btn btn-default" id="button-2">Be lenient</button> 
+<button class="btn btn-default" id="button-4">Ship Report</button> 
 <p> Crew morale:
 <span class="Crew-morale-description"><script>displayMoraleStatus()</script></span>
   </p>

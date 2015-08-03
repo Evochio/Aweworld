@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script>
+
+    	
+var ziggy = {};
+var glint = {};
+
+var cadet = [ziggy, glint];
+
+var cadetIndex;
+
+var dialogueIndex0 = function() {
+    cadetIndex = 0;
+    showNextDialogue();
+}
+var dialogueIndex1 = function() {
+    cadetIndex = 1;
+    showNextDialogue();
+}
+
+
+cadet[0].banter = [
+    { target: '#Ziggy', text: 'Yakkity yak'},
+    { target: '#Ziggy', text: 'Don\'t talk back.'},
+    { target: '#Ziggy', text: 'more talk.'},
+    { target: '#Ziggy', text: 'more talking.'}
+];
+
+cadet[1].banter = [
+    { target: '#Glint', text: 'Hello hello'},
+    { target: '#Ziggy', text: 'No no'}
+];
+
+var i = 0;
+
+var options = {
+    container: 'body',
+    placement: 'bottom',
+    content: function() {
+        return cadet[cadetIndex].banter[i].text;
+    },
+    trigger: 'manual'
+};
+
+$('#Glint').popover(options);
+$('#Ziggy').popover(options);
+
+var showNextDialogue = function () {
+    var banter = cadet[cadetIndex].banter;
+    var previousTarget = null;
+    if(i > 0) {
+        var previousTarget = banter[i-1].target; // figure this out
+    }
+        
+    var currentTarget = null
+    if (banter.length > i) {
+       var currentTarget = banter[i].target; // figure this out
+    }
+    
+    console.log('Banter:', banter, 'previous target:', previousTarget, 'and current target:', currentTarget);
+
+    // if this isn't the first line, 
+    // and this line isn't being spoken by the same person as the last line,
+    // then hide the previous line
+    if(i > 0 && previousTarget !== currentTarget) {
+        $(banter[i-1].target).popover('hide');
+    }
+
+    // if i has gone beyond the size of the banter array
+    if(i >= banter.length) {
+        // reset i, stop the popover from being shown
+        i = 0;
+        return;
+    }
+    
+    $(banter[i].target).popover('show');
+
+    i += 1;
+};
+
+$('#Ziggy').on('click', dialogueIndex0);
+$('#Glint').on('click', dialogueIndex1);
+
+  </script>
+
+</head>
+<body>
+<hr />
+<a tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. ">Dismissible popover</a>
+<hr />
+
+<button id="button-1" class="btn btn-default">
+  Person 1.
+</button>
+<button id="button-2" class="btn btn-default">
+  Person 2.
+</button>
+
+
+</body>
+</html>

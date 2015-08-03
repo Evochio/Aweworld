@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+  <link rel="stylesheet" href="/main.css"></link>
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css"></link>
+  <link rel="stylesheet" href="/bootstrap-theme.min.css"></link>
+  <script src="/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('room-1.html')
+      })
+
+      $('#button-2').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('room-2.html')
+      })
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Ship&Crew report</h1>
+<hr />
+
+<p>Ship report:</p>
+<p> The ships status is: <span class="Ship-Health-description"><script>displayShipStatus()</script></span> </p>
+<script>
+switch($(".Ship-Health-description").text()) {
+    case 'Great':
+	document.write("The ship is in optimal condition and ready for any challenge.");
+       break;
+    case 'Serviceable':
+		document.write("The ship has taken some bumps but has no operational problems.");
+        
+        break;
+    case 'Poor':
+		document.write("The ship is worn and in places damaged but still sea-worthy");
+         break;
+	case 'Listing in the water':
+		document.write("The ship is in poor condition and has an eerie tilt too it due to leaks in lower holds. We can limp on for a while longer.");
+         break;
+    case 'Disastrous':
+		document.write("The ship is barely intact and afloat! Crews have to constantly perform emergency repairs around the ship.");
+         break;
+	case 'About to sink':
+		document.write("The ship is more a collection of floating debris then a ship. Most of the interiors are flooded, any strong enough wave will break us apart!");
+         break; 		
+    default: 
+        console.log("WHAT?");
+}
+</script>
+<p>Crew report:</p>
+<p> Crew morale appears to be <span class="Crew-morale-description"><script>displayMoraleStatus()</script></span> </p>
+<p>
+<script>
+switch($(".Crew-morale-description").text()) {
+    case 'Normal':
+	document.write("The crew is content and ready for action.");
+        console.log("ITS NORMAL");
+        break;
+    case 'Poor':
+		document.write("The crew appear to be in some doubt, but they obey.");
+        console.log("ITS POOR");
+        break;
+    case 'Good':
+		document.write("The crew is very happy and confident with the mission.");
+        console.log("ITS GOOD!");
+        break;
+        
+    default: 
+        console.log("WHAT?");
+}
+</script>
+</p>
+<p>Events:</p>
+
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button id="button-1">Button 1</button>
+<button id="button-2">Button 2</button>
+
+</body>
+</html>
