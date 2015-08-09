@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+  <link rel="stylesheet" href="/main.css"></link>
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css"></link>
+  <link rel="stylesheet" href="/bootstrap-theme.min.css"></link>
+  <script src="/main.js"></script>
+
+  <script>
+ 
+	
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+    
+	var onQuestionAsked = function(){
+		$("#button-6").removeClass("hidden")
+		$("#button-5").addClass("hidden")
+	}
+	
+      $('#button-1').on('click', function(e) {
+		
+		
+       lib.dialogue(e, "WhyWest"),
+		
+		onQuestionAsked();
+      })
+
+      $('#button-2').on('click', function(e) {
+        lib.dialogue(e, "ship-crew")
+		onQuestionAsked();
+      })
+	  $('#button-3').on('click', function(e) {
+         lib.dialogue(e, "working-wulf")
+		onQuestionAsked();
+      })
+	  $('#button-4').on('click', function(e) {
+        lib.dialogue(e, "missing-captain")
+		onQuestionAsked();
+		
+		// Secret ending
+		$("#button-4").addClass("hidden")
+		$("#button-7").removeClass("hidden")
+      })
+	  $('#button-5').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('IntroBriefEnd.html')
+      })
+	   $('#button-6').on('click', function() {
+        // change state here
+		
+        // end by using lib.goTo
+        lib.goTo('IntroBriefEnd1.html')
+      })
+	    $('#button-7').on('click', function(e) {
+        lib.dialogue(e, "missing-captain2")
+		$("#button-7").addClass("hidden")
+		$("#button-8").removeClass("hidden")
+      })
+	    $('#button-8').on('click', function(e) {
+        lib.dialogue(e, "missing-captain3")
+		$("#button-1").addClass("hidden")
+		$("#button-2").addClass("hidden")
+		$("#button-3").addClass("hidden")
+		$("#button-4").addClass("hidden")
+		$("#button-6").addClass("hidden")
+		$("#button-8").addClass("hidden")
+      })
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+<div id="story-text">
+<p>An imposing figure stands before you. Age has given this Matron-Awe an enviable wild mane of fluffy fur that refuse containment of the sparse clothing and any effort of grooming. Time has also given her strength, mass and the wide hips of a matron.</p>
+
+<p>Elaborate and decorative epaulets and heavy cloak with golden embroideries signify her rank and status.</p>
+
+<p>&nbsp;</p>
+
+<p>&ldquo;Captain Avolc.&rdquo; She nods as you give your salute. &ldquo;You arrive well one time.&rdquo;</p>
+<p>&ldquo;Yes, Matron Admiral.&rdquo;</p>
+<p>&ldquo;I will be brief and direct. You will listen closely, you may ask questions afterwards.&rdquo;</p>
+
+<p>&nbsp;</p>
+
+<p>You can but nod in acknowledgment as the grand Admiral shifts her hefty and somewhat rounded figure. No doubt many a disobedient underling adorn her frame. You wish not to be among them.</p>
+
+<p>&nbsp;</p>
+
+<p>&ldquo;I am sending you west, to replace a captain of a new ship and crew. I am sending all of my best captains out past the Sea of fangs on assignment and patrol. Your new ship &ldquo;Perked ear&rdquo; waits at port and for your arrival. It is stocked and ready to go, awaiting only your arrival. You will leave immediately after our meeting.&rdquo;</p>
+
+<p>&nbsp;</p>
+
+<p>You tense. This is quite sudden. And the west sea does not have the best reputation in terms of being very hospitable to captains with any form of retirement plans. It was more often a rumored punishment to be sent west.</p>
+<p>The Grand Admiral gauges your reaction, something tells you that she will not take no for an answer. You manage a nod.</p>
+
+<p>&nbsp;</p>
+
+<p>&ldquo;Good.&rdquo; She states curtly before continuing. &ldquo;Your assignment is three-fold.</p>
+
+<p>Firstly, you are to rendezvous with a Wulf-fleet contact beyond the Sea of Fangs at the west end of Pale-rock. They carry important intelligence for us that we have traded expensively for. Our contact should be there in three weeks.</p>
+
+<p>Secondly, you are to investigate suspected piracy issues plaguing the growing west trade. There are troubling rumors related to the Gator empire which must be unveiled. We can not be in the blind or trust conflicting second-hand information. A wulf liason called &ldquo;Keeper&rdquo; have been assigned to the crew, he carries more information.</p>
+
+<p>Thirdly, you are to establish Admiralty presence and security. We need to show that we are a force. Rendevouz with the other Admirality ships that have gone ahead of you and aid eachother in patrolling and mapping the Archipelago sea so we in the future may construct a naval base there.&rdquo;</p>
+
+<p>The great Admiral sighed. &ldquo;You may ask questions&rdquo;</p>
+</div>
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1">"Why is the west now so important?"</button>
+<button class="btn btn-default" id="button-2">“New Ship and crew?”</button>
+<button class="btn btn-default" id="button-3">“We are working with the Wulf-fleet now?”</button>
+<button class="btn btn-default" id="button-4">”What happened to the captain?”</button>
+<button class="btn btn-default" id="button-5">“I have no questions Admiral”</button>
+<button class="btn btn-default hidden" id="button-6">“I have no more questions Admiral”</button>
+<button class="btn btn-default hidden" id="button-7">“Whats so secret about the captain?”</button>
+<button class="btn btn-default hidden" id="button-8">“That was a bit cryptic...”</button>
+<div class="WhyWest hidden"><p><strong>-&ldquo;Why is the west now so important?&rdquo;</strong></p>
+
+<p>&nbsp;</p>
+
+<p>&ldquo;For long the west sea has been closed to us. Wild weather and currents of the cold North sea and a myriad of treacherous shoals in the Sea of fangs have made sailing and exploration more dangerous then we are willing to risk ship and crew.</p>
+
+<p>So most of our trade and contact with the west have lain in the calmer east, with the Wulfs as expensive proxy. Their connection westward in the southern seas are safer.</p>
+
+<p>&nbsp;</p>
+
+<p>You glance at a elaborate map hanging off the wall in the office. You wonder what point the Admiral wants to make.</p>
+
+<p>&nbsp;</p>
+
+<p>&ldquo;But times change and we must change with it or tempt the fate of the old Plains-awes. As you may well know, trade routes westwards have grown substantially over only the last decade. Mapped paths through the sea of fangs, closely guarded by Gryph trade-houses opened the way. These maps have now somehow been revealed for all, suddenly the west is no longer closed to us. Nor others who might exploit it.&rdquo; &nbsp;</p>
+
+</div>
+
+<div class="ship-crew hidden"> <p><strong>-&ldquo;New Ship and crew?&rdquo;</strong></p>
+
+<p>&nbsp;</p>
+
+<p>&ldquo;You know well enough that it would take immense time, effort, cost and risk to sail a ship from the east sea round the south of Wulflands and back up north. It is not an option. Your old ship will be assigned to a new captain.&rdquo;</p>
+
+<p>&nbsp;</p>
+
+<p>&ldquo;I know it will be a challenge to acquaint yourself with a new ship and a crew you yourself did not pick. This crew has trained together and prepared for the West sea. You are in truth replacing another captain we had originally chosen who turned out to not be quite up to task.&rdquo; The Grand Admiral straightened in her seat and you wonder for a moment extra about her figure. &ldquo;They returned back to port after only 2 weeks at sea. Whats required here is someone with proven qualifications for leadership, leave the sailing to the crew&rdquo;</p>
+
+<p>&nbsp;</p>
+
+<p>&ldquo;As for the ship, I think it will impress you. It is of a new hardier design and material, crafted especially for the west sea. Your ship is called &ldquo;Perked ear&rdquo;. You will not have seen its like in the east. It will serve you well.&rdquo;</p>
+</div>
+
+<div class="working-wulf hidden"> <p><strong>-&ldquo;We are working with the Wulf-fleet now?&rdquo;</strong></p>
+
+<p>&nbsp;</p>
+
+<p>&ldquo;I know the Admiraltys dealings and relationship with the Wulf &ldquo;Fleet&rdquo; has been tenuous at best in the East sea. They have never quite seen eye to eye with us, seeing that they are more a mob of cooperating privateers then an organization like us.&rdquo;</p>
+
+<p>&nbsp;</p>
+
+<p>&ldquo;But of late our diplomatic contacts have, for a price, come to an arrangement with them in regards of the security of the west sea. And we know only that they have asked for one of our ships to meet with theirs. Your Wulf liaison aboard will provide you with more information as you approach Pale rock. Keep him in one piece.&rdquo;</p>
+ </div>
+ 
+ <div class="missing-captain hidden"> <p><strong>-&rdquo;What happened to the captain?&rdquo;</strong></p>
+
+<p>&nbsp;</p>
+
+<p>The Grand Admiral began to pace behind her desk, a paw suggestively on her gut. &ldquo;I wont go into too much detail, I believe the less you know the better. So no more questions about that!&rdquo;</p>
+
+<p>But I&#39;ll reveal he did not gel well with the crew. There had been problems even before this journey. He lacked... Leadership.</p>
+
+<p>A Captain stands above her crew, she is the authority of the ship. But if a captain does not have the respect of the crew then she has authority over none. &ldquo;</p>
+
+<p>&nbsp;</p>
+
+<p>The grand admirals pacing brought her to a halt and she turned to face you.</p>
+
+<p>&nbsp;</p>
+
+<p>&ldquo;Good leadership is hard to come by! Most Awes would rather follow then lead. And among those who desire to lead, the traits of selfishness and greed are often dominant. Such leaders lack the vision for the greater good of all. That&#39;s why the Admiralty and the Academy was created. We find, nurture and grow those potential few among us who are capable. Those who are <em>just</em> and those who would put a foot down and deal with trouble before it grows.&rdquo;</p>
+
+</div>
+ <div class="missing-captain2 hidden"> <p><strong>-&rdquo;What happened to the captain?&rdquo;</strong></p>
+<p>&ldquo;Whats so secret about the captain?&rdquo;</p>
+
+
+<p>The grand admiral demeanor immediately turned more frosty.</p>
+
+<p>&ldquo;I told you not to ask about that anymore. I have my reasons for what I tell you and don&#39;t tell you.&rdquo;</p>
+
+<p>She put her paws on her hips and fixes you with a hard stare.</p>
+
+<p>&ldquo;But I&#39;ll tell you this much. There are times to be cowardly and times to be bold. Some might be too much of one or the other. Our dear late captain turned out to be too much of one of these things, it caused problems.&rdquo;</p>
+
+<p>&nbsp;</p>
+
+<p>The grand admiral paced back to behind her desk restlessly. Documents were evenly arrayed, their contents no doubt of importance. She glanced down at them and back up at you with impatience.</p>
+
+<p>&nbsp;</p>
+
+<p>&ldquo;Now, was there anything else?&rdquo;</p>
+
+<div class="missing-captain3 hidden"> <p><strong>-&rdquo;What happened to the captain?&rdquo;</strong></p>
+<p>&ldquo;That was a bit cryptic.&rdquo;</p>
+
+<p>&nbsp;</p>
+
+<p>With a thump of her paws on the table, the grand admiral apparently has had it, saying as much loudly.</p>
+
+<p>&ldquo;Enough!&rdquo;</p>
+
+<p>She came around her desk briskly, walking towards you with such purpose it takes a lot of discipline to remain still.</p>
+
+<p>&ldquo;Perhaps, I didn&#39;t make myself clear the first two times. But there wont be a third.&rdquo; The grand admiral calmly undid her belt and clasp around her neck which held her shoulder garments firmly in place.</p>
+
+<p>&ldquo;I had high hopes for you, but you might just be too bold and reckless. Unable to perceive a clear danger when its in front of you and has given you warning enough.&rdquo;</p>
+
+<p>&nbsp;</p>
+
+<p>&ldquo;Im s-sorry Grand Adm...&rdquo; you try to apologize.</p>
+
+<p>&nbsp;</p>
+
+<p>&ldquo;No. I warned you. Now you&#39;ll join me for dinner. Captain Avolc, I hereby demote you to food ration, effective immediately.&rdquo;</p>
+
+<p><br />
+And that was that. Staring dumbfounded you suddenly find yourself an Admirals meal. Wide open jaws find your muzzle and you&#39;re too shocked to resist. From potential promotion to instant food-level demotion!</p>
+
+<p>&nbsp;</p>
+
+<p>The matron-Awe and commander of the Awe military-navy makes short work of you. She heaves you down her gullet with such efficient practice that it almost seems like you fall right into her body.</p>
+
+<p>&nbsp;</p>
+
+<p>Before you know it, the reality of this briefing turned into early lunch has your feet merely feebly kicking out her jaws before these are dispatched with a seemingly mildly annoyed hard gulp.</p>
+
+<p>&nbsp;</p>
+
+<p>Darkness envelops you, tight squelching tightness of muscle and mucus squelch against your fur as the stomach claims you. Its none too bothered about the new arrival, even though judging by a nearby shape, you are not the first to take the trip this morning.</p>
+
+<p>&nbsp;</p>
+
+<p>The grand admiral lets out a slow sigh and ever so politely stifles a belch while she made her way back to the desk and seat. Her sizable gut sagged lower and heavier but her stocky frame easily handles without breaking a stride. Its a busy day, so even with her belly still wiggling and pushing against the desk she rings the bell to call for her assistant.</p>
+
+<p>&nbsp;</p>
+
+<p>&ldquo;Send in the next one!&rdquo;</p>
+
+</div>
+</body>
+</html>

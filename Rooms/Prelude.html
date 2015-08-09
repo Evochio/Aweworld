@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+  <link rel="stylesheet" href="/main.css"></link>
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css"></link>
+  <link rel="stylesheet" href="/bootstrap-theme.min.css"></link>
+  <script src="/main.js"></script>
+
+  <script>
+ 
+	
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+    
+	 
+	
+      $('#button-1').on('click', function(e) {
+		
+		
+       lib.dialogue(e, "kick"),
+		$("#button-1").addClass("hidden")
+		$("#button-2").addClass("hidden")
+		$("#button-3").addClass("hidden")
+		$("#button-4").removeClass("hidden")
+		$("#button-5").removeClass("hidden")
+		$("#button-6").removeClass("hidden")
+		
+      })
+
+      $('#button-2').on('click', function(e) {
+        lib.dialogue(e, "sword")
+		$("#button-1").addClass("hidden")
+		$("#button-2").addClass("hidden")
+		$("#button-3").addClass("hidden")
+		$("#button-4").removeClass("hidden")
+		$("#button-5").removeClass("hidden")
+		$("#button-6").removeClass("hidden")
+      })
+	  $('#button-3').on('click', function(e) {
+         lib.dialogue(e, "subordinates")
+		$("#button-1").addClass("hidden")
+		$("#button-2").addClass("hidden")
+		$("#button-3").addClass("hidden")
+		$("#button-4").removeClass("hidden")
+		$("#button-5").removeClass("hidden")
+		$("#button-6").removeClass("hidden")
+      })
+	  $('#button-4').on('click', function(e) {
+        lib.dialogue(e, "attack")
+		state.preludeEvents.push("attack");
+		state.preludeScore -= 1;
+		$("#button-4").addClass("hidden")
+		$("#button-5").addClass("hidden")
+		$("#button-6").addClass("hidden")
+		$("#button-7").removeClass("hidden")
+		$("#button-8").removeClass("hidden")
+		$("#button-9").removeClass("hidden")
+		
+      })
+	  $('#button-5').on('click', function(e) {
+     
+        lib.dialogue(e, "defend")
+		state.preludeEvents.push("defend");
+		$("#button-4").addClass("hidden")
+		$("#button-5").addClass("hidden")
+		$("#button-6").addClass("hidden")
+		$("#button-7").removeClass("hidden")
+		$("#button-8").removeClass("hidden")
+		$("#button-9").removeClass("hidden")
+      })
+	   $('#button-6').on('click', function(e) {
+	   lib.dialogue(e, "chase")
+	   state.preludeEvents.push("chase");
+	   state.preludeScore += 1;
+	   	$("#button-4").addClass("hidden")
+		$("#button-5").addClass("hidden")
+		$("#button-6").addClass("hidden")
+		$("#button-7").removeClass("hidden")
+		$("#button-8").removeClass("hidden")
+		$("#button-9").removeClass("hidden")
+      })
+	    $('#button-7').on('click', function(e) {
+        lib.dialogue(e, "rescue")
+		state.preludeEvents.push("rescue")
+	
+		$("#button-7").addClass("hidden")
+		$("#button-8").addClass("hidden")
+		$("#button-9").addClass("hidden")
+		$("#button-10").removeClass("hidden")
+		
+      })
+	    $('#button-8').on('click', function(e) {
+        lib.dialogue(e, "rigging")
+		state.preludeEvents.push("rigging")
+		state.preludeScore += 1;
+		 $("#button-7").addClass("hidden")
+		$("#button-8").addClass("hidden")
+		$("#button-9").addClass("hidden")
+		$("#button-10").removeClass("hidden")
+      })
+	   $('#button-9').on('click', function(e) {
+        lib.dialogue(e, "forecastle")
+		state.preludeEvents.push("forecastle")
+		state.preludeScore -= 1;
+		$("#button-7").addClass("hidden")
+		$("#button-8").addClass("hidden")
+		$("#button-9").addClass("hidden")
+		$("#button-10").removeClass("hidden")
+	  })
+	    $('#button-10').on('click', function(e) {
+        
+		lib.goTo('Prelude-2.html')
+	  })
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+<div id="story-text">
+<p>With a groan, creak and crash of timbers the two ships clashed together. We had the momentum and almost managed to ram their broadside entirely, that would have most likely brought us a quick victory but it was too late for regrets now. The force of impact sent objects and crew flying and staggering about, a few fools unable to brace themselves properly did involuntary cartwheels across the deck. I would have liked to think it was worse for the other ships, but the Wulfs were crafty and nimble, I could see a good 30 of them clinging to the railings and ropes in their masts, getting flung around good but not dropping.</p>
+
+<p>&ldquo;WE GOT THEM NOW AWES!&rdquo; I shouted before even the foam of sea had calmed or the ships stopped reeling.</p>
+
+<p>But even as I shouted in confident triumph, I saw them leaping and swinging over to our ship. They had been ready for us!</p>
+
+<p>Brave Awe crew clashed with Wulf pirates, blades flashing and twanging and some going down in even closer wrestling combat.</p>
+
+<p>I was soon not without an opponent of my own, a notch-eared green-furred Wulf stalked toward me, daggers in both paws and one in his mouth.</p>
+
+</div>
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1">Kick him offboard</button>
+<button class="btn btn-default" id="button-2">The sword isn&#39;t for show</button>
+<button class="btn btn-default" id="button-3">What subordinates are for</button>
+<button class="btn btn-default hidden" id="button-4">Order them to attack the Wulf ship</button>
+<button class="btn btn-default hidden" id="button-5">Order them to meet the boarders</button>
+<button class="btn btn-default hidden" id="button-6">They probably know what they&#39;re doing.</button>
+<button class="btn btn-default hidden" id="button-7">(Closest) Rescue your officer!</button>
+<button class="btn btn-default hidden" id="button-8">(Mid-ship) Cut those ropes, bring the sails and rigging crashing down!</button>
+<button class="btn btn-default hidden" id="button-9">(Forecastle) Join the fray, assist the crew!</button>
+<button class="btn btn-default hidden" id="button-10">Face-off</button>
+
+
+
+<div class="kick hidden">
+<p><strong>Kick him offboard</strong></p>
+
+<p>I swing my sword high and at his face to distract his attention and in the next movement land a heavy kick to his chest. Perhaps the Wulf did not expect such crude aggressive tactics from a groomed Awe-captain of the Admiralty, for he went reeling back and over the side of the ship, daggers clattering onto the deck.</p>
+
+<p>I have a moments time to survey the ongoing battle; Hooks are drawing the two ships together, closing the gap slowly. Wulfs keep swinging over in some numbers but the flood of them will soon increase when the ships are about to fully locked together. Crew are rushing to meet the foes, some emerging from below-deck. Among those are the crews few Raptorians, the brutish large heavy laborers of the ship and heavy-troops in a pinch.</p>
+
+<p>But they may need direction to be useful and right now they are aimlessly chasing elusive and nimble Wulfs around the deck.</p>
+
+</div>
+
+<div class="sword hidden"> 
+<p><strong>The sword isn&#39;t for show</strong></p>
+
+<p>My blade flashes in quick strokes towards the Wulf, quickly forcing him back and into trying to parry with his short daggers to avoid a cut. I have better reach and training, with a jab and flick he looses on dagger from a cut paw and then a gash across his other arm has him in retreat. The Wulf scampers back and jumps back to his ship over the gap between them.</p>
+
+<p>I have a moments time to survey the ongoing battle; Hooks are drawing the two ships together, closing the gap slowly. Wulfs keep swinging over in some numbers but the flood of them will soon increase when the ships are about to fully locked together. Crew are rushing to meet the foes, some emerging from below-deck. Among those are the crews few Raptorians, the brutish large heavy laborers of the ship and heavy-troops in a pinch.</p>
+
+<p>But they may need direction to be useful and right now they are aimlessly chasing elusive and nimble Wulfs around the deck.</p>
+
+</div>
+
+<div class="subordinates hidden"> <p><strong>What subordinates are for</strong></p>
+
+<p>I gave the advancing Wulf a frown, I have a battle to tend to and no time to play around.</p>
+
+<p>A whistle is all it takes and two junior officers notice my problem detach themselves from battle and rush my foe with gusto. They quickly drive him back towards the railing and I turn my attention away from it, they can handle it.</p>
+
+<p>I have a moments time to survey the ongoing battle; Hooks are drawing the two ships together, closing the gap slowly. Wulfs keep swinging over in some numbers but the flood of them will soon increase when the ships are about to fully locked together. Crew are rushing to meet the foes, some emerging from below-deck. Among those are the crews few Raptorians, the brutish large heavy laborers of the ship and heavy-troops in a pinch.</p>
+
+<p>But they may need direction to be useful and right now they are aimlessly chasing elusive and nimble Wulfs around the deck.</p>
+</div>
+ 
+ <div class="attack hidden"> <p><strong>Order them to attack the Wulf ship</strong></p>
+
+<p>I figure they are to little use running themselves ragged around the ship. With a loud shout of order I command their sergeant to leap over the closest gap and take the fight to the Wulfs on their ship instead. That should slow the tide of them coming over.</p>
+
+<p>They hasten to obey, though they&#39;re not the most organized bunch, their strongest trait has always been that they do not hesitate once told what to do.</p>
+
+<p>In ones and twos they push their way forward and take the leap to the Wulf ship where they disappear from sight because of the tilting angle of the enemy ship. We did Ram them after all.</p>
+
+<p>Soon I quickly spot several troubled regions in the fighting where our lines are being pushed dangerously back or help is needed. By now, shouting general orders over the din would be quite ineffective.</p>
+
+<p>Mostly everyone is tied up, but I can choose to lend my help where I think its most needed. Furthest in the distance at the forecastle I see a knot of Awes being driven back by an organized mob of Wulfs, someone is leading the pirates effectively over there, perhaps the enemy captain.</p>
+
+<p>Above in the sail and ropes another battle progresses, as Wulfs nimbly battle for the high-ground among the ropes and rigging against brave crew.</p>
+
+<p>I look around for one of my capable officers to help direct towards one of these troubled regions and very nearby spot the kicking feet of my First-mate sticking out of the maw of a particularly greedy and bold red Wulf. He must have been ambushed right next to me and I almost missed it.&nbsp;</p></div>
+
+<div class="defend hidden"><p><strong>Order them to meet the boarders</strong></p>
+
+<p>They&#39;re to no use running around and being disruptive. With a loud shout I command their sergeant to have them line up with even spacing where they&#39;re coming over at their thickest. Let them be a become a buffer for the invading Wulfs to try to pass through.</p>
+
+<p>They hasten to obey, though they&#39;re not the most organized bunch, their strongest trait has always been that they do not hesitate once told what to do.</p>
+
+<p>A line forms to meet the tide of Wulfs rushing over. They snap, jump and swing their heavy tails to catch or bat at the pirates as they come.</p>
+
+<p>Soon I quickly spot several troubled regions in the fighting where our lines are being pushed dangerously back or help is needed. By now, shouting general orders over the din would be quite ineffective.</p>
+
+<p>Mostly everyone is tied up, but I can choose to lend my help where I think its most needed. Furthest in the distance at the forecastle I see a knot of Awes being driven back by an organized mob of Wulfs, someone is leading the pirates effectively over there, perhaps the enemy captain.</p>
+
+<p>Above in the sail and ropes another battle progresses, as Wulfs nimbly battle for the high-ground among the ropes and rigging against brave crew.</p>
+
+<p>I look around for one of my capable officers to help direct towards one of these troubled regions and very nearby spot the kicking feet of my First-mate sticking out of the maw of a particularly greedy and bold red Wulf. He must have been ambushed right next to me and I almost missed it.</p>
+</div>
+<div class="chase hidden"> <p><strong>They probably know what they&#39;re doing.</strong></p>
+
+
+<p>It might look quite chaotic, but after pausing a while and watching the fighting, the disruptive charging and chasing the Raptorians are doing are keeping the Wulfs from organizing properly and ensnare our orderly lines of fighting crew.</p>
+
+<p>They might not catch many of the Wulfs, but they keep them constantly on their toes and help our faster Awe fighters get opportunities.</p>
+
+<p>Soon I quickly spot several troubled regions in the fighting where our lines are being pushed dangerously back or help is needed. By now, shouting general orders over the din would be quite ineffective.</p>
+
+<p>Mostly everyone is tied up, but I can choose to lend my help where I think its most needed. Furthest in the distance at the forecastle I see a knot of Awes being driven back by an organized mob of Wulfs, someone is leading the pirates effectively over there, perhaps the enemy captain.</p>
+
+<p>Above in the sail and ropes another battle progresses, as Wulfs nimbly battle for the high-ground among the ropes and rigging against brave crew.</p>
+
+<p>I look around for one of my capable officers to help direct towards one of these troubled regions and very nearby spot the kicking feet of my First-mate sticking out of the maw of a particularly greedy and bold red Wulf. He must have been ambushed right next to me and I almost missed it.&nbsp;</p>
+</div>
+<div class="rescue hidden"> 
+<p><strong>(Closest) Rescue your officer!</strong></p>
+
+<p>I cant just abandon my trusty first-mate to some random Wulf-pirates belly! With a snarl I lunge towards the two of them and give the Wulf a lesson in why you dont stop to eat in the middle of a battle.</p>
+
+<p>The Wulfs eyes widen and he staggers back to avoid my sword, she&#39;s in no position to defend herself, not with my officers flailing bringing her off-balance. I soon have her pinned against the deck at the point of my sword and she quickly relinquishes her prize, spitting up my wet and flustered first-mate.</p>
+
+<p>To his credit, he quickly recovers and snarls, grabbing the Wulf by her tail and flings her overboard by it. Only then does he notice me and nods sheepishly, slight embarrassment on this face. &ldquo;Er... Thanks, Captain.&rdquo;</p>
+
+<p>With my First-mate at my side, I turn to face the battle once more, it seems to have come to a concluding final face-off.</p>
+</div>
+<div class="rigging hidden"> 
+<p><strong>(Mid-ship) Cut those ropes, bring the sails and rigging crashing down! </strong></p>
+
+<p>I cant let them gain the high-ground! I rush forward and leap from the railing of the stern-castle to the critical ropes holding main-mast rigging up and cut at the crucial ropes. Meanwhile I shout a warning to those below as the structures become undone with snaps and whips of rope. With some help from attentive crew up in the masts, the rigging and part of sail drop down loosely, taking crew along with it. Some Wulfs leap to safety, other tumble into the sea or down onto the deck in hard landings. They may be nimble, but that had to hurt! The action wasent without consequence for some of my own crew however, not all are able to spread their wings and glide down safely, but I still consider it a gain.</p>
+
+<p>I peer at the remainder of the ongoing battle, it seems to have come to a concluding final face-off.</p>
+</div>
+<div class="forecastle hidden"> <p><strong>(Forecastle) Join the fray, assist the crew!</strong></p>
+
+<p>I must help shift the balance of the fight before it goes too far out of our favor. Numbers are the key, so I dash into the fray to dodge, slash and fight my way to the knot of crew that require the most help at the opposite side of the ship.</p>
+
+<p>Its a slow slog, a distance I could have crossed in moments normally progresses slowly as the deck is a general chaos of bodies. Wulfs have a very mobile fighting style and seem to be all over the place and leaping in and out of the way.</p>
+
+<p>By the time I reach the stern-castle its almost over, Awes stand teetering on the edge of the railing, backs to the cold sea. I try to rally them, but its too late, the Wulfs press their attack to finish it and several drop into the waters and cling helplessly to the ships side with soggy coats.</p>
+
+<p>I retreat slowly with the few I managed to break out of the position and peer at the remainder of the ongoing battle, it seems to have come to a concluding final face-off.</p></div>
+
+</body>
+</html>

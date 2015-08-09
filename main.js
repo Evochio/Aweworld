@@ -82,7 +82,9 @@ var initialState = {
   cardMatron: 1,
   cardHigh: 2,
   cardLow: 3,
-  inventory: []
+  inventory: [],
+  preludeEvents: [],
+  preludeScore: 0
 }
 ///////////////////////////
 
@@ -134,7 +136,7 @@ displayShipStatus = function () {
 		$(".Ship-Health-description").text("About to sink").css('color', 'red');
 	  } 
 	}
-	
+
 
 moraleFailureCheck = function() {
 	if (state.crewMorale < -4) {
