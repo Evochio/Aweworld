@@ -18,17 +18,22 @@
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
       
-      $('#button-1').on('click', function() {
+      $('#button-1').on('click', function(e) {
+        lib.dialogue(e, "duel")
         // change state here
         // end by using lib.goTo
-        lib.goTo('room-1.html')
+      
       })
 
-      $('#button-2').on('click', function() {
+      $('#button-2').on('click', function(e) {
+        lib.dialogue(e, "battle")
+      })
+	   $('#button-3').on('click', function() {
         // change state here
         // end by using lib.goTo
         lib.goTo('room-2.html')
       })
+	
     })
   </script>
   
@@ -38,34 +43,173 @@
 
 </head>
 <body>
-<h1></h1>
-<hr />
 
-<p> The fight was fierce, the raptorians you sent, of them what you can see</p>
+<h1>Initial battle summary</h1>
+<hr />
+<div id="story-text">
+<p>
+
+ The fight was fierce, the raptorians of what you can see, 
 <script>
 console.log(state.preludeEvents);
-switch(state.preludeEvents) {
+switch(state.preludeEvents[0]) {
     case 'attack':
-	document.write("None of the raptors you sent to attack are in sight. ");
+	document.write("none of the raptors you sent to attack are in sight. Perhaps they got surrounded and overpowered on the Wulf-ship.");
        break;
     case 'defend':
-		document.write("Your defending raptors worked hard, but Wulfs are nimble and they didnt manage to stop many from boarding");
+		document.write("your defending raptors worked hard, but Wulfs are nimble and they didnt manage to stop many from boarding.");
         break;
     case 'chase':
-		document.write("The raptors you sent to chase the Wulfs around were suprisingly effective. It kept the pirates on their toes and unable to commit anywhere, or face the jaws of a raptor");
+		document.write("the raptors you sent to chase the Wulfs around were suprisingly effective. It kept the pirates on their toes and unable to commit anywhere, or face the jaws of a raptor");
+         break;
+			
+    default: 
+        console.log("WHAT?");
+}
+
+</script></p>
+<p>
+<script>
+switch(state.preludeEvents[1]) {
+    case 'rescue':
+	document.write("With your first-mate by your side you managed to organize the crew more cohesively between yourself. But they gain quite and advantage in numbers and positioning");
+       break;
+    case 'rigging':
+		document.write("Cutting down the rigging, while extreme, had positive results. A more clear line of confrontation was established, with Wulfs no longer able to drop down from above. Quite a few of them were taking out of the fight too!");
+        break;
+    case 'forecastle':
+		document.write("Your mad-dash towards the forecastle to assist the knot of crew in trouble, while brave, was still too late and resulted in some confusion. Crew joined to assist and broke lines, giving the enemy advantage. ");
          break;
 			
     default: 
         console.log("WHAT?");
 }
 </script>
-<
+</p>
+<script>
+  preludeBattleStatus = function () {
+	console.trace();
+	if (state.preludeScore >= 0 && state.preludeScore < 1 ) {
+		$(".Prelude-battle").text("Stalemate").css('color', 'Yellow');;
+	}
+	else if (state.preludeScore >= -1 && state.preludeScore < 0 ) {
+		$(".Prelude-battle").text("Disadvantage").css('color', 'orange');;
+	  } 
+	else if (state.preludeScore >= -2 && state.preludeScore < -1 ) {
+		$(".Prelude-battle").text("Big disadvantage").css('color', 'Red');
+	}	
+	else if (state.preludeScore >= 1 && state.preludeScore < 2 ) {
+		
+		$(".Prelude-battle").text("Advantage").css('color', 'yellowgreen');
+	}	
+	else if (state.preludeScore >= 2 && state.preludeScore < 3 ) {
+		$(".Prelude-battle").text("Big advantage").css('color', 'Green');
+	}  
+	}
+	
+</script>	
+<p> Battle advantage: <span class="Prelude-battle"><script>preludeBattleStatus()</script></span></p>
 
+
+<p> <script>
+ 
+switch(state.preludeScore) {
+	case -2:
+	$("#button-1").removeClass("hidden");
+	document.writeln("A clear line between Awes and Wulfs have formed. Outnumbered and cornered your tired crew face-off against the leering and confident numbers of scruffy Wulf pirates. A loud cackle erupts! Captain NipFang the dread pirate captain himself emerges at the front. "); 
+	document.writeln("-'Awe-feast tonight lads!' he licks his chops and rubs his belly suggestively, sure of their victory.")
+	break;
+    case -1:
+	$("#button-1").removeClass("hidden");
+	document.writeln("A clear line between crew and Wulfs have formed. Outnumbered your crew face-off against the leering numbers of scruffy Wulf pirates. A loud cackle erupts! Captain NipFang the dread pirate captain himself emerges at the front. ");
+	document.writeln("-'Dey fight brave! But we likes a bit of kick in our feast, dont we!' he licks his chops.");
+	break;
+    case 0:
+	$("#button-2").removeClass("hidden");
+	document.writeln("A clear line between crew and Wulfs have formed. Your brave crew face-off against an equal number of leering and growling scruffy Wulf pirates. A loud cackle erupts! Captain NipFang the dread pirate captain himself emerges at the front."); 	
+	document.writeln("-'Ye fight brave and hard! Surrender Awes! And we will divide you amongst ourrselves quick and easy!'  he licks his chops.");
+        break;
+    case 1:
+	$("#button-3").removeClass("hidden");
+	document.writeln("A clear line between crew and Wulfs have formed. Your brave crew face-off against a number of growling scruffy and weary Wulf pirates. A loud growl erupts! Captain NipFang the dread pirate captain himself emerges at the front.");
+	document.writeln('-Ye be hard fighters! But the best of ye is no match for me! How about a deal, aye?');
+         break;
+	case 2:
+	$("#button-3").removeClass("hidden");
+		document.writeln("A clear line between crew and Wulfs have formed. Your brave and confident crew face-off against a number of growling scruffy and weary Wulf pirates. Captain NipFang the dread pirate captain himself emerges at the front, slinking forward.");
+		document.writeln("'-Ye be hard fighters! But any of you brave enough to face me in combat!? How about a deal, aye?'" );
+         break;
+			
+    default: 
+        console.log("WHAT?");
+}
+
+</script></p>
+</div>
 <hr />
-
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button id="button-1">Button 1</button>
-<button id="button-2">Button 2</button>
 
+<button class="btn btn-default hidden" id="button-1">Demand Duel</button>
+<button class="btn btn-default hidden" id="button-2">Battle</button>
+<button class="btn btn-default hidden" id="button-3">Negotiate</button>
+
+<p> <script>
+ 
+switch(state.preludeScore) {
+	case -2:
+	$("#button-1").removeClass("hidden");
+	$("#button-2").removeClass("hidden");
+		break;
+    case -1:
+	$("#button-1").removeClass("hidden");
+	$("#button-2").removeClass("hidden");
+		break;
+    case 0:
+	$("#button-2").removeClass("hidden");
+	
+        break;
+    case 1:
+	$("#button-3").removeClass("hidden");
+	$("#button-2").removeClass("hidden");
+         break;
+	case 2:
+	$("#button-3").removeClass("hidden");
+	$("#button-2").removeClass("hidden");	
+		break;
+	default: 
+        console.log("WHAT?");
+}
+
+</script></p>
+<div class="battle hidden" id="battle"><p><strong>Battle</strong></p>
+<script>
+switch(state.preludeScore) {
+	case -2:
+	
+	document.getElementById('battle').innerHTML = "Battle is fierce, you fight brave but inevitably loose.";
+	break;
+    case -1:
+	
+	document.getElementById('battle').innerHTML = "Battle is hard, you make them pay dearly for victory.";
+	break;
+    case 0:
+	
+	document.getElementById('battle').innerHTML = "The battle is a long and messy one, in the end you somehow prevail";
+        break;
+    case 1:
+	
+	document.getElementById('battle').innerHTML = '<p>' + "The wulfs fight desperatly, but they're surrounded and cut off from escape." + '</p>' +
+	'<p>' + "Test paragraph" + '</p>';
+         break;
+	case 2:
+	
+	document.getElementById('battle').innerHTML = "You win a easy and sound victory, routing the wulfs hastily";
+         break;
+			
+    default: 
+        console.log("WHAT?");
+}
+</script>
+</div>
 </body>
 </html>
