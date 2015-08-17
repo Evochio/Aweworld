@@ -26,6 +26,7 @@
 		
 		
        lib.dialogue(e, "kick"),
+	   state.preludeEvents.push("kick");
 		$("#button-1").addClass("hidden")
 		$("#button-2").addClass("hidden")
 		$("#button-3").addClass("hidden")
@@ -37,6 +38,7 @@
 
       $('#button-2').on('click', function(e) {
         lib.dialogue(e, "sword")
+		state.preludeEvents.push("sword");
 		$("#button-1").addClass("hidden")
 		$("#button-2").addClass("hidden")
 		$("#button-3").addClass("hidden")
@@ -46,6 +48,7 @@
       })
 	  $('#button-3').on('click', function(e) {
          lib.dialogue(e, "subordinates")
+		 state.preludeEvents.push("subordinates");
 		$("#button-1").addClass("hidden")
 		$("#button-2").addClass("hidden")
 		$("#button-3").addClass("hidden")
@@ -243,7 +246,7 @@
 
 <p>I cant just abandon my trusty first-mate to some random Wulf-pirates belly! With a snarl I lunge towards the two of them and give the Wulf a lesson in why you dont stop to eat in the middle of a battle.</p>
 
-<p>The Wulfs eyes widen and he staggers back to avoid my sword, she&#39;s in no position to defend herself, not with my officers flailing bringing her off-balance. I soon have her pinned against the deck at the point of my sword and she quickly relinquishes her prize, spitting up my wet and flustered first-mate.</p>
+<p>The Wulfs eyes widen and she staggers back to avoid my sword, she&#39;s in no position to defend herself, not with my officers flailing bringing her off-balance. I soon have her pinned against the deck at the point of my sword and she quickly relinquishes her prize, spitting up my wet and flustered first-mate.</p>
 
 <p>To his credit, he quickly recovers and snarls, grabbing the Wulf by her tail and flings her overboard by it. Only then does he notice me and nods sheepishly, slight embarrassment on this face. &ldquo;Er... Thanks, Captain.&rdquo;</p>
 
