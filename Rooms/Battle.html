@@ -56,6 +56,10 @@
 	$("#button-1").addClass("hidden")
 	$("#button-2").addClass("hidden")
 	$("#button-3").addClass("hidden")
+	$("#button-7").removeClass("hidden");
+	$("#button-8").removeClass("hidden");
+	
+	$("#button-10").removeClass("hidden");
       })
 	  $('#button-5').on('click', function(e) {
         // change state here
@@ -65,6 +69,9 @@
 	$("#button-1").addClass("hidden")
 	$("#button-2").addClass("hidden")
 	$("#button-3").addClass("hidden")
+	$("#button-9").removeClass("hidden");
+	$("#button-7").removeClass("hidden");
+	$("#button-8").removeClass("hidden");
       })
 	  $('#button-6').on('click', function(e) {
         // change state here
@@ -74,7 +81,110 @@
 	$("#button-1").addClass("hidden")
 	$("#button-2").addClass("hidden")
 	$("#button-3").addClass("hidden")
+	$("#button-9").removeClass("hidden");
+	$("#button-7").removeClass("hidden");
+	$("#button-8").removeClass("hidden");
       })
+	  
+	  $('#button-7').on('click', function(e) {
+        // change state here
+		state.battle.push("retreat")
+        // end by using lib.goTo
+         lib.dialogue(e, "retreat")
+		 if (state.battle.indexOf("sails") > -1)
+	{
+	$("#escape").removeClass("hidden");
+	}
+	else {
+	
+	$("#button11").removeClass("hidden");
+	}
+	$("#button-4").addClass("hidden")
+	$("#button-5").addClass("hidden")
+	$("#button-6").addClass("hidden")
+      })
+	  
+	  $('#button-8').on('click', function(e) {
+        // change state here
+		state.battle.push("samePlan")
+        // end by using lib.goTo
+         lib.dialogue(e, "samePlan")
+	$("#button-4").addClass("hidden")
+	$("#button-5").addClass("hidden")
+	$("#button-6").addClass("hidden")
+	$("#button11").removeClass("hidden");
+      })
+	  
+	  $('#button-9').on('click', function(e) {
+        // change state here
+		state.battle.push("changeCharge")
+        // end by using lib.goTo
+         lib.dialogue(e, "changeCharge")
+	$("#button-4").addClass("hidden")
+	$("#button-5").addClass("hidden")
+	$("#button-6").addClass("hidden")
+	$("#button11").removeClass("hidden");
+      })
+	  $('#button-10').on('click', function(e) {
+        // change state here
+		state.battle.push("changeManouver")
+        // end by using lib.goTo
+         lib.dialogue(e, "changeManouver")
+	$("#button-4").addClass("hidden")
+	$("#button-5").addClass("hidden")
+	$("#button-6").addClass("hidden")
+	$("#button11").removeClass("hidden");
+      })
+	  
+	  
+	    $('#button-11').on('click', function(e) {
+        // change state here
+	
+        // end by using lib.goTo
+		if (state.battle.indexOf("range") > -1) && state.battle.indexOf("samePlan") > -1)  {
+		 lib.dialogue(e, "hardBlow")
+		 $("#button13").removeClass("hidden");
+		 $("#button14").removeClass("hidden");
+		}
+		else if (state.battle.indexOf("retreat") > -1) && state.battle.indexOf("sails") == -1)
+			{lib.dialogue(e, "hardBlow")
+			$("#button13").removeClass("hidden");
+			$("#button14").removeClass("hidden");
+			}
+			
+		else {
+         lib.dialogue(e, "explosion")
+		 $("#button12").removeClass("hidden");
+		 }
+	$("#button-7").addClass("hidden")
+	$("#button-8").addClass("hidden")
+	$("#button-9").addClass("hidden")
+	$("#button-10").addClass("hidden")
+      })
+	  
+	$('#button-12').on('click', function(e) {
+        // change state here
+	
+        // end by using lib.goTo
+         lib.dialogue(e, "victory")
+	
+      })
+	  $('#button-13').on('click', function(e) {
+        // change state here
+	
+        // end by using lib.goTo
+         lib.dialogue(e, "surrender")
+	
+      })
+	  $('#button-14').on('click', function(e) {
+        // change state here
+	
+        // end by using lib.goTo
+         lib.dialogue(e, "surrender2")
+	
+      })
+	  
+	  
     })
   </script>
   
@@ -100,13 +210,26 @@
 <hr />
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default" id="button-1">Second Ballista</button>
-<button class="btn btn-default" id="button-2">Sails</button>
-<button class="btn btn-default" id="button-3">Stand-by</button>
+<button class="btn btn-default" id="button-1">Extra crew: Second Ballista</button>
+<button class="btn btn-default" id="button-2">Extra crew: Sails</button>
+<button class="btn btn-default" id="button-3">Extra crew: Stand-by</button>
 
-<button class="btn btn-default hidden" id="button-4">Aggressive approach</button>
-<button class="btn btn-default hidden" id="button-5">Manouver</button>
-<button class="btn btn-default hidden" id="button-6">Keep Range</button>
+<button class="btn btn-default hidden" id="button-4">Plan: Aggressive approach</button>
+<button class="btn btn-default hidden" id="button-5">Plan: Manouver</button>
+<button class="btn btn-default hidden" id="button-6">Plan: Keep Range</button>
+
+<button class="btn btn-default hidden" id="button-7">Retreat!</button>
+<button class="btn btn-default hidden" id="button-8">Keep course and plan!</button>
+<button class="btn btn-default hidden" id="button-9">Change of plans: Charge!</button>
+<button class="btn btn-default hidden" id="button-10">Change of plans: Manouver!</button>
+
+<button class="btn btn-default hidden" id="button-11">Continue</button>
+
+<button class="btn btn-default hidden" id="button-12">Victory</button>
+<button class="btn btn-default hidden" id="button-13">Surrender</button>
+<button class="btn btn-default hidden" id="button-14">Desperate Attack</button>
+
+<button class="btn btn-default hidden" id="escape">Escape</button>
 
 <div class="ballista hidden"><strong>Ballista</strong>
 <p>We need more firepower, on my order the parts for the second weapon start to make their way up. The crew have drilled well, it looks like they'll just about get it in working order before the enemy ship is in range. </p>
@@ -235,8 +358,277 @@ $('#reatreatsails').removeClass('hidden');
 else {
 $('#retreatnosails').removeClass('hidden');
 }
+</script>
+</div>
+
+<div class="samePlan hidden"><strong>Keep course and plan!</strong>
+
+<p>That is a truly devastating weapon. This would explain why ships go missing without a trace. Who could stand a chance against anything like this!?</p>
+
+<p>Anyone faced with this would surely turn tail and flee. Perhaps that is what they are counting on too.</p>
+
+<p>I feel my fur bristling and poofing as I shout the orders to maintain course, it helps to look larger and confident, especially with orders like these. The crew hesitate for a second, giving me a look before they rush back to their tasks. </p>
+
+<div class="hidden" id="charge2">
+<p> We are closing distance fast, the weapons seem to be side-mounted on starboard side. We're close enough now that I can see figures working on a black tube of some sort. There seems to be two of them. Luckily they appear to take a long time to load.  </p>
+
+<p> The enemy ship is wisely doing its best to maintain distance however, drawing out the time it'll take to close our ships. Luckily, if they are to stay out of range, they have to turn around and loose their firing arc pretty soon. </p>
+
+<p>'TWANG' goes the ballista, it seems the forward crew that were nearly hit by the first impact have maintained their wits about them. The bolt sails through the air harmlessly hits their mainmast just behind their weapons. The bolt is stuck there and a reminder that we can shoot back </p>
+
+<p>The response is another loud 'THOOM' of their weapons. I hardly need to shout for the crew to take cover, they all dive to the deck. </p>
+
+<p>The shot rips through several sails and rigging, causing the top left part of the main sail to sag and flutter. Several crew fall towards the deck but are luckily able to break their fall with outspread wings and safety harnesses. </p>
+
+<p>'THOOM' goes the second weapon. It hits the bow of the ship, where we are the most armored. The whole ship seems to shudder with the impact but there is no immediate sign of damage. If it breached the hull im sure someone will be along to tell me about it soon. </p>
+
+<p>“KEEP COURSE! STAND FIRM!” I shout to maintain discipline. The crew must not give in to despair and flight. </p>
+</div>
+<div class="hidden" id="manouver2">
+<p> Our original plan of manouvering is sound, we just have to stay out of their starboard side and those dangerous weapons wont be a threat while our Ballistas can do their job and disable their movement or perhaps even those weapons. </p>
+
+<p> A tight turn follows another, crew cling to things to hold on to as our whole ship tilts at an angle at the hard turns. Im not making it easier for our ballistacrews but lessening our chances of being hit seem more important right now. </p>
+
+<p>'TWANG' goes the ballista, it seems the forward crew that were nearly hit by the first impact have maintained their wits about them. The bolt sails through the air and falls short, much too short. </p>
+
+<p>The response is another loud 'THOOM' of their weapons. I hardly need to shout for the crew to take cover, they all dive to the deck. </p>
+
+<p>The shot rips through several sails and rigging, causing the top left part of the main sail to sag and flutter. Several crew fall towards the deck but are luckily able to break their fall with outspread wings and safety harnesses. </p>
+
+<p>'THOOM' goes the second weapon. The projectile splashes into the water just short of our bow and sends a spray of water into the air. It seems our movement must be throwing them off. </p>
+
+<p>“KEEP COURSE! STAND FIRM!” I shout to maintain discipline. The crew must not give in to despair and flight. "I better see some hits soon or i'll take over!" I threaten the nearest ballista crew</p>
 
 </div>
+
+<div class="hidden" id="range2">
+<p> We are at a ranged stand-off, our own ballistas are in range too and twanging away their shots with an air of desperation. We are severely out-gunned but getting closer and giving them a bigger target for some apptempted manouvering or charging seems foolhardy. From those innitial shots, they dont seem to be very fast-loading or accurate, so we have that over them. </p>
+
+<p> I can see some of our shots impacting their ships. I've left ammuntion choice and target up to each ballista lieutenant so far and see no reason to change it as they're aiming for the enemy weapons. </p>
+
+<p>'TWANG' goes the ballista, it seems the forward crew that were nearly hit by the first impact have maintained their wits about them. The bolt sails through the air and flies through their sails, leaving a tiny hole. </p>
+
+<p>The response is another loud 'THOOM' of their weapons. I hardly need to shout for the crew to take cover, they all dive to the deck. </p>
+
+<p>The shot rips through several sails and rigging, causing the top left part of the main sail to sag and flutter. Several crew fall towards the deck but are luckily able to break their fall with outspread wings and safety harnesses. </p>
+
+<p>'THOOM' goes the second weapon. It hits the side of the ship, just short of the bow where would have been the most armored and crashes through other side of the ship. The whole ship seems to shudder and rock with the jarring impact. They dont seem to have to need much aim, if simply taking a hit does this much damage! </p>
+
+<p>“KEEP COURSE! STAND FIRM!” I shout to maintain discipline. The crew must not give in to despair and flight. Leaning over the side it looks like the hole isnt low enough to be a leak </p>
+</div>
+<script>
+if (state.battle.indexOf("range") > -1) {
+$('#range2').removeClass('hidden');
+}
+else if (state.battle.indexOf("manouver") > -1) {
+$('#manouver2').removeClass('hidden');
+}
+else {
+$('#charge2').removeClass('hidden');
+}
+</script>
+
+
+</div>
+
+<div class="changeCharge hidden"><strong>Change of plans: Charge!</strong>
+<p>That is a truly devastating weapon. This would explain why ships go missing without a trace. Who could stand a chance against anything like this!?</p>
+
+<p>Anyone faced with this would surely turn tail and flee. Perhaps that is what they are counting on too.</p>
+
+<p>I feel my fur bristling and poofing as I shout the orders to turn towards them and charge, it helps to look larger and confident, especially with orders like these. The crew hesitate for a second, giving me a look before they rush back to their tasks. </p>
+
+<p>We are at an disadvantageous distance. It will take time to come into close range with the foe. I expect we will take a hit or two. </p>
+
+<p>'TWANG' goes the ballista, it seems the forward crew that were nearly hit by the first impact have maintained their wits about them. The bolt sails through the air and falls short, much too short. </p>
+
+<p>The response is another loud 'THOOM' of their weapons. I hardly need to shout for the crew to take cover, they all dive to the deck. </p>
+
+<p>The shot rips through several sails and rigging, causing the top left part of the main sail to sag and flutter. Several crew fall towards the deck but are luckily able to break their fall with outspread wings and safety harnesses. </p>
+
+<p>'THOOM' goes the second weapon. It hits the bow of the ship, where we are the most armored. The whole ship seems to shudder with the impact but there is no immediate sign of damage. If it breached the hull im sure someone will be along to tell me about it soon. </p>
+
+<p>“KEEP COURSE! STAND FIRM!” I shout to maintain discipline. The crew must not give in to despair and flight. </p>
+
+<p>They need to stay brave, counting the reload time of their weapons, we'll be hit by another salvo before we reach them. </p>
+
+</div>
+
+<div class="changeManouver hidden"><strong>Change of plans: Manouver!</strong>
+<p>That is a truly devastating weapon. This would explain why ships go missing without a trace. Who could stand a chance against anything like this!?</p>
+
+<p>Anyone faced with this would surely turn tail and flee. Perhaps that is what they are counting on too.</p>
+
+<p>I feel my fur bristling and poofing as I shout the orders to turn towards them and charge, it helps to look larger and confident, especially with orders like these. The crew hesitate for a second, giving me a look before they rush back to their tasks. </p>
+
+<div class="hidden" id="Fromcharge">
+<p>They are probably thinking we're going to still ram them and take the fight into a closer melee. For a while i keep up that ruse, up until the moment stey start steering away from us to maintain distance and keep their weapon advantage. I turn us the other way and seemingly just in time as their weapons blossom in fire and smoke once more and fire at us</p>
+
+<p> 'BOOM!' goes the first, our tight turn sends the shot wide, whistling through the air with a sound that no doubt would haunt many dreams tonight if we survive. </p>
+
+<p> The second shot, loud and echoing 'THOOM', overcompensates and this merely shot grazes us. But wood explodes nevertheless from the glancing hit and sends a minor explosions of splinters into my cowering crew, some of who fall over clutching injuries </p>
+
+<p>“KEEP COURSE! STAND FIRM!” I shout to maintain discipline. The crew must not give in to despair and flight. "We are doing well so far!" I try to encourage. </p>
+</div>
+
+<div class="hidden" id="FromRange">
+<p> We cant win an exchange of fire of this magnitude. I turn our ship from traveling alongside theirs at range to getting closer and going the opposite way, we'll have to manouver and circle them, make us a harder target. </p>
+
+<p> Its not long before they fire at us again. The impact and sound is almost simultaneous. 'BOOM' and suddenly wooden splinter showers nearly everyone including myself of the deck crew. I feel a sting in my cheek and side but nothing serious. Others are not so lucky, but i cant divery my attention away as the second shot soon follows. </p>
+
+<p> 'THOOM' and a spray of water across the main deck. It seems to have gone short luckily, i feel slightly more confident in our decision to turn. Injured Awes are helped to limp below deck for care, while new ones take their place </p>
+
+<p>“KEEP COURSE! STAND FIRM!” I shout to maintain discipline. The crew must not give in to despair and flight. </p>
+
+<script>
+if (state.battle.indexOf("approach") > -1) {
+$('#Fromcharge').removeClass('hidden');
+}
+else {
+$('#FromRange').removeClass('hidden');
+}
+</script>
+</div>
+
+<div class="hardBlow hidden"><strong>A hard blow</strong>
+
+<p> Our ship raced to keep distance as theirs was intent on closing in. But it was hard to fully out-pace them, we didnt quite have as much wind in our sails as we needed, we became an easy target to fire upon. </p>
+
+<p> The increasingly familiar fire of their weapon echoed over the waters and hit the stern of the ship. I heard cries of dismay from the rear balista crew as there was damage and injuries. </p>
+
+<p> I cursed, we hadent been able to land effective fire on them. Some of their sails had holes and here and there ropes fluttered, but they had a diligent repair crew. </p>
+
+<p> The next whistling shot was devastating. A loud crack told of a impact above and i had barely enough time to look up and see the top half of our main-mast come crashing down! </p>
+
+<p> Loud cries and desperate shouts followed as Awes dove for cover when sails, rope and a heavy piece of mast crashed against the deck. I gave it all some less flattering curses, having escaped getting smooshed just barely! </p>
+
+<p> They'd easily catch up to us now! This was big trouble! </p>
+
+</div>
+
+<div class="explosion hidden"><strong>Explosion!</strong>
+<p> Something bright streaks toward the enemy ship and thwangs dead-center on their hull, I see our rear ballista has changed ammunition to incendiary. I refrain from telling them that they cant hope to light them on fire like that, they probably know their jobs. </p>
+
+<p> We are close enough now that i can make out that the figures on the enemy ship are mostly Gators. Could it be the empire on the warpath then after all? But i do not recognize any markings, flags or insignia. Gators on the warpath are far from subtle, they tend to want you to know who's beating them. </p> 
+
+<p> We've ended up circling each other, they do not want us to close the gap too much, afraid of loosing the edge their weapon provides mayhaps. Our ballistas are hammering them, i can see our forward piece has already done good work sabotaging their sails with repeated fire, slowing them down. Im unsurprised to see Gryphs, no doubt mercenaries or conscripts, swooping to and fro to undo the damage. </p>
+
+<p> I cant quite remember what i was yelling at some bumbling crew, for what happened next threw everyone down violently. One moment a streak of light from our rear ballista it landed among the enemy crew fussing and loading their odd weapons, the next, a dramatic explosion, followed by the loudest thunderclap, sent a wall of wind at us as fire consumed their ship in a large blooming ball of heat and light. </p>
+
+<p> My ears rang as i clutched the deck, the force of it rocked our ship back hard and tore some sails loose from the mast. All was confusion for several moments until i got back on my feet and was able to assess the situation. </p>
+
+<p> Someone was cheering. The rear ballista crew were hooting and soon the rest of the dazed crew joined, raising paws in the air at the enemy ship that had seemed to have broken in two, both pieces on fire and breaking apart further. </p>
+
+</div>
+
+<div class="victory hidden"><strong>Victory!</strong>
+<p> Somehow we had won. </p>
+
+<p> Things were in a bit of a chaos at first, the explosion had left our sails in a mess, but luckily not torn them apart. We had been very close to the other ship when it blew. I had almost considered ordering boarding hooks to be readied. </p>
+
+<p> It took a while to puzzle out what had happened, but my ballistic officer, an ecstatic lieutenant Ulv quickly filled me in. </p>
+
+<p> "I was watching them real close, they weres filling them tubes between shots right." Ulv grinned, she was from the same region as Ziggy i guessed by her maner of speech. </p>
+
+<p> "With what?" I interrupted, more wondering out loud, but she took it as an inquiry. </p>
+
+<p> "Couldnt tell ya, Admiral!" She shrugged. "But i figured it was what made it go 'BOOM' all loud-like". </p>
+
+<p> "Mmm" I nodded. It had looked like they were fussing around quite a bit between shots, but i never had the time for a closer look like Ulv had. </p>
+
+<p> "So we figured, right, what if we put some fire on tha stuff they're pouring in! So we did! Got it straigt on the second shot, aimed it meself, quite the show!" </p>
+
+<p> "You've done well, more then well. You might have saved our fluff!" I gave Ulv a hard slap on her shoulder and she beamed proudly. </p>
+
+<p> "Wasent all me, Admiral! Me crew did well too!" </p>
+
+<p> "I'll see you all commended, but you most of all." I sent her on her way with a salute. Despite a devastating sudden victory, we had taken quite some damage from just a few hits of this new weapon. There was work to be done.  </p>
+
+<p> We tried to recover as much of the enemy ship we could. But whatever worthwhile there had been had sunk to the bottom of the sea. Of the enemy crew there was unsuprisingly little trace. </p>
+
+<p> Look-outs had claimed to report seeing a few gryphs escape the blast and fly off, but as good a flyers as they may be, this was the open sea. Our scouts which took a few laps in the air around the ship reported no sightings of land or other ships for them to fly too. </p>
+
+</div>
+
+<div class="defeat hidden"><strong>In the face of defeat</strong>
+
+<p> We were not dead in the water, but we could no longer escape nor attack. Whatever we did, could catch us or out-pace us as it was right now </p>
+
+<p> I growled and bristled, there were not many options left to me. I considered briefly laying a trap, hide most of the crew under deck like that Wulf-ship had to us. </p>
+
+<p> It would have been a sound idea, but they did not leave us to make plans, they came after us, lined themselves up and blasted their weapons at us again. The shots were carefuly aimed, seems they were interested in our ship, but not so much in us. </p>
+
+<p> Projectiles exploded through hull above the waterline or against the decks, each shot was devastating and meant injury for anyone nearby. I had never imagined our ship being turned against us with these wooden splinters flying everywhich way. A report came from below that crew compartments were hit and most of the Raptorians were incapacitated. </p>
+
+<p> I only had the option to surrender or mount some final desperate attack. I've heard rumours of the appetites of Gators and i was not keen on confirming them with my crew. </p>
+
+<p> But all choices looked bleak and the ruthless and carefuly aimed bombardment continued.</p>
+</div>
+
+<div class="surrender hidden"><strong>Surrender</strong>
+
+<p> It was with heavy and bitter heart that i ordered the hoisting of the white flag and the lowering of our sails. They had bombarded us 3 more times until they were satisfied. By then there was not much fight left in the crew left standing. Reports from below deck told of grim injuries in the infirmary. </p>
+
+<p> With their weapons aimed at our hull, they carefuly approached and captured us. The leering toothy maws of Gators greeted us, they were brutish looking reptiles, in some ways similar to Raptorians, but far more bulky, armored and rotound. </p>
+
+<p> They barked deep guttural speech and took nothing to chance, overwhelming the ship quickly in a charge and captured us. I realized now what had been happening across the west sea. All those dissapearances. Did they all tell a similar tale? </p>
+
+<p> To my horror it seemed the rumours of Gator appetite were not unfounded either. While securing the ship the bulky and armored reptiles did not balk at snatching the occasional morsel, shoving kicking and yelping crewmembers into their snouts and gulping them down. It was not methodical, it seemed merely a random indulgance of the occasional gator. </p>
+
+<p> I made a loud objection at this. Shouting at the grunts who so far seemed to have ignored me. I could see no one in charge and chose to kick at the knee of a greedy Gator gobbling down one of my cadets. </p>
+
+<p> All i got for this was a perplexed glance in my direction, as they made no pause in swallowing a heavy bulge down and then with a shrug i too was roughly grabbed and shoveled into the same jaws! </p>
+
+<p> Perhaps he'd thought i'd volunteered and was impatiant for my turn. That in our passive surrender, we'd offered ourselves up as peace-offerings. It was hard making objections when a large tongue was squashed against your face and squelched you down into a dark muscled gatorgullet. </p>
+
+<p> This was no way to treat a surrendering captain, there should have been some form of negotiation! My kicking did for some poor negotiating however and with a backward tilt of his head and loud 'Ghuul-uurrrp' he sent me sliding down into that rotound gut of his, further swelling the figure. </p>
+
+</br> 
+
+<p> The same thing happened around the ship. Anyone offering the least bit of objection or resistance were quickly swallowed up  by greedy jowls until eventualy some form of victory was announced and the gator-commander stepped aboard his new prize. </p>
+
+<p> A ship and more slaves to savor then they knew what to do with. It had been a good haul and fight! Any resistance now grumbled away in low 'glouurgh' in the guts of his warriors. </p>
+
+</div>
+
+<div class="surrender2 hidden"><strong>Desperate attack</strong>
+
+<p> There was only one way to reach the enemy ship. It was a last-ditch attack that I ordered simply to get the crew moving and remove that pitiful dejection and defeat out of their eyes.  </p>
+
+<p> I roared my orders, calling everyone to their duties who were able too. We were assaulting that ship no matter what! And the only way to do so was to float there from the top of our remaining masts. </p>
+
+<p> Its a form of boarding attack thats in the book, but often not one prefered, especially at these distances. But it was one everyone had drilled and knew the manouvers for. I kept them moving and hustling so they would not consider the shere desperation of it. </p>
+
+<p> Shots still came whistling in, but they had somehow lost their edge and shock. Though they might have thrown some to the ground or sent vital pieces of the ships shattering. We had a goal and purpose in mind now. </p>
+
+<p> I climbed with them and in quick succession ordered them to leap from the mast and glide toward the enemy ship. In knots of 3-4, brave Awes, regardless of flight-capability score assaulted the enemy. They might have suspected what was going on, they started to turn and put distance between us before even half of us were in the air. By then I too was gliding over, wings outspread and aching terribly </p>
+
+<p> A third made it across clean to land on the enemy deck. Mostly those of high flight-scores, males and scouts. Another third clambered or bounced off the side of their vessel while the rest made a cold wet landing just short of the hull of the ship. Awes are not the best of swimmers, there were yelps and desperate floundering. A large portion resign themselves to just tread water and float. 
+
+<p> By the time i climb onto the deck of the enemy ship, i realize its over before we even had a chance. Gators were large brutish looking reptiles, in some ways similar to Raptorians, but far more bulky, armored and rotound. Such a disorganized attack could never have succeeded, deep down i knew it all along. But it beat hoisting the white flag. </p>
+
+<p> They were almost leisurely beating my poor crew into submission, surrounding them with numbers, positioning and mass. Brave fighters were knocked over by heavy blows, snatched up and devoured in sometimes as few as 3 gulps. My numerous crew were quickly vanishing into those swollen scaly bellies. </p>
+
+<p> I led a small charge against someone who looked like a officer, atleast judging by the armor. My assesment was correct, with little honor the commander relied on his bodyguards to gang up on me, hardly sparing me a glance as he leered bemused at the spectacle of our pitiful attack. </p>
+
+<p> Wide-open toothy jaws greeted me and i tried to brace against the corners of those jaws. But with a guttural grunt and hard shove i was plunged headfirst into a gators muzzle, violently toss-gulped down in haste and no savoring so to be able to snatch the next meal. </p>
+
+</br>
+
+<p> A gatorgut can be spaceous, until it gets crowded, which it quickly got.</p>
+
+</div>
+<div class="escape hidden"><strong>Escape</strong>
+<p> With our sails going strong we put distance between ourselves and the enemy ship. They gave chase a while, even fired once, but shot wide and lost a lot of distance doing so. It might have been a last-ditch apptempt to cripple us. </p>
+
+<p> In theory they could have paced us and kept on our tail, but by sundown they turned around and headed toward east again. It was both a relief and a worrying turn of events. This ship is not working alone out here, could be they expect us to run into his friends while they cover our escape </p>
+
+<p> We've learned a lot already about the West-sea and what plagues it. But even if the Sea of fangs not been blocked by the annual tide i would still have continued course westward. We have other objectives and i have a strong suspicion the Awe-fleet is going to need any help it can get. </p>
+
+</div>
+
+</div>
+
 
 </body>
 </html>
