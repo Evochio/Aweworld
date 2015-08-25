@@ -35,6 +35,7 @@
       $('#button-3').on('click', function(e) {
 		lib.dialogue(e, "search2"),
 		state.shipHealth -= 1;
+		state.inventory.push("burntRope");
         $("#button-3").addClass("hidden")
 		$("#button-4").addClass("hidden")
 		$("#button-5").removeClass("hidden")

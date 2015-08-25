@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+ <link rel="stylesheet" href="/main.css">
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-theme.min.css">
+  <script src="/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('Introbrief.html')
+      })
+		$('#button-2').on('click', function(e) {
+        lib.dialogue(e, "nipfang")
+		state.preludeEvents.push("nipfang");
+		$("#button-2").addClass("hidden");
+		$("#button-3").addClass("hidden");
+		$("#button-4").removeClass("hidden");
+        // change state here
+        // end by using lib.goTo
+       
+      })
+	  $('#button-3').on('click', function(e) {
+        lib.dialogue(e, "prisoner")
+		$("#button-2").addClass("hidden");
+		$("#button-3").addClass("hidden");
+		$("#button-4").removeClass("hidden");
+        // change state here
+        // end by using lib.goTo
+        
+      })
+	  $('#button-4').on('click', function(e) {
+        lib.dialogue(e, "journey")
+		$("#button-4").addClass("hidden");
+		$("#button-1").removeClass("hidden");
+        // change state here
+        // end by using lib.goTo
+        
+      })
+    })
+		
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Incomplete</h1>
+<hr />
+<div id="story-text">
+<p>We sailed back toward port Tranquil in victory. A great menace of the east-sea has been vanquished. No doubt traders and fisherawes alike will rejoice once the news goes out. My name along with it too perhaps!</p> 
+
+
+<span class="duelvictory hidden">
+<p> There remained a decision to be made about Nipfang and the prisoners. For his crimes he was condemned to a belly, like he had done to countless others. Not only to satisfy the many laws he's broken, but also for many those who's beliefs lie in that the spirits of Awes be returned to our blood. </p>
+<p> As his captor I was in my rights to carry out the sentencing myself if i felt like it. So far i've post-poned the decision in hopes of being able to question him for information. But he's remained stubbornly tight-lipped</p>
+</span>
+<span class="battlevictory hidden">
+<p>Though Nipfang escaped, I have proven my tactics and ability to lead. Perhaps they'll give me a bigger ship! </p>
+<p>The battle had left many of my brave crew wounded. They carried on bravely and stoicaly, but i could tell many were hiding wounds that should have kept them down in their bunks. They are a good crew and I did my best to lighten their duties.</p> 
+<p> We limped into port a few days later, word quickly spread of our deed and crowds, cheering and gawking, formed as we marched the prisoners that remained across the docks to the Admiralty compounds where they'd be imprisoned.</p>
+<p> I had scarcly arrived when the urgent summons came. I was to report at once to the Grand Admiral herself, no delay! I was to take the fastest transport and make my way west, far west to Port Hrystcrag on the western coast. </p>
+<p> It was all a little baffling, they could not have heard of my exploits all the way over there already. But what choice had i then to immidiatly depart. </p>
+<p> I was sorry to leave my ship in the current state it was in and not oversee the repairs myself. But for all i knew i wouldnt be back to see it. I've heard rumours of captains being sent out on the dangerous west-seas, was i to be one of them? </p>
+</span>
+</div>
+<div class="prisoner hidden">
+<p> His sentencing will have to be carried out by someone else. Perhaps someone who might have time to extract answers from him too. I havent the taste for it and there is too much to be overseen, reports to be written to be burdened by his digestion.</p>
+<p> We limped into port a few days later, word quickly spread of our deed and crowds, cheering and gawking, formed as we marched the prisoners that remained across the docks to the Admiralty compounds where they'd be imprisoned.</p>
+<p> I had scarcly arrived when the urgent summons came. I was to report at once to the Grand Admiral herself, no delay! I was to take the fastest transport and make my way west, far west to Port Hrystcrag on the western coast. </p>
+<p> It was all a little baffling, they could not have heard of my exploits all the way over there already. But what choice had i then to immidiatly depart. </p>
+<p> I was sorry to leave my ship in the current state it was in and not oversee the repairs myself. But for all i knew i wouldnt be back to see it. I've heard rumours of captains being sent out on the dangerous west-seas, was i to be one of them? </p>
+</div>
+<div class="nipfang hidden">
+<p> I confronted the defeated and bound Wulf-captain, it appears i must have looked smug and hungry, for he guessed my intentions with just one glance in my direction. </p>
+<p> "Ah, the triumphant Awe-captain! Here to finnish me at last?!" He had the nerve to sound insulted. This is no longer a battlefield to trade jibes in, formality and protocol was required. </p>
+<p> "Nipfang, on the charge of piracy, hijacking, slavery and devouring of countless innocents, i sentence you to be passed on." </p>
+<p> "Hoohoo, aint that a fancy way of saying it! Go on, eat me already!" His accent was as always thick but suprisingly good Awe-speech. I was beginning to tire of his attitude and bravado, its like he didnt have a care in the world. </p>
+<p></p>
+<p> Im sure he'd have a few moments to think over and regret his decisions when curled up within me. Without further cermony i proceeded to swallow the menace of the East-sea whole. He was large for a Wulf and it had been a while since i consumed another, my crew had never given me a reason to discpence that kind of discipline. </p>
+<p> Jaws stretched and throat bulged with his form as he hoisted him up and into my gullet. It was as far as i needed to get for instincts to kick in, almost automatic and rhytmic gulping sending him on his way into my body. </p> 
+<p> I managed to stay on my feet though the process and hoist his lower half up above my head. I wasent trying to show off truly, but its good for a captain to look capable. Through it all, Nipfang hardly squirmed or kicked, perhaps resigned to his fate or showing his own kind of defiance. </p>
+<p> Either way he filled out my belly impressively, i almost forgot to unbutton my belt until i felt strain become too much. He'd take some doing to work off, but nothing i hadent handled before. </p>
+
+<p> We limped into port a few days later, word quickly spread of our deed and crowds, cheering and gawking, formed as we marched the prisoners that remained, most of them part of our figures, across the docks to the Admiralty compounds where they'd be imprisoned.</p>
+<p> I had scarcly arrived when the urgent summons came. I was to report at once to the Grand Admiral herself, no delay! I was to take the fastest transport and make my way west, far west to Port Hrystcrag on the western coast. </p>
+<p> It was all a little baffling, they could not have heard of my exploits all the way over there already. But what choice had i then to immidiatly depart. </p>
+<p> I was sorry to leave my ship in the current state it was in and not oversee the repairs myself. But for all i knew i wouldnt be back to see it. I've heard rumours of captains being sent out on the dangerous west-seas, was i to be one of them? </p>
+<hr />
+</div>
+<div class="journey hidden">
+<p> The journey west across the continent was a rushed and bumpy one. Between relay stations, you trade one small carriage for the next on the ticket of high-priority summons, pulled along by fresh and eager Raptorian couriers. Had you scored higher then a modest 5 on your flight-apptitude back in the academy you might have glided over the terrain between the relay-stations towers. But only 1 in 50 ever got over 7 which was the minimum, most of those would be the lighter Males. </p>
+<p> The western half, though populated had until recently always been more rural. But the opening of the western sea-route through previously un-navigatable seas had seen a boom. Villages and even towns that hardly existed 50 years ago now swish past your carriage windows. </p>
+<p></p>
+<p> Once you arrive at Hrystcrag you're taken aback by how much of a city had emerged on these once barren and rocky old ruins. The amount of industry, with its cranes and pulleys perched over steep cliffs and the ocean below told of a bustle of growing commerce. You even spy the hulls of ships in what must be a shipyard, precariously built on the ledge of the far cliff. </p>
+<p> One might ask themselves why anyone would build a large port in such a difficult location. But if  you searched up and down the coast, the only other viable place safe from the violent roiling sea and tides of the west sea lay far north in Gleaming Bay. Truth be told, this port would likely not have existed unless the old ruins from the First-age had not already been constructed into the sides of the cleft cliffs, which formed a small bay relatively of calm water. </p> 
+</div>
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default hidden" id="button-1"> Continue </button>
+<button class="btn btn-default hidden" id="button-2"> Eat Nipfang </button>
+<button class="btn btn-default hidden" id="button-3"> Prisoner </button>
+<button class="btn btn-default hidden" id="button-4"> Journey </button>
+<script>
+switch(state.preludeEvents[3]) {
+	case 'duel':
+	$('.duelvictory').removeClass('hidden');
+	$("#button-2").removeClass("hidden");
+	$("#button-3").removeClass("hidden");
+	
+		break;
+	case 'battle':
+	$('.battlevictory').removeClass('hidden');
+	$("#button-3").removeClass("hidden");
+	}
+</script>	
+</body>
+</html>

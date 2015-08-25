@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+ <link rel="stylesheet" href="/main.css">
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-theme.min.css">
+  <script src="/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function() {
+        // change state here
+		state.piety += 1;
+        // end by using lib.goTo
+        lib.goTo('Battle.html')
+      })
+
+      $('#button-2').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('Page6b.html')
+      })
+    
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1></h1>
+<hr />
+
+<p>A ship is spotted by the look-out soon after sunrise north-west of us. A mere speck, it seems be on an opposite course from us, heading straight east, taking it toward Pale-rock. Its quite far north to be heading toward Wulf-lands. And the must know that the three-moon tides should have closed off the Sea of fang passage to Awe-lands by now. </p>
+
+<p>By mid-day the ship has changed course and is heading straight for us. It has wind in its back and will be able to catch us unless we turn around and head away from it. But I have no intention of doing that. </p>
+
+<p>It approached rapidly during the day and its configuration was soon clearly evident. I first thought it another Awe-frigate like ours, it sure is of similar design. But the way it carries it sails and the width of the ship is different from anything we have. Its no merchant-vessel either. </p>
+
+<p>The only prudent thing to do is prepare for confrontation and I order general quarters. All hands to ready stations. </p>
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1">Continue</button>
+
+
+</body>
+</html>

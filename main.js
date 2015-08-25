@@ -30,6 +30,64 @@ lib.dialogue = function(e, className) {
 	}
 }
 
+
+//new button system. 
+var ziggy = {};
+var glint = {};
+var valnos = {};
+
+var cadet = [ziggy, glint, valnos];
+
+var cadetIndex;
+var i = 0;
+
+var options = {
+    container: 'body',
+    placement: 'top',
+    content: function() {
+		if (cadet[cadetIndex].banter[i].text == undefined) {    //This doesent work.
+			"Cadet has nothing to say"
+		}
+		else {
+        return cadet[cadetIndex].banter[i].text; }
+    }, 
+    trigger: 'manual'
+};
+
+
+var showNextDialogue = function () {
+    var banter = cadet[cadetIndex].banter;
+    var previousTarget = null;
+    if(i > 0) {
+        var previousTarget = banter[i-1].target; 
+    } 
+    var currentTarget = null
+    if (banter.length > i) {
+       var currentTarget = banter[i].target; 
+    }
+    // if this isn't the first line, 
+    // and this line isn't being spoken by the same person as the last line,
+    // then hide the previous line
+    if(i > 0 && previousTarget !== currentTarget) {
+        $(banter[i-1].target).popover('hide');
+    }
+    // if i has gone beyond the size of the banter array
+    if(i >= banter.length) {
+        // reset i, stop the popover from being shown
+        i = 0;
+        $('#Ziggy, #Glint, #Valnos').attr('disabled', false);
+        return;
+    }
+    
+    $(banter[i].target).popover('show');
+
+    i += 1;
+};
+
+
+// Old button system. 
+/*
+
 lib.makeCadetButtons = function () {
   var buttons = $("<div id='cadet-buttons'></div>");
   buttons.append(lib.makeCadetButton('Glint'));
@@ -54,6 +112,7 @@ lib.makeCadetButton = function(cadetName) {
   }
   return button;
 };
+*/
 // EDIT THIS //////////////
 // initialState is how you want the state to be at the beginning of the game.
 var initialState = {
@@ -84,7 +143,10 @@ var initialState = {
   cardLow: 3,
   inventory: [],
   preludeEvents: [],
-  preludeScore: 0
+  preludeScore: 0,
+  wulfCaptain: 0,
+  wulfQuestions: [],
+  battle: []
 }
 ///////////////////////////
 
@@ -146,7 +208,7 @@ $(document).ready(function() {
   // EDIT THIS ///////////////
   // Code you want to run at the beginning of every page load goes here.
   // For example, code that tests the state to see if morale is low enough to redirect you to an ending.
-lib.makeCadetButtons();
+// lib.makeCadetButtons();
  
   
   console.log('Current state:', JSON.stringify(state, null, '\t'))

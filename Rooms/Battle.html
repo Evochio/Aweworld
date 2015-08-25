@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+ <link rel="stylesheet" href="/main.css">
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-theme.min.css">
+  <script src="/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function(e) {
+        // change state here
+		state.battle.push("ballista")
+        // end by using lib.goTo
+         lib.dialogue(e, "ballista")
+		 $("#button-4").removeClass("hidden");
+		$("#button-5").removeClass("hidden");
+		$("#button-6").removeClass("hidden");
+      })
+
+       $('#button-2').on('click', function(e) {
+        // change state here
+		state.battle.push("sails")
+        // end by using lib.goTo
+         lib.dialogue(e, "sails")
+		 $("#button-4").removeClass("hidden");
+		$("#button-5").removeClass("hidden");
+		$("#button-6").removeClass("hidden");
+      })
+	  
+	   $('#button-3').on('click', function(e) {
+        // change state here
+		state.battle.push("standby")
+        // end by using lib.goTo
+         lib.dialogue(e, "standby")
+		 $("#button-4").removeClass("hidden");
+		$("#button-5").removeClass("hidden");
+		$("#button-6").removeClass("hidden");
+      })
+	  
+	  $('#button-4').on('click', function(e) {
+        // change state here
+		state.battle.push("approach")
+        // end by using lib.goTo
+         lib.dialogue(e, "approach")
+	$("#button-1").addClass("hidden")
+	$("#button-2").addClass("hidden")
+	$("#button-3").addClass("hidden")
+      })
+	  $('#button-5').on('click', function(e) {
+        // change state here
+		state.battle.push("manouver")
+        // end by using lib.goTo
+         lib.dialogue(e, "manouver")
+	$("#button-1").addClass("hidden")
+	$("#button-2").addClass("hidden")
+	$("#button-3").addClass("hidden")
+      })
+	  $('#button-6').on('click', function(e) {
+        // change state here
+		state.battle.push("range")
+        // end by using lib.goTo
+         lib.dialogue(e, "range")
+	$("#button-1").addClass("hidden")
+	$("#button-2").addClass("hidden")
+	$("#button-3").addClass("hidden")
+      })
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1></h1>
+<hr />
+<div id="story-text">
+<p>The enemy ship is approaching fast. It appears to be of similar configuration to ours, a long and fast frigate. No doubt where our hired ship-builders got their designs from. It would explain how they managed to approach so fast. While they're coming at us they don't seem to be heading straight for us, so they at the least don't seem to have plans to ram us. </p>
+
+<p>We have some time, albeit short, to prepare for battle. I have two reserve units waiting below-deck for orders that can assist in the preparation if need be. </p>
+
+<p>The forward ballista is being hastily assembled by experienced crew-awes. We could probably also get the rear one up in order just in time if I divert crew from other areas to work on it. </p>
+
+<p>But I could instead assign the extra hands to help with the sails, that ought to give us a little more speed to maneuver with. </p>
+
+<p>Lastly, I could simply have the reserves stand by, out of everyone's way and ready themselves for eventual melee and damage control. </p>
+</div>
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1">Second Ballista</button>
+<button class="btn btn-default" id="button-2">Sails</button>
+<button class="btn btn-default" id="button-3">Stand-by</button>
+
+<button class="btn btn-default hidden" id="button-4">Aggressive approach</button>
+<button class="btn btn-default hidden" id="button-5">Manouver</button>
+<button class="btn btn-default hidden" id="button-6">Keep Range</button>
+
+<div class="ballista hidden"><strong>Ballista</strong>
+<p>We need more firepower, on my order the parts for the second weapon start to make their way up. The crew have drilled well, it looks like they'll just about get it in working order before the enemy ship is in range. </p>
+
+<p>If their ship is any bit as solidly built as ours, then the missiles fired from these wont do much to their hull. But we can still aim for critical points like sails, mast, rudder and even crew to give ourselves an advantage. Doubly so now with two weapons operational. </p>
+
+<p><br />
+<br />
+</p>
+
+<p>The ship is entering maneuvering range, still much too far out of weapons range, but close enough for us to adjust what kind of approach we want. We could charge in close aggressively, try to out-maneuver them and get on their tail or slug it out at range. </p>
+
+<p>By the looks of it they might be opting for something close to the last two themselves. This are still simply approaching at an angle. </p>
+</div>
+
+<div class="sails hidden"><strong>Sails</strong>
+<p>Speed, its what this ship is good for. But with extra crew helping with the sails we can be faster at switching between full and half sail tighten up our otherwise clumsy maneuvering. </p>
+
+<p>Seeing as their ship is similar to ours, it might just be the edge we need in this fight to gain the advantage.</p>
+
+<p>The ship is entering maneuvering range, still much too far out of weapons range, but close enough for us to adjust what kind of approach we want. We could charge in close aggressively, try to out-maneuver them and get on their tail or slug it out at range. </p>
+
+<p>By the looks of it they might be opting for something close to the last two themselves. This are still simply approaching at an angle. </p>
+
+</div>
+
+<div class="standby hidden"><strong>Stand-by</strong>
+<p>I order the extra crew to stand-by. You never know when and where you'll need them once things get heated. </p>
+
+<p>They wont be entirely idle down there I am sure. They'll ready weapons for boarding and close-combat to be close at hand. Any determined ship battle tend to end in fire or a clash of brawn and bravery. </p>
+
+<p>The ship is entering maneuvering range, still much too far out of weapons range, but close enough for us to adjust what kind of approach we want. We could charge in close aggressively, try to out-maneuver them and get on their tail or slug it out at range. </p>
+
+<p>By the looks of it they might be opting for something close to the last two themselves. They are still simply approaching at an angle, perhaps im just paranoid and they want a good look at us. </p>
+
+</div>
+
+<div class="approach hidden"><strong>Aggressive approach</strong>
+<p>I order us to charge into close range. They seem a bit shy in their approach so going in close might not be in their favor. </p>
+
+<p>The forward ballista readies itself to fire, there is still a good way to go before they can aim at anything worthwhile. </p>
+
+<p>The enemy ship is close enough now that I can see figures moving on their deck. There is also a peculiar thing...</p>
+
+<p>A flash, smoke. It looks like something exploded on their ship. Its follow by a thundering 'THOOM'. </p>
+
+<p>Before anyone in the crew or myself am able to react or process what happened, hull explodes into splinters and debris on our forward starboard side of the ship. Sending unfortunate awes tumbling backwards in yells and shrieks. </p>
+
+<p>We were hit with something! Something strong enough to damage and even puncture the hull! Crew look dazed, some pick up help the wounded limp bellow deck. </p>
+
+<p>Another flash and 'THOOM' draws my attention back from the damage. Something whistles by in the air loudly, just above the main deck, narrowly missing a mast and tearing a circular hole through one of the sails. </p>
+
+<p>The crew look to me for instructions, fear on many of their faces. This was new and terrifying. </p>
+
+</div>
+
+
+<div class="manouver hidden"><strong>Manouver</strong>
+<p>Charging in or staying at a safe enough distance do not feel like the right approach. One is too aggressive and the other to cautious. Like pieces on a playing-board we have to use our ship to the fullest and pin down our foe. </p>
+
+<p>I order the sails tightened for a burst of speed, I intend to fling us past them quickly and then come around behind them and try to stay on them. </p>
+
+<p>As we speed on by outside weapons-range the enemy ship is close enough now that I can see figures moving on their deck. There is also a peculiar thing...</p>
+
+<p>A flash, smoke. It looks like something exploded on their ship. Its follow by a thundering 'THOOM'. </p>
+
+<p>Before anyone in the crew or myself am able to react or process what happened, hull explodes into splinters and debris on our forward starboard side of the ship. Sending unfortunate awes tumbling backwards in yells and shrieks. </p>
+
+<p>We were hit with something! Something strong enough to damage and even puncture the hull! Crew look dazed, some pick up help the wounded limp bellow deck. </p>
+
+<p>Another flash and 'THOOM' draws my attention back from the damage. Something whistles by in the air loudly, just above the main deck, narrowly missing a mast and tearing a circular hole through one of the sails. </p>
+
+<p>The crew look to me for instructions, fear on many of their faces. This was new and terrifying. </p>
+</div>
+
+<div class="range hidden"><strong>Keep Range</strong>
+<p>We'll test their mettle at range first. I have trust in the sturdiness of this ship from the journey here. The ballista crews stand ready, I do not need to tell them what to aim at. They know their weapons better then me. </p>
+
+<p>I keep a close eye on the enemy ship. Its getting closer now, I can see figures moving on their deck. There is also a peculiar thing...</p>
+
+<p>A flash, smoke. It looks like something exploded on their ship. Its follow by a thundering 'THOOM'. </p>
+
+<p>Before anyone in the crew or myself am able to react or process what happened, hull explodes into splinters and debris on our forward starboard side of the ship. Sending unfortunate awes tumbling backwards in yells and shrieks. </p>
+
+<p>We were hit with something! Something strong enough to damage and even puncture the hull! Crew look dazed, some pick up help the wounded limp bellow deck. </p>
+
+<p>Another flash and 'THOOM' draws my attention back from the damage. Something whistles by in the air loudly, just above the main deck, narrowly missing a mast and tearing a circular hole through one of the sails. </p>
+
+<p>The crew look to me for instructions, fear on many of their faces. This was new and terrifying. </p>
+
+</div>
+
+<div class="retreat hidden"><strong>Retreat</strong>
+
+<div class="hidden" id="reatreatsails">
+<p>They have some devastating weapons we have no information about, it out-ranges us and out-fires us. This would explain why ships go missing without a trace. Who could stand a chance against anything like this!?</p>
+
+<p>We can not stay, I quickly order the ship around, full sails up. The weapons seem to be side-mounted on starboard side. We're close enough now that I can see figures working on a black tube of some sort. There appears to be two of them. Luckily they appear to take a long time to load. </p>
+
+<p>I feint our ship towards port in favor of the wind and order our sails prepared for half-sail. Its the obvious escape route and what would get us most speed. They anticipate our move, moving to turn along with us and keep us in their firing arch. I grin and turn the ship suddenly hard starboard, crew pulling up the sails to give us a better turn. </p>
+
+<p>We are outside their firing arch for now. Sails again on full but somewhat against the wind. </p>
+
+<p>The enemy ship is turning, but much slower and on full sails, this will take them on a much wider turn. </p>
+
+<p>We've bought some time and distance. But they're still in range if they decide to turn their broadside and shoot again. But unless they hit somewhere critical weshould be able to outfly them. </p>
+</div>
+
+<div class="hidden" id="retreatnosails">
+<p>They have some devastating weapons we have no information about, it out-ranges us and out-fires us. This would explain why ships go missing without a trace. Who could stand a chance against anything like this!?</p>
+
+<p>We can not stay, I quickly order the ship around, full sails up. The weapons seem to be side-mounted on starboard side. We're close enough now that I can see figures working on a black tube of some sort. There appears to be two of them. Luckily they appear to take a long time to load. </p>
+
+<p>I feint our ship towards port in favor of the wind and order our sails prepared for half-sail. Its the obvious escape route and what would get us most speed. They anticipate our move, moving to turn along with us and keep us in their firing arch. I grin and turn the ship suddenly hard starboard, crew working hard to keep up with my orders, pulling up the sails to give us a better turn. </p>
+
+<p>There is only so much the few brave diligent sailors in the sails, which so much depend on, can do. They can barely keep up with my alternating orders and we do not gain as much speed as fast as i'd hoped. <p>
+
+<p>We might be out of their firing arch for now, but the enemy ship is turning and we'll be in line of sight sooner then i'd hoped. </p> 
+
+
+</div>
+<script>
+if (state.battle.indexOf("sails") > -1) {
+$('#reatreatsails').removeClass('hidden');
+}
+else {
+$('#retreatnosails').removeClass('hidden');
+}
+
+</div>
+
+</body>
+</html>

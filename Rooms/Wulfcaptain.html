@@ -15,66 +15,179 @@
 
   <script>
  
+	var hideQuestions = function(){
+		$("#button-5").addClass("hidden")
+		$("#button-6").addClass("hidden")
+		$("#button-7").addClass("hidden")
+		$("#button-8").addClass("hidden")
+		$("#button-9").addClass("hidden")
+		$("#button-10").removeClass("hidden")
+	}
 	
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
     
-	var onQuestionAsked = function(){
-		$("#button-6").removeClass("hidden")
-		$("#button-5").addClass("hidden")
-	}
+	
 	
       $('#button-1').on('click', function(e) {
-		
-		
-       lib.dialogue(e, "WhyWest"),
-		
-		onQuestionAsked();
+	
+       lib.dialogue(e, "formal"),
+		$("#button-1").addClass("hidden")
+		$("#button-2").addClass("hidden")
+		$("#button-3").addClass("hidden")	
+		$("#button-4").removeClass("hidden")		
       })
 
       $('#button-2').on('click', function(e) {
-        lib.dialogue(e, "ship-crew")
-		onQuestionAsked();
-      })
-	  $('#button-3').on('click', function(e) {
-         lib.dialogue(e, "working-wulf")
-		onQuestionAsked();
-      })
-	  $('#button-4').on('click', function(e) {
-        lib.dialogue(e, "missing-captain")
-		onQuestionAsked();
-		
-		// Secret ending
-		$("#button-4").addClass("hidden")
-		$("#button-7").removeClass("hidden")
-      })
-	  $('#button-5').on('click', function(e) {
-        // change state here
-        // end by using lib.goTo
-        lib.goTo('IntroBriefEnd.html')
-      })
-	   $('#button-6').on('click', function() {
-        // change state here
-		
-        // end by using lib.goTo
-        lib.goTo('IntroBriefEnd1.html')
-      })
-	    $('#button-7').on('click', function(e) {
-        lib.dialogue(e, "missing-captain2")
-		$("#button-7").addClass("hidden")
-		$("#button-8").removeClass("hidden")
-      })
-	    $('#button-8').on('click', function(e) {
-        lib.dialogue(e, "missing-captain3")
+        lib.dialogue(e, "short")
 		$("#button-1").addClass("hidden")
 		$("#button-2").addClass("hidden")
 		$("#button-3").addClass("hidden")
-		$("#button-4").addClass("hidden")
-		$("#button-6").addClass("hidden")
-		$("#button-8").addClass("hidden")
+		$("#button-4").removeClass("hidden")
       })
+	  $('#button-3').on('click', function(e) {
+         lib.dialogue(e, "wulf")
+		$("#button-1").addClass("hidden")
+		$("#button-2").addClass("hidden")
+		$("#button-3").addClass("hidden")
+		$("#button-4").removeClass("hidden")
+      })
+	  $('#button-4').on('click', function(e) {
+        lib.dialogue(e, "cabin")
+		$("#button-4").addClass("hidden")
+		$("#button-5").removeClass("hidden")
+		$("#button-6").removeClass("hidden")
+		$("#button-7").removeClass("hidden")
+		$("#button-8").removeClass("hidden")
+		if (state.inventory[0] == "burntRope") {
+		$("#button-9").removeClass("hidden")
+		};
+				
+      })
+	  $('#button-5').on('click', function(e) {
+	  lib.dialogue(e, "threaten")
+        // change state here
+		state.wulfQuestions.push("threaten");
+        // end by using lib.goTo
+        if (state.wulfQuestions.length >= 2) {
+		hideQuestions();
+		} 
+      })
+	   $('#button-6').on('click', function(e) {
+	    lib.dialogue(e, "bargain")
+	   state.wulfQuestions.push("bargain");
+       state.wulfCaptain =+ 1;
+       if (state.wulfQuestions.length >= 2) {
+		hideQuestions();
+		} 
+      })
+	    $('#button-7').on('click', function(e) {
+        lib.dialogue(e, "plead")
+		state.wulfQuestions.push("plead");
+		 if (state.wulfQuestions.length >= 2) {
+		hideQuestions();
+		} 
+      })
+	    $('#button-8').on('click', function(e) {
+        lib.dialogue(e, "question")
+		state.wulfQuestions.push("question");
+		 if (state.wulfQuestions.length >= 2) {
+		hideQuestions();
+		} 
+      })
+	    $('#button-9').on('click', function(e) {
+        lib.dialogue(e, "rope")
+		state.wulfCaptain =+ 2;
+		state.wulfQuestions.push("rope");
+		 if (state.wulfQuestions.length >= 2) {
+		hideQuestions();
+		} 
+      })
+	   $('#propose').on('click', function(e) {
+        lib.dialogue(e, "propose")
+		if (state.preludeEvents[5] == "nipfang")
+		{state.wulfCaptain =+ 1;
+		state.wulfQuestions.push("proposeNip");
+		}
+		else {state.wulfQuestions.push("propose");
+		}
+		if (state.wulfQuestions.length >= 2) {
+		hideQuestions();
+		} 
+      })
+	    $('#button-10').on('click', function(e) {
+		if (state.wulfcaptain <= 1) {
+        lib.dialogue(e, "notConvinced")
+		$("#button-11").removeClass("hidden")
+		$("#button-12").removeClass("hidden")
+		$("#button-10").addClass("hidden")
+		}
+		else if (state.wulfcaptain = 2) {
+		lib.dialogue(e, "compromise")
+		$("#button-13").removeClass("hidden")
+		$("#button-14").removeClass("hidden")
+		$("#button-10").addClass("hidden")
+		}
+		 		
+		else {
+		lib.dialogue(e, "convinced")
+		$("#decline").removeClass("hidden")
+		$("#button-14").removeClass("hidden")
+		$("#button-10").addClass("hidden")
+		}
+		
+		}
+      })
+	   $('#button-11').on('click', function(e) {
+        lib.dialogue(e, "attackViska")
+		$("#Apin").removeClass("hidden")
+		$("#Athunk").removeClass("hidden")
+		$("#Asword").removeClass("hidden") 
     })
+	
+	   $('#Apin').on('click', function(e) {
+        lib.dialogue(e, "pin")
+		$("#Apin").addClass("hidden")
+		$("#Athunk").addClass("hidden")
+		$("#Asword").addClass("hidden") 
+    })
+	
+	   $('#Athunk').on('click', function(e) {
+        lib.dialogue(e, "thunk")
+		$("#Apin").addClass("hidden")
+		$("#Athunk").addClass("hidden")
+		$("#Asword").addClass("hidden") 
+    })
+	
+	   $('#Asword').on('click', function(e) {
+	   if (state.wulfQuestions[0] == "threaten"){
+			lib.dialogue(e, "sword2")
+	   }
+	   else { lib.dialogue(e, "sword")
+	   }
+		$("#Apin").addClass("hidden")
+		$("#Athunk").addClass("hidden")
+		$("#Asword").addClass("hidden") 
+    })
+	 $('#button-13').on('click', function(e) {
+        lib.dialogue(e, "sacrifice")
+		
+    })
+	 $('#button-13').on('click', function(e) {
+        lib.dialogue(e, "viskasBelly")
+		
+    })
+	$('#decline').on('click', function(e) {
+	if (state.wulfQuestions.indexOf("proposeNip") > -1 && state.wulfQuestions.indexOf("rope") > -1)  {
+		lib.dialogue(e, "declineNip")
+		$("#viska").removeClass("hidden")
+		}
+		else {
+        lib.dialogue(e, "decline")
+		}
+    })
+	}
   </script>
   
   <style>
@@ -86,181 +199,554 @@
 <h1>Admiral Avolc</h1>
 <hr />
 <div id="story-text">
-<p>An imposing figure stands before you. Age has given this Matron-Awe an enviable wild mane of fluffy fur that refuse containment of the sparse clothing and any effort of grooming. Time has also given her strength, mass and the wide hips of a matron.</p>
+<p>We arrived well one time at the western point of Pale-rock. Impressive jagged cliffs decorated the end of the windswept cold island. Southeast from here lay the Wulf lands. It is strange to consider how close our nations lay to each other. But besides the somewhat calm east-sea the routes are long and ever fraught with perils. <br />
+It does not take long for our spotter to detect the sails of another ship heading for us. A Wulf interceptor by the look of it. Wulfs have always preferred small nimble ships, the interceptor was the quickest of their kind. It might even rival the perked ear while going straight. But its strengths lay in its agility and quick turns. <br />
+One interceptor was no threat however, it is merely half our size and has a smaller crew. But the problem with Wulfs were that they often came in groups. <br />
+This interceptor appeared to be alone and as it closed in, its flags were confirmed as part of the &ldquo;The sailing company&rdquo;, which would be the Wulf organized navy of privateers. Our contacts. </p>
 
-<p>Elaborate and decorative epaulets and heavy cloak with golden embroideries signify her rank and status.</p>
-
-<p>&nbsp;</p>
-
-<p>&ldquo;Captain Avolc.&rdquo; She nods as you give your salute. &ldquo;You arrive well one time.&rdquo;</p>
-<p>&ldquo;Yes, Matron Admiral.&rdquo;</p>
-<p>&ldquo;I will be brief and direct. You will listen closely, you may ask questions afterwards.&rdquo;</p>
-
-<p>&nbsp;</p>
-
-<p>You can but nod in acknowledgment as the grand Admiral shifts her hefty and somewhat rounded figure. No doubt many a disobedient underling adorn her frame. You wish not to be among them.</p>
-
-<p>&nbsp;</p>
-
-<p>&ldquo;I am sending you west, to replace a captain of a new ship and crew. I am sending all of my best captains out past the Sea of fangs on assignment and patrol. Your new ship &ldquo;Perked ear&rdquo; waits at port and for your arrival. It is stocked and ready to go, awaiting only your arrival. You will leave immediately after our meeting.&rdquo;</p>
-
-<p>&nbsp;</p>
-
-<p>You tense. This is quite sudden. And the west sea does not have the best reputation in terms of being very hospitable to captains with any form of retirement plans. It was more often a rumored punishment to be sent west.</p>
-<p>The Grand Admiral gauges your reaction, something tells you that she will not take no for an answer. You manage a nod.</p>
-
-<p>&nbsp;</p>
-
-<p>&ldquo;Good.&rdquo; She states curtly before continuing. &ldquo;Your assignment is three-fold.</p>
-
-<p>Firstly, you are to rendezvous with a Wulf-fleet contact beyond the Sea of Fangs at the west end of Pale-rock. They carry important intelligence for us that we have traded expensively for. Our contact should be there in three weeks.</p>
-
-<p>Secondly, you are to investigate suspected piracy issues plaguing the growing west trade. There are troubling rumors related to the Gator empire which must be unveiled. We can not be in the blind or trust conflicting second-hand information. A wulf liason called &ldquo;Keeper&rdquo; have been assigned to the crew, he carries more information.</p>
-
-<p>Thirdly, you are to establish Admiralty presence and security. We need to show that we are a force. Rendevouz with the other Admirality ships that have gone ahead of you and aid eachother in patrolling and mapping the Archipelago sea so we in the future may construct a naval base there.&rdquo;</p>
-
-<p>The great Admiral sighed. &ldquo;You may ask questions&rdquo;</p>
+<p>As they came in along-side to dock with our ship, I ordered most personnel on deck, with weapons at the ready not far from reach. My experiences with Wulfs on the east sea has taught me to never fully make assumptions of their intentions. The Raptorians I kept under deck for now, as a potential surprise. <br />
+The docking was uneventful. The differences in crew was as always interesting. Where our brave Awes stood in fine rows, the wulfs seemed content with having no organization what so ever, standing in spaced bunches in every feasible nook of their ship and an alarming number of them gawking down from the sails and ropes. <br />
+As soon as a plank was lowered, a short figure marched over. Wearing a captains overcoat a young looking Wulf lass peered around with suspicion before fixing me with a sneer.<br />
+&ldquo;You captain?&rdquo; She asked with a youthful voice.</p>
 </div>
 <hr />
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default" id="button-1">"Why is the west now so important?"</button>
-<button class="btn btn-default" id="button-2">“New Ship and crew?”</button>
-<button class="btn btn-default" id="button-3">“We are working with the Wulf-fleet now?”</button>
-<button class="btn btn-default" id="button-4">”What happened to the captain?”</button>
-<button class="btn btn-default" id="button-5">“I have no questions Admiral”</button>
-<button class="btn btn-default hidden" id="button-6">“I have no more questions Admiral”</button>
-<button class="btn btn-default hidden" id="button-7">“Whats so secret about the captain?”</button>
-<button class="btn btn-default hidden" id="button-8">“That was a bit cryptic...”</button>
-<div class="WhyWest hidden"><p><strong>-&ldquo;Why is the west now so important?&rdquo;</strong></p>
+<button class="btn btn-default" id="button-1">Formal Greeting</button>
+<button class="btn btn-default" id="button-2">Be short and to the point.</button>
+<button class="btn btn-default" id="button-3">Try a Wulf-specific courtesy</button>
+<button class="btn btn-default hidden" id="button-4">Viskas cabin</button>
 
-<p>&nbsp;</p>
+<button class="btn btn-default hidden" id="button-5">Threaten to take the intel</button>
+<button class="btn btn-default hidden" id="button-6">Bargain for better deal</button>
+<button class="btn btn-default hidden" id="button-7">Plead to her better senses</button>
+<button class="btn btn-default hidden" id="button-8">Question motives</button>
+<button class="btn btn-success hidden" id="button-9">(ITEM)Burnt Rope of Wulf-ship</button>
+<button class="btn btn-warning hidden" id="propose">Propose HER to be the meal</button>
 
-<p>&ldquo;For long the west sea has been closed to us. Wild weather and currents of the cold North sea and a myriad of treacherous shoals in the Sea of fangs have made sailing and exploration more dangerous then we are willing to risk ship and crew.</p>
+<button class="btn btn-default hidden" id="button-10">Viskas reponse</button>
 
-<p>So most of our trade and contact with the west have lain in the calmer east, with the Wulfs as expensive proxy. Their connection westward in the southern seas are safer.</p>
+<button class="btn btn-warning hidden" id="button-11">(Break truce) Attack Viska</button>
+<button class="btn btn-default hidden" id="button-12">(No Intel) Leave</button>
 
-<p>&nbsp;</p>
+<button class="btn btn-default hidden" id="Apin">Pin the Wulf</button>
+<button class="btn btn-default hidden" id="Athunk">Head-thunk</button>
+<button class="btn btn-default hidden" id="ASword">Draw Sword</button>
 
-<p>You glance at a elaborate map hanging off the wall in the office. You wonder what point the Admiral wants to make.</p>
+<button class="btn btn-danger hidden" id="accept">Accept demand</button>
+<button class="btn btn-default hidden" id="decline">Decline</button>
 
-<p>&nbsp;</p>
+<button class="btn btn-default hidden" id="button-13">Sacrifice crewmember</button>
+<button class="btn btn-default hidden" id="button-14">Viskas belly</button>
 
-<p>&ldquo;But times change and we must change with it or tempt the fate of the old Plains-awes. As you may well know, trade routes westwards have grown substantially over only the last decade. Mapped paths through the sea of fangs, closely guarded by Gryph trade-houses opened the way. These maps have now somehow been revealed for all, suddenly the west is no longer closed to us. Nor others who might exploit it.&rdquo; &nbsp;</p>
+<div class="formal hidden">
+<p>I cleared my throat briefly, it was best to do this by the book.</p>
+
+<p>“Hail. I am indeed Avolc, captain of this vessel, well-met under the flag of truce! I was told we were to meet an esteemed captain, a male Wulf by the name of Viriltri. “</p>
+
+<p>My words were met with silence. The young wulf ahead of me grimaced, like she had tasted something foul and then cocked her head at me.</p>
+
+<p>“Wuh!? Straight-speak Captain vessel-whatevers! This Captain be Viska now. We meet now!”</p>
+
+<p>I had to pause at that. I would have expected some crudeness from a native Wulf, but this one was just plain insolent, responding to my politeness with her Wulf-speak too. I could almost sense some of my officers tensing in the line behind me. </p>
+
+<p>“I... see. Im led to believe we had an understanding. An exchange of information...” I trailed off as Viska was shaking her head vigorously. </p>
+
+<p>“Old deal! No exchange for Viska!” </p>
+
+</div>
+
+<div class="short hidden">
+<p>I frowned back at her.</p>
+
+<p>“Where is your captain? I was told our contacts name was Viriltri.”</p>
+
+<p>The young wulf merely shrugged and didnt even bother to look at me as she responded, her gaze traveling about my ship and crew. </p>
+
+<p>“I ate him a while back... fair and square. Viska captain now.” </p>
+
+<p>She had a thick dialect and was the epitome of non-nonchalance, she looked almost bored. Some of the Wulfs perching in the ropes above sniggered and snickered. It was difficult to imagine someone so young in charge of anything, no less a crew of anarchical wulfs.</p>
+
+<p>“Then our deals are with you, Viska. You have information for us.”</p>
+
+<p>Viska seemed to weigh my words, looking like she was sucking on one of her fangs in a thoughtful manner. In the end she showed her paws in an odd gesture and turned back towards her ship.</p>
+
+<p>“Captains will speak.” She beckoned and strode back over the plank. It seemed I was invited to a meeting.</p>
 
 </div>
 
-<div class="ship-crew hidden"> <p><strong>-&ldquo;New Ship and crew?&rdquo;</strong></p>
+<div class="wulf hidden">
+<p>Perhaps it was best to talk to a wulf like a wulf after all. </p>
 
-<p>&nbsp;</p>
+<p>“This me, who mewls in my face?”</p>
 
-<p>&ldquo;You know well enough that it would take immense time, effort, cost and risk to sail a ship from the east sea round the south of Wulflands and back up north. It is not an option. Your old ship will be assigned to a new captain.&rdquo;</p>
+<p>I grinned confidently, I think I got the dialect right as the young Wulf perked noticeably and fixed her previously distracted gaze to my face. </p>
 
-<p>&nbsp;</p>
+<p>“Viska speaks, not mewls! This be Captain to captain.”</p>
 
-<p>&ldquo;I know it will be a challenge to acquaint yourself with a new ship and a crew you yourself did not pick. This crew has trained together and prepared for the West sea. You are in truth replacing another captain we had originally chosen who turned out to not be quite up to task.&rdquo; The Grand Admiral straightened in her seat and you wonder for a moment extra about her figure. &ldquo;They returned back to port after only 2 weeks at sea. Whats required here is someone with proven qualifications for leadership, leave the sailing to the crew&rdquo;</p>
+<p>She claimed herself captain and not to look down at her age. Which might mean our contact, Captain Viriltri is no more or has stepped down. I could only think of a few places the Wulf would have stepped down too. </p>
 
-<p>&nbsp;</p>
+<p>“The one we seek... with deals awaiting, is met in Viska then.” I was not very good at Wulf-speak. Something I said seemed to bemuse her. </p>
 
-<p>&ldquo;As for the ship, I think it will impress you. It is of a new hardier design and material, crafted especially for the west sea. Your ship is called &ldquo;Perked ear&rdquo;. You will not have seen its like in the east. It will serve you well.&rdquo;</p>
-</div>
+<p>“Aye, seek the deal in Viska. New deal...” She opened her mouth and smirked. “..Old deal.”</p>
 
-<div class="working-wulf hidden"> <p><strong>-&ldquo;We are working with the Wulf-fleet now?&rdquo;</strong></p>
+<p>She was being obtuse even for Wulf-speak, using my weakness in the language. It was clear she was using play of words to get me to agree to something I might seriously regret. A dodge was necessary. </p>
 
-<p>&nbsp;</p>
+<p>“Old or new, let speak deal captain to captain.” I gestured toward her ship and smiled. </p>
 
-<p>&ldquo;I know the Admiraltys dealings and relationship with the Wulf &ldquo;Fleet&rdquo; has been tenuous at best in the East sea. They have never quite seen eye to eye with us, seeing that they are more a mob of cooperating privateers then an organization like us.&rdquo;</p>
-
-<p>&nbsp;</p>
-
-<p>&ldquo;But of late our diplomatic contacts have, for a price, come to an arrangement with them in regards of the security of the west sea. And we know only that they have asked for one of our ships to meet with theirs. Your Wulf liaison aboard will provide you with more information as you approach Pale rock. Keep him in one piece.&rdquo;</p>
- </div>
- 
- <div class="missing-captain hidden"> <p><strong>-&rdquo;What happened to the captain?&rdquo;</strong></p>
-
-<p>&nbsp;</p>
-
-<p>The Grand Admiral began to pace behind her desk, a paw suggestively on her gut. &ldquo;I wont go into too much detail, I believe the less you know the better. So no more questions about that!&rdquo;</p>
-
-<p>But I&#39;ll reveal he did not gel well with the crew. There had been problems even before this journey. He lacked... Leadership.</p>
-
-<p>A Captain stands above her crew, she is the authority of the ship. But if a captain does not have the respect of the crew then she has authority over none. &ldquo;</p>
-
-<p>&nbsp;</p>
-
-<p>The grand admirals pacing brought her to a halt and she turned to face you.</p>
-
-<p>&nbsp;</p>
-
-<p>&ldquo;Good leadership is hard to come by! Most Awes would rather follow then lead. And among those who desire to lead, the traits of selfishness and greed are often dominant. Such leaders lack the vision for the greater good of all. That&#39;s why the Admiralty and the Academy was created. We find, nurture and grow those potential few among us who are capable. Those who are <em>just</em> and those who would put a foot down and deal with trouble before it grows.&rdquo;</p>
+<p>“Aye! Lets be met.” Viska nodded almost eagerly and turned on her heel and marched back toward her ship. I followed, alone. Much to my officers chagrin. </p>
 
 </div>
- <div class="missing-captain2 hidden"> <p><strong>-&rdquo;What happened to the captain?&rdquo;</strong></p>
-<p>&ldquo;Whats so secret about the captain?&rdquo;</p>
+
+<div class="cabin hidden">
+<p>The captains cabin of the Wulf-ship was sparse and barely even larger then a low-ranking officers hut. But it had the privacy and room for two captains to converse in peace. </p>
+
+<p>As I entered Viska unbuttoned her overcoat casually and sat down in a rather luxurious if compact looking lounge-chair, it was in-fact probably what passed for a bed in here as I did not spot any beds. I took a seat in a plainer chair opposite her. </p>
+
+<p>“So...” I began as Viska interrupted in thick and slow accent. </p>
+
+<p>“I wish to eat Awe. In new deal. I want you to become me, but will not challenge-fight. Maybe other fluffy one, if offer-good, or no information.” She looked at me expectantly, almost eagerly. </p>
+
+<p>“You cant just remake a deal with such claims!” I barked angrily. She had some nerve to demand me or someone of my choosing sacrifice themselves to her appetite. </p>
+
+<p>“Viska can! Viska did!” She hissed back, matching my temper. “You leave, or you come here...” She caressed at her exposed belly firmly. “... or no deals and papers for Awe!” She waved her paw at her desk where a small chest with a lock lay. So there was the Intel. </p>
+
+<p>I figured i had a shot or two at changing her mind before anything drastic had to happen. >/p>
+</div>
+<div class="threaten hidden">
+<p>“Why would I let you digest me or one of my crew just for some words in a paper!” I sneered. </p>
+
+<p>“Because, Awe-captain. Papers say warnings for Awe fleets. Many Awe ships pass here, right toward maws of foes. Mhmm, many a Awe will digest if Viska not get one.” she made a sound like a 'chrrbl'. No doubt she was pleased with her bargaining position. </p>
+
+<p>“This is blackmail! Perhaps i'll take them from you!” I stole a glance towards the chest. I was larger and armed. I could easily take on this young brash impudent Wulf.</p>
+
+<p>Viska merely cackled, she seemed to tense in her chair, a paw inside her coat, perhaps on a weapon. </p>
+
+<p>“Then we be fighting. All be fighting! And even if brave Awe win over Wulf, they not find papers.” </p>
+
+<p>I grimaced, ofcourse the papers werent in the chest. Just like a Wulf to be sneaky like that. It would seriously jeopardize the mission if I couldnt find that intel. Our fleet could be lost because I lost patiance. </p>
+
+<p>“You head-thinking? Being me is better then fight.” Viska teased gleefully while she rubbed at her belly. She reminded me of the worst sides of Ziggy. I vowed to never let those two meet. </p>
+</div>
+
+<div class="bargain hidden">
+<p>“Surely you see that without knowing the contents of this intel I can not commit to any... extreme deals.” I reigned in my temper, perhaps she could see reason.</p>
+
+<p>“That Awe-captain problem. Viska-deal is deal-deal.” She stubbornly persisted, crossing her arms. Her speech became increasingly thick when she was upset. </p>
+
+<p>“Do you think Sailing-company would feel the same? About you changing previous arrangements. Perhaps our side will retract what we've offered.” I had no way of knowing what was being exchanged from our side in this, I had to assume it was good.</p>
+
+<p>Viska fidgeted visibly at this. Some of it must rub her the wrong way. </p>
+
+<p>“Surely some form of compromise can be reached.” I ventured, not sure how much you could compromise her terms. </p>
+</div>
+<div class="plead hidden">
+<p>“Viska, please. You've claimed to have read the reports, so you know it must be important to us. To the safety of our coast!”</p>
+
+<p>She seemed to frown at my words, so I went on. </p>
+
+<p>“Your kind saw devastating raids from slavers barely a century ago. We might suffer the same if we cant have these documents! Dont be stubborn!” I pleaded to her conscience, surely she'd see what her stubbornness was risking. But I assumed wrong. </p>
+
+<p>“Awe-captain say please-please, like pup without snack-eats. But is not Viska-deal that will raid. Is Awe-captain that is stubborn. Be Viska! Awe-home then safe.”</p>
+</div>
+<div class="rope hidden">
+<p>“Where are your companion-ships Viska? I know enough of your tactics that small interceptors like this travel alone. You like to back each-other up. “</p>
+
+<p>Viska looked at my face and frowned. Annoyed perhaps at my change of subjects. She shrugged in the end, as if revealing this much wasent so bad.</p>
+
+<p>“Awe-ship slow, late. <i>Swift-sister </i>went find Awe. No find, no see?” Viska seemed interested in our answer. If indeed the Wulf ship had gone to wait for us by Sea of fangs its unlikely it would have missed us, the path through is only so wide. </p>
+
+<p>“We found something in the fangs. It had been... attacked” I dug up the burned rope piece and put it down on the table. Viska was immediately up on her feet to inspect it, turning it in her paw. </p>
+
+<p>“Twistle-rope.” She sniffed it. “Burned recently!” She looked up at my alarmed and angry. “Know-tell! What-see!” Her speech became thickly Wulfish. </p>
+
+<p>“We found a smoldering wreck, off-route deep in the sea of fangs, nothing or no-one on board.” I answered calmly. </p>
+
+<p> "Off-route!? Brave! What Wulf-ship do there?" Viska began to pace, deep in thought, but it only lasted moments before she looked resigned, planting herself back on her chair.</p>
+
+<p>“No good... should not come. Deal-stupid!” She muttered to herself, nibbling at her claws, most of it unintelligible.</p>
+
+<p>“Whats been happening out here in the west-sea anyway?” I probed gently, but she would not take the bait. </p>
+
+<p>“All in papers. Awe-captain agree to terms! Well!?” She hissed, recovering to her own nasty self. </p>
+
+</div>
+<div class="question hidden">
+<p>“Whats the real reason for this change of agreed deals?” I pried, leaning back in my own seat. “Or your sudden change of captains?”</p>
+
+<p>Viska kept her arms crossed and put on a mute face. Choosing to stay adamant about her position or not let questions sway her. I kept prodding. </p>
+
+<p>“What about your companion-ships? Or what do you call em, hunting partners? Why are you out here on your lonesome?” </p>
+
+<p>My prying finally got her to irritatedly hiss at me and swat the air with her paw. </p>
+
+<p>“Needle-ask no-more! Viska no tell Awe nothing without deal!”</p>
+
+<p>“Oh.. so the answers to some of these have to do whats in those papers, eh?” I smirked, starting to glean some truths. Something has caused a lot of strife out here thats made even the Wulfs nervous. </p>
+
+<p>“Yes! But you will know when you me! Leave rest to other crew!” She stubbornly and persistently patted her belly again. </p>
+
+</div>
 
 
-<p>The grand admiral demeanor immediately turned more frosty.</p>
 
-<p>&ldquo;I told you not to ask about that anymore. I have my reasons for what I tell you and don&#39;t tell you.&rdquo;</p>
+<div class="proposal hidden">
+<p class="hidden" id="nipfang">
+ We eyed eachother a long while. It struck me that this kind of brash young Wulf might be fought with equal attitude. Fire with fire so to speak. I smirked at her and adjusted my belt around my waist, the weight of previous meals haunting my figure. 
+<p> "You talk so boldly of me being the meal in this scenario. But why dont you simply hand me the documents and i'll honor you with my stomach afterwards"  </p>
 
-<p>She put her paws on her hips and fixes you with a hard stare.</p>
+<p> She looked almost briefly dumbfounded before she emitted a bemused laugh. She seemed to strain to make an effort with her Awe-tongue, taking on the challenge. </p> 
 
-<p>&ldquo;But I&#39;ll tell you this much. There are times to be cowardly and times to be bold. Some might be too much of one or the other. Our dear late captain turned out to be too much of one of these things, it caused problems.&rdquo;</p>
+<p> "Beheh! Awe-talk bold. But empty, like belly! Why me give strength to Awe-captain when Viska stronger, strength of Wulf-captain and first-mate behind eyes!" </p>
 
-<p>&nbsp;</p>
+<p> Some Wulfish idioms were peculiar, but i got the gist of it. Wulfs thought their souls were in or behind their eyes. </p>
 
-<p>The grand admiral paced back to behind her desk restlessly. Documents were evenly arrayed, their contents no doubt of importance. She glanced down at them and back up at you with impatience.</p>
+<p> "I too carry the strength of Wulf-captain behind my eyes. Viska would not be alone." </p>
 
-<p>&nbsp;</p>
+<p> "Ha, what Captain of tiny fishy-ship Awe-captain catch-eat?" She scoffed, crossing her arms in a disbelieving way. </p>
 
-<p>&ldquo;Now, was there anything else?&rdquo;</p>
+<p> "Well, I think his name was Nipfang. He was no harmless fisherman." I drummed my paws on my belly, thinking back to that close duel and its satisfactory conclusion. </p>
 
-<div class="missing-captain3 hidden"> <p><strong>-&rdquo;What happened to the captain?&rdquo;</strong></p>
-<p>&ldquo;That was a bit cryptic.&rdquo;</p>
+<p> She jolted upright in her seat at the mention of that name. Quickly sputtering words heavy in her dialect in my direction. </p>
 
-<p>&nbsp;</p>
+<p> "Nipfang! Talk-false! Nipfang-tale hear-speak even in west. Raid, eat, win, No sailing-company, only own strength! Never loose!" </p>
 
-<p>With a thump of her paws on the table, the grand admiral apparently has had it, saying as much loudly.</p>
+<p> "Well he's all here." I smirked and jiggled my belt. What luck, it seems Nipfang was popular with this young Wulf. I could not resist rubbing it in, wether she believed me or not. "Nipfang is my strength now. You can admire me instead, or join me." I chuckled. </p>
 
-<p>&ldquo;Enough!&rdquo;</p>
+<p> Viska seemed to fume at this. I had no way to proove the deed so she might not believe me, or maybe she didnt want to believe me. In anycase, i seem to have taken the edge out of her confidence. </p>
+</p>
+<p class="hidden" id="nonipfang"> 
+ We eyed eachother a long while. It struck me that this kind of brash young Wulf might be fought with equal attitude. Fire with fire so to speak. I smirked at her and adjusted my belt around my waist. 
+<p> "You talk so boldly of me being the meal in this scenario. But why dont you simply hand me the documents and i'll honor you with my stomach afterwards"  </p>
 
-<p>She came around her desk briskly, walking towards you with such purpose it takes a lot of discipline to remain still.</p>
+<p> She looked almost briefly dumbfounded before she emitted a bemused laugh. She seemed to strain to make an effort with her Awe-tongue, taking on the challenge. </p> 
 
-<p>&ldquo;Perhaps, I didn&#39;t make myself clear the first two times. But there wont be a third.&rdquo; The grand admiral calmly undid her belt and clasp around her neck which held her shoulder garments firmly in place.</p>
+<p> "Beheh! Awe-talk bold. But empty, like belly! Why me give strength to Awe-captain when Viska stronger, strength of Wulf-captain and first-mate behind eyes!" </p>
 
-<p>&ldquo;I had high hopes for you, but you might just be too bold and reckless. Unable to perceive a clear danger when its in front of you and has given you warning enough.&rdquo;</p>
+<p> Some Wulfish idioms were peculiar, but i got the gist of it. Wulfs thought their souls were in or behind their eyes. </p>
 
-<p>&nbsp;</p>
+<p> "I might not have eaten as much as a Wulf-captain, but we could always change that couldnt we?" I grinned at her. </p>
 
-<p>&ldquo;Im s-sorry Grand Adm...&rdquo; you try to apologize.</p>
+<p> Viska looked unimpressed, shaking her head, she seemed almost to have a condecending look of pity for me as she straightened slightly to lecture me. </p>
 
-<p>&nbsp;</p>
+<p> "Awe-captain not understand! Viska-strength bigger then Awe-captain, why strong make weak little stronger, when weak can make strong stronger!" She aided her explanation with paw jestures to make it easier for me. </p>
 
-<p>&ldquo;No. I warned you. Now you&#39;ll join me for dinner. Captain Avolc, I hereby demote you to food ration, effective immediately.&rdquo;</p>
+<p> I sighed as it seemed this way a pointless endevour and was getting me no closer to getting the documents. Viska diligently continued, looking like she was starting to loose patiance with our talks. </p>
+
+<p> "Awe-captain strength belongs in Viska. Agree Viska-deal, Awe get papers and Viska happy-digest, put Awe-captain behind eyes." </p>
+
+  </p>
+
+<script>
+switch(state.preludeEvents[5]) {
+    case 'nipfang':
+        $('#nipfang').removeClass('hidden');
+        break;
+	default:
+	$('#nonipfang').removeClass('hidden');
+
+		</script>
+
+</div>
+
+
+
+<div class="notConvinced hidden">
+<p>“Mwah!” The young wulf suddenly exclaimed. “No more talk, Awe-captain talk talk ask! Viska listen no more. Viska make decision!” The way she kept refering to herself in third-person in that accent was starting to grate on me.</p>
+
+<p>“Viska tired by talks! Viska-deal or no deal! Be food or go away!” She cocked her head, her eyes gazing intently into mine. “You be food?”</p>
+</div>
+
+
+<div class="compromise hidden">
+
+<p>“Mwah!” The young wulf suddenly exclaimed. “No more talk, Awe-captain talk talk ask! Viska listen no more. Viska make decision!” The way she kept refering to herself in third-person in that accent was starting to grate on me.</p>
+
+<p>“Awe-captain make sense. Awe really need paper and Viska will give...” Before I could relax, she continued quickly. “IF, Viska gets to eat another Awe!”</p>
+
+<p>My scowl must have been a serious thing for she added once more. “OR, Viska get to eat Awe-captain, be strongest captain, then let go.”</p>
+
+<p>“You're saying I either sacrifice one of my crew to you or submit to catch and release?” I sighed. </p>
+
+<p>“Yes-yes. Awe-captain not hear?” She waved her paw irritably. </p>
+
+<p> My fur must have bristled in irritation, for Viska eyed me suspiciously and put her paw on a rope, probably something attached to a bell or alarm. </p>
+
+<p> "No fight! Or Intel gone! Take deal or go!" </p>
+
+</div>
+
+<div class="convinced hidden">
+<p>“Mwah!” The young wulf suddenly exclaimed. “No more talk, Awe-captain talk talk ask! Viska listen no more. Viska make decision!” The way she kept refering to herself in third-person in that accent was starting to grate on me.</p>
+
+<p>“Awe really need paper. Awe-captain pass test! Take paper and go. Viska not hungry anymore.”</p>
+
+<p>It was altogether a surprising turn of events. Pressuring her the right way seemed to do the trick. </p>
+
+<p>“Oh? Thats splendid! Im glad you could come to terms.” I said carefully. </p>
+
+<p>“Well! Viska still want to eat you.” The young captain said conversationally, getting up from her seat casually and turning it upside down. Attached a hidden compartment under it, she produced a folder of bound papers. The seal on it was broken, but I chose not to make comment. </p>
+
+<p>“If... Awe-captain lets Viska swallow her...” She continued, she sure was endlessly persistent. “Viska will let Awe-captain go after! And be happy with Awe. Maybe... do favor, yes?” </p>
+
+
+</div>
+
+<div class="attackViska hidden"><Strong>Attack Viska</strong>
+<p>There was only so much ridiculous demands and Wulf hi-jinks I could tolerate. I tried counting upward to remain my cool, but only found myself thinking of ways to attack the Wulf captain. </p>
+
+<p>Truce be damned, I had to try to get that intel by any means necessary and teach this Wulf a clear lesson in pissing off Awes!</p>
+
+</div>
+
+<div class="pin hidden "><Strong>Pin the wulf</strong>
+<p>I throw myself at the young Wulf suddenly, reaching out to clasp her and get her under my superior weight. </p>
+
+<p>There are not many places for her to escape inside the tight quarters, Viska coils herself up under my charge and as I grab her, she slips like a eel out of my grip before I can pin my weight on her. </p>
+
+<p>I should have expected her to be fast and dexterous. So my surprise she does not try to use her opportunity to flee the room, but clings herself close to me, wriggling around to my back clasp me around my wings and pull at my arms. </p>
+
+<p>I grunt and struggle with her, rolling and trying to knock her against a hard surface, but she's always ready, bracing with her feet against surfaces and trying to unbalance me while she hissed and bit at the back of my neck. </p>
+
+<p>I should have learned how dangerous Wulfs are up close by now. My experiences from the East-sea had made my overconfident, West-sea Wulfs were far more dangerous. </p>
+
+<p>Its when I try to reach for her head to pry her loose from a stinging bite that she made her move. She locked her legs around my torso and pinned my arms suddenly. For being such a smaller Wulf, she had surprising leg-strength. Then came the inevitable greedy wet engulf of my head from behind. Though i've seen Wulfs pull this move before, its another to experience one. Blinded, restrained and humiliated I could naught but bumble about her cabin, knocking furniture over while she worked her jaws over my head and neck with fast rhythmic swallows. </p>
+
+<p>I tried to headbutt into walls, but found myself tripping as he prehensile tail wrapped around my legs and after that I was pretty much out of the fight. Only able to moan and squirm in frustration on the ground as Viska consumed me. </p>
+
+<p>Inevitably, I filled out her gut with my curled up heavy form just like she had wanted. She lingered on swallowing down my feet, I could feel and hear her happily purr smug self-satisfaction as she took her time to finish me off, paws playing with my tail. I kicked my feet around in her jowls unhappily until the the gulp came and my fate was sealed. </p>
+</div>
+
+<div class="thunk hidden"><Strong>Try a Head-thunk</strong>
+<p>I take a casual step forward. I can see her tense up at my approach immediately. I do not give her time to plan much or react, I see her cast a glance toward a rope dangling by the wall of her seat, most likely an alarm-bell. </p>
+
+<p>But her hesitation is what makes my sudden head-ringing blow from a paw all the more devastating. No doubt Wulfs, especially one as young as her, has never heard of the martial art of “Punching” that all recruits of the academy are taught in nowdays.</p>
+
+<p>She staggers, whimpers and looses strength in her knees, clutching her head. A follow-up blow is not necessary, I easily grab her by her scruff and pin her arm behind her back. </p>
+
+<p>“ooooOOww...” She complains in a muted whine, no doubt her world is spinning. “Awe-fight deal-break, truce-break!” Her Wulfish is thick and slurred, I barely make out what she's saying, but get the gist of it.</p>
+
+<p>“Sorry Viska.” I wasent really sorry. “Im tired of your “deals”. Here's one for you: Give me the intel, or i'll eat you.”</p>
+
+<p>“Neverrrr! Eeek” Her defiant yell is cut short as she yanked up suddenly, towards my waiting gape.</p>
+
+<p>“Your choice!” I shoved her into my jaws, clamping shut on her head before she can scream. </p>
+
+<p>She kicked and squirmed worse then a crazed hills-ferret, recovering quick from her daze, but i've consumed others of her kind before. I clung her to my chest while I worked my mouth down over her body, swallowing in large heavy gulps. Her muffled protests got increasingly lower as she sank into my body with ease, she was naught but morsel-sized after-all. </p>
+
+<p>I had to untangle her prehensile tail from around me before I should shove her down with a push on her tush the rest of the way. It was satisfying to feel her go down my gullet, wiggling as she was. The last of her long tail slipped past my lips, flicking and flashing until the last. </p>
+
+<p>I didnt have time to sit back and savor the moment. I immediately started to rummage through the chest and turning the furniture upside down and looking for hidden compartments in the wall. But to no avail, I could not find the real documents anywhere. She probably didnt even keep them in her room. </p>
+
+<p>I had to judge it a lost cause, we'd have to make do without the information, I could still probably fulfill my other objectives. But first I had to get off this Wulf-ship in one piece. It'd be all the more harder to do any objectives if I got caught. Or got my ship and crew tangled into a battle before we even arrived the Thousand islands. </p>
+</div>
+<div class="sword hidden"><Strong>Draw sword</strong>
+
+<p>I draw my sword suddenly. I see her bristling at the sight of it. She had daggers on the inside of her coat, which are an advantage in such close quarters as this little cabin. </p>
+
+<p>I lunge for her, I dont quite intend to skewer her, but I almost do as she jumps unexpectedly. My attack seems to have caught her completely by surprise. She must not have realized how not all Awes are protocol and rules. </p>
+
+<p>She scampers this way and that, barely deflecting my blows, growing increasingly nervous about feeling more cold iron. She has a nasty gash already that will leave a scar. </p>
+
+<p>The fight is over as suddenly as it started, she looses her dagger from a hard blow and is unable to keep up with just one. I soon have her subdues under sword point, daring her to yell. She hisses angrily at me. </p>
+
+<p>“Awe-fight deal-break, truce-break!” Her Wulfish is thick, I barely make out what she's saying, but get the gist of it.</p>
+
+<p>“Sorry Viska.” I wasent really sorry. “Im tired of your “deals”. Here's one for you: Give me the intel, or i'll eat you.”</p>
+
+<p>“Neverrrr! Eeek” Her defiant yell is cut short as she cringes under the pressing sword.</p>
+
+<p>“Your choice!” I grabbed her around the neck with my other paw, holding her tight and shoved her into my jaws, clamping shut on her head before she can scream. </p>
+
+<p>She kicked and squirmed worse then a crazed hills-ferret, but i've consumed others of her kind before. I dropped the sword briefly to cling her to my chest while I worked my mouth down over her body, swallowing in large heavy gulps. Her muffled protests got increasingly lower as she sank into my body with ease, she was naught but morsel-sized after-all. </p>
+
+<p>I had to untangle her prehensile tail from around me before I should shove her down with a push on her tush the rest of the way. It was satisfying to feel her go down my gullet, wiggling as she was. The last of her long tail slipped past my lips, flicking and flashing until the last. </p>
+
+<p>I didnt have time to sit back and savor the moment. I immediately started to rummage through the chest and turning the furniture upside down and looking for hidden compartments in the wall. But to no avail, I could not find the real documents anywhere. She probably didnt even keep them in her room. </p>
+
+<p>I had to judge it a lost cause, we'd have to make do without the information, I could still probably fulfill my other objectives. But first I had to get off this Wulf-ship in one piece. It'd be all the more harder to do any objectives if I got caught. Or got my ship and crew tangled into a battle before we even arrived the Thousand islands. </p>
+</div>
+<div class="sword2 hidden"><Strong>Draw sword</strong>
+<p>I draw my sword suddenly, I see her bristling at the sight of it, her eyes had been on my sword as her daggers already out of her coat and in her paws. They'll be an advantage for her in the close quarters of this little cabin.</p>
+
+<p>I lunge for her, but she seems to be one step ahead of me and jumps unexpectedly. Could something I said have tipped her off to my treachery? </p>
+
+<p>She scampers this way and that, deflecting my blows, closing the distance more and more and acctually driving me backwards toward a corner. I manage to score a gash as I try to disarm her, but instead of dropping the dagger the flings it at me, painfully pinning a wing to the wall.</p>
+
+<p>The fight is over as suddenly as it started, before I can recover from yanking the blade loose she pounces me hard and expertly jabs a blade in a nerve on my sword-arm causing me the drop the blade. </p>
+
+<p>She was all over me after that, wrestling and climbing onto my back while I held on to her arm with the dagger. I would have flung her off if she hadent suddenly and brashly jammed her jaws over my head. </p>
+
+<p>Its was normaly a foolish move to do mid-fight, but I found my arms pinned by her legs wrapped around my torso. And when I tried to move to head-butt against a wall, her prehensile tail tripped up my feet and we went down. Her onto her rump and me down her gullet. </p>
+
+<p>I was mere able to moan and squirm in frustration on the ground as Viska consumed me. </p>
+
+<p>Inevitably, I filled out her gut with my curled up heavy form just like she had wanted. She lingered on swallowing down my feet, I could feel and hear her happily purr smug self-satisfaction as she took her time to finish me off, paws playing with my tail. I kicked my feet around in her jowls unhappily until the the gulp came. </p>
+</div>
+<div class="leave hidden">
+
+<p> I weighed my options. I could submit to her demands, loose myself or crew to her belly for these documents which might or might not contain useful information. </p>
+
+<p> Or i could refuse to bow to her demands and just leave. We'll have to make do, sometimes it was better to just back away when a deal seemed too unfair. </p>
+
+<p> "Thank you for your time Viska" I spoke softly and nodded. Viska looked perplexed. "I think i will have to turn you down. You may keep documents." </p>
+
+<p> I rose smoothly and turned to leave, Viska said nothing, stumped and did not challenge me. </p>
+
+<p> I returned to the ship where my crew were still dutifully lined up, eyeing the Wulf-crew which scampered about their ship or perched and stared back. My officers read my mood it seems, none asked how it went. I only needed to order them to undock and prepare to leave and they hastened to obey </p>
+
+
+</div>
+
+<div class="sacrifice hidden"><Strong>Sacrifice a crewmember</Strong>
+<p>It was a difficult choice. But in the end, the mission came first.. I sighed and nodded slowly. </p>
+
+<p>“Alright, you'll get your meal. One of my crew for the documents.” I growled quietly. “But they better be worth this, or ill make sure you pay!”</p>
+
+<p>“Viska would demand-not Viska-deal if paper valuable-not!” Viska grinned, pleased with herself and her bargaining skills no doubt.</p>
+
+<p>“Your Awe-speech is terrible. You have a deal” I sighed at her. </p>
+
+<p>This was not going to be a popular decision, but my crew should obey, they were Admiralty-trained, everyone here knew what they signed up.</p>
+
+<p>I ended up asking for volunteers, hiding no facts from my crew. Unsurprisingly there was no rush of people willing to do their duty. The spread of the </p>
+
+<p>But the surprising volunteer ended up being one of the crews few domestic Wulfs.</p>
+
+<p>Sailor Yeorf. I made sure to note down high commendations for him in the log. It would net extra pension gains for his next of kin.</p>
+
+<p>I also had the satisfaction of seeing Viska first object and then be very frustrated as I corrected her. </p>
+
+<p>“Our deal was one of my crew, thats what you agreed to. Not all of my crew are Awes.” </p>
+
+<p>We parted ways, our ships untangling from their temporary dock. The previously eager and ravenous young Wulf-captain was left looking sour and dissatisfied, despite the full gut stretching out her poorly buttoned up coat. </p>
+
+<p>It was a minor victory in such a harsh deal. I fought not to smirk at her, I had still lost a valuable crew-member to something that felt avoidable after all. </p>
+
+</div>
+
+<div class="viskasBelly hidden">
+<p>With her belly bulging and sagging down from my weight and form, she marched us out of the cabin in a jaunty slow pace. I had to groan at the cramped squelching confines of her stomach, I could not move. I was larger then her, but her body compress me in close against her, I felt the muscles of her walk as it jostled me around from side to side in squeezing motions. </p>
+
+<p>A crooning hoot went up, as her crew celebrated with approving sounds at their triumphant captain. No doubt she was quite a sight, slowly marching across her ship back towards ours with lazy casual superiority, flaunting her huge Awe-filled stomach. </p>
+
+<p>She walked over the plank to my ship with no fear and a smirk on her face, not worried at all of the arrayed ranks of Awes staring at her with a mixture of aghast, outraged and curious looks.</p>
+
+<p>I felt her squezze me then, she put both her paws against my form and pushed hard. The muscles contracted and I had to groan as she loudly and mockingly 'BEEEELCHED' into the air to fully mark her triumph. It silenced any growing muttering from my crew. She spoke up. </p>
+
+<p>“Captains are captain. Awe is Wulf. In deal, this one agree to be Viska.” The young wulf patted on her belly, I felt the thump-thump of her paw. This was getting exceedingly humiliating. </p>
 
 <p><br />
-And that was that. Staring dumbfounded you suddenly find yourself an Admirals meal. Wide open jaws find your muzzle and you&#39;re too shocked to resist. From potential promotion to instant food-level demotion!</p>
+<br />
+</p>
 
-<p>&nbsp;</p>
+<p>“Wulfs be mighty. Paper-deal yours now.” Someone tossed the precious folder of Intel from ship to ship. </p>
 
-<p>The matron-Awe and commander of the Awe military-navy makes short work of you. She heaves you down her gullet with such efficient practice that it almost seems like you fall right into her body.</p>
+<p>Viska stood there, basking in the moment and silence that followed. She licked her lips slowly, looking about her at my crew and I felt her squezze me again as her stomach churned. </p>
 
-<p>&nbsp;</p>
+<p>“Deal be done” She announced and leaned forward to heave me back up onto the deck of my ship. It was a slow affair, I certainly with easier in then out. </p>
 
-<p>Before you know it, the reality of this briefing turned into early lunch has your feet merely feebly kicking out her jaws before these are dispatched with a seemingly mildly annoyed hard gulp.</p>
+<p>But drool covered and with my pride deflated I at least emerged intact and alive, the cadets were quick to help me onto my feet. </p>
 
-<p>&nbsp;</p>
+<p>Viska marched back to her ship and quickly disappeared under deck, her fellow Wulf crew dissipated back to their duties, talking amongst themselves excitedly.</p>
 
-<p>Darkness envelops you, tight squelching tightness of muscle and mucus squelch against your fur as the stomach claims you. Its none too bothered about the new arrival, even though judging by a nearby shape, you are not the first to take the trip this morning.</p>
+<p>“There's always a price with Wulfs. This one was... cheap... considering whats in those papers.” I assured those around me as I got to my feet. </p>
 
-<p>&nbsp;</p>
+<p>They nodded, they understood. But I could not meet their eyes.</p>
 
-<p>The grand admiral lets out a slow sigh and ever so politely stifles a belch while she made her way back to the desk and seat. Her sizable gut sagged lower and heavier but her stocky frame easily handles without breaking a stride. Its a busy day, so even with her belly still wiggling and pushing against the desk she rings the bell to call for her assistant.</p>
 
-<p>&nbsp;</p>
+</div>
 
-<p>&ldquo;Send in the next one!&rdquo;</p>
+<div class="decline hidden">
+<p>
+    “No thanks” I sighed and reached my paw for the important documents. Viska looked surly for a moment, but she handed them over nevertheless.
+</p>
+<p>
+    “Why dont you be my meal instead Viska? A spry young wulf like you would be healthy supper.” I teased, two could play this game.
+</p>
+<p>
+    “Ha! No-no! Awe-captain brave, but not Viska-strong!” She laughed, forgetting her surliness. It wasent what I expected but at this point I'd take it. I got what I came for.
+</p>
 
+</div>
+
+<div class="declineNip hidden">
+
+<p>“No thanks” I sighed and reached my paw for the important documents. Viska looked surly for a moment, but she handed them over nevertheless. </p>
+
+<p>“Why dont you be my meal instead Viska? A spry young wulf like you would be healthy supper.” I teased, I could play this game again. To my surprise she seemed to pause. </p>
+
+<p>“Awe-strength big? How Avolc-captain beat Nipfang-captain?” She probed curiously. I saw no harm in retelling the tale. </p>
+
+<p>We clashed ships and our crews fought hard. But in the end we met and agreed a duel would settle who'd be the victor, which captains strength belonged to who.</p>
+
+<p>- </p>
+
+<span class="hidden" id="declinesword">“I charged Nipfang with my sword, pressing the attack. We fought hard, blades clashing when suddenly his hook-blade disarmed me briefly...” Viska looked enthralled, nodding for me to keep going. “...but I was quick and dove after it. Nipfang was slow, didnt catch me and I suddenly turned and nicked his paw with a slice! “ I demonstrated the move with an imaginary swipe of my paw. </span>
+
+<p>-</p>
+
+<span class="hidden" id="declinetackle">“I charged Nipfang in a tackle. We fought hard a while, it seemed Nipfang had the advantage with his strong tail, but it was a trick!” I didnt mind embellishing the tale a little bit. It had been quite a desperate fight to take on a big Wulf in wrestle. “When sure of his victory, I turned it around, twisting and pinning Nipfang.” I demonstrated my leg-lock and twist maneuver on the air. </span>
+
+<p>-</p>
+
+<span class="hidden" id="declinedef">>“I let him attack and swipe and swing with his hook-blade. I was patient and quick as he got tired and frustrated.” I grinned with smug remembrance. “I saw through his tricks and waited for him to drop his guard, then I struck!” I made a sudden jabbing motion in the air with an imaginary sword. </span>
+
+<p><br />
+<script>
+switch(state.preludeEvents[4]) {
+	case 'swordplay':
+	$('#declinesword').removeClass('hidden');
+	
+	break;
+	
+	case 'tackle':
+	$('#declinetackle').removeClass('hidden');
+	
+	break;
+	case 'defensive':
+	$('#declinedef').removeClass('hidden');
+	}
+
+</script>
+</p>
+
+<p>Viska nodded slowly, she could picture it. She didnt doubt me anylonger. </p>
+
+<p>“Victory was mine. Nipfang submitted his strength and his crew followed.” I licked my chops and smirked at the young Wulf suggestively. Some of her brashness had gone out of her. She looked almost smaller then she had before. </p>
+
+<p>“Awe-captain strong. Avolc-Awe impressive to Viska.” She spoke quietly, as if it took some effort to give praise. Truth be told it was surprising to hear. I really must have impressed her. </p>
+
+<p>“Im glad you finally see that!” </p>
+
+
+<div class="accept hidden"><strong>Agree to be her meal</strong>
+<p>The price of that intel was just too valuable for one Awes sake. I'd rather it be me then one of my crew to take the fall. Or plunge as it was. I nodded to Viska, agreeing to become her food. I always figured id end up on the hips of a Wulf, I hoped she would not be obnoxious about it. </p>
+
+<p>“Yes? Mmm, good!” The young Wulf licked her lips enthusiastically and perched on her seat. The way she looked at me now, intently and hungrily, made me really feel all the more like a morsel then ever. But apparently thats what I had decided I was to her. </p>
+
+<p>“Awe-captain Avolc knows where she belongs! Your strength and self become Viska now! It a good thing for both!” She rose from her chair and beckoned me over. “Come! I swallow you.” She yawned and extended her tongue. It seemed she meant to eat me right away. </p>
+
+<p>I stood staring at her and her gape a while, im not sure what brought me to agree to feed myself to this brat of a Wulf. Was it really only for the mission? Was it that important? </p>
+
+<p>Viskas tail lashed impatiently and I figured it was best not to leave her waiting and get things over with. </p>
+
+<p>I placed my paws in her maw, leaned in and let her start to swallow me whole. I felt a jolt of indecision and apprehension through my spine, but the decision had been made. </p>
+
+<p>Viska seemed briefly surprised, but soon she purred in self-satisfaction between greedy swallows, dragging me into her body. “Glk-glk-glk” soon filled my ears as my head passed over her tongue and into hot darkness. In her eagerness she consumed with ravenous need, pulling at my body as she shoveled me down her gullet, hat, cape, gear and all, choosing only at the last second to omit my sword. That was the one thing a Wulf could surely not digest!</p>
+
+<p>The young Wulfesses belly must have grown and expanded considerably, drooping down with the sudden mass and weight added to it. She emitted a loud trilling yell of excitement as she took great relish in her growing form and Ego, biting dominantly at my feet as they slipped past into her jaws and vanished with a wet open-mouthed 'gluk' down the gullet. </p>
+
+<p>It was over, I had submitted myself to her and her demands. Whether in service to the admiralty or her cocky youthful vigor, I wasent sure. Her gloating would not wait. </p>
+
+<p>“Annghh...” She groaned loudly, staggering back to her seat for a brief rest, paws caressing her engorged gut. “Miiiine...” she churrled in the characteristic sound of a pleased Wulf. Who could blame her.</p>
+
+
+</div>
+<div class="viska hidden">
+<p>"So how about it? Going to become my strength or not?" I ventured, leaning forward toward her.
+
+<p>I was not ready for her next move. She pounced toward me and literaly jammed herself into my jaws, squirming her way towards my gullet. I nearly fell back as the little Wulf nearly force-fed herself to me, i had to swallow her not to choke. </p>
 </div>
 </body>
 </html>

@@ -33,7 +33,12 @@
         lib.dialogue(e, "battle")
 	$("#button-1").addClass("hidden")
 	$("#button-2").addClass("hidden")
-	 $("#button-3").addClass("hidden")
+	$("#button-3").addClass("hidden")
+		if (state.preludeScore >= 0) {
+		$("#button-8").removeClass("hidden");
+		}
+		else { $("#button-9").removeClass("hidden");
+		}
       })
 	   $('#button-3').on('click', function(e) {
         lib.dialogue(e, "negotiate")
@@ -45,13 +50,56 @@
       })
 	 $('#button-4').on('click', function(e) {
         lib.dialogue(e, "swordplay")
+		state.preludeEvents.push("swordplay")
+		$("#button-4").addClass("hidden");
+		$("#button-5").addClass("hidden");
+		$("#button-6").addClass("hidden");
+		if (state.preludeEvents[2] == 'rescue') {
+		$("#button-7").removeClass("hidden");
+		}
+		else { 
+		$("#button-9").removeClass("hidden"); 
+		}
       })
-	   $('#button-5').on('click', function(e) {
+	  $('#button-5').on('click', function(e) {
         lib.dialogue(e, "tackle")
+		state.preludeEvents.push("tackle")
+		$("#button-4").addClass("hidden");
+		$("#button-5").addClass("hidden");
+		$("#button-6").addClass("hidden");
+		if (state.preludeScore == 2) {
+			$("#button-7").removeClass("hidden")
+		}
+		else { 
+			$("#button-9").removeClass("hidden"); 
+		}
       })
 	   $('#button-6').on('click', function(e) {
         lib.dialogue(e, "defensive")
+		state.preludeEvents.push("defensive")
+		$("#button-4").addClass("hidden");
+		$("#button-5").addClass("hidden");
+		$("#button-6").addClass("hidden");
+		if (state.preludeScore < 0 && state.preludeEvents[0] == "subordinates" ) {
+		$("#button-9").removeClass("hidden"); 	
+		}
+		else {
+		$("#button-7").removeClass("hidden")
+		}
       })
+	    $('#button-7').on('click', function(e) {
+        state.preludeEvents.push("duel")
+		lib.goTo('Prelude-3.html')
+	  })
+	    $('#button-8').on('click', function(e) {
+        state.preludeEvents.push("battle")
+		lib.goTo('Prelude-3.html')
+	  })
+	  $('#button-9').on('click', function() { 
+	  
+	  
+	  
+	  });
     })
   </script>
   
@@ -142,19 +190,19 @@ switch(state.preludeEvents[2]) {
 <p> 
 
 <div class="hidden" id="-2">A clear line between Awes and Wulfs have formed. Outnumbered and cornered your tired crew face-off against the leering and confident numbers of scruffy Wulf pirates. A loud cackle erupts! Captain NipFang the dread pirate captain himself emerges at the front.
-<p>- 'Awe-feast tonight lads!' he licks his chops and rubs his belly suggestively, sure of their victory.</p></div> 
+<p>- 'Awe-feast tonight lads!' he taunted in accented Awe-speech, licking his chops and rubbing his belly suggestively, sure of their victory.</p></div> 
 
 <div class="hidden" id="-1">A clear line between crew and Wulfs have formed. Outnumbered your crew face-off against the leering numbers of scruffy Wulf pirates. A loud cackle erupts! Captain NipFang the dread pirate captain himself emerges at the front. 
-<p>- 'Dey fight brave! But we likes a bit of kick in our feast, dont we!' he licks his chops.</p></div>
+<p>- 'Dey fight brave! But we likes a bit of kick in our feast, dont we!' he taunted in accented Awe-speech and licked his chops.</p></div>
 
 <div class="hidden" id="0">A clear line between crew and Wulfs have formed. Your brave crew face-off against an equal number of leering and growling scruffy Wulf pirates. A loud cackle erupts! Captain NipFang the dread pirate captain himself emerges at the front.
-<p>- 'Ye fight brave and hard! Surrender Awes! And we will divide you amongst ourselves quick and easy!'  he licks his chops.</p></div>
+<p>- 'Ye fight brave and hard! Surrender Awes! And we will divide you amongst ourselves quick and easy!' he taunted in accented Awe-speech and licked his chops.</p></div>
 
 <div class="hidden" id="1">A clear line between crew and Wulfs have formed. Your brave crew face-off against a number of growling scruffy and weary Wulf pirates. A loud growl erupts! Captain NipFang the dread pirate captain himself emerges at the front.
-<p>- 'Ye be hard fighters! But the best of ye is no match for me! How about a deal, aye?'</p></div>
+<p>- 'Ye be hard fighters! But the best of ye is no match for me! How about a deal, aye?' he tried to bargain in accented Awe-speech.</p></div>
 
 <div class="hidden" id="2">A clear line between crew and Wulfs have formed. Your brave and confident crew face-off against a number of growling scruffy and weary Wulf pirates. Captain NipFang the dread pirate captain himself emerges at the front, slinking forward.
-<p>- 'Ye be hard fighters! But any of you brave enough to face me in combat!? How about a deal, aye?'</p></div>
+<p>- 'Ye be hard fighters! But any of you brave enough to face me in combat!? How about a deal, aye?' He tried to bargain in accented Awe-speech.</p></div>
 
 <script>
  
@@ -183,15 +231,17 @@ switch(state.preludeScore) {
 </div>
 <hr />
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-
-<button class="btn btn-default hidden" id="button-1">Duel</button>
 <button class="btn btn-default hidden" id="button-2">Battle</button>
+<button class="btn btn-default hidden" id="button-1">Duel</button>
 <button class="btn btn-default hidden" id="button-3">Negotiate</button>
 <button class="btn btn-default hidden" id="button-4">Swordplay</button>
 <button class="btn btn-default hidden" id="button-5">Tackle!</button>
 <button class="btn btn-default hidden" id="button-6">Defensive duelling</button>
+<button class="btn btn-default hidden" id="button-7">Duel Victory</button>
+<button class="btn btn-default hidden" id="button-8">Battle Victory</button>
+<button class="btn btn-default hidden" id="button-9">Restart</button>
 <p> <script>
- 
+ //Currently unneccesary code
 switch(state.preludeScore) {
 	case -2:
 	$("#button-2").removeClass("hidden");
@@ -267,12 +317,15 @@ switch(state.preludeScore) {
 	break;
     case 0:
 	$('.battleStale').removeClass('hidden');
+	
         break;
     case 1:
 	$('.battleAdv').removeClass('hidden');
+	
          break;
 	case 2:
 	$('.battleBigAdv').removeClass('hidden');
+	
          break;
 			
     default: 
@@ -318,9 +371,10 @@ switch(state.preludeScore) {
 <script>
 switch(state.preludeScore) {
 	case -2:
-	switch(state.preludeEvents[1]) {
+	switch(state.preludeEvents[2]) {
 	case 'rescue':
 	$('.swordplayMate').removeClass('hidden');
+
 	break;
     
     default: 
@@ -330,9 +384,10 @@ switch(state.preludeScore) {
 
 	
 	case -1:
-	switch(state.preludeEvents[1]) {
+	switch(state.preludeEvents[2]) {
 	case 'rescue':
 	$('.swordplayMate').removeClass('hidden');
+	
 	break;
     
     default: 
@@ -342,9 +397,10 @@ switch(state.preludeScore) {
 
 	
 	case 0:
-	switch(state.preludeEvents[1]) {
+	switch(state.preludeEvents[2]) {
 	case 'rescue':
 	$('.swordplayMate').removeClass('hidden');
+
 	break;
     
     default: 
@@ -354,9 +410,10 @@ switch(state.preludeScore) {
 
 	
 	case 1:
-	switch(state.preludeEvents[1]) {
+	switch(state.preludeEvents[2]) {
 	case 'rescue':
 	$('.swordplayMate').removeClass('hidden');
+	
 	break;
     
     default: 
@@ -366,9 +423,10 @@ switch(state.preludeScore) {
 
 	
 	case 2:
-	switch(state.preludeEvents[1]) {
+	switch(state.preludeEvents[2]) {
 	case 'rescue':
 	$('.swordplayMate').removeClass('hidden');
+	
 	break;
     
     default: 
@@ -401,13 +459,14 @@ switch(state.preludeScore) {
 <div class="tackleWin hidden">
 <p> I feel the eyes of the crew upon me. This is no way to set an example! To loose ourselves to Wulf appetites now when we had victory in our grasp, all because of me, is unacceptable! </p>
 <p> With a surge of adrenaline and anger I lock my feet around Wulfs and twist my body hard, pulling him to the ground just as he was confident of his victory. I leap upon him and give his snout a punch and then another. </p>
-<p> He twists and squirms like the elusive Wulf-kin he is. But ill have none of it and keep him down with a hail of blows. </p>
+<p> He twists and squirms like the elusive Wulf-kin he is, but ill have none of it and keep him down with a hail of blows. </p>
 <p> In the end holds his paws up in surrender and I feel the fire within me subside. It wasent the most dignified victory, but sure enough the Wulfs surrender all the same in the face of such ferocity. </p>
 </div>
 <script>
 switch(state.preludeScore) {
 	case 2:
 	$('.tackleWin').removeClass('hidden');
+	
 	break;
 	case 1:
 	$('.tackleLoose2').removeClass('hidden');
@@ -419,7 +478,7 @@ switch(state.preludeScore) {
 </script>
 </div>
 
-<div class="defensive hidden"><p><strong>Tackle</strong></p>
+<div class="defensive hidden"><p><strong>Defensive dueling</strong></p>
 <p>Patience and a cool head prevails, I level my sword with Nipfang and wait for him to make the first move. He soon barges in, swinging that wicked hooked sword of his around in dangerous arcs</p>
 <p>I can see his ploy, he seems glad that im fighting defensively, trying to get me to parry a dangerous blow so he can twist my sword out of my grip. I'll have none of it and take easy steps around the circle we occupy, bidding my time and counting his weaknesses and openings. </p>
 
@@ -441,7 +500,6 @@ switch(state.preludeScore) {
 </div>
 
 </div>
-<div class="defensiveDis hidden">
 
 <div class="defensiveWin hidden">
 <p> Nipfang grows increasingly frustrated, he's been trying to end things quickly while i've only made moves to draw things out. Though i've recieved a few nicks that have trimmed my fur in places, im not the one panting and unable to properly hold my sword up </p>
@@ -455,68 +513,59 @@ switch(state.preludeScore) {
 <p> "I HAVE YOU NOW!" He gleefully cackled. </p>
 <p>I look around for a replacement weapon, but spot only a familiar green-furred Wulf winking at me. Im inevitably cornered and defeated at sword-point</p>
 <p> "Quite the workout you've given me!" Nipfang leaned his snout in close to my face. "I'll make sure to give you one inside me!"</p>
+<p> With a sudden jerk forward my vision was enveloped by a red blur. Nipfang held my head within the darkness of his maw, as I struggled in his grip. My back touched ground, as he leaned his weight against me and pinned me down. It seemed he was taking delight in my hopeless situation, as he chuckled around my head. </p>
+<p> He yanks me upwards, my face forced against his gullet. My body quickly pulls out from under him, Nipfang forcing and pushing his squirming meal into his face, till he can finally close that gaping maw, tilting his head back and gulping one last time. </p>
+<p> My futile kicks and struggles are plenty enough workout to wear me out, before finally submitting to the confines of the sizeable wulfs gut. </p>
+ 
+</div>
+<div class="defensiveDefault hidden">
+<p> Nipfang grows increasingly frustrated, he's been trying to end things quickly while i've only made moves to draw things out. Though i've recieved a few nicks that have trimmed my fur in places, im not the one panting and unable to properly hold my sword up </p>
+<p> I can see the Wulf-captain look around for any sort of edge he could use, but whatever or whoever he's looking for isnt there to help him. Only concentrated Awes stare back at him </p>
+<p> I take the next opportunity to change pace and suddenly attack, Nipfangs sword soon clatters to the deck as he clutches his cut paw and hisses angrily. He's defeated and outplayed!</p>
+</div>
 
-</div>
-<div class="defensiveStale hidden">
-<p> Nipfang grows increasingly frustrated, he's been trying to end things quickly while i've only made moves to draw things out. Though i've recieved a few nicks that have trimmed my fur in places, im not the one panting and unable to properly hold my sword up </p>
-<p> I can see the Wulf-captain look around for any sort of edge he could use, but whatever or whoever he's looking for isnt there to help him. Only concentrated Awes stare back at him </p>
-<p> I take the next opportunity to change pace and suddenly attack, Nipfangs sword soon clatters to the deck as he clutches his cut paw and hisses angrily. He's defeated and outplayed!</p>
-</div>
-<div class="defensiveAdv hidden">
-<p> Nipfang grows increasingly frustrated, he's been trying to end things quickly while i've only made moves to draw things out. Though i've recieved a few nicks that have trimmed my fur in places, im not the one panting and unable to properly hold my sword up </p>
-<p> I can see the Wulf-captain look around for any sort of edge he could use, but whatever or whoever he's looking for isnt there to help him. Only concentrated Awes stare back at him </p>
-<p> I take the next opportunity to change pace and suddenly attack, Nipfangs sword soon clatters to the deck as he clutches his cut paw and hisses angrily. He's defeated and outplayed!</p>
-</div>
-<div class="defensiveBigAdv hidden">
-<p> Nipfang grows increasingly frustrated, he's been trying to end things quickly while i've only made moves to draw things out. Though i've recieved a few nicks that have trimmed my fur in places, im not the one panting and unable to properly hold my sword up </p>
-<p> I can see the Wulf-captain look around for any sort of edge he could use, but whatever or whoever he's looking for isnt there to help him. Only concentrated Awes stare back at him </p>
-<p> I take the next opportunity to change pace and suddenly attack, Nipfangs sword soon clatters to the deck as he clutches his cut paw and hisses angrily. He's defeated and outplayed!</p>
-</div>
 <script>
 switch(state.preludeScore) {
+	
 	case -2:
 	$('.defensiveBigDis').removeClass('hidden');
 	
 		switch(state.preludeEvents[0]) {
 	case 'sword':
 	$('.defensiveWin').removeClass('hidden');
+	
 	break;
 	
 	case 'kick':
 	$('.defensiveWin').removeClass('hidden');
+	
 	break;
 	default:
 	$('.defensiveLoose').removeClass('hidden');
 	}
 	break;
+	
     case -1:
 	$('.defensiveDis').removeClass('hidden');
 		
 		switch(state.preludeEvents[0]) {
 	case 'sword':
 	$('.defensiveWin').removeClass('hidden');
+	
 	break;
 	
 	case 'kick':
 	$('.defensiveWin').removeClass('hidden');
+	
 	break;
 	default:
 	$('.defensiveLoose').removeClass('hidden');
 	}
 	break;
 	
-    case 0:
-	$('.defensiveStale').removeClass('hidden');
-        break;
-    case 1:
-	$('.defensiveAdv').removeClass('hidden');
-         break;
-	case 2:
-	$('.defensiveBigAdv').removeClass('hidden');
-         break;
-			
     default: 
-        console.log("WHAT BATTLE?");
+        $('.defensiveDefault').removeClass('hidden');
+		
 }
 </script>
 </div>
