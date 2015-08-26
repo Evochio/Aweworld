@@ -21,6 +21,7 @@
 		$("#button-7").addClass("hidden")
 		$("#button-8").addClass("hidden")
 		$("#button-9").addClass("hidden")
+		$("#propose").addClass("hidden")
 		$("#button-10").removeClass("hidden")
 	}
 	
@@ -60,6 +61,7 @@
 		$("#button-6").removeClass("hidden")
 		$("#button-7").removeClass("hidden")
 		$("#button-8").removeClass("hidden")
+		$("#propose").removeClass("hidden")
 		if (state.inventory[0] == "burntRope") {
 		$("#button-9").removeClass("hidden")
 		};
@@ -84,6 +86,7 @@
       })
 	    $('#button-7').on('click', function(e) {
         lib.dialogue(e, "plead")
+		state.wulfCaptain =+ 1;
 		state.wulfQuestions.push("plead");
 		 if (state.wulfQuestions.length >= 2) {
 		hideQuestions();
@@ -117,13 +120,13 @@
 		} 
       })
 	    $('#button-10').on('click', function(e) {
-		if (state.wulfcaptain <= 1) {
+		if (state.wulfCaptain <= 1) {
         lib.dialogue(e, "notConvinced")
 		$("#button-11").removeClass("hidden")
 		$("#button-12").removeClass("hidden")
 		$("#button-10").addClass("hidden")
 		}
-		else if (state.wulfcaptain = 2) {
+		else if (state.wulfCaptain == 2) {
 		lib.dialogue(e, "compromise")
 		$("#button-13").removeClass("hidden")
 		$("#button-14").removeClass("hidden")
@@ -137,30 +140,38 @@
 		$("#button-10").addClass("hidden")
 		}
 		
-		}
+		
       })
 	   $('#button-11').on('click', function(e) {
         lib.dialogue(e, "attackViska")
 		$("#Apin").removeClass("hidden")
 		$("#Athunk").removeClass("hidden")
-		$("#Asword").removeClass("hidden") 
+		$("#ASword").removeClass("hidden") 
+		$("#button-11").addClass("hidden")
+		$("#button-12").addClass("hidden")
+    })
+	   $('#button-12').on('click', function(e) {
+        lib.dialogue(e, "leavb")
+
+		$("#button-11").addClass("hidden")
+		$("#button-12").addClass("hidden")
     })
 	
 	   $('#Apin').on('click', function(e) {
         lib.dialogue(e, "pin")
 		$("#Apin").addClass("hidden")
 		$("#Athunk").addClass("hidden")
-		$("#Asword").addClass("hidden") 
+		$("#ASword").addClass("hidden") 
     })
 	
 	   $('#Athunk').on('click', function(e) {
         lib.dialogue(e, "thunk")
 		$("#Apin").addClass("hidden")
 		$("#Athunk").addClass("hidden")
-		$("#Asword").addClass("hidden") 
+		$("#ASword").addClass("hidden") 
     })
 	
-	   $('#Asword').on('click', function(e) {
+	   $('#ASword').on('click', function(e) {
 	   if (state.wulfQuestions[0] == "threaten"){
 			lib.dialogue(e, "sword2")
 	   }
@@ -168,14 +179,18 @@
 	   }
 		$("#Apin").addClass("hidden")
 		$("#Athunk").addClass("hidden")
-		$("#Asword").addClass("hidden") 
+		$("#ASword").addClass("hidden") 
     })
 	 $('#button-13').on('click', function(e) {
         lib.dialogue(e, "sacrifice")
+		$("#button-13").addClass("hidden")
+		$("#button-14").addClass("hidden")
 		
     })
-	 $('#button-13').on('click', function(e) {
+	 $('#button-14').on('click', function(e) {
         lib.dialogue(e, "viskasBelly")
+		$("#button-13").addClass("hidden")
+		$("#button-14").addClass("hidden")
 		
     })
 	$('#decline').on('click', function(e) {
@@ -186,8 +201,10 @@
 		else {
         lib.dialogue(e, "decline")
 		}
+		$("#button-14").addClass("hidden")
+		$("#decline").addClass("hidden")
     })
-	}
+	})
   </script>
   
   <style>
@@ -311,7 +328,7 @@ As soon as a plank was lowered, a short figure marched over. Wearing a captains 
 
 <p>“Viska can! Viska did!” She hissed back, matching my temper. “You leave, or you come here...” She caressed at her exposed belly firmly. “... or no deals and papers for Awe!” She waved her paw at her desk where a small chest with a lock lay. So there was the Intel. </p>
 
-<p>I figured i had a shot or two at changing her mind before anything drastic had to happen. >/p>
+<p>I figured i had a shot or two at changing her mind before anything drastic had to happen. </p>
 </div>
 <div class="threaten hidden">
 <p>“Why would I let you digest me or one of my crew just for some words in a paper!” I sneered. </p>
@@ -390,8 +407,8 @@ As soon as a plank was lowered, a short figure marched over. Wearing a captains 
 
 
 
-<div class="proposal hidden">
-<p class="hidden" id="nipfang">
+<div class="propose hidden">
+<div class="hidden" id="nipfang">
  We eyed eachother a long while. It struck me that this kind of brash young Wulf might be fought with equal attitude. Fire with fire so to speak. I smirked at her and adjusted my belt around my waist, the weight of previous meals haunting my figure. 
 <p> "You talk so boldly of me being the meal in this scenario. But why dont you simply hand me the documents and i'll honor you with my stomach afterwards"  </p>
 
@@ -414,8 +431,8 @@ As soon as a plank was lowered, a short figure marched over. Wearing a captains 
 <p> "Well he's all here." I smirked and jiggled my belt. What luck, it seems Nipfang was popular with this young Wulf. I could not resist rubbing it in, wether she believed me or not. "Nipfang is my strength now. You can admire me instead, or join me." I chuckled. </p>
 
 <p> Viska seemed to fume at this. I had no way to proove the deed so she might not believe me, or maybe she didnt want to believe me. In anycase, i seem to have taken the edge out of her confidence. </p>
-</p>
-<p class="hidden" id="nonipfang"> 
+</div>
+<div class="hidden" id="nonipfang"> 
  We eyed eachother a long while. It struck me that this kind of brash young Wulf might be fought with equal attitude. Fire with fire so to speak. I smirked at her and adjusted my belt around my waist. 
 <p> "You talk so boldly of me being the meal in this scenario. But why dont you simply hand me the documents and i'll honor you with my stomach afterwards"  </p>
 
@@ -435,7 +452,7 @@ As soon as a plank was lowered, a short figure marched over. Wearing a captains 
 
 <p> "Awe-captain strength belongs in Viska. Agree Viska-deal, Awe get papers and Viska happy-digest, put Awe-captain behind eyes." </p>
 
-  </p>
+  </div>
 
 <script>
 switch(state.preludeEvents[5]) {
@@ -444,7 +461,7 @@ switch(state.preludeEvents[5]) {
         break;
 	default:
 	$('#nonipfang').removeClass('hidden');
-
+}
 		</script>
 
 </div>
@@ -530,7 +547,7 @@ switch(state.preludeEvents[5]) {
 
 <p>“Neverrrr! Eeek” Her defiant yell is cut short as she yanked up suddenly, towards my waiting gape.</p>
 
-<p>“Your choice!” I shoved her into my jaws, clamping shut on her head before she can scream. </p>
+<p>“Your choice!” I shoved her into my jaws, clamping shut on her head before she could scream. </p>
 
 <p>She kicked and squirmed worse then a crazed hills-ferret, recovering quick from her daze, but i've consumed others of her kind before. I clung her to my chest while I worked my mouth down over her body, swallowing in large heavy gulps. Her muffled protests got increasingly lower as she sank into my body with ease, she was naught but morsel-sized after-all. </p>
 
@@ -637,7 +654,6 @@ switch(state.preludeEvents[5]) {
 <p>“Captains are captain. Awe is Wulf. In deal, this one agree to be Viska.” The young wulf patted on her belly, I felt the thump-thump of her paw. This was getting exceedingly humiliating. </p>
 
 <p><br />
-<br />
 </p>
 
 <p>“Wulfs be mighty. Paper-deal yours now.” Someone tossed the precious folder of Intel from ship to ship. </p>
