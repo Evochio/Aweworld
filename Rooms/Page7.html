@@ -14,6 +14,7 @@
   <script src="/main.js"></script>
 
   <script>
+  state.Glint.status = 'available';
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
@@ -23,7 +24,7 @@
         // end by using lib.goTo
         lib.goTo('Page8.html')
       })
-
+/*
     $('#Ziggy').on('click', function() {
     $(this).siblings().attr('disabled', true);
     cadetIndex = 0;
@@ -40,6 +41,7 @@
     cadetIndex = 2;
     showNextDialogue();
 });
+*/
     })
 
   </script>
@@ -74,6 +76,7 @@
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1"> Continue </button>
+<!--
 <span>
     <button id="Glint" class="btn btn-default">
       Glint.
@@ -84,8 +87,8 @@
 	<button id="Valnos" class="btn btn-default">
       Valnos.
     </button>
-</span>
-
+</span>-->
+<span id="cadetButtons"> </span>
 <script>
 cadet[0].banter = [
     { target: '#Ziggy', text: 'Arn is the type of guy you can easily have a lot of drinks with.'},
@@ -103,10 +106,10 @@ cadet[1].banter = [
    { target: '#Valnos', text: 'He is in some ways the unofficial captain of the ship, which is a First-mates duty i suppose.'},
 	{ target: '#Valnos', text: 'My concern lays in his way of defusing malcontent, he distracts rather then straightens them out.'}
 ];
-
+/*
 $('#Glint').popover(options);
 $('#Ziggy').popover(options);
-$('#Valnos').popover(options);
+$('#Valnos').popover(options); */
 </script>
 
 

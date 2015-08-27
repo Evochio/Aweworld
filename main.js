@@ -37,7 +37,19 @@ var glint = {};
 var valnos = {};
 
 var cadet = [ziggy, glint, valnos];
-
+var createCadetButtons = function() {
+	if (state.Glint.status == 'available') {
+		var button = $(' <button id="Glint" class="btn btn-default"> Glint.</button> ')
+		$('#cadetButtons').append(button)
+		button.on('click', function() {
+			console.log('rawr')
+			$(this).siblings().attr('disabled', true);
+			cadetIndex = 1;
+			showNextDialogue();
+			});
+			button.popover(options)
+	}
+}
 var cadetIndex;
 var i = 0;
 
@@ -56,6 +68,7 @@ var options = {
 
 
 var showNextDialogue = function () {
+	console.log('top of function')
     var banter = cadet[cadetIndex].banter;
     var previousTarget = null;
     if(i > 0) {
@@ -70,6 +83,7 @@ var showNextDialogue = function () {
     // then hide the previous line
     if(i > 0 && previousTarget !== currentTarget) {
         $(banter[i-1].target).popover('hide');
+		console.log('checkcheck', previousTarget, currentTarget, banter, i)
     }
     // if i has gone beyond the size of the banter array
     if(i >= banter.length) {
@@ -209,7 +223,7 @@ $(document).ready(function() {
   // Code you want to run at the beginning of every page load goes here.
   // For example, code that tests the state to see if morale is low enough to redirect you to an ending.
 // lib.makeCadetButtons();
- 
+ createCadetButtons();
   
   console.log('Current state:', JSON.stringify(state, null, '\t'))
   
