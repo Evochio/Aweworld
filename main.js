@@ -39,12 +39,23 @@ var valnos = {};
 var cadet = [ziggy, glint, valnos];
 var createCadetButtons = function() {
 	if (state.Glint.status == 'available') {
-		var button = $(' <button id="Glint" class="btn btn-default"> Glint.</button> ')
+		var button = $(' <button id=Glint>  </button> ')
 		$('#cadetButtons').append(button)
 		button.on('click', function() {
 			console.log('rawr')
 			$(this).siblings().attr('disabled', true);
 			cadetIndex = 1;
+			showNextDialogue();
+			});
+			button.popover(options)
+	}
+	if (state.Ziggy.status == 'available') {
+		var button = $(' <button id=Ziggy>  </button> ')
+		$('#cadetButtons').append(button)
+		button.on('click', function() {
+			console.log('rawr')
+			$(this).siblings().attr('disabled', true);
+			cadetIndex = 0;
 			showNextDialogue();
 			});
 			button.popover(options)
@@ -78,6 +89,9 @@ var showNextDialogue = function () {
     if (banter.length > i) {
        var currentTarget = banter[i].target; 
     }
+	if (i > 0 && banter[i-1].imageClass) {
+		$(banter[i-1].target).removeClass(banter[i-1].imageClass)
+	}
     // if this isn't the first line, 
     // and this line isn't being spoken by the same person as the last line,
     // then hide the previous line
@@ -94,7 +108,9 @@ var showNextDialogue = function () {
     }
     
     $(banter[i].target).popover('show');
-
+	if (banter[i].imageClass) {
+		$(banter[i].target).addClass(banter[i].imageClass)
+	}
     i += 1;
 };
 
