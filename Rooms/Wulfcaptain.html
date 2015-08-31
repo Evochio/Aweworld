@@ -201,6 +201,7 @@
     })
 	 $('#button-14').on('click', function(e) {
         lib.dialogue(e, "viskasBelly")
+		state.wulfQuestions.push("viskasBelly");
 		$("#button-13").addClass("hidden")
 		$("#button-14").addClass("hidden")
 		
@@ -224,11 +225,16 @@
 		state.wulfQuestions.push("viska");
 		$("#viska").addClass("hidden")
 		$("#leave").removeClass("hidden")
+		$("#west").removeClass("hidden")
     })
 	 $('#leave').on('click', function(e) {
         lib.dialogue(e, "leave")
 		$("#leave").addClass("hidden")
 		$("#viska").addClass("hidden")
+		$("#west").removeClass("hidden")
+    })
+	 $('#west').on('click', function(e) {
+       lib.goTo('Westward.html')
 		
     })
 	})
@@ -285,6 +291,8 @@ As soon as a plank was lowered, a short figure marched over. Wearing a captains 
 
 <button class="btn btn-success hidden" id="viska">Propose again</button>
 <button class="btn btn-success hidden" id="leave">Time to Leave</button>
+
+<button class="btn btn-success hidden" id="west">Westward</button>
 
 <div class="formal hidden">
 <p>I cleared my throat briefly, it was best to do this by the book.</p>

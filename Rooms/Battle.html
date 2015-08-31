@@ -26,6 +26,9 @@
 		 $("#button-4").removeClass("hidden");
 		$("#button-5").removeClass("hidden");
 		$("#button-6").removeClass("hidden");
+		$("#button-1").addClass("hidden")
+		$("#button-2").addClass("hidden")
+		$("#button-3").addClass("hidden")
       })
 
        $('#button-2').on('click', function(e) {
@@ -36,6 +39,9 @@
 		 $("#button-4").removeClass("hidden");
 		$("#button-5").removeClass("hidden");
 		$("#button-6").removeClass("hidden");
+		$("#button-1").addClass("hidden")
+		$("#button-2").addClass("hidden")
+		$("#button-3").addClass("hidden")
       })
 	  
 	   $('#button-3').on('click', function(e) {
@@ -46,6 +52,9 @@
 		 $("#button-4").removeClass("hidden");
 		$("#button-5").removeClass("hidden");
 		$("#button-6").removeClass("hidden");
+		$("#button-1").addClass("hidden")
+		$("#button-2").addClass("hidden")
+		$("#button-3").addClass("hidden")
       })
 	  
 	  $('#button-4').on('click', function(e) {
@@ -53,11 +62,12 @@
 		state.battle.push("approach")
         // end by using lib.goTo
          lib.dialogue(e, "approach")
-	$("#button-1").addClass("hidden")
-	$("#button-2").addClass("hidden")
-	$("#button-3").addClass("hidden")
-	$("#button-7").removeClass("hidden");
-	$("#button-8").removeClass("hidden");
+	
+		$("#button-4").addClass("hidden")
+		$("#button-5").addClass("hidden")
+		$("#button-6").addClass("hidden")
+		$("#button-7").removeClass("hidden");
+		$("#button-8").removeClass("hidden");
 	
 	$("#button-10").removeClass("hidden");
       })
@@ -66,24 +76,26 @@
 		state.battle.push("manouver")
         // end by using lib.goTo
          lib.dialogue(e, "manouver")
-	$("#button-1").addClass("hidden")
-	$("#button-2").addClass("hidden")
-	$("#button-3").addClass("hidden")
-	$("#button-9").removeClass("hidden");
-	$("#button-7").removeClass("hidden");
-	$("#button-8").removeClass("hidden");
+
+		$("#button-9").removeClass("hidden");
+		$("#button-7").removeClass("hidden");
+		$("#button-8").removeClass("hidden");
+		$("#button-4").addClass("hidden")
+		$("#button-5").addClass("hidden")
+		$("#button-6").addClass("hidden")
       })
 	  $('#button-6').on('click', function(e) {
         // change state here
 		state.battle.push("range")
         // end by using lib.goTo
          lib.dialogue(e, "range")
-	$("#button-1").addClass("hidden")
-	$("#button-2").addClass("hidden")
-	$("#button-3").addClass("hidden")
-	$("#button-9").removeClass("hidden");
-	$("#button-7").removeClass("hidden");
-	$("#button-8").removeClass("hidden");
+
+		$("#button-9").removeClass("hidden");
+		$("#button-7").removeClass("hidden");
+		$("#button-8").removeClass("hidden");
+		$("#button-4").addClass("hidden")
+		$("#button-5").addClass("hidden")
+		$("#button-6").addClass("hidden")
       })
 	  
 	  $('#button-7').on('click', function(e) {
@@ -92,16 +104,16 @@
         // end by using lib.goTo
          lib.dialogue(e, "retreat")
 		 if (state.battle.indexOf("sails") > -1)
-	{
-	$("#escape").removeClass("hidden");
-	}
-	else {
+		{
+		$("#escape").removeClass("hidden");
+		}
+		else {
 	
-	$("#button11").removeClass("hidden");
-	}
-	$("#button-4").addClass("hidden")
-	$("#button-5").addClass("hidden")
-	$("#button-6").addClass("hidden")
+		$("#button-11").removeClass("hidden");
+		}
+		$("#button-7").addClass("hidden")
+		$("#button-8").addClass("hidden")
+		$("#button-9").addClass("hidden")
       })
 	  
 	  $('#button-8').on('click', function(e) {
@@ -109,10 +121,11 @@
 		state.battle.push("samePlan")
         // end by using lib.goTo
          lib.dialogue(e, "samePlan")
-	$("#button-4").addClass("hidden")
-	$("#button-5").addClass("hidden")
-	$("#button-6").addClass("hidden")
-	$("#button11").removeClass("hidden");
+	$("#button-7").addClass("hidden")
+	$("#button-8").addClass("hidden")
+	$("#button-9").addClass("hidden")
+	$("#button-10").addClass("hidden")
+	$("#button-11").removeClass("hidden");
       })
 	  
 	  $('#button-9').on('click', function(e) {
@@ -120,20 +133,20 @@
 		state.battle.push("changeCharge")
         // end by using lib.goTo
          lib.dialogue(e, "changeCharge")
-	$("#button-4").addClass("hidden")
-	$("#button-5").addClass("hidden")
-	$("#button-6").addClass("hidden")
-	$("#button11").removeClass("hidden");
+	$("#button-7").addClass("hidden")
+	$("#button-8").addClass("hidden")
+	$("#button-9").addClass("hidden")
+	$("#button-11").removeClass("hidden");
       })
 	  $('#button-10').on('click', function(e) {
         // change state here
 		state.battle.push("changeManouver")
         // end by using lib.goTo
          lib.dialogue(e, "changeManouver")
-	$("#button-4").addClass("hidden")
-	$("#button-5").addClass("hidden")
-	$("#button-6").addClass("hidden")
-	$("#button11").removeClass("hidden");
+	$("#button-7").addClass("hidden")
+	$("#button-8").addClass("hidden")
+	$("#button-9").addClass("hidden")
+	$("#button-11").removeClass("hidden");
       })
 	  
 	  
@@ -141,46 +154,62 @@
         // change state here
 	
         // end by using lib.goTo
-		if (state.battle.indexOf("range") > -1) && state.battle.indexOf("samePlan") > -1)  {
+		if ((state.battle.indexOf("range") > -1) && (state.battle.indexOf("samePlan") > -1))  {
 		 lib.dialogue(e, "hardBlow")
-		 $("#button13").removeClass("hidden");
-		 $("#button14").removeClass("hidden");
+		 $("#button-13").removeClass("hidden");
+		 $("#button-14").removeClass("hidden");
 		}
-		else if (state.battle.indexOf("retreat") > -1) && state.battle.indexOf("sails") == -1)
-			{lib.dialogue(e, "hardBlow")
-			$("#button13").removeClass("hidden");
-			$("#button14").removeClass("hidden");
-			}
+		else if ((state.battle.indexOf("retreat") > -1) && state.battle.indexOf("sails") == -1){
+			lib.dialogue(e, "hardBlow")
+			$("#button-13").removeClass("hidden");
+			$("#button-14").removeClass("hidden");
+		}
 			
 		else {
          lib.dialogue(e, "explosion")
-		 $("#button12").removeClass("hidden");
+		 $("#button-12").removeClass("hidden");
 		 }
-	$("#button-7").addClass("hidden")
-	$("#button-8").addClass("hidden")
-	$("#button-9").addClass("hidden")
+
 	$("#button-10").addClass("hidden")
+	$("#button-11").addClass("hidden")
       })
 	  
 	$('#button-12').on('click', function(e) {
         // change state here
-	
+		$("#onwards").removeClass("hidden");
         // end by using lib.goTo
          lib.dialogue(e, "victory")
-	
+		$("#button-12").addClass("hidden")
       })
 	  $('#button-13').on('click', function(e) {
         // change state here
 	
         // end by using lib.goTo
          lib.dialogue(e, "surrender")
-	
+		$("#button-13").addClass("hidden")
+		$("#button-14").addClass("hidden")
       })
 	  $('#button-14').on('click', function(e) {
         // change state here
 	
         // end by using lib.goTo
          lib.dialogue(e, "surrender2")
+		$("#button-14").addClass("hidden")
+		$("#button-13").addClass("hidden")
+      })
+	  $('#escape').on('click', function(e) {
+        // change state here
+		$("#onwards").removeClass("hidden");
+		$("#escape").addClass("hidden")
+        // end by using lib.goTo
+         lib.dialogue(e, "escape")
+	
+      })
+	    $('#onwards').on('click', function(e) {
+        // change state here
+	
+        // end by using lib.goTo
+         lib.goTo('Shipspotted2.html')
 	
       })
 	  
@@ -231,14 +260,14 @@
 
 <button class="btn btn-default hidden" id="escape">Escape</button>
 
+<button class="btn btn-default hidden" id="onwards">Onwards</button>
+
 <div class="ballista hidden"><strong>Ballista</strong>
 <p>We need more firepower, on my order the parts for the second weapon start to make their way up. The crew have drilled well, it looks like they'll just about get it in working order before the enemy ship is in range. </p>
 
 <p>If their ship is any bit as solidly built as ours, then the missiles fired from these wont do much to their hull. But we can still aim for critical points like sails, mast, rudder and even crew to give ourselves an advantage. Doubly so now with two weapons operational. </p>
 
-<p><br />
 <br />
-</p>
 
 <p>The ship is entering maneuvering range, still much too far out of weapons range, but close enough for us to adjust what kind of approach we want. We could charge in close aggressively, try to out-maneuver them and get on their tail or slug it out at range. </p>
 
@@ -587,7 +616,7 @@ $('#FromRange').removeClass('hidden');
 
 <p> The same thing happened around the ship. Anyone offering the least bit of objection or resistance were quickly swallowed up  by greedy jowls until eventualy some form of victory was announced and the gator-commander stepped aboard his new prize. </p>
 
-<p> A ship and more slaves to savor then they knew what to do with. It had been a good haul and fight! Any resistance now grumbled away in low 'glouurgh' in the guts of his warriors. </p>
+<p> A ship and more slaves to savor then they knew what to do with. It had been a good haul and fight! Any resistance now grumbled away in low 'glouurgh's in the guts of his warriors. </p>
 
 </div>
 

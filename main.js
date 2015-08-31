@@ -60,6 +60,17 @@ var createCadetButtons = function() {
 			});
 			button.popover(options)
 	}
+	if (state.Valnos.status == 'available') {
+		var button = $(' <button id=Valnos>  </button> ')
+		$('#cadetButtons').append(button)
+		button.on('click', function() {
+			console.log('rawr')
+			$(this).siblings().attr('disabled', true);
+			cadetIndex = 2;
+			showNextDialogue();
+			});
+			button.popover(options)
+	}
 }
 var cadetIndex;
 var i = 0;

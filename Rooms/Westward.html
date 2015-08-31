@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+ <link rel="stylesheet" href="/main.css">
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-theme.min.css">
+  <script src="/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function(e) {
+		lib.dialogue(e, "intel"),
+		$("#button-2").removeClass("hidden")
+	})
+		
+		$('#button-2').on('click', function(e) {
+	
+		lib.goTo('Shipspotted.html')
+      })
+      
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+<div id="story-text">
+<p>I set our course Westward. The Wulf-ship turns around and with full sails races back south-east toward Wulf-lands. </p>
+
+<p>It was always peculiar dealing with the Wulfs. They have no larger centralized government like us yet still manage to function under some sort of basis of mutual benefit and cooperation. What looks near anarchistic on the surface they manage to somehow thrive under. It always made dealing with them a haphazard affair however, one that could turn one way or another. </p>
+
+<div class="hidden" id="withIntelViska">
+<p>Still, things had gone surprisingly well in the end this time. Though I wish they were simpler to deal with sometimes i cant complain about getting to skip on today rations, the former Wulf-captain has settled in nicely! </p>
+</div>
+
+<div class="hidden" id="withIntel">
+
+<p>Still, things had gone surprisingly well in the end this time. Though I wish they were simpler to deal with. </p>
+
+</div>
+<div class="hidden" id="viskaBelly">
+
+<p>As proven today, there was no end of trouble when individuals could decide to act however they wanted under no seeming limits. At least we got what we came for. </p>
+
+</div>
+<div class="hidden" id="noIntel">
+
+<p>Today was a great example of what a disaster things can turn out to be when captains are allowed to act under the slightest whim and self-benefit. We'll have to carry on without the documents somehow. Their importance were never specified to be anything of the utmost and critical. </p>
+
+</div>
+
+<br />
+
+<p>We still have to find the rest of our fleet, who no doubt will be at the archipelago sea, or Thousand Islands as its called here in the west. Though how we're expected to find them in that chaotic cluster of islands im still unsure of. 'Port Nowhere' is my only clue, but the name is anything but encouraging. </p>
+
+<div class="hidden" id="withIntel">
+<p>Perhaps the aquired intel will shed some light on this.</p>
+</div>
+
+<script>
+if (_.contains(state.wulfQuestions, "viska")) {
+$('#withIntelViska').removeClass('hidden');
+}
+else if (_.contains(state.wulfQuestions, "decline")) {
+$('#withIntel').removeClass('hidden');
+}
+else if (_.contains(state.wulfQuestions, "viskasBelly")) {
+$('#viskaBelly').removeClass('hidden');
+}
+else if (_.contains(state.wulfQuestions, "noIntel"))
+{
+$('#noIntel').removeClass('hidden');
+}
+
+</script>
+
+</div>
+<hr />
+
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1">Intel</button>
+<button class="btn btn-default" id="button-2">Onwards</button>
+
+<div class="intel hidden"><p><strong>The Intel</strong></p>
+<p>Its with quite some curiosity that I finally settle down in my cabin to leaf through the documents of valuable information that I went through so much trouble for. I dismiss the cadets and ask not to be disturbed.</p>
+
+<p>Its written with a unusual hand and lettering, most of which is in Trade-speech. A language coined by the Gryphs and their trading emporiums. Luckily I aced the language course on this in the Academy. </p>
+
+<p>Most of it appears to be at first-glance uninteresting. Comings and goings of ships to 'Port Nowhere'. Their names, make and what they purchased. Endless of lists, meticulously recorded. This looks more like a manifest of a record-keeper. </p>
+
+<p>I leaf through it increasingly frustrated, looking for some sort of code or hidden message but find none! Most important of all, its absent in information of the location of this mysterious port. </p>
+
+<p>I consult maps and charts generously provided for my person and try to find the location or at least a clue, but it appears on none of the charts. A port “Nowhere” thats nowhere to be found. </p>
+
+<p>Perhaps Keeper could make better sense of all of this, shed some light on why it would be valuable for anything besides getting insights on supply and demand in a nonexistent trade-port in the west-lands. But I dont trust him enough.</p>
+
+<p>With a frustrated sigh and my eyes bleary in the candlelight I decide to leave things for the morrow. Dawn is a few hours away.</p>
+
+</div>
+
+
+<script>
+if (_.contains(state.wulfQuestions, "viska" || _.contains(state.wulfQuestions, "viska" || _.contains(state.wulfQuestions, "viska")) {
+		$("#button-1").removeClass("hidden")
+		$("#button-2").addClass("hidden")
+}
+
+</body>
+</html>
