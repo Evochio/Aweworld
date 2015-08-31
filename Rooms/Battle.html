@@ -90,7 +90,7 @@
         // end by using lib.goTo
          lib.dialogue(e, "range")
 
-		$("#button-9").removeClass("hidden");
+		$("#button-10").removeClass("hidden");
 		$("#button-7").removeClass("hidden");
 		$("#button-8").removeClass("hidden");
 		$("#button-4").addClass("hidden")
@@ -102,8 +102,7 @@
         // change state here
 		state.battle.push("retreat")
         // end by using lib.goTo
-         lib.dialogue(e, "retreat")
-		 if (state.battle.indexOf("sails") > -1)
+        if (state.battle.indexOf("sails") > -1)
 		{
 		$("#escape").removeClass("hidden");
 		}
@@ -111,9 +110,16 @@
 	
 		$("#button-11").removeClass("hidden");
 		}
+		if (state.battle.indexOf("sails") > -1) {
+			lib.dialogue(e, "retreat")
+		}
+		else  {
+			lib.dialogue(e, "retreatnosails")
+		}
 		$("#button-7").addClass("hidden")
 		$("#button-8").addClass("hidden")
 		$("#button-9").addClass("hidden")
+		$("#button-10").addClass("hidden")
       })
 	  
 	  $('#button-8').on('click', function(e) {
@@ -353,7 +359,6 @@
 
 <div class="retreat hidden"><strong>Retreat</strong>
 
-<div class="hidden" id="reatreatsails">
 <p>They have some devastating weapons we have no information about, it out-ranges us and out-fires us. This would explain why ships go missing without a trace. Who could stand a chance against anything like this!?</p>
 
 <p>We can not stay, I quickly order the ship around, full sails up. The weapons seem to be side-mounted on starboard side. We're close enough now that I can see figures working on a black tube of some sort. There appears to be two of them. Luckily they appear to take a long time to load. </p>
@@ -367,7 +372,7 @@
 <p>We've bought some time and distance. But they're still in range if they decide to turn their broadside and shoot again. But unless they hit somewhere critical weshould be able to outfly them. </p>
 </div>
 
-<div class="hidden" id="retreatnosails">
+<div class="retreatnosails hidden"><strong>Retreat!</strong>
 <p>They have some devastating weapons we have no information about, it out-ranges us and out-fires us. This would explain why ships go missing without a trace. Who could stand a chance against anything like this!?</p>
 
 <p>We can not stay, I quickly order the ship around, full sails up. The weapons seem to be side-mounted on starboard side. We're close enough now that I can see figures working on a black tube of some sort. There appears to be two of them. Luckily they appear to take a long time to load. </p>
@@ -380,13 +385,16 @@
 
 
 </div>
+
 <script>
+/*
 if (state.battle.indexOf("sails") > -1) {
 $('#reatreatsails').removeClass('hidden');
 }
-else {
+else  {
 $('#retreatnosails').removeClass('hidden');
 }
+*/
 </script>
 </div>
 
@@ -446,13 +454,14 @@ $('#retreatnosails').removeClass('hidden');
 <p>“KEEP COURSE! STAND FIRM!” I shout to maintain discipline. The crew must not give in to despair and flight. Leaning over the side it looks like the hole isnt low enough to be a leak </p>
 </div>
 <script>
+console.log("whats going on")
 if (state.battle.indexOf("range") > -1) {
 $('#range2').removeClass('hidden');
 }
 else if (state.battle.indexOf("manouver") > -1) {
 $('#manouver2').removeClass('hidden');
 }
-else {
+else if (state.battle.indexOf("approach") > -1) { 
 $('#charge2').removeClass('hidden');
 }
 </script>
@@ -513,7 +522,7 @@ $('#charge2').removeClass('hidden');
 if (state.battle.indexOf("approach") > -1) {
 $('#Fromcharge').removeClass('hidden');
 }
-else {
+else if (_.contains(state.battle, "Range")) {
 $('#FromRange').removeClass('hidden');
 }
 </script>
