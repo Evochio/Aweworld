@@ -23,9 +23,8 @@
 		state.battle.push("ballista")
         // end by using lib.goTo
          lib.dialogue(e, "ballista")
-		 $("#button-4").removeClass("hidden");
-		$("#button-5").removeClass("hidden");
-		$("#button-6").removeClass("hidden");
+		$("#fire").removeClass("hidden");
+		
 		$("#button-1").addClass("hidden")
 		$("#button-2").addClass("hidden")
 		$("#button-3").addClass("hidden")
@@ -36,9 +35,8 @@
 		state.battle.push("sails")
         // end by using lib.goTo
          lib.dialogue(e, "sails")
-		 $("#button-4").removeClass("hidden");
-		$("#button-5").removeClass("hidden");
-		$("#button-6").removeClass("hidden");
+		$("#fire").removeClass("hidden");
+		
 		$("#button-1").addClass("hidden")
 		$("#button-2").addClass("hidden")
 		$("#button-3").addClass("hidden")
@@ -49,13 +47,91 @@
 		state.battle.push("standby")
         // end by using lib.goTo
          lib.dialogue(e, "standby")
-		 $("#button-4").removeClass("hidden");
-		$("#button-5").removeClass("hidden");
-		$("#button-6").removeClass("hidden");
+		 $("#fire").removeClass("hidden");
+		
 		$("#button-1").addClass("hidden")
 		$("#button-2").addClass("hidden")
 		$("#button-3").addClass("hidden")
       })
+	  
+	   $('#fire').on('click', function(e) {
+        // change state here
+		
+        // end by using lib.goTo
+         lib.dialogue(e, "fire")
+		$("#bucket").removeClass("hidden");
+		$("#intercept").removeClass("hidden");
+		if (_.contains(state.inventory, "gratitude"))
+		{
+		$("#advice").removeClass("hidden");
+		}
+		else {
+		$("#wait").removeClass("hidden");
+		}
+		$("#fire").addClass("hidden")
+		
+      })
+	  
+	  
+	    $('#bucket').on('click', function(e) {
+        // change state here
+		state.battle.push("fire")
+        // end by using lib.goTo
+         lib.dialogue(e, "bucket")
+		 $("#button-4").removeClass("hidden");
+		$("#button-5").removeClass("hidden");
+		$("#button-6").removeClass("hidden");
+		$("#bucket").addClass("hidden")
+		$("#intercept").addClass("hidden")
+		$("#wait").addClass("hidden")
+		$("#advice").addClass("hidden")
+      })
+	  
+	   $('#intercept').on('click', function(e) {
+        if (_.contains(state.battle, "standby")) {
+		lib.dialogue(e, "intercept")
+		}
+		else {
+		state.battle.push("fire")
+		lib.dialogue(e, "interceptFail")
+		}
+       
+		 $("#button-4").removeClass("hidden");
+		$("#button-5").removeClass("hidden");
+		$("#button-6").removeClass("hidden");
+		$("#bucket").addClass("hidden")
+		$("#intercept").addClass("hidden")
+		$("#wait").addClass("hidden")
+		$("#advice").addClass("hidden")
+      })
+	  
+	  $('#wait').on('click', function(e) {
+        // change state here
+		
+        // end by using lib.goTo
+         lib.dialogue(e, "wait")
+		 $("#button-4").removeClass("hidden");
+		$("#button-5").removeClass("hidden");
+		$("#button-6").removeClass("hidden");
+		$("#bucket").addClass("hidden")
+		$("#intercept").addClass("hidden")
+		$("#wait").addClass("hidden")
+		$("#advice").addClass("hidden")
+      })
+	  
+	  $('#advice').on('click', function(e) {
+        // change state here
+		// end by using lib.goTo
+         lib.dialogue(e, "advice")
+		$("#button-4").removeClass("hidden");
+		$("#button-5").removeClass("hidden");
+		$("#button-6").removeClass("hidden");
+		$("#bucket").addClass("hidden")
+		$("#intercept").addClass("hidden")
+		$("#wait").addClass("hidden")
+		$("#advice").addClass("hidden")
+      })
+	  
 	  
 	  $('#button-4').on('click', function(e) {
         // change state here
@@ -137,6 +213,7 @@
 	  $('#button-9').on('click', function(e) {
         // change state here
 		state.battle.push("changeCharge")
+		state.battle.push("changePlan");
         // end by using lib.goTo
          lib.dialogue(e, "changeCharge")
 	$("#button-7").addClass("hidden")
@@ -146,7 +223,8 @@
       })
 	  $('#button-10').on('click', function(e) {
         // change state here
-		state.battle.push("changeManouver")
+		state.battle.push("changeManouver");
+		state.battle.push("changePlan");
         // end by using lib.goTo
          lib.dialogue(e, "changeManouver")
 	$("#button-7").addClass("hidden")
@@ -155,6 +233,17 @@
 	$("#button-11").removeClass("hidden");
       })
 	  
+	  
+	    $('#board').on('click', function(e) {
+        // change state here
+		
+        // end by using lib.goTo
+         lib.dialogue(e, "board")
+	$("#button-10").addClass("hidden")
+	$("#button-11").addClass("hidden")
+	$("#board").addClass("hidden")
+	$("#onwards").removeClass("hidden");
+      })
 	  
 	    $('#button-11').on('click', function(e) {
         // change state here
@@ -170,7 +259,21 @@
 			$("#button-13").removeClass("hidden");
 			$("#button-14").removeClass("hidden");
 		}
-			
+		else if ((state.battle.indexOf("fire") > -1) && state.battle.indexOf("changePlan") > -1){
+			lib.dialogue(e, "hardBlow")
+			$("#button-13").removeClass("hidden");
+			$("#button-14").removeClass("hidden");
+		}
+		else if ((state.battle.indexOf("approach") > -1) && state.battle.indexOf("samePlan") > -1){
+			lib.dialogue(e, "board")
+			$("#button-13").removeClass("hidden");
+			$("#button-14").removeClass("hidden");
+		}	
+		else if ((state.battle.indexOf("manouver") > -1) && state.battle.indexOf("changePlan") > -1){
+			lib.dialogue(e, "board")
+			$("#button-13").removeClass("hidden");
+			$("#button-14").removeClass("hidden");
+		}	
 		else {
          lib.dialogue(e, "explosion")
 		 $("#button-12").removeClass("hidden");
@@ -249,6 +352,13 @@
 <button class="btn btn-default" id="button-2">Extra crew: Sails</button>
 <button class="btn btn-default" id="button-3">Extra crew: Stand-by</button>
 
+<button class="btn btn-default hidden" id="fire">Enemy movement</button>
+
+<button class="btn btn-default hidden" id="bucket">Prepare buckets!</button>
+<button class="btn btn-default hidden" id="intercept">Intercept!</button>
+<button class="btn btn-default hidden" id="wait">Wait</button>
+<button class="btn btn-default hidden" id="advice">Captain Russels advice</button>
+
 <button class="btn btn-default hidden" id="button-4">Plan: Aggressive approach</button>
 <button class="btn btn-default hidden" id="button-5">Plan: Manouver</button>
 <button class="btn btn-default hidden" id="button-6">Plan: Keep Range</button>
@@ -292,7 +402,7 @@
 </div>
 
 <div class="standby hidden"><strong>Stand-by</strong>
-<p>I order the extra crew to stand-by. You never know when and where you'll need them once things get heated. </p>
+<p>I order the extra crew to stand-by as reserves. You never know when and where you'll need them once things get heated. </p>
 
 <p>They wont be entirely idle down there I am sure. They'll ready weapons for boarding and close-combat to be close at hand. Any determined ship battle tend to end in fire or a clash of brawn and bravery. </p>
 
@@ -302,7 +412,116 @@
 
 </div>
 
+<div class="fire hidden"><strong>Contacts</strong>
+<p>Figures are taking off from the advancing ship. Gryphs, about 20 of them are heading toward us, keeping themselves high in the air. I immediately recall the tale of captain Russel and his merchant ship, its very likely these gryphs have nothing pleasant do deliver. </p>
+
+<p>A few choices stand out that need to be made quickly. </p>
+
+<p>Get ready to fight fire or perhaps send a few spare crew to intercept and challenge them in the air. Or perhaps they're just a distraction, sent to harry us and worry us and commit our resources. I cant see any flames being carried. </p>
+
+
+<div class="bucket hidden"><strong>Fighting fire</strong>
+<p>The gryphs are carrying something, I see them carrying harnesses. Soon little points of light come falling down from the sky and shatter across the deck. There is an immediate conflagration of fire at these points and I see crew jumping out of the way with singed tails for those not fast enough. </p>
+
+<p>I do not even have to shout for the damage-crew, they hastily rush up with buckets at the ready, pouring water onto the flames, working to quench the flames before they take.</p>
+
+<p>Its not long before there's a near inferno on the ship! The fire seems to spread quickly and all over, despite everyone's hard work. </p>
+
+<p>Its not until some Raptorians join in, stomping on the flames of some fresh impacts with feet and tails and managing to smoother them out that our mistake became obvious. The water were doing nothing but spreading the fire, whatever they were tossing down in those vials to shatter onto the deck made it immune to water.</p>
+
+<p>With a change in tactic, sooty Awes managed to turn the tide on the flames. Nothing vital had caught fire, but the damage had been done, smoke and confusion was everywhere. </p>
+
+<p>The gryphs are already returning to their ship, out of their little munitions. </p>
+
+<p>At least they've now made their intentions abundantly clear. </p>
+
+<p> It is our turn to make a move, hostilities are now confirmed! Through the choking smoke that covers the ship I order the plan of attack. The crew looks just as eager for some payback.</p>
+</div>
+
+<div class="intercept hidden"><strong>Intercept</strong>
+<p>“Take flight! Stop them, dont let them come close!” I order quickly. </p>
+
+<p>My lieutenants dont need to be coddled with orders. Sharp and quick, crossbows are readied and passed along. Flight worthy Awes from the reserves climb the masts to the peaks to be ready to leap off and do their best in the air. </p>
+
+<p>I watch from below as the Gryphs come swooping in. They're met with bolts and bodies, brave Awes moving in to block their approach in the air. </p>
+
+<p>Its quickly obvious our fliers are no match to the larger and quicker Gryphs. When wing meets wing, our brave Awes quickly tire at maintaining altitude and need but a rough shove or kick to loose much of it. </p>
+
+<p>Many are forced to glide back to the ship and re-climb the masts, panting heavily to leap back into the combat. </p>
+
+<p>But between them and the sniping bolts whistling in the air towards them, the sheer press of bodies and their intensity in defending the ship, appear to be keeping the Gryphs at bay and from keeping their payload from hitting their ships. I spot a few objects fall short and into the water or smash against the outer hull in a burst of flame, but nowhere where they'd pose a threat. </p>
+
+<p>The gryphs are already returning to their ship, chased off or out of their munitions. </p>
+
+<p>At least they've now made their intentions abundantly clear. </p>
+
+<p> It is our turn to make a move, hostilities are now confirmed! I order the plan of attack, feeling tingle of excitement of oncomming battle. The crew looks just as eager for some more closer action.</p>
+
+</div>
+
+<div class="interceptFail hidden"><strong>Intercept</strong>
+<p>“Take flight! Stop them, dont let them come close!” I order quickly. </p>
+
+<p>My lieutenants dont need to be coddled with orders. Sharp and quick, crossbows are readied and passed along. Flight worthy Awes from the reserves climb the masts to the peaks to be ready to leap off and do their best in the air. </p>
+
+<p>I watch from below as the Gryphs come swooping in. They're met with bolts and bodies, brave Awes moving in to block their approach in the air. </p>
+
+<p>Its quickly obvious our fliers are no match to the larger and quicker Gryphs. When wing meets wing, our brave Awes quickly tire at maintaining altitude and need but a rough shove or kick to loose much of it. </p>
+
+<p>Many are forced to glide back to the ship and re-climb the masts, panting heavily to leap back into the combat. </p>
+
+<p>Soon thrown objects make it through the attempted blockade and shatter against the deck in bursts of flame. There's not enough of them up there to make a difference in the end. </p>
+
+<p>I have to jump to the side and bat at my fur as something that looks like a burning vial shatters right next to me and instantly combusts. They seem to contain some sort of flammable liquid. </p>
+
+<p>An eager sailor is quick to pour a bucket of water over the burning spot, but in doing so he only seems to wash the flames around which continue burning and putting things alright. </p>
+
+<p>I curse and look around, similar mistakes are done elsewhere and before I can shout myself hoarse on getting a stop too it and get things under control, smoke and confusion fills the air. </p>
+
+<p>The gryphs are already returning to their ship, out of their little munitions. </p>
+
+<p>At least they've now made their intentions abundantly clear. </p>
+
+<p> It is our turn to make a move, hostilities are now confirmed! Through the choking smoke that covers the ship I order the plan of attack. The crew looks just as eager for some payback.</p>
+</div>
+
+<div class="wait hidden"><strong>Wait</strong>
+<p>There only appear to be 20 or so of them as I do a quick count. There is little they could do to threaten our ship with that number. If they try to assault us we'd quickly swarm them with numbers. </p>
+
+<p>I order the crew in the sails to be ready and wary, but other then that I have the crew stand by. </p>
+
+<p>The gryphs soon swoop in, dropping objects that look alight towards the ship. Flames soon explode out of the impacts from the objects. I have to jump aside, nearly singed, as what appears to be a vial shatters onto the deck right next to me and combusts into flames. </p>
+
+<p>Its not a very big conflagration and I soon see more of these spots of fire blossom everywhere. Damage control crew are slow to respond, I never ordered them to be readied. But they are on the move now. </p>
+
+<p>But by the time they manage to haul water towards the flames, the fire is already sputtering out. Infact, the places that were quick to react have a harder time of it, as the water spreads the flames rather then puts it out. </p>
+
+<p>Our tardiness turns out to be our advantage this time. </p>
+
+<p>The gryphs are already returning to their ship, out of their little munitions. </p>
+
+<p>Atleast they've now made their intentions abundantly clear. </p>
+
+<p> It is our turn to make a move, hostilities are now confirmed! I order the plan of attack, feeling tingle of excitement of oncomming battle. The crew looks just as eager for some action.</p>
+</div>
+
+<div class="advice hidden"><strong>Benefit of foreknowledge</strong>
+<p>Things are looking very much like the tale of Captain Russel. Im starting to strongly suspect this was the ship that attacked him. </p>
+
+<p>If so, we are in for a bit of fire from those Gryphs. But we wont make the same mistake our merchant friends did. This time I order the reserves ready to put out flames, without the use of water. </p>
+
+<p>When the inevitable projectiles come raining down onto the ship, shattering and combusting into flames, crew already stand ready to put them out. Smothering the flames with heavy blankets or using Sand. It works effectively and the flames are quickly put out without causing any damage. </p>
+
+<p>I smirk as the gryphs circle above a few times before returning to their ship, out of their little munitions. </p>
+
+<p>At least they've now made their intentions abundantly clear. </p>
+
+<p> It is our turn to make a move, hostilities are now confirmed! I order the plan of attack, feeling tingle of excitement of oncomming battle. The crew looks just as eager for some action.</p>
+
+</div>
+
 <div class="approach hidden"><strong>Aggressive approach</strong>
+
 <p>I order us to charge into close range. They seem a bit shy in their approach so going in close might not be in their favor. </p>
 
 <p>The forward ballista readies itself to fire, there is still a good way to go before they can aim at anything worthwhile. </p>
@@ -544,6 +763,38 @@ $('#FromRange').removeClass('hidden');
 
 </div>
 
+<div class="board hidden"><strong>A clash of arms</strong>
+<p>“We are close enough!” I shout over the din of noise to be heard over the whole ship while I rushed over the deck, signaling my officers that it was time to attack, indeed now or never. </p>
+
+<p>“Silence those weapons! Hop too it! Attack!” I waved my sword in the direction of the ship, which was doing its best to try to maneuver and keep itself from being crashed into. But we were close enough for my crew to leap over. I could see the figures on the enemy ship clearer now, Gators. They were large reptiles, similar to Raptorians but far more bulky, armored and rotund. </p>
+
+<p>I spied several eager crew leaping on over already, Lieutenant Garsh in the lead, It would be a very hard fight I knew, If they were anywhere as tough as a Raptorian. </p>
+
+<p>BOOM! One of the weapons fired at near point blank range. The shot crashed straight through the side of our ship and out the other. It knocked me off my feet hard, not only that, we were suddenly off course, loosing distance. Too far to assault and back up those who already leapt over. I could see them fighting in a tight knot by the enemy weapons, they had landed right next to them, preventing them from firing further. </p>
+
+<p>“Permission to join the fight, captain.” I wheeled around to see my three grim-faced scouts, cloaks tossed aside and impressive wings on display. </p>
+
+<p>“Buy them time! I will close the gap.” I nodded in assent. They immediately leap and take flight, speeding above the water to join the fighting. </p>
+
+<p>Lieutenant Nyxie at the helm was already compensating, getting us closer again. Our ballista kept firing with sharp Twangs, they were doing their best to cover the surrounded crew. </p>
+
+<p>We seem to arrive back in range just in time, our few attackers leap over the side and glide back in retreat before I can order reinforcements for them. The gator ship is full of armored and armed gators now, any further glide attacks would be sending our Awes to their doom. </p>
+
+<p>Some are already wounded and missing, not all manage to glide all the way and are tossed ropes and rescue floats to be hauled out of the sea. </p>
+
+<p> But it seems that whatever they managed to do over there was enough to drive them back. The gators are hoisting full sails, making a break for it while we slow down to pick up our crew. </p>
+
+<p>Soon I receive a report from Garsh, limping and supported by a scout. </p>
+
+<p>“Their weapons are disabled. They were VERY protective of them. So much so that they dared not fully advance while we held them. They were made out of Iron captain, we could not smash them. But we smashed what we could, supports and such. We also scattered black powder all around from barrels, thats what made them really mad and forced us to flee. “</p>
+
+<p>“You are to be commended for this Lieutenant, you and all those who fought with you! Now go get yourself seen too.” I gave him a pat on the shoulder and he threw a quick salute and limped down below-deck.</p>
+
+<p>I glanced up at fast retreating ship, we are safe for now. We could pursue them, but for now I dont wish to push our luck further. We've also taken an amount of damage yet to be assessed. </p>
+
+
+</div>
+
 <div class="explosion hidden"><strong>Explosion!</strong>
 <p> Something bright streaks toward the enemy ship and thwangs dead-center on their hull, I see our rear ballista has changed ammunition to incendiary. I refrain from telling them that they cant hope to light them on fire like that, they probably know their jobs. </p>
 
@@ -592,7 +843,7 @@ $('#FromRange').removeClass('hidden');
 
 <p> We were not dead in the water, but we could no longer escape nor attack. Whatever we did, could catch us or out-pace us as it was right now </p>
 
-<p> I growled and bristled, there were not many options left to me. I considered briefly laying a trap, hide most of the crew under deck like that Wulf-ship had to us. </p>
+<p> I growled and bristled, there were not many options left to me. I considered briefly laying a trap, hide most of the crew under deck like that Wulf-ship had to us back in the east sea. </p>
 
 <p> It would have been a sound idea, but they did not leave us to make plans, they came after us, lined themselves up and blasted their weapons at us again. The shots were carefuly aimed, seems they were interested in our ship, but not so much in us. </p>
 
@@ -607,7 +858,7 @@ $('#FromRange').removeClass('hidden');
 
 <p> It was with heavy and bitter heart that i ordered the hoisting of the white flag and the lowering of our sails. They had bombarded us 3 more times until they were satisfied. By then there was not much fight left in the crew left standing. Reports from below deck told of grim injuries in the infirmary. </p>
 
-<p> With their weapons aimed at our hull, they carefuly approached and captured us. The leering toothy maws of Gators greeted us, they were brutish looking reptiles, in some ways similar to Raptorians, but far more bulky, armored and rotound. </p>
+<p> With their weapons aimed at our hull, they carefuly approached and captured us. The leering toothy maws of Gators greeted us, they were brutish looking reptiles, in some ways similar to Raptorians, but far more bulky, armored and rotund. </p>
 
 <p> They barked deep guttural speech and took nothing to chance, overwhelming the ship quickly in a charge and captured us. I realized now what had been happening across the west sea. All those dissapearances. Did they all tell a similar tale? </p>
 
@@ -643,7 +894,7 @@ $('#FromRange').removeClass('hidden');
 
 <p> A third made it across clean to land on the enemy deck. Mostly those of high flight-scores, males and scouts. Another third clambered or bounced off the side of their vessel while the rest made a cold wet landing just short of the hull of the ship. Awes are not the best of swimmers, there were yelps and desperate floundering. A large portion resign themselves to just tread water and float. 
 
-<p> By the time i climb onto the deck of the enemy ship, i realize its over before we even had a chance. Gators were large brutish looking reptiles, in some ways similar to Raptorians, but far more bulky, armored and rotound. Such a disorganized attack could never have succeeded, deep down i knew it all along. But it beat hoisting the white flag. </p>
+<p> By the time i climb onto the deck of the enemy ship, i realize its over before we even had a chance. Gators were large brutish looking reptiles, in some ways similar to Raptorians, but far more bulky, armored and rotund. Such a disorganized attack could never have succeeded, deep down i knew it all along. But it beat hoisting the white flag. </p>
 
 <p> They were almost leisurely beating my poor crew into submission, surrounding them with numbers, positioning and mass. Brave fighters were knocked over by heavy blows, snatched up and devoured in sometimes as few as 3 gulps. My numerous crew were quickly vanishing into those swollen scaly bellies. </p>
 

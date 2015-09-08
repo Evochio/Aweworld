@@ -14,7 +14,7 @@ Aweworld todo:
 	+Dialogue
 	+Icons
 
--- Make functions status summaries for crew and ship 
+-- Make functions status summaries for crew and ship  
 
 -- Fix dialogue classes and buttons
 
@@ -22,3 +22,11 @@ Aweworld todo:
 	+Display game score and Have talking to Ziggy bring alternate path
 
 -- Get a worldmap made
+
+
+Story elements to add before only above polish is needed.
+
+-Deepening evenent. 
+-Stage 3 religious event. 
+-The game renamed to "Flock" and finnished. 
+-climactic Battle has a addition of fire attack and boarding. 
