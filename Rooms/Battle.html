@@ -88,6 +88,8 @@
       })
 	  
 	   $('#intercept').on('click', function(e) {
+	   
+	   console.log("intercept")
         if (_.contains(state.battle, "standby")) {
 		lib.dialogue(e, "intercept")
 		}
@@ -135,6 +137,7 @@
 	  
 	  $('#button-4').on('click', function(e) {
         // change state here
+		console.log("charge")
 		state.battle.push("approach")
         // end by using lib.goTo
          lib.dialogue(e, "approach")
@@ -210,31 +213,48 @@
 	$("#button-11").removeClass("hidden");
       })
 	  
-	  $('#button-9').on('click', function(e) {
+	$('#button-9').on('click', function(e) {
         // change state here
 		state.battle.push("changeCharge")
 		state.battle.push("changePlan");
         // end by using lib.goTo
-         lib.dialogue(e, "changeCharge")
+		if (_.contains(state.battle, "fire")) {
+		lib.dialogue(e, "fireloss")
+		$("#button-7").removeClass("hidden");
+		}
+		else {
+		lib.dialogue(e, "changeCharge")
+		$("#button-11").removeClass("hidden");
+		}
+        
 	$("#button-7").addClass("hidden")
 	$("#button-8").addClass("hidden")
 	$("#button-9").addClass("hidden")
-	$("#button-11").removeClass("hidden");
+	
       })
-	  $('#button-10').on('click', function(e) {
+	  
+	$('#button-10').on('click', function(e) {
         // change state here
 		state.battle.push("changeManouver");
 		state.battle.push("changePlan");
         // end by using lib.goTo
-         lib.dialogue(e, "changeManouver")
+        if (_.contains(state.battle, "fire")) {
+		lib.dialogue(e, "fireloss")
+		$("#button-7").removeClass("hidden");
+		}
+		else {
+		lib.dialogue(e, "changeManouver")
+		$("#button-11").removeClass("hidden");
+		}
 	$("#button-7").addClass("hidden")
 	$("#button-8").addClass("hidden")
 	$("#button-9").addClass("hidden")
-	$("#button-11").removeClass("hidden");
+	$("#button-10").addClass("hidden")
+	
       })
 	  
 	  
-	    $('#board').on('click', function(e) {
+	 $('#board').on('click', function(e) {
         // change state here
 		
         // end by using lib.goTo
@@ -247,7 +267,7 @@
 	  
 	    $('#button-11').on('click', function(e) {
         // change state here
-	
+		console.log("Explosion")
         // end by using lib.goTo
 		if ((state.battle.indexOf("range") > -1) && (state.battle.indexOf("samePlan") > -1))  {
 		 lib.dialogue(e, "hardBlow")
@@ -266,17 +286,17 @@
 		}
 		else if ((state.battle.indexOf("approach") > -1) && state.battle.indexOf("samePlan") > -1){
 			lib.dialogue(e, "board")
-			$("#button-13").removeClass("hidden");
-			$("#button-14").removeClass("hidden");
+			state.battle.push("board")
+			$("#button-12").removeClass("hidden");
 		}	
 		else if ((state.battle.indexOf("manouver") > -1) && state.battle.indexOf("changePlan") > -1){
 			lib.dialogue(e, "board")
-			$("#button-13").removeClass("hidden");
-			$("#button-14").removeClass("hidden");
+			state.battle.push("board")
+			$("#button-12").removeClass("hidden");
 		}	
 		else {
          lib.dialogue(e, "explosion")
-		 $("#button-12").removeClass("hidden");
+			$("#button-12").removeClass("hidden");
 		 }
 
 	$("#button-10").addClass("hidden")
@@ -287,7 +307,15 @@
         // change state here
 		$("#onwards").removeClass("hidden");
         // end by using lib.goTo
-         lib.dialogue(e, "victory")
+		console.log("victory")
+		console.log("intercept")
+        if (_.contains(state.battle, "board")) {
+		lib.dialogue(e, "victory2")
+		}
+		else {
+		lib.dialogue(e, "victory")
+		}
+        		 
 		$("#button-12").addClass("hidden")
       })
 	  $('#button-13').on('click', function(e) {
@@ -325,7 +353,7 @@
 	  
     })
   </script>
-  
+
   <style>
     /* Put styling that is specific to this page here. This is a CSS comment btw. */
   </style>
@@ -419,7 +447,7 @@
 
 <p>Get ready to fight fire or perhaps send a few spare crew to intercept and challenge them in the air. Or perhaps they're just a distraction, sent to harry us and worry us and commit our resources. I cant see any flames being carried. </p>
 
-
+</div>
 <div class="bucket hidden"><strong>Fighting fire</strong>
 <p>The gryphs are carrying something, I see them carrying harnesses. Soon little points of light come falling down from the sky and shatter across the deck. There is an immediate conflagration of fire at these points and I see crew jumping out of the way with singed tails for those not fast enough. </p>
 
@@ -474,7 +502,7 @@
 
 <p>I have to jump to the side and bat at my fur as something that looks like a burning vial shatters right next to me and instantly combusts. They seem to contain some sort of flammable liquid. </p>
 
-<p>An eager sailor is quick to pour a bucket of water over the burning spot, but in doing so he only seems to wash the flames around which continue burning and putting things alright. </p>
+<p>An eager sailor is quick to pour a bucket of water over the burning spot, but in doing so he only seems to wash the flames around which continue burning and putting things alight. </p>
 
 <p>I curse and look around, similar mistakes are done elsewhere and before I can shout myself hoarse on getting a stop too it and get things under control, smoke and confusion fills the air. </p>
 
@@ -496,7 +524,7 @@
 
 <p>But by the time they manage to haul water towards the flames, the fire is already sputtering out. Infact, the places that were quick to react have a harder time of it, as the water spreads the flames rather then puts it out. </p>
 
-<p>Our tardiness turns out to be our advantage this time. </p>
+<p>Our tardiness turns out to be to our advantage this time. </p>
 
 <p>The gryphs are already returning to their ship, out of their little munitions. </p>
 
@@ -532,7 +560,7 @@
 
 <p>Before anyone in the crew or myself am able to react or process what happened, hull explodes into splinters and debris on our forward starboard side of the ship. Sending unfortunate awes tumbling backwards in yells and shrieks. </p>
 
-<p>We were hit with something! Something strong enough to damage and even puncture the hull! Crew look dazed, some pick up help the wounded limp bellow deck. </p>
+<p>We were hit with something! Something strong enough to damage and even puncture the hull! Crew look dazed, some pick up help the wounded limp below deck. </p>
 
 <p>Another flash and 'THOOM' draws my attention back from the damage. Something whistles by in the air loudly, just above the main deck, narrowly missing a mast and tearing a circular hole through one of the sails. </p>
 
@@ -552,7 +580,7 @@
 
 <p>Before anyone in the crew or myself am able to react or process what happened, hull explodes into splinters and debris on our forward starboard side of the ship. Sending unfortunate awes tumbling backwards in yells and shrieks. </p>
 
-<p>We were hit with something! Something strong enough to damage and even puncture the hull! Crew look dazed, some pick up help the wounded limp bellow deck. </p>
+<p>We were hit with something! Something strong enough to damage and even puncture the hull! Crew look dazed, some pick up help the wounded limp below deck. </p>
 
 <p>Another flash and 'THOOM' draws my attention back from the damage. Something whistles by in the air loudly, just above the main deck, narrowly missing a mast and tearing a circular hole through one of the sails. </p>
 
@@ -568,7 +596,7 @@
 
 <p>Before anyone in the crew or myself am able to react or process what happened, hull explodes into splinters and debris on our forward starboard side of the ship. Sending unfortunate awes tumbling backwards in yells and shrieks. </p>
 
-<p>We were hit with something! Something strong enough to damage and even puncture the hull! Crew look dazed, some pick up help the wounded limp bellow deck. </p>
+<p>We were hit with something! Something strong enough to damage and even puncture the hull! Crew look dazed, some pick up help the wounded limp below deck. </p>
 
 <p>Another flash and 'THOOM' draws my attention back from the damage. Something whistles by in the air loudly, just above the main deck, narrowly missing a mast and tearing a circular hole through one of the sails. </p>
 
@@ -578,9 +606,9 @@
 
 <div class="retreat hidden"><strong>Retreat</strong>
 
-<p>They have some devastating weapons we have no information about, it out-ranges us and out-fires us. This would explain why ships go missing without a trace. Who could stand a chance against anything like this!?</p>
+<p>They have some devastating weapons we have no information about, it out-ranges us and out-guns us. This would explain why ships go missing without a trace. Who could stand a chance against anything like this!?</p>
 
-<p>We can not stay, I quickly order the ship around, full sails up. The weapons seem to be side-mounted on starboard side. We're close enough now that I can see figures working on a black tube of some sort. There appears to be two of them. Luckily they appear to take a long time to load. </p>
+<p>We can not stay, we have to try to escape before damage becomes insurmountable. I quickly order the ship around, full sails up. The weapons seem to be side-mounted on starboard side. We're close enough now that I can see figures working on a black tube of some sort. There appears to be two of them. Luckily they appear to take a long time to load. </p>
 
 <p>I feint our ship towards port in favor of the wind and order our sails prepared for half-sail. Its the obvious escape route and what would get us most speed. They anticipate our move, moving to turn along with us and keep us in their firing arch. I grin and turn the ship suddenly hard starboard, crew pulling up the sails to give us a better turn. </p>
 
@@ -719,13 +747,20 @@ $('#charge2').removeClass('hidden');
 <p>I feel my fur bristling and poofing as I shout the orders to turn towards them and charge, it helps to look larger and confident, especially with orders like these. The crew hesitate for a second, giving me a look before they rush back to their tasks. </p>
 
 <div class="hidden" id="Fromcharge">
-<p>They are probably thinking we're going to still ram them and take the fight into a closer melee. For a while i keep up that ruse, up until the moment stey start steering away from us to maintain distance and keep their weapon advantage. I turn us the other way and seemingly just in time as their weapons blossom in fire and smoke once more and fire at us</p>
+<p>They are probably thinking we're going to still ram them and take the fight into a closer melee. For a while i keep up that ruse, up until the moment stey start steering away from us to maintain distance and keep their weapon advantage. I turn us the other way, seemingly just in time, as their weapons blossom in fire and smoke once more.</p>
 
 <p> 'BOOM!' goes the first, our tight turn sends the shot wide, whistling through the air with a sound that no doubt would haunt many dreams tonight if we survive. </p>
 
-<p> The second shot, loud and echoing 'THOOM', overcompensates and this merely shot grazes us. But wood explodes nevertheless from the glancing hit and sends a minor explosions of splinters into my cowering crew, some of who fall over clutching injuries </p>
+<p> The second shot, loud and echoing 'THOOM', overcompensates and this merely shot grazes us. But wood explodes nevertheless from the glancing hit and sends a minor explosions of splinters into my cowering crew, some of who fall over clutching injuries. </p>
 
 <p>“KEEP COURSE! STAND FIRM!” I shout to maintain discipline. The crew must not give in to despair and flight. "We are doing well so far!" I try to encourage. </p>
+
+<p> The 'TWANG' of ballista shots returning fire are somewhat reassuring to hear. But in the face of such superior firepower im unsure what good they can do. I keep order course directions to Nyxie at the helm, they atleast seem to only to be able to fire in one direction thats one advantage in our favor. </p>
+
+<p> They fire again, loud thunder echoes as one of the shots appear to come short, but it skips over the water and lodges itself into the hull with a shuddering crash. </p>
+
+<p> "That was at the waterline, go check for leaks!" I bellow at a cadet hovering nearby at a hatch, defying their order to stay below deck in battle. I didnt have time to make out who it was or if it was obeyed as the second shot thunders through the sails, leaving a gaping hole and snapping several rope tethers. </p>
+
 </div>
 
 <div class="hidden" id="FromRange">
@@ -737,11 +772,19 @@ $('#charge2').removeClass('hidden');
 
 <p>“KEEP COURSE! STAND FIRM!” I shout to maintain discipline. The crew must not give in to despair and flight. </p>
 
+<p> The 'TWANG' of ballista shots returning fire are somewhat reassuring to hear. But in the face of such superior firepower im unsure what good they can do. I keep order course directions to Nyxie at the helm, they atleast seem to only to be able to fire in one direction thats one advantage in our favor. </p>
+
+<p> They fire again, loud thunder echoes as one of the shots appear to come short, but it skips over the water and lodges itself into the hull with a shuddering crash. </p>
+
+<p> "That was at the waterline, go check for leaks!" I bellow at a cadet hovering nearby at a hatch, defying their order to stay below deck in battle. I didnt have time to make out who it was or if it was obeyed as the second shot thunders through the sails, leaving a gaping hole and snapping several rope tethers. </p>
+
+
+</div>
 <script>
 if (state.battle.indexOf("approach") > -1) {
 $('#Fromcharge').removeClass('hidden');
 }
-else if (_.contains(state.battle, "Range")) {
+else if (_.contains(state.battle, "range")) {
 $('#FromRange').removeClass('hidden');
 }
 </script>
@@ -768,9 +811,9 @@ $('#FromRange').removeClass('hidden');
 
 <p>“Silence those weapons! Hop too it! Attack!” I waved my sword in the direction of the ship, which was doing its best to try to maneuver and keep itself from being crashed into. But we were close enough for my crew to leap over. I could see the figures on the enemy ship clearer now, Gators. They were large reptiles, similar to Raptorians but far more bulky, armored and rotund. </p>
 
-<p>I spied several eager crew leaping on over already, Lieutenant Garsh in the lead, It would be a very hard fight I knew, If they were anywhere as tough as a Raptorian. </p>
+<p>A mass of eager crew leap on over from the masts already, descending on the enemy ship with Lieutenant Garsh in the lead. It would be a very hard fight, if they were anywhere as tough as a Raptorian. Said Raptorians who i knew waited eagerly for the command to charge as we locked ships. </p>
 
-<p>BOOM! One of the weapons fired at near point blank range. The shot crashed straight through the side of our ship and out the other. It knocked me off my feet hard, not only that, we were suddenly off course, loosing distance. Too far to assault and back up those who already leapt over. I could see them fighting in a tight knot by the enemy weapons, they had landed right next to them, preventing them from firing further. </p>
+<p>BOOM! One of the weapons fired at near point blank range. The shot crashed straight through the side of our ship and out the other. It knocked me off my feet hard, not only that, we were suddenly off course, loosing distance. Too far to further assault and back up those who already leapt over. I could see them fighting in a tight knot by the enemy weapons, they had landed right ontop of them, preventing them from firing further. </p>
 
 <p>“Permission to join the fight, captain.” I wheeled around to see my three grim-faced scouts, cloaks tossed aside and impressive wings on display. </p>
 
@@ -782,15 +825,8 @@ $('#FromRange').removeClass('hidden');
 
 <p>Some are already wounded and missing, not all manage to glide all the way and are tossed ropes and rescue floats to be hauled out of the sea. </p>
 
-<p> But it seems that whatever they managed to do over there was enough to drive them back. The gators are hoisting full sails, making a break for it while we slow down to pick up our crew. </p>
+<p> But it seems that whatever they managed to do over there was enough to drive them back. The gators are hoisting full sails, making a break for it while i order us to slow down to pick up our crew. I will not abandon anyone to the cold sea.</p>
 
-<p>Soon I receive a report from Garsh, limping and supported by a scout. </p>
-
-<p>“Their weapons are disabled. They were VERY protective of them. So much so that they dared not fully advance while we held them. They were made out of Iron captain, we could not smash them. But we smashed what we could, supports and such. We also scattered black powder all around from barrels, thats what made them really mad and forced us to flee. “</p>
-
-<p>“You are to be commended for this Lieutenant, you and all those who fought with you! Now go get yourself seen too.” I gave him a pat on the shoulder and he threw a quick salute and limped down below-deck.</p>
-
-<p>I glanced up at fast retreating ship, we are safe for now. We could pursue them, but for now I dont wish to push our luck further. We've also taken an amount of damage yet to be assessed. </p>
 
 
 </div>
@@ -838,7 +874,21 @@ $('#FromRange').removeClass('hidden');
 <p> Look-outs had claimed to report seeing a few gryphs escape the blast and fly off, but as good a flyers as they may be, this was the open sea. Our scouts which took a few laps in the air around the ship reported no sightings of land or other ships for them to fly too. </p>
 
 </div>
+<div class="victory2 hidden"><strong>Victory!</strong>
+<p> The enemy ship is in retreat. </p>
 
+<p> Im still stunned at our sudden victory. The crew really pulled through bravely in face of such danger. </p>
+
+<p>Soon I receive a report from Garsh, limping and supported by a scout. </p>
+
+<p>“Their weapons are disabled. They were VERY protective of them. So much so that they dared not fully advance while we held them. They were made out of Iron captain, we could not smash them. But we smashed what we could, supports and such. We also scattered black powder all around from barrels, thats what made them really mad and forced us to flee. “</p>
+
+<p>“You are to be commended for this Lieutenant, you and all those who fought with you! Now go get yourself seen too.” I gave him a pat on the shoulder and he threw a quick salute and limped down below-deck.</p>
+
+<p>I glanced up at fast retreating ship, we are safe for now. We could pursue them, but for now I dont wish to push our luck further. We've also taken an amount of damage and injuries yet to be assessed. </p>
+
+
+</div>
 <div class="defeat hidden"><strong>In the face of defeat</strong>
 
 <p> We were not dead in the water, but we could no longer escape nor attack. Whatever we did, could catch us or out-pace us as it was right now </p>
@@ -852,6 +902,33 @@ $('#FromRange').removeClass('hidden');
 <p> I only had the option to surrender or mount some final desperate attack. I've heard rumours of the appetites of Gators and i was not keen on confirming them with my crew. </p>
 
 <p> But all choices looked bleak and the ruthless and carefuly aimed bombardment continued.</p>
+</div>
+
+<div class="fireloss hidden"><strong>Smoke thickens</strong>
+<p>The smoldering fires across the ship are producing a thick smoke, one covers the bridge deck with a cloying choking smoke. Damage-control awes, all black with soot and looking like a bunch of Raveneyes are only just now getting things in check. </p>
+
+<p>Coughing I move away from the bridge and try to bellow out the orders to change our plan of attack. But my voice is raspy and does not carry! Only Nyxie at the helm responds, turning the ship. But the Awes in the sails are not quite fully informed and the sails start to flutter and and waver in the sudden course correction. </p>
+
+<p>“THOOM” goes the blast of the enemies weapons. Two solid shots one after another rip through the hull, causing the boards under my feet to quiver and groan as if in pain. </p>
+
+<p>There's confusion all around, a hint of panic hangs overhead as each moment only seems to bring us closer to ultimate disaster. </p>
+
+<p>“Get those sails in order!” I hoarsely yell up a mast futilely. </p>
+
+<p>“Captain! Captain where are you!?” I hear a yell from the bridge deck and I hurry back quickly. </p>
+
+<p>“Report!” I croak hoarsly, but must have made up for the weakness in my voice with a fierce scowl, for the drenched Awe sailor before me balks at the sight of me. </p>
+
+<p>“L-leak in lower holds! We're taking in a lot of water! We could not stop it and are working on sealing it off.”</p>
+
+<p>“Carry on...” I nod and look over to the next Awe standing in line with fresh bad news. </p>
+
+<p>“Ulv reports she cant get a bead on them with all this smoke. Ballista two is effectively out of commission.”</p>
+
+<p>“Then help throw anything still smoking overboard instead!” I bark and grit my teeth. </p>
+
+<p>We are too far away to make any kind of boarding assault still, they are playing keep away. </p>
+
 </div>
 
 <div class="surrender hidden"><strong>Surrender</strong>
