@@ -15,13 +15,19 @@
   <script>
 		state.Glint.status = "invisible"
 		state.Valnos.status = "invisible"
+		state.Ziggy.status = "available";
 	
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
     
 	var updateGameScore = function() {
+	state.flock.team = (state.flock.avolc + state.flock.ziggy);
+	state.flock.opponent = (state.flock.arn + state.flock.keeper);
 	$(".current-score").text(state.game);
+	$(".team-score").text(state.flock.team);
+	$(".oteam-score").text(state.flock.opponent);
+	
 		}
 	updateGameScore();
 	var updateCard = function() {
@@ -41,6 +47,12 @@
       $('#button-2').on('click', function(e) {
         lib.dialogue(e, "round1-10")
 		state.game += 10;
+		state.flock.avolc +=15;
+		state.flock.ziggy -=5;
+		state.flock.arn -=5;
+		state.flock.keeper -=5;
+		
+		
 		updateGameScore();
 		$("#button-5").removeClass("hidden")
 		$("#button-2").addClass("hidden")
@@ -50,6 +62,10 @@
 	  $('#button-3').on('click', function(e) {
          lib.dialogue(e, "round1-5")
 		 state.game += 8;
+		state.flock.avolc +=13;
+		state.flock.ziggy -=5;
+		state.flock.arn -=3;
+		state.flock.keeper -=5;
 		updateGameScore();
 		$("#button-5").removeClass("hidden")
 		$("#button-2").addClass("hidden")
@@ -59,6 +75,10 @@
 	  $('#button-4').on('click', function(e) {
 	  lib.dialogue(e, "round1-3")
 	   state.game += 6;
+	   state.flock.avolc +=6;
+		state.flock.ziggy +=0;
+		state.flock.arn -=3;
+		state.flock.keeper -=3;
 		updateGameScore();
 		$("#button-5").removeClass("hidden")
 		$("#button-2").addClass("hidden")
@@ -76,6 +96,10 @@
 	   $('#button-6').on('click', function(e) {
        lib.dialogue(e, "round2-10")
 	   state.game -= 10;
+		state.flock.avolc -=10;
+		state.flock.ziggy +=0;
+		state.flock.arn +=10;
+		state.flock.keeper -=0;
 		updateGameScore();
 		$("#button-9").removeClass("hidden")
 		$("#button-6").addClass("hidden")
@@ -85,6 +109,10 @@
 	    $('#button-7').on('click', function(e) {
         lib.dialogue(e, "round2-5")
 		state.game -= 5;
+		state.flock.avolc -=5;
+		state.flock.ziggy -=3;
+		state.flock.arn +=11;
+		state.flock.keeper -=3;
 		updateGameScore();
 		$("#button-9").removeClass("hidden")
 		$("#button-6").addClass("hidden")
@@ -94,6 +122,10 @@
 	    $('#button-8').on('click', function(e) {
          lib.dialogue(e, "round2-3")
 		 state.game -= 3;
+		 state.flock.avolc -=3;
+		state.flock.ziggy -=3;
+		state.flock.arn +=9;
+		state.flock.keeper -=3;
 		updateGameScore();
 		$("#button-9").removeClass("hidden")
 		$("#button-6").addClass("hidden")
@@ -109,6 +141,10 @@
 	    $('#button-10').on('click', function(e) {
         lib.dialogue(e, "round3-bet"),
 		state.game -= 10;
+		state.flock.avolc -=10;
+		state.flock.ziggy -=5;
+		state.flock.arn +=20;
+		state.flock.keeper -=5;
 		updateGameScore();
 		$("#button-12").removeClass("hidden")
 		$("#button-10").addClass("hidden")
@@ -117,6 +153,10 @@
 	    $('#button-11').on('click', function(e) {
         lib.dialogue(e, "round3-nobet"),
 		state.game -= 5;
+		state.flock.avolc -=5;
+		state.flock.ziggy -=5;
+		state.flock.arn +=15;
+		state.flock.keeper -=5;
 		updateGameScore();
 		$("#button-12").removeClass("hidden")
 		$("#button-10").addClass("hidden")
@@ -132,6 +172,10 @@
 	    $('#button-13').on('click', function(e) {
         lib.dialogue(e, "round4-10"),
 		state.game += 15;
+		state.flock.avolc +=25;
+		state.flock.ziggy -=10;
+		state.flock.arn -=10;
+		state.flock.keeper -=5;
 		updateGameScore();
 		$("#button-16").removeClass("hidden")
 		$("#button-13").addClass("hidden")
@@ -141,6 +185,10 @@
 	    $('#button-14').on('click', function(e) {
         lib.dialogue(e, "round4-5"),
 		state.game -= 5;
+		state.flock.avolc -=5;
+		state.flock.ziggy -=3;
+		state.flock.arn -=5;
+		state.flock.keeper +=13;
 		updateGameScore();
 		$("#button-16").removeClass("hidden")
 		$("#button-13").addClass("hidden")
@@ -150,6 +198,10 @@
 	    $('#button-15').on('click', function(e) {
         lib.dialogue(e, "round4-3"),
 		state.game -= 3;
+		state.flock.avolc -=3;
+		state.flock.ziggy -=3;
+		state.flock.arn -=5;
+		state.flock.keeper +=11;
 		updateGameScore();
 		$("#button-16").removeClass("hidden")
 		$("#button-13").addClass("hidden")
@@ -168,6 +220,7 @@
 		lib.goTo('Page18.html')
       })
     })
+
   </script>
   
   <style>
@@ -178,6 +231,7 @@
 <body>
 <h1>Admiral Avolc</h1> 
 <p> Your score: <div class="current-score"></div></p>
+<p> Team score: <div class="team-score"></div> Opponent Team score: <div class="oteam-score"></div></p>
 <div class="current-cards"></div>
 <hr />
 <div id="story-text">
@@ -357,13 +411,51 @@
 </div>
 
 <div class="conclusion hidden"> <p><strong>The Game - Ship rules - Conclusion</strong></p>
-<p>Our winnings were not enough. One of us ended up below 10 points and thus the games continue unhindered.</p>
+<p>Our winnings were not enough. Our combined score was negative 10 points and thus the games continue unhindered.</p>
 
 <p>This was a blow to my authority. I had let myself get carried away and fallen for their little plot to skirt my commands. In hindsight it might have seemed like a slightly foolish decisions. Especially as i just learned Ships rules means High-stakes. Had i lost with too many points, who knows what they could have demanded.</p>
 
 <p>I suppose i could decide to stop it anyway, despite how spiteful it would seem to be. But this whole thing had left a sour taste in my mouth.</p>
 </div>
+<div class="conclusion2 hidden"> <p><strong>The Game - Ship rules - Conclusion</strong></p>
+<p>You may not have won enough to forbid the game, but atleast you&#39;ve made sure no further addition attrition will come out of the popular passtime. The crew also respects the way you handled the issue and skillful play.</p>
+</div>
+<div class="conclusion3 hidden"> <p><strong>The Game - Ship rules - Conclusion</strong></p>
+<p>&quot;Well well well. Ship Rules.&quot; Announces Keeper smugly. The room is silent and Ziggy trembles in her seat.&nbsp;</p>
 
+<p>&quot;You are below the double lowest negative score agreed upon Captain. Arn being the winner in this high-stakes game thus wins the right to devour you.&quot; The wulf chuckled softly.</p>
+
+<p>&quot;I did not agree to this!&quot; I protested, rising out of my chair violently. But i could already see it was a lost cause. I had no allies in here. I realized now that this is how the last captain must have perished. Not in battle, but in conflict with the crew. That would have explained all the strange circumstances.</p>
+
+<p>They rushed me, tackled me from all sides. The struggle was brief and hopeless.</p>
+</div>
+<div class="conclusion4 hidden"> <p><strong>The Game - Ship rules - Conclusion</strong></p>
+<p>Ziggy wins the game and she cackles loudly and triumphantly while Keeper and Arn look entirerly stumped with the results, they seemed very surprised at the loss which makes me suspect their were not playing entirely fair. That makes me also wonder about Ziggys results, but at least victory was ours.</p>
+
+<p>&quot;Well well well! Double negative, for all of yas! My my myyyyy&quot; Ziggy raises her shirt to rub her fuzzly belly around suggestively. I raised my eyebrow at this.</p>
+
+<p>&quot;By Ship rules, that means i get some officer-grade meat dont it?&quot; She turned her head to me with a smirk. &quot;You look puzzled, didnt i tell ya? Ship rules means high-stakes, by doubling their lowest score, iiiii win the right to eat them!&quot;&nbsp;</p>
+
+<p>I dont think i had ever seen a smugger Cadet then Ziggy at that moment.</p>
+
+<p>&quot;You brat, dont you think i know you switched out your cards somehow!&quot; Arn suddenly barked.</p>
+
+<p>&quot;Awwww! Is the big guy upset? You can cryyyy all about it in my cabin tonight! Mmmh, both of ya!&quot;</p>
+
+<p>Arn growled and cracked the knuckles of his paws, muttering darkly. &quot;Oh i&#39;ll feed ya something...&quot;</p>
+
+<p>&quot;Aaahahahaah!&quot; Ziggy just cackled in his face, completely unfazed.</p>
+
+<p>This was getting out of hand.</p>
+</div>
+<script>
+	cadet[0].banter = [
+    { target: '#Ziggy', text: 'Blipbloop.'},
+    { target: '#Ziggy', text: 'Game is fun'}
+    
+    
+];
+</script>
 
 </body>
 </html>

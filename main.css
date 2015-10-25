@@ -20,9 +20,9 @@ float:right;
 	text-align: center;
 }
 #Valnos {
-	background-image: url(/Rooms/Images/01b.png);
-	height: 96px;
-	width: 96px;
+	background-image: url(/Rooms/Images/Valnosface3.png);
+	height: 280px;
+	width: 200px;
 	cursor: pointer;
 	position: relative;
 	text-align: center;

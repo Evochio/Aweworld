@@ -26,25 +26,11 @@
         // end by using lib.goTo
         lib.goTo('Page8.html')
       })
-/*
-    $('#Ziggy').on('click', function() {
-    $(this).siblings().attr('disabled', true);
-    cadetIndex = 0;
-    showNextDialogue();
-});
 
-	$('#Glint').on('click', function() {
-    $(this).siblings().attr('disabled', true);
-    cadetIndex = 1;
-    showNextDialogue();
-});
-	$('#Valnos').on('click', function() {
-    $(this).siblings().attr('disabled', true);
-    cadetIndex = 2;
-    showNextDialogue();
-});
-*/
     })
+	var unhideTest = function(){
+	$('#test1').removeClass('hidden');
+	};
 
   </script>
   
@@ -78,6 +64,7 @@
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1"> Continue </button>
+<button class="btn btn-default hidden" id="test1"> testbutton </button>
 <!--
 <span>
     <button id="Glint" class="btn btn-default">
@@ -104,10 +91,11 @@ cadet[1].banter = [
     { target: '#Glint', text: 'But he is been generous to grant other leave or changed work shifts to attend... for a favor'}
 ];
  cadet[2].banter = [
-    { target: '#Valnos', text: 'When the crew has a problem or a complaint they turn to Arn.'},
+	{ target: '#Valnos', text: 'When the crew has a problem or a complaint they turn to Arn.'},
    { target: '#Valnos', text: 'He is in some ways the unofficial captain of the ship, which is a First-mates duty i suppose.'},
-	{ target: '#Valnos', text: 'My concern lays in his way of defusing malcontent, he distracts rather then straightens them out.'}
+	{ target: '#Valnos', text: 'My concern lays in his way of defusing malcontent, he distracts rather then straightens them out.' }
 ];
+
 /*
 $('#Glint').popover(options);
 $('#Ziggy').popover(options);
@@ -115,13 +103,5 @@ $('#Valnos').popover(options); */
 </script>
 
 
-
-<!--
-<div class="hidden" id="Glint-dialogue">He takes the quick and easy way to solve a problem. And he does not attend to service of the Order. But he's been generous to grant other leave or changed work shifts to attend... for a favor</div>
-<div class="hidden" id="Ziggy-dialogue">Arn is the type of guy you can easily have a lot of drinks with. But if it comes down to a brawl, you'll wont know who he'll swing at. I'd keep him where i can see him
-<button class="btn btn-default" id="test">Test</button><script>console.log("whatever");$("#test").on("click", function(){console.log("Horray")})</script>
-</div>
-<div class="hidden" id="Valnos-dialogue">When the crew has a problem or a complaint they turn to Arn. He is in some ways the unofficial captain of the ship, which i suppose is good for a First-mate. My concern lays in his way of defusing malcontent, he distracts rather then straightens them out.</div>
--->
 </body>
 </html>

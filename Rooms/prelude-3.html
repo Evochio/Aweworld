@@ -68,7 +68,7 @@
 
 <span class="duelvictory hidden">
 <p> There remained a decision to be made about Nipfang and the prisoners. For his crimes he was condemned to a belly, like he had done to countless others. Not only to satisfy the many laws he's broken, but also for many those who's beliefs lie in that the spirits of Awes be returned to our blood. </p>
-<p> As his captor I was in my rights to carry out the sentencing myself if i felt like it. So far i've post-poned the decision in hopes of being able to question him for information. But he's remained stubbornly tight-lipped</p>
+<p> As his captor I was in my rights to carry out the sentencing myself if i felt like it. So far i've postponed the decision in hopes of being able to question him for information. But he's remained stubbornly tight-lipped</p>
 </span>
 <span class="battlevictory hidden">
 <p>Though Nipfang escaped, I have proven my tactics and ability to lead. Perhaps they'll give me a bigger ship! </p>
@@ -118,6 +118,18 @@
 <button class="btn btn-default hidden" id="button-3"> Prisoner </button>
 <button class="btn btn-default hidden" id="button-4"> Journey </button>
 <script>
+if (_.contains(state.preludeEvents, "duel"))
+		{
+	$('.duelvictory').removeClass('hidden');
+	$("#button-2").removeClass("hidden");
+	$("#button-3").removeClass("hidden");
+		}
+		else {
+	$('.battlevictory').removeClass('hidden');
+	$("#button-3").removeClass("hidden");
+      }
+
+/*
 switch(state.preludeEvents[3]) {
 	case 'duel':
 	$('.duelvictory').removeClass('hidden');
@@ -129,6 +141,7 @@ switch(state.preludeEvents[3]) {
 	$('.battlevictory').removeClass('hidden');
 	$("#button-3").removeClass("hidden");
 	}
+	*/
 </script>	
 </body>
 </html>
