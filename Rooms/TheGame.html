@@ -91,7 +91,16 @@
 		$("#button-6").removeClass("hidden")
 		$("#button-7").removeClass("hidden")
 		$("#button-8").removeClass("hidden")
-		$("#button-5").addClass("hidden")
+		$("#button-5").addClass("hidden"),
+		state.Ziggy.status = "quest";
+	cadet[0].banter = [
+    { target: '#Ziggy', text: 'Pssst, hey, something is up.'},
+    { target: '#Ziggy', text: 'Trust me? Its risky, but keep going All-in.'},
+	{ target: '#Ziggy', text: 'I think it will work.'}
+    
+    
+];
+		
       })
 	   $('#button-6').on('click', function(e) {
        lib.dialogue(e, "round2-10")
@@ -367,6 +376,8 @@
 <p>Before i can decide what to bet Arn announces he&#39;s going all in, looking pretty confident.</p>
 
 <p>I have to decide wether to challenge or give up a high card.</p>
+
+
 </div>
 <div class="round3-bet hidden"> <p><strong>Round 3 bet: Challenge</strong></p>
 <p>I challenge Arns hand and slam down enough bet cards to match him.&nbsp;</p>
@@ -456,6 +467,18 @@
     
 ];
 </script>
+<script>
+/*
+	cadet[0].banter = [
+    { target: '#Ziggy', text: 'Pssst, hey, something is up.'},
+    { target: '#Ziggy', text: 'Trust me? Its risky, but keep going All-in.'},
+	{ target: '#Ziggy', text: 'I think it'll work.'}
+    
+    
+];
+*/
+</script>
 
+<span id="cadetButtons"> </span>
 </body>
 </html>

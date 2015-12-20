@@ -12,23 +12,26 @@ float:right;
 }
 
 #Ziggy {
-	background-image: url(/Rooms/Images/01b.png);
-	height: 96px;
-	width: 96px;
+	background-image: url(/Rooms/Images/Valnosface4.png);
+	height: 286px;
+	width: 200px;
 	cursor: pointer;
 	position: relative;
 	text-align: center;
 }
 #Valnos {
-	background-image: url(/Rooms/Images/Valnosface3.png);
-	height: 280px;
+	background-image: url(/Rooms/Images/Valnosface4.png);
+	height: 286px;
 	width: 200px;
 	cursor: pointer;
 	position: relative;
 	text-align: center;
 }
 #Ziggy:disabled {
-	background-position: 96px 0px
+	background-position: 200px 572px;
+}
+#Ziggy:'quest' {
+	background-position: 200px 286px;
 }
 /* If you want text inside shit */
 #Glint span {
@@ -36,9 +39,27 @@ float:right;
 	bottom: -20px;
 	
 }
-.face1 {
-	background-position: 0px 0px;
+.blush {
+	background-position: 400px 0px;
 }
-.face2 {
-	background-position: 96px 96px;
+.angry {
+	background-position: 200px 0px;
+}
+.happy {
+	background-position: 0px 572px;
+}
+.concerned {
+	background-position: 400px 572px;
+}
+.sad {
+	background-position: 200px 572px;
+}
+.smug {
+	background-position: 0px 286px;
+}
+.suspicious {
+	background-position: 400px 286px;
+}
+.surprised {
+	background-position: 200px 286px;
 }
