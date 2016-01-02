@@ -115,7 +115,7 @@
 <div id="story-text">
 <p>
 
- The fight was fierce, the raptorians of what you can see, 
+ The fight was fierce,  
  
  <span class="hidden" id="attack">none of the raptors you sent to attack are in sight. Perhaps they got surrounded and overpowered on the Wulf-ship.</span>
 
@@ -143,9 +143,9 @@ console.log(state.preludeEvents);
 <p>
 <span class="hidden" id="rescue">With your first-mate by your side you managed to organize the crew more cohesively between yourself. But they gain quite and advantage in numbers and positioning.</span>
 
-<span class="hidden" id="rigging">Cutting down the rigging, while extreme, had positive results. A more clear line of confrontation was established, with Wulfs no longer able to drop down from above. Quite a few of them were taking out of the fight too!</span>
+<span class="hidden" id="rigging">Cutting down the rigging, while extreme, had positive results. A more clear line of confrontation was established, with Wulfs no longer able to drop down from above. Quite a few of them were taken out of the fight too!</span>
 
-<span class="hidden" id="forecastle">Your mad-dash towards the forecastle to assist the knot of crew in trouble, while brave, was still too late and resulted in some confusion. Crew joined to assist and broke lines, giving the enemy advantage. </span>
+<span class="hidden" id="forecastle">Your mad-dash towards the forecastle to assist the knot of crew in trouble, while brave, was still too late and resulted in some confusion and no gain. Eager crew broke lines to join their charging captain, giving the enemy advantage. </span>
 <script>
 switch(state.preludeEvents[2]) {
     case 'rescue':
@@ -234,7 +234,7 @@ switch(state.preludeScore) {
 <button class="btn btn-default hidden" id="button-2">Battle</button>
 <button class="btn btn-default hidden" id="button-1">Duel</button>
 <button class="btn btn-default hidden" id="button-3">Negotiate</button>
-<button class="btn btn-default hidden" id="button-4">Swordplay</button>
+<button class="btn btn-default hidden" id="button-4">Offensive swordplay</button>
 <button class="btn btn-default hidden" id="button-5">Tackle!</button>
 <button class="btn btn-default hidden" id="button-6">Defensive duelling</button>
 <button class="btn btn-default hidden" id="button-7">Duel Victory</button>
@@ -346,19 +346,21 @@ switch(state.preludeScore) {
 <p> But i barely have time to relish my advantage as he with shere force flicks the sword out of my grip with a twist of his sword and with the use of that devious hook at the end of his blade! </p>
 <div class="swordplayMate hidden">
 <p> The sword clatters along the deck and I barely dodge a vicious follow-up blow by diving after it. Luckily it lands at the feet of my First-mate who's quick to kick it back in my direction expertly.</p>
-<p> Sure of his victory, Nipfang lunges after me, only to find his sword-arm nicked into suddenly as I turn and slash. I know the tricks of his blade now and the rest is just about keeping an eye open for further dirty tricks. I soon have him pinned against a wall, sword pointed at his neck. </p>
+<p> Sure of his victory, Nipfang lunges after me, only to find his sword-arm nicked as I turn and slash. I know the tricks of his blade now and the rest is just about keeping an eye open for further dirty tricks. I soon have him pinned against a wall, sword pointed at his neck. </p>
 </div>
 <div class="swordplayBulge2 hidden">
 <p> The sword clatters along the deck and I barely dodge a vicious follow-up blow by diving after it. It lands at the feet of a familiar red-furred Wulf who's sporting a sizeable rounded and squirming gut, the one that ate my first-mate!. She leers at me and kicks the sword out of my reach just as I reach for it. </p>
 <p> I barely have time to curse her as i feel the sharp edge of Nipfangs blade press down on my back between my wings. </p>
 <p> "It appears, despite all, that I'll be having a grand feast tonight". The blade is replaced by a sizeable foot-paw at the back of my head, pressing me down against the deck. </p>
 <p> "Yer all my dinner!" He cheered and let his hungry eyes sweep over my former crew.</p>
+<p> Honourable to a fault the crew stood stunned as they were disarmed and captured. The battle had been ours, but a foolish bet and captain had whisked it away. 
 <p></p>
-<p>Nipfang feasted himself full to the brim that day, managing the captain herself and her closest officers in one go. As he single-handedly turned the tide, no one disputed his lavish claim on all the prisoners</p>
-<p>While his crew worked on restoring their newly captured ship, Nipfang steadily worked off the entire Awe crew by himself, day after day, until we were all part of expanded infamy and girth </p>
+<p>Nipfang feasted himself full to the brim that day, managing the captain herself and her closest officers in one go. As he had single-handedly turned the tide on a loosing battle, no one disputed his lavish claim on all the prisoners.</p>
+<p>While his crew worked on restoring their newly captured ship, Nipfang aquainted everyone with his appetite and in a feat of gluttony worked off the entire Awe crew by himself, day after day, until we were all part of expanded infamy and girth.</p>
+<p>Your legacy is to be the permanent paunch on Nipfang the Awe-eater! Scourge of the East-sea.</p>
 </div>
 <div class="swordplayBulge hidden">
-<p> The sword clatters along the deck and I barely dodge a vicious follow-up blow by diving after it. It lands at the feet of a familiar red-furred Wulf who's sporting a sizeable rounded and squirming gut, the one that ate my first-mate!. She leers at me and kicks the sword out of my reach just as I reach for it. </p>
+<p> The sword clatters along the deck and I barely dodge a vicious follow-up blow by diving after it. It lands at the feet of a familiar red-furred Wulf who's sporting a sizeable rounded and squirming gut, the one that ate my first-mate! She leers at me and kicks the sword out of my reach just as I reach for it. </p>
 <p> I barely have time to curse her as i feel the sharp edge of Nipfangs blade press down on my back between my wings. </p>
 <p></p>
 <p> "Hrahah, that was over quick! How come they made you captain, you're not very strong!" He mocked with glee. "No matter, im sure you'll go down just as easy."</p>
@@ -366,6 +368,10 @@ switch(state.preludeScore) {
 <p>'Glk...glk...glk', the gullet ripples around me, I kick but find no footing or escape as he devours me in-front of my stunned crew. Nipfang knew the value of shock and initiative. </p>
 <p> Frustration and fury do nothing to help me as I fill out Nipfangs sizable belly. He cackles again and thumps his paw hard on his new roundness. </p>
 <p> "Who's next!?" </p>
+<p></p>
+<p> Honourable to a fault and weary from battle the crew stood stunned as they were disarmed and captured.</p>
+<p> What became of them all is unknown. Most however probably ended up as their captain, a delicious spoil of victory. </p>
+<p> Your legacy was a unremarkable and embarassing defeat to the sword and belly of Wulf-pirates. Forgotten in the annals of history </p>
 
 </div>
 <script>
@@ -445,15 +451,17 @@ switch(state.preludeScore) {
 
 <div class="tackleLoose hidden">
 <p> I spend a few undignified moments getting trashed about before Nipfang cackles loudly again and levels his sword against my back </p>
-<p> "So much for that!" Nipfan chuckled darkly. "There's fire in you, that much is true. I think ill take that fire!" </p>
+<p> "So much for that!" Nipfan chuckled darkly. "There's fire in you, that much is true. I think ill take that fire for myself!" </p>
 <p> Without much further ado the Wulf-captain hoisted me up, leered in my face and yawned wide, giving me a close view of his glistening maw, undulating tongue and yawning gullet. I managed to give him a kick in the gut before he angrily shoved me down his throat. </p>
 <p> As darkness of hot flesh and squeezing muscle enveloped me, I accepted I'd lost and I was now Wulf-food. And so was my crew, short of the few they'd keep around as entertainment. </p>
+<p>Your legacy was a unremarkable and embarassing defeat to the sword and belly of Wulf-pirates. Forgotten in the annals of history </p>
 </div>
 <div class="tackleLoose2 hidden">
 <p> I spend a few undignified moments getting trashed about before Nipfang cackles loudly again and levels his sword against my back </p>
-<p> "So much for that!" Nipfan chuckled gleefully. "There's fire in you, all of you! Now you're all mine!" He laughed again triumphant. He'd turned a bad situation into his favour through my folly. </p>
+<p> "So much for that!" Nipfan chuckled gleefully. "There's fire in you, all of you! Now its all mine!" He laughed again triumphant. He'd turned a bad situation into his favour through my folly. </p>
 <p> Before the crew could rebel against its new fate, the pirates were upon them. Disorganized and demoralized they fell apart quickly, some outright surrendered honourably as had been agreed. </p>
 <p> Then as they had promised, they feasted and gorged themselves. Later under the collective chorus of rumbling groaning bellies my crew and myself succumbed. </p>
+<p>Your legacy was a unremarkable and embarassing defeat to the sword and belly of Wulf-pirates. Forgotten in the annals of history </p>
 
 </div>
 <div class="tackleWin hidden">
@@ -494,9 +502,13 @@ switch(state.preludeScore) {
 <p> Yet still he's leering at me after having glanced about a few time. I follow his glance and spot too late how he throws a dagger at me that he seems to have aquired from somewhere! </p> 
 <p> I manage to deflect the dagger, but it distracts me long enough for Nipfang to lunge in hard and bat my sword away with his own, disarming me. </p>
 <p> "I HAVE YOU NOW!" He gleefully cackled. </p>
-<p>I look around for a replacement weapon, but spot only a familiar green-furred Wulf winking at me. Im inevitably cornered and defeated at sword-point</p>
+<p>I look around for a replacement weapon, but spot only a familiar green-furred Wulf winking at me, this fellow is making a point out of showing off his huge gut tauntingly, i should have dealt with him myself. Im inevitably cornered and at sword-point, defeated.</p>
 <p> "Quite the workout you've given me!" Nipfang leaned his snout in close to my face. "I'll make sure to give you one inside me!"</p>
-
+<p> With a sudden jerk forward my vision was enveloped by a red blur. Nipfang held my head within the darkness of his maw, as I struggled in his grip. My back touched ground, as he leaned his weight against me and pinned me down. It seemed he was taking delight in my hopeless situation, as he chuckled around my head. </p>
+<p> He yanks me upwards, my face forced against his gullet. My body quickly pulls out from under him, Nipfang forcing and pushing his squirming meal into his face until he can finally close that gaping maw, tilting his head back and gulping one last time. </p>
+<p> My futile kicks and struggles are plenty enough workout to wear me out, before finally submitting to the confines of the sizeable wulfs gut. </p>
+<p></p>
+<p>Your legacy was a unremarkable and embarassing defeat to the sword and belly of Wulf-pirates. Forgotten in the annals of history </p>
 </div>
 
 </div>
@@ -511,11 +523,13 @@ switch(state.preludeScore) {
 <p> Yet still he's leering at me after having glanced about a few time. I follow his glance and spot too late how he throws a dagger at me that he seems to have aquired from somewhere! </p> 
 <p> I manage to deflect the dagger, but it distracts me long enough for Nipfang to lunge in hard and bat my sword away with his own, disarming me. </p>
 <p> "I HAVE YOU NOW!" He gleefully cackled. </p>
-<p>I look around for a replacement weapon, but spot only a familiar green-furred Wulf winking at me. Im inevitably cornered and defeated at sword-point</p>
+<p>I look around for a replacement weapon, but spot only a familiar green-furred Wulf winking at me, this fellow is making a point out of showing off his huge gut tauntingly, i should have dealt with him myself. Im inevitably cornered and at sword-point, defeated.</p>
 <p> "Quite the workout you've given me!" Nipfang leaned his snout in close to my face. "I'll make sure to give you one inside me!"</p>
 <p> With a sudden jerk forward my vision was enveloped by a red blur. Nipfang held my head within the darkness of his maw, as I struggled in his grip. My back touched ground, as he leaned his weight against me and pinned me down. It seemed he was taking delight in my hopeless situation, as he chuckled around my head. </p>
-<p> He yanks me upwards, my face forced against his gullet. My body quickly pulls out from under him, Nipfang forcing and pushing his squirming meal into his face, till he can finally close that gaping maw, tilting his head back and gulping one last time. </p>
+<p> He yanks me upwards, my face forced against his gullet. My body quickly pulls out from under him, Nipfang forcing and pushing his squirming meal into his face until he can finally close that gaping maw, tilting his head back and gulping one last time. </p>
 <p> My futile kicks and struggles are plenty enough workout to wear me out, before finally submitting to the confines of the sizeable wulfs gut. </p>
+<p></p>
+<p>Your legacy was a unremarkable and embarassing defeat to the sword and belly of Wulf-pirates. Forgotten in the annals of history </p>
  
 </div>
 <div class="defensiveDefault hidden">
@@ -604,7 +618,7 @@ switch(state.preludeScore) {
 <p>Nipfang scoffed and waved his paw in irritation! </p>
 <p>"Words are wind! None of us will submit to any fancy 'promises' of yours!" </p>
 <p>"Then you'll all be beaten, rounded up and disposed of as rations! A generous fate for such undeserving wretches!" I glowered. </p>
-<p>He leveled his sword and pointed at me. "How about this then, brave Admiralty Captain, face me in combat! Prove your superiority! Then ill surrender myself and my crew!"</p>
+<p>He leveled his sword and pointed at me. "How about this then, brave Admiralty Captain, face me in combat! Prove your superiority! Then ill surrender myself and my crew without a big fight!"</p>
 <p>Its a risk doing a deal with a pirate-wulf. But his offer was tempting.</p>
 </p>
 </div>
@@ -613,7 +627,7 @@ switch(state.preludeScore) {
 <p>Nipfang scoffed and waved his paw in irritation! </p>
 <p>"Words are wind! None of us will submit to any fancy 'promises' of yours! Especially from a coward who refuses to face me!" </p>
 <p>"Then you'll all be beaten, rounded up and disposed of as rations! A generous fate for such undeserving wretches!" I glowered. </p>
-<p>He leveled his sword and pointed at me. "How about this then, brave Admiralty Captain, face me in combat! Prove your superiority! Then ill surrender myself and my crew!"</p>
+<p>He leveled his sword and pointed at me. "How about this then, brave Admiralty Captain, face me in combat! Prove your superiority! Then ill surrender myself and my crew all peacefull like!"</p>
 <p>Its a risk doing a deal with a pirate-wulf. But his offer was tempting.</p>
 </p>
 </div>

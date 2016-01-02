@@ -21,10 +21,11 @@
       $('#button-1').on('click', function() {
         // change state here
         // end by using lib.goTo
-        lib.goTo('Introbrief.html')
+        lib.goTo('Briefing.html')
       })
 		$('#button-2').on('click', function(e) {
         lib.dialogue(e, "nipfang")
+		state.vore += 1;
 		state.preludeEvents.push("nipfang");
 		$("#button-2").addClass("hidden");
 		$("#button-3").addClass("hidden");
@@ -60,7 +61,7 @@
 
 </head>
 <body>
-<h1>Incomplete</h1>
+<h1>Summons</h1>
 <hr />
 <div id="story-text">
 <p>We sailed back toward port Tranquil in victory. A great menace of the east-sea has been vanquished. No doubt traders and fisherawes alike will rejoice once the news goes out. My name along with it too perhaps!</p> 
@@ -68,23 +69,41 @@
 
 <span class="duelvictory hidden">
 <p> There remained a decision to be made about Nipfang and the prisoners. For his crimes he was condemned to a belly, like he had done to countless others. Not only to satisfy the many laws he's broken, but also for many those who's beliefs lie in that the spirits of Awes be returned to our blood. </p>
-<p> As his captor I was in my rights to carry out the sentencing myself if i felt like it. So far i've postponed the decision in hopes of being able to question him for information. But he's remained stubbornly tight-lipped</p>
+<p> As his captor I was in my rights to carry out the sentencing myself if i felt like it. So far i've postponed the decision in hopes of being able to question him for information. But he's remained stubbornly tight-lipped.</p>
+<p> Perhaps the proper thing to do is to hand him over to those with more time and patiance, but i suspect all i'd do is hand away a large free meal. </p>
 </span>
 <span class="battlevictory hidden">
 <p>Though Nipfang escaped, I have proven my tactics and ability to lead. Perhaps they'll give me a bigger ship! </p>
 <p>The battle had left many of my brave crew wounded. They carried on bravely and stoicaly, but i could tell many were hiding wounds that should have kept them down in their bunks. They are a good crew and I did my best to lighten their duties.</p> 
 <p> We limped into port a few days later, word quickly spread of our deed and crowds, cheering and gawking, formed as we marched the prisoners that remained across the docks to the Admiralty compounds where they'd be imprisoned.</p>
-<p> I had scarcly arrived when the urgent summons came. I was to report at once to the Grand Admiral herself, no delay! I was to take the fastest transport and make my way west, far west to Port Hrystcrag on the western coast. </p>
-<p> It was all a little baffling, they could not have heard of my exploits all the way over there already. But what choice had i then to immidiatly depart. </p>
-<p> I was sorry to leave my ship in the current state it was in and not oversee the repairs myself. But for all i knew i wouldnt be back to see it. I've heard rumours of captains being sent out on the dangerous west-seas, was i to be one of them? </p>
+<p> I had scarcly arrived when the urgent summons came. The old Vice-Admiral wanted to see me, to congratulate me no doubt! Im rushed to headquarters and taken into audience. </p>
+
+<p> "You've done well Captain. Nipfang and his crew have plagued our shipping for long enough." The old wizened Matron Vice-Admiral crooned. "I was starting to think that between pirates and dying East-sea Trade i was going to have to head out to fix things myself." </p>
+<p> I nod politely. </p>
+<p> "As it is..." She continues. "The west have not only taken our trade, but it is taking our captains aswell. I have urgent standing-orders from High-command to send any capable captain to Headquarters in Hrystcrag before the 3 Moon tides." </p>
+<p> "You mean..." I blurt, before being interrupted. </p>
+<p> "Im sorry, but your fame and celebration will have to wait. There's still time and you fit the bill more then anyone i've sent so far. Pack lightly, you are leaving today."
+
+<p> It was all a little baffling, but what choice had i then to immidiatly depart. </p>
+<p> I was sorry to leave my ship in the current state it was in and not oversee the repairs myself. But for all i knew i wouldnt be back to see it. I've heard rumours of the dangerous west-seas, they were many times harder to navigate well and the tide-waves were sure to drown anyone who didnt.</p>
+<p> My questions would have to wait for when i got there. </p>
 </span>
 </div>
 <div class="prisoner hidden">
-<p> His sentencing will have to be carried out by someone else. Perhaps someone who might have time to extract answers from him too. I havent the taste for it and there is too much to be overseen, reports to be written to be burdened by his digestion.</p>
+<p> His sentencing will have to be carried out by someone else. Perhaps someone with the time to extract answers from him. I havent the taste for it and there is too much to be overseen, reports to be written to be burdened by his digestion.</p>
 <p> We limped into port a few days later, word quickly spread of our deed and crowds, cheering and gawking, formed as we marched the prisoners that remained across the docks to the Admiralty compounds where they'd be imprisoned.</p>
-<p> I had scarcly arrived when the urgent summons came. I was to report at once to the Grand Admiral herself, no delay! I was to take the fastest transport and make my way west, far west to Port Hrystcrag on the western coast. </p>
-<p> It was all a little baffling, they could not have heard of my exploits all the way over there already. But what choice had i then to immidiatly depart. </p>
-<p> I was sorry to leave my ship in the current state it was in and not oversee the repairs myself. But for all i knew i wouldnt be back to see it. I've heard rumours of captains being sent out on the dangerous west-seas, was i to be one of them? </p>
+<p> I had scarcly arrived when the urgent summons came. The old Vice-Admiral wanted to see me, to congratulate me no doubt! Im rushed to headquarters and taken into audience. </p>
+
+<p> "You've done well Captain. Nipfang and his crew have plagued our shipping for long enough." The old wizened Matron Vice-Admiral crooned. "I was starting to think that between pirates and dying East-sea Trade i was going to have to head out to fix things myself." </p>
+<p> I nod politely. </p>
+<p> "As it is..." She continues. "The west have not only taken our trade, but it is taking our captains aswell. I have urgent standing-orders from High-command to send any capable captain to Headquarters in Hrystcrag before the 3 Moon tides." </p>
+<p> "You mean..." I blurt, before being interrupted. </p>
+<p> "Im sorry, but your fame and celebration will have to wait. There's still time and you fit the bill more then anyone i've sent so far. Pack lightly, you are leaving today."
+
+<p> It was all a little baffling, but what choice had i then to immidiatly depart. </p>
+<p> I was sorry to leave my ship in the current state it was in and not oversee the repairs myself. But for all i knew i wouldnt be back to see it. I've heard rumours of the dangerous west-seas, they were many times harder to navigate well and the tide-waves were sure to drown anyone who didnt.</p>
+<p> My questions would have to wait for when i got there. </p>
+
 </div>
 <div class="nipfang hidden">
 <p> I confronted the defeated and bound Wulf-captain, it appears i must have looked smug and hungry, for he guessed my intentions with just one glance in my direction. </p>
@@ -98,14 +117,22 @@
 <p> Either way he filled out my belly impressively, i almost forgot to unbutton my belt until i felt strain become too much. He'd take some doing to work off, but nothing i hadent handled before. </p>
 
 <p> We limped into port a few days later, word quickly spread of our deed and crowds, cheering and gawking, formed as we marched the prisoners that remained, most of them part of our figures, across the docks to the Admiralty compounds where they'd be imprisoned.</p>
-<p> I had scarcly arrived when the urgent summons came. I was to report at once to the Grand Admiral herself, no delay! I was to take the fastest transport and make my way west, far west to Port Hrystcrag on the western coast. </p>
-<p> It was all a little baffling, they could not have heard of my exploits all the way over there already. But what choice had i then to immidiatly depart. </p>
-<p> I was sorry to leave my ship in the current state it was in and not oversee the repairs myself. But for all i knew i wouldnt be back to see it. I've heard rumours of captains being sent out on the dangerous west-seas, was i to be one of them? </p>
-<hr />
+<p> I had scarcly arrived when the urgent summons came. The old Vice-Admiral wanted to see me, to congratulate me no doubt! Im rushed to headquarters and taken into audience. </p>
+
+<p> "You've done well Captain. Nipfang and his crew have plagued our shipping for long enough." The old wizened Matron Vice-Admiral crooned. "I was starting to think that between pirates and dying East-sea Trade i was going to have to head out to fix things myself." </p>
+<p> I nod politely. </p>
+<p> "As it is..." She continues. "The west have not only taken our trade, but it is taking our captains aswell. I have urgent standing-orders from High-command to send any capable captain to Headquarters in Hrystcrag before the 3 Moon tides." </p>
+<p> "You mean..." I blurt, before being interrupted. </p>
+<p> "Im sorry, but your fame and celebration will have to wait. There's still time and you fit the bill more then anyone i've sent so far. Pack lightly, you are leaving today."
+
+<p> It was all a little baffling, but what choice had i then to immidiatly depart. </p>
+<p> I was sorry to leave my ship in the current state it was in and not oversee the repairs myself. But for all i knew i wouldnt be back to see it. I've heard rumours of the dangerous west-seas, they were many times harder to navigate well and the tide-waves were sure to drown anyone who didnt.</p>
+<p> My questions would have to wait for when i got there. </p>
 </div>
 <div class="journey hidden">
-<p> The journey west across the continent was a rushed and bumpy one. Between relay stations, you trade one small carriage for the next on the ticket of high-priority summons, pulled along by fresh and eager Raptorian couriers. Had you scored higher then a modest 5 on your flight-apptitude back in the academy you might have glided over the terrain between the relay-stations towers. But only 1 in 50 ever got over 7 which was the minimum, most of those would be the lighter Males. </p>
-<p> The western half, though populated had until recently always been more rural. But the opening of the western sea-route through previously un-navigatable seas had seen a boom. Villages and even towns that hardly existed 50 years ago now swish past your carriage windows. </p>
+<p> The journey west across the continent was a uncomfortably rushed and bumpy one. Between relay stations, you trade one small carriage for the next on the ticket of high-priority summons, pulled along by fresh and eager Raptorian couriers, always on the move to save time. </p>
+<p> Had you scored higher then a modest 4 on your flight-apptitude back in the academy you might have been forced to glide over the terrain between the high relay-stations towers strategically built into valleys and hills. But only 1 in 50 Awes ever got a score over 7 which was the minimum, most of those would be the lighter Males. The scouts and couriers of the Admirality. </p>
+<p> The western half of the land, though populated had until recently always been more rural. But the opening of the western sea-route through previously un-navigatable seas had seen a boom. Villages and even towns that hardly existed 50 years ago now swish past your carriage windows. </p>
 <p></p>
 <p> Once you arrive at Hrystcrag you're taken aback by how much of a city had emerged on these once barren and rocky old ruins. The amount of industry, with its cranes and pulleys perched over steep cliffs and the ocean below told of a bustle of growing commerce. You even spy the hulls of ships in what must be a shipyard, precariously built on the ledge of the far cliff. </p>
 <p> One might ask themselves why anyone would build a large port in such a difficult location. But if  you searched up and down the coast, the only other viable place safe from the violent roiling sea and tides of the west sea lay far north in Gleaming Bay. Truth be told, this port would likely not have existed unless the old ruins from the First-age had not already been constructed into the sides of the cleft cliffs, which formed a small bay relatively of calm water. </p> 
@@ -126,7 +153,7 @@ if (_.contains(state.preludeEvents, "duel"))
 		}
 		else {
 	$('.battlevictory').removeClass('hidden');
-	$("#button-3").removeClass("hidden");
+	$("#button-4").removeClass("hidden");
       }
 
 /*

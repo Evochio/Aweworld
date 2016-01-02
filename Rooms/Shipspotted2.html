@@ -30,7 +30,24 @@
         // end by using lib.goTo
         lib.goTo('Page6b.html')
       })
-    
+    if(_.contains(state.inventory, "gratitude")) {
+		$('#helped').removeClass('hidden');
+	}
+	else {
+		$('#noHelped').removeClass('hidden');
+	}
+
+	if (_.contains(state.battle, "explosion")) {
+		$('#explosion').removeClass('hidden')
+		}
+	else if (_.contains(state.battle, "board")) {
+		$('#board').removeClass('hidden')
+		}	
+	else {
+		$('#retreat').removeClass('hidden')
+	}
+	
+	
     })
   </script>
   
@@ -73,6 +90,7 @@
 
 <p>“Oh...! The captain Russel sends his regards. They weathered quite a storm after you parted with them but made it out alright. We assisted them with their sails and got quite a discount with the merchant-league, just as you said!”</p>
 
+<p>Kveest motions toward some of the damage of my ship. </p>
 </div>
 <div class="hidden" id="noHelped">
 
@@ -83,19 +101,27 @@
 
 <p>“Your fine ship is injured. Did you catch those pirates responsible?”</p>
 
-<p>Explode:</p>
+<div class="hidden" id="explosion">
 
 <p>“Hrm, you could say that! Not much left of them but pieces and smoke.”</p>
 
-<p>“So it was you then... we saw the smoke. Wondered what it could have been.” Kveest spoke in admiration</p>
+<p>“So it was you then... we saw the smoke. Wondered what it could have been.” Kveest spoke in admiration. "You gave them vengeance for your injuries!"</p>
 
-<p>Retreat:</p>
+</div>
+<div class="hidden" id="retreat">
 
 <p>“We were forced to put on speed and outrun them.” I explained. </p>
 
-<p>“So it was them we spotted heading south-east. We thought it a large Wulf-ship.”</p>
+<p>“So it was them we spotted heading south-east. We thought it an unusually large Wulf-ship.” Kveest regards the damage of the ship. "You look to have made a wise choice to take wing."</p>
 
+</div>
 
+<div class="hidden" id="board">
+<p> "It was a hard battle, we managed to board them, but we were driven off. But atleast we managed to disable their weapons." I spoke proudly, glancing at the crew around me. </p>
+
+<p> "Ah!" Kveest whistled approvingly. "The fabled prowess and courage of Awes proven true once more then! But they escaped your grasp?" </p>
+
+</div>
 
 <p>“They had frightful weapons I have not seen or heard of before. Have yo ever seen or heard of devices that boom with noise and send projectiles of heavy iron whistling through the air as if they were mere lightning.” I motioned toward a gaping hole a shot had penetrated through.</p>
 
@@ -146,15 +172,8 @@
 <hr />
 <script>
 
-if(_.contains(state.inventory, "gratitude")) {
-$('#helped').removeClass('hidden');
-}
-else {
-$('#noHelped').removeClass('hidden');
-}
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default" id="button-1">End Chapter 1</button>
-
+</script>
 
 </body>
 </html>

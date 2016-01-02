@@ -20,17 +20,12 @@
       
       $('#button-3').on('click', function() {
         // change state here
-		state.crewMorale += 1;
-		state.vore += 1;
+		
         // end by using lib.goTo
-        lib.goTo('Page2a.html')
+        lib.goTo('Ship_Crew.html')
       })
 
-      $('#button-2').on('click', function() {
-        // change state here
-        // end by using lib.goTo
-        lib.goTo('Page2b.html')
-      })
+     
 	   $('#button-4').on('click', function() {
         // change state here
         // end by using lib.goTo
@@ -71,8 +66,7 @@
 <hr />
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default" id="button-3">Set examples</button>
-<button class="btn btn-default" id="button-2">Be lenient</button> 
+<button class="btn btn-default" id="button-3">Crew</button>
 <button class="btn btn-default" id="button-4">Ship Report</button> 
 <p> Crew morale:
 <span class="Crew-morale-description"><script>displayMoraleStatus()</script></span>

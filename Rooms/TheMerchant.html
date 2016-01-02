@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <title>Admiral Avolc Game</title>
 
-  <link rel="stylesheet" href="/main.css"></link>
+ <link rel="stylesheet" href="/main.css">
 
   <script src="/jquery-2.1.3.js"></script>
   <script src="/underscore.js"></script>
 	<script src="/bootstrap.min.js"></script>
- <link rel="stylesheet" href="/bootstrap.min.css"></link>
-  <link rel="stylesheet" href="/bootstrap-theme.min.css"></link>
+ <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-theme.min.css">
   <script src="/main.js"></script>
 
   <script>
@@ -58,7 +58,7 @@
 		$('#button-4').on('click', function(e) {
 		lib.dialogue(e, "request")
         $("#button-4").addClass("hidden");
-		$("#button-5").addClass("hidden");
+		
 		$("#play2").removeClass("hidden");
 		
 	})
@@ -79,7 +79,7 @@
 		$("#play2").addClass("hidden");
 		$("#button-11a").removeClass("hidden");
 		$("#button-9").removeClass("hidden");
-		
+		$("#button-5").addClass("hidden");
       })
 	  
 	  	$('#button-6').on('click', function(e) {
@@ -112,14 +112,14 @@
 		lib.dialogue(e, "gamenom")
 		$("#button-9").addClass("hidden");
 		$("#digested").removeClass("hidden");
-		
+		$("#button-11a").addClass("hidden");
       })
 	  
 	   	$('#digested').on('click', function(e) {
         // change state here
 		lib.dialogue(e, "digested")
 		$("#digested").addClass("hidden");
-		
+		$("#restart").removeClass("hidden");
 		
       })
 	   	$('#button-10').on('click', function(e) {
@@ -132,6 +132,7 @@
 	  	$('#button-11').on('click', function(e) {
         // change state here
 		lib.dialogue(e, "goodbyes")
+		$("#button-9").addClass("hidden");
 		$("#button-12").removeClass("hidden");
 		$("#button-11").addClass("hidden");
 		
@@ -140,6 +141,7 @@
         // change state here
 		state.crewMorale += 1;
 		lib.dialogue(e, "goodbyes2")
+		$("#button-9").addClass("hidden");
 		$("#button-12").removeClass("hidden");
 		$("#button-11a").addClass("hidden");
 		
@@ -155,9 +157,10 @@
         lib.goTo('Page13.html')
       })
 	  
+	
     })
-  </script>
-  
+  </script> 
+
   <style>
     /* Put styling that is specific to this page here. This is a CSS comment btw. */
   </style>
@@ -211,6 +214,9 @@
 
 <button class="btn btn-default hidden" id="button-12"> Storm </button>
 <button class="btn btn-default hidden" id="button-13"> Continue </button>
+
+
+
 
 <div class="information hidden"><p><strong>Get information, then leave</strong></p>
 <p>We retired quickly to my cabin and Captain Russel was very disappointed to hear that we would not be of greater assistance to their plight.</p>
