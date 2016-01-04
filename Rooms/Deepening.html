@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+ <link rel="stylesheet" href="/main.css">
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-theme.min.css">
+  <script src="/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#arn').on('click', function(e) {
+		lib.dialogue(e, "arn"),
+		
+		$("#arn").addClass("hidden")
+		$("#interview").addClass("hidden")
+		
+	})
+		
+		$('#interview').on('click', function(e) {
+		lib.dialogue(e, "interview"),
+		
+        $("#arn").addClass("hidden")
+		$("#interview").addClass("hidden")
+		
+		$("#approve").removeClass("hidden")
+		$("#deny").removeClass("hidden")
+		
+	
+      })
+      $('#approve').on('click', function(e) {
+       lib.dialogue(e, "approve"),
+		state.events.push("deepening");
+		$("#approve").addClass("hidden")
+		$("#deny").addClass("hidden")
+		$("#continue").removeClass("hidden")
+      })
+	   $('#deny').on('click', function(e) {
+       lib.dialogue(e, "deny"),
+		$("#approve").addClass("hidden")
+		$("#deny").addClass("hidden")
+		$("#continue").removeClass("hidden")
+      })
+	  
+	   $('#continue').on('click', function(e) {
+       lib.goTo('Page8.html')
+	 	  
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+<div id="story-text">
+<p>I was interrupted today by a peculiar request brought forward by First-mate Arn. A couple wishing to perform a 'Deepening'. We're barely started on our journey and already some Awes appear to have fallen deeply for one-another. I never had this arise in the East-sea, of course there was talk, like all sailors talk. And when I was captain I stated something to the effect of keeping close personal matters for when you're off-ship. But it was also a smaller tight-knit crew.</p>
+
+<p>I had to consult the tome of laws about this one and normally a Deepening is not an affair of the state at all, it needs only be registered and lately some regions have begun demanding written consent forms. Such as the rise of bureaucracy is. </p>
+
+<p>But its different in the Admiralty if you're in active duty, on-mission and fit to serve for the same reason pregnancies are highly discouraged. It takes an able-bodied Awe out of the action. Interestingly however nowhere could I find either actually were outright forbidden, just against normal policies of the fleet and captains. Each ship of course sets their own policies within this framework. </p>
+
+<p>Im still new to this crew, i've spent long hours catching up on all documentation related to this ship, the crew-manifest most of all, this situation feels like a bit of a headache. I feel like just getting it over with. But who knows what im setting myself up for by either choice. Arn seem to be pressing for approval, I didnt quite take him for the compassionate Aweist type. </p>
+
+</div>
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="arn">Crew issue, leave it to Arn.</button>
+<button class="btn btn-default" id="interview">Interview and decide.</button>
+<button class="btn btn-default hidden" id="approve">Approve</button>
+<button class="btn btn-default hidden" id="deny">Deny</button>
+<button class="btn btn-default hidden" id="continue">Continue</button>
+
+
+<div class="arn hidden"><p><strong>Leave it to Arn</strong></p>
+
+<p> Arn took his time to arrive, i was about to head out to look for him myself, thinking my Cadets had gotten lost trying to find him. </p>
+
+<p> "Aye, Cap. You called." He loitered by the doorway. </p>
+
+<p> "That Deepening couple, what do you reckon about it? You've known the crew for longer then me." </p>
+
+<p> "Ah yea, Midlotta and Tintus. I'd let them have their way really. If a squeaker wants to give himself off, then why not, ya know." </p>
+
+</div>
+
+<div class="interview hidden"><p><strong>Interview</strong></p>
+<p>After a brief interview with the two, the joiner a first-rank sailor and the, to-be-joined, a Squire. I feel their affection seem genuine enough, i wont bother to document their flowery lovey-dovey talk. Apparently they had brought forth this request before but been rebuffed and discouraged. But now the feelings had re-blossomed so they figured to try their luck with the new captain. </p>
+
+<p>In the end its a question of how much control I want to exert over the crew, it was after all something the previous captain apparently tried too hard at. Still, the decision is mine to make. </p>
+
+</div>
+
+<div class="approve hidden"><p><strong>Approve</strong></p>
+<p>I gave the joined, Squire Midlotta (Quite the mountains name), some leave for the digesting she'd be needing to do. She assured me she could still perform her duties, but I was feeling generous.</p>
+
+<p>I squeezed the paw of the joiner and wished him a smooth passing and thanked him for his service. His name escapes me at the time of writing, which seems appropriate as its now written over to squire Midlotta as second name. I left the formal documentation to Cadet Valnos, it seemed good practice. </p>
+
+</div>
+
+<div class="deny hidden"><p><strong>Deny Deepening</strong></p>
+<p>I let them down softly but they were understandably disappointed. They'll just have to continue showing affection for one another the traditional ways. </p>
+
+<p>In the end I have to run a stable ship here, or i'll find myself short on crew one day when suddenly a cult of personality have started and everyone deepened themselves to a charmer. The policy is there for a reason and I have to trust the wisdom of the Admiralty. </p>
+
+</div>
+
+
+</body>
+</html>

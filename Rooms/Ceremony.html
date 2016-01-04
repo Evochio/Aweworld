@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+ <link rel="stylesheet" href="/main.css">
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-theme.min.css">
+  <script src="/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      if (_.contains(state.events, "deepening")) {
+		$("#agreed").removeClass("hidden")
+	  }
+	  else {
+		$("#agreed2").removeClass("hidden")
+	  }
+	  
+      $('#agreed').on('click', function(e) {
+		lib.dialogue(e, "agreed"),
+		
+		$("#agreed").addClass("hidden")
+		$("#ceremony").removeClass("hidden")
+	})
+		
+		$('#agreed2').on('click', function(e) {
+		lib.dialogue(e, "agreed2"),
+		$("#agreed2").addClass("hidden")
+		$("#ceremony").removeClass("hidden")
+      })
+      $('#denied').on('click', function(e) {
+       lib.dialogue(e, "denied"),
+		
+        $("#denied").addClass("hidden")
+		$("#ceremony_no").removeClass("hidden")
+		
+      })
+	   $('#ceremony').on('click', function(e) {
+       lib.dialogue(e, "ceremony"),
+	   $("#ceremony").addClass("hidden")
+	   $("#ceremony2").removeClass("hidden")
+		
+      })
+	  $('#ceremony_no').on('click', function(e) {
+       lib.dialogue(e, "ceremony_no"),
+	   $("#ceremony_no").addClass("hidden")
+		$("#continue").removeClass("hidden")
+		
+      })
+	   $('#ceremony2').on('click', function(e) {
+       lib.dialogue(e, "ceremony2"),
+	   $("#ceremony2").addClass("hidden")
+	   $("#continue").removeClass("hidden")
+      })
+	 
+	   $('#continue').on('click', function() {
+        // change state here
+		
+        
+        lib.goTo('end.html')
+		
+		
+      })
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+<div id="story-text">
+<p>“Captain” A soft voice spoke to me through the doorway. “May we have a word?” </p>
+
+<p>It was the Soft-spoken herself. Cowled and dressed in her long robe. If she'd deigned to come speak to me herself, it must be of some importance. I beckoned her inside. </p>
+
+<p>The Soft-spoken closed the door behind her and invited herself to a seat, perching over it rather then sitting properly. </p>
+
+<p>“You've guided us through difficult times and challenges. Me and mine are grateful.”</p>
+
+<p>I nodded humbly. “It was mostly the efforts of the crew.”</p>
+
+<p>“This may be correct, its the efforts of all of us that will see us through.“ She murrled quietly. </p>
+
+<p>“It is also why I am here. The efforts of those we've lost along the way, who's sacrifice have ushered us along. Many have fallen to the dark, unable to reach the light of the First Awe through beloved kin. We must honor them and help usher them toward the light!”</p>
+
+<p>I shifted uneasily. I didnt need a reminder of the brave Awes who were no longer among us. They haunted my dreams. </p>
+
+<p>“You wish to hold another gathering?” I ventured.</p>
+
+<p>“A Ceremony, yes! It is a sacred time. If conditions permit, I would like to honor the lost in the light of the three moons, help usher their spirits back to the light. I believe it will put many hearts at ease.”</p>
+
+<p>I considered her words. The weather had seemed to calm considerably. As long as we kept a look-out, we'd be in no danger for a nights distraction. </p>
+
+</div>
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default hidden" id="agree">Agree</button>
+<button class="btn btn-default hidden" id="agree2">Agree</button>
+<button class="btn btn-default" id="denied">Denied</button>
+<button class="btn btn-default hidden" id="allow">Allow Deepening</button>
+<button class="btn btn-default hidden" id="noallow">Do not allow</button>
+<button class="btn btn-default hidden" id="ceremony">Ceremony</button>
+<button class="btn btn-default hidden" id="ceremony_no">Ceremony</button>
+<button class="btn btn-default hidden" id="ceremony2">Volunteers</button>
+<button class="btn btn-default hidden" id="volunteer">Volunteer yourself</button>
+<button class="btn btn-default hidden" id="continue">Continue</button>
+
+
+<div class="agreed hidden"><p><strong>Agreed</strong></p>
+
+<p>"I thank you Captain, you are being wise. This is the purpose i am here for, to safeguard our souls and sheperd the stray out of the darkness." </p>
+
+<p> Not quite sure how to respond to that i nodded. Her following had grown since the start of the journey and probably would even more the more i sanctioned their gatherings. But there had been no consequences from it thus far. </p>
+
+<p> Perhaps a little faith is what some needed to be brave. </p>
+
+</div>
+
+<div class="agreed2 hidden"><p><strong>Agreed</strong></p>
+
+<p> "I thank you Captain, you are being wise. This is the purpose i am here for, to safeguard our souls and sheperd the stray out of the darkness." </p>
+
+<p> "There is however one more thing i must ask for." She continued. </p>
+
+<p> "You've set a policy to deny people wishing to deepen with one another. It might have proven a wise decision given the cirumstances that occured, but for tonight i wish to ask you lift this restriction."
+
+<p> I quirked my brow at that and leaned forward. </p>
+
+<p> "And why is that priestess? Planning to give yourself away?"
+
+<p> She shook her head patiantly. </p>
+
+<p> "For the ceremony to be complete, to create a strong light and a beacon for those lost, volunteers who join together are neccesary. Its when we honor the first-Awe and truly unite, heart AND body, that we are at our strongest."
+
+<p> I leaned back in my chair and thought about this. She had a way with words alright. </p> 
+
+</div>
+
+<div class="denied hidden"><p><strong>Denied</strong></p>
+
+<p> "Im sorry priestess." I spoke after a moments considerations. "There is too much at stake right now. We are in the middle of the straight between coasts, a lot can happen. I need everyone at the fullest alert."  </p>
+
+<p> "But Captain!" The Soft-spoken seemed to momentarily rise in her seat, she was larger then she pretended to be. "Think of those lost! Think of the hearts of your crew! We head further away from the peaks of our homes. Many might yet still not see them again." </p>
+
+<p> "That is for me to worry about!" I snapped. "I dont need my crews heads filled with distractions when they need to be alert!" </p>
+
+<p> "Would you rather then that they be afraid?" The priestess retorted sharply.  "When the time comes to fight again, knowing they might take their final step and be lost in darkness might make most refuse to take it!" </p>
+
+<p> "It sounds like it might be you who need a little faith, priestess. Trust in their courage." </p>
+
+<p> The Soft-spoken sat silently a while, then rose softly. "Very well Captain. Thank you for your time." She was out the door smoothly and quietly. </p>
+</div>
+
+<div class="ceremony hidden"><p><strong>Ceremony</strong></p>
+<p>It was the night of the ceremony, the seas were unusually calm and almost windless. It seemed most of the ships crew had gathered on deck under the light of the full moons. Devotees to the order and regular followers, but also many a curious participant with nothing better to do. </p>
+
+<p>A hush fell as the priestess of the order emerged. The Soft-spoken. She was not hidden under her cowl and cloak now and the sight of her took everyone aback. </p>
+
+<p>Wearing but a ornamental mantle with silver trimming that parted halfway down her back to either side of her hips, she strode down along the deck through the middle of the crowd towards the recently assembled altar. </p>
+
+<p>She was white of fur with the occasional pattern of gray. Her mane was silver, thick and lush and apparently groomed prominently, for it burst forward from her chest and shoulders like a wild hardy mountain flower at bloom, swaying gently in tune with her surprisingly delicate and smooth steps. She had large white wings, thick and woolly and looking invitingly soft for a cold night. </p>
+
+<p>She was a Mountain-Awe. The race of which all Awes are descendant from. I had heard some still remained in the furthest tallest reaches of the spiny mountains, keeping to themselves. There was something pure and raw about her that brought a hush to the assembled crowd. Despite her size , standing a head taller then myself and with thick Matron-like sturdiness to her, she seemed almost to float to the altar before facing the crowd. </p>
+
+<p>She raised her voice and it was crisp and clear, carrying an accent to it i could not quite place but felt distinctly familiar. She did not have this accent in our previous meetings. </p>
+
+<p>"We are gathered here this night of moons for the ceremony of the lost, initiation and worship!" </p>
+
+<p>"We take our lesson from the first Awe. Matron of us all. Who at the darkest coldest night, took her kin upon herself, harboring them until they would persevere into the light together. Through her we emerged as a new stronger generation. It was through the full belly of the first Awe we saw salvation through darkness. Thus it is through the full belly we say thanks for the blessing of our strength and we are guided into the light!"</p>
+
+<p>The priestess climbed onto the altar and stood above the crowd, her abdomen revealed for all. She didn't quite as such have a paunch as her stocky frame seemed to lend her a generous natural full figure. The longer fuzz under the lip of her pouch was dotted with patches of gray. </p>
+
+<p>She gripped either side of belly with both paws, caressing it almost seductively upwards in a light heave while she spoke.</p>
+
+<p>"Tonight, at the brightest night, we honor the first Awe and what she taught us. For it was the same light that called to the First Awe that the darkness had been vanquished. Who among you will join with me, in worship and strength and aid in making a light so bright to guide and usher those lost back into the fold!”</p>
+</div>
+
+<div class="ceremony_no hidden"><p><strong>Ceremony</strong></p>
+<p>It was the night of the ceremony, the seas were unusually calm and almost windless. It seemed most of the ships crew had gathered on deck under the light of the full moons. Devotees to the order and regular followers, but also many a curious participant with nothing better to do. </p>
+
+<p>A hush fell as the priestess of the order emerged. The Soft-spoken. She was not hidden under her cowl and cloak now and the sight of her took everyone aback. </p>
+
+<p>Wearing but a ornamental mantle with silver trimming that parted halfway down her back to either side of her hips, she strode down along the deck through the middle of the crowd towards the recently assembled altar. </p>
+
+<p>She was white of fur with the occasional pattern of gray. Her mane was silver, thick and lush and apparently groomed prominently, for it burst forward from her chest and shoulders like a wild hardy mountain flower at bloom, swaying gently in tune with her surprisingly delicate and smooth steps. She had large white wings, thick and woolly and looking invitingly soft for a cold night. </p>
+
+<p>She was a Mountain-Awe. The race of which all Awes are descendant from. I had heard some still remained in the furthest tallest reaches of the spiny mountains, keeping to themselves. There was something pure and raw about her that brought a hush to the assembled crowd. Despite her size , standing a head taller then myself and with thick Matron-like sturdiness to her, she seemed almost to float to the altar before facing the crowd. </p>
+
+<p>She raised her voice and it was crisp and clear, carrying an accent to it i could not quite place but felt distinctly familiar. She did not have this accent in our previous meetings. </p>
+
+<p>"We are gathered here this night of moons for the ceremony of the lost." </p>
+
+<p>"We take our lesson from the first Awe. Matron of us all. Who at the darkest coldest night, took her kin upon herself, harboring them until they would persevere into the light together. Through her we emerged as a new stronger generation. It was through the full belly of the first Awe we saw salvation through darkness. Thus it is through the full belly we say thanks for the blessing of our strength and we are guided into the light!"</p>
+
+<p> Her eyes searched the crowd and paused briefly at me for a moment. Then she continued. </p>
+
+<p> "Under the light of the moons and the light of our souls gathered here by us together, we will usher our lost back into our fold." She raised a paw to the moons and in the light her white fur seemed to almost glimmer. </p>
+
+<p> "Have heart, have courage. For as long as the light of us all exists here and back home, we'll all find our way home." </p>
+
+<p> The rest of the ceremony proceeded in a similar manner. Although the ritual seemed somewhat incomplete, the priestess seemed to make a good job of it, despite my adamant denial of her earlier request. </p>
+
+<p> I stood at the deck and regarded the full moons, they made it almost as bright as dawn and seemed to drown out the stars. It was a bright quiet night, the low waves parting peacefully before our advance to whatever awaited us. </p>
+
+<p> With all the turbulence of the last few days, i welcomed the feeling of warmth the gathering had brought. It was comforting to be surrounded by your kind. But I had the feeling it was the calm before the storms to come. If the fleet had met the kind of opposition we did, i could only hope they fared with as much fortune as we. </p>
+
+<p> In a barely weeks time when the first islands came to view, we would see. </p>
+</div>
+
+<div class="volunteer hidden"><p><strong>Ceremony</strong></p>
+
+
+
+</div>
+
+<div class="cermony2 hidden"><p><strong>Ceremony</strong></p>
+<p>Unsurprisingly, volunteers stepped up. Awes either swayed by her words and charisma or feeling like they're doing the right thing, probably both. </p>
+
+<p>4 of them in total, approach the podium and kneel, wishing to be consumed by the Mountain-Awe. I frown at this, I had not accounted for her asking for volunteers like this. </p>
+
+<p>But I choose to say nothing, interrupting something which had already gone this far would win me no favors. Instead I find myself, like the rest, staring fascinated as the Soft-spoken blesses each in turn, standing before them so that they may give her pouch and belly a kiss in final commitment. </p>
+
+<p>The act of consumption takes place in front of all to see. Willing yellow-furred Awes slip into the larger white Awes jaws one by one. There is something quite sensual and raw about her methods, she used a practiced three-step method for maximum speed and showmanship. She'd take one into her jaws, resting their heads upon her tongue, then swallow them down with rolling hard gulps all the way to their waists and leave them for a moment longer, then consume them down to their feet-paws and let those linger upon her tongue for all to see before filling her belly with them. </p>
+
+<p>I doubted she'd swallow all 4 Awes, I had never heard of anyone go beyond 3. But she did not pause at the 3rd, even when her belly looked strained and painfully taut. </p>
+
+<p>The 4th one, unsurprisingly she beckoned into her pouch. She was leaning heavily by now against the podium and supported by a assistant, who seemed to be none other then Glint. </p>
+
+<p>With her stomach so full and taking space, Glint had to help push the final one into the priestesses pouch. It was the only moment through the whole ordeal that didn't seem quite as rehearsed and smooth as the rest. But to in the end, all in all the Soft-spoken had taken in 6 Awes into her body. She was unable to stand and lay upon the podium, voice strained as she stroked over her huge gut. </p>
+
+<p>“Oh First-Awe! By the light of our souls united! Let us guide those wayward ones, let us honor you and be stronger, together, in your name!”</p>
+
+<p>With that the ceremony was over. The immobile priestess lay available for anyone who wished to step forward to receive a blessing or give her grand stomach a soft rub. </p>
+
+<p>I watched the proceeding and as people filed away back to their duties. I approached her myself, last of all and put a paw to her gut. It was grumbling and groaning loudly, digesting already. The movement of the Awes within her was clear to see, even the one in her pouch was sealed up to be absorbed. </p>
+
+<p>I felt a moments inexplicable envy. Not to the priestess, but to those within her. </p>
+
+<p>It was in that moment I felt a paw on my shoulder, the priestess muttering a few words of blessing. </p>
+
+<p>“Go in the light, Captain. And be blessed. You are welcome into my fold any time you wish.” She murmured and smiled, seeming somewhat at bliss with herself. So this is how the Order gained such a following. </p>
+
+<p> I stood at the deck and regarded the full moons, they made it almost as bright as dawn and seemed to drown out the stars. It was a bright quiet night, the low waves parting peacefully before our advance to whatever awaited us. </p>
+
+<p> With all the turbulence of the last few days, i welcomed the feeling of unity the gathering had brought. It was comforting to be surrounded by your kind. But I had the feeling it was the calm before the storms to come. If the fleet had met the kind of opposition we did, i could only hope they fared with as much fortune as we. </p>
+
+<p> In a barely weeks time when the first islands came to view, we would see. </p>
+</div>
+
+<div class="cadets hidden"><p><strong>Quiet night</strong></p>
+<p> While i might not have allowed to ceremony to be held on-deck in any official manner, i could not stop what Awes did on their private time in the holds below. The priestess could have her little light ceremony, as long as it didnt interrupt ship duties. </p>
+
+<p> I stood at the deck and regarded the full moons, they made it almost as bright as dawn and seemed to drown out the stars. It was a bright quiet night, the low waves parting peacefully before our advance to whatever awaited us. </p>
+
+<p> With all the turbulence of the last few days, i welcomed the soothing silence. It allowed for quiet reflection. I had the feeling it was the calm before the storms to come. If the fleet had met the kind of opposition we did, i could only hope they fared with as much fortune as we. </p>
+
+<p> In a barely weeks time when the first islands came to view, we would see. </p>
+</div>
+
+
+</body>
+</html>
