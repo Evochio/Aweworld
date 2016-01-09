@@ -3,16 +3,16 @@
 float:right;
 }
 #Glint {
-	background-image: url(/Rooms/Images/01b.png);
-	height: 100px;
-	width: 100px;
+	background-image: url(/Rooms/Images/GlintFace.png);
+	height: 286px;
+	width: 200px;
 	cursor: pointer;
 	position: relative;
 	text-align: center;
 }
 
 #Ziggy {
-	background-image: url(/Rooms/Images/Valnosface4.png);
+	background-image: url(/Rooms/Images/ZiggyFace.png);
 	height: 286px;
 	width: 200px;
 	cursor: pointer;
@@ -27,6 +27,12 @@ float:right;
 	position: relative;
 	text-align: center;
 }
+
+#Ziggy:checked {
+	background-position: 0px 572px;
+}
+
+/* 
 #Ziggy:disabled {
 	background-position: 200px 572px;
 }
@@ -62,4 +68,7 @@ float:right;
 }
 .surprised {
 	background-position: 200px 286px;
+}
+.neutral {
+	background-position: 286px 200px;
 }

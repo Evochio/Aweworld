@@ -55,9 +55,17 @@
 		
 		updateGameScore();
 		$("#button-5").removeClass("hidden")
+		$("#ziggyplan").removeClass("hidden")
 		$("#button-2").addClass("hidden")
 		$("#button-3").addClass("hidden")
 		$("#button-4").addClass("hidden")
+		
+		cadet[0].banter = [
+    { target: '#Ziggy', text: 'Pssst, hey, something is up.', imageClass: "suspicious"},
+    { target: '#Ziggy', text: 'Trust me? Its risky, but force a redraw in round two by fumbling. Then play Matron in 3!', imageClass: "smug"},
+	{ target: '#Ziggy', text: 'I think it will work.', imageClass: "happy"}
+		];
+		
       })
 	  $('#button-3').on('click', function(e) {
          lib.dialogue(e, "round1-5")
@@ -67,10 +75,18 @@
 		state.flock.arn -=3;
 		state.flock.keeper -=5;
 		updateGameScore();
+		$("#ziggyplan").removeClass("hidden")
 		$("#button-5").removeClass("hidden")
 		$("#button-2").addClass("hidden")
 		$("#button-3").addClass("hidden")
 		$("#button-4").addClass("hidden")
+		
+		cadet[0].banter = [
+    { target: '#Ziggy', text: 'Pssst, hey, something is up.', imageClass: "suspicious"},
+    { target: '#Ziggy', text: 'Trust me? Its risky, but force a redraw in round two by fumbling. Then play Matron in 3!', imageClass: "smug"},
+	{ target: '#Ziggy', text: 'I think it will work.', imageClass: "happy"}
+		];
+		
       })
 	  $('#button-4').on('click', function(e) {
 	  lib.dialogue(e, "round1-3")
@@ -80,10 +96,17 @@
 		state.flock.arn -=3;
 		state.flock.keeper -=3;
 		updateGameScore();
+		$("#ziggyplan").removeClass("hidden")
 		$("#button-5").removeClass("hidden")
 		$("#button-2").addClass("hidden")
 		$("#button-3").addClass("hidden")
 		$("#button-4").addClass("hidden")
+		
+		cadet[0].banter = [
+    { target: '#Ziggy', text: 'Pssst, hey, something is up.', imageClass: "suspicious"},
+    { target: '#Ziggy', text: 'Trust me? Its risky, but force a redraw in round two by fumbling. Stay low, then play Matron in 3!', imageClass: "smug"},
+	{ target: '#Ziggy', text: 'I think itll work.', imageClass: "happy"}
+		];
 		
       })
 	  $('#button-5').on('click', function(e) {
@@ -91,24 +114,36 @@
 		$("#button-6").removeClass("hidden")
 		$("#button-7").removeClass("hidden")
 		$("#button-8").removeClass("hidden")
-		$("#button-5").addClass("hidden"),
-		state.Ziggy.status = "quest";
-	cadet[0].banter = [
-    { target: '#Ziggy', text: 'Pssst, hey, something is up.'},
-    { target: '#Ziggy', text: 'Trust me? Its risky, but keep going All-in.'},
-	{ target: '#Ziggy', text: 'I think it will work.'}
-    
-    
-];
-		
+		$("#button-5").addClass("hidden")
+		$("#ziggyplan").addClass("hidden")
+    	
+			cadet[0].banter = [
+		{ target: '#Ziggy', text: '' }
+  
+		];
       })
+	  
+	  $('#ziggyplan').on('click', function(e) {
+	  state.events.push("ziggyplan")
+        lib.dialogue(e, "ziggyplan"),
+		$("#button-6").removeClass("hidden")
+		$("#button-7").removeClass("hidden")
+		$("#button-8").removeClass("hidden")
+		$("#button-5").addClass("hidden")
+		$("#ziggyplan").addClass("hidden")
+
+    	
+      })
+	  
+	  
+	  
 	   $('#button-6').on('click', function(e) {
        lib.dialogue(e, "round2-10")
 	   state.game -= 10;
 		state.flock.avolc -=10;
-		state.flock.ziggy +=0;
-		state.flock.arn +=10;
-		state.flock.keeper -=0;
+		state.flock.ziggy -=5;
+		state.flock.arn +=20;
+		state.flock.keeper -=5;
 		updateGameScore();
 		$("#button-9").removeClass("hidden")
 		$("#button-6").addClass("hidden")
@@ -116,12 +151,24 @@
 		$("#button-8").addClass("hidden")
       })
 	    $('#button-7').on('click', function(e) {
-        lib.dialogue(e, "round2-5")
+        
+		if (_.contains(state.events, "ziggyplan")) {
+		lib.dialogue(e, "round2-5zig")
+		state.game -= 0;
+		state.flock.avolc -=0;
+		state.flock.ziggy +=6;
+		state.flock.arn -=3;
+		state.flock.keeper -=3;
+		}
+		
+			else {
+		lib.dialogue(e, "round2-5")
 		state.game -= 5;
 		state.flock.avolc -=5;
 		state.flock.ziggy -=3;
 		state.flock.arn +=11;
 		state.flock.keeper -=3;
+			}
 		updateGameScore();
 		$("#button-9").removeClass("hidden")
 		$("#button-6").addClass("hidden")
@@ -129,12 +176,24 @@
 		$("#button-8").addClass("hidden")
       })
 	    $('#button-8').on('click', function(e) {
-         lib.dialogue(e, "round2-3")
+         
+		 if (_.contains(state.events, "ziggyplan")) {
+		lib.dialogue(e, "round2-3zig")
+		state.game -= 3;
+		state.flock.avolc -=3;
+		state.flock.ziggy +=9;
+		state.flock.arn -=3;
+		state.flock.keeper -=3;
+		}
+		
+		 else {
+		 lib.dialogue(e, "round2-3")
 		 state.game -= 3;
 		 state.flock.avolc -=3;
 		state.flock.ziggy -=3;
 		state.flock.arn +=9;
 		state.flock.keeper -=3;
+			}
 		updateGameScore();
 		$("#button-9").removeClass("hidden")
 		$("#button-6").addClass("hidden")
@@ -146,39 +205,161 @@
 		$("#button-10").removeClass("hidden")
 		$("#button-11").removeClass("hidden")
 		$("#button-9").addClass("hidden")
+			
+	
+		
       })
 	    $('#button-10').on('click', function(e) {
-        lib.dialogue(e, "round3-bet"),
+        
+		
+		if (_.contains(state.events, "ziggyplan")) {
+		lib.dialogue(e, "round3-betzig")
+		state.game -= 10;
+		state.flock.avolc -=10;
+		state.flock.ziggy +=30;
+		state.flock.arn -=10;
+		state.flock.keeper -=10;
+		}
+		else {
+		lib.dialogue(e, "round3-bet")
 		state.game -= 10;
 		state.flock.avolc -=10;
 		state.flock.ziggy -=5;
 		state.flock.arn +=20;
 		state.flock.keeper -=5;
+			}
 		updateGameScore();
 		$("#button-12").removeClass("hidden")
 		$("#button-10").addClass("hidden")
 		$("#button-11").addClass("hidden")
       })
+	  
+	  
 	    $('#button-11').on('click', function(e) {
-        lib.dialogue(e, "round3-nobet"),
+        
+		
+		$("#button-12").removeClass("hidden")
+		$("#button-10").addClass("hidden")
+		$("#button-11").addClass("hidden")
+		
+		cadet[0].banter = [
+					{ target: '#Ziggy', text: ''}
+					
+				];
+		
+		
+		if (_.contains(state.events, "ziggyplan")) {
+		lib.dialogue(e, "round3-nobetzig")
+		state.events.push("nomatron")
+		state.game -= 5;
+		state.flock.avolc -=5;
+		state.flock.ziggy -=10;
+		state.flock.arn -=10;
+		state.flock.keeper +=25;
+		}
+			else {
+		lib.dialogue(e, "round3-nobet")	
 		state.game -= 5;
 		state.flock.avolc -=5;
 		state.flock.ziggy -=5;
 		state.flock.arn +=15;
 		state.flock.keeper -=5;
+			}
 		updateGameScore();
-		$("#button-12").removeClass("hidden")
-		$("#button-10").addClass("hidden")
-		$("#button-11").addClass("hidden")
       })
-	    $('#button-12').on('click', function(e) {
-        lib.dialogue(e, "round4"),
-		$("#button-13").removeClass("hidden")
-		$("#button-14").removeClass("hidden")
-		$("#button-15").removeClass("hidden")
+	  
+	  
+	 $('#button-12').on('click', function(e) {
 		$("#button-12").addClass("hidden")
+		state.Ziggy.status = "available";
+		if (_.contains(state.events, "ziggyplan") && _.contains(state.events, "nomatron")) {
+				lib.dialogue(e, "round4keep"),
+				$("#betzig").removeClass("hidden")	
+				$("#nobetzig").removeClass("hidden")
+			cadet[0].banter = [
+					{ target: '#Ziggy', text: 'Gah, why didnt you follow the plan', imageClass: "surprised"},
+					{ target: '#Ziggy', text: 'Oh this aint good', imageClass: "concerned"},
+				];
+		
+		}
+		else if (_.contains(state.events, "ziggyplan")) {
+				cadet[0].banter = [
+				{ target: '#Ziggy', text: 'Now to reap the last chips!', imageClass: "happy"},
+				];
+					lib.dialogue(e, "round4zig"),
+					$("#betzig").removeClass("hidden")	
+					$("#nobetzig").removeClass("hidden")	
+			}
+			else {
+				cadet[0].banter = [
+					{ target: '#Ziggy', text: 'My cards have reeked all game', imageClass: "suspicious"},
+					{ target: '#Ziggy', text: 'If you got anything remotely good, go in hard', imageClass: "angry"},
+					];
+						lib.dialogue(e, "round4"),
+						$("#button-13").removeClass("hidden")
+						$("#button-14").removeClass("hidden")
+						$("#button-15").removeClass("hidden")
+		
+			}
+		
       })
-	    $('#button-13').on('click', function(e) {
+	  
+	$('#betzig').on('click', function(e) {
+		
+        $("#button-16").removeClass("hidden")
+		$("#betzig").addClass("hidden")
+		$("#nobetzig").addClass("hidden")
+		
+		
+		if (_.contains(state.events, "ziggyplan") && _.contains(state.events, "nomatron")) {
+		lib.dialogue(e, "round4-betkeep")
+		state.game -= 10;
+		state.flock.avolc -=10;
+		state.flock.ziggy -=5;
+		state.flock.arn -=5;
+		state.flock.keeper +=20;
+		}
+		else {
+		lib.dialogue(e, "round4-bet")
+		state.game -= 10;
+		state.flock.avolc -=10;
+		state.flock.ziggy +=20;
+		state.flock.arn -=5;
+		state.flock.keeper -=5;
+			}
+		updateGameScore();
+		
+      })
+	  
+	  $('#nobetzig').on('click', function(e) {
+		$("#button-16").removeClass("hidden")
+		
+		
+		if (_.contains(state.events, "ziggyplan") && _.contains(state.events, "nomatron")) {
+		lib.dialogue(e, "round4-nobetkeep")
+		state.game -= 5;
+		state.flock.avolc -=5;
+		state.flock.ziggy -=5;
+		state.flock.arn -=5;
+		state.flock.keeper +=15;
+		}
+		else {
+		lib.dialogue(e, "round4-nobet")
+		state.game -= 5;
+		state.flock.avolc -=5;
+		state.flock.ziggy +=15;
+		state.flock.arn -=5;
+		state.flock.keeper -=5;
+			}
+		updateGameScore();
+		$("#betzig").addClass("hidden")
+		$("#nobetzig").addClass("hidden")
+      })
+	  
+	  
+	
+	  
+	 $('#button-13').on('click', function(e) {
         lib.dialogue(e, "round4-10"),
 		state.game += 15;
 		state.flock.avolc +=25;
@@ -217,16 +398,97 @@
 		$("#button-14").addClass("hidden")
 		$("#button-15").addClass("hidden")
       })
+	   
+	   
 	   $('#button-16').on('click', function(e) {
-        lib.dialogue(e, "conclusion"),
-		$("#button-16").addClass("hidden")
+	   
 		$("#button-17").removeClass("hidden")
+		
+	   if (state.flock.team <= -10 && state.flock.team > -20)
+	   {
+        lib.dialogue(e, "conclusion")
+		cadet[0].banter = [
+					
+					{ target: '#Ziggy', text: 'Well, atleast we didnt loose double negative.', imageClass: "angry"},
+					{ target: '#Ziggy', text: 'THAT, would have been bad.', imageClass: "concerned"},
+					{ target: '#Ziggy', text: 'I knew they would play ugly. Should have been better prepared.', imageClass: "suspicious"}
+					];
+		}
+		else if (state.flock.team <= -0 && state.flock.team > -10)
+		{
+        lib.dialogue(e, "conclusion2")
+		cadet[0].banter = [
+					
+					{ target: '#Ziggy', text: 'Close!', imageClass: "sad"},
+					{ target: '#Ziggy', text: 'I knew they would play ugly. Should have been better prepared.', imageClass: "suspicious"}
+					];
+		}
+		else if (state.flock.team < -20)
+		{
+        
+		$("#button-17").addClass("hidden")
+		$("#eaten").removeClass("hidden")
+		
+		if (_.contains(state.events, "ziggyplan")) {
+		lib.dialogue(e, "conclusion3keep")
+		
+		}
+		else {
+		lib.dialogue(e, "conclusion3")
+		}
+		
+		cadet[0].banter = [
+					
+					{ target: '#Ziggy', text: 'Captain, this aint good!', imageClass: "surprised"},
+					{ target: '#Ziggy', text: 'Im sorry, this is my fault.', imageClass: "sad"}
+					];
+		}
+		else if (state.flock.team > 20)
+		{
+        lib.dialogue(e, "conclusion4")
+		cadet[0].banter = [
+					
+					{ target: '#Ziggy', text: '', imageClass: "happy"}
+					
+					];
+		}
+		else if (state.flock.team > 0 && state.flock.team < 10)
+		{
+        lib.dialogue(e, "conclusion5")
+		cadet[0].banter = [
+					
+					{ target: '#Ziggy', text: 'You play pretty well cap!', imageClass: "blushing"}
+					
+					];
+		}
+		else if (state.flock.team > 10 && state.flock.team < 20)
+		{
+        lib.dialogue(e, "conclusion6")
+		cadet[0].banter = [
+					
+					{ target: '#Ziggy', text: 'Haha, look at their faces!', imageClass: "happy"},
+					{ target: '#Ziggy', text: 'Im going to savour this moment. They thought they could play ugly, but i watched em.', imageClass: "smug"},
+					{ target: '#Ziggy', text: 'Glad to have been of service.', imageClass: "netural"}
+					];
+		}
+		
+		$("#button-16").addClass("hidden")
+		
 		
       })
 	    $('#button-17').on('click', function(e) {
-        lib.dialogue(e, "conclusion"),
+        
 		$("#button-17").addClass("hidden")
 		lib.goTo('Page18.html')
+      })
+	     $('#eaten').on('click', function(e) {
+        
+		if (_.contains(state.events, "ziggyplan")) {
+			lib.goTo('KeeperGame.html')
+		}
+		else {
+			lib.goTo('ArnGameover.html')
+		}
       })
     })
 
@@ -244,25 +506,21 @@
 <div class="current-cards"></div>
 <hr />
 <div id="story-text">
-<p>The game started. In many ways it was a offshoot of the very common &#39;Hold &#39;im down!&#39; card game where you received two cards, bet and then everyone shared a pool of cards.</p>
+<p>The game started. In many ways it was a offshoot of the very common Wulf card game where you received two random cards, bet based on their value and then everyone match their two cards up against a open set of 5 cards on the table. Best combination wins.</p>
 
-<p>But in this variation there were currency chips to bet. Instead you had 6 bet cards in form of an All-in bet (10 points), 2 high bets (5 points) and 3 low bets (3 points). Over 4 rounds you bet minimum of one of your bet cards blind against the others bets, except your All-in 10 pointer, which is always counted as first bet and done openly. The others have to then either match it with their own All-in card and hope to win with higher cards or be forced to ceede a high card. If you do not have a high card, you must match with your own All-in or you are bust and have to give all your winnings over. After the fourth round, the one holding the biggest pool of value bets of another player win whatever was at stake in this game.</p>
+<p>But in this variation, called "The Flock" the two cards you get is all you get that round and your betting currency is fixed to 6 chips. The Matron, of which you get one chip (worth 10 points), 2 Awe Chips (5 points) and 3 Male chips (3 points). Over 4 rounds you bet minimum of one of your chips blind against the others bets, you can only use your own starting chips. The Matron chip is special, which if you decide to pitch it always counts as first bet and done openly. The other players have to then either match it, in a challenge, with their own Matron chip and hope to win with higher value of cards or be forced to ceede a Awe chip. If you do not have a Awe chip, you must match with your own Matron or you are bust and have to give all your winnings over. After the fourth round, the one holding the biggest pool of Chip bets of another player win whatever was at stake in this game.</p>
 
-<p>For example, if Keeper was so confident in his cards he bet his All-in bet in round one. Ziggy then challenges him with her own 10 pointer and wins the winning hand and reaped everyones bets. Keeper would have to win two following High bets from Ziggy to get back on even stakes and points with her and cancel it out. Similarly a high bet is worth two low bets. If Ziggy chooses to do an All in in the next round, Keeper will have no choice to either give up a high card or try his luck with two high cards or one high card and two low cards to match the value of the all-in card.&nbsp;</p>
+<p>For example, if Keeper was so confident in his cards he bet his Matron chip in round one. Ziggy challenges him with her own 10 pointer and wins, getting his Matron and the Awe cards from the other players, playing it safe. </p>
 
-<p>The final crux is that betting a single low bet card can only win you a low bet cards in return.</p>
+<p>The final crux is that betting a male chip can only win you a male chip in return.</p>
 
 <p>The open stakes on the table were:</p>
 
-<p>Resumed unhindered gambling for 10 points</p>
+<p>Depending on which team is the winner, Forbidden or resumed unhindered gambling for 10 points</p>
 
-<p>Resumed gaming with restrictions on high-stakes 5 points.</p>
+<p>And wether to have restrictions or not on high-stakes for positive team points.</p>
 
-<p>These had to be won from either me or Ziggy by Keeper and Arn. While the reverse,</p>
-
-<p>The games is forbidden 10 points and</p>
-
-<p>No more stakes allowed in gaming 5 points were held by Keeper and Arn.</p>
+<p></p>
 
 <p>I was glad i had Ziggy by my side. I glanced toward her and it seemed she had something on her mind, her brow furrowed. I&#39;d rarely seen her with a serious face on, but it seemed she was in her element now.</p>
 </div>
@@ -270,23 +528,27 @@
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1">The Game - Ship rules - Round 1</button>
-<button class="btn btn-default hidden" id="button-2">Round 1 bet: All-in 10 points. </button>
-<button class="btn btn-default hidden" id="button-3">Round 1 bet: High 5 points</button>
-<button class="btn btn-default hidden" id="button-4">Round 1 bet: Low 3 points</button>
+<button class="btn btn-default hidden" id="button-2">Round 1 bet: Matron! 10 points. </button>
+<button class="btn btn-default hidden" id="button-3">Round 1 bet: Awe 5 points</button>
+<button class="btn btn-default hidden" id="button-4">Round 1 bet: Male 3 points</button>
 <button class="btn btn-default hidden" id="button-5">The Game - Ship rules - Round 2</button>
-<button class="btn btn-default hidden" id="button-6">Round 2 bet: All-in 10 points</button>
-<button class="btn btn-default hidden" id="button-7">Round 2 bet: High 5 points</button>
-<button class="btn btn-default hidden" id="button-8">Round 2 bet: Low 3 points</button>
+<button class="btn btn-default hidden" id="button-6">Round 2 bet: Matron! 10 points</button>
+<button class="btn btn-default hidden" id="button-7">Round 2 bet: Awe 5 points</button>
+<button class="btn btn-default hidden" id="button-8">Round 2 bet: Male 3 points</button>
 <button class="btn btn-default hidden" id="button-9">The game - Ship rules - Round 3</button>
 <button class="btn btn-default hidden" id="button-10">Round 3 bet: Challenge</button>
 <button class="btn btn-default hidden" id="button-11">Round 3 bet: Do not challenge. Give high card</button>
 <button class="btn btn-default hidden" id="button-12">The Game - Ship Rules - Round 4</button>
-<button class="btn btn-default hidden" id="button-13">Round 4 bet: All-in 10 points</button>
-<button class="btn btn-default hidden" id="button-14">Round 4 bet: High 5 points</button>
-<button class="btn btn-default hidden" id="button-15">Round 4 bet: Low 3 points</button>
+<button class="btn btn-default hidden" id="button-13">Round 4 bet: Matron! 10 points</button>
+<button class="btn btn-default hidden" id="button-14">Round 4 bet: Awe 5 points</button>
+<button class="btn btn-default hidden" id="button-15">Round 4 bet: Male 3 points</button>
+<button class="btn btn-default hidden" id="round4zig">The Game - Ship Rules - Round 4</button>
+<button class="btn btn-default hidden" id="betzig">Round 4 bet: Challenge</button>
+<button class="btn btn-default hidden" id="nobetzig">Round 4 bet: Do not challenge. Give high card</button>
 <button class="btn btn-default hidden" id="button-16">The Game - Ship rules - Conclusion</button>
 <button class="btn btn-default hidden" id="button-17">Getting things back to normal</button>
-
+<button class="btn btn-default hidden" id="ziggyplan">Follow Ziggys plan.</button>
+<button class="btn btn-default hidden" id="eaten">continue</button>
 <!--GAMESCORES HERE? -->
 
 
@@ -301,33 +563,33 @@
 <p>My cards were of decent value. A pair of half-moons.</p>
 </div>
 
-<div class="round1-10 hidden"> <p><strong>Round 1 bet: All-in 10 points</strong></p>
+<div class="round1-10 hidden"> <p><strong>Round 1 bet: Matron! 10 points</strong></p>
 
-<p>I announced my All-in bet and it immediately raised head on the table. Apparently a round 1 All-in bet was very bold or stupid.</p>
+<p>I announced my Matron bet and it immediately raised head on the table. Apparently a round 1 Matron bet was very bold or stupid.</p>
 
-<p>The others considered their hands for a moment before placing their own bet cards. No one challenged my All-in with one of their own.</p>
+<p>The others considered their hands for a moment before placing their own bet cards. No one challenged my Matron with one of their own.</p>
 
-<p>As result i reaped a high-bet card from all three. Now i just needed one more high card or two low cards from either Arn or Keeper to have 10 points.</p>
+<p>As result i reaped a Awe chip from all three, but its the two from Arn and Keeper that count. Im already at 10 points! I just have to keep my lead.</p>
 
 </div>
 
-<div class="round1-5 hidden"> <p><strong>Round 1 bet: High 5 points</strong></p>
-<p>Everyone put down their bet cards and then turned their play cards.</p>
+<div class="round1-5 hidden"> <p><strong>Round 1 bet: Awe 5 points</strong></p>
+<p>Everyone put down their chips and then turned their play cards.</p>
 
-<p>I had the winning hand. So i reaped the bet cards on the table into my win-pile.</p>
+<p>I had the winning hand. So i reaped the Chips on the table into my win-pile.</p>
 
-<p>I got a low card from Arn and a high card from Ziggy and Keeper. A decent win, Ziggys high card was denied from Arn and Keeper atleast. She must have noticed my glance as the cadet gives me a wink and then turns her eyes back to Keepers cards intently.</p>
+<p>I got a male from Arn and an Awe chip from Ziggy and Keeper. A decent win, Ziggys Awe chip was denied from Arn and Keeper atleast. She must have noticed my glance as the cadet gives me a wink and then turns her eyes back to Keepers cards intently.</p>
 
 
 </div>
  
- <div class="round1-3 hidden"> <p><strong>Round 1 bet: Low 3 points</strong></p>
+ <div class="round1-3 hidden"> <p><strong>Round 1 bet: Male 3 points</strong></p>
 
-<p>Everyone put down their bet cards and then turned their play cards.</p>
+<p>Everyone put down their chips and then turned their play cards.</p>
 
-<p>I had the winning hand. So i reaped the bet cards on the table into my win-pile.</p>
+<p>I had the winning hand. So i reaped the bets on the table into my win-pile.</p>
 
-<p>I got a low card from Arn and Keeper and a high card from Ziggy. The high card cant be won with a low card so it goes back in Ziggys hand. Overall a low win.&nbsp;</p>
+<p>I got a male from Arn and Keeper and an Awe chip from Ziggy. The Awe cant be won with a male card so it goes back in Ziggys hand. Overall a low win.&nbsp;</p>
 
 <p>Ziggy keeps her straight face on. She must have noticed my glance as the cadet gives me a wink and then turns her eyes back to Keepers cards intently.</p>
 </div>
@@ -336,33 +598,50 @@
  <div class="round2 hidden"> <p><strong>The Game - Ship rules - Round 2</strong></p>
 <p>The dealer distributes a new set of card for everyone. I glance around again, but this time they seem to be staring back, i catch both Arns and Keepers eyes as they had been trying to catch a hint of my reaction to my cards.</p>
 
-<p>He &#39;Hmph&#39; quietly to myself and raise my cards to have a look. A very poor hand. A Tail and a coin.</p>
+<p>I &#39;Hmph&#39; quietly to myself and raise my cards to have a look. A very poor hand. A Tail and a coin.</p>
 
 <p>I look back to catch them glancing at their own cards. One of Arns big brows are twitching. Keeper rights himself in his chair with a sigh, heaving his big gut up slightly. He looks like he wants to take a long nap.</p>
 
+<p>I can bluff and be bold or play it safe. </p>
 </div>
-<div class="round2-10 hidden"> <p><strong>Round 2 bet: All-in 10 points</strong></p>
+<div class="round2-10 hidden"> <p><strong>Round 2 bet: Matron! 10 points</strong></p>
 <p>I play it bold, poor hand or not i can bluff.</p>
 
-<p>I announce my All-in bet and Arn immediately counters with his own all-in bet.</p>
+<p>I announce my Matron bet and Arn immediately counters with his own Matron.</p>
 
-<p>Arn has a bigger hand and wins, taking my 10 point card.</p>
+<p>Arn has a bigger hand and wins, taking my 10 pointer.</p>
 
-<p>Under the table i get a quick kick from Ziggy. It makes me jolt and i give her a glare. Whether that was for loosing such a big hand or something else, im not sure.</p>
+<p>Under the table i get a quick kick from Ziggy. It makes me jolt and i give her a glare. Whether that was for loosing such a big hand or something or not following her plan, im not sure.</p>
 </div>
-<div class="round2-5 hidden"> <p><strong>Round 2 bet: High 5 points</strong></p>
-<p>I feel confident and play a high card bet.</p>
+<div class="round2-5 hidden"> <p><strong>Round 2 bet: Awe 5 points</strong></p>
+<p>I feel confident and play a Awe chip.</p>
 
 <p>Arn has the larger hand and reaps the betting pool. No winnings.</p>
 
-<p>Under the table i get a quick kick from Ziggy. It makes me jolt and i give her a glare. Whether that was for loosing a hand or something else, im not sure.</p>
+<p>Ziggy gives a little sigh, perhaps dissapointed i didnt play along. Keeper and Arn are looking non-chalant. It feels like something is occuring right under my nose.</p>
 </div>
-<div class="round2-3 hidden"> <p><strong>Round 2 bet: Low 3 points</strong></p>
-<p>I play it safe and only bet a low card.</p>
+<div class="round2-5zig hidden"> <p><strong>Round 2 bet: Awe 5 points</strong></p>
+<p>I feel confident and play a Awe chip.</p>
+
+<p>Ziggy has the larger hand and reaps the betting pool.</p>
+
+<p>Ziggy is starting to look comfortable, Keeper and Arn are looking non-chalant. It feels like something is occuring right under my nose.</p>
+</div>
+
+<div class="round2-3 hidden"> <p><strong>Round 2 bet: Male 3 points</strong></p>
+<p>I play it safe and only bet a male chip.</p>
 
 <p>Turns out to have been a good choice. Arn has the larger hand and reaps the betting pool.</p>
 
-<p>Under the table i get a quick kick from Ziggy. It makes me jolt and i give her a glare. Its not like i lost a big hand or did anything wrong.</p>
+<p>Ziggy gives a little sigh, perhaps dissapointed i didnt play along. Keeper and Arn are looking non-chalant. It feels like something is occuring right under my nose.</p>
+</div>
+
+<div class="round2-3zig hidden"> <p><strong>Round 2 bet: Male 3 points</strong></p>
+<p>I play it safe and only bet a male chip.</p>
+
+<p>Ziggy has the larger hand and reaps the betting pool. Though everyone seems to have played it safe this round with low bets.</p>
+
+<p>Ziggy is starting to look comfortable, Keeper and Arn are looking non-chalant. It feels like something is occuring right under my nose.</p>
 </div>
 
 
@@ -373,20 +652,34 @@
 
 <p>I have a pretty good hand. Two gold coins.</p>
 
-<p>Before i can decide what to bet Arn announces he&#39;s going all in, looking pretty confident.</p>
+<p>Before i can decide what to bet Arn announces he&#39;s playing his Matron, looking pretty confident. Its beyond me wether he's bluffing it or not.</p>
 
-<p>I have to decide wether to challenge or give up a high card.</p>
+<p>I have to decide wether to challenge or give up an Awe chip. </p>
 
 
 </div>
 <div class="round3-bet hidden"> <p><strong>Round 3 bet: Challenge</strong></p>
-<p>I challenge Arns hand and slam down enough bet cards to match him.&nbsp;</p>
+<p>I challenge Arns hand and slam down enough bet to match him.&nbsp;</p>
 
-<p>However, he turns out to have a double star and I loose the challenge and loose 10 points. Arn chuckles triumphantly and gives me a nod as he collects the bets. This is not good, i do not have many bet cards left.</p>
+<p>However, he turns out to have a double star and I loose the challenge and loose 10 points. Arn chuckles triumphantly and gives me a nod as he collects the bets. This is not good, i do not have many chips left.</p>
+</div>
+
+<div class="round3-betzig hidden"> <p><strong>Round 3 bet: Challenge</strong></p>
+<p>I challenge Arns hand and slam down enough bet to match him.&nbsp;. Ziggy is quick to follow suit, grinning wickedly. Keeper cant stay idle, with so many points at stake, he also throws his bet into the mix, making all players invested.</p>
+
+<p>Ziggy ends up the winner with two Home cards, cackling as she gathers the bets, somehow im not surprised. But Keeper and Arn both look positively perplexed by the sudden twist.</p>
 </div>
 
 <div class="round3-nobet hidden"> <p><strong>Round 3 bet: Do not challenge. Give high card</strong></p>
-<p>Arn reaps a high card from all players and chuckled grimly, no one choosing to challenge him. Things were looking up for their team.</p>
+<p>Arn reaps an Awe chip from all players and chuckles grimly, no one choosing to challenge him. Things were looking up for their team.</p>
+
+<p>I was starting to wonder if this game was such a good idea.</p>
+</div>
+
+<div class="round3-nobetzig hidden"> <p><strong>Round 3 bet: Do not challenge. Give high card</strong></p>
+<p>Ziggy challenges him with a cocky grin, but looks surprised when you do not follow suit! She blinks and looks confused for a moment, fumbling with her paws, this messes with her plans </p>
+
+<p> Keeper who's been near slumbering the whole time also puts down his matron in challenge. He appears to have the highest value and reaps the bets, looking coy. </p>
 
 <p>I was starting to wonder if this game was such a good idea.</p>
 </div>
@@ -398,23 +691,74 @@
 
 <p>I get a mediocre hand. Two tails. Weakest combination, but at least something. I look over my winnings and remaining bet cards.</p>
 </div>
-<div class="round4-10 hidden"> <p><strong>Round 4 bet: All-in 10 points</strong></p>
-<p>I take a final chance, I need as much points I can get, its not or never.</p>
+
+<div class="round4zig hidden"> <p><strong>The game - Ship rules - Round 4</strong></p>
+<p>Final round. The room is tense as the ships future gambling pass-time is decided.</p>
+
+<p>Even the dealer realizes it might be the last time she&#39;s officially distributing cards on this journey as she fumbles and throws Ziggys card too far, but the young Cadet is quick to snatch it before it falls off the table.</p>
+
+<p>I get a alright hand, two towers. I look over my winnings and remaining bet cards. Ziggy suddenly slams her Matron on the table again, she's going all out. </p>
+</div>
+
+<div class="round4keep hidden"> <p><strong>The game - Ship rules - Round 4</strong></p>
+<p>Final round. The room is tense as the ships future gambling pass-time is decided.</p>
+
+<p>Even the dealer realizes it might be the last time she&#39;s officially distributing cards on this journey as she fumbles and throws Ziggys card too far, forcing a reshuffle and new set of cards to be re-dealt.</p>
+
+<p>I get a mediocre hand. two tails. Weakest combination, but at least something. I look over my winnings and remaining bet cards. Keeper leans forward and slowly throws in his Matron. </p>
+
+<p> Ziggy looks like she's shedding. That cant be good. </p>
+</div>
+
+<div class="round4-nobetkeep hidden"> <p><strong>Round 4 bet: Do not challenge. Give high card</strong></p>
+<p> The atmosphere has changed, i realize there is a deeper game going on here that im completely unaware of. </p>
+
+<p> No point in adding further risk, i yield my Awe card and so does Ziggy. </p> 
+
+<p> Keeper wins with two home cards. </p>
+</div>
+
+<div class="round4-betkeep hidden"> <p><strong>Round 4 bet: Challenge.</strong></p>
+<p> The atmosphere has changed, i realize there is a deeper game going on here that im completely unaware of. </p>
+
+<p> Counting the score in my head i figure its now or never if i want to get ahead. I challenge him and that gets a squeak out of Ziggy. </p> 
+
+<p> Keeper wins with two home cards. </p>
+</div>
+
+<div class="round4-nobet hidden"> <p><strong>Round 4 bet: Do not challenge. Give high card</strong></p>
+<p> I do not believe Ziggy will loose this one. She looks like she wants to pounce out of her chair at something. </p>
+
+<p> No point in adding further risk, i yield my Awe card and so does Keeper and Arn. They might not even have enough to challenge anyway. </p> 
+
+<p> Naturally she wins the hand with two half-moons. </p>
+</div>
+
+<div class="round4-bet hidden"> <p><strong>Round 4 bet: Challenge.</strong></p>
+<p> I do not believe Ziggy will loose this one. She looks like she wants to pounce out of her chair at something. </p>
+
+<p> Still i feel like taking her down a notch and challenge her. She smirks at me playfully and winks. Arn and Keeper can but yield a Awes worth of bet, they might not have enough to challenge her anyway. </p> 
+
+<p> Naturally she wins the hand with two half-moons. </p>
+</div>
+
+<div class="round4-10 hidden"> <p><strong>Round 4 bet: Matron! 10 points</strong></p>
+<p>I take a final chance, I need as much points I can get, its now or never.</p>
 
 <p>Both Ziggy and Arn challenge me while Keeper looks sleepy, leaned back in his chair with his sagging stomach in his lap. I win both their hands.</p>
 
 <p>The dealer counts our results.</p>
 
 </div>
-<div class="round4-5 hidden"> <p><strong>Round 4 bet: High 5 points</strong></p>
-<p>I give it a try and use my final cards as a high bet, almost throwing the card onto the table.</p>
+<div class="round4-5 hidden"> <p><strong>Round 4 bet: Awe 5 points</strong></p>
+<p>I give it a try and use my final Chips as a Awe bet, almost throwing the Chips onto the table.</p>
 
 <p>I loose the hand to Keeper who had the highest hand. Not good.</p>
 
 <p>The dealer counts the winnings.</p>
 </div>
-<div class="round4-3 hidden"> <p><strong>Round 4 bet: Low 3 points</strong></p>
-<p>I make a low bet. Lets hope Ziggy has better winnings then me.</p>
+<div class="round4-3 hidden"> <p><strong>Round 4 bet: Male 3 points</strong></p>
+<p>I make the lowest bet. Lets hope Ziggy has better winnings then me.</p>
 
 <p>Keeper wins the pot.</p>
 
@@ -424,22 +768,50 @@
 <div class="conclusion hidden"> <p><strong>The Game - Ship rules - Conclusion</strong></p>
 <p>Our winnings were not enough. Our combined score was negative 10 points and thus the games continue unhindered.</p>
 
+<p> Im slightly surprised by how short the game is, but i find out there's normaly 2 more runs of 4 rounds in standard rules. We just ran a quick one. Perhaps Arn and Keeper had hoped for a swift victory and they got it. </p>
+
 <p>This was a blow to my authority. I had let myself get carried away and fallen for their little plot to skirt my commands. In hindsight it might have seemed like a slightly foolish decisions. Especially as i just learned Ships rules means High-stakes. Had i lost with too many points, who knows what they could have demanded.</p>
 
 <p>I suppose i could decide to stop it anyway, despite how spiteful it would seem to be. But this whole thing had left a sour taste in my mouth.</p>
 </div>
 <div class="conclusion2 hidden"> <p><strong>The Game - Ship rules - Conclusion</strong></p>
-<p>You may not have won enough to forbid the game, but atleast you&#39;ve made sure no further addition attrition will come out of the popular passtime. The crew also respects the way you handled the issue and skillful play.</p>
+<p>Arn and Keeper won with a slight advantage in score. </p>
+
+<p> Im slightly surprised by how short the game is, but i find out there's normaly 2 more runs of 4 rounds in standard rules. We just ran a quick one. Perhaps Arn and Keeper had hoped for a swift victory and they got it. </p>
+
+<p> As it is, the games will be continuing. High-stakes are still allowed, if all players consent, but no one in high debt may any longer be tempted into wiping their debts with high risk plays. Its the compromise i was atleast able to reach </p>
+
+<p> Its far from perfect, there are still those of the crew deep in debt. Atleast i've earned some slight grudging respect for tackling an issue on equal terms. </p>
+
 </div>
 <div class="conclusion3 hidden"> <p><strong>The Game - Ship rules - Conclusion</strong></p>
 <p>&quot;Well well well. Ship Rules.&quot; Announces Keeper smugly. The room is silent and Ziggy trembles in her seat.&nbsp;</p>
 
 <p>&quot;You are below the double lowest negative score agreed upon Captain. Arn being the winner in this high-stakes game thus wins the right to devour you.&quot; The wulf chuckled softly.</p>
 
-<p>&quot;I did not agree to this!&quot; I protested, rising out of my chair violently. But i could already see it was a lost cause. I had no allies in here. I realized now that this is how the last captain must have perished. Not in battle, but in conflict with the crew. That would have explained all the strange circumstances.</p>
+<p>&quot;I did not agree to this!&quot; I protested, rising out of my chair violently. But i could already see it was a lost cause. I had no allies in here except maybe Ziggy, the rest were all Arns closest gang. I realized now that this is how the last captain must have perished, stepped on too many toes in the wrong places. To think such mutinous behavior existed, all for some gambling!</p>
 
-<p>They rushed me, tackled me from all sides. The struggle was brief and hopeless.</p>
+<p> "Well, perhaps you should have paid better attention"
+
+<p>They rushed me, tackled me from all sides. The struggle was brief, i dont even manage to utter a shout before my snout is tied up. Ziggy too is pinned to the floor, a hissing muffled fury of an Awe.</p>
+
+<p> Arn approaches, for once he's smirking.</p>
 </div>
+
+<div class="conclusion3keep hidden"> <p><strong>The Game - Ship rules - Conclusion</strong></p>
+<p>&quot;Well well well. Ship Rules.&quot; Announces Keeper smugly. The room is silent and Ziggy trembles in her seat.&nbsp;</p>
+
+<p>&quot;You are below the double lowest negative score agreed upon Captain. Me being the winner in this high-stakes game thus wins the right to devour you.&quot; The wulf chuckled softly.</p>
+
+<p>&quot;I did not agree to this!&quot; I protested, rising out of my chair violently. But i could already see it was a lost cause. I had no allies in here except maybe Ziggy, the rest were all Arns closest gang. I realized now that this is how the last captain must have perished, stepped on too many toes in the wrong places. To think such mutinous behavior existed, all for some gambling!</p>
+
+<p> "Well, perhaps you should have paid better attention"
+
+<p>They rushed me, tackled me from all sides. The struggle was brief, i dont even manage to utter a shout before my snout is tied up. Ziggy too is pinned to the floor, a hissing muffled fury of an Awe.</p>
+
+<p> I hear shuffling steps approach</p>
+</div>
+
 <div class="conclusion4 hidden"> <p><strong>The Game - Ship rules - Conclusion</strong></p>
 <p>Ziggy wins the game and she cackles loudly and triumphantly while Keeper and Arn look entirerly stumped with the results, they seemed very surprised at the loss which makes me suspect their were not playing entirely fair. That makes me also wonder about Ziggys results, but at least victory was ours.</p>
 
@@ -451,32 +823,84 @@
 
 <p>&quot;You brat, dont you think i know you switched out your cards somehow!&quot; Arn suddenly barked.</p>
 
-<p>&quot;Awwww! Is the big guy upset? You can cryyyy all about it in my cabin tonight! Mmmh, both of ya!&quot;</p>
+<p>&quot;Awwww! Is the big guy upset? Like you were any better, you can cryyyy all about it in my cabin tonight! Mmmh, both of ya!&quot;</p>
 
 <p>Arn growled and cracked the knuckles of his paws, muttering darkly. &quot;Oh i&#39;ll feed ya something...&quot;</p>
 
 <p>&quot;Aaahahahaah!&quot; Ziggy just cackled in his face, completely unfazed.</p>
 
 <p>This was getting out of hand.</p>
+
+<p> "No one is eating anybody. As we won, that practise is now strictly forbidden." I remind Ziggy before she gets in a brawl with my First-officer. </p>
+
+<p> Ziggy looks stunned and goes silent for a moment before she clutches and tugs at her ears </p>
+
+<p> "Ah reekin fluff-biters! I forgot!" She growls. </p>
+
+<p> Arn merely shakes his head at her, but he looks relieved. Their words trouble me though. I only now realize we've been playing a quick round of high-stakes Flock, thats what Ship-rules mean. </p>
+
+<p> Furthermore, it seems they've been cheating, almost openly. I've just been too thick to realize it. Without Ziggys help, things could have turned bad indeed. </p>
+
+<p> In anycase, its dealt with now. </p>
 </div>
+<div class="conclusion5 hidden"> <p><strong>The Game - Ship rules - Conclusion</strong></p>
+<p> We won with a slight positive score. Not enough to forbid the games, but enough to forbid high-stakes and stop its drain on valuable crew. Debts have also been wiped and may no longer be allowed to be held, a slight controversy but to the benefit of most.</p>
+
+<p> Im slightly surprised by how short the game is, but i find out there's normaly 2 more runs of 4 rounds in standard rules. We just ran a quick one. Perhaps Arn and Keeper had hoped for a swift victory. </p>
+
+<p> "Well played captain, you play a clever hand." Arn manages a compliment. He might be sore from loosing, but he does not seem so peturbed. 
+
+<p> "Thank you Arn. Remember our deal. I dont want to hear of any more attrition caused by debts." I try to sound firm, Arn merely nods. </p>
+
+<p> The crew respects the way you handled the issue and skillful play. Im only now starting to realize we've been playing a quick round of high-stakes Flock, thats what Ship-rules mean.</p>
+
+<p> Furthermore, it seems some form of cheating was near acceptable, i just did not notice it. Im glad i was lucky. Or perhaps Ziggy did something to tip the odds, i'll not know. </p>
+</div>
+
+<div class="conclusion6 hidden"> <p><strong>The Game - Ship rules - Conclusion</strong></p>
+<p> Its a solid victory! With a positive 10 points, the game "Flock" is henceforth forbidden to be played and the racket with all debts are wiped. While the crew is allowed their small games of chance, no debts or high-stakes may be held. </p>
+
+<p> Im slightly surprised by how short the game is, but i find out there's normaly 2 more runs of 4 rounds in standard rules. We just ran a quick one. Perhaps Arn and Keeper had hoped for a swift victory. </p>
+
+<p> I cant help but grin at the sore looking face of Arn. He and Keeper exchange glances, the Wulf seems to shrug, he got the most out of the game while it lasted. I have a feeling he wont challenge the issue any longer, not as sure about Arn. </p>
+
+<p> "Well played Captain." The first-officer mutters and gives me a nod and turns a icy glare at Ziggy. </p>
+
+<p> "Thank you Arn. Remember our deal, i played it your way, so honor it and dont make me regret it!" I add a firm snap to the sentence. </p>
+
+<p> With what looks like reluctance the officer salutes and i leave the room. Hopefully this whole issue is now settled. The crew will hopefuly talk favorably about how the issue was handled.</p>
+
+<p>  Im only now starting to realize we've been playing a quick round of high-stakes Flock, thats what Ship-rules mean.</p>
+
+<p> Furthermore, it seems some form of cheating was near acceptable, i just did not notice it. Im glad i was very lucky. Or perhaps Ziggy did something to tip the odds, i'll not know.  </p>
+</div>
+
+<div class="ziggyplan hidden"> <p><strong>The Game - Ship rules - Round 2  Ziggys plan</strong></p>
+<p> Im not sure what she's up too. But i choose to trust her and as the dealer deals out the cards, sliding them over the table, i lean in too far and accidentaly swipe my two cards to the floor with a "whoops" </p>
+
+<p> Everyone at the table looks at me suspiciously, im not a good actor. Arn especialy fixes both me and Ziggy with a hard glare. But as i hadent even looked at the cards yet, what choice do they have then to redraw cards for everyone. </p>
+
+<p> Ziggy seems to shrug and smirk.</p>
+
+<p> "Happens too the best of us Cap!" </p>
+
+<p> It is time to place bets. My cards are 'Home' a picture of a mountain and a tail card. I cant for the fluff of me remember the value of the home card, it was either very high or low. I should have learned the rules better. </p>
+</div>
+
 <script>
-	cadet[0].banter = [
-    { target: '#Ziggy', text: 'Blipbloop.'},
-    { target: '#Ziggy', text: 'Game is fun'}
-    
-    
+ cadet[0].banter = [
+	{ target: '#Ziggy', text: 'blush', imageClass: "blush"},
+	{ target: '#Ziggy', text: 'angry', imageClass: "angry"},
+	{ target: '#Ziggy', text: 'suspicious', imageClass: "suspicious" },
+	{ target: '#Ziggy', text: 'happy', imageClass: "happy"},
+	{ target: '#Ziggy', text: 'concerned', imageClass: "concerned"},
+	{ target: '#Ziggy', text: 'sad', imageClass: "sad"},
+	{ target: '#Ziggy', text: 'smug', imageClass: "smug"},
+	{ target: '#Ziggy', text: 'surprised', imageClass: "surprised"}
 ];
 </script>
 <script>
-/*
-	cadet[0].banter = [
-    { target: '#Ziggy', text: 'Pssst, hey, something is up.'},
-    { target: '#Ziggy', text: 'Trust me? Its risky, but keep going All-in.'},
-	{ target: '#Ziggy', text: 'I think it'll work.'}
-    
-    
-];
-*/
+
 </script>
 
 <span id="cadetButtons"> </span>

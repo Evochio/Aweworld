@@ -20,10 +20,10 @@
       
       $('#arn').on('click', function(e) {
 		lib.dialogue(e, "arn"),
-		
+		state.events.push("deepening");
 		$("#arn").addClass("hidden")
 		$("#interview").addClass("hidden")
-		
+		$("#continue").removeClass("hidden")
 	})
 		
 		$('#interview').on('click', function(e) {
@@ -53,7 +53,7 @@
 	  
 	   $('#continue').on('click', function(e) {
        lib.goTo('Page8.html')
-	 	  
+		})
     })
   </script>
   
