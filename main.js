@@ -60,6 +60,11 @@ var createCadetButtons = function() {
 			});
 			button.popover(options)
 	}
+	else if (state.Ziggy.status == 'disabled') {
+		var button = $(' <button id=Ziggydis>  </button> ')
+		$('#cadetButtons').append(button);
+		
+	}
 	if (state.Valnos.status == 'available') {
 		var button = $(' <button id=Valnos>  </button> ')
 		$('#cadetButtons').append(button)
@@ -79,7 +84,7 @@ var options = {
     container: 'body',
     placement: 'top',
     content: function() {
-		if (cadet[cadetIndex].banter[i].text == undefined) {    //This doesent work.
+		if (cadet[cadetIndex].banter[i].text == undefined) {    //This part doesent work.
 			"Cadet has nothing to say"
 		}
 		else {
@@ -177,6 +182,7 @@ var initialState = {
   vore: 0,
   piety: 0,
   raptorians: 3,
+  injuries: 0,
   delay: 0,
   game: 0,
   flock: {

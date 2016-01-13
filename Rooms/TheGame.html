@@ -41,7 +41,7 @@
 		$("#button-3").removeClass("hidden")
 		$("#button-4").removeClass("hidden")
 		$("#button-1").addClass("hidden")
-			
+		state.Ziggy.status = "disabled";
       })
 
       $('#button-2').on('click', function(e) {
@@ -117,10 +117,7 @@
 		$("#button-5").addClass("hidden")
 		$("#ziggyplan").addClass("hidden")
     	
-			cadet[0].banter = [
-		{ target: '#Ziggy', text: '' }
-  
-		];
+		state.Ziggy.status = "disabled";
       })
 	  
 	  $('#ziggyplan').on('click', function(e) {
@@ -132,7 +129,7 @@
 		$("#button-5").addClass("hidden")
 		$("#ziggyplan").addClass("hidden")
 
-    	
+    	state.Ziggy.status = "disabled";
       })
 	  
 	  
@@ -446,6 +443,7 @@
 		else if (state.flock.team > 20)
 		{
         lib.dialogue(e, "conclusion4")
+		$("#except").removeClass("hidden")
 		cadet[0].banter = [
 					
 					{ target: '#Ziggy', text: '', imageClass: "happy"}
@@ -490,6 +488,31 @@
 			lib.goTo('ArnGameover.html')
 		}
       })
+	     $('#except').on('click', function(e) {
+        lib.dialogue(e, "except"),
+
+		$("#dismissed").removeClass("hidden")
+		$("#toziggy").removeClass("hidden")
+		$("#except").addClass("hidden")
+		$("#button-17").addClass("hidden")
+
+      })
+	   $('#dismissed').on('click', function(e) {
+        lib.dialogue(e, "dismissed"),
+
+		$("#button-17").removeClass("hidden")
+		$("#dismissed").addClass("hidden")
+		$("#toziggy").addClass("hidden")
+
+      })
+	   $('#toziggy').on('click', function(e) {
+        lib.dialogue(e, "toziggy"),
+
+		$("#button-17").removeClass("hidden")
+		$("#dismissed").addClass("hidden")
+		$("#toziggy").addClass("hidden")
+
+      })
     })
 
   </script>
@@ -501,7 +524,7 @@
 </head>
 <body>
 <h1>Admiral Avolc</h1> 
-<p> Your score: <div class="current-score"></div></p>
+<p> Personal score: <div class="current-score"></div></p>
 <p> Team score: <div class="team-score"></div> Opponent Team score: <div class="oteam-score"></div></p>
 <div class="current-cards"></div>
 <hr />
@@ -548,6 +571,9 @@
 <button class="btn btn-default hidden" id="button-16">The Game - Ship rules - Conclusion</button>
 <button class="btn btn-default hidden" id="button-17">Getting things back to normal</button>
 <button class="btn btn-default hidden" id="ziggyplan">Follow Ziggys plan.</button>
+<button class="btn btn-default hidden" id="except">Except...</button>
+<button class="btn btn-default hidden" id="dismissed">Dismissed</button>
+<button class="btn btn-default hidden" id="toziggy">Report to Ziggys quarters</button>
 <button class="btn btn-default hidden" id="eaten">continue</button>
 <!--GAMESCORES HERE? -->
 
@@ -560,12 +586,14 @@
 
 <p>Ziggy had a blank serious face on, betraying nothing. One i wished she&#39;d use more during our weekly debriefings.</p>
 
-<p>My cards were of decent value. A pair of half-moons.</p>
+<p>I find myself staring at my two cards. I must confess that im not as familiar with this variant of "The Flock" as i thought i were. Usually there values attached to the cards, these merely have the little figures. I've recieved a pair of half-moons.</p>
+
+<p> They should be of decent value. Oh well, i'll manage. This game is probably mostly about bluffing anyway. </p>
 </div>
 
 <div class="round1-10 hidden"> <p><strong>Round 1 bet: Matron! 10 points</strong></p>
 
-<p>I announced my Matron bet and it immediately raised head on the table. Apparently a round 1 Matron bet was very bold or stupid.</p>
+<p>I announced my Matron bet and it immediately raised heads on the table. Apparently a round 1 Matron bet was very bold or stupid.</p>
 
 <p>The others considered their hands for a moment before placing their own bet cards. No one challenged my Matron with one of their own.</p>
 
@@ -887,7 +915,55 @@
 <p> It is time to place bets. My cards are 'Home' a picture of a mountain and a tail card. I cant for the fluff of me remember the value of the home card, it was either very high or low. I should have learned the rules better. </p>
 </div>
 
+<div class="except hidden"> <p><strong>Except...</strong></p>
+<p>“Except...”</p>
+
+<p>The room seems to freeze, it might have been the tone of my voice.</p>
+
+<p>“Its not quite fair to let Ziggy go unrewarded.”</p>
+
+<p>The young cadets eyes seem to light up like suns.</p>
+
+<p>“She did win the high-stakes game itself.” I continue with a slight grin.</p>
+
+<p>“Yer twisting the rules!” Arn objects loudly. </p>
+
+<p>“They were twisted up already, to my disadvantage to boot!” I snap angrily, towering up. To his credit he does not shrink away. “Do you think im too daft to realize?!“</p>
+
+<p>The room is silent. No one dares speak. </p>
+
+<p>“You've tried to get rid of me. Perhaps its its how you got rid of the last captain. We may never know. For now, im inclined to let Ziggy have you.”</p>
+
+<p>The giddy cadet squirmed on her feet, but wisely remained silent. It probably took her colossal effort. </p>
+
+<p>“Well, have anything to say?”</p>
+
+<p>Arn says nothing. He averts his eyes though. Guilty. I wonder what made him like this, once he must have done well to become someones First-officer. But he never was mine.</p>
+
+</div>
+
+<div class="dismissed hidden"> <p><strong>"Dismissed"</strong></p>
+
+<p>I dismiss them all. Ziggy shuffles out too, disappointed, but she does not object. I feel slightly guilty for getting her hopes up. </p>
+
+<p>Arn might remain a problem. I'll have to keep a close eye out for dissent. </p>
+</div>
+
+<div class="toziggy hidden"> <p><strong>Report to Ziggys quarters</strong></p>
+
+<p>The whole room seems stunned. Only Ziggy lets out a smirking chuckle. </p>
+
+<p>“Come along, oh first-officer Arn. You and me are gonna get close.” She mocks harshly. I've half a mind to tell her to be respectful, but let her be her flavor of sass. It'd be both a reward for her help and fitting punishment for Un-Aweish behavior by the former first-officer. </p>
+
+<p>Arn looks glum. If there's fight in him, he isnt showing it. To be sure he does not do anything unwarranted, I summon Mid-officer Garsch to watch him. </p>
+
+<p> The rumor spreads fast in the ship, I hear whispers and catch glances as the news of Arns defeat and the manner of it becomes known. To my surprise, most seem to snicker about it. I find myself unable to resist a grin as I make my way back to the main deck to oversee our course and speed. </p>
+
+</div>
+
 <script>
+/*
+
  cadet[0].banter = [
 	{ target: '#Ziggy', text: 'blush', imageClass: "blush"},
 	{ target: '#Ziggy', text: 'angry', imageClass: "angry"},
@@ -895,9 +971,20 @@
 	{ target: '#Ziggy', text: 'happy', imageClass: "happy"},
 	{ target: '#Ziggy', text: 'concerned', imageClass: "concerned"},
 	{ target: '#Ziggy', text: 'sad', imageClass: "sad"},
+	{ target: '#Ziggy', text: 'neutral', imageClass: "neutral"},
 	{ target: '#Ziggy', text: 'smug', imageClass: "smug"},
 	{ target: '#Ziggy', text: 'surprised', imageClass: "surprised"}
+	];
+*/
+ cadet[0].banter = [
+	{ target: '#Ziggy', text: 'This will be over quick', imageClass: "neutral"},
+	{ target: '#Ziggy', text: 'Didnt think you knew how to play. Surprised you agreed to ship-rules', imageClass: "surprised"},
+	{ target: '#Ziggy', text: 'Makes the stakes all the more exciting though!', imageClass: "happy" },
+	
 ];
+
+
+
 </script>
 <script>
 

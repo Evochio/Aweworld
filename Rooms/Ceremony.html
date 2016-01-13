@@ -17,9 +17,7 @@
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
-      if (_.contains(state.events, "deepening")) {
-		$("#agreed").removeClass("hidden")
-	  }
+      if (_.contains(state.events, "deepening"))
 	  else {
 		$("#agreed2").removeClass("hidden")
 	  }

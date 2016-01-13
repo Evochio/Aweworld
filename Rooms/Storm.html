@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+ <link rel="stylesheet" href="/main.css">
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-theme.min.css">
+  <script src="/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+        $('#through').on('click', function(e) {
+		lib.dialogue(e, "through"),
+		
+		$("#through").addClass("hidden")
+		$("#around").addClass("hidden")
+		
+		$("#takeover").removeClass("hidden")
+		$("#trust").removeClass("hidden")
+	})
+	 $('#around').on('click', function(e) {
+		lib.dialogue(e, "around"),
+		state.delay += 1;
+		$("#through").addClass("hidden")
+		$("#around").addClass("hidden")
+		
+		$("#continue").removeClass("hidden")
+	})
+	 $('#trust').on('click', function(e) {
+		lib.dialogue(e, "trust"),
+		state.crewMorale -= 1;
+		$("#trust").addClass("hidden")
+		$("#takeover").addClass("hidden")
+		
+		$("#continue").removeClass("hidden")
+	})
+	 $('#takeover').on('click', function(e) {
+		lib.dialogue(e, "takeover"),
+		state.injuries += 1;
+		$("#trust").addClass("hidden")
+		$("#takeover").addClass("hidden")
+		
+		$("#continue").removeClass("hidden")
+	})
+	
+	$('#continue').on('click', function(e) {
+		
+		lib.goTo('Page14.html')
+	})
+    
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+<div id="story-text">
+
+<p>Bad storm on the horizon, it lays straight in our path. We could try to sail around it, it doesent look that large, but that could still take many extra days. The crew is still fresh and the ship is in top shape so we could also chance going through it.</p>
+
+<p>I&#39;ve yet to see what this ship can do. But i have to keep the overall objective in mind.</p>
+
+</div>
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="through">Batten down the hatches, we are going through</button>
+<button class="btn btn-default" id="around">Better play is safe, lets skirt around and avoid the worst of it</button>
+<button class="btn btn-default hidden" id="trust">Trust in the crew</button>
+<button class="btn btn-default hidden" id="takeover">I got us in this mess, i'll get us out.</button>
+<button class="btn btn-default hidden" id="continue">Continue</button>
+
+<div class="through hidden"><p><strong>Going through the storm</strong></p>
+<p>I never expected the weather to be this rough! We&#39;re not even past the Sea of fangs yet, i never expected the waves to be this large.</p>
+
+<p>The ship is holding so far, its built for this, most of the crew are holed up below. Only the most skilled and bravest sailors are in the masts, tending the lines and forward sail. But we&#39;re all soaked and miserable on this ship one way or another.</p>
+
+<p>It is soon my turn at the helm again. Perhaps i should take over entirely until we are in the clear, I feel responsible.</p>
+</div>
+
+<div class="around hidden"><p><strong>Going through the storm</strong></p>
+<p>We got into some choppy water, but managed to stay out of the center of the storm. The clouds look rough in there and im somewhat glad of the decision, even though this course will take us many days to catch up from.</p>
+
+<p>I worry these delays will make it harder to catch our rendezvous before they head for other seas. Further more, with good speed, perhaps we could have caught whoever attacked that merchant vessel. I confess i have a taste for pirate i do not want to miss out on.</p>
+</div>
+
+<div class="trust hidden"><p><strong>Going through the storm</strong></p>
+<p>The crew of <em>"Attentive"</em> are to be commended, for whatever other faults no one can question their skill when it the matters.</p>
+
+<p>During the worst of it however, we lost a piece of the top second mast and it came tumbling down onto deck. There are casualties, one overboard, fell from the masts and regretfully lost at sea and two hit by falling pieces. The last two are in tending pouch-care of ships physician Elda. Im told they will recover.</p>
+
+<p>The wind is finally dying down however and we are out of the worst of it. The mast looks repairable, so it should not slow us down too much.</p>
+</div>
+
+<div class="takeover hidden"><p><strong>Taking over</strong></p>
+<p>I thought i had died and had again been&nbsp;reborn. Waking up in the dark and warm pouch of Elda, the ships physician, with little memory of how i got there was&nbsp;quite jarring.</p>
+
+<p>Im told i was hit by a piece of mast that came crashing down during the worst of the storm. A glancing blow to the head and a fractured shoulder with a helping of bruises. Luckily no one else was injured.</p>
+
+<p>I&#39;ve been prescribed pouch-rest for at least three days in our capable Physician and Pouch-Matrons care. She is like a stern dotting parent and has refused my request to heal on my own. In this matter she outranks me. Im sure she also relishes the chance to keep an admiral about her person for a while.&nbsp;</p>
+
+<p>Arn is acting-captain during my healing slumber, we have a few days of quiet sailing ahead, i hope.</p>
+
+</div>
+
+</body>
+</html>
