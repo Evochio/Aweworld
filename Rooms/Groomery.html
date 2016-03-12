@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+ <link rel="stylesheet" href="/main.css">
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-theme.min.css">
+  <script src="/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function(e) {
+        // change state here
+		
+	   $("#button-3").removeClass("hidden");
+	   $("#button-1").addClass("hidden")
+	   $("#button-2").addClass("hidden")
+	   
+	
+        // end by using lib.goTo
+        lib.dialogue(e, "moraleGood")
+      })
+		$('#button-2').on('click', function(e) {
+        // change state here
+		
+	   $("#button-3").removeClass("hidden");
+	   $("#button-1").addClass("hidden")
+	   $("#button-2").addClass("hidden")
+		
+        // end by using lib.goTo
+		lib.dialogue(e, "moralePoor")
+       
+      })
+      $('#button-3').on('click', function(e) {
+        // change state here
+	   $("#button-4").removeClass("hidden");
+
+	   $("#button-3").addClass("hidden")
+		
+        // end by using lib.goTo
+		lib.dialogue(e, "tungFate")
+       
+	
+ if (_.contains(state.events, "hard")) {
+	 $('#tung').removeClass('hidden');
+	
+ }
+	else {
+		$('#notung').removeClass('hidden');
+	}
+
+	   
+      })
+	   $('#button-4').on('click', function(e) {
+        // change state here
+		
+        lib.goTo('TheMerchant.html')
+      })
+	  
+	  	$('#button-4').on('click', function(e) {
+        // change state here
+		lib.dialogue(e, "act")
+	   $("#button-5").removeClass("hidden");
+	   $("#button-4").addClass("hidden")
+
+		
+        if (_.contains(state.inventory, "gratitude")) {
+	 $('#generous').removeClass('hidden');
+			if (_.contains(state.events, "deepening")) {
+				$('#deepapprove').removeClass('hidden');
+	
+			}
+			else {
+				$('#deepdeny').removeClass('hidden');
+			}
+		}
+		else {
+		 $('#stern').removeClass('hidden');
+			if (_.contains(state.events, "deepening")) {
+				$('#deepapprove').removeClass('hidden');
+	
+			}
+			else {
+				$('#deepdeny').removeClass('hidden');
+			}
+		
+		}
+		
+		 if (_.contains(state.events, "stormaround")) {
+	 $('#stormaround').removeClass('hidden');
+	
+		}
+		else if (_.contains(state.events, "stormtrust")) {
+	 $('#stormtrust').removeClass('hidden');
+	
+		}
+		else if (_.contains(state.events, "storminjury")) {
+	 $('#storminjury').removeClass('hidden');
+       
+	   }
+	   
+      })
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1></h1>
+<hr />
+<div id="story-text">
+
+<p>Im approached, while overseeing work on changing sails, by none other then the boats resident Matron. <br />
+While the largest Awe aboard, she's remarkable subtle in her movements and I dont notice her presence straight away as she waits for be less busy. Elda is the kind of Awe that puts the heart at ease with her perpetual soft smile and demeanor of unquestionable sincerity. <br />
+As an Matron-Awe in-charge of the crews physical and mental health, I couldn't have asked for a better candidate. <br />
+&ldquo;May I borrow you for a few moments, dear captain?&rdquo; She coos softly. In truth, she is the sole officer who could in some cases overrule and even order me around, atleat in matters of health. But as true to her calling, she's all manners.<br />
+&ldquo;Certainly&rdquo; I respond hesitantly. Officers seldom come to visit the captain with good news. <br />
+We make our way to the heart of the ship. &ldquo;The Groomery&rdquo;, as its oftentimes called, is located right in the mid-level center of the ship. It allows fast access to it from most parts of the ship. <br />
+The namesake itself is self-explanatory. A healthy coat is a healthy Awe. When there are no general medical needs, the nurses there provide much needed assisted grooming. 'Cleanly tangle-free fighters, or invite the fluff-biters!' as the saying goes. <br />
+Today its empty and im guided into a chair and the Matron herself sets to fussing over the tangles in my mane with a large brush.<br />
+&ldquo;How have your first weeks been, captain?&rdquo; She murmurs conversationally. I know what this is, its my check-up of sorts. A firm stroke of brush and claw does its job at putting me at ease and relax.</p>
+<script>
+ if (_.contains(state.events, "deepening")) {
+	 $('#deepen').removeClass('hidden');
+	
+ }
+	else {
+		$('#nodeepen').removeClass('hidden');
+	}
+</script>
+
+</div>
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1">(Morale) Good </button>
+<button class="btn btn-default" id="button-2"> (Morale) Could be better </button>
+<button class="btn btn-default hidden" id="button-3">The fate of Officer Tung </button>
+<button class="btn btn-default hidden" id="button-4">What makes a good captain</button>
+<button class="btn btn-default hidden" id="button-5">Continue </button>
+<span id="cadetButtons"> </span>
+
+
+
+<div class="moraleGood hidden"><p><strong>(Morale) Good</strong></p>
+<p> “They been good. The crew has not given me trouble. They seem all seem capable. “ </p>
+<p>Elda seemed to coo.</p>
+
+<p>“Yes, you've certainly managed to make an impression in short time.”</p>
+
+<p>“I had almost expected more friction toward a new captain.”</p>
+
+<p>“Mmmh, what about that Tung fellow?” </p>
+</div>
+
+
+<div class="moralePoor hidden"><p><strong>(Morale) Could be better</strong></p>
+<p>“Things could be better. I expected it to be difficult to captain a new crew I did not help pick.” </p>
+
+<br />
+
+<p>Elda soothingly purred while she groomed.</p>
+
+<p>“You have a task few Awes could do. Im sure the crew will become accustomed to your style of command.”</p>
+
+<p>“So far, no one has outright done any acts of disobedience at least.” I muttered.</p>
+
+<p>“Mmmh, what about that Tung fellow?” </p>
+</div>
+
+<div class="tungFate hidden"><p><strong>The fate of Officer Tung</strong></p>
+<span class="hidden" id="tung">
+<p>“Well.. he isnt a problem anymore.” I purr, unable to suppress a hint of self-satisfaction.</p>
+
+<p>“Certainly not it seems. You were quick to set a precedent and example.” The matron was efficient, but none too gentle in her grooming at spots. I had to grit my teeth at some of the strokes. </p>
+
+<p>“You do not approve of my action?” </p>
+
+<p>Elda clucked and held out one of my wings for long strokes of brush. </p>
+
+<p>“Oh, no no, its not my position to judge anything dear Captain, dont take it as criticism. But I tend to my crews need, I hear their concerns and worries. “</p>
+
+<p>“And do they worry i'll gobble them up at the first sign of challenging my authority?”</p>
+
+<p>“Should they? You lead the way you see best Captain. Ultimate authority might be your way. Regardless, I look forward to seeing the results of your command.”</p>
+</span>
+
+<span class="hidden" id="notung">
+
+<p>“Ah, the officer that challenged me? I have not heard any further grumbling from him since the initial meeting.”</p>
+
+<p>“You showed patience when a different captain might have gotten themselves rid of a seeming troublemaker from the start.” The matron was efficient, but none too gentle in her grooming at spots. I had to grit my teeth at some of the strokes.</p>
+
+<p>“You do not approve? What would you have done?”</p>
+
+<p>Elda clucked with her tongue and held out one of my wings for long strokes of brush. </p>
+
+<p>“Its not about what I would have done, dear Captain, dont take it as criticism. I tend to my crews need, I hear their concerns and worries. Let me hear yours.“</p>
+
+
+</span>
+</div>
+
+<div class="act hidden"><p><strong>What makes a good captain.</strong></p>
+<span class="hidden" id="generous">
+<p>“I've tried to be generous. So that they'll accept me as one of them.”</p>
+
+<span class="hidden" id="deepapprove">
+
+<p>“Its why you allowed acts of deepening? Im sure the crew will appreciate that, to have the possibility to deeply bond with whoever they want.”</p>
+</span>
+<span class="hidden" id="deepdeny">
+
+<p>“Yet you've denied deepening requests. Trading some freedom for order.”</p>
+</span>
+</span>
+
+
+<span class="hidden" id="fair">
+<p>“I've tried to be fair. So they feel they can trust me.”</p>
+
+<span class="hidden" id="deepapprove">
+
+<p>“Its why you allowed acts of deepening? Im sure the crew will appreciate that, to have the possibility to deeply bond with whoever they want.”</p>
+</span>
+<span class="hidden" id="deepdeny">
+
+<p>“Yet you've denied deepening requests. Trading some freedom for order.”</p>
+</span>
+</span>
+
+
+<span class="hidden" id="stern">
+<p>“Sometimes you have to be stern. Awes need to be pushed, we have to consider the mission.”</p>
+
+<span class="hidden" id="deepapprove">
+
+<p>“Yet you approved deepening requests. Giving the crew some freedom.”</p>
+</span>
+<span class="hidden" id="deepdeny">
+
+<p>“I see. I can see then why you declined deepening requests.”</p>
+</span>
+</span>
+
+<span class="hidden" id="storminjury">
+<p>“Is this what this talk is about? My choice in giving my crew the freedom to deepen or not? As the sole Pouch-Matron aboard, you feel my choice has compromised your position?” </p>
+
+<p>“Oh, no Captain. Again, im not here to chastise you. Merely to listen and let you speak your thoughts. </p>
+
+<p>Also whether you denied or approved general deepening, I will still be absorbing my share of injured or ailing crew who are unable to heal before this journey is over. How many really depends on your skill and aptitude.”</p>
+
+<p>“You've made the trip into me once yourself, try not to make a habit out of it. Unless its something you prefer instead of commanding, in such case I am always open to your visit... or stay.” Elda purred and it seemed she had finished with her grooming. I felt refreshed and clean. But the ships Pouch-matrons words lingered with me. </p>
+
+<p>Elda took her job as responsible for the crews health seriously. She was not afraid to give the captain a reality check and ask the hard questions. She was a strong Matron-Awe.</p>
+<span>
+<span class="hidden" id="stormaround">
+<p>“So far you've kept me mostly idle down here.” Elda placed a paw on her prominent pouch and smiled. “But crew will find their way to me eventually. Perhaps even yourself one day. Im always open for a visit or more.” Elda purred and it seemed she had finished with her grooming. I felt refreshed and clean. But the ships Pouch-matrons words lingered with me. </p>
+
+<p>Elda took her job as responsible for the crews health seriously. She was not afraid to give the captain a reality check and ask the hard questions. She was a strong Matron-Awe.</p>
+</span>
+
+<span class="hidden" id="stormtrust">
+
+<p>“You've sent some my way already, I will no doubt see more. Perhaps even yourself one day. Im always open for your visit, or your stay if you feel the burden of your command become too much, remember that.” Elda purred and it seemed she had finished with her grooming. I felt refreshed and clean. But the ships Pouch-matrons words lingered with me. </p>
+
+<p>Elda took her job as responsible for the crews health seriously. She was not afraid to give the captain a reality check and ask the hard questions. She was a strong Matron-Awe.</p>
+</span>
+</div>
+<script>
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'The games do keep a big portion of the crew busy, its almost all some of them do between shifts', imageClass: "neutral"},
+	{ target: '#Valnos', text: ' In a way everyone owns someone else a favor or a ration.', imageClass: "angry"},
+	{ target: '#Valnos', text: 'I dont think there is anyone not in debt to someone, it puts some unofficially in charge of others in a form of hierarchy.', imageClass: "suspicious" },
+	{ target: '#Valnos', text: 'But who is ontop of the ladder?', imageClass: "suspicious"},
+	{ target: '#Ziggy', text: 'I was for a while!', imageClass: "happy"}
+];
+
+ cadet[1].banter = [
+	{ target: '#Glint', text: 'I stay out of the gambling holes.', imageClass: "concerned"},
+	{ target: '#Glint', text: 'If it keeps them orderly, i see no concern.', imageClass: "smug"},
+	{ target: '#Glint', text: 'But if it does start to escalate...', imageClass: "suspicious" },
+	{ target: '#Glint', text: 'I would go down on it hard.', imageClass: "angry"},
+	{ target: '#Ziggy', text: 'Cause yer all bout toughness, right?', imageClass: "smug"},
+	{ target: '#Glint', text: 'Why dont you find out', imageClass: "suspicious"},
+	{ target: '#Ziggy', text: 'Ooooh. Scary!', imageClass: "happy"},
+];
+
+ cadet[0].banter = [
+	{ target: '#Ziggy', text: 'Its true, it keeps most of us occupied down there. I admit im part of the gambling myself.', imageClass: "neutral"},
+	{ target: '#Glint', text: 'Big surprise.', imageClass: "concerned"},
+	{ target: '#Ziggy', text: 'Ive managed to stay out of debt myself, mind you.', imageClass: "blushing" },
+	{ target: '#Ziggy', text: 'Its not so bad really, raptorians are just bad at hedging their bets.', imageClass: "happy"},
+
+];
+</script>
+</body>
+</html>

@@ -29,6 +29,7 @@
 	})
 	 $('#around').on('click', function(e) {
 		lib.dialogue(e, "around"),
+		state.events.push("stormaround");
 		state.delay += 1;
 		$("#through").addClass("hidden")
 		$("#around").addClass("hidden")
@@ -37,6 +38,7 @@
 	})
 	 $('#trust').on('click', function(e) {
 		lib.dialogue(e, "trust"),
+		state.events.push("stormtrust");
 		state.crewMorale -= 1;
 		$("#trust").addClass("hidden")
 		$("#takeover").addClass("hidden")
@@ -45,6 +47,7 @@
 	})
 	 $('#takeover').on('click', function(e) {
 		lib.dialogue(e, "takeover"),
+		state.events.push("storminjury");
 		state.injuries += 1;
 		$("#trust").addClass("hidden")
 		$("#takeover").addClass("hidden")
