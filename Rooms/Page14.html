@@ -33,8 +33,8 @@
 	        // end by using lib.goTo
         lib.goTo('Page15c.html')
       })
-
-    
+	  	
+	
     })
   </script>
   
@@ -48,6 +48,7 @@
 <hr />
 
 <div id="story-text">
+
 <span class="hidden" id="forbid">
 <p>I am furious! Its come to my attention that we are yet again down another Raptorian! And to nothing less than those infernal gambling hazard games. The culprit is none other then Keeper once more. I had expressly forbidden this from happening and they dare to defy me.</p>
 
@@ -81,28 +82,31 @@
 <hr />
 
 <script>
-if (state.injuries > 0) {
- $('#elda1').removeClass('hidden');
- }
-else {
+	if (state.injuries > 0) {
+		$('#elda1').removeClass('hidden');
+	}
+	else {
 	 $('#elda0').removeClass('hidden');
-}
- if (_.contains(state.events, "forbid")) {
+	}
+		if (_.contains(state.events, "forbid")) {
 	 $('#forbid').removeClass('hidden');
-	}
-	else if (_.contains(state.events, "limmit")) {
-	 $('#limmit').removeClass('hidden');
-	}
-	else if (_.contains(state.events, "ignore")) {
-	 $('#ignore').removeClass('hidden');
-	}
 
+	}
+		else if (_.contains(state.events, "limmit")) {
+	 $('#limmit').removeClass('hidden');
+	
+	}
+		else if (_.contains(state.events, "ignore")) {
+	 $('#ignore').removeClass('hidden');
+	
+	}
 </script>
 </div>
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1"> Confront Arn in private</button>
 <button class="btn btn-default" id="button-2"> Drop in on a Game unannounced</button>
 <button class="btn btn-default" id="button-3"> Ask Ziggy to give Raptorians gambling lessons. </button>
+
 
 <div class="confront hidden"><p><strong>Confront Arn in private</strong></p>
 <p>Arn was not surprised to see me. He welcomed me cordially and with suitable respect and bade me sit down with him over a drink. It was slightly off-putting, considering the somewhat rugged nature I&#39;ve come to associate him with, to see him follow protocol and act gentleawely.</p>

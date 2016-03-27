@@ -18,6 +18,16 @@
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
       
+	  if(state.crewMorale > 5) {
+        // reset i, stop the popover from being shown
+        i = 0;
+        $('#button-2').addClass('disabled');
+        
+    }
+	else {
+		$('#button-1').addClass('disabled');
+	}
+	  
       $('#button-1').on('click', function(e) {
         // change state here
 		
@@ -43,27 +53,20 @@
       $('#button-3').on('click', function(e) {
         // change state here
 	   $("#button-4").removeClass("hidden");
-
 	   $("#button-3").addClass("hidden")
+		
 		
         // end by using lib.goTo
 		lib.dialogue(e, "tungFate")
        
 	
- if (_.contains(state.events, "hard")) {
-	 $('#tung').removeClass('hidden');
-	
- }
-	else {
-		$('#notung').removeClass('hidden');
-	}
-
 	   
       })
-	   $('#button-4').on('click', function(e) {
+	  
+	   $('#button-5').on('click', function(e) {
         // change state here
 		
-        lib.goTo('TheMerchant.html')
+        lib.goTo('Page14.html')
       })
 	  
 	  	$('#button-4').on('click', function(e) {
@@ -72,7 +75,7 @@
 	   $("#button-5").removeClass("hidden");
 	   $("#button-4").addClass("hidden")
 
-		
+		})
         if (_.contains(state.inventory, "gratitude")) {
 	 $('#generous').removeClass('hidden');
 			if (_.contains(state.events, "deepening")) {
@@ -108,7 +111,16 @@
        
 	   }
 	   
-      })
+      
+	  
+	  		if (_.contains(state.events, "hard")) {
+			$('#tung').removeClass('hidden');
+			console.log("Test1");
+		}
+		else if (_.contains(state.events, "soft")) {
+			$('#notung').removeClass('hidden');
+			console.log("Test2");
+		}
     })
   </script>
   
@@ -122,15 +134,24 @@
 <hr />
 <div id="story-text">
 
-<p>Im approached, while overseeing work on changing sails, by none other then the boats resident Matron. <br />
-While the largest Awe aboard, she's remarkable subtle in her movements and I dont notice her presence straight away as she waits for be less busy. Elda is the kind of Awe that puts the heart at ease with her perpetual soft smile and demeanor of unquestionable sincerity. <br />
-As an Matron-Awe in-charge of the crews physical and mental health, I couldn't have asked for a better candidate. <br />
-&ldquo;May I borrow you for a few moments, dear captain?&rdquo; She coos softly. In truth, she is the sole officer who could in some cases overrule and even order me around, atleat in matters of health. But as true to her calling, she's all manners.<br />
-&ldquo;Certainly&rdquo; I respond hesitantly. Officers seldom come to visit the captain with good news. <br />
-We make our way to the heart of the ship. &ldquo;The Groomery&rdquo;, as its oftentimes called, is located right in the mid-level center of the ship. It allows fast access to it from most parts of the ship. <br />
-The namesake itself is self-explanatory. A healthy coat is a healthy Awe. When there are no general medical needs, the nurses there provide much needed assisted grooming. 'Cleanly tangle-free fighters, or invite the fluff-biters!' as the saying goes. <br />
-Today its empty and im guided into a chair and the Matron herself sets to fussing over the tangles in my mane with a large brush.<br />
-&ldquo;How have your first weeks been, captain?&rdquo; She murmurs conversationally. I know what this is, its my check-up of sorts. A firm stroke of brush and claw does its job at putting me at ease and relax.</p>
+<p>Im approached, while overseeing work on reducing sail from full to half-mast, by none other then the boats resident Matron. </p>
+
+<p>While the largest Awe aboard, she's remarkable subtle in her movements and I dont notice her presence straight away. Elda is the kind of Awe that puts the heart at ease, with her perpetual soft smile and demeanor of unquestionable sincerity. </p>
+
+<p>As an Matron-Awe in-charge of the ships physical and mental health, I couldn't have asked for a better candidate. </p>
+
+<p>“May I borrow you for a few moments, dear captain?” She coos softly. In truth, she is the sole officer who could in some cases overrule and even order me around. But as true to her calling, she's all manners.</p>
+
+<p>“Certainly” I respond hesitantly. Officers seldom come to visit the captain with good news. </p>
+
+<p>We make our way to the heart of the ship. “The Groomery” as its sometimes called is located right in the mid-level center of the ship. It allows fast access to it from most parts of the ship. </p>
+
+<p>The namesake itself is self-explanatory. A healthy coat is a healthy Awe. When there are no general medical needs, the nurses there provide much needed assisted grooming. Cleanly tangle-free fighters, or you invite the fluff-biters. </p>
+
+<p>Today its empty and im guided into a chair and the Matron herself sets to fussing over the tangles in my mane with a large brush.</p>
+
+<p>“How have your first weeks been, captain?” She murmurs conversationally. I know what this is, its my check-up of sorts. A firm stroke of brush and claw does its job at putting me at ease and relax.</p>
+
 <script>
  if (_.contains(state.events, "deepening")) {
 	 $('#deepen').removeClass('hidden');
@@ -142,6 +163,7 @@ Today its empty and im guided into a chair and the Matron herself sets to fussin
 </script>
 
 </div>
+<hr />
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1">(Morale) Good </button>
 <button class="btn btn-default" id="button-2"> (Morale) Could be better </button>
@@ -179,6 +201,7 @@ Today its empty and im guided into a chair and the Matron herself sets to fussin
 </div>
 
 <div class="tungFate hidden"><p><strong>The fate of Officer Tung</strong></p>
+
 <span class="hidden" id="tung">
 <p>“Well.. he isnt a problem anymore.” I purr, unable to suppress a hint of self-satisfaction.</p>
 
@@ -213,7 +236,7 @@ Today its empty and im guided into a chair and the Matron herself sets to fussin
 
 <div class="act hidden"><p><strong>What makes a good captain.</strong></p>
 <span class="hidden" id="generous">
-<p>“I've tried to be generous. So that they'll accept me as one of them.”</p>
+<p>“I've tried to be generous. So that they'll accept me as one of them.” I answered thoughtfully, thinking back on my actions.</p>
 
 <span class="hidden" id="deepapprove">
 
@@ -227,7 +250,7 @@ Today its empty and im guided into a chair and the Matron herself sets to fussin
 
 
 <span class="hidden" id="fair">
-<p>“I've tried to be fair. So they feel they can trust me.”</p>
+<p>“I've tried to be fair. So they feel they can trust me.” I answered thoughtfully, thinking back on my actions.</p>
 
 <span class="hidden" id="deepapprove">
 
@@ -241,7 +264,7 @@ Today its empty and im guided into a chair and the Matron herself sets to fussin
 
 
 <span class="hidden" id="stern">
-<p>“Sometimes you have to be stern. Awes need to be pushed, we have to consider the mission.”</p>
+<p>“Sometimes you have to be stern. Awes need to be pushed, we have to consider the mission.” I answered thoughtfully, thinking back on my actions.</p>
 
 <span class="hidden" id="deepapprove">
 

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+ <link rel="stylesheet" href="/main.css">
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-theme.min.css">
+  <script src="/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function(e) {
+		lib.dialogue(e, "admit"),
+		
+		$("#button-3").addClass("hidden")
+		$("#button-1").addClass("hidden")
+		$("#button-2").addClass("hidden")
+		$("#Elda").removeClass("hidden")
+	})
+		
+		$('#button-2').on('click', function(e) {
+		lib.dialogue(e, "find"),
+		
+        $("#button-3").addClass("hidden")
+		$("#button-1").addClass("hidden")
+		$("#button-2").addClass("hidden")
+		$("#evokEat").removeClass("hidden")
+      })
+      $('#button-3').on('click', function(e) {
+       lib.dialogue(e, "punishAll"),
+		
+        $("#button-3").addClass("hidden")
+		$("#button-1").addClass("hidden")
+		$("#button-2").addClass("hidden")
+		$("#Judgement").removeClass("hidden")
+      })
+	   $('#evokEat').on('click', function(e) {
+       lib.dialogue(e, "evokEat"),
+		$("#evokEat").addClass("hidden")
+        $("#Judgement").removeClass("hidden")
+		
+      })
+	  $('#sentence').on('click', function(e) {
+       lib.dialogue(e, "sentence"),
+        $("#button-3").addClass("hidden")
+		$("#button-1").addClass("hidden")
+		$("#button-2").addClass("hidden")
+		
+      })
+	   $('#evokEaten').on('click', function(e) {
+       lib.dialogue(e, "evokEaten"),
+        $("#button-3").addClass("hidden")
+		$("#button-1").addClass("hidden")
+		$("#button-2").addClass("hidden")
+		
+      })
+
+	   $('#button-4').on('click', function() {
+        // change state here
+		
+        // end by using lib.goTo
+        lib.goTo('PaleRock.html')
+      })
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1></h1>
+<hr />
+<div id="story-text">
+<p>"The Raptorians have mutinied."</p>
+
+<p>A shocking turn of events took place before early shift change. Valnos came banging at my door, breathless, to report those ominous four words. Few things are as threatening to a crew as its Raptorians deciding to turn against it. 20 Raptorians are enough to devastate a ship of a hundred awes when there are tight confines and nowhere to fly to but the masts.</p>
+
+<p>I was reassured however by an accompanying Squire. I recognized her as Squire Kisle. A squire who lost her appointed Raptorian to high-stakes gambling and the belly of the debtor.</p>
+
+<p>She reported calmly that the Raptorians had a goal in mind that did not involve trying to stomach all of us. Its the gambling racket that were their goal. Sanctioned or not, they seem to have had enough of it and moved through the ship to end their debts and those of others in a sort of purge.</p>
+
+<p>I arrived at the lower holds to find things rather calm. But it was the calm of the aftermath of a storm, i could tell. The gambling 'faction', if you could call it that, had barely been able to put up a resistance.</p>
+
+<p>Raptorians lay in their stalls, calm and collected and being tended by their squires. A few with quite noticeably sagging bellies.</p>
+
+<p>Sergeant Evok approached and bowed his head. He looked more cowed then normal, something tells me he might or might not have been willingly part of this. But ultimately he's the one that would be held accountable.</p>
+
+<p>This whole gambling business was one head-ache after another. But this seemed to have been the final end of it. Now i just had to decide how to deal with the fall-out of it.</p>
+
+<p>23 Awes are missing, most likely digesting. First-officer Arn and X among them. I dont know which belly they might be in and no one is talking. As it looks, all Raptorians seem to be in on it, either directly or by not talking, their squires too. Evok too is being silent, but accepting full responsibility.</p>
+
+</div>
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1">Admit fault and take responsibilty.</button>
+<button class="btn btn-default" id="button-2">Find the clear culprits</button>
+<button class="btn btn-default" id="button-3">Punish them all.</button>
+<button class="btn btn-default hidden" id="evokEat">Have Evok eat the culprits. </button>
+<button class="btn btn-default hidden" id="sentence">Sentence them to be food</button>
+<button class="btn btn-default hidden" id="evokEaten">Eat Evok</button>
+
+<button class="btn btn-default hidden" id="button-4">Pale Rock</button>
+
+<div class="admit hidden"><p><strong>Admit fault and take responsibilty.</strong></p>
+<p>Things have gone too far already. I had lost authority and control on the ship and I'd be a fool to try to salvage it by pretending i hadn't.</p>
+
+<p>A part of my crew were making low digestive rumblings in Raptorian stomachs and perhaps i should be grateful it stopped where it did.</p>
+
+<p>With the Cadets as witness and a few summoned officers i immediately pardoned the Raptorians and the squires for their little mutiny. I wont go into detail, but i took responsibility for the turn of events. The decision seemed to take most by surprise.</p>
+
+<p>The crew needs a new First-officer. Arn was capable in keeping track of everyone but quite unreliable as an officer. His final mistake was pushing his luck with Raptorians. At least now, he gets to know one a lot better.</p>
+
+<p>No one is eager to step up to the plate and the cadets are still too untested. Regardless, I appointed High-officer Nyxie the new temporary First-officer. She's served as a capable helmsman thus far and has an eye on things.</p>
+</div>
+
+<div class="find hidden"><p><strong>Find the clear culprits</strong></p>
+<p>I was authority on this ship. A reprimand for something like this would not be enough.</p>
+
+<p>First i demanded the Raptorians responsible for devouring officers to present themselves. I made my best to show my displeasure of the recent events in the tone of my voice.</p>
+
+<p>Reluctantly two Raptorians rose and faced me, heads bowed. Their bellies sagged with obvious guilt and emitted low digestive grumblings. I had little hopes for fates of whoever were inside would be fit for service if expelled. A squire confirmed what I already suspected, it was beyond rescue.</p>
+
+<p>I found 3 more with distended bellies that should have been beyond daily ration levels and then ordered Evok himself to stand among them. </p>
+
+<p>All in all, from a short investigation, 5 plus the pack-master who were supposed to keep them in check were my main culprits, others I were not so sure of. </p>
+
+<p>I glowered at them with clear dissatisfaction. The decision of what to do with them loomed and the options raced through my mind, the room waited with baited breath.</p>
+
+<p> No matter what i decided, it would no doubt upset someone in some capacity. </p>
+
+</div>
+
+<div class="punishAll hidden"><p><strong>Punish them all.</strong></p>
+<p>It was with a flash of anger that i made the sentence. I had lost control of the situation for too long.</p>
+
+<p>I pointed to all of them and simply proclaimed.</p>
+
+<p>"You are all henceforth, my food. I will spend the remainder of our voyage dealing with you one after another." They looked shocked. Stunned. In their minds they might have felt themselves justified to take law into their own claws, thinking i couldn't punish them all for it. But i'd show them!</p>
+
+<p>I half expected open rebellion, but no one moved. It seemed none had really wanted to rebel against the admiralty itself. But now the consequence of it was sinking in.</p>
+
+<p>"You, i'll eat last. I expect you to keep order until then." I pointed out to Evok, who only bowed his head in a quivering stunned silence. He was trained well.</p>
+
+<p>I picked out a lanky looking Raptorian called Cavok to begin with and retired to my quarters to eat him.</p>
+
+<p>Swallowing a Raptorian is no simple task. They train us for it, but morbidly advice us to for more cruder forms of disposal incase of prisoners being too large. This particular Raptorian would be the first of many to come and stretched me out to my fullest. He went down meekly and submissively.</p>
+
+<p>I expect it takes 3 days to digest him fully. I will be consuming Moonflower juice to speed things up to perhaps 1-2 days. That is still about an exhausting month of constantly digesting Raptorians. Perhaps i can take them Squire and Raptorian together or two at a time once i start to adjust. I suppose it would be wise to get some help from other officers of the cadets. </p>
+
+<p>Fat will become a problem quickly. As well our objectives become ever harder to fulfill with so much of the crew... indisposed.</p>
+
+<p>I guess we'll have to turn the ship around. Admiralty will not be pleased, but this is all according to law. Im afraid this will only further feed into the rumor of what happens to my crews.</p>
+</div>
+
+<div class="evokEat hidden"><p><strong>Have Evok eat the culprits.</strong></p>
+
+<p>I couldn't punish all of my Raptorians and squires. But I could make sure the ones directly responsible saw swift justice. If I were to maintain any semblance of order among the Raptorians, it would not do to shake up their leadership just after they had committed a minor mutiny. </p>
+
+<p>Evok had let this happen right under his snout, whether he was part of it or not. Yet I felt I didn't have reason to doubt his ultimate loyalty to the Admiralty. </p>
+
+<p>“Evok, you've said you'll take responsibility of this event.” I turned my head towards the Packmaster, who seemed to shrink slightly, expecting perhaps that this was it for him. I continued.</p>
+
+<p>“So you'll clear it up. These 5 are yours to dispose of in accordance to the law. Any further sign of rebellion or action like this will immediately be on all your heads. Understood?”</p>
+
+<p>There were muted mutterings and whispers at my decision. Most looked relieved, mostly the squires. But among the guard of Awes who stood with spears at the ready there were frowns and signs of doubt. </p>
+
+<p>I was letting them off easy. </p>
+
+<p>“Understood.” The pack-master rumbled heavily, lowering his head. </p>
+
+<p>Evok knew this and did not hesitate more then a moment as he looked over the guilty. He moved to the closest, opened his gape and chomped down on his head and started wolfing him down. Evoc was larger then mostly all of them, but despite Raptorian size he would only be able to handle 2 of them at the most, if even that. </p>
+
+<p>Before our eyes he consumed a wide-bellied brownish Raptorian with hulking heavy gulps, he'd have heaved his former subordinate over his head upon reaching past his chest if it height of the roof had permitted. The brown Raptorian did not go without a struggle, but Evok completely overpowered any sign of protest and made the consumption a clear one-sided affair. </p>
+
+<p>By the time a large shape was taking its place as a sagging great weight on the pack-masters underside and a mere pair of feet and agitated tail remained of the former Raptorian trooper, I had turned to leave. </p>
+
+<p>There would have to be guard set in place outside the Raptorian section of the ship. I hope the cleft of distrust this event undoubtedly created wouldn't cleave the ship in part. </p>
+</div>
+
+<div class="sentence hidden"><p><strong>Sentence them to be food</strong></p>
+<p>I couldn't punish all of my Raptorians and squires. But I could make sure the ones directly responsible saw swift justice. The punishment was more then clear, eating crew-members without permission, no matter how justified you felt yourself bestowed you the same fate.</p>
+
+<p>All 6 of them were to be sentenced to be food. I could probably perform the devouring myself, time permitting, but I felt there was some sense of urgency to this matter, to ensure the cleft of distrust this matter had created did not cleave the ship in two. </p>
+
+<p>“You're responsible for a great crime. No matter how wronged you may have felt yourself be, none may take justice into their own paws. If everyone did, we could never function as a ship and crew. Its thus clear you must be reassigned to serve the crew in a more direct manner.”</p>
+
+<p>They all knew it was coming, judging by the resigned look on their faces. The Awe guard tensed in case there would be any defiance at my sentencing. </p>
+
+<p>“Report to the kitchens for reassignment as rations. You will become part of the crews purpose and those consumed will be returned.”</p>
+
+<p>It was a harsh sentence. In a way it was a lowly way to end your career, as chunks in the daily ships-stew. But it felt like the only appropriate response that would satisfy the already brooding distrust and desire for justice. </p>
+
+<p>The only one truly happy this day would be our portly ships Wulf-chef. He enjoyed new cooking challenges, even though he'd get his paws full. </p>
+
+</div>
+
+<div class="evokEaten hidden"><p><strong>Eat Evok</strong></p>
+<p>Evok claimed to take responsibility, so he was the one who would have to make the biggest sacrifice. Though he had been a good pack-master so far, he let things go too far. Whether this was due to him being part of the plot or the Raptorians went and did what they did behind his back matters not. </p>
+
+<p>It comes to no surprise to no one when I order the Raptorians and squire attendees to elect a replacement Pack-master from among them except from the 5 culprits and I sentence Evok to be food. </p>
+
+<p>The big former Pack-master lowers his head in submission to my decision, which makes the accompanying Awe Guard ease up on their tense grips on their weapons. There would be no more trouble out of the Raptorians this night it seemed. But no one looked particularly happy. </p>
+
+<p>I gripped the lowered head of Evok in both my paws, gave him a reassuring pat and set to consuming him. Evok was huge, as I swallowed his head and saw the rest of his bulky body looming ahead I felt a strong apprehension towards the task ahead of me. </p>
+
+<p>But I was partly responsible for this turn of events, so I had to see it through to the end. With the eyes of the crew on me I swallowed Evok down, stretching jaws and stomach to my limits as I fitted the former Pack-master into my belly. </p>
+
+<p>I admit I had trouble at the hips, no matter how I strained I didnt seem to be able to cram them down. I had to motion for some aid from attending officers. None would blame me, because none short of perhaps a Wulf or the Pouch-matron wouldn't have had this problem. </p>
+
+<p>With some pushing and shoving help and even a few wiggling motions from Evok himself, the wide bulky hips squeezed past my cheeks. Evok was curling up tight in my stomach, I was utterly full and I felt relief and sick at the same time. Half of his legs and tail remained but I could not bring myself to gulp down any more of him. </p>
+
+<p>Again, few would blame me, but it was still a hit to my prestige. This whole event had been bad news and it would undoubtedly form a schism in the crew if I did not pay close attention to it. For now, they helped my back to my quarters to deal with the part of the former pack-master I had in my belly. The rest would follow as I digested him.</p>
+</div>
+
+
+</body>
+</html>
