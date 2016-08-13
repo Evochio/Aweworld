@@ -17,14 +17,14 @@
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
-      
+      state.events.push("raptoriansrebel");
       $('#button-1').on('click', function(e) {
 		lib.dialogue(e, "admit"),
 		
 		$("#button-3").addClass("hidden")
 		$("#button-1").addClass("hidden")
 		$("#button-2").addClass("hidden")
-		$("#Elda").removeClass("hidden")
+		$("#button-4").removeClass("hidden")
 	})
 		
 		$('#button-2').on('click', function(e) {
@@ -68,7 +68,7 @@
         // change state here
 		
         // end by using lib.goTo
-        lib.goTo('PaleRock.html')
+        lib.goTo('Wulfcaptain.html')
       })
     })
   </script>

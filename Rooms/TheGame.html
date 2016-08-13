@@ -12,15 +12,22 @@
  <link rel="stylesheet" href="/bootstrap.min.css"></link>
   <link rel="stylesheet" href="/bootstrap-theme.min.css"></link>
   <script src="/main.js"></script>
+  <style>
+ .surprised {
+	background-position: 400px 286px;  
+}
+  
+  </style>
   <script>
 		state.Glint.status = "invisible"
 		state.Valnos.status = "invisible"
 		state.Ziggy.status = "available";
 	
+	
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
-    
+    $("#Ziggy").addClass("new")
 	var updateGameScore = function() {
 	state.flock.team = (state.flock.avolc + state.flock.ziggy);
 	state.flock.opponent = (state.flock.arn + state.flock.keeper);
@@ -80,7 +87,7 @@
 		$("#button-2").addClass("hidden")
 		$("#button-3").addClass("hidden")
 		$("#button-4").addClass("hidden")
-		
+		$("#Ziggy").addClass("new")
 		cadet[0].banter = [
     { target: '#Ziggy', text: 'Pssst, hey, something is up.', imageClass: "suspicious"},
     { target: '#Ziggy', text: 'Trust me? Its risky, but force a redraw in round two by fumbling. Then play Matron in 3!', imageClass: "smug"},
@@ -101,7 +108,7 @@
 		$("#button-2").addClass("hidden")
 		$("#button-3").addClass("hidden")
 		$("#button-4").addClass("hidden")
-		
+		$("#Ziggy").addClass("new")
 		cadet[0].banter = [
     { target: '#Ziggy', text: 'Pssst, hey, something is up.', imageClass: "suspicious"},
     { target: '#Ziggy', text: 'Trust me? Its risky, but force a redraw in round two by fumbling. Stay low, then play Matron in 3!', imageClass: "smug"},
@@ -117,6 +124,7 @@
 		$("#button-5").addClass("hidden")
 		$("#ziggyplan").addClass("hidden")
     	
+		$("#Ziggy").addClass("disabled")
 		state.Ziggy.status = "disabled";
       })
 	  
@@ -128,7 +136,7 @@
 		$("#button-8").removeClass("hidden")
 		$("#button-5").addClass("hidden")
 		$("#ziggyplan").addClass("hidden")
-
+		
     	state.Ziggy.status = "disabled";
       })
 	  

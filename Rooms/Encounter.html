@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+ <link rel="stylesheet" href="/main.css">
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-theme.min.css">
+  <script src="/main.js"></script>
+
+  <script>
+    state.Glint.status = 'available';
+    state.Valnos.status = 'available';
+	state.Ziggy.status = 'available';
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "envoy"),
+        
+      })
+		
+		$('#button-2').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+		
+        lib.goTo('Groomery.html')
+      })
+    })
+	
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+
+<p></p>
+
+<p>“Captain! An oncoming ship is spotted on the horizon. It could be the pirates!” Ziggy burst into my quarters without knocking. Sometimes she forgot herself in excitement. </p>
+
+<p>A brief baleful glare was my only reproach for now as I rose and donned my cloak. This could very well be our first combat experience. </p>
+
+<p>Once out on the deck I joined Arn who was currently on duty and relieved him.</p>
+
+<p>“What does it look like?” I asked for an update. </p>
+
+<p>“Like a ship...captain.” Was his only response, eyes fixed on the horizon. It was still too early to make out details, but the glib response grated on me. He and I would have to have a serious talk someday soon.</p>
+
+<p>“I can see that! Find out what make it is, if you so have to climb the crow-nest to do so. If we have to prepare for battle i'd rather have the crew working on mounting the ballista right now.”</p>
+
+<p>“Yes... Captain.” To his credit, he did hurry away to follow my orders. Barking orders to get the Awe with the sharpest eyes up high to report an update as soon as they got it. The crew obeyed him quickly, they had respect for him. </p>
+
+<p>A few tense minutes followed. The sea was still quite choppy from the previous storm. The 'Attentive' rose and fell over the waves, sending the occasional spray over the deck. But it was no worse then the kind of weather you were to expect on the West-sea. Heck with the cloud-cover breaking up this could be considered a good day. </p>
+
+<p>Word soon came. 4 masts and Side-sails. That meant it was a Gryph trade-cruiser. It was highly unlikely it would be the pirates our merchants reported of. The illustrious trade-cruisers of the Gryph noble trading families were the fastest vessels on the seas. Made of sturdy but lightweight wood of the giant and apparently sacred ancestral trees of their homeland. </p>
+
+<p>Said trees served as their homes, but some families chose to convert them to ships and move their whole livelihood to the seas and trade. </p>
+
+<p><br />
+“Hoist the flag demanding inspection” I ordered. “They've must have seen something of the reported pirates.”</p>
+
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1"> Envoy </button>
+<button class="btn btn-default" id="button-2"> Continue </button>
+<span id="cadetButtons"> </span>
+<script>
+cadet[0].banter = [
+    { target: '#Ziggy', text: 'Pfah, so maybe they are not the pirates.', imageClass: "suspicious"},
+    { target: '#Ziggy', text: 'But can we be so sure?!', imageClass: "angry"},
+    { target: '#Glint', text: 'Yes. Yes we can. Traders of the kingdom HATE pirates.', imageClass: "angry"},
+	{ target: '#Ziggy', text: 'Maybe its a captured trader ship used as disguise!', imageClass: "angry"},
+    { target: '#Valnos', text: 'I hear they rather burn their ships down then let themselves be captured. They are very cautious.', imageClass: "angry"},
+	{ target: '#Ziggy', text: 'Oh, fine! Ill go put my armor away then.', imageClass: "suspicious"}
+];
+
+cadet[1].banter = [
+    { target: '#Glint', text: 'Look at their ship, its magnificient!', imageClass: "neutral"},
+    { target: '#Glint', text: 'You must give them credit for their aestic considerations when building their ships.', imageClass: "happy"},
+	 { target: '#Valnos', text: 'Trading houses spend their lives on their ships. They are as much their palaces as their livelyhoods.', imageClass: "happy"},
+	 { target: '#Glint', text: 'I can appreciate such dedication for business', imageClass: "smug"},
+	 { target: '#Ziggy', text: 'Oh just go give them a kiss already.', imageClass: "smug"}
+];
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'The engineering involved in these Kingdom Trade-cruisers are impressive.', imageClass: "neutral"},
+	{ target: '#Valnos', text: 'I wonder how they keep all those masts balanced and from breakin in rough seas. ', imageClass: "suspicious"},
+	{ target: '#Valnos', text: 'Or that long hull from cracking from the strain of it all.', imageClass: "surprised" },
+	{ target: '#Valnos', text: 'They guard their secrets closely though.', imageClass: "sad" },
+	{ target: '#Ziggy', text: 'They shouldnt! Imagine building something that size, but for battle. A Battlecruiser!', imageClass: "happy" },
+	{ target: '#Glint', text: 'Dont be ridiculous. Thats absurd!', imageClass: "angry"},
+	{ target: '#Valnos', text: 'And scary.', imageClass: "sad"}
+
+];
+
+
+</script>
+<div class="envoy hidden">
+
+<p>We lowered our sails to slow down and so did the Gryph ship appear to do to some degree as well. But they kept their distance and course. </p>
+
+<p>Pretty soon a lone figure was spotted in the air on wide elegant and colorful wings. A lone Gryph made himself over, fighting the wind a while before circling our ship and coming down to land on the middle-deck. </p>
+
+<p>The Gryph was tall, like most of their species were. He had greenish feathers with dark green markings and spots. On his head was a single impressive plume, he had more then one, but the rest were tied down by some form of ornament with a golden glint to it. This marked him as a member, if a minor one, of the head-family of the Gryph ship.</p>
+
+<p>“I hail thee Captain of Awes and fine vessel.” He performed a flourishing gesture in my direction. “I, Kveest, Son of Mraewk, of the 'House of Blueleaf' has come to your summons. My sire and captain asks for utmost forgiveness in their lack of person and distance of ship. Weather and condition permit him not to take wing personally. The need for haste is great, the tide is coming.“</p>
+
+<p>“That is quite alright. I am Avolc, honored to meet you.” I returned the gesture with a nod. It struck me now how fluent in Awe-speech this Gryph was. He pronounced some 'G's with an amusing trilling 'coo' and 'kee' sounds, but otherwise it was fascinating to hear his correct pronunciations with a beak. </p>
+
+<p>“We have need for haste of our own and merely have some questions and do not wish to impose a full inspection.” I reassured Kveest, who seemed to grow more at ease in hearing this. “You are in fact cutting things close with your trade-run, Three-moon Tide is coming soon. “</p>
+
+<p>“'In haste lies profit, in risk lays ruin'. But sometimes in risk lays great profit. As last one in and out many benefits may lie.” Kveest smiled and I found it quite an amiable face. I saw now why they were described as a 'Charismatic' people. </p>
+
+<p>“Very well.” I nodded. “I also need to know if you've spotted any other vessel lately in your journey here. A few days ago we came upon a damaged vessel of our own merchant-league. Attacked by pirates just short of the Sea of fangs.”</p>
+
+<p>Kveest perked attentively at the mention of pirates. News of risks to their precious vessel was always a concern. </p>
+
+<p>“Fie upon they who upon trade stalk! Our journey has been blessed without incident. We saw not another vessel in the pass through the fanged sea. We spied only a fleet of great many sails heading west when rounding 'Thousand Islands'. We kept our distance.”</p>
+
+<p>“I see..” I murmured at the news. Our two ships were slowly drifting further apart. I did not wish to inconvenience the traders any further. “Thank you for your answers, I will hold you no longer. I wish you safe travel.” I thought for a moment and added. “If you upon your journey see the Merchant-ship I mentioned. The Admiralty will not be without gratitude for aid rendered if they need it. ”</p>
+
+<p>Kveest performed another flourishing light bow and gesture and took steps to prepare to take off. </p>
+
+<p>“I bid thee farewell and success in thy hunt, Captain Avolc. We shall see what we can do for our brothers of the trade.”</p>
+
+<p>With that he swooped off the deck with heavy beats of his wings. I could see some of the crew eyeing him jealously. Only the best of our scouts can take off with such ease.</p>
+
+</div>
+
+</body>
+</html>

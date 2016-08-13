@@ -14,6 +14,9 @@
   <script src="/main.js"></script>
 
   <script>
+    state.Glint.status = 'available';
+    state.Valnos.status = 'available';
+	state.Ziggy.status = 'available';
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
@@ -58,7 +61,34 @@
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1"> Continue </button>
+<span id="cadetButtons"> </span>
+<script>
+cadet[0].banter = [
+    { target: '#Ziggy', text: 'Yup, Ziggy was the name!', imageClass: "neutral"},
+    { target: '#Ziggy', text: 'I hail from Thunderhill. Grew up with my adoptive sisters in state social.', imageClass: "neutral"},
+    { target: '#Ziggy', text: 'Signed up because i had nothing better to do! And they said i would learn how to fight proper!', imageClass: "happy"},
+	{ target: '#Ziggy', text: 'So far its been kind of dull. The academy was a drag!', imageClass: "concerned"},
+    { target: '#Ziggy', text: 'But we heading out to hunt those that raided my home now right?', imageClass: "angry"},
+	{ target: '#Ziggy', text: 'I look forward to it.', imageClass: "suspicious"}
+];
+
+cadet[1].banter = [
+    { target: '#Glint', text: 'I am Glint Silvertofs. Honored to be in your service Captain', imageClass: "neutral"},
+    { target: '#Glint', text: 'I was raised and tutored in our estate at Homepeaks before signing up to the Academy. It seemed the natural career path!', imageClass: "happy"},
+	 { target: '#Glint', text: 'Being chosen to be part of this great endeavour westward is huge opportunity. I will not let you down!', imageClass: "smug"}
+];
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'I am Valnos Tandtass. Glad to meet you captain!', imageClass: "neutral"},
+	{ target: '#Valnos', text: 'Im from a small village called Kommun east of Still Lake, you have probably not heard of it.', imageClass: "happy"},
+	{ target: '#Valnos', text: 'I was invited to the Academy when i came of age.', imageClass: "neutral" },
+	{ target: '#Glint', text: 'Invited? Only prestigious or extremely talented induviduals get invited.', imageClass: "suspicious" },
+	{ target: '#Ziggy', text: 'Wait, Tandtass, isnt that the famous explorer!? The one who got lost in The Thick!', imageClass: "happy"},
+	{ target: '#Valnos', text: 'Thats not all he was famous for. But that was my father.', imageClass: "sad"},
+	{ target: '#Glint', text: 'Oh my fluff! Why have you not mentioned this!?', imageClass: "surprised" },
+	{ target: '#Valnos', text: 'You never asked. A-anyway, i never quite met him. I hope to be of use.', imageClass: "blush"}
+];
 
 
+</script>
 </body>
 </html>

@@ -83,7 +83,36 @@
 <button class="btn btn-default hidden" id="approve">Approve</button>
 <button class="btn btn-default hidden" id="deny">Deny</button>
 <button class="btn btn-default hidden" id="continue">Continue</button>
+<span id="cadetButtons"> </span>
 
+<script>
+cadet[0].banter = [
+    { target: '#Ziggy', text: 'Hey guys, how about you two deepen with me, huh? How about it Glint? Ive seen you looking at me!', imageClass: "happy"},
+    { target: '#Glint', text: 'Dream on Ziggy.', imageClass: "angry"},
+    { target: '#Ziggy', text: 'Your loss! You Valnos?', imageClass: "blush"},
+	{ target: '#Valnos', text: 'Thanks for the offer but ill pass.', imageClass: "smug"},
+	{ target: '#Ziggy', text: 'Whats this, two rejections! Atleast Valnos smiled.', imageClass: "surprised"}
+];
+
+cadet[1].banter = [
+    { target: '#Glint', text: 'Deepenings are beautiful unions of body and spirit.', imageClass: "neutral"},
+	{ target: '#Glint', text: 'Its an act sanctioned and revered by the order, for what better way honor the wisdom of those who came before then to carry them with us.', imageClass: "smug"},
+	{ target: '#Glint', text: 'A tradition that survived the fall of the First-age and is still practised in all corners of Aweland cant be wrong.', imageClass: "happy"},
+	{ target: '#Valnos', text: 'Acctually, in recent studies its believed "Deepenings" predate the First-age considerably.', imageClass: "suspicious"},
+	{ target: '#Valnos', text: 'In ancient times it might have been a vital component of survival for our nomadic ancestors who struggled in the great cold', imageClass: "angry"},
+	{ target: '#Glint', text: 'Yes, well... thanks for that insight.', imageClass: "suspicious"},
+	{ target: '#Ziggy', text: 'You just got schooled!', imageClass: "happy"},
+	{ target: '#Valnos', text: 'Ah, no sorry! I didnt mean to babble.', imageClass: "surprised"}
+	];
+	
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'Deepenings are a serious commitment. Not a decision rushed into.', imageClass: "neutral"},
+	{ target: '#Valnos', text: 'While they are a civil liberty back on main-land. Admirality policy is usually more restrictive isnt it?', imageClass: "suspicious"},
+	{ target: '#Valnos', text: 'Things are always confusing when Civil and Admirality policies clash.', imageClass: "concerned"}
+];
+
+
+</script>
 
 <div class="arn hidden"><p><strong>Leave it to Arn</strong></p>
 
@@ -95,7 +124,7 @@
 
 <p> "Ah yea, Midlotta and Tintus. I'd let them have their way really. If a squeaker wants to give himself off, then why not, ya know." </p>
 
-<p> Well you know the crew best. I'll leave it to your judgement. </p>
+<p> "Well you know the crew best. I'll leave it to your judgement." </p>
 
 <p> Arn nods with the slightest tips of his hat and dismisses himself. Deepenings are rare, few practise such ancient gestures of devotion. Those who did are mostly fluff on their joined. whats one or two. </p>
 

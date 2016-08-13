@@ -29,6 +29,7 @@
         lib.goTo('Page15b.html')
       })
 	   $('#button-3').on('click', function() {
+	   state.raptorians -= 2;
         // change state here
 	        // end by using lib.goTo
         lib.goTo('Page15c.html')
@@ -79,6 +80,12 @@
 <p>Many are now bound down by debts and more of them risk being tempted into &quot;All or nothing&quot; kind of debts that might lead to doom or salvation.</p>
 
 </span>
+<span class="hidden" id="deepen">
+<p>This was not what i had in mind when i allowed deepenings to take place. I knew a few others would follow, but a lot has happened without direct my approval. </p>
+</span>
+<span class="hidden" id="nodeepen">
+<p>I did not allow deepenings for a reason. Im not sure whos idea it was to think i'd somehow approve of this without my asking.</p>
+</span>
 <hr />
 
 <script>
@@ -100,12 +107,27 @@
 	 $('#ignore').removeClass('hidden');
 	
 	}
+	
+	if (_.contains(state.events, "deepening")) {
+		$('#deepen').removeClass('hidden');
+	
+	}
+		else {
+				$('#nodeepen').removeClass('hidden');
+		}
 </script>
 </div>
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1"> Confront Arn in private</button>
 <button class="btn btn-default" id="button-2"> Drop in on a Game unannounced</button>
-<button class="btn btn-default" id="button-3"> Ask Ziggy to give Raptorians gambling lessons. </button>
+<button class="btn btn-default hidden" id="button-3"> Ask Ziggy to give Raptorians gambling lessons. </button>
+
+<script>
+ if (_.contains(state.events, "ignore")) {
+	 $('#button-3').removeClass('hidden');
+	
+	}
+</script>
 
 
 <div class="confront hidden"><p><strong>Confront Arn in private</strong></p>

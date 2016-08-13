@@ -57,7 +57,7 @@
 	
 	$('#continue').on('click', function(e) {
 		
-		lib.goTo('Groomery.html')
+		lib.goTo('Encounter.html')
 	})
     
     })
@@ -73,7 +73,17 @@
 <hr />
 <div id="story-text">
 
-<p>Bad storm on the horizon, it lays straight in our path. We could try to sail around it, it doesent look that large, but that could still take many extra days. The crew is still fresh and the ship is in top shape so we could also chance going through it.</p>
+<p>Storm on the horizon, it doesent look too big, but it lays straight in our path. We could try to sail around it, but that could still take many extra days. The crew is still fresh and the ship is in top shape so we could also chance going through it.</p>
+
+<p> I consulted with Officer Nyxie, our navigator. </P>
+</br>
+
+<p> "Yes Captain. We can cut straight through that weather if we have to. It appears to be more on the border of a squall then a real storm anyhow." Nyxies eyes narrowed as she seemed to stare down the clouds ahead of the ship. </p>
+
+<p> "So your assesment is that its of little danger to us." I calmly confirm. Her thoughts echo my own. </p>
+
+<p> "There is always danger Captain. Even squalls in the west can be considerable trouble. Some light damage should always be expected and be prepared for." </p>
+
 
 <p>I&#39;ve yet to see what this ship can do. But i have to keep the overall objective in mind.</p>
 
@@ -81,42 +91,74 @@
 <hr />
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default" id="through">Batten down the hatches, we are going through</button>
-<button class="btn btn-default" id="around">Better play is safe, lets skirt around and avoid the worst of it</button>
+<button class="btn btn-default" id="through">We are going through!</button>
+<button class="btn btn-default" id="around">Better play is safe.</button>
 <button class="btn btn-default hidden" id="trust">Trust in the crew</button>
 <button class="btn btn-default hidden" id="takeover">I got us in this mess, i'll get us out.</button>
 <button class="btn btn-default hidden" id="continue">Continue</button>
 
+<span id="cadetButtons"> </span>
+<script>
+cadet[0].banter = [
+    { target: '#Ziggy', text: 'Lets go, lets go! No little storm is gonna stop us. We gotta catch those pirates!', imageClass: "angry"},
+    { target: '#Glint', text: 'You know they are far gone by now no matter how fast we go. The fangs are still several days away.', imageClass: "concerned"},
+    { target: '#Ziggy', text: 'We cant know without trying!', imageClass: "suspicious"}
+	   
+];
+
+cadet[1].banter = [
+    { target: '#Glint', text: 'If we are going through that i better get my rain-cloak ready.', imageClass: "sad"},
+	{ target: '#Glint', text: 'But you know what they say about prudence. We are supposed to arrive at our destination in one piece.', imageClass: "concerned"}
+
+	];
+	
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'Hmmm, i hope this storm doesent catch up to our merchant friends.', imageClass: "sad"}
+	
+];
+
+
+</script>
+
+
 <div class="through hidden"><p><strong>Going through the storm</strong></p>
-<p>I never expected the weather to be this rough! We&#39;re not even past the Sea of fangs yet, i never expected the waves to be this large.</p>
+<p>I never expected the weather to be this rough! We&#39;re not even past the Sea of fangs yet, i never expected the waves to be this large. Several whirling towers of wind and water have also been spotted not far from the ship. We best hope none of those get in our path!</p>
 
-<p>The ship is holding so far, its built for this, most of the crew are holed up below. Only the most skilled and bravest sailors are in the masts, tending the lines and forward sail. But we&#39;re all soaked and miserable on this ship one way or another.</p>
+<p>The ship is holding together well so far, its built for this, most of the crew are holed up below. Only the most skilled and bravest sailors are in the masts, tending the lines and forward sail. But we&#39;re all soaked and miserable on this ship one way or another.</p>
 
-<p>It is soon my turn at the helm again. Perhaps i should take over entirely until we are in the clear, I feel responsible.</p>
+<p>I have been taking turn with Nyxie and it is soon my turn at the helm again. Perhaps i should take over entirely until we are in the clear, I feel responsible.</p>
 </div>
 
-<div class="around hidden"><p><strong>Going through the storm</strong></p>
+<div class="around hidden"><p><strong>Going around the storm</strong></p>
 <p>We got into some choppy water, but managed to stay out of the center of the storm. The clouds look rough in there and im somewhat glad of the decision, even though this course will take us many days to catch up from.</p>
 
-<p>I worry these delays will make it harder to catch our rendezvous before they head for other seas. Further more, with good speed, perhaps we could have caught whoever attacked that merchant vessel. I confess i have a taste for pirate i do not want to miss out on.</p>
+<p>I worry these delays will make it harder to catch our rendezvous before they head for other seas. Furthermore, with good speed, perhaps we could have caught whoever attacked that merchant vessel. I confess i have a taste for pirate i do not want to miss out on.</p>
 </div>
 
 <div class="trust hidden"><p><strong>Going through the storm</strong></p>
 <p>The crew of <em>"Attentive"</em> are to be commended, for whatever other faults no one can question their skill when it the matters.</p>
 
-<p>During the worst of it however, we lost a piece of the top second mast and it came tumbling down onto deck. There are casualties, one overboard, fell from the masts and regretfully lost at sea and two hit by falling pieces. The last two are in tending pouch-care of ships physician Elda. Im told they will recover.</p>
+<p>During the worst of it however, we lost a piece of the top second mast and it came tumbling down onto deck. There are casualties, one overboard, fell from the masts and regretfully lost at sea and another, Nyxie herself, hit by falling pieces. She is in tending pouch-care with the ships physician Elda. Im told she will recover and that her injury was not severe.</p>
+
+<p>She was hurt in the line of duty, but i still cant help feel responsible. A short memorial was also held for the private sailor lost in the storm. The mood on the ship is understandably dampened, no one relishes the thought of being swallowed by the cold uncaring sea. </p>
 
 <p>The wind is finally dying down however and we are out of the worst of it. The mast looks repairable, so it should not slow us down too much.</p>
 </div>
 
 <div class="takeover hidden"><p><strong>Taking over</strong></p>
+<p> At my urging i took over holding the rudder steady while steered through the storm. But a tall swirling funnel of air and water suddenly loomed out of nowhere right in our path! I shouted a warning as i swerved the ship lightly to manouver out of its way, but this made a sudden sideways gust of wind throw our sails and cause a loud crack in our top-mast. </p>
+
+<p> I remember rushing aside as debree fell. But one must have clipped me hard. 
+
 <p>I thought i had died and had again been&nbsp;reborn. Waking up in the dark and warm pouch of Elda, the ships physician, with little memory of how i got there was&nbsp;quite jarring.</p>
 
-<p>Im told i was hit by a piece of mast that came crashing down during the worst of the storm. A glancing blow to the head and a fractured shoulder with a helping of bruises. Luckily no one else was injured.</p>
+<p>Im told i was hit by a piece of mast that came crashing down. A glancing blow to the head and a fractured shoulder with a helping of bruises. Luckily no one else was injured but it was a close thing.</p>
 
-<p>I&#39;ve been prescribed pouch-rest for at least three days in our capable Physician and Pouch-Matrons care. She is like a stern dotting parent and has refused my request to heal on my own. In this matter she outranks me. Im sure she also relishes the chance to keep an admiral about her person for a while.&nbsp;</p>
+<p>I was prescribed pouch-rest for three days in our capable Physician and Pouch-Matrons care. She is like a stern dotting parent and refused the option of waiting for me to wake up so i could decide whether to heal on my own or not. In this matter she outranks me. Im sure she also relished the chance to keep a captain about her person for a while.&nbsp;</p>
 
-<p>Arn is acting-captain during my healing slumber, we have a few days of quiet sailing ahead, i hope.</p>
+<p>Arn was acting-captain during my healing slumber, we had a few days of quiet sailing and I appear to have missed little, i hope.</p>
+
+<p>Im still dizzy at the time of writing, a little sore and ravenously hungry. But if there ever was proof of the miracle of pouch-cures, im such a one. </p>
 
 </div>
 

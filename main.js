@@ -43,6 +43,7 @@ var createCadetButtons = function() {
 		$('#cadetButtons').append(button)
 		button.on('click', function() {
 			console.log('rawr')
+			$(this).removeClass("new");
 			$(this).siblings().attr('disabled', true);
 			cadetIndex = 1;
 			showNextDialogue();
@@ -54,22 +55,24 @@ var createCadetButtons = function() {
 		$('#cadetButtons').append(button)
 		button.on('click', function() {
 			console.log('rawr')
+			$(this).removeClass("new");
 			$(this).siblings().attr('disabled', true);
 			cadetIndex = 0;
 			showNextDialogue();
 			});
 			button.popover(options)
 	}
-	else if (state.Ziggy.status == 'disabled') {
+	/*else if (state.Ziggy.status == 'disabled') {
 		var button = $(' <button id=Ziggydis>  </button> ')
 		$('#cadetButtons').append(button);
 		
-	}
+	} */
 	if (state.Valnos.status == 'available') {
 		var button = $(' <button id=Valnos>  </button> ')
 		$('#cadetButtons').append(button)
 		button.on('click', function() {
 			console.log('rawr')
+			$(this).removeClass("new");
 			$(this).siblings().attr('disabled', true);
 			cadetIndex = 2;
 			showNextDialogue();
@@ -87,7 +90,7 @@ var options = {
 		if (cadet[cadetIndex].banter[i].text == undefined) {    //This part doesent work.
 			"Cadet has nothing to say"
 		}
-		else {
+		else { 
         return cadet[cadetIndex].banter[i].text; }
     }, 
     trigger: 'manual'
@@ -96,6 +99,7 @@ var options = {
 
 var showNextDialogue = function () {
 	console.log('top of function')
+	
     var banter = cadet[cadetIndex].banter;
     var previousTarget = null;
     if(i > 0) {

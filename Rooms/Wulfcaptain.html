@@ -14,9 +14,9 @@
   <script src="/main.js"></script>
 
   <script>
-	state.preludeEvents.push("nipfang");
-	state.preludeEvents.push("defensive");
-	state.inventory.push("burntRope");
+	//state.preludeEvents.push("nipfang");
+	//state.preludeEvents.push("defensive");
+	//state.inventory.push("burntRope");
 	
 	var hideQuestions = function(){
 		$("#button-5").addClass("hidden")
@@ -24,6 +24,7 @@
 		$("#button-7").addClass("hidden")
 		$("#button-8").addClass("hidden")
 		$("#button-9").addClass("hidden")
+		$("#keepersdoc").addClass("hidden")
 		$("#propose").addClass("hidden")
 		$("#button-10").removeClass("hidden")
 	}
@@ -32,7 +33,16 @@
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
     
+	var keeperCheck = function(){
+	 if (_.contains(state.events, "keeper")) {
+	 $('#keeper').removeClass('hidden');
 	
+		}
+	else {
+		 $('#nokeeper').removeClass('hidden');
+		}
+	}
+	keeperCheck();
 	
       $('#button-1').on('click', function(e) {
 	
@@ -40,23 +50,56 @@
 		$("#button-1").addClass("hidden")
 		$("#button-2").addClass("hidden")
 		$("#button-3").addClass("hidden")	
-		$("#button-4").removeClass("hidden")		
+		
+		 if (_.contains(state.events, "keeper")) {
+			$('#keepers').removeClass('hidden');
+	
+		}
+		else {
+		 $("#button-4").removeClass("hidden")	
+		}
+			
       })
 
       $('#button-2').on('click', function(e) {
-        lib.dialogue(e, "short")
+        
+		
+		 
+		
+		
 		$("#button-1").addClass("hidden")
 		$("#button-2").addClass("hidden")
 		$("#button-3").addClass("hidden")
-		$("#button-4").removeClass("hidden")
-      })
+		
+		if (_.contains(state.events, "keeper")) {
+			 lib.dialogue(e, "shortkeeper")
+			console.log("Keeper exists")
+		}
+		else {
+		 lib.dialogue(e, "short")
+		console.log("No keeper")
+		}
+		})
 	  $('#button-3').on('click', function(e) {
          lib.dialogue(e, "wulf")
 		$("#button-1").addClass("hidden")
 		$("#button-2").addClass("hidden")
 		$("#button-3").addClass("hidden")
+		if (_.contains(state.events, "keeper")) {
+			$('#keepers').removeClass('hidden');
+	
+		}
+		else {
+		 $("#button-4").removeClass("hidden")	
+		}
+      })
+	  $('#keepers').on('click', function(e) {
+         lib.dialogue(e, "keepers")
+		$("#keepers").addClass("hidden")
+		
 		$("#button-4").removeClass("hidden")
       })
+	  
 	  $('#button-4').on('click', function(e) {
         lib.dialogue(e, "cabin")
 		$("#button-4").addClass("hidden")
@@ -64,6 +107,9 @@
 		$("#button-6").removeClass("hidden")
 		$("#button-7").removeClass("hidden")
 		$("#button-8").removeClass("hidden")
+		if (_.contains(state.events, "keeper")) {
+		$("#keepersdoc").removeClass("hidden")
+		}
 		$("#propose").removeClass("hidden")
 		if (_.contains(state.inventory, "burntRope")) {
 		$("#button-9").removeClass("hidden")
@@ -76,6 +122,15 @@
 		state.wulfQuestions.push("threaten");
         // end by using lib.goTo
         if (state.wulfQuestions.length >= 2) {
+		hideQuestions();
+		} 
+      })
+	  
+	    $('#keepersdoc').on('click', function(e) {
+	    lib.dialogue(e, "keepersdoc")
+	   state.wulfQuestions.push("keepersdoc");
+       state.wulfCaptain += 1;
+       if (state.wulfQuestions.length >= 2) {
 		hideQuestions();
 		} 
       })
@@ -258,6 +313,8 @@ This interceptor appeared to be alone and as it closed in, its flags were confir
 The docking was uneventful. The differences in crew was as always interesting. Where our brave Awes stood in fine rows, the wulfs seemed content with having no organization what so ever, standing in spaced bunches in every feasible nook of their ship and an alarming number of them gawking down from the sails and ropes. <br />
 As soon as a plank was lowered, a short figure marched over. Wearing a captains overcoat a young looking Wulf lass peered around with suspicion before fixing me with a sneer.<br />
 &ldquo;You captain?&rdquo; She asked with a youthful voice.</p>
+<span class="hidden" id="keeper">I glanced over at Keeper, who was looking somewhat chagrined, this sure wasent Captain Viriltri. Things just got complicated.</span>
+<span class="hidden" id="nokeeper">This clearly wasent Captain Viriltri. This might be a good thing or a bad thing considering Keepers absence.</span>
 </div>
 <hr />
 
@@ -265,10 +322,12 @@ As soon as a plank was lowered, a short figure marched over. Wearing a captains 
 <button class="btn btn-default" id="button-1">Formal Greeting</button>
 <button class="btn btn-default" id="button-2">Be short and to the point.</button>
 <button class="btn btn-default" id="button-3">Try a Wulf-specific courtesy</button>
+<button class="btn btn-default hidden" id="keepers">Keepers documents</button>
 <button class="btn btn-default hidden" id="button-4">Viskas cabin</button>
 
 <button class="btn btn-default hidden" id="button-5">Threaten to take the intel</button>
 <button class="btn btn-default hidden" id="button-6">Bargain for better deal</button>
+<button class="btn btn-default hidden" id="keepersdoc">Keepers "old-deal" documents</button>
 <button class="btn btn-default hidden" id="button-7">Plead to her better senses</button>
 <button class="btn btn-default hidden" id="button-8">Question motives</button>
 <button class="btn btn-success hidden" id="button-9">(ITEM)Burnt Rope of Wulf-ship</button>
@@ -321,6 +380,27 @@ As soon as a plank was lowered, a short figure marched over. Wearing a captains 
 </div>
 
 <div class="short hidden">
+
+<p>I frowned back at her.</p>
+
+<p>“Where is your captain? I was told our contacts name was Viriltri.” I responded with brusque annoyance. There was no need to pretend formality.</p>
+
+<p>The young wulf merely shrugged and didnt even bother to look at me as she responded, her gaze traveling about my ship and crew. </p>
+
+<p>“I ate him a while back... fair and square. Viska captain now.” </p>
+
+<p>She had a thick dialect in her Awe-speech, I was surprised to hear her speak it however while her posture and was the epitome of non-nonchalance, she looked almost bored. Some of the Wulfs perching in the ropes above sniggered and snickered. It was difficult to imagine someone so young in charge of anything, no less a crew of anarchical wulfs.</p>
+
+<p>“Then our deals are with you, Viska. You have information for us.” </p>
+
+<p>Viska seemed to weigh my words, looking like she was sucking on one of her fangs in a thoughtful manner. In the end she showed her paws in an odd gesture and turned back towards her ship.</p>
+
+<p>“Captains will speak.” She beckoned and strode back over the plank. It seemed I was invited to a meeting.</p>
+
+</div>
+
+<div class="shortkeeper hidden">
+
 <p>I frowned back at her.</p>
 
 <p>“Where is your captain? I was told our contacts name was Viriltri.” I responded with brusque annoyance. There was no need to pretend formality.</p>
@@ -362,6 +442,18 @@ As soon as a plank was lowered, a short figure marched over. Wearing a captains 
 
 </div>
 
+<div class="keepers hidden">
+
+<p> Keeper suddenly cleared this throat and stepped forward. He was carrying a binder of documents. </p>
+
+<p> "Before you retire to speak. I believe this gift of exchange of information had been promised" </p>
+
+<p> Viska spun around, tail whirling, she stared at Keeper balefully and suspiciously. It seemed to have a unexpected effect on the spectacled Wulf, he shrunk under the gaze and took a hesitant step backwards and nearly dropping the binder. </p>
+
+<p> "Mewler! Speak-dare! Awe-speak!" She almost spat, angered. "Viska take gift! But old-deal still no-deal!" She marched up to Keeper who made an visible effort to stay put and yanked the binder from him and then marched back toward her ship.</p>
+
+<div>
+
 <div class="cabin hidden">
 <p>The captains cabin of the Wulf-ship was sparse and barely even larger then a low-ranking officers hut. But it had the privacy and room for two captains to converse in peace. </p>
 
@@ -377,6 +469,17 @@ As soon as a plank was lowered, a short figure marched over. Wearing a captains 
 
 <p>I figured i had a shot or two at figuring out a method of changing her mind before anything drastic had to happen. </p>
 </div>
+
+<div class="keepersdoc hidden">
+
+<p> "Old deal or not, you've just taken a gift of some value from us. Surely thats worth something, if not for you, then for your organization. </p>
+
+<p> Viska looked annoyed. Wether she liked it or not, she had in a way accepted part of the old deal when taking the documents. Still she protested. </p>
+
+<p> "Old-deal is no-deal! No value for Viska! But Viska thank for gift." She looked unhappy</p>
+
+</div>
+
 <div class="threaten hidden">
 <p>“Why would I let you digest me or one of my crew just for some words in a paper!” I sneered. </p>
 

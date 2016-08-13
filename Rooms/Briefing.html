@@ -42,6 +42,7 @@
       $('#button-2').on('click', function(e) {
         lib.dialogue(e, "fleet")
 		$("#button-2").addClass("hidden")
+		$("#button-3").removeClass("hidden")
 		briefing.push("fleet");
 		
 		if (_.contains(briefing, 'role') && _.contains(briefing, 'fleet') && _.contains(briefing, 'culprits')) {
@@ -64,7 +65,7 @@
 	  $('#button-4').on('click', function(e) {
         lib.dialogue(e, "ship-crew")
 		$("#button-4").addClass("hidden")
-		$("#button-5").removeClass("hidden")
+		$("#captain").removeClass("hidden")
 		
 	
 	
@@ -86,7 +87,7 @@
 		 $("#button-8").addClass("hidden")
         $("#wulfs").removeClass("hidden")
 		$("#tide").removeClass("hidden")
-		$("#captain").removeClass("hidden")
+		$("#button-4").removeClass("hidden")
 		$("#noquestions").removeClass("hidden")
       })
 	  $('#button-8').on('click', function(e) {
@@ -110,6 +111,7 @@
 	    $("#wulfs").addClass("hidden")
 		$("#tide").addClass("hidden")
 		$("#captain").addClass("hidden")
+		$("#button-4").addClass("hidden")
 		$("#noquestions").addClass("hidden")
         $("#button-6").removeClass("hidden")
 		$("#button-8").removeClass("hidden")
@@ -160,9 +162,9 @@
 
 <p>I straightened attentively. It was not every day you received a briefing from the Grand-Admiral herself. </p>
 
-<p>“8 months ago, Thunderhill was raided.” She rapped at the map on the wall. “The damage was extensive, large parts of the city was set ablaze and so was the loss of life. A literal loss, a lot of Awes went missing, its believed they were kidnapped.”</p>
+<p>“8 months ago, Thunderhill in Gleaming bay was raided.” She rapped at the map on the wall. “The damage was extensive, large parts of the city was set ablaze and so was the loss of life. A literal loss, a lot of Awes went missing, its believed they were kidnapped.”</p>
 
-<p>I clenched my paws tightly. What a terrible event! Thunderhill was raided once before 50 years ago. That was before any routes west were known of. Since then the West sea saw a considerable mobilization from the Admiralty. It was vowed to never happen again. </p>
+<p>I clenched my paws tightly. What a terrible event! Thunderhill was raided once before 50 years ago. That was before any routes west were known about and the Spines and Fangs were thought of as untraversable. Since then the West sea saw a considerable mobilization from the Admiralty. Hrystrags was developed and constructed. It was vowed to never happen again. </p>
 
 <p>“They somehow completely bypassed our patrols at both the passage through Sea of fangs, Bay of spines and around Gaping pass. Which means they came either straight through the North sea, something I find highly unlikely, or used routes unknown to us.”</p>
 
@@ -170,7 +172,7 @@
 
 <p>“Naturally, the politicians have been all over the Admiralty over this. I had Voice-Matron Udina here personally demanding my voluntary sacrifice to the fluff.” The Grand-Admiral glowered. I did my best to stay as quiet as possible. </p>
 
-<p>“Luckily, the Speaker and the other Voices did, after review, not quite agree. There are no precautions that could have been done better. The Merchant-league were crawling all over us to better protect their trade routes, as attacks had been growing and ships have increasingly gone missing. So! Its been concluded that we are at WAR, Avolc.” The Grand-Admiral slammed her clenched paw on a table with a heavy thud. </p>
+<p>“Luckily, the Speaker and the other Voices did, after review, not quite agree. There are no precautions that could have been done better. The Merchant-league were crawling all over us to better protect their trade routes, as attacks had been growing and ships have increasingly gone missing. Our patrols on the known routes were as thick as they could be. So! Its been concluded that this attack were no mere raid but a focused assalt upon our sovereignty and thus that we are at WAR, Avolc.” The Grand-Admiral slammed her clenched paw on a table with a heavy thud. </p>
 
 <p>I swallowed heavily and managed to utter a question. </p>
 
@@ -185,24 +187,30 @@
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1">Culprits</button>
 <button class="btn btn-default" id="button-2">Fleet</button>
-<button class="btn btn-default" id="button-3">My Role?</button>
-<button class="btn btn-default hidden" id="button-4">Ship and Crew</button>
-<button class="btn btn-default hidden" id="button-5">Replacement Captain?</</button>
+<button class="btn btn-default hidden" id="button-3">My Role?</button>
+
 <button class="btn btn-default hidden" id="button-6">Objectives</button>
 <button class="btn btn-default hidden" id="button-7">Questions?</button>
 <button class="btn btn-default hidden" id="noquestions">No more questions.</button>
 <button class="btn btn-default hidden" id="button-8">Im ready</button>
+<button class="btn btn-default hidden" id="button-4">Ship and Crew</button>
 <button class="btn btn-default hidden" id="wulfs">Are we working with the Wulfs now?</button>
 <button class="btn btn-default hidden" id="tide">Three-moon Tide</button>
 <button class="btn btn-default hidden" id="captain">What acctually happened with the Captain?</button>
 
 <div class="culprits hidden"><p><strong>Culprits</strong></p>
 
-<p>The Empire of the gators is in another smaller, albeit costly, civil war. The Gryphs only care about their trade and the Wulfs, well, we're pretty sure it wasent the Wulfs, they've reportedly lost trade too.</p>
+<p>"There are three nations capable of orchestrating an attack of this magnitude. The Wulfs, The Empire and Kingdom of Plumes. 
 
-<p>Yet members of all 3 races were seen participating in the attack. The most foreboding thought would be that all 3 nations are conspiring against us, but whats more likely is that this was some form of pirate raid. </p>
+<p>The Empire of the gators is in another smaller, albeit costly, civil war. The Gryphs of the Kingdom only care about their trade and the Wulfs, well who truly knows about them, they are afterall not really a nation, more a collection of city-states. But we're pretty sure it wasent the Wulfs, we are in good contact with them and they've reportedly lost trade too.</p>
 
-<p>All information we've been able to glean or purchase points to origin piracy coming from the Thousand-islands. And of course, what better place to hide a place of operations. </p>
+<p>Yet! Members of all 3 races were seen participating in the attack. The most foreboding thought would be that all 3 nations are conspiring against us, but whats more likely is that this was some form of elaborate and well-financed pirate raid. </p>
+
+<p>All information we've been able to glean or purchase points to piracy originating from the Thousand-islands. And of course, what better place to hide a place of operations. </p>
+
+<p> The boom of the western trade have inevitably given a boom to piracy. Until recently its been mostly benign, merchants having their goods confiscated or being forced to pay for 'protection' if caught. All of this happening outside our jurisdiction, mostly beyond the Fangs and Pale-rock. </p>
+
+<p> But the escalation has happened quickly and could not have been forseen. We were just about to formulate a plan to all the reports of vanishing trade ships when Thunderhill was raided." </p>
 
 </div>
 
@@ -210,9 +218,11 @@
 
 <p>“The only natural response to this provocation was to send a War-fleet. We cant hug all our ships close to our ports, that leaves us blind to whats out there and ensures we loose all our trade sponsors. It would be repeating the mistakes of the First-Age. No, they right response is attack.”</p>
 
-<p>The Admiral paced to look out a window at the ship-yards below.</p>
+<p> The Admiral paced to look out a window at the ship-yards below.</p>
 
-<p>“13 ships all in all, off our latest make and model with the best crews we could find. Enough to crush any pirate haven and show we mean business!”</p>
+<p> “Its the biggest Admirality operations since "The great blockade". 13 ships all in all, off our latest make and model constructed by Awe paws, REAL warhips this time, nothing like those converted trade frigates you have in the east. With the best crews we could find. Enough to crush any pirate haven and show we mean business!”</p>
+
+<p> I swallowed the urge to defend the quality of my old ship. It was a capable and strong ship that had never let me down. But i had spied some of the hulls under construction when arriving, some looked to become real monsters.</p>
 
 
 </div>
@@ -222,54 +232,40 @@
 
 <p>“Im to join this fleet?” </p>
 
-<p>“Yes, except we sent it out 5 months ago and its soon Triple-moon and I've yet to hear a report from them other then that they've arrived intact and begun to search! No doubt they're having trouble finding the pirate-haven.”</p>
+<p> "Yes, you will captain the 14th ship, replacing a captain after some incident on the ship left them... indisposed. The fleet itself however left months ago. They've sent scattered report by bird, that they've arrived intact and have begun their search and so on. But its unreliable means of communication, some reports that arrive are older then the last ones! But no doubt they're having trouble finding the pirate-haven, its not called Thousand-isles for nothing."
 
 <p>“So..”</p>
 
-<p>“So you are to sail out there with our fastest ship before the Three-moon tide closes all known passage west, deliver some intel we might have got our paws on, get a report and assist if needed and sail right back in time for when the tide opens again. Simple!”</p>
+<p>“So! You are to sail out there with our fastest ship before the Triple-moon tide closes all known passage west, deliver some intel we might have got our paws on, get a full report and assist if needed and sail right back in time for when the tide opens again. Simple!
+I need the best captain i can get, And right now, thats you.”</p>
 
  </div>
  
  <div class="ship-crew hidden"> <p><strong>Ship and Crew</strong></p>
 
-<p>“Thats right, you'll be captaining a new ship and crew. In truth, you are an replacement captain for the messenger ship that arrived with the latest report.”</p>
+<p>“Thats right, you'll be captaining a new ship and crew, replacing the captain for the messenger ship that arrived with the latest report.”</p>
 
-<p>“I believe the ship will impress you, its built from our own efforts and materials and nothing like those purchased converted trade-prows you have in the East. Its fast, its hard and it certainly can handle most of what the west can throw at it.”</p>
+<p>“I believe the ship will impress you, its built from our own efforts and materials, a new type of armed escort, nothing like those purchased converted trade-prows you have in the East. Its fast, its hard and it certainly can handle most of what the west can throw at it.”</p>
 
 <p>“I have faith in that you'll learn to handle it and the crew quickly!”</p>
 
 </div>
- <div class="replace hidden"> <p><strong>Replacement Captain?</strong></p>
 
-
-<p>The Grand-Admiral made a dismissive wave of her paw. </p>
-
-<p>“The previous captain did not meld well with the crew for some reason. I only have off-hand reports of what transpired, they did not leave very good logs behind. Something I am hoping you'll change by the way! Write everything down!”</p>
-
-<p>“So what did happen?” I ask, genuinely curious. </p>
-
-<p>“The burden of leadership became too much. Shut themselves away from the crew, got in some kind of spat or another with the crew over orders. Needless to say, there is nobody to ask but the officers and i'll have to take their word for it. Leaderless they had to turn the ship around and come back to port.”</p>
-
-<p>I can only 'hmmm' thoughtfully, it was not very convincing. It sounded like a mutiny of some kind had happened. The Grand-Admiral picked up on my doubt and began a speech.</p>
-
-<p>“As you well know, its hard to find strong able leaders that are willing to take the mantle of captaining. The problem with Awes are that we become comfortable in our roles. Few are like you and me, able to see the full picture and make the hard and sometimes unpopular decisions.” </p>
-
-<p>“I... Will make a better job of it, Grand-Admiral.”</p>
-
-</div>
 
 <div class="objectives hidden"> <p><strong>Objectives.</strong></p>
 
 <p>“Your mission is 3-fold.” <br /></p>
 
-<p>“Firstly, on your way West, you're to rendezvous with a Wulf-fleet contact at Pale-rock. They have agreed to assist our efforts with some valuable knowledge. But said Intel is too substantial for messenger bird. </p>
+<p>“Firstly, on your way West, you're to rendezvous with a Wulf-fleet contact at Pale-rock. They have suffered losses of ships and done some digging of their own and agreed to assist our efforts with some valuable knowledge that is supposed to help us find the pirate hideouts. Said Intel is too substantial for messenger bird, hence the meeting. </p>
 
-<p>This “Intel” didnt come cheap. And we have no way to verify how valuable it is. As with any meeting with their organization, its always risky. But you have experience with Wulfs though, so I have faith in you. </p>
+<p>This “Intel” didnt come cheap. And we have no way to verify how authentic it is. As with any meeting with their organization, its always risky. As such i have assigned a diplomatic expert to your crew. He IS a Wulf himself, one of our few officers, keep him safe. </p>
+
+<p>You have extensive experience with Wulfs, so I have faith in you. </p>
 
 <p><br />
 </p>
 
-<p>Secondly, meet with the operational Fleet-Admiral, I want her full report! Return immediately once you have it and tides permit you passage unless you can provide some kind of meaningful crucial assistance. You may drop off some of your crew as reinforcements, supplies. Your ship is somewhat over-stocked with crew and supplies both with this in mind. </p>
+<p>Secondly, meet with the operational Fleet-Admiral, I want her full report! Return immediately once you have it and once tides permit you passage unless you can provide some kind of meaningful crucial assistance. You may drop off some of your crew as reinforcements, supplies too. Your ship is somewhat over-stocked with crew and supplies both with this in mind. </p>
 
 <p><br />
 </p>
@@ -280,19 +276,20 @@
 
 </div>
 
- <div class="wulf hidden"> <p><strong>Are we working with the Wulfs now?</strong></p>
+ <div class="wulfs hidden"> <p><strong>Are we working with the Wulfs now?</strong></p>
 
-<p>“We've always worked with the Wulfs, Captain. I know how you might feel, having worked 10 years in the east to stave off their more.... privateering kind. But most of them as a whole prefer the old fashioned trade and barter as well as beneficial cooperation. Their concern over the halted trade westward I believe is quite genuine.“</p>
+<p>“We've always worked with the Wulfs, Captain. Even before 'The great blockade' and the treaties we signed with them after that. I know how you might feel, having sailed 10 years in the east to stave off their more.... privateering kind. That they're treachorous and havent changed. But most of them as a whole prefer the old fashioned trade and barter as well as beneficial long-term cooperation. Their concern over the halted trade westward I believe is quite genuine.“</p>
 
-<p>“It doesent mean we should show any sign of weakness however. Your instincts are correct in not to trust them. “</p>
+<p>“It doesent mean we should show any sign of weakness however. Your instincts are correct in not to trust them, everyone has their own motives.“</p>
 
+<p>"The Wulf-officer i've assigned to you will help you prepare for the meeting as the day approaches." </p>
 </div>
 
  <div class="tide hidden"> <p><strong>Three-moon Tide</strong></p>
 
 <p>“Yes, Captain Avolc. With the 3 moons together in formation at almost the same spot, the tidal effects are at their worst, especially in the west-sea where furthermore 3 separate currents meet and clash.”</p>
 
-<p>“The low-tides will make the Sea of Fangs impassable and with the currents pulling you away from our shores braving the open sea to get around the Fangs will have you finding yourself somewhere deep in the North-Sea, if the giant waves dont get you first.”</p>
+<p>“The low-tides will make the Sea of Fangs impassable and with the currents pulling you away from our shores braving the open sea to get around the Fangs will have you finding yourself starving somewhere deep in the North-Sea, if the giant waves dont get you first.”</p>
 
 <p>“But I dont need to tell you this, the deep open seas are as deadly in the east as the west.” </p>
 
@@ -300,13 +297,24 @@
 </div>
  <div class="captain hidden"> <p><strong>What acctually happened with the Captain?</strong></p>
 
-<p>The Grand-Admiral audibly sighs.</p>
+<p>The Grand-Admiral made a dismissive wave of her paw. </p>
 
-<p>“I understand why you ask, but I wish you wouldnt. I was not unintentionally vague before.”</p>
+<p>“The previous captain did not meld well with the crew for some reason. I only have off-hand reports of what transpired, they did not leave very good logs behind. Something I am hoping you'll change by the way! Write everything down!”</p>
 
-<p>“I could dig into the issue, perhaps at a better time I would have and replaced anyone harboring suspicion in the crew. But I wont. I have reason to trust some of the current officers aboard and if they tell me there are no issues, then there are no issues!”</p>
+<p>“So what did happen?” I ask, genuinely curious. </p>
 
-<p>“Im sure you're Awe enough to handle any issue that crops up. You'll do as you see fit as the captain. Just try to maintain everyone's respect for your authority while doing it. ”</p>
+<p>“The burden of leadership became too much. They shut themselves away from the crew, got in some kind of spat or another with the crew over orders. Then they disappeared, over-board or into someones gut, i don't know.” </p>
+
+<p>“Needless to say, there is nobody to ask but the officers and I'll have to take their word for it. I could dig into the issue, perhaps at a better time I would have and replaced anyone harboring suspicion in the crew. But I wont. Not only are we short-handed but I have reason to trust some of the current officers aboard and if they tell me there are no issues, then there are no issues! They simply were not captain enough to handle the responsibility and maintain respect.”</p>
+
+<p>I could only 'hmmm' thoughtfully, it was not very convincing. It sounded like a mutiny of some kind had happened. The Grand-Admiral picked up on my doubt and began a speech.</p>
+
+<p>“As you well know, its hard to find strong able leaders that are willing to take the mantle of captaining. The problem with Awes are that we are a willful and free people, unable to always conform and follow the will of another nor in the same way impose our will on another in turn. Few are like you and me, able to see the full picture, take the long-view and make the hard and sometimes unpopular decisions while maintaining the confidence of authority!” </p>
+
+<p>“I... Will make a better job of it, Grand-Admiral.”</p>
+
+<p>“Im sure you're Awe enough to handle anything that crops up. You'll do as you see fit as the captain. Just try to maintain everyone's respect for your authority while doing it.”</p>
+
 </div>
 
 </body>

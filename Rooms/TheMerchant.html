@@ -14,10 +14,12 @@
   <script src="/main.js"></script>
 
   <script>
+
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
-      
+ 
+	
       $('#button-1').on('click', function(e) {
         // change state here
 		state.crewMorale -= 1;
@@ -30,6 +32,8 @@
       })
 	   $('#button-2').on('click', function(e) {
         // change state here
+
+		
 			state.delay += 1;
 			state.crewMorale += 1;
 			state.inventory.push("gratitude");
@@ -216,7 +220,31 @@
 <button class="btn btn-default hidden" id="button-13"> Continue </button>
 
 
+<span id="cadetButtons"> </span>
 
+<script>
+cadet[0].banter = [
+    { target: '#Ziggy', text: 'If they know anything about pirates in the area, we should get that information and pursue!', imageClass: "surprised"},
+    { target: '#Ziggy', text: 'Its our job to catch these guys afterall!', imageClass: "suspicious"},
+    { target: '#Ziggy', text: 'And im itching for a fight!', imageClass: "angry"}
+
+];
+
+cadet[1].banter = [
+    { target: '#Glint', text: 'Those are from our own Merchant league, they are a large sponsor of the Admirality', imageClass: "neutral"},
+	{ target: '#Glint', text: 'If they are in need we are usualy obligated to help.', imageClass: "concerned"},
+	{ target: '#Glint', text: 'It can be a good oppertunity to get your name out too! Nothing like a grateful merchant!', imageClass: "smug"}
+
+	];
+	
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'I understand our objectives are time sensetive', imageClass: "neutral"},
+	{ target: '#Valnos', text: 'But we should be able to render some aid, no?', imageClass: "sad"},
+	{ target: '#Valnos', text: 'In anycase, this should be a good oppertunity to gain some intelligence on whats ahead.', imageClass: "neutral"}
+];
+
+
+</script>
 
 <div class="information hidden"><p><strong>Get information, then leave</strong></p>
 <p>We retired quickly to my cabin and Captain Russel was very disappointed to hear that we would not be of greater assistance to their plight.</p>
@@ -316,7 +344,7 @@
 
 <p>I taught her about crew discipline and punishment. The idea that the Admirals rule is law, she can decide anything on a ship, eat those who cause trouble, seemed to greatly appeal to her and furthered her convictions about becoming one.</p>
 
-<p>As if on que a report arrived from Cadet glint shortly after. Two thieves have been caught in the act, separately, but almost at the same time. First if of the merchant ships &#39;Steady wing&#39;s crew and the second one from the &#39;Perked ear&#39;. Now as far as i understand from the reports, they both had the bright idea of using the busy bustle of repair work and almost free movement between ships as an opportunity to make off with some of the wares. But were caught in the act by astute officers keeping record of everything moved and a sharp eye out for trouble. Our very own Cadet Valnos was instrumental in catching the Steady wing thief and Captain Russel himself caught our wayward crew mate with a pouchful of coins coming from somewhere she shouldn&#39;t have been.</p>
+<p>As if on que a report arrived from Cadet glint shortly after. Two thieves have been caught in the act, separately, but almost at the same time. First if of the merchant ships &#39;Steady wing&#39;s crew and the second one from the "Attentive". Now as far as i understand from the reports, they both had the bright idea of using the busy bustle of repair work and almost free movement between ships as an opportunity to make off with some of the wares. But were caught in the act by astute officers keeping record of everything moved and a sharp eye out for trouble. Our very own Cadet Valnos was instrumental in catching the Steady wing thief and Captain Russel himself caught our wayward crew mate with a pouchful of coins coming from somewhere she shouldn&#39;t have been.</p>
 
 <p>Since one thief belongs to the Admiralty and the other stole from my ship, it should be my judgment on what to do with both of these thieving fools. But i have been absent from most of the proceedings on deck so i thought it prudent to allow Captain Russels to pass judgment.</p>
 
@@ -416,7 +444,7 @@
 
 <p>She reminds me of Glint in some ways. A fact that Glint did not enjoy hearing when she delivered the evening report.</p>
 
-<p>Said report had some interesting and disappointing news. Two thieves were caught in the act, separately, but almost at the same time. First is&nbsp;of the merchant ships &#39;Steady wing&#39;s crew and the second one from the &#39;Perked ear&#39;. Now as far as i understand from the reports, they both had the bright idea of using the busy bustle of repair work and almost free movement between ships as an opportunity to make off with some of the wares. But were caught in the act by astute officers keeping record of everything moved and a sharp eye out for trouble. Our very own Cadet Valnos was instrumental in catching the Steady wing thief and Captain Russel himself caught our wayward crew mate with a pouchful of coins coming from somewhere she shouldn&#39;t have been.</p>
+<p>Said report had some interesting and disappointing news. Two thieves were caught in the act, separately, but almost at the same time. First is&nbsp;of the merchant ships &#39;Steady wing&#39;s crew and the second one from the "Attentive". Now as far as i understand from the reports, they both had the bright idea of using the busy bustle of repair work and almost free movement between ships as an opportunity to make off with some of the wares. But were caught in the act by astute officers keeping record of everything moved and a sharp eye out for trouble. Our very own Cadet Valnos was instrumental in catching the Steady wing thief and Captain Russel himself caught our wayward crew mate with a pouchful of coins coming from somewhere she shouldn&#39;t have been.</p>
 
 <p>Since one thief belongs to the Admiralty and the other stole from my ship, it is up to my judgment on what to do with both of these thieving fools. Though the punishment is pretty clear in Admiralty law, its more of a matter of who&#39;ll get to dispense punishment.</p>
 
@@ -451,7 +479,7 @@
 
 <p>I made little ceremony out of the act, Cadet Valnos received a commendation for his vigilance and i granted him chance to deal with the thief he caught. He looked momentarily stunned. He had probably thought i&#39;d eat them both myself.</p>
 
-<p>I realize now he probably had quite a bit of stage-fright, being the type that did not enjoy being put in the spotlight and be overly noticed. He was also under pressure now to accept his reward devour the thief, he did however not shrink to the task. No one graduates the academy without some experience in this and young Cadet Valnos was very... textbook... in his method.</p>
+<p>I realize now he probably had quite a bit of stage-fright, being the type that did not enjoy being put in the spotlight and be overly noticed. He was also under pressure now to accept his reward devour the thief, he did however not shrink from the task. No one graduates the academy without some experience in this and young Cadet Valnos was very... textbook... in his method.</p>
 
 <p>The merchant crew thief had little discipline and made feeble attempts to make his case but his snout was soon was muffled by&nbsp; Valnoses jaws. All male Awes are pretty small, but Cadet Valnos was smaller then his prey. I should have considered this beforehand, but i also realize now i might also have unduly put him in risk of embarrassment if he could not get the thief down. For a moment it looked like he had some problems subduing the unwilling Thief. But i quickly recognized the good old and practiced academy Cling-shift-gulp method come into play, skillfully performed. His meal went down without even being able to cause any more fuss. The Cadet even managed to stay on his feet through the entire devouring. His old instructors would have been proud.</p>
 

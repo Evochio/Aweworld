@@ -17,7 +17,17 @@
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
-      
+      	
+	 if (_.contains(state.events, "arnLives")) {
+	 $('#arnLives').removeClass('hidden');
+	
+		}
+
+	
+	  
+	  
+	  
+	  
       $('#button-1').on('click', function(e) {
         // change state here
 		state.battle.push("ballista")
@@ -364,7 +374,7 @@
 <h1></h1>
 <hr />
 <div id="story-text">
-<p>The enemy ship is approaching fast. It appears to be of similar configuration to ours, a long and fast frigate. No doubt where our hired ship-builders got their designs from. It would explain how they managed to approach so fast. While they're coming at us they don't seem to be heading straight for us, so they at the least don't seem to have plans to ram us. </p>
+<p>The enemy ship is approaching rapidly. It appears to be of similar configuration to ours, a long and fast frigate. No doubt where our hired ship-builders got their designs from. It would explain how they managed to approach so fast. While they're coming at us they don't seem to be heading straight for us, so they at the least don't seem to have plans to ram us. </p>
 
 <p>We have some time, albeit short, to prepare for battle. I have two reserve units waiting below-deck for orders that can assist in the preparation if need be. </p>
 
@@ -373,6 +383,12 @@
 <p>But I could instead assign the extra hands to help with the sails, that ought to give us a little more speed to maneuver with. </p>
 
 <p>Lastly, I could simply have the reserves stand by, out of everyone's way and ready themselves for eventual melee and damage control. </p>
+
+<span class="hidden" id="arnLives">Arn has graced the deck with his pressence. No matter what i think about him, he's still for better or worse the First-officer. Until that changes i might aswell make use of him.
+<p>"Any oppinion on deployment First-officer?" I mutter to him calmly. He should tell by the tone im annoyed at his tardiness. </p>
+
+<p> "We're not sure what we're up against Captain. Speed... might be prudent, in case we need it." Arn offers, glancing towards the sails. </p>
+ </span>
 </div>
 <hr />
 
@@ -807,6 +823,22 @@ $('#FromRange').removeClass('hidden');
 
 </div>
 
+<div class="hardBlowArn hidden"><strong>A hard blow</strong>
+
+<p> Our ship raced to keep distance as theirs was intent on closing in. But it was hard to fully out-pace them, we didnt quite have as much wind in our sails as we needed, we became an easy target to fire upon. </p>
+
+<p> The increasingly familiar fire of their weapon echoed over the waters and hit the stern of the ship. I heard cries of dismay from the rear balista crew as the equipment was hit, there was severe damage and injuries. </p>
+
+<p> I cursed, we hadent been able to land effective enough fire on them and there would be no more shots for our pursuers now. Some of their sails had holes and here and there ropes fluttered, but they had a diligent repair crew. </p>
+
+<p> Arn was shouting loudly at the sail-crew, working desperatly along with them to muster more speed out of our sail by keeping them taut and making sure any holes or rips are patched or replaced.</p>
+
+<p> I must admit im impressed, i've never quite seen him work so hard before. Self-preservation really brings out the best in him and im forced to smirk admist the danger and desperation. Whether nearby crew found that unnerving or comforting I cared not </p>
+
+<p> A shot whistles past over our heads and narrowly misses our mast before we hear the crack of their weapons. As i turn, i notice with some relief that we are outpacing the enemy, the distance has grown considerably. It seems we'll make our escape afterall. </p>
+</div>
+
+
 <div class="board hidden"><strong>A clash of arms</strong>
 <p>“We are close enough!” I shout over the din of noise to be heard over the whole ship while I rushed over the deck, signaling my officers that it was time to attack, indeed now or never. </p>
 
@@ -986,7 +1018,7 @@ $('#FromRange').removeClass('hidden');
 
 </div>
 <div class="escape hidden"><strong>Escape</strong>
-<p> With our sails going strong we put distance between ourselves and the enemy ship. They gave chase a while, even fired once, but shot wide and lost a lot of distance doing so. It might have been a last-ditch apptempt to cripple us. </p>
+<p> With our sails going strong we put more and more distance between ourselves and the enemy ship. They gave chase a while, even fired once or twice more, but shot wide and lost a lot of distance doing so. It might have been a last-ditch apptempt to cripple us. </p>
 
 <p> In theory they could have paced us and kept on our tail, but by sundown they turned around and headed toward east again. It was both a relief and a worrying turn of events. This ship is not working alone out here, could be they expect us to run into his friends while they cover our escape </p>
 

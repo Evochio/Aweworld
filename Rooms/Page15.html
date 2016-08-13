@@ -25,16 +25,20 @@
       })
 	   $('#button-2').on('click', function() {
         // change state here
+		state.crewMorale -= 2;
+		
 		        // end by using lib.goTo
         lib.goTo('Page17b.html')
       })
 	   $('#button-3').on('click', function() {
         // change state here
+		state.crewMorale -= 1;
 	        // end by using lib.goTo
         lib.goTo('Page17a.html')
       })
    $('#button-4').on('click', function() {
         // change state here
+		state.crewMorale -= 3;
 	        // end by using lib.goTo
         lib.goTo('Page17d.html')
       })

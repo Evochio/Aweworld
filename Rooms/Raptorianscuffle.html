@@ -57,6 +57,8 @@
 		$("#Overboard").removeClass("hidden")
       })
 	   $('#Labor').on('click', function(e) {
+	   state.crewMorale -= 1;
+	   state.raptorians += 1;
        lib.dialogue(e, "labor"),
 		$("#Labor").addClass("hidden")
 		$("#Eat").addClass("hidden")
@@ -71,6 +73,7 @@
 		$("#button-4").removeClass("hidden")
       })
 	  $('#Overboard').on('click', function(e) {
+	  state.raptorians -= 1;
        lib.dialogue(e, "overboard"),
 		$("#Labor").addClass("hidden")
 		$("#Eat").addClass("hidden")
@@ -81,7 +84,7 @@
         // change state here
 		
         // end by using lib.goTo
-        lib.goTo('PaleRock.html')
+        lib.goTo('Religion2.html')
       })
     })
   </script>

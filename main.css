@@ -1,9 +1,18 @@
 /* Put styling there that applies to more than one page. */
-#Ziggy, #Ziggydis, #Glint, #Valnos{
+#Valnos, #Ziggy, #Ziggydis, #Glint{
 float:right;
 }
+
+#Valnos {
+	background-image: url(/Rooms/Images/Valnosface5.png);
+	height: 286px;
+	width: 200px;
+	cursor: pointer;
+	position: relative;
+	text-align: center;
+}
 #Glint {
-	background-image: url(/Rooms/Images/GlintFace.png);
+	background-image: url(/Rooms/Images/GlintFace2.png);
 	height: 286px;
 	width: 200px;
 	cursor: pointer;
@@ -20,7 +29,7 @@ float:right;
 	text-align: center;
 }
 #Ziggydis {
-	background-image: url(/Rooms/Images/ZiggyFace1.png);
+	background-image: url(/Rooms/Images/Valnosface.png);
 	height: 286px;
 	width: 200px;
 	cursor: pointer;
@@ -28,18 +37,8 @@ float:right;
 	text-align: center;
 	background-position: 200px 0px;
 }
-#Valnos {
-	background-image: url(/Rooms/Images/Valnosface4.png);
-	height: 286px;
-	width: 200px;
-	cursor: pointer;
-	position: relative;
-	text-align: center;
-}
 
-#Ziggy:checked {
-	background-position: 0px 572px;
-}
+
 
 /* 
 #Ziggy:disabled {
@@ -79,5 +78,11 @@ float:right;
 	background-position: 400px 286px;  
 }
 .neutral {
+	background-position: 0px 0px; 
+}
+.disabled {
+	background-position: 200px 0px;
+}
+.new {
 	background-position: 200px 572px; 
 }

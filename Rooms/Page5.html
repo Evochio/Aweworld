@@ -17,6 +17,9 @@
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
+	     state.Glint.status = 'available';
+		state.Valnos.status = 'available';
+		state.Ziggy.status = 'available';
       
       $('#button-1').on('click', function() {
         // change state here
@@ -62,6 +65,32 @@
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1">Attend Service</button>
 <button class="btn btn-default" id="button-2">Do not attend</button>
+<span id="cadetButtons"> </span>
+<script>
+cadet[0].banter = [
+    { target: '#Ziggy', text: 'Them Raptorians are just big softies.', imageClass: "neutral"},
+    { target: '#Ziggy', text: 'They may look mean, sound mean, smell mean and threaten to bitecha', imageClass: "happy"},
+    { target: '#Ziggy', text: 'But deep down they just a pet and a rub on the nose! You should try it Glint!', imageClass: "smug"},
+	{ target: '#Glint', text: 'Thanks... ill pass and just take your word for it.', imageClass: "concerned"}
+   
+];
 
+cadet[1].banter = [
+    { target: '#Glint', text: 'It would be nice to have you attend tonight captain.', imageClass: "neutral"},
+	{ target: '#Glint', text: 'I know you hold some reservations for the pressence of the priestess Soft-spoken', imageClass: "concerned"},
+	{ target: '#Glint', text: 'But maybe seeing it for yourself will calm your qualms. Everyone needs a time for spiritual contemplation and hear some words of ancient lore.', imageClass: "happy"},
+	{ target: '#Ziggy', text: 'I hear its just a bunch of belly worship and that the "soft-spoken" eats you after you join!', imageClass: "surprised"},
+	{ target: '#Glint', text: 'Thats not true at all! Dont listen to her!', imageClass: "blush"},
+	{ target: '#Glint', text: 'Its a serious organization, dedicated to the morals, knowledge and wisdom recovered from the First-age.', imageClass: "angry"}
+	];
+	
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'I found those documents you requested on the ships specifications.', imageClass: "neutral"},
+	{ target: '#Valnos', text: 'I left them on your desk for review for when you find the time.', imageClass: "happy"}
+	
+];
+
+
+</script>
 </body>
 </html>

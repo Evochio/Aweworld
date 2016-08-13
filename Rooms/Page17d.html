@@ -25,6 +25,12 @@
       })
 	    $('#button-2').on('click', function() {
         // change state here
+		state.crewMorale += 1;
+        // end by using lib.goTo
+        lib.dialogue(e, "restrictions")
+      })
+	  $('#button-3').on('click', function() {
+        // change state here
         // end by using lib.goTo
         lib.goTo('Page18.html')
       })
@@ -54,7 +60,7 @@
 
 <p>&quot;But.. C-captain!&quot; He stumbled out of his chair as i approached him. No doubt things were moving too fast for him, but thats the way i preferred it done. Atleast with officers.</p>
 
-<p>The decision to devour the First-mate of the Perked Ear might be a controversial decision. Usually the First-mate and the captain are who stand closest together on a ship and go down together. As he unagreeable kicked his way down my gullet, i could at least be sure which of us would be going down into who and who&#39;d be doing the standing.</p>
+<p>The decision to devour the First-mate of the Attentive might be a controversial decision. Usually the First-mate and the captain are who stand closest together on a ship and go down together. As he unagreeable kicked his way down my gullet, i could at least be sure which of us would be going down into who and who&#39;d be doing the standing.</p>
 
 <p>Getting my jaws around his head was not hard, but as he had not agreed with previous issues, he did not much agree on adding himself to my figure. We scuffled for a while, he might even given me a bruise, but a male is as usual no match to the bulk and weight of a female and before long his kicking were fruitless. I tried to keep it quick and formal but as we were alone in his cabin, it was hard to resist not letting himself tire himself out first pedaling at the air. My habit of giving a dominant purr while feeding quieted him down however and the rest of him soon filled my stomach up nice and round.</p>
 
@@ -67,7 +73,17 @@
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1"> No more games </button>
-<button class="btn btn-default" id="button-1"> Restrictions </button>
+<button class="btn btn-default" id="button-2"> Restrictions </button>
+<button class="btn btn-default" id="button-3"> Continue </button>
+
+<div class="restrictions hidden"><p><strong>Restrictions</strong></p>
+<p> I understood this passtime of the crew had become important. </p>
+
+<p> They can keep their game, ban one type of game and another will take its place anyway. But all further gambling with currency and debts are over. Likewise all current standing debts people might have are wiped!</p>
+
+<p>These would be my final words on this! And I made it known i would make sure they&#39;re followed through! I catch any word, hint or sniff of anyone disobeying these restrictions the party responsible would be getting an invitation to visit to the captains quarters to join Arn.</p>
+
+</div>
 
 </body>
 </html>

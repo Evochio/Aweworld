@@ -22,20 +22,16 @@
         // change state here
 		
         // end by using lib.goTo
-        lib.goTo('Wulfcaptain.html')
-      })
-		$('#button-2').on('click', function() {
-        // change state here
+		 if (_.contains(state.events, "gamblingCont") && state.raptorians < 1) {
+			lib.goTo('Raptoriansrebel.html')
+	
+		}
+		else {
 		
-        // end by using lib.goTo
-        lib.goTo('.html')
+		}
+			lib.goTo('Keeper.html')
       })
-      $('#button-3').on('click', function() {
-        // change state here
-		
-        // end by using lib.goTo
-        lib.goTo('.html')
-      })
+
     })
   </script>
   
