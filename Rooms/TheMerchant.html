@@ -23,6 +23,7 @@
       $('#button-1').on('click', function(e) {
         // change state here
 		state.crewMorale -= 1;
+		state.events.push("noHelp");
         // end by using lib.goTo
         lib.dialogue(e, "information")
 		$("#button-13").removeClass("hidden");

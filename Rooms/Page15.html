@@ -20,25 +20,29 @@
       
       $('#button-1').on('click', function() {
         // change state here
+		state.crewMorale -= 2;
+		state.events.push("flockForbid");
 	        // end by using lib.goTo
         lib.goTo('Page17c.html')
       })
 	   $('#button-2').on('click', function() {
         // change state here
-		state.crewMorale -= 2;
 		
+		state.crewMorale -= 1;
+		state.events.push("flockCompromise");
 		        // end by using lib.goTo
         lib.goTo('Page17b.html')
       })
 	   $('#button-3').on('click', function() {
         // change state here
-		state.crewMorale -= 1;
+		
 	        // end by using lib.goTo
         lib.goTo('Page17a.html')
       })
    $('#button-4').on('click', function() {
         // change state here
 		state.crewMorale -= 3;
+		state.events.push("eatArn");
 	        // end by using lib.goTo
         lib.goTo('Page17d.html')
       })
@@ -75,11 +79,11 @@
 
 <p>&quot;Are you mayhaps poisonous Arn?&quot; I chided.</p>
 
-<p>&quot;No, not at all, no doubt im little of an obstacle for the mettle of an Vice-Admirals stomach. I mean the crew would look very poorly on any... aggressive actions&quot; There was a threat veiled in that cordial and calm tone. I sensed a danger then that i hadn&#39;t fully taken into account. Arn continued, perhaps sensing my pause.</p>
+<p>&quot;No, not at all, no doubt im little of an obstacle for the mettle of an academy-trained Captains stomach. I mean the crew would look very poorly on any... aggressive actions.&quot; There was a threat veiled in that cordial and calm tone. I sensed a danger then that i hadn&#39;t fully taken into account. Arn continued, perhaps sensing my pause.</p>
 
 <p>&quot;The games have become a familiar pass time for this crew, it was played long before your time on this ship and our late captain turned a blind eye too it. The mix of chance and skill mean anyone can pick up and play it and the risks involved are what make it all the more exciting. Sailors will always gamble, no matter what the high admiralty back in port judges. The game gives them an outlet for that with universally agreed upon rules so there&#39;s no grudges and bickering. Is that not reasonable?&quot;</p>
 
-<p>While Arn talked, it struck me that i didn&#39;t hear about the resumed play of this game until the Cadets reported it. None of the crew had stepped up to report the infraction. It meant most of them were on Arns side in this. Still, i could not back down from this now this far into it.</p>
+<p>While Arn talked, it struck me that i didn&#39;t hear about the resumed play of this game until the Packmaster reported it. None of the crew had stepped up to report the infraction, even my cadets have been in the dark. It meant most of them were on Arns side in this. Still, i could not back down from this now this far into it.</p>
 
 <p>&quot;I do not agree with these &quot;Risks&quot;. Attrition is normal, yes, but encouraging it with this kind of gambling can only lead to trouble. Especially if it antagonizes the Raptorians!&quot;</p>
 

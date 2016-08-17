@@ -42,7 +42,7 @@ var createCadetButtons = function() {
 		var button = $(' <button id=Glint>  </button> ')
 		$('#cadetButtons').append(button)
 		button.on('click', function() {
-			console.log('rawr')
+			
 			$(this).removeClass("new");
 			$(this).siblings().attr('disabled', true);
 			cadetIndex = 1;
@@ -54,7 +54,7 @@ var createCadetButtons = function() {
 		var button = $(' <button id=Ziggy>  </button> ')
 		$('#cadetButtons').append(button)
 		button.on('click', function() {
-			console.log('rawr')
+			
 			$(this).removeClass("new");
 			$(this).siblings().attr('disabled', true);
 			cadetIndex = 0;
@@ -71,7 +71,7 @@ var createCadetButtons = function() {
 		var button = $(' <button id=Valnos>  </button> ')
 		$('#cadetButtons').append(button)
 		button.on('click', function() {
-			console.log('rawr')
+			
 			$(this).removeClass("new");
 			$(this).siblings().attr('disabled', true);
 			cadetIndex = 2;
@@ -98,7 +98,7 @@ var options = {
 
 
 var showNextDialogue = function () {
-	console.log('top of function')
+	
 	
     var banter = cadet[cadetIndex].banter;
     var previousTarget = null;
@@ -133,8 +133,11 @@ var showNextDialogue = function () {
 	}
     i += 1;
 };
-
-
+var newDialogue = function () {
+$("#Ziggy").addClass("new")
+$("#Glint").addClass("new")
+$("#Valnos").addClass("new")
+}
 // Old button system. 
 /*
 

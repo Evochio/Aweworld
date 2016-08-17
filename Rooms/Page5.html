@@ -15,12 +15,13 @@
 
   <script>
     $(document).ready(function() {
+	
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
 	     state.Glint.status = 'available';
 		state.Valnos.status = 'available';
 		state.Ziggy.status = 'available';
-      
+       newDialogue();
       $('#button-1').on('click', function() {
         // change state here
 		state.piety += 1;

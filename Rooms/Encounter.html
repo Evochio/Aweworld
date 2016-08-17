@@ -21,11 +21,12 @@
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
       
-      $('#button-1').on('click', function() {
+      $('#button-1').on('click', function(e) {
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "envoy"),
-        
+        $("#button-1").addClass("hidden");
+		$("#button-2").removeClass("hidden");
       })
 		
 		$('#button-2').on('click', function() {
@@ -47,7 +48,7 @@
 <h1>Admiral Avolc</h1>
 <hr />
 
-<p></p>
+<div id="story-text">
 
 <p>“Captain! An oncoming ship is spotted on the horizon. It could be the pirates!” Ziggy burst into my quarters without knocking. Sometimes she forgot herself in excitement. </p>
 
@@ -71,12 +72,12 @@
 
 <p><br />
 “Hoist the flag demanding inspection” I ordered. “They've must have seen something of the reported pirates.”</p>
-
+</div>
 <hr />
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1"> Envoy </button>
-<button class="btn btn-default" id="button-2"> Continue </button>
+<button class="btn btn-default hidden" id="button-2"> Continue </button>
 <span id="cadetButtons"> </span>
 <script>
 cadet[0].banter = [
@@ -108,7 +109,7 @@ cadet[1].banter = [
 
 
 </script>
-<div class="envoy hidden">
+<div class="envoy hidden"><p><strong>Envoy</strong></p>
 
 <p>We lowered our sails to slow down and so did the Gryph ship appear to do to some degree as well. But they kept their distance and course. </p>
 

@@ -49,7 +49,7 @@
 
 <p>I could already see Awes walking with more care around the railings and climbing slowly along the sails.</p>
 
-<p>The timing could not be worse either. The sea of fangs and its spiny white cliffs of which it got its name loom ahead. Ill portents or not, now is the time the crew and charts are put to the test. </p>
+<p>The timing could not be worse either. The Sea of fangs and its spiny white cliffs of which it got its name can be spied on the horizon. Ill portents or not, now is the time the crew and charts are put to the test. </p>
 
 <p></p>
 <p>I hope the clear skies hold </p>
@@ -58,10 +58,34 @@
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1">Sea of Fangs</button>
+<span id="cadetButtons"> </span>
 
-<div class="hidden" id="Glint-dialogue">There is little to be done about baseless superstition. The crew will be spooked for a while.</div>
-<div class="hidden" id="Ziggy-dialogue">Those big fish dont scare me! Its not like they can punch through the hull and getcha....Right?</div>
-<div class="hidden" id="Valnos-dialogue">The Sea of fangs long represented an impassable barrier for all ships. I wonder how they managed to chart a route through it and who did it.</div>
+<script>
+cadet[0].banter = [
+    { target: '#Ziggy', text: 'Those big fish dont scare me!', imageClass: "angry"},
+    { target: '#Ziggy', text: 'Its not like they can punch through the hull and getcha', imageClass: "blush"},
+    { target: '#Ziggy', text: '...Right?', imageClass: "concerned"}
+	   
+];
+
+cadet[1].banter = [
+    { target: '#Glint', text: 'There is little to be done about baseless superstition. The crew will be spooked for a while.', imageClass: "concerned"},
+	{ target: '#Ziggy', text: 'Oh yeah? Superstition? You are one to talk!', imageClass: "smug"},
+	{ target: '#Glint', text: 'Not this again!', imageClass: "angry"},
+	{ target: '#Ziggy', text: 'Atleast those fishies are more real then all that talk during your spook-nights!', imageClass: "angry"}
+	];
+	
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'The Sea of fangs long represented an impassable barrier for all ships.', imageClass: "Neutral"},
+	{ target: '#Valnos', text: 'I wonder how they managed to chart a route through it and who did it.', imageClass: "suspicious"},
+	{ target: '#Valnos', text: 'No one ever stepped forward to claim fame for such a feat!', imageClass: "suspicious"},
+	{ target: '#Valnos', text: 'The charts just spread on the open market one day.', imageClass: "neutral"}
+];
+
+
+
+</script>
+
 
 </body>
 </html>

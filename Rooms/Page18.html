@@ -25,7 +25,92 @@
         // end by using lib.goTo
         lib.goTo('Sea-wolves.html')
       })
+	  
+	  if (_.contains(state.events, "eatArn") && state.crewMorale  <= 4) {
+	  
+		lib.goTo('Mutiny.html')
+	  }
+	  else if (state.crewMorale  <= 3)
+	 {
+	  
+		lib.goTo('Mutiny.html')
+	  }
+	 
 	 })
+	 
+		
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+<p>After the turbulent day of dealing with the gambling problem on the ship, im relieved to finally try to let things go back to normal. We are close to arriving at the start of Sea of fangs where pirate activity has been reported. Just another day or so if all goes well and we should start to see the small jagged islands and cliffs which dot this treacherous sea. We&#39;ll have to keep a close eye on the charts and our position. There are reefs here that appear to stick up out of nowhere in the middle of the sea which give the place their namesake. Our lookouts will have their work cut out for them.</p>
+
+<p>But its the only way east and west that ships can handle. The tides and currents of the great sea north and south of this dangerous passage are unpredictable and terribly dangerous. I&#39;ve read reports of ships being blown and taken in circles by the great currents, loosing their bearing and finding themselves unable to escape for weeks.</p>
+<hr />
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1"> Continue </button>
+<span id="cadetButtons"> </span>
+<script>
+ if (_.contains(state.events, "flock")) {
+		
+		cadet[0].banter = [
+		{ target: '#Ziggy', text: 'That was the most fun i had in a while.', imageClass: "happy"},
+		{ target: '#Ziggy', text: 'Win or loose, nothing like playing high-stakes with the captain!', imageClass: "blushing"}
+		];
+		cadet[1].banter = [
+		{ target: '#Glint', text: 'Im glad thats over with.', imageClass: "surprised"},
+		{ target: '#Glint', text: 'I just wish you had not needed to stoop to their level and play that barbaric game.', imageClass: "sad"},
+		{ target: '#Glint', text: 'Awe lives should never be down to chance. Only choice.', imageClass: "concerned"}
+		];
+		 cadet[2].banter = [
+		{ target: '#Valnos', text: 'Its unfortunate things had to go so far.', imageClass: "sad"},
+		{ target: '#Valnos', text: 'I did not know you and Arn had such a disagreement.', imageClass: "concerned"},
+		{ target: '#Valnos', text: 'If i had known i would have spoken up sooner.', imageClass: "sad" }
+		];
+		
+		}
+		else {
+		
+		cadet[0].banter = [
+		{ target: '#Ziggy', text: 'You drive a hard bargain captain', imageClass: "surprised"},
+		{ target: '#Ziggy', text: 'Many wont be happy with this. But they will get over it!', imageClass: "blushing"},
+		{ target: '#Ziggy', text: 'Theres always boardgames', imageClass: "happy"}
+		];
+		cadet[1].banter = [
+		{ target: '#Glint', text: 'Im glad thats over with.', imageClass: "neutral"},
+		{ target: '#Glint', text: 'You made a stern decision. Im sure the crew will respect that!', imageClass: "smug"}
+		
+		];
+		 cadet[2].banter = [
+		{ target: '#Valnos', text: 'Its unfortunate things had to go so far.', imageClass: "sad"},
+		{ target: '#Valnos', text: 'I did not know you and Arn had such a disagreement.', imageClass: "concerned"},
+		{ target: '#Valnos', text: 'If i had known i would have spoken up sooner.', imageClass: "sad" }
+		];
+		
+		
+		}
+	 if (_.contains(state.events, "eatArn")) {
+	 
+	 		cadet[1].banter = [
+		{ target: '#Glint', text: 'Im glad thats over with.', imageClass: "neutral"},
+		{ target: '#Glint', text: 'You made a stern decision. Im sure the crew will respect that!', imageClass: "smug"},
+		{ target: '#Glint', text: 'Eating Arn might seem harsch. But I think it was the right thing to do. He was undermining your authority and rules!', imageClass: "angry"}
+		];
+	 		cadet[2].banter = [
+		{ target: '#Valnos', text: 'With Arn gone, i think thats the last we saw of that racket', imageClass: "happy"},
+		{ target: '#Valnos', text: 'But the ship is now without an official First-officer', imageClass: "neutral"},
+		{ target: '#Valnos', text: 'It might work for a while, i think, but someone needs to be appointed acting first-officer, right?', imageClass: "sad" },
+	 ];
+	 
+	 }
+	 
 	 
 	 if (_.contains(state.events, "toziggy"))
 		{
@@ -41,41 +126,24 @@
 	{ target: '#Glint', text: 'Oh?', imageClass: "blush"},
 	{ target: '#Ziggy', text: 'Yeah, who wouldnt want what Arn got and join with me, right?', imageClass: "happy"},
 	{ target: '#Glint', text: 'Fiend!', imageClass: "surprised"}
-];
+						];
 
-cadet[1].banter = [
-    { target: '#Glint', text: 'I dont agree with the risks taken to resolve this gambling issue', imageClass: "concerned"},
-    { target: '#Glint', text: 'That it had to be ended i can see and agree, but why stoop to their level.', imageClass: "concerned"}
-];
- cadet[2].banter = [
+		cadet[2].banter = [
 	{ target: '#Valnos', text: 'With Arn gone, i think thats the last we saw of that racket', imageClass: "happy"},
-   { target: '#Valnos', text: 'But the ship is now without an official First-officer', imageClass: "neutral"},
+	{ target: '#Valnos', text: 'But the ship is now without an official First-officer', imageClass: "neutral"},
 	{ target: '#Valnos', text: 'It might work for a while, i think, but someone needs to be appointed acting first-officer, right?', imageClass: "sad" },
 	{ target: '#Ziggy', text: 'Hey, i clearly got the most officer in me. Appoint me!', imageClass: "happy"},
 	{ target: '#Glint', text: 'That joke wasent funny the first 5 times either', imageClass: "suspicious"}
-];
+				];
 		
 		}
-  </script>
-  
-  <style>
-    /* Put styling that is specific to this page here. This is a CSS comment btw. */
-  </style>
-
-</head>
-<body>
-<h1>Admiral Avolc</h1>
-<hr />
-<p>After the turbulent day of dealing with the gambling problem on the ship, im relieved to finally try to let things go back to normal. We are close to arriving at the start of Sea of fangs where pirate activity has been reported. Just a few more days if all goes well and we should start to see the small jagged islands which dot this treacherous sea. We&#39;ll have to keep a close eye on the charts and our position. There are reefs here that appear to stick up out of nowhere in the middle of the sea. Our lookouts will have their work cut out for them.</p>
-
-<p>But its the only way east and west that ships can handle. The tides and currents of the great sea north and south of this dangerous passage are unpredictable and terribly dangerous. I&#39;ve read reports of ships being blown and taken in circles by the great currents, loosing their bearing and finding themselves unable to escape for weeks.</p>
-<hr />
-
-<!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default" id="button-1"> Continue </button>
-
-<script>
-
+		else if (_.contains(state.events, "ziggyplan") && (state.events, "nomatron"))
+		{
+		cadet[0].banter = [
+    { target: '#Ziggy', text: 'You should have trusted me Captain. I was close to taking the game for us.', imageClass: "sad"},
+    { target: '#Ziggy', text: 'Things could have turned... bad. Im glad they didnt.', imageClass: "concerned"}
+		];
+		}
 
 
 </script>

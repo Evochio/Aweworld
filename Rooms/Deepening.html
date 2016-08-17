@@ -17,7 +17,7 @@
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
-      
+       newDialogue();
       $('#arn').on('click', function(e) {
 		lib.dialogue(e, "arn"),
 		state.events.push("deepening");
@@ -46,6 +46,7 @@
       })
 	   $('#deny').on('click', function(e) {
        lib.dialogue(e, "deny"),
+	   state.events.push("deepeningNo");
 		$("#approve").addClass("hidden")
 		$("#deny").addClass("hidden")
 		$("#continue").removeClass("hidden")

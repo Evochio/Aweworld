@@ -36,11 +36,11 @@
 <body>
 <h1>Admiral Avolc</h1>
 <hr />
-<p> Finding the landmarks for the entry of the charted route turned out to be easy. Navigator Mirr steered us true and we found the marked cliff ominously named "The wailer". Apparently strong enough wind will cause it to howl. </p> 
+<p> We are at the Sea of fangs. Finding the landmark for the entry of the charted route turned out to be easy. Navigator Nyxie steered us true and we found the large marked cliff ominously named "The wailer". Apparently strong enough wind will cause it to howl. </p> 
 
-<p>The sea is well named, white fangs and spines regularly rise from beneath the waves, some as tall forlorn sentinels, worn down by wind and wave. Some barely above sea-level, glimpsed only briefly like the teeth lurking and waiting to gnash the hull of a careless ship.</p>
+<p>The sea is well named, white fangs and spines regularly rise from beneath the waves, some as tall forlorn sentinels like The wailer, worn down by wind and wave. Some barely above sea-level, glimpsed only briefly like the teeth lurking and waiting to gnash the hull of a careless ship.</p>
 
-<p>As I watch the odd landscape stretch into the horizon, particularly in the south, I wonder idly what kind of calamity caused a place like this to come to be. </p> 
+<p>As I watch the odd oceanscape stretch into the horizon, particularly thickly in the south, I wonder idly what kind of calamity caused a place like this to come to be. </p> 
 
 <p> The crew is now on high alert, we are pulling double-shifts to make sure we are ready to respond to any contingency with speed. </p>
 
@@ -48,6 +48,41 @@
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1">Continue</button>
+<span id="cadetButtons"> </span>
+<script>
+cadet[0].banter = [
+    { target: '#Ziggy', text: 'You know, if you look at the map. Sea of fangs form a circle with the western coast!', imageClass: "surprised"},
+    { target: '#Ziggy', text: 'Its like a big hole!', imageClass: "surprised"},
+    { target: '#Glint', text: 'Wow.', imageClass: "surprised"},
+	{ target: '#Glint', text: 'I didnt know you could reccognize basic shapes Ziggy!', imageClass: "smug"},
+	{ target: '#Glint', text: 'A circle, great work!', imageClass: "happy"},
+	{ target: '#Ziggy', text: 'You know what i mean! Dont make me cuff you!', imageClass: "angry"},
+	{ target: '#Glint', text: 'Oh go ahead. Assault a fellow officer.', imageClass: "smug"},
+	{ target: '#Valnos', text: 'Acctually, the formation of the bay of spines is...', imageClass: "smug"},
+	{ target: '#Ziggy', text: 'Blah! Im not interested anymore!', imageClass: "angry"}
+];
+
+cadet[1].banter = [
+    { target: '#Glint', text: 'I wonder what brave soul tied that tattered red banner to the tip of the Wailer.', imageClass: "concerned"},
+	{ target: '#Glint', text: 'This sea will call for us all to be brave, alert and vigilant', imageClass: "neutral"},
+	{ target: '#Glint', text: 'Lest we perish to the cold unforgiving sea, our spirits lost from the cycle.', imageClass: "sad"},
+	{ target: '#Ziggy', text: 'Oh for fluff sake! Go suck on your tail elsewhere!', imageClass: "angry"}
+	];
+	
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'Oh "The Wailer", fascinating to see this landmark with my own eyes. To finaly come this far!', imageClass: "blush"},
+	{ target: '#Glint', text: 'If "The Wailer" interests you so, you might be fascinated to hear theres plans to build a fortress on it.', imageClass: "neutral"},
+	{ target: '#Valnos', text: 'Really?!', imageClass: "surprised"},
+	{ target: '#Valnos', text: 'I see the strategic logic of it, but how would they even begin such a construction? The materials, the labor!', imageClass: "suspicious"},
+	{ target: '#Glint', text: 'Indeed! The difficulty of it is excessive. Thats why the challenge was given to the best architects!', imageClass: "smug"},
+	{ target: '#Valnos', text: 'Ah! So it will be a Silvertofs construction. Promising!', imageClass: "happy"}
+	
+];
+
+
+
+
+</script>
 
 
 </body>

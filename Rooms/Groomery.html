@@ -23,10 +23,16 @@
         i = 0;
         $('#button-2').addClass('disabled');
         
-    }
-	else {
+		}
+		else if (state.crewMorale < 3) {
+		 $('#button-1').addClass('disabled');
+		 $('#button-2').addClass('disabled');
+		 $("#moraleBad").removeClass("hidden");
+		}
+		
+		else {
 		$('#button-1').addClass('disabled');
-	}
+		}
 	  
       $('#button-1').on('click', function(e) {
         // change state here
@@ -50,6 +56,20 @@
 		lib.dialogue(e, "moralePoor")
        
       })
+	  
+	  	$('#moraleBad').on('click', function(e) {
+        // change state here
+		
+	   $("#button-3").removeClass("hidden");
+	   $("#button-1").addClass("hidden")
+	   $("#button-2").addClass("hidden")
+		$("#moraleBad").addClass("hidden")
+        // end by using lib.goTo
+		lib.dialogue(e, "moraleBad")
+       
+      })
+	  
+	  
       $('#button-3').on('click', function(e) {
         // change state here
 	   $("#button-4").removeClass("hidden");
@@ -74,29 +94,30 @@
 		lib.dialogue(e, "act")
 	   $("#button-5").removeClass("hidden");
 	   $("#button-4").addClass("hidden")
-
+		
 		})
         if (_.contains(state.inventory, "gratitude")) {
-	 $('#generous').removeClass('hidden');
+			$("#generous").removeClass("hidden");
 			if (_.contains(state.events, "deepening")) {
-				$('#deepapprove').removeClass('hidden');
+				$(".deepapprove").removeClass("hidden");
 	
 			}
-			else {
-				$('#deepdeny').removeClass('hidden');
+			else if (_.contains(state.events, "deepeningNo")) {
+				$(".deepdeny").removeClass("hidden");
 			}
 		}
-		else {
-		 $('#stern').removeClass('hidden');
+		if (_.contains(state.events, "noHelp")) {
+				$('#stern').removeClass('hidden');
 			if (_.contains(state.events, "deepening")) {
-				$('#deepapprove').removeClass('hidden');
+				$(".deepapprove").removeClass("hidden");
 	
 			}
-			else {
-				$('#deepdeny').removeClass('hidden');
+			else if (_.contains(state.events, "deepeningNo")) {
+				$(".deepdeny").removeClass("hidden");
 			}
+		}
 		
-		}
+		
 		
 		 if (_.contains(state.events, "stormaround")) {
 	 $('#stormaround').removeClass('hidden');
@@ -212,6 +233,7 @@
 
 
 <script>
+/*
 	if (_.contains(state.events, "deepening")) {
 	 $('#deepen').removeClass('hidden');
 	
@@ -219,7 +241,7 @@
 	else {
 		$('#nodeepen').removeClass('hidden');
 	}
-	
+	*/
 	if (_.contains(state.events, "storminjury")) {
 	 $('#injury').removeClass('hidden');
 	 }
@@ -229,6 +251,7 @@
 	else if (_.contains(state.events, "stormaround")){
 		$('#around').removeClass('hidden');
 	}
+	
 </script>
 
 </div>
@@ -236,6 +259,7 @@
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1">(Morale) Good </button>
 <button class="btn btn-default" id="button-2"> (Morale) Could be better </button>
+<button class="btn btn-default hidden" id="moraleBad">(Morale) Disastrous! </button>
 <button class="btn btn-default hidden" id="button-3">The fate of Officer Tung </button>
 <button class="btn btn-default hidden" id="button-4">What makes a good captain</button>
 <button class="btn btn-default hidden" id="button-5">Continue </button>
@@ -255,9 +279,8 @@
 
 
 <div class="moralePoor hidden"><p><strong>(Morale) Could be better</strong></p>
-<p>“Things could be better. I expected it to be difficult to captain a new crew I did not help pick. But some choices i've made have not been popular.” </p>
+<p>“Things could be better, im not deaf to the grumbling on the ship. I expected it to be difficult to captain a new crew I did not help pick. But some choices i've made have not been popular.” </p>
 
-<br />
 
 <p>Elda soothingly purred while she groomed.</p>
 
@@ -266,6 +289,24 @@
 <p>“So far, no one has outright done any acts of disobedience at least.” I mutter.</p>
 
 <p>“Mmmh, what about that Tung fellow?” Elda probed gently </p>
+</div>
+
+<div class="moraleBad hidden"><p><strong>(Morale) Disatrous!</strong></p>
+<p> "I know things are bad." I admitt in a low tone. Everywhere i go i get sour looks and angry stares. </p>
+
+<p> "Its good that you know! But do you care, my captain?" Elda purred while she groomed. </p>
+
+<p> "Ofcourse i care! But some of the choices i've made have been hard. But they had to be done." I respond resolutely. Im starting to wonder if this is some form of intervention. </p>
+
+<p> "Your choices have been hard. Often done for the greater good of the fleet. But remember, ordinary sailors dont always see the bigger picture. Its day to day matters that are important." Elda sighs and continues. </p>
+
+<p> "I dont normaly go this far, i try not to interfere. I normaly only listen and give comfort. But captain you are on very thin ice." </p>
+
+<p> I let her words hang in the air a while before answering. </p>
+
+<p> "What have you heard? I mean, so far no one has been outright disobedient." </p>
+
+<p> "I listen, i do not speak, that would be a breach of trust. Though sometimes i ask questions. So lets start from the beginning." Elda spoke cooly.  "What about Officer Tung? </p>
 </div>
 
 <div class="tungFate hidden"><p><strong>The fate of Officer Tung</strong></p>
@@ -288,7 +329,7 @@
 
 <span class="hidden" id="notung">
 
-<p>“Ah, the officer that challenged me? I have not heard any further grumbling from him since the initial meeting.” I cant help but frown.</p>
+<p>“Ah, Tung, the officer that challenged me? I have not heard any further grumbling from him since the initial meeting.” I cant help but frown.</p>
 
 <p>“You showed patience when a different captain might have gotten themselves rid of a seeming troublemaker from the start.” The matron was efficient, but none too gentle in her grooming at spots. I had to grit my teeth at some of the strokes.</p>
 
@@ -303,20 +344,37 @@
 </div>
 
 <div class="act hidden"><p><strong>What makes a good captain.</strong></p>
+
+
+<span class="hidden" id="stern">
+<p>“Sometimes you have to be stern. Awes need to be pushed, we have to consider the mission.” I answered thoughtfully, thinking back on my actions.</p>
+
+<span class="deepapprove hidden">
+
+<p>“Yet you approved deepening requests. Giving the crew some freedom.”</p>
+</span>
+<span class="deepdeny hidden">
+
+<p>“I see. I can see then why you declined deepening requests.” </p>
+</span>
+
+</span>
+
+
 <span class="hidden" id="generous">
 <p>“I've tried to be generous. So that they'll accept me as one of them.” I answered thoughtfully, thinking back on my actions.</p>
 
-<span class="hidden" id="deepapprove">
+<span class="deepapprove hidden">
 
 <p>“Its why you allowed acts of deepening? Im sure the crew will appreciate that, to have the possibility to deeply bond with whoever they want.”</p>
 </span>
-<span class="hidden" id="deepdeny">
+<span class="deepdeny hidden">
 
 <p>“Yet you've denied deepening requests. Trading some freedom for order.”</p>
 </span>
 </span>
 
-
+<!--
 <span class="hidden" id="fair">
 <p>“I've tried to be fair. So they feel they can trust me.” I answered thoughtfully, thinking back on my actions.</p>
 
@@ -329,27 +387,24 @@
 <p>“Yet you've denied deepening requests. Trading some freedom for order.”</p>
 </span>
 </span>
-
-
-<span class="hidden" id="stern">
-<p>“Sometimes you have to be stern. Awes need to be pushed, we have to consider the mission.” I answered thoughtfully, thinking back on my actions.</p>
-
 <span class="hidden" id="deepapprove">
 
 <p>“Yet you approved deepening requests. Giving the crew some freedom.”</p>
 </span>
 <span class="hidden" id="deepdeny">
 
-<p>“I see. I can see then why you declined deepening requests.”</p>
+“I see. I can see then why you declined deepening requests.”
 </span>
-</span>
+-->
+
+
 
 <span class="hidden" id="storminjury">
 <p>“Is this what this talk is about? My choice in giving my crew the freedom to deepen or not? As the sole Pouch-Matron aboard, you feel my choice has compromised your position?” </p>
 
-<p>“Oh, no Captain. Again, im not here to chastise you. Merely to listen and let you speak your thoughts. </p>
+<p>“Oh, no Captain. Again, im not here to chastise you. Merely to listen and let you speak your thoughts." Elda squezzed my shoulders gently.</p>
 
-<p>Also whether you denied or approved general deepening, I will still be absorbing my share of injured or ailing crew who are unable to heal before this journey is over. How many really depends on your skill and aptitude.”</p>
+<p>"Also whether you denied or approved general deepening, I will still be absorbing my share of injured or ailing crew who are unable to heal before this journey is over. How many really depends on your skill and aptitude.”</p>
 
 <p>“You've made the trip into me once yourself, try not to make a habit out of it. Unless its something you prefer instead of commanding, in such case I am always open to your visit... or stay.” Elda purred and it seemed she had finished with her grooming. I felt refreshed and clean. But the ships Pouch-matrons words lingered with me. </p>
 
@@ -358,9 +413,9 @@
 <span class="hidden" id="stormaround">
 <p>“Is this what this talk is about? My choice in giving my crew the freedom to deepen or not? As the sole Pouch-Matron aboard, you feel my choice has compromised your position?” </p>
 
-<p>“Oh, no Captain. Again, im not here to chastise you. Merely to listen and let you speak your thoughts. </p>
+<p>“Oh, no Captain. Again, im not here to chastise you. Merely to listen and let you speak your thoughts." Elda squezzed my shoulders gently.</p>
 
-<p>Also whether you denied or approved general deepening, I will still be absorbing my share of injured or ailing crew who are unable to heal before this journey is over. How many really depends on your skill and aptitude.”</p>
+<p>"Also whether you denied or approved general deepening, I will still be absorbing my share of injured or ailing crew who are unable to heal before this journey is over. How many really depends on your skill and aptitude.”</p>
 
 <p>“So far you've kept me mostly idle down here.” Elda placed a paw on her prominent pouch and smiled. “But crew will find their way to me eventually. Perhaps even yourself one day. Im always open for a visit or more.” Elda purred and it seemed she had finished with her grooming. I felt refreshed and clean. But the ships Pouch-matrons words lingered with me. </p>
 
@@ -370,9 +425,9 @@
 <span class="hidden" id="stormtrust">
 <p>“Is this what this talk is about? My choice in giving my crew the freedom to deepen or not? As the sole Pouch-Matron aboard, you feel my choice has compromised your position?” </p>
 
-<p>“Oh, no Captain. Again, im not here to chastise you. Merely to listen and let you speak your thoughts. </p>
+<p>“Oh, no Captain. Again, im not here to chastise you. Merely to listen and let you speak your thoughts." Elda squezzed my shoulders gently. </p>
 
-<p>Also whether you denied or approved general deepening, I will still be absorbing my share of injured or ailing crew who are unable to heal before this journey is over. How many really depends on your skill and aptitude.”</p>
+<p>"Also whether you denied or approved general deepening, I will still be absorbing my share of injured or ailing crew who are unable to heal before this journey is over. How many really depends on your skill and aptitude.”</p>
 
 <p>“You've sent some my way already, I will no doubt see more. Perhaps even yourself one day. Im always open for your visit, or your stay if you feel the burden of your command become too much, remember that.” Elda purred and it seemed she had finished with her grooming. I felt refreshed and clean. But the ships Pouch-matrons words lingered with me. </p>
 
@@ -380,6 +435,7 @@
 </span>
 </div>
 <script>
+
  cadet[2].banter = [
 	{ target: '#Valnos', text: 'You went and saw Elda?', imageClass: "neutral"},
 	{ target: '#Valnos', text: 'Yeah, she is a bit like everyones Matron on this ship.', imageClass: "happy"},

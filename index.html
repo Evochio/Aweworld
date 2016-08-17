@@ -38,7 +38,9 @@
 		$('#button-3').on('click', function() {
         // change state here
         // end by using lib.goTo
-        lib.goTo('Rooms/Briefing.html')
+		state.events.push("deepening");
+		state.inventory.push("gratitude");
+        lib.goTo('Rooms/Groomery.html')
 		})
     })
   </script>

@@ -18,26 +18,29 @@
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
       
-      $('#button-1').on('click', function() {
+      $('#button-1').on('click', function(e) {
         // change state here
 	        // end by using lib.goTo
-			if (_.contains(state.events, "ignore")) {
-					lib.goTo('Page16a.html')
-				}
-				else {
-					lib.goTo('Page15.html')
-					}
+		 
+		 
+		if (_.contains(state.events, "forbid")) {
+		lib.dialogue(e, "confront")
+
+		}
+		else if (_.contains(state.events, "limmit")) {
+		lib.dialogue(e, "confront")
+	
+		}
+		else if (_.contains(state.events, "ignore")) {
+		lib.dialogue(e, "confront2")
+	
+	}
+		 //lib.goTo('Page15.html')
       })
 	   $('#button-2').on('click', function() {
         // change state here
 		        // end by using lib.goTo
-				if (_.contains(state.events, "ignore")) {
-					lib.goTo('Page16b.html')
-				}
-				else {
-					lib.goTo('Page15b.html')
-					}
-        
+        lib.goTo('Page15b.html')
       })
 	   $('#button-3').on('click', function() {
 	   state.raptorians -= 2;
@@ -106,15 +109,16 @@
 	else {
 	 $('#elda0').removeClass('hidden');
 	}
-		if (_.contains(state.events, "forbid")) {
+	
+	if (_.contains(state.events, "forbid")) {
 	 $('#forbid').removeClass('hidden');
 
 	}
-		else if (_.contains(state.events, "limmit")) {
+	else if (_.contains(state.events, "limmit")) {
 	 $('#limmit').removeClass('hidden');
 	
 	}
-		else if (_.contains(state.events, "ignore")) {
+	else if (_.contains(state.events, "ignore")) {
 	 $('#ignore').removeClass('hidden');
 	
 	}

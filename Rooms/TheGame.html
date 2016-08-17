@@ -22,7 +22,7 @@
 		state.Glint.status = "invisible"
 		state.Valnos.status = "invisible"
 		state.Ziggy.status = "available";
-	
+	state.events.push("flock");
 	
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
@@ -66,7 +66,7 @@
 		$("#button-2").addClass("hidden")
 		$("#button-3").addClass("hidden")
 		$("#button-4").addClass("hidden")
-		
+		$("#Ziggy").addClass("new")
 		cadet[0].banter = [
     { target: '#Ziggy', text: 'Pssst, hey, something is up.', imageClass: "suspicious"},
     { target: '#Ziggy', text: 'Trust me? Its risky, but force a redraw in round two by fumbling. Then play Matron in 3!', imageClass: "smug"},
@@ -123,8 +123,11 @@
 		$("#button-8").removeClass("hidden")
 		$("#button-5").addClass("hidden")
 		$("#ziggyplan").addClass("hidden")
-    	
-		$("#Ziggy").addClass("disabled")
+    	$("#Ziggy").addClass("disabled")
+				cadet[0].banter = [
+    { target: '#Ziggy', text: 'Ziggy looks busy', imageClass: "suspicious"}
+ 
+		];
 		state.Ziggy.status = "disabled";
       })
 	  
@@ -277,10 +280,13 @@
 	 $('#button-12').on('click', function(e) {
 		$("#button-12").addClass("hidden")
 		state.Ziggy.status = "available";
+		$("#Ziggy").removeClass("disabled")
+		$("#Ziggy").addClass("new")
 		if (_.contains(state.events, "ziggyplan") && _.contains(state.events, "nomatron")) {
 				lib.dialogue(e, "round4keep"),
 				$("#betzig").removeClass("hidden")	
 				$("#nobetzig").removeClass("hidden")
+				
 			cadet[0].banter = [
 					{ target: '#Ziggy', text: 'Gah, why didnt you follow the plan', imageClass: "surprised"},
 					{ target: '#Ziggy', text: 'Oh this aint good', imageClass: "concerned"},
@@ -408,7 +414,8 @@
 	   $('#button-16').on('click', function(e) {
 	   
 		$("#button-17").removeClass("hidden")
-		
+		$("#Ziggy").removeClass("disabled")
+		$("#Ziggy").addClass("new")
 	   if (state.flock.team <= -10 && state.flock.team > -20)
 	   {
         lib.dialogue(e, "conclusion")
@@ -940,7 +947,7 @@
 
 <p>The room is silent. No one dares speak. </p>
 
-<p>“You've tried to get rid of me. Perhaps its its how you got rid of the last captain. We may never know. For now, im inclined to let Ziggy have you.”</p>
+<p>“You've tried to get rid of me. Perhaps it is how you got rid of the last captain. We may never know. For now, im inclined to let Ziggy have you.”</p>
 
 <p>The giddy cadet squirmed on her feet, but wisely remained silent. It probably took her colossal effort. </p>
 

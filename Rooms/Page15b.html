@@ -25,7 +25,8 @@
       })
 	   $('#button-2').on('click', function() {
         // change state here
-		state.crewMorale -= 2;
+		state.crewMorale -= 1;
+		state.events.push("flockForbid");
 		        // end by using lib.goTo
         lib.goTo('Page17c.html')
       })
@@ -70,7 +71,7 @@
 
 <p>&quot;Are you mayhaps poisonous Arn?&quot; I chided.</p>
 
-<p>&quot;No, not at all, no doubt im little of an obstacle for the mettle of a Vice-Admirals stomach.&quot;</p>
+<p>&quot;No, not at all, no doubt im little of an obstacle for the mettle of an academy-trained captains stomach.&quot;</p>
 
 <p>&quot;Is it the &quot;morale issues&quot; again?&quot; I picked up some cards from the table, looking them over.</p>
 
@@ -98,7 +99,7 @@
 
 <p>&quot;What kind of personal bets might those be private?&quot;</p>
 
-<p>&quot;Oh.. you know...&quot; She blushed. &quot;Personal favors, shift changes, Eat or be eaten...&quot;</p>
+<p>&quot;Oh.. you know...&quot; She blushed. &quot;Personal favors, shift changes, room placement, rations... Eat or be eaten...&quot;</p>
 
 <p>Keeper spoke up then to add some input and a bold suggestion.</p>
 

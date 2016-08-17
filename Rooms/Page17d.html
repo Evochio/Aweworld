@@ -23,11 +23,14 @@
         // end by using lib.goTo
         lib.goTo('Page17c.html')
       })
-	    $('#button-2').on('click', function() {
+	    $('#button-2').on('click', function(e) {
         // change state here
 		state.crewMorale += 1;
         // end by using lib.goTo
         lib.dialogue(e, "restrictions")
+		 $("#button-1").addClass("hidden")
+		 $("#button-2").addClass("hidden")
+		 $("#button-3").removeClass("hidden")
       })
 	  $('#button-3').on('click', function() {
         // change state here
@@ -46,6 +49,7 @@
 <body>
 <h1>Admiral Avolc</h1>
 <hr />
+<div id="story-text">
 <p>I had listened to him plead his case, but i had sensed no remorse in his actions, only excuses. His final act of inviting me to be part of the gambling was the last straw of it. He probably thought he had been successfully convincing&nbsp; as i smiled at him, but that quickly changed as i shook my head and pulled out a piece of paper and placed it on the table.</p>
 
 <p>&quot;I trust you&#39;ll be able to sign this one. It&#39;ll look good on your record if you sign your own waiver.&quot;</p>
@@ -69,12 +73,13 @@
 <p>Im unsure whether the baffled looks i got was because of the angry jostling and unbecoming muffled shouting of Arn or the fact that they were even surprised it came to this. Direct disobedience has its price, we have stern rules in the Admiralty for a good reason.</p>
 
 <p>Still, Arns words gave me some thought. Sailors like to gamble, perhaps there was something in letting them keep their game but with restrictions. At least like this i had demonstrated with high-stakes gambling will lead you too if you start gambling with the rules.</p>
+</div>
 <hr />
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1"> No more games </button>
 <button class="btn btn-default" id="button-2"> Restrictions </button>
-<button class="btn btn-default" id="button-3"> Continue </button>
+<button class="btn btn-default hidden" id="button-3"> Continue </button>
 
 <div class="restrictions hidden"><p><strong>Restrictions</strong></p>
 <p> I understood this passtime of the crew had become important. </p>
