@@ -96,6 +96,7 @@ $('#noIntel').removeClass('hidden');
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-success" id="button-1">Intel</button>
 <button class="btn btn-default" id="button-2">Onwards</button>
+<span id="cadetButtons"> </span>
 
 <div class="intel hidden"><p><strong>The Intel</strong></p>
 <p>Its with quite some curiosity that I finally settle down in my cabin to leaf through the documents of valuable information that I went through so much trouble for. I dismiss the cadets and ask not to be disturbed.</p>
@@ -116,10 +117,60 @@ $('#noIntel').removeClass('hidden');
 
 
 <script>
+/*
 if (_.contains(state.wulfQuestions, "viska" || _.contains(state.wulfQuestions, "viska" || _.contains(state.wulfQuestions, "viska")) {
 		$("#button-1").removeClass("hidden")
 		$("#button-2").addClass("hidden")
 }
+*/
+</script>
+<script>
+cadet[0].banter = [
+    { target: '#Ziggy', text: 'So that was a Wulf-ship, huh?', imageClass: "suspicious"},
+    { target: '#Ziggy', text: 'Did ya see em glaring at us the whole time?', imageClass: "surprised"},
+	{ target: '#Ziggy', text: 'I thought a fight would break out at any time. My paws were itching for some swinging!', imageClass: "angry"},
+	{ target: '#Glint', text: 'Oh yeah? Is that why kept hiding behind Valnos?', imageClass: "smug"},
+	{ target: '#Ziggy', text: 'Dont you start again! I was not hiding!', imageClass: "angry"},
+	{ target: '#Valnos', text: 'Could you two not to spar every second of every day?!', imageClass: "angry"},
+	{ target: '#Valnos', text: 'I mean im sure the captain can hear us. She must be sick of it too!', imageClass: "angry"},
+	{ target: '#Glint', text: 'Im not..!', imageClass: "blush"},
+	{ target: '#Glint', text: 'I apologize.', imageClass: "concerned"},
+	{ target: '#Ziggy', text: 'Well now, look at that.', imageClass: "surprised"}
+];
 
+cadet[1].banter = [
+    { target: '#Glint', text: 'Disorderly, scruffy and smelly.', imageClass: "supicious"},
+	{ target: '#Glint', text: 'I had not expected any less from a Wulf vessel. But they surpassed my expectations!', imageClass: "neutral"},
+	{ target: '#Glint', text: 'How they manage to thrive in that pure anarchy of organization is beyond me!', imageClass: "surprised"}
+	
+	];
+	if (_.contains(state.inventory, "intel")) {
+
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'The information in the intel must be worth quite a lot to the right person.', imageClass: "smug"},
+	{ target: '#Valnos', text: 'I mean... even pirates have to resupply, right?', imageClass: "surprised"},
+	{ target: '#Valnos', text: 'Im sure this intel can provide more insight then we think.', imageClass: "neutral"},
+	{ target: '#Glint', text: 'I have heard of Port-nowhere. A sort of freeport outside jurisdiction and tariffs of any nation.', imageClass: "smug"},
+	{ target: '#Glint', text: 'A merchants paradise, but no doubt lawless and dangerous', imageClass: "neutral"},
+	{ target: '#Valnos', text: 'I imagine they keep some sort of order, or they would not attract trade.', imageClass: "smug"},
+	{ target: '#Valnos', text: 'Strange that the port is on no maps however.', imageClass: "suspicious"},
+	{ target: '#Glint', text: 'Indeed, even if it was a port only priviledged merchants gained access too, secrets among merchants have a way of getting bartered.', imageClass: "concerned"},
+	{ target: '#Ziggy', text: 'Sure owns up to its name! Sounds like a fun place!', imageClass: "happy"}
+	];
+	}
+	else {
+	 cadet[2].banter = [
+	{ target: '#Valnos', text: 'They cheated us didnt they?', imageClass: "sad"},
+	{ target: '#Valnos', text: 'Are Wulfs always this difficult to deal with?', imageClass: "surprised"},
+	{ target: '#Glint', text: 'Depends wildly on the induvidual among them, doesent it.', imageClass: "concerned"},
+	{ target: '#Glint', text: 'Leadership among them is a bit of a survival of the fittest. Not always the smartest.', imageClass: "sad"},
+	{ target: '#Valnos', text: 'How do they get anything done?', imageClass: "suspicious"},
+	{ target: '#Ziggy', text: 'The toughest gal doesent always lead the gang, you would be doing much but achieving little.', imageClass: "neutral"},
+	{ target: '#Ziggy', text: 'If you dont do things right, the others wont follow you.', imageClass: "blush"},
+	{ target: '#Valnos', text: 'Hmm, thats insightfull.', imageClass: "happy"},
+	{ target: '#Glint', text: 'Really?', imageClass: "suspicious"}
+	];
+	}
+</script>
 </body>
 </html>

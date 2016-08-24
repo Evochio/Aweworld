@@ -17,6 +17,7 @@
 	//state.preludeEvents.push("nipfang");
 	//state.preludeEvents.push("defensive");
 	//state.inventory.push("burntRope");
+		
 	
 	var hideQuestions = function(){
 		$("#button-5").addClass("hidden")
@@ -44,13 +45,18 @@
 	}
 	keeperCheck();
 	
+	if (_.contains(state.inventory, "evokBelly")) {
+		state.wulfCaptain += 1;
+		$(".evokBelly").removeClass("hidden")
+		};
+	
       $('#button-1').on('click', function(e) {
 	
        lib.dialogue(e, "formal"),
 		$("#button-1").addClass("hidden")
 		$("#button-2").addClass("hidden")
 		$("#button-3").addClass("hidden")	
-		
+		state.wulfCaptain -= 1;
 		 if (_.contains(state.events, "keeper")) {
 			$('#keepers').removeClass('hidden');
 	
@@ -63,10 +69,6 @@
 
       $('#button-2').on('click', function(e) {
         
-		
-		 
-		
-		
 		$("#button-1").addClass("hidden")
 		$("#button-2").addClass("hidden")
 		$("#button-3").addClass("hidden")
@@ -79,6 +81,7 @@
 		 lib.dialogue(e, "short")
 		console.log("No keeper")
 		}
+		$("#button-4").removeClass("hidden")	
 		})
 	  $('#button-3').on('click', function(e) {
          lib.dialogue(e, "wulf")
@@ -177,11 +180,12 @@
 		hideQuestions();
 		} 
       })
-	    $('#button-10').on('click', function(e) {
+	    $('#button-10').on('click', function(e) {			// Needs a submit?
 		if (state.wulfCaptain <= 1) {
         lib.dialogue(e, "notConvinced")
 		$("#button-11").removeClass("hidden")
 		$("#button-12").removeClass("hidden")
+		$("#accept").removeClass("hidden")
 		$("#button-10").addClass("hidden")
 		}
 		else if (state.wulfCaptain == 2) {
@@ -197,6 +201,7 @@
 		 		
 		else {
 		lib.dialogue(e, "convinced")
+		state.inventory.push("intel");
 		$("#decline").removeClass("hidden")
 		$("#button-14").removeClass("hidden")
 		$("#button-10").addClass("hidden")
@@ -210,6 +215,7 @@
 		$("#Apin").removeClass("hidden")
 		$("#Athunk").removeClass("hidden")
 		$("#ASword").removeClass("hidden") 
+		$("#accept").addClass("hidden")
 		$("#button-11").addClass("hidden")
 		$("#button-12").addClass("hidden")
     })
@@ -220,13 +226,15 @@
 		$("#button-12").addClass("hidden")
 		$("#button-13").addClass("hidden")
 		$("#button-14").addClass("hidden")
+		$("#west").removeClass("hidden")
     })
 	
 	   $('#Apin').on('click', function(e) {
         lib.dialogue(e, "pin")
 		$("#Apin").addClass("hidden")
 		$("#Athunk").addClass("hidden")
-		$("#ASword").addClass("hidden") 
+		$("#ASword").addClass("hidden")
+		$("#restart").removeClass("hidden")		
     })
 	
 	   $('#Athunk').on('click', function(e) {
@@ -240,6 +248,7 @@
 	   $('#ASword').on('click', function(e) {
 	   if (_.contains(state.wulfQuestions, "threaten")){
 			lib.dialogue(e, "sword2")
+			$("#restart").removeClass("hidden")	
 	   }
 	   else { lib.dialogue(e, "sword")
 	   $("#leave").removeClass("hidden")
@@ -257,8 +266,12 @@
 	 $('#button-14').on('click', function(e) {
         lib.dialogue(e, "viskasBelly")
 		state.wulfQuestions.push("viskasBelly");
+		state.inventory.push("intel");
+		$("#button-12").addClass("hidden")
 		$("#button-13").addClass("hidden")
+		$("#decline").addClass("hidden")
 		$("#button-14").addClass("hidden")
+		$("#west").removeClass("hidden")
 		
     })
 	$('#decline').on('click', function(e) {
@@ -282,6 +295,21 @@
 		$("#leave").removeClass("hidden")
 		
     })
+	$('#accept').on('click', function(e) {
+        lib.dialogue(e, "accept")
+		$("#button-11").addClass("hidden")
+		$("#button-12").addClass("hidden")
+		$("#accept").addClass("hidden")
+		$("#viskaBellyAccept2").removeClass("hidden")
+		
+    })
+	 $('#viskaBellyAccept2').on('click', function(e) {
+        lib.dialogue(e, "viskasBellyAccept")
+		
+		$("#viskaBellyAccept2").addClass("hidden")
+		$("#restart").removeClass("hidden")
+		
+    })
 	 $('#leave').on('click', function(e) {
         lib.dialogue(e, "leave")
 		$("#leave").addClass("hidden")
@@ -290,6 +318,10 @@
     })
 	 $('#west').on('click', function(e) {
        lib.goTo('Westward.html')
+		
+    })
+	 $('#restart').on('click', function(e) {
+       location.reload(true)
 		
     })
 	})
@@ -304,9 +336,9 @@
 <h1>Admiral Avolc</h1>
 <hr />
 <div id="story-text">
-<p>We arrived well one time at the western point of Pale-rock. Impressive jagged cliffs decorated the end of the windswept cold island. Southeast from here lay the Wulf lands. It is strange to consider how close our nations lay to each other. But besides the somewhat calm east-sea the routes are long and ever fraught with perils. <br />
-It does not take long for our spotter to detect the sails of another ship heading for us. A Wulf interceptor by the look of it. Wulfs have always preferred small nimble ships, the interceptor was the quickest of their kind. It might even rival the perked ear while going straight. But its strengths lay in its agility and quick turns. <br />
-One interceptor was no threat however, it is merely half our size and has a smaller crew. But the problem with Wulfs were that they often came in groups. <br />
+<p>We arrived well one time at the western point of Pale-rock. Impressive jagged cliffs decorated the end of the windswept cold island. Southeast from here lay the Wulf lands. It is strange to consider how close our nations lay to each other. But besides the somewhat calm east-sea the routes are long and ever fraught with perils.</p>
+<p>It does not take long for our spotter to detect the sails of another ship heading for us. A Wulf interceptor by the look of it. Wulfs have always preferred small nimble ships, the interceptor was the quickest of their kind. It might even rival the perked ear while going straight. But its strengths lay in its agility and quick turns. </p>
+<p>One interceptor was no threat however, it is merely half our size and has a smaller crew. But the problem with Wulfs were that they often came in groups.
 This interceptor appeared to be alone and as it closed in, its flags were confirmed as part of the &ldquo;The sailing company&rdquo;, which would be the Wulf organized navy of privateers. Our contacts. </p>
 
 <p>As they came in along-side to dock with our ship, I ordered most personnel on deck, with weapons at the ready not far from reach. My experiences with Wulfs on the east sea has taught me to never fully make assumptions of their intentions. The Raptorians I kept under deck for now, as a potential surprise. <br />
@@ -315,6 +347,7 @@ As soon as a plank was lowered, a short figure marched over. Wearing a captains 
 &ldquo;You captain?&rdquo; She asked with a youthful voice.</p>
 <span class="hidden" id="keeper">I glanced over at Keeper, who was looking somewhat chagrined, this sure wasent Captain Viriltri. Things just got complicated.</span>
 <span class="hidden" id="nokeeper">This clearly wasent Captain Viriltri. This might be a good thing or a bad thing considering Keepers absence.</span>
+<p><span class="evokBelly hidden">The wulf seemed to stare long and hard at my prominently rounded gut. </span> </p> 
 </div>
 <hr />
 
@@ -343,15 +376,16 @@ As soon as a plank was lowered, a short figure marched over. Wearing a captains 
 <button class="btn btn-default hidden" id="ASword">Draw Sword</button>
 
 <button class="btn btn-danger hidden" id="accept">Accept demand</button>
+<button class="btn btn-danger hidden" id="viskaBellyAccept2">Viskas Belly</button>
 <button class="btn btn-default hidden" id="decline">Decline</button>
 
 <button class="btn btn-default hidden" id="button-13">Sacrifice crewmember</button>
-<button class="btn btn-default hidden" id="button-14">Viskas belly</button>
+<button class="btn btn-warning hidden" id="button-14">Viskas belly</button>
 
-<button class="btn btn-success hidden" id="viska">Propose again</button>
+<button class="btn btn-danger hidden" id="viska">Propose again</button>
 <button class="btn btn-success hidden" id="leave">Time to Leave</button>
-
-<button class="btn btn-success hidden" id="west">Westward</button>
+<button class="btn btn-default hidden" id="restart">Restart</button>
+<button class="btn btn-default hidden" id="west">Westward</button>
 
 <div class="formal hidden">
 <p>I cleared my throat briefly, it was best to do this by the book.</p>
@@ -432,7 +466,7 @@ As soon as a plank was lowered, a short figure marched over. Wearing a captains 
 
 <p>“The one we seek... with deals awaiting, is met in Viska then.” I was not very good at Wulf-speak. Something I said seemed to bemuse her. </p>
 
-<p>“Aye, seek the deal in Viska. New deal...” She opened her mouth and smirked. “..Old deal.”</p>
+<p>“Aye, seek the deal in Viska. New deal...” She opened her mouth and pointed inward with a smirk. “..Old deal.”</p>
 
 <p>She was being obtuse even for Wulf-speak, using my weakness in the language. It was clear she was using play of words to get me to agree to something I might seriously regret. A dodge was necessary. </p>
 
@@ -460,6 +494,10 @@ As soon as a plank was lowered, a short figure marched over. Wearing a captains 
 <p>As I entered Viska unbuttoned her overcoat casually and sat down in a rather luxurious if compact looking lounge-chair, it was in-fact probably what passed for a bed in here as I did not spot any beds. I took a seat in a plainer chair opposite her. </p>
 
 <p>“So...” I began as Viska interrupted in thick and slow accent. </p>
+
+<p><span class="evokBelly hidden">"Awe-captain has big fluff-tum, Viska approve-reccognize Awe strength." The wulf spoke seemingly approvingly and pointed at my sizable gut.</span> </p> 
+
+<p><span class="evokBelly hidden">"Ah... yes. I had to eat my Raptorian packmaster a day or so back." I mutter. Not entierly proud over that, but pleased that it had some possitive effect on the young wulf. "So... our deal?"</span></p>
 
 <p>“I wish to eat Awe. In new deal. I want you to become me, but will not challenge-fight. Maybe other fluffy one, if offer-good, or no information.” She looked at me expectantly, almost eagerly. </p>
 
@@ -602,11 +640,37 @@ As soon as a plank was lowered, a short figure marched over. Wearing a captains 
 
 <p> "Awe-captain strength belongs in Viska. Agree Viska-deal, Awe get papers and Viska happy-digest, put Awe-captain behind eyes." </p>
 
-  </div>
+ </div>
 
+ <div class="hidden" id="altPropose"> 
+<p>  We eyed eachother a long while. It struck me that this kind of brash young Wulf might be fought with equal attitude. Fire with fire so to speak. I smirked at her and adjusted my belt around my waist. </p>
+
+<p> "You talk so boldly of me being the meal in this scenario. But why dont you simply hand me the documents and i'll honor you with my stomach afterwards"  </p>
+
+<p> She looked almost briefly dumbfounded before she emitted a bemused laugh. She seemed to strain to make an effort with her Awe-tongue, taking on the challenge. </p> 
+
+<p> "Beheh! Awe-talk bold. But empty, like belly! Hmph, maybe not like belly, like head! Why me give strength to Awe-captain when Viska stronger, strength of Wulf-captain and first-mate behind eyes!" </p>
+
+<p> Some Wulfish idioms were peculiar, but i got the gist of it. Wulfs thought their souls were in or behind their eyes. </p>
+
+<p> "We've both eaten of our crews, i might not have eaten a Wulf-captain, but we could always change that couldnt we?" I grinned at her. </p>
+
+<p> Viska looked unimpressed, shaking her head, she seemed almost to have a condecending look of pity for me as she straightened slightly to lecture me. </p>
+
+<p> "Awe-captain not understand! Viska-strength bigger then Awe-captain, why strong make weak little stronger, when weak can make strong stronger!" She aided her explanation with paw jestures to make it easier for me. "Awe-crew not strong as Wulf-crew. Fluffies and Sleepy-Rawrs!" </p>
+
+<p> I sighed as it seemed this way a pointless endevour and was getting me no closer to getting the documents. Viska diligently continued, looking like she was starting to loose patiance with our talks. </p>
+
+<p> "Awe-captain strength belongs in Viska. Agree Viska-deal, Awe get papers and Viska happy-digest, put Awe-captain behind eyes." </p>
+
+ 
+ </div>
 <script>
 if (_.contains(state.preludeEvents, 'nipfang')) {
 $('#nipfang').removeClass('hidden');
+}
+else if (_.contains(state.preludeEvents, 'evokBelly')) {
+$('#altPropose').removeClass('hidden');
 }
 else {
 $('#nonipfang').removeClass('hidden');
@@ -669,6 +733,7 @@ switch(state.preludeEvents[5]) {
 
 <p>“If... Awe-captain lets Viska swallow her...” She continued, she sure was endlessly persistent. “Viska will let Awe-captain go after! And be happy with Awe. Maybe... do favor, yes?” </p>
 
+<p> I wondered briefly what kind of favor she could possibly offer for such a deal. And if the humuliation would be worth it. </p>
 
 </div>
 
@@ -786,6 +851,12 @@ switch(state.preludeEvents[5]) {
 <p> "She might have forgot to give it to me. Do you have it?" I ventured, it was worth a shot. </p> 
 
 <p> "Talk-false, Truce-break! Viska-captain forget-not!" He hissed balefully and i saw the other nearby Wulfs tense, draw weapons and step closer. </p>
+
+<p> With a motion of my paw i signaled my crew. They sprung into action immidiatly, drawing swords in unison while Raptorians rushed out from below deck, snarling and armored, ready for a fight. In this encounter, we were more prepared.</p>
+
+<p> The Wulf-crew looked angry, but hesitant. They were outnumbered and without leadership. I strode past the ones blocking my way calmly and they let me pass. I passed over to my ship and didnt spare them another glance. I ordered us on our way. </p>
+
+<p> This would no doubt become a diplomatic incident of some sort and a headache back home. But Viska altered a deal and i made her pay for it. Perhaps they will respect that in the end. </p>
 </div>
 
 <div class="hidden" id="withIntel">
@@ -874,12 +945,35 @@ $('#noIntel').removeClass('hidden');
 
 <p>But drool covered and with my pride deflated I at least emerged intact and alive, the cadets were quick to help me onto my feet. </p>
 
-<p>Viska marched back to her ship and quickly disappeared under deck, her fellow Wulf crew dissipated back to their duties, talking amongst themselves excitedly.</p>
+<p> "Good favor, no? Getting to be in Viska and tell others!" She cackled like the little scamp she was. Viska marched back to her ship and quickly disappeared under deck, her fellow Wulf crew dissipated back to their duties, talking amongst themselves excitedly.</p>
 
 <p>“There's always a price with Wulfs. This one was... cheap... considering whats in those papers.” I assured those around me as I got to my feet. </p>
 
 <p>They nodded, they understood. But I could not meet their eyes.</p>
 
+<p> 
+</div>
+
+<div class="viskasBellyAccept hidden">
+<p>With her belly bulging and sagging down from my weight and form, Viska out of the cabin in a jaunty slow pace. 
+
+<p>A crooning hoot went up, as her crew celebrated with approving sounds at their triumphant captain. She was quite a sight, slowly marching across her ship back towards ours with lazy casual superiority, flaunting her huge Awe-filled stomach. </p>
+
+<p>She walked over the plank to the Awe ship with no fear and a smirk on her face, not worried at all of the arrayed ranks of Awes staring at her with a mixture of aghast, outraged and curious looks.</p>
+
+<p>She squezzed her belly, putting both her paws against bulging form and pushed hard. The muscles contracted and the lump groaned as she loudly and mockingly 'BEEEELCHED' into the air to fully mark her triumph. It silenced any growing mutteringthe Awe crew. She spoke up. </p>
+
+<p>“Captains are captain. Awe is Wulf. In deal, this one agree to be Viska.” The young wulf patted on her belly with a thump-thump of her paw.</p>
+
+<p>“Wulfs be mighty. Paper-deal yours now.” Someone tossed the precious folder of Intel from ship to ship. </p>
+
+<p>Viska stood there, basking in the moment and silence that followed. She licked her lips slowly, looking about and basking in her own smugness and superiority. </p>
+
+<p>“Deal be done” She announced and marched back toward her ship, carrying the former Awe-captain with her and leaving her former crew baffled and confused. </p>
+
+<p> Viska retired to her cabin, to relax in her lounger and sleep off her new prize. Adding the Awe-captain to herself, absorbing her strength would further cement her hold on the crew and her reputation. </p>
+
+<p> Her stomach was soon loudly squelching and gurgling as she dreamed ambitious dreams. </p>
 
 </div>
 
@@ -930,6 +1024,7 @@ $('#declinetackle').removeClass('hidden');
 else if (_.contains(state.preludeEvents, 'defensive')) {
 $('#declinedef').removeClass('hidden');
 }
+
 /*
 switch(state.preludeEvents[4]) {
 	case 'swordplay':
@@ -975,7 +1070,7 @@ switch(state.preludeEvents[4]) {
 
 <p>The young Wulfesses belly must have grown and expanded considerably, drooping down with the sudden mass and weight added to it. She emitted a loud trilling yell of excitement as she took great relish in her growing form and Ego, biting dominantly at my feet as they slipped past into her jaws and vanished with a wet open-mouthed 'gluk' down the gullet. </p>
 
-<p>It was over, I had submitted myself to her and her demands. Whether in service to the admiralty or her cocky youthful vigor, I wasent sure. Her gloating would not wait. </p>
+<p>It was over, I had submitted myself to her and her demands. Whether in service to the Admiralty or her dominant cocky youthful vigor, I... wasent sure. Her gloating would not wait. </p>
 
 <p>“Annghh...” She groaned loudly, staggering back to her seat for a brief rest, paws caressing her engorged gut. “Miiiine...” she churrled in the characteristic sound of a pleased Wulf. Who could blame her.</p>
 

@@ -40,6 +40,7 @@
 		$("#button-4").addClass("hidden")
 		$("#scouts").removeClass("hidden")
 		$("#boaty").removeClass("hidden")
+		$("#button-4").removeClass("hidden")
 		})
 		
 	$('#scouts').on('click', function(e) {
@@ -48,6 +49,7 @@
 		state.inventory.push("burntRope");
         $("#scouts").addClass("hidden")
 		$("#boaty").addClass("hidden")
+		$("#button-4").addClass("hidden")
 		$("#button-5").removeClass("hidden")
     	state.shipHealth -= 1;	
 	 })
@@ -66,6 +68,7 @@
 		$("#boatGarsch").removeClass("hidden")
 		$("#boatAvolc").removeClass("hidden")
         $("#scouts").addClass("hidden")
+		$("#button-4").addClass("hidden")
 		$("#boaty").addClass("hidden")
 		
     	state.shipHealth -= 1;	
@@ -180,8 +183,8 @@
 <button class="btn btn-default" id="button-2"> Move on </button>
 <button class="btn btn-default hidden" id="button-3"> Keep Searching </button>
 <button class="btn btn-default hidden" id="button-4"> Abandon Search, too risky! </button>
-<button class="btn btn-default hidden" id="scouts"> Deploy the Scouts. </button>
-<button class="btn btn-default hidden" id="boaty"> Send a smaller boat. </button>
+<button class="btn btn-warning hidden" id="scouts"> Deploy the Scouts. </button>
+<button class="btn btn-warning hidden" id="boaty"> Send a smaller boat. </button>
 <button class="btn btn-default hidden" id="boatArn"> First-Mate Arn </button>
 <button class="btn btn-default hidden" id="boatTung"> Arms-Officer Tung </button>
 <button class="btn btn-default hidden" id="boatGarsch"> Arms-Officer Garsch </button>
@@ -331,9 +334,9 @@
 </div>
 
 <div class="moveon2 hidden"><p><strong>Abandon Search, too risky!</strong></p>
-<p>There&#39;s no telling where the next reef will be, the crew were unnerved enough as it is! I could see them stiff and nervous, gazing down at the foreboding waves, dreading the cold embrace of the sea and the appetites of stalking sea-wolves.</p>
+<p>There&#39;s no telling where the next reef or peril will be, the crew were unnerved enough as it is! I could see them stiff and nervous, gazing down at the foreboding waves, dreading the cold embrace of the sea and the appetites of stalking sea-wolves.</p>
 
-<p>I order us around and back on course. We did our duty to the best of our ability, but getting wrecked here will help nobody.</p>
+<p>I order us around and back on course. We did our duty to the best of our ability, but getting wrecked here or needlessly risking the crew will help nobody.</p>
 
 <p>We make it back to the charted sailing lane safely and without further incident. One day someone will have to properly chart and map every reef and rock in this place, I do not envy them the task.</p>
 </div>

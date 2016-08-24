@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+  <link rel="stylesheet" href="/main.css"></link>
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css"></link>
+  <link rel="stylesheet" href="/bootstrap-theme.min.css"></link>
+  <script src="/main.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      state.events.push("nokeeper");
+	  
+      $('#button-1').on('click', function(e) {
+		lib.dialogue(e, "start"),
+		$("#button-2").removeClass("hidden")
+		$("#button-1").addClass("hidden")
+		
+			
+      })
+		
+	
+		$('#button-6').on('click', function(e) {
+        // change state here
+		
+        // end by using lib.goTo
+        lib.goTo('Wulfcaptain.html')
+      })
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<h1>Admiral Avolc</h1>
+<hr />
+<div id="story-text">
+<p> With the raptorian problem dealt with im still left with picking up the pieces of what that incident shattered. </p>
+
+<p> Keeper is missing. And with him some possibly vital information i needed for our upcoming rendevouz. Despite him getting what he deserved for antagonizing the Raptorians, I failed in my charge to keep him safe and that will not look good on my record. </p>
+
+<p> I've had his quarters and documents searched, but its a bit of an organized mess. Whatever the information he harbored for the exchange, it cannot be found. I've had all the papers scoured through by Cadets and some low-officers<span class="evokBelly hidden">, unable to attend myself due to my weight</span>. </p>
+
+<p> It seems i'll be going into this meeting with our Wulf contacts somewhat blind. But what else is new on this journey. Im starting to feel like the whole Admirality just threw us out here with grand ambitions but little in the ways to prepare us for unforseen setbacks. </p>
+
+<p> What we do find is that our contact is supposed to be a Captain Viriltri. Hopefully they will not question Keepers abscence too overtly. </p>
+
+<span class="evokBelly hidden"><p>I also regret not having forethought about leaving the consuming of Evok till after the meeting. He is proving to be a literal huge hassle to break down and i have been bed bound for a day. For better or worse I will be showing off quite a gut in our meeting. </span>
+</div>
+<hr />
+
+<script>
+if (_.contains(state.inventory, "evokBelly")) {
+		$(".evokBelly").removeClass("hidden")
+		};
+</script>
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default hidden" id="button-1">""</button>
+<button class="btn btn-default" id="button-6">Rendevouz</button>
+<span id="cadetButtons"> </span>
+<script>
+cadet[0].banter = [
+    { target: '#Ziggy', text: 'So Wulfs...', imageClass: "suspicious"},
+    { target: '#Ziggy', text: 'They are like, wingless Awes?', imageClass: "smug"},
+	{ target: '#Glint', text: 'You are not being serious are you?', imageClass: "suspicious"},
+	{ target: '#Ziggy', text: 'No i mean! They are kinda alike to us. But not Awes. Like Anklesnaps and Hillprowlers, similar but different.', imageClass: "angry"},
+	{ target: '#Glint', text: 'Oh, yeah. Yes I guess?', imageClass: "happy"},
+	{ target: '#Valnos', text: 'Its believed Anklesnaps and Hillprowlers are both decendant from Chill-Howlers though.', imageClass: "smug"},
+	{ target: '#Ziggy', text: 'Those big beasts in the north? hmm... i getcha, i getcha!', imageClass: "surprised"},
+	{ target: '#Glint', text: 'Eliminating ignorance, one question at a time.', imageClass: "concerned"}
+];
+
+cadet[1].banter = [
+    { target: '#Glint', text: 'Wulfs are shrewd', imageClass: "neutral"},
+	{ target: '#Glint', text: 'When our household does business with them it always pays to get all interprations and wordings correct.', imageClass: "concerned"},
+	{ target: '#Glint', text: 'My Grand-Matron always repeated the tale of a large contract being voided simply because our Wulf buyers kept twisting the terms.', imageClass: "neutral"},
+	{ target: '#Glint', text: '"If you are not careful and read all the details you might end up selling yourself as collateral." She would say.', imageClass: "concerned"}
+
+	];
+	
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'Too bad about Keeper.', imageClass: "sad"},
+	{ target: '#Valnos', text: 'We used to talk about books. He was quite knowledgable.', imageClass: "happy"},
+	{ target: '#Valnos', text: 'Someone is going to have to take over all the record-keeping he did too!', imageClass: "concerned"},
+	{ target: '#Ziggy', text: 'Not something youd be interested in? You like reading and writing and stuff!', imageClass: "neutral"},
+	{ target: '#Valnos', text: 'You are kidding! This is tedious scribes-work! If i had wanted to do that id joined the Administratum!', imageClass: "angry"},
+	{ target: '#Ziggy', text: 'Jeez, okay! Calm down! Hit a soft-spot didnt I?', imageClass: "blush"},
+	{ target: '#Valnos', text: 'S-sorry Ziggy. You reminded me of my mother for a second.', imageClass: "sad"},
+	{ target: '#Ziggy', text: 'Haha! Aww! I dont know if i should punch you or pouch you.', imageClass: "happy"}
+];
+</script>
+</body>
+</html>

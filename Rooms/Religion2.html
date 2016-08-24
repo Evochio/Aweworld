@@ -14,7 +14,11 @@
   <script src="/main.js"></script>
 
   <script>
+  	state.Glint.status = 'available';
+    state.Valnos.status = 'available';
+	state.Ziggy.status = 'available';
     $(document).ready(function() {
+
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
       
@@ -53,15 +57,15 @@
 <h1>Admiral Avolc</h1>
 <hr />
 <div id="story-text">
-<p> We're out of the fangs and the ship is still in one piece. </p>
+<p> We're out of the Fangs and the ship is still in one piece. </p>
 
-<p> The relief in the crew is visible. Bristled manes are smoothed and Awes look like they've been able to sleep for a full night for once. </p>
+<p> The relief in the crew is visible. Bristled manes are smoothed and Awes look like they've been able to sleep for a full night for once now that double-shifts are over. </p>
 
 <p> With the state of high-alert being called off, an "acolyte" of the order has approached me to request the permission for their order to have a gathering on-deck after sundown. Apperently the gathering has grown and the mess-hall will not be accommodating enough </p>
 
 <p> I'll admit im annoyed that the Soft-spoken herself did not approach me for this request. Since when had they gained acolytes? But its not against Admiralty rules to create and join social clubs, so I let it pass. </p>
 
-<p> Perhaps the crew needs some time to relax after the fangs. But on another hand there is much to do. The ship requires thorough inspection from damages, especially now after the fangs. There's probably enough space below-deck in the mess. </p>
+<p> Perhaps the crew needs some time to relax after the fangs. But on another hand there is much to do. The ship requires thorough inspection from damages, especially now after the Sea of Fangs. There's probably enough space below-deck in the mess. </p>
 </div>
 <hr />
 
@@ -70,11 +74,12 @@
 <button class="btn btn-default" id="button-1">Permit the meet on-deck</button>
 <button class="btn btn-default" id="button-2">Enough is enough. They can meet below-deck.</button>
 <button class="btn btn-default hidden" id="button-3">Continue</button>
+<span id="cadetButtons"> </span>
 
 <div class="sermon hidden"><p><strong>A sermon under the stars</strong></p>
 <p>The gathering might have grown since last time. There were even some Raptorians in the crowd lined up for the meet.</p>
 
-<p>The soft-spoken let no one wait. Wearing her ceremonial robe that hid most of her features but her snout, she reached up her arms for silence. She had a commanding presence about her, mysterious as she was underneath that covering robe.</p>
+<p>The soft-spoken let no one wait. Wearing her ceremonial robe that hid most of her features but her snout, she reached up her arms for silence. She had a commanding presence about her, mysterious as she was underneath that covering robe. I suppose I understood the point of it, she was supposed to be a voice. I figured it was for the teachings you were supposed to hold reverance, not the person.</p>
 
 <p>&ldquo;We&#39;ve come far from our homelands. Yet all who departed with us are still among us&rdquo; She said. Before anyone could think too deeply on the matter she continued. &ldquo;Even those who might not be here in person, they are among us still, part of us.&rdquo;</p>
 
@@ -84,7 +89,7 @@
 
 <p>&ldquo;The highest responsibility of those who yet walk this world is to ensure that no one looses their way. Kin must always be returned to the circle. Let no one be lost to wander the afters in darkness, solitude or among strangers. Your duty is to have a belly ready, as much as it in the end is to seek yourself to one yourself.&rdquo;</p>
 
-<p>She stood at the makeshift podium, arms in the air and at the stars in the sky. <strong>&ldquo;Together we are strong. Together we are warm. Together we will see the cold and dark gone.&rdquo;</strong></p>
+<p>She stood at the makeshift podium, arms in the air and at the stars in the sky. <strong>&ldquo;Together we are strong. Together we are warmth. Together we will see the cold and dark gone.&rdquo;</strong></p>
 
 
 </div>
@@ -104,10 +109,36 @@
 
 <p>&ldquo;The highest responsibility of those who yet walk this world is to ensure that no one looses their way. Kin must always be returned to the circle. Let no one be lost to wander the afters in darkness, solitude or among strangers. Your duty is to have a belly ready, as much as it in the end is to seek yourself to one yourself.&rdquo;</p>
 
-<p>She raised her arms in a beckoning manner. <strong>&ldquo;Together we are strong. Together we are warm. Together we will see the cold and dark gone.&rdquo;</strong></p>
+<p>She raised her arms in a beckoning manner. <strong>&ldquo;Together we are strong. Together we are warmth. Together we will see the cold and dark gone.&rdquo;</strong></p>
 
 
 </div>
+<script>
+cadet[0].banter = [
+    { target: '#Ziggy', text: 'Hmmm, Valnos.', imageClass: "neutral"},
+    { target: '#Valnos', text: 'Yes Ziggy?', imageClass: "smug"},
+	{ target: '#Ziggy', text: 'Is your mother a Raven-eye?', imageClass: "blush"},
+	{ target: '#Valnos', text: 'Wondering about the black fur? She is.', imageClass: "happy"},
+	{ target: '#Ziggy', text: 'Well.. its more brownish-black. Man your sire sure got around.', imageClass: "happy"},
+	{ target: '#Valnos', text: 'Ah... well... he was an explorer.', imageClass: "blush"}
+];
+
+cadet[1].banter = [
+    { target: '#Glint', text: 'Glad we are out of the fangs.', imageClass: "neutral"},
+	{ target: '#Glint', text: 'The crew has been stressed.', imageClass: "concerned"},
+	{ target: '#Glint', text: 'The order might request to hold a larger meeting on the deck. To help soothe frayed fur and mind', imageClass: "neutral"},
+	{ target: '#Glint', text: 'I hope you will permit it captain! I really think it will help relieve stress.', imageClass: "smug"}
+
+	];
+	
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'We had quite a few close-calls in the Fangs', imageClass: "concerned"},
+	{ target: '#Valnos', text: 'Im glad they built these ships tough!', imageClass: "surprised"},
+	{ target: '#Valnos', text: 'Im on duty to helping Tick check for faults tonight.', imageClass: "happy"},
+	{ target: '#Valnos', text: 'He said he needs a few extra eyes.', imageClass: "happy"}
+	
+];
+</script>
 
 
 </body>

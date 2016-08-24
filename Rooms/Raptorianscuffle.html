@@ -14,47 +14,104 @@
   <script src="/main.js"></script>
 
   <script>
+      state.Glint.status = 'invisible';
+    state.Valnos.status = 'available';
+	state.Ziggy.status = 'invisible';
+  
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
       
       $('#button-1').on('click', function(e) {
 		lib.dialogue(e, "break"),
-		
+		state.events.push("break");
 		$("#button-3").addClass("hidden")
 		$("#button-1").addClass("hidden")
 		$("#button-2").addClass("hidden")
 		$("#Elda").removeClass("hidden")
+		cadet[2].banter = [
+	{ target: '#Valnos', text: 'That was brave captain! I didnt think any one Awe could stand up to a Raptorian, let alone two! Lets get you to Elda for some treatment.', imageClass: "surprised"},
+
+		];
 	})
 		
 		$('#button-2').on('click', function(e) {
 		lib.dialogue(e, "wait"),
-		
+		state.events.push("wait");
         $("#button-3").addClass("hidden")
 		$("#button-1").addClass("hidden")
 		$("#button-2").addClass("hidden")
 		$("#Judgement").removeClass("hidden")
+		$("#Valnos").addClass("new")
+		 cadet[2].banter = [
+	{ target: '#Valnos', text: 'It was problably smart to wait for Evok, glad no one was seriously hurt. Too bad about the damage to the supplies, we&#39;ll be eating some drier rations for a while.', imageClass: "concerned"},
+
+		];
+		
       })
       $('#button-3').on('click', function(e) {
        lib.dialogue(e, "order"),
-		
+		state.events.push("order");
         $("#button-3").addClass("hidden")
 		$("#button-1").addClass("hidden")
 		$("#button-2").addClass("hidden")
 		$("#Judgement").removeClass("hidden")
+		$("#Valnos").addClass("new")
+		 cadet[2].banter = [
+	{ target: '#Valnos', text: 'Ow... N-no.. dont worry about me. J-just got hit on the head and twisted my leg a bit.', imageClass: "sad"},
+	{ target: '#Valnos', text: 'Why I jumped in? I... eh... Didnt want you to loose face when no one obeyed.', imageClass: "sad"}
+
+		];
+		
       })
 	   $('#Elda').on('click', function(e) {
-       lib.dialogue(e, "elda"),
+	   $("#Judgement").removeClass("hidden")
+	   if (_.contains(state.events, "storminjury")) {
+	 $('#pouchChoice').removeClass('hidden');
+		 $("#injury").removeClass("hidden")
+		 $("#pouched").removeClass("hidden")
+		 $("#Judgement").addClass("hidden")
+	   }
+	   else {
+	   $('#eldaPouch').removeClass('hidden');
+	   }
+	   
+       lib.dialogue(e, "elda")
 		$("#Elda").addClass("hidden")
+        
+		
+      })
+	  	
+	    $('#pouched').on('click', function(e) {
+       lib.dialogue(e, "pouched")
+	   state.events.push("pouched");
+		$("#pouched").addClass("hidden")
+		$("#injury").addClass("hidden")
+        $("#Judgement").removeClass("hidden")
+		
+      })
+	  $('#injury').on('click', function(e) {
+       lib.dialogue(e, "injury")
+	   state.inventory.push("injury");
+		$("#pouched").addClass("hidden")
+		$("#injury").addClass("hidden")
         $("#Judgement").removeClass("hidden")
 		
       })
 	  $('#Judgement').on('click', function(e) {
        lib.dialogue(e, "judgement"),
-		$("#Judgement").addClass("hidden")
+	  	$("#Judgement").addClass("hidden")
+		if (_.contains(state.events, "order")) {
+			$("#Overboard").removeClass("hidden")
+		}
+		
 		$("#Labor").removeClass("hidden")
+		if (_.contains(state.events, "pouched")) {
+			$("#eat2").removeClass("hidden")
+		}
+		else {
 		$("#Eat").removeClass("hidden")
-		$("#Overboard").removeClass("hidden")
+		}
       })
 	   $('#Labor').on('click', function(e) {
 	   state.crewMorale -= 1;
@@ -113,11 +170,14 @@
 <button class="btn btn-default" id="button-2">Wait for Packmaster Evok</button>
 <button class="btn btn-default" id="button-3">Order them stopped</button>
 <button class="btn btn-default hidden" id="Elda">Pouch-Matron Elda</button>
+<button class="btn btn-default hidden" id="pouched">Pouch heal</button>
+<button class="btn btn-default hidden" id="injury">Natural heal</button>
 <button class="btn btn-default hidden" id="Judgement">Judgment for Raptorians</button>
 <button class="btn btn-default hidden" id="Labor">Extra labor</button>
 <button class="btn btn-default hidden" id="Eat">Eat one of them</button>
 <button class="btn btn-default hidden" id="Overboard">Throw them both overboard to the sea wolves.</button>
-<button class="btn btn-default hidden" id="button-4">Pale Rock</button>
+<button class="btn btn-default hidden" id="button-4">Continue</button>
+<span id="cadetButtons"> </span>
 
 <div class="break hidden"><p><strong>Break up the fight yourself</strong></p>
 <p>I could not stand idle and look powerless. With a loud snap of command I shouted for them to &ldquo;CEASE!&rdquo;, while stepping in between them.</p>
@@ -126,23 +186,22 @@
 
 <p>The smack of the tail knocked me against a wall and dazed me pretty good. The world spun and my shoulder stung but I had wits in me enough to yell in outrage before one of them stepped on me in the commotion. &ldquo;HOW DARE YOU!?&rdquo; came out of me and only then did they pause to notice their Captain and what they&#39;d done.</p>
 
-<p>Packmaster Evok arrived shortly after and hissed his disapproval at them. I left him to deal with them as I returned to my cabin with Valnoses help. My shoulder was on fire and my right wing sagged pitifully.</p>
+<p>Packmaster Evok arrived shortly after and hissed his disapproval at them, applying harsch neckbites in the raptorian equivalent of cuffing eachother. I left him to deal with them as I returned to my cabin with Valnoses help. My shoulder was on fire and my right wing sagged pitifully.</p>
 
 <p>I might have been foolish in trying to deal with Raptorians on my own, but crew seemed to mutter approvingly. At least I&#39;ve shown I&#39;m not afraid of them.</p>
 
-<p>Valnos: That was brave captain. I didnt think any one Awe could stand up to a Raptorian, let alone two! Lets get you to Elda for some treatment.</p>
+
 </div>
 
 <div class="wait hidden"><p><strong>Wait for Wait for Packmaster Evok</strong></p>
-<p>Dealing with the Raptorian grunts was the sergeants job. It would be foolish to try to go between two angry Raptorians. I crossed my arms and counted the seconds it would take for the sergeant to arrive, this would be on his hide.</p>
+<p>Dealing with the Raptorian grunts was the Packmasters job. It would be foolish to try to go between two angry Raptorians. I crossed my arms and counted the seconds it would take for the Packmaster to arrive, this would be on his hide.</p>
 
-<p>Their scuffle grew alarmingly violent as neither seemed to want to yield to the other. Before the sergeant arrived they had smashed against walls and into crates and barrels, spilling important supplies of drinking water.</p>
+<p>Their scuffle grew alarmingly violent as neither seemed to want to yield to the other. Before the Packmaster arrived they had smashed against walls and into crates and barrels, spilling important supplies of drinking water.</p>
 
 <p>To his credit, once he arrived he dealt with them quickly and efficiently. He was on them both, dragged them onto the ground and had them both pinned and submissive in moments. He was a formidable fighter.</p>
 
 <p>I ordered him to report to me once he had the troublemakers locked up and returned to my cabin.</p>
 
-<p>Valnos: It was problably smart to wait for Evok, glad no one was seriously hurt. Too bad about the damage to the supplies, we&#39;ll be eating some drier rations for a while.&nbsp;</p>
 
 </div>
 
@@ -155,16 +214,17 @@
 
 <p>Packmaster Evok arrived shortly afterwards and hissed his disapproval at the two troublemakers. I ordered him to report to me once he had them locked up.</p>
 
-<p>Unfortunately, Valnos and a few other Awes did not quite make it unscathed. A bit squashed and limping I sent them to Pouch-Matron Eldas care.</p>
+<p>Unfortunately, Valnos and a few other Awes did not quite make it unscathed. Poor Valnos was limp and unconcious for a few frightening moments before coming too. A bit squashed and limping I sent them to Pouch-Matron Eldas care.</p>
 
-<p>Valnos: Ow... N-no.. dont worry about me. J-just twisted my leg a bit. Why I jumped in? I... eh... Didnt want you to loose face when no one obeyed. &nbsp;</p>
+<p> While Elda reassured me there were no serious injuries, i still found myself seething with anger from having seen my junior officer injured so. </p>
+
 </div>
 
 <div class="elda hidden"><p><strong>Pouch-Matron Elda</strong></p>
 
 <p>Elda tut-tutted and made a quick token check over my shoulder, I tried to remain stoic as she gently tugged and poked at the throbbing injury.</p>
 
-<p>&ldquo;Your shoulder and wing-base are luckily not dislocated. It seems like a bad sprain, possibly some fracturing.&rdquo; She cooed with her practiced reassuring calmness. She could most likely make a missing arm seem like not so big of a deal.</p>
+<p>&ldquo;Your shoulder and wing-base are luckily not dislocated. It seems like a bad sprain, possibly some very light fracturing.&rdquo; She cooed with her practiced reassuring calmness. She could most likely make a missing arm seem like not so big of a deal.</p>
 
 <p>&ldquo;And you recommend?&rdquo; I could already guess her chosen treatment.</p>
 
@@ -172,10 +232,40 @@
 
 <p>&ldquo;Ofcourse&rdquo; I muttered.</p>
 
-<p>&ldquo;Oh, dont pout, high-metabolic sleep is a gift we should consider ourselves lucky for as Awes, others are not so fortunate. Get all your things in order, have a big hearty meal with plenty sugars and lets get you tucked in.&rdquo; Elda smiled warmly while she out of habit gripped the lip of her sizable pouch in both paws, she loved her job.</p>
+<div id="eldaPouch" class="hidden">
+<p>&ldquo;Oh, dont pout, high-metabolic sleep is a gift we should consider ourselves lucky for as Awes, others are not so fortunate.  Get all your things in order, have a big hearty meal with plenty sugars and lets get you tucked in.&rdquo; Elda smiled warmly while she out of habit gripped the lip of her sizable pouch in both paws, she loved her job.</p>
 
-<p>I spent the following three days curled and asleep in the good matrons sagging pouch.&nbsp;</p>
+<p>I would be spending spent the following three days curled and asleep in the good matrons sagging pouch. It is peculiar how the scent of a matrons pouch puts you to deep sleep in moments. You do not feel a thing until you wake up, days later, a little sore and extremely ravenous.</p>
+<p> But first it was time to deal with the Raptorians. Injuring a captain was a serious offence. </p>
 </div>
+
+<div id="pouchChoice" class="hidden">
+
+<p> "Though since this would be your second visit in short time im going to leave the choice to you. Are you injuring yourself on purpose my dear captain?" Elda smirked amused and continued. "High-metabolic sleep is a gift we should consider ourselves lucky for as Awes, others are not so fortunate. But its not a cure-all and frequent use is downright perilous, if you're for example injured seriously a third time, the treatment will be downright risky." </p>
+
+<p>"I see. " I pondered thoughtfully.  </p>
+
+<p> "This is not a serious injury, though it will slow you down and definitely stop you from using your wings in any manner for a while." Elda relaxed and awaited my choice. </p>
+
+<p> The easy path would be to submit to her treatment and try to stay out of trouble in the future. But one never knew what could happen. Or i can tough it out and be sluggish a while. </p>
+</div>
+</div>
+<div class="pouched hidden">
+<p> "Get all your things in order, have a big hearty meal with plenty sugars and lets get you tucked in." Elda smiled warmly while she out of habit gripped the lip of her sizable pouch in both paws, she loved her job.</p>
+
+<p>I would be spending the following three days curled and comatose in the good matrons sagging pouch. It is peculiar how the scent of a matrons pouch puts you to deep sleep in moments. You do not feel a thing until you wake up, days later, a little sore, dizzy and extremely ravenous.</p>
+
+<p> But first it was time to deal with the Raptorians. Injuring a captain was a serious offence. </p>
+</div>
+
+<div class="injury hidden"><p><strong>Pouch-Matron Elda</strong></p>
+<p> "I'll keep a clear head and heal the normal way this time" I decided promptly. "A lot could happen." </p>
+
+<p> Elda nodded sagely and set to bandaging and setting my wing so it would heal well on its own. A proffesional through and through. </p>
+
+<p> Next up it was time to deal with the Raptorians. Injuring a captain was a serious offence. </p>
+</div>
+
 
 <div class="judgement hidden"><p><strong>Judgement for Raptorians</strong></p>
 <p>Cowed, bruised and heads held down, the two Raptorians who were at each other stood before me, awaiting judgment. Their fight were about trivial hierarchical matters, apparently they disagreed on who had the right of way up and down the stairs. Evoc assured me this does not normally happen, the two of them only happen to have some bad history.</p>
@@ -211,6 +301,26 @@
 <p>I've been provided poultices by Elda to help speed things along. Food-lethargy with its deep sleep beckons. </p>
 </div>
 
+<div class="eat2 hidden"><p><strong>Eat one of them</strong></p>
+<p>I had them thoroughly questioned. The cause of the strife and the main instigator had to be puzzled out. It did not take long, the problems between these two were well known among the other Raptorians.</p>
+
+<p>The issue apperently lay in both having the same interest in a prospecting females attention back at shore.</p>
+
+<p>All serving Raptorians are promised a mate at the end of their service. There is no better force of motivation for their kind. Like with Awes, its the females who rule among them, though their numbers are far fewer then the males. They only pick the strongest among them.</p>
+
+<p>In this case, Raptorian Teef had been the main antagonizer. Always seeking an excuse to scuffle or make things hard for Raptorian Talo.</p>
+
+<p>Uncontrolled aggressiveness like that is a dangerous thing, damage could have been much worse. It feelt like showing irate raptorians who really is in charge was due, so I sentenced him to a stomach, demoted to ration.</p>
+
+<p> Normally i would have eaten him myself, but since pouch-sleep beckoned there just was no way to make it all fit. So i had the Packmaster himself carry out the sentence. </p>
+
+<p> Evok showed no hesitation, he probably had done this before. You dont become a packmaster without having subdued or eaten a few rivals. With lunging gulps he nearly toss-gulped the other raptorian down his gullet. </p>
+
+<p> Whether it was to show off or assert his power to the other Raptorians in attendence he even hoisted the hips and legs of the doomed meal up in the air above his head and swallowed the giant bulge down with a rumbling growl. There would be no grumbling or dicontent among his ranks after this show of strength.</p>
+
+<p> Im glad i had such a loyal capable packmaster on my side. He licked his chops after his stomach settled and sagged with the huge curled up meal and former subordinate. I granted him leave for the amount of time his body would need to work that off.</p>
+</div>
+
 <div class="overboard hidden"><p><strong>Throw them both overboard to the sea wolves.</strong></p>
 <p>These two have committed a cardinal sin in their actions. They showed complete disregard to the ship and their crew in their petty conflict. I was enraged by how they did not calm down a direct order and it took having a dozen Awes pinning them down for them to see reason. Valuable obedient crewmembers got hurt, an officer gut hurt.</p>
 
@@ -227,6 +337,12 @@
 <p>I ordered the attending crew back to their duties and retired to my cabin. I had reports later of the sea-wolves being back on our tail only a few hours later.</p>
 
 </div>
+<script>
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'What should we do? If they break the waterbarrels that might leak into the dry-foods!', imageClass: "concerned"},
 
+];
+
+</script>
 </body>
 </html>

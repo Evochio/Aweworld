@@ -17,10 +17,10 @@
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
-      state.events.push("raptoriansrebel");
+      state.events.push("raptoriansRebel");
       $('#button-1').on('click', function(e) {
 		lib.dialogue(e, "admit"),
-		
+		state.crewMorale -= 1;
 		$("#button-3").addClass("hidden")
 		$("#button-1").addClass("hidden")
 		$("#button-2").addClass("hidden")
@@ -34,33 +34,63 @@
 		$("#button-1").addClass("hidden")
 		$("#button-2").addClass("hidden")
 		$("#evokEat").removeClass("hidden")
+		$("#sentence").removeClass("hidden")
+		$("#evokEaten").removeClass("hidden")
       })
       $('#button-3').on('click', function(e) {
-       lib.dialogue(e, "punishAll"),
-		
+       lib.dialogue(e, "threaten"),
+		$("#Ziggy").addClass("hidden")
+		$("#Glint").addClass("hidden")
+		$("#Valnos").addClass("hidden")
         $("#button-3").addClass("hidden")
 		$("#button-1").addClass("hidden")
 		$("#button-2").addClass("hidden")
 		$("#Judgement").removeClass("hidden")
+		if (state.crewMorale < 5) {
+		$("#digested").removeClass("hidden")
+		}
+		else {
+		$("#rescued").removeClass("hidden")
+		}
       })
 	   $('#evokEat').on('click', function(e) {
        lib.dialogue(e, "evokEat"),
-		$("#evokEat").addClass("hidden")
+	    $("#evokEat").addClass("hidden")
+		$("#evokEaten").addClass("hidden")
+		$("#sentence").addClass("hidden")
         $("#Judgement").removeClass("hidden")
+		$("#button-4").removeClass("hidden")
 		
       })
 	  $('#sentence').on('click', function(e) {
        lib.dialogue(e, "sentence"),
-        $("#button-3").addClass("hidden")
-		$("#button-1").addClass("hidden")
-		$("#button-2").addClass("hidden")
+	   state.crewMorale += 2;
+        $("#evokEat").addClass("hidden")
+		$("#evokEaten").addClass("hidden")
+		$("#sentence").addClass("hidden")
+		$("#button-4").removeClass("hidden")
+		})
 		
+		$('#digested').on('click', function(e) {
+		lib.dialogue(e, "digested"),
+        $("#digested").addClass("hidden")
+		
+				
+      })
+	  	$('#rescued').on('click', function(e) {
+		lib.dialogue(e, "rescued"),
+        state.crewMorale += 1;
+		$("#rescued").addClass("hidden")
+		$("#button-4").removeClass("hidden")		
       })
 	   $('#evokEaten').on('click', function(e) {
        lib.dialogue(e, "evokEaten"),
-        $("#button-3").addClass("hidden")
-		$("#button-1").addClass("hidden")
-		$("#button-2").addClass("hidden")
+	   state.inventory.push("evokBelly");
+	   state.crewMorale += 1;
+        $("#evokEat").addClass("hidden")
+		$("#evokEaten").addClass("hidden")
+		$("#sentence").addClass("hidden")
+		$("#button-4").removeClass("hidden")
 		
       })
 
@@ -68,7 +98,7 @@
         // change state here
 		
         // end by using lib.goTo
-        lib.goTo('Wulfcaptain.html')
+        lib.goTo('Pieces.html')
       })
     })
   </script>
@@ -84,7 +114,7 @@
 <div id="story-text">
 <p>"The Raptorians have mutinied."</p>
 
-<p>A shocking turn of events took place before early shift change. Valnos came banging at my door, breathless, to report those ominous four words. Few things are as threatening to a crew as its Raptorians deciding to turn against it. 20 Raptorians are enough to devastate a ship of a hundred awes when there are tight confines and nowhere to fly to but the masts.</p>
+<p>Glint came banging at my door, breathless, to report those ominous four words. Few things are as threatening to a crew as its Raptorians deciding to turn against it. 20 Raptorians are enough to devastate a ship of a hundred awes when there are tight confines and nowhere to fly to but the masts.</p>
 
 <p>I was reassured however by an accompanying Squire. I recognized her as Squire Kisle. A squire who lost her appointed Raptorian to high-stakes gambling and the belly of the debtor.</p>
 
@@ -98,20 +128,33 @@
 
 <p>This whole gambling business was one head-ache after another. But this seemed to have been the final end of it. Now i just had to decide how to deal with the fall-out of it.</p>
 
-<p>23 Awes are missing, most likely digesting. First-officer Arn and X among them. I dont know which belly they might be in and no one is talking. As it looks, all Raptorians seem to be in on it, either directly or by not talking, their squires too. Evok too is being silent, but accepting full responsibility.</p>
+<p>13 Awes are missing, most likely digesting. First-officer Arn <span id="tung" class="hidden"> and Officer Tung among them</span>. I dont know which belly they might be in and no one is talking. As it looks, all Raptorians seem to be in on it, either directly or by not talking, their squires too. Evok too is being silent, but accepting full responsibility.</p>
 
+<p> Finding the culprits would be difficult, but in a way they all shared the guilt. That the gambling would escalate into such an outcome<span id="gamblingForbid" class="hidden">, despite my efforts to stop it, </span>was hard to predict. I feel slightly responsible for not having kept an eye on Arn or the growing discontent. But Arn had sure paid for his mistakes now.</p>
+<script>
+if (_.contains(state.events, "soft")) {
+			$('#tung').removeClass('hidden');
+	}
+if (_.contains(state.events, "gamblingForbid")) {
+			$('#gamblingForbid').removeClass('hidden');
+	}
+</script>
 </div>
 <hr />
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1">Admit fault and take responsibilty.</button>
-<button class="btn btn-default" id="button-2">Find the clear culprits</button>
-<button class="btn btn-default" id="button-3">Punish them all.</button>
+<button class="btn btn-default" id="button-2">Try to find the clear culprits</button>
+<button class="btn btn-default" id="button-3">Threaten them all.</button>
 <button class="btn btn-default hidden" id="evokEat">Have Evok eat the culprits. </button>
 <button class="btn btn-default hidden" id="sentence">Sentence them to be food</button>
 <button class="btn btn-default hidden" id="evokEaten">Eat Evok</button>
 
+<button class="btn btn-default hidden" id="digested">Hopeless?</button>
+<button class="btn btn-default hidden" id="rescued">Hopeless?</button>
+
 <button class="btn btn-default hidden" id="button-4">Pale Rock</button>
+<span id="cadetButtons"> </span>
 
 <div class="admit hidden"><p><strong>Admit fault and take responsibilty.</strong></p>
 <p>Things have gone too far already. I had lost authority and control on the ship and I'd be a fool to try to salvage it by pretending i hadn't.</p>
@@ -142,15 +185,26 @@
 
 </div>
 
-<div class="punishAll hidden"><p><strong>Punish them all.</strong></p>
-<p>It was with a flash of anger that i made the sentence. I had lost control of the situation for too long.</p>
+<div class="threaten hidden"><p><strong>Threaten them all.</strong></p>
+<p>It was with a flash of anger that I bristled and snarled at them. I had lost control of the situation for too long. I'd get them to talk!</p>
 
 <p>I pointed to all of them and simply proclaimed.</p>
 
-<p>"You are all henceforth, my food. I will spend the remainder of our voyage dealing with you one after another." They looked shocked. Stunned. In their minds they might have felt themselves justified to take law into their own claws, thinking i couldn't punish them all for it. But i'd show them!</p>
+<p>"I should sentence you all into my food for this! I would have to spend the remainder of our voyage dealing with you one after another." They looked shocked. Stunned. In their minds they might have felt themselves justified to take law into their own claws, thinking i couldn't punish them all for it. But i'd show them!</p>
 
-<p>I half expected open rebellion, but no one moved. It seemed none had really wanted to rebel against the admiralty itself. But now the consequence of it was sinking in.</p>
+<p>I half expected open rebellion, but no one moved. It seemed none had really wanted to rebel against the admiralty itself. But now the consequence of it was sinking in, i decided to push further, so far no one was cracking.</p>
 
+<p> "And dont think you Squires will escape unpunished either... as far as im concerned you're accomplices of..."
+
+<p>A Raptorian i hadent even looked at suddenly snarled to my right and came at me with jaws wide open. Threatening their Squires had been the final straw. </p>
+
+<p> I had expected some form of reaction, but the Raptorian was upon me before i could even fully draw my sword. Jaws engulphed me and snapped shut around my chest. A quick shake and i dropped my sword and then hot squelching gullet took me as the Raptorian swallowed me whole! </p>
+
+<p> I struggled and kicked, tried to apply every manouver taught and learned but i got sucked down that dark hot passage all the same, to get squashed into a tight and churning belly </p>
+
+<p> This was an unexpected twist of events. I felt powerless for not having had the chance to even resist or struggle. There had been no room to dodge and a raptorian is simply too strong. </p>
+
+<!--
 <p>"You, i'll eat last. I expect you to keep order until then." I pointed out to Evok, who only bowed his head in a quivering stunned silence. He was trained well.</p>
 
 <p>I picked out a lanky looking Raptorian called Cavok to begin with and retired to my quarters to eat him.</p>
@@ -162,7 +216,63 @@
 <p>Fat will become a problem quickly. As well our objectives become ever harder to fulfill with so much of the crew... indisposed.</p>
 
 <p>I guess we'll have to turn the ship around. Admiralty will not be pleased, but this is all according to law. Im afraid this will only further feed into the rumor of what happens to my crews.</p>
+-->
 </div>
+<div class="digested hidden"><p><strong>Have Evok eat the culprits.</strong></p>
+<p> Its tight and hot. I wonder briefly whats happening outside, will my crew apptempt a rescue? Will tensions explode into a full on conflict? <p>
+
+<p> As if in response im suddenly tossed around violently, bounced and bumped against as my devourer shifts and makes me jostle around his gut when he moved around. </p>
+
+<p> Some kind of commotion is occuring outside, i can hear it muffedly from my awkward and embarassing position. </p>
+
+<p> The chamber jostles and tightens, no matter how i push against it, my strength is inadequate to stand up to a Raptorians gut. </p>
+
+<p> Soon my worst fears are realized. A shape emerges next to me with an audible moan and a glurking noise from the flesh around me. Another Awe has entered the tight chamber. Then another squezzes in, squashing us together ever tighter. </p>
+
+<p> Something horrible is happening out there. I shake and jostle one of the wiggling shapes that just emerged. </p>
+
+<p> "What is happening out there!?" I demand in the slimy jostling darkness. </p>
+
+<p> "They're eating us! S-some started running when it got you. And they just chased and attacked! Oh... ancestors..." The Awe mewled. I couldnt even tell who it was. </p>
+
+<p> The following moments were that of distant muffled shouts and plenty of bouncing and squezzing of our devourers stomachmuscles. Any hope of rescue diminished as two more shapes eventually squelched and crammed their way into the already tight and taut belly. </p>
+
+<p> The raptorian was having himself a feast, filling himself up and no doubt, so where the other Raptorians. Once a hunt starts, it ends either in defeat or a belch. </p>
+
+<p> The raptorians belched long and loud and lay down ontop of its distendened gut. Already the stomach was working hard, sqelching and churning around the meals. Around him, the other raptorians were doing the same, all with bellies filled and stretched. In a night or two, they'd all be slept-off</p>
+
+<p> A full-on Raptorian mutiny is nearly unheard of. Perhaps because there are seldom any one left once they're over. </p>
+
+<p> Threatening a Raptorians squire is a surefire way to find trouble as the captain found out. Not having the courage to stand up to Raptorians and turning your back to run is another way to trigger a hunt, as the crew quickly found out. </p>
+</div>
+
+
+<div class="rescued hidden"><p><strong>Have Evok eat the culprits.</strong></p>
+<p> Its tight and hot. I wonder briefly whats happening outside, will my crew apptempt a rescue? Will tensions explode into a full on conflict? <p>
+
+<p> As if in response im suddenly tossed around violently, bounced and bumped against as my devourer shifts and makes me jostle around his gut when he moved around. </p>
+
+<p> Some kind of commotion is occuring outside, i can hear it muffedly from my awkward and embarassing position. </p>
+
+<p> Suddenly pressure builds and im forced to whince as something pushes against me from all over, is this it? </p>
+
+<p> But im to my surprise expelled upwards, squezzed up along the gullet i came down through and end up peering nad reaching out from those jaws. I gasp the fresh air as paws grab ahold of mine and pull me free. </p>
+
+<p> I have been rescued. Wet and dripping i pant, surprised at my own exhaustion. The raptorian that assaulted me is pinned to the ground by several Awes, spears and weapons brandished. They had overpowered him and forced him to release me. </p>
+
+<p> "Are you okay captain?" A concerned deep voice rumbles. Packmaster Evok lays flat on the ground under several pointed spears. He seems to have chosen to surrender immidiatly to de-escalate the situation. </p>
+
+<p> "Im... fine." I stretch out, one wing aching badly but other then that no worse for wear. Only my pride is griveously wounded. </p>
+
+<p> The crew seem to react with smiles and nods though, relieved that im alright. That they managed to rescue me. Im surprised, i had expected me to be so well-liked. I guess it pays off to have the crew on your side. </p>
+
+<p> Justice it seems has moved ahead of me. The most obviously guilty Raptorians, with bellies grumbling full of former crewmates have been rounded up. Some of the squires have cracked, unwilling to see things escalate further, the conspirators are being named. </p>
+
+<p> Everyone knows the rules, there's no need for a captain to spell out the obvious. The guilty would be fed to the rest of the crew. Their mutiny could not be allowed to fester the crews relationship further.</p>
+
+<p> I would have to write a full report on this issue and further more make a reccomendation to Admirality high-command not to overcrowd a ship with crew to such a degree such as ours had. The risk of attrition from events like this counter-acted the intent to bring new troops to the front.</p>
+</div>
+
 
 <div class="evokEat hidden"><p><strong>Have Evok eat the culprits.</strong></p>
 
@@ -223,7 +333,32 @@
 
 <p>Again, few would blame me, but it was still a hit to my prestige. This whole event had been bad news and it would undoubtedly form a schism in the crew if I did not pay close attention to it. For now, they helped my back to my quarters to deal with the part of the former pack-master I had in my belly. The rest would follow as I digested him.</p>
 </div>
+<script>
+cadet[0].banter = [
+    { target: '#Ziggy', text: 'Stupid stupid stupid', imageClass: "angry"},
+    { target: '#Ziggy', text: 'If theres one thing you do not do...', imageClass: "sad"},
+	{ target: '#Ziggy', text: 'Its getting between a Raptorian and his squire.', imageClass: "sad"},
+	{ target: '#Ziggy', text: 'They protect them as if they were their females.', imageClass: "concerned"},
+	{ target: '#Ziggy', text: 'In some cases they are.', imageClass: "surprise"},
+	{ target: '#Glint', text: 'Youve missed your calling Ziggy.', imageClass: "happy"},
+	{ target: '#Ziggy', text: 'Glint! That was lewd! Im impressed.', imageClass: "blush"}
+];
 
+cadet[1].banter = [
+    { target: '#Glint', text: 'This is dire.', imageClass: "surprised"},
+	{ target: '#Glint', text: 'The crew is shook up by this incident.', imageClass: "concerned"},
+	{ target: '#Glint', text: 'What could have flown into the Raptorians. They are usually so... placid.', imageClass: "sad"}
+	];
+	
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'A-are you okay Ziggy?', imageClass: "surprised"},
+	{ target: '#Ziggy', text: 'Uh.. yeah. Was just knocked over. They didnt hurt me.', imageClass: "concerned"},
+	{ target: '#Valnos', text: 'When i heard the Raptorians were going for the gamblers, i thought you would be done for!', imageClass: "sad"},
+	{ target: '#Ziggy', text: 'Hey now... im not saying i didnt gamble. But im buddies with a lot of those big blokes. And some of the fellas now inside them.', imageClass: "sad"},
+	{ target: '#Valnos', text: 'Im glad you are safe.', imageClass: "neutral"},
+	{ target: '#Ziggy', text: 'Hey thanks.. i think i need to go sit down.', imageClass: "sad"}
+];
+</script>
 
 </body>
 </html>

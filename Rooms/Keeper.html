@@ -100,7 +100,8 @@
 <button class="btn btn-default hidden" id="button-3">“How much troubles have the Wulfs been having to warrant this cooperation?”</button>
 <button class="btn btn-default hidden" id="button-4">“Who could be responsible?”</button>
 <button class="btn btn-default hidden" id="button-5">Upcoming rendezvous</button>
-<button class="btn btn-default hidden" id="button-6">PaleRock</button>
+<button class="btn btn-default hidden" id="button-6">Rendevouz</button>
+<span id="cadetButtons"> </span>
 
 <div class="start hidden"><p><strong>Start with why you're here, if not as an officer.</strong></p>
 <p>“Oh, make no mistake, im as much an officer in Admirality as im an agent. Its an open deal between our organizations. Sign of trust and such."  </p>
@@ -127,7 +128,7 @@
 
 <p>If you know our history, you've most likely heard that we have a long history with Gator-kind. Your little scare with pirate-slavers a few seasons ago was nothing to the century of abductions and raids our ancestors suffered. We even faced a minor invasion early in hour history that briefly threatened our independence. </p>
 
-<p>Needless to say, we like to keep a close eye on things westward and keep our waters as safe as they can be. But as you might well know, something plagues the sailing routes west of late, worse then ever before. Ships disappear or pass without incident seemingly on random, or at least in no pattern we reccognize. </p>
+<p>Needless to say, we like to keep a close eye on things westward and keep our waters as safe as they can be. But as you might well know, something plagues the sailing routes west of late, worse then ever before. Ships disappear or pass without incident seemingly at random, or at least in no pattern we reccognize. </p>
 
 <p>It grew especially alarming when ships of the company started to suffer the same. Whole units. </p>
 
@@ -136,18 +137,18 @@
 <div class="what3 hidden"><p><strong>“Who could be responsible?”</strong></p>
 <p>Well, if we knew we wouldn't be here now would be? </p>
 
-<p>Most suspect the Empire of course. While they are officially at peace with yours and mine kind, their attention most likely on some endless internal strife or western war in their giant continent. That is merely business as usual for their kind, a form of stability.</p>
+<p>Most suspect the Empire of course. While they are officially at peace with yours and mine kind, their attention most likely on some endless internal strife or western war on that giant continent of theirs. That is merely business as usual for their kind, a form of stability.</p>
 
 <p>Any new irregularity is a cause for concern. Its been a century since they last had a 'Warlord' of some kind. The last one sent their empire suddenly sprawling all over the seas and nearly brought doom to our shores. And that was just a diversion, a minor exploration fleet. It would be the worst fear of everyone if a new one had arisen with eyes eastward. </p>
 
-<p>But Gators are not known for subterfuge. We'd have heard something by now if their 'clans' were uniting. There are other examples that are worthy of scrutiny, like Gryph trading houses sail and trade without incident. Perhaps they're in on it, or perhaps they're as innocent as they claim, their trade ships certainly are not built for war, but we cannot be certain.</p>
+<p>But Gators are not known for subterfuge. We'd have heard something by now if their 'clans' were uniting. There are other examples that are worthy of scrutiny, like Gryph trading houses sail and trade without incident. Perhaps they're in on it, or perhaps they're as innocent as they claim, their trade-cruisers certainly are not built for war, but we cannot be certain.</p>
 
 </div>
 
 <div class="what4 hidden"><p><strong>Upcomming rendezvous</strong></p>
 <p>“So you'll join me in the meeting with our Wulf-contacts?”</p>
 
-<p>“Ah.. yes. Though only as much as i need to as an Admirality officer, though I'd rather not my position was known.”</p>
+<p>“Ah.. yes. Though only as much as i need to as an Admirality officer, I'd rather not my position was known. Wulfs have a... shall we say... complicated internal relationship to "spies" as you say.”</p>
 
 <p>Keeper picked at his claws, trying to appear nonchalant, but he seemed almost nervous. He continued talking quickly. </p>
 
@@ -159,6 +160,36 @@
 
 </div>
 
+<script>
+cadet[0].banter = [
+    { target: '#Ziggy', text: 'So Wulfs...', imageClass: "suspicious"},
+    { target: '#Ziggy', text: 'They are like, wingless Awes?', imageClass: "smug"},
+	{ target: '#Glint', text: 'You are not being serious are you?', imageClass: "suspicious"},
+	{ target: '#Ziggy', text: 'No i mean! They are kinda alike to us. But not Awes. Like Anklesnaps and Hillprowlers, similar but different.', imageClass: "angry"},
+	{ target: '#Glint', text: 'Oh, yeah. Yes I guess?', imageClass: "happy"},
+	{ target: '#Valnos', text: 'Its believed Anklesnaps and Hillprowlers are both decendant from Chill-Howlers though.', imageClass: "smug"},
+	{ target: '#Ziggy', text: 'Those big beasts in the north? hmm... i getcha, i getcha!', imageClass: "surprised"},
+	{ target: '#Glint', text: 'Eliminating ignorance, one question at a time.', imageClass: "concerned"}
+];
 
+cadet[1].banter = [
+    { target: '#Glint', text: 'Wulfs are shrewd', imageClass: "neutral"},
+	{ target: '#Glint', text: 'When our household does business with them it always pays to get all interprations and wordings correct.', imageClass: "concerned"},
+	{ target: '#Glint', text: 'My Grand-Matron always repeated the tale of a large contract being voided simply because our Wulf buyers kept twisting the terms.', imageClass: "neutral"},
+	{ target: '#Glint', text: '"If you are not careful and read all the details you might end up selling yourself as collateral." Shed say.', imageClass: "concerned"}
+
+	];
+	
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'Keeper has interesting books.', imageClass: "smug"},
+	{ target: '#Valnos', text: 'He is quite knowledgable about all sorts of things.', imageClass: "surprised"},
+	{ target: '#Valnos', text: 'Im surprised hes merely a logistic-officer.', imageClass: "neutral"},
+	{ target: '#Ziggy', text: 'Careful, he might just try to warm you up so he can eatcha', imageClass: "smug"},
+	{ target: '#Valnos', text: 'Oh i know! He has already asked if id like to become a wulf.', imageClass: "happy"},
+	{ target: '#Valnos', text: 'Gave him the same offer back.', imageClass: "smug"},
+	{ target: '#Ziggy', text: 'Nice!', imageClass: "happy"},
+	{ target: '#Glint', text: 'Being coy with Wulfs will just invite them to try harder.', imageClass: "concerned"}
+];
+</script>
 </body>
 </html>

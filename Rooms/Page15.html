@@ -22,6 +22,7 @@
         // change state here
 		state.crewMorale -= 2;
 		state.events.push("flockForbid");
+		state.events.push("gamblingForbid");
 	        // end by using lib.goTo
         lib.goTo('Page17c.html')
       })
@@ -30,6 +31,7 @@
 		
 		state.crewMorale -= 1;
 		state.events.push("flockCompromise");
+		state.events.push("gamblingForbid");
 		        // end by using lib.goTo
         lib.goTo('Page17b.html')
       })

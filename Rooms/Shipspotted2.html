@@ -25,9 +25,10 @@
         lib.goTo('Ceremony.html')
       })
 
-      $('#button-2').on('click', function() {
+      $('#button-2').on('click', function(e) {
         // change state here
-        // end by using lib.goTo
+        lib.dialogue(e, "information"),
+		$("#button-1").removeClass("hidden")
         
       })
     if(_.contains(state.inventory, "gratitude")) {
@@ -59,6 +60,7 @@
 <body>
 <h1></h1>
 <hr />
+<div id="story-text">
 <p>Repairs are ongoing under heavy sheets of rain, but to really fix some of the more serious damage, we need a few days or more in a port. I was taking a moments respite from overseeing the work, admiring a recovered projectile shot on my desk, a heavy ball or iron as it turned out, when the alarm came again. I heard it this time and was dressed and marching toward the door when the knock from my cadet came. </p>
 
 <p>Another ship is spotted by the look-out, this one appearing from the east and closing in fast. I was not feeling overly confident in another encounter, especially if they're as fast as that. </p>
@@ -128,6 +130,17 @@
 <p>Kveest seemed taken aback and startled by the mention of such weapons. </p>
 
 <p>“In mere whisper, rumor or tall tale! Many of such which circulate the seas of late.” He looked around and inspected one of the recovered projectiles I showed to him. “It is another thing to see and touch. This is worrying, most worrying. I must report this to my sire! Who may need to report it to the House assemblies!”</p>
+</div>
+<hr />
+<script>
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+</script>
+<button class="btn btn-default hidden" id="button-1">A Ceremony</button>
+<button class="btn btn-default" id="button-2">Information</button>
+<span id="cadetButtons"> </span>
+
+<div class="information hidden"><p><strong>Information</strong></p>
 
 <p>I decided to press harder. It didnt feel like he was telling me everything. </p>
 
@@ -143,7 +156,7 @@
 
 <p>“We only stopped for you because you were in Awe-waters with the right banners and now because you are familiar. But even then...” He motioned to the distant Trade-vessel, bobbing in the water a distance away. “... my sire takes every precaution.”</p>
 
-<p>I fumed at this, displeased, but did not take my anger out on Kveest. He was low on the totem-pole I understood. High enough in family-stature to not be an insult when sent as envoy, low enough not to be told anything. Kveest continued in a low tone.</p>
+<p>I fumed at this, displeased, but did not take my anger out on Kveest. He was low on the hierarchy of leadership I understood. High enough in family-stature to not be an insult when sent as envoy, low enough not to be told anything. Kveest continued in a low tone.</p>
 
 <p>“But... if its information you seek. Perhaps you'll find it there, where we now avoid going. Port of Nowhere.”</p>
 
@@ -163,17 +176,14 @@
 
 <p>“Ah, my pleasure Captain Avolc! I admire your folk, you are hardy and straight-forward. I should return...”</p>
 
-<p>And with that he departed suddenly. Taking wing back to his vessel. True to his word, the Trade-ship was eager to leave, hoisting sails to pick up speed as soon as they saw him on the way back. </p>
+<p>And with that he departed suddenly. Taking wing back to his vessel. True to his word, the Trade-Cruiser was eager to leave, hoisting sails to pick up speed as soon as they saw him on the way back. </p>
 
 <p>We got all the information we would get. But it had been enough to give us a destination and goal. </p>
 
 <p>We'll head for Port Nowhere, uncover its secrets, find our fleet, the nest of the pirates or both!</p>
 
-<hr />
-<script>
 
-<!--Put buttons to other rooms here. This is an HTML comment btw. -->
-</script>
-<button class="btn btn-default" id="button-1">A Ceremony</button>
+</div>
+
 </body>
 </html>

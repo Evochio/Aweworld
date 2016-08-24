@@ -17,7 +17,10 @@
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
-      if (_.contains(state.events, "deepening"))
+      if (_.contains(state.events, "deepening")) {
+		$("#agreed").removeClass("hidden")
+		
+	  }
 	  else {
 		$("#agreed2").removeClass("hidden")
 	  }
@@ -26,19 +29,30 @@
 		lib.dialogue(e, "agreed"),
 		
 		$("#agreed").addClass("hidden")
+		 $("#denied").addClass("hidden")
 		$("#ceremony").removeClass("hidden")
 	})
 		
 		$('#agreed2').on('click', function(e) {
 		lib.dialogue(e, "agreed2"),
 		$("#agreed2").addClass("hidden")
+		 $("#denied").addClass("hidden")
 		$("#ceremony").removeClass("hidden")
       })
       $('#denied').on('click', function(e) {
        lib.dialogue(e, "denied"),
 		
+		$("#agreed").addClass("hidden")
+		$("#agreed2").addClass("hidden")
         $("#denied").addClass("hidden")
-		$("#ceremony_no").removeClass("hidden")
+		$("#quiet").removeClass("hidden")
+		
+      })
+	    $('#quiet').on('click', function(e) {
+       lib.dialogue(e, "quiet"),
+		
+        $("#quiet").addClass("hidden")
+		$("#continue").removeClass("hidden")
 		
       })
 	   $('#ceremony').on('click', function(e) {
@@ -81,7 +95,7 @@
 <div id="story-text">
 <p>“Captain” A soft voice spoke to me through the doorway. “May we have a word?” </p>
 
-<p>It was the Soft-spoken herself. Cowled and dressed in her long robe. If she'd deigned to come speak to me herself, it must be of some importance. I beckoned her inside. </p>
+<p>It was the Soft-spoken herself. Cowled and dressed in her long robe. If she'd deigned to come speak to me herself, it must be of some importance. She rarely left her chambers and most of the time, outside the meetings, i forgot she was onboard. I beckoned her inside. </p>
 
 <p>The Soft-spoken closed the door behind her and invited herself to a seat, perching over it rather then sitting properly. </p>
 
@@ -105,11 +119,12 @@
 <hr />
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default hidden" id="agree">Agree</button>
-<button class="btn btn-default hidden" id="agree2">Agree</button>
+<button class="btn btn-default hidden" id="agreed">Agree</button>
+<button class="btn btn-default hidden" id="agreed2">Agree</button>
 <button class="btn btn-default" id="denied">Denied</button>
 <button class="btn btn-default hidden" id="allow">Allow Deepening</button>
 <button class="btn btn-default hidden" id="noallow">Do not allow</button>
+<button class="btn btn-default hidden" id="quiet">Quiet Night</button>
 <button class="btn btn-default hidden" id="ceremony">Ceremony</button>
 <button class="btn btn-default hidden" id="ceremony_no">Ceremony</button>
 <button class="btn btn-default hidden" id="ceremony2">Volunteers</button>
@@ -133,7 +148,7 @@
 
 <p> "There is however one more thing i must ask for." She continued. </p>
 
-<p> "You've set a policy to deny people wishing to deepen with one another. It might have proven a wise decision given the cirumstances that occured, but for tonight i wish to ask you lift this restriction."
+<p> "You've set a policy to deny people wishing to deepen with one another. It might have proven a wise decision given the cirumstances that occured, the sacred act was under threat of abuse, but for tonight i wish to ask you lift this restriction."
 
 <p> I quirked my brow at that and leaned forward. </p>
 
@@ -229,7 +244,7 @@
 
 <p>4 of them in total, approach the podium and kneel, wishing to be consumed by the Mountain-Awe. I frown at this, I had not accounted for her asking for volunteers like this. </p>
 
-<p>But I choose to say nothing, interrupting something which had already gone this far would win me no favors. Instead I find myself, like the rest, staring fascinated as the Soft-spoken blesses each in turn, standing before them so that they may give her pouch and belly a kiss in final commitment. </p>
+<p>But I choose to say nothing, interrupting something which had already gone this far would win me no favors. I would be seen as taking back my word. Instead I find myself, like the rest, staring fascinated as the Soft-spoken blesses each in turn, standing before them so that they may give her pouch and belly a kiss in final commitment. </p>
 
 <p>The act of consumption takes place in front of all to see. Willing yellow-furred Awes slip into the larger white Awes jaws one by one. There is something quite sensual and raw about her methods, she used a practiced three-step method for maximum speed and showmanship. She'd take one into her jaws, resting their heads upon her tongue, then swallow them down with rolling hard gulps all the way to their waists and leave them for a moment longer, then consume them down to their feet-paws and let those linger upon her tongue for all to see before filling her belly with them. </p>
 
@@ -237,13 +252,13 @@
 
 <p>The 4th one, unsurprisingly she beckoned into her pouch. She was leaning heavily by now against the podium and supported by a assistant, who seemed to be none other then Glint. </p>
 
-<p>With her stomach so full and taking space, Glint had to help push the final one into the priestesses pouch. It was the only moment through the whole ordeal that didn't seem quite as rehearsed and smooth as the rest. But to in the end, all in all the Soft-spoken had taken in 6 Awes into her body. She was unable to stand and lay upon the podium, voice strained as she stroked over her huge gut. </p>
+<p>With her stomach so full and taking space, Glint had to help push the final one into the priestesses pouch. It was the only moment through the whole ordeal that didn't seem quite as rehearsed and smooth as the rest. But to in the end, all in all the Soft-spoken had taken in 4 Awes into her body. She was unable to stand and lay upon the podium, voice strained as she stroked over her huge gut. </p>
 
 <p>“Oh First-Awe! By the light of our souls united! Let us guide those wayward ones, let us honor you and be stronger, together, in your name!”</p>
 
 <p>With that the ceremony was over. The immobile priestess lay available for anyone who wished to step forward to receive a blessing or give her grand stomach a soft rub. </p>
 
-<p>I watched the proceeding and as people filed away back to their duties. I approached her myself, last of all and put a paw to her gut. It was grumbling and groaning loudly, digesting already. The movement of the Awes within her was clear to see, even the one in her pouch was sealed up to be absorbed. </p>
+<p>I watched the proceeding and as people filed away back to their duties. I approached her myself, last of all and put a paw to her gut. It was grumbling and groaning loudly, digesting already. The movement of the Awes within her was clear to see, even the one in her pouch was sealed up to be absorbed. Peculiar, i thought that was only a trait Pouch-Matrons possesed.</p>
 
 <p>I felt a moments inexplicable envy. Not to the priestess, but to those within her. </p>
 
@@ -258,7 +273,7 @@
 <p> In a barely weeks time when the first islands came to view, we would see. </p>
 </div>
 
-<div class="cadets hidden"><p><strong>Quiet night</strong></p>
+<div class="quiet hidden"><p><strong>Quiet night</strong></p>
 <p> While i might not have allowed to ceremony to be held on-deck in any official manner, i could not stop what Awes did on their private time in the holds below. The priestess could have her little light ceremony, as long as it didnt interrupt ship duties. </p>
 
 <p> I stood at the deck and regarded the full moons, they made it almost as bright as dawn and seemed to drown out the stars. It was a bright quiet night, the low waves parting peacefully before our advance to whatever awaited us. </p>

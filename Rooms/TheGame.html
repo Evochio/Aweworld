@@ -458,6 +458,7 @@
 		else if (state.flock.team > 20)
 		{
         lib.dialogue(e, "conclusion4")
+		state.events.push("gamblingForbid");
 		$("#except").removeClass("hidden")
 		cadet[0].banter = [
 					
@@ -468,6 +469,7 @@
 		else if (state.flock.team > 0 && state.flock.team < 10)
 		{
         lib.dialogue(e, "conclusion5")
+		state.events.push("gamblingForbid");
 		cadet[0].banter = [
 					
 					{ target: '#Ziggy', text: 'You play pretty well cap!', imageClass: "blushing"}
@@ -477,6 +479,7 @@
 		else if (state.flock.team > 10 && state.flock.team < 20)
 		{
         lib.dialogue(e, "conclusion6")
+		state.events.push("gamblingForbid");
 		cadet[0].banter = [
 					
 					{ target: '#Ziggy', text: 'Haha, look at their faces!', imageClass: "happy"},
@@ -523,6 +526,7 @@
 	   $('#toziggy').on('click', function(e) {
         lib.dialogue(e, "toziggy"),
 		state.events.push("toziggy");
+		
 		$("#button-17").removeClass("hidden")
 		$("#dismissed").addClass("hidden")
 		$("#toziggy").addClass("hidden")

@@ -18,14 +18,13 @@
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
       	
-	 if (_.contains(state.events, "arnLives")) {
-	 $('#arnLives').removeClass('hidden');
+	 if (_.contains(state.events, "eatArn") || _.contains(state.events, "toziggy") || _.contains(state.events, "raptoriansRebel")) {
+		$('#arnDead').removeClass('hidden');
 	
 		}
-
-	
-	  
-	  
+	  else {
+		 $('#arnLives').removeClass('hidden');
+	  }
 	  
 	  
       $('#button-1').on('click', function(e) {
@@ -374,7 +373,9 @@
 <h1></h1>
 <hr />
 <div id="story-text">
-<p>The enemy ship is approaching rapidly. It appears to be of similar configuration to ours, a long and fast frigate. No doubt where our hired ship-builders got their designs from. It would explain how they managed to approach so fast. While they're coming at us they don't seem to be heading straight for us, so they at the least don't seem to have plans to ram us. </p>
+<p>The enemy ship is approaching rapidly. I say enemy because it has no discernable markings or banners to herald it allegiance or intent. </p>
+
+<p> It appears to be of similar configuration to ours, a fast frigate or escort of some sort. No doubt where our hired ship-builders got their designs from. It would explain how they managed to approach so fast. While they're coming at us they don't seem to be heading straight for us, so they at the least don't seem to have plans to ram us. </p>
 
 <p>We have some time, albeit short, to prepare for battle. I have two reserve units waiting below-deck for orders that can assist in the preparation if need be. </p>
 
@@ -384,11 +385,17 @@
 
 <p>Lastly, I could simply have the reserves stand by, out of everyone's way and ready themselves for eventual melee and damage control. </p>
 
-<span class="hidden" id="arnLives">Arn has graced the deck with his pressence. No matter what i think about him, he's still for better or worse the First-officer. Until that changes i might aswell make use of him.
+<div class="hidden" id="arnLives">Arn has graced the deck with his pressence. No matter what i think about him, he's still for better or worse the First-officer. Until that changes i might aswell make use of him.
 <p>"Any oppinion on deployment First-officer?" I mutter to him calmly. He should tell by the tone im annoyed at his tardiness. </p>
 
 <p> "We're not sure what we're up against Captain. Speed... might be prudent, in case we need it." Arn offers, glancing towards the sails. </p>
- </span>
+ </div>
+ 
+<div class="hidden" id="arnDead">
+<p> Despite everything that has happened, i wish i had a stout First-officer by my side now to help me prepare. My officers are doing good work. Even my cadets are diligently providing assistance in their assigned tasks. But i cant help but feel slightly alone </p>
+
+<p> But in the end, its always up to the captain to make the final call anyway. </p>
+</div>
 </div>
 <hr />
 
@@ -486,7 +493,7 @@
 <div class="intercept hidden"><strong>Intercept</strong>
 <p>“Take flight! Stop them, dont let them come close!” I order quickly. </p>
 
-<p>My lieutenants dont need to be coddled with orders. Sharp and quick, crossbows are readied and passed along. Flight worthy Awes from the reserves climb the masts to the peaks to be ready to leap off and do their best in the air. </p>
+<p>My officers dont need to be coddled with orders. Sharp and quick, crossbows are readied and passed along. Flight worthy Awes from the reserves climb the masts to the peaks to be ready to leap off and do their best in the air. </p>
 
 <p>I watch from below as the Gryphs come swooping in. They're met with bolts and bodies, brave Awes moving in to block their approach in the air. </p>
 
@@ -507,7 +514,7 @@
 <div class="interceptFail hidden"><strong>Intercept</strong>
 <p>“Take flight! Stop them, dont let them come close!” I order quickly. </p>
 
-<p>My lieutenants dont need to be coddled with orders. Sharp and quick, crossbows are readied and passed along. Flight worthy Awes from the reserves climb the masts to the peaks to be ready to leap off and do their best in the air. </p>
+<p>My officers dont need to be coddled with orders. Sharp and quick, crossbows are readied and passed along. Flight worthy Awes from the reserves climb the masts to the peaks to be ready to leap off and do their best in the air. </p>
 
 <p>I watch from below as the Gryphs come swooping in. They're met with bolts and bodies, brave Awes moving in to block their approach in the air. </p>
 
@@ -705,7 +712,7 @@ $('#retreatnosails').removeClass('hidden');
 <div class="hidden" id="range2">
 <p> We are at a ranged stand-off, our own ballistas are in range too and twanging away their shots with an air of desperation. We are severely out-gunned but getting closer and giving them a bigger target for some apptempted manouvering or charging seems foolhardy. From those innitial shots, they dont seem to be very fast-loading or accurate, so we have that over them. </p>
 
-<p> I can see some of our shots impacting their ships. I've left ammuntion choice and target up to each ballista lieutenant so far and see no reason to change it as they're aiming for the enemy weapons. </p>
+<p> I can see some of our shots impacting their ships. I've left ammuntion choice and target up to each ballista officer so far and see no reason to change it as they're aiming for the enemy weapons. </p>
 
 <p>'TWANG' goes the ballista, it seems the forward crew that were nearly hit by the first impact have maintained their wits about them. The bolt sails through the air and flies through their sails, leaving a tiny hole. </p>
 
@@ -844,7 +851,7 @@ $('#FromRange').removeClass('hidden');
 
 <p>“Silence those weapons! Hop too it! Attack!” I waved my sword in the direction of the ship, which was doing its best to try to maneuver and keep itself from being crashed into. But we were close enough for my crew to leap over. I could see the figures on the enemy ship clearer now, Gators. They were large reptiles, similar to Raptorians but far more bulky, armored and rotund. </p>
 
-<p>A mass of eager crew leap on over from the masts already, descending on the enemy ship with Lieutenant Garsh in the lead. It would be a very hard fight, if they were anywhere as tough as a Raptorian. Said Raptorians who i knew waited eagerly for the command to charge as we locked ships. </p>
+<p>A mass of eager crew leap on over from the masts already, descending on the enemy ship with Mid-Officer Garsh in the lead. It would be a very hard fight, if they were anywhere as tough as a Raptorian. Said Raptorians who i knew waited eagerly for the command to charge as we locked ships. </p>
 
 <p>BOOM! One of the weapons fired at near point blank range. The shot crashed straight through the side of our ship and out the other. It knocked me off my feet hard, not only that, we were suddenly off course, loosing distance. Too far to further assault and back up those who already leapt over. I could see them fighting in a tight knot by the enemy weapons, they had landed right ontop of them, preventing them from firing further. </p>
 
@@ -852,7 +859,7 @@ $('#FromRange').removeClass('hidden');
 
 <p>“Buy them time! I will close the gap.” I nodded in assent. They immediately leap and take flight, speeding above the water to join the fighting. </p>
 
-<p>Lieutenant Nyxie at the helm was already compensating, getting us closer again. Our ballista kept firing with sharp Twangs, they were doing their best to cover the surrounded crew. </p>
+<p>High-Officer Nyxie at the helm was already compensating, getting us closer again. Our ballista kept firing with sharp Twangs, they were doing their best to cover the surrounded crew. </p>
 
 <p>We seem to arrive back in range just in time, our few attackers leap over the side and glide back in retreat before I can order reinforcements for them. The gator ship is full of armored and armed gators now, any further glide attacks would be sending our Awes to their doom. </p>
 
@@ -884,7 +891,7 @@ $('#FromRange').removeClass('hidden');
 
 <p> Things were in a bit of a chaos at first, the explosion had left our sails in a mess, but luckily not torn them apart. We had been very close to the other ship when it blew. I had almost considered ordering boarding hooks to be readied. </p>
 
-<p> It took a while to puzzle out what had happened, but my ballistic officer, an ecstatic lieutenant Ulv quickly filled me in. </p>
+<p> It took a while to puzzle out what had happened, but my ballistic officer, an ecstatic Officer Ulv quickly filled me in. </p>
 
 <p> "I was watching them real close, they weres filling them tubes between shots right." Ulv grinned, she was from the same region as Ziggy i guessed by her maner of speech. </p>
 
@@ -916,7 +923,7 @@ $('#FromRange').removeClass('hidden');
 
 <p>“Their weapons are disabled. They were VERY protective of them. So much so that they dared not fully advance while we held them. They were made out of Iron captain, we could not smash them. But we smashed what we could, supports and such. We also scattered black powder all around from barrels, thats what made them really mad and forced us to flee. “</p>
 
-<p>“You are to be commended for this Lieutenant, you and all those who fought with you! Now go get yourself seen too.” I gave him a pat on the shoulder and he threw a quick salute and limped down below-deck.</p>
+<p>“You are to be commended for this Officer Garsh, you and all those who fought with you! Now go get yourself seen too.” I gave him a pat on the shoulder and he threw a quick salute and limped down below-deck.</p>
 
 <p>I glanced up at fast retreating ship, we are safe for now. We could pursue them, but for now I dont wish to push our luck further. We've also taken an amount of damage and injuries yet to be assessed. </p>
 

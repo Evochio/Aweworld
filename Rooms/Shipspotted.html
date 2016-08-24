@@ -47,14 +47,47 @@
 
 <p>By mid-day the ship has changed course and is heading straight for us. It has wind in its back and will be able to catch us unless we turn around and head away from it. But I have no intention of doing that. </p>
 
-<p>It approached rapidly during the day and its configuration was soon clearly evident. I first thought it another Awe-frigate like ours, it sure is of similar design. But the way it carries it sails and the width of the ship is different from anything we have. Its no merchant-vessel either. </p>
+<p>It approached rapidly during the day and its configuration was soon clearly evident. I first thought it another Awe-frigate like ours, it sure is of similar design. But the way it carries it sails and the width of the ship is different from anything we have. It could be another merchant-vessel, but its in an odd place. They cant possibly hope to brave the Fangs this close to Tides. </p>
 
 <p>The only prudent thing to do is prepare for confrontation and I order general quarters. All hands to ready stations. </p>
 <hr />
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1">Continue</button>
+<span id="cadetButtons"> </span>
 
+<script>
+cadet[0].banter = [
+    { target: '#Ziggy', text: 'Oh boy! I can feel it! This is it!', imageClass: "happy"},
+    { target: '#Ziggy', text: 'This is where we finaly get to fight!', imageClass: "smug"},
+	{ target: '#Ziggy', text: 'Where are my shortswords! Glint, reekfluff! Where did you put my wingshields!', imageClass: "angry"},
+	{ target: '#Glint', text: 'Dont shed yourself! I havent touched your stuff! Its just in a mess as always.', imageClass: "angry"},
+	{ target: '#Ziggy', text: 'By all the bald-tailed shedding oathbreaking wing-rots...! Ah! Here they are!', imageClass: "suspicious"},
+	{ target: '#Glint', text: 'Ancestors preserved...', imageClass: "concerned"},
+	{ target: '#Valnos', text: 'She is just excited, its making me less nervous.', imageClass: "happy"},
+	{ target: '#Glint', text: 'Its not like we will be allowed to fight anyway, right? We are on reserves.', imageClass: "concerned"},
+	{ target: '#Ziggy', text: 'WHAT!?', imageClass: "surprised"}
+];
+
+cadet[1].banter = [
+    { target: '#Glint', text: 'Alright, the captain has ordered us to stick to support crews', imageClass: "neutral"},
+	{ target: '#Glint', text: 'Dont get all bogged down in weapons and armor.', imageClass: "concerned"},
+	{ target: '#Ziggy', text: 'Why are you being all "Leadery"? Dont even try!', imageClass: "suspicious"},
+	{ target: '#Glint', text: 'Im just... relaying her orders.', imageClass: "suspicious"},
+	{ target: '#Ziggy', text: 'Yeah well, i know you! You will try to order us around and take the credit.', imageClass: "suspicious"},
+	{ target: '#Glint', text: 'Get a grip Ziggy!', imageClass: "angry"},
+	{ target: '#Valnos', text: 'This really isnt the time you two!', imageClass: "surprised"}
+	];
+	
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'Ive been part of every drill and arms practise', imageClass: "sad"},
+	{ target: '#Valnos', text: 'Ive familiarized myself with every inch of the ship and the location of our supplies', imageClass: "sad"},
+	{ target: '#Valnos', text: 'Ive gone over every scenario in my head.', imageClass: "sad"},
+	{ target: '#Valnos', text: 'But now when it seems like it matters, i cant... stop shaking or manage to tie a strap.', imageClass: "sad"},
+	{ target: '#Glint', text: 'Let me help you with that', imageClass: "neutral"},
+	{ target: '#Valnos', text: 'T-thanks. Its just nerves, ill... get over it!', imageClass: "blushing"}
+];
+</script>
 
 </body>
 </html>

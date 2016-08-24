@@ -22,14 +22,14 @@
         // change state here
 		
         // end by using lib.goTo
-		 if (_.contains(state.events, "gamblingCont") && state.raptorians < 1) {
-			lib.goTo('Raptoriansrebel.html')
+		 if (_.contains(state.events, "eatArn") && state.raptorians >= 3) {
+			lib.goTo('Keeper.html')
 	
 		}
 		else {
 		
 		}
-			lib.goTo('Keeper.html')
+			lib.goTo('Raptoriansrebel.html')
       })
 
     })
@@ -43,22 +43,52 @@
 <body>
 <h1>Admiral Avolc</h1>
 <hr />
-<p>The vast jutting white cliffs of Pale Rock lay before us. As long as we make sure the currents do not smash us against the steep walls of this island this should be easy sailing.</p>
+<p>The vast jutting white cliffs of Pale Rock lay before us. As long as we make sure the currents do not smash us against the steep walls of this tall barren island this should be easy sailing.</p>
 
-<p>Pale rock lays just between the north and south halves of Western sea. On the map it looks like an ideal place to construct a port of trade, but reality is a different place. This is a harsh windswept place, the island looks like a flat cliff-face has simply risen out of the sea, there is no shore to speak off.</p>
+<p>Pale rock lays just between the north and south halves of Western sea. On the map it looks like an ideal place to construct a port of trade, but reality is a different place. This is a harsh windswept place, the island looks like a flat white cliff-face has simply risen out of the sea, there is no shore to speak off.</p>
 
 <p>We are getting close to our first objective and our meeting with our Wulf-fleet contact beckons.</p>
 
 <p>I have summoned Keeper, no matter how I feel about him, he has vital information about the coming rendezvous and advice in how to deal with Wulfs.</p>
 
-<p>Unlike Keeper, who is born and raised in Awe, mainland Wulfs are a very different breed indeed. Diplomacy with them have always been hindered by cultural differences.</p>
+<p>Unlike Keeper, who is born and raised in Aweland, mainland Wulfs are a very different breed indeed. Diplomacy with them have always been hindered by cultural differences.</p>
 
 <p>My dealings with them on the East sea were seldom of the diplomatic kind.&nbsp;</p>
 <hr />
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default" id="button-1">Rendezvous</button>
+<button class="btn btn-default" id="button-1">Continue</button>
+<span id="cadetButtons"> </span>
 
+<script>
+cadet[0].banter = [
+    { target: '#Ziggy', text: 'How big is this cliff? It seems to stretch on forever.', imageClass: "neutral"},
+    { target: '#Valnos', text: 'Its an island about the size of Gleaming bay', imageClass: "angry"},
+	{ target: '#Ziggy', text: 'Oh! I see, who lives up there?', imageClass: "surprised"},
+	{ target: '#Glint', text: 'Just seabirds mostly. The whole island is just limestone, nothing worth prospecting.', imageClass: "neutral"},
+	{ target: '#Ziggy', text: 'Just useless uninhabitable white rock, huh? Why couldnt you dig a cave into it and build a fortressbase like Hrystcrags!', imageClass: "happy"},
+	{ target: '#Glint', text: 'I can lend you a hammer and chisel and you can start.', imageClass: "suspicious"}
+];
 
+cadet[1].banter = [
+    { target: '#Glint', text: 'So, why the Admirality Ziggy? Why not the Awe-guard?', imageClass: "neutral"},
+	{ target: '#Ziggy', text: 'What, are you talking to me?', imageClass: "surprised"},
+	{ target: '#Glint', text: 'It seems more like your type of fit. All martial work, armour and longspears. Bunch of meatheads eager to fight.', imageClass: "smug"},
+	{ target: '#Ziggy', text: 'Marching up and down, left and right, westcoast to eastcoast, drills drills drills but never any acctual fighting.', imageClass: "angry"},
+	{ target: '#Ziggy', text: 'Could ask the same of you. You rich upscale Silvertofses, youd have a cushy life as a civilian. Why are you here really?', imageClass: "suspicious"},
+	{ target: '#Glint', text: 'Hmph. Civilians dont get as much votes for candidancy.', imageClass: "neutral"},
+	{ target: '#Ziggy', text: 'Ha-ha! Hahahaha! I should have known!', imageClass: "happy"}
+	
+	];
+	
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'I heard that the southwide of palerock sinks into the sea. That the whole island is tilted on its side.', imageClass: "neutral"},
+	{ target: '#Valnos', text: '...Isnt that interesting?', imageClass: "surprised"},
+	{ target: '#Ziggy', text: 'Huh? Were you talking?', imageClass: "neutral"},
+	{ target: '#Valnos', text: 'Uh.. no. J-just muttering to myself.', imageClass: "sad"},
+	{ target: '#Ziggy', text: 'You can be such a weirdo sometimes!', imageClass: "happy"}
+	
+];
+</script>
 </body>
 </html>

@@ -124,7 +124,39 @@
         // change state here
 		lib.dialogue(e, "digested")
 		$("#digested").addClass("hidden");
+		$("#Valnos").addClass("new");
+		$("#Glint").addClass("new");
+		$("#Ziggy").addClass("new");
 		$("#restart").removeClass("hidden");
+		cadet[0].banter = [
+    { target: '#Ziggy', text: 'Whoa! C-captain?', imageClass: "surprised"},
+    { target: '#Glint', text: 'What happened in here!? Melon!?', imageClass: "surprised"},
+    { target: '#Valnos', text: 'Oh...! Oh my! She cant have!', imageClass: "surprised"},
+	{ target: '#Ziggy', text: 'She did, she ate the captain! Ah, shes long gone too!', imageClass: "sad"},
+	{ target: '#Glint', text: 'W-what do we tell the crew?', imageClass: "blush"},
+	{ target: '#Valnos', text: 'What else is there to say?', imageClass: "sad"},
+	{ target: '#Ziggy', text: 'That shes kid-fat now!', imageClass: "concerned"}
+];
+
+cadet[1].banter = [
+    { target: '#Ziggy', text: 'Whoa! C-captain?', imageClass: "surprised"},
+    { target: '#Glint', text: 'What happened in here!? Melon!?', imageClass: "surprised"},
+    { target: '#Valnos', text: 'Oh...! Oh my! She cant have!', imageClass: "surprised"},
+	{ target: '#Ziggy', text: 'She did, she ate the captain! Ah, shes long gone too!', imageClass: "sad"},
+	{ target: '#Glint', text: 'W-what do we tell the crew?', imageClass: "blush"},
+	{ target: '#Valnos', text: 'What else is there to say?', imageClass: "sad"},
+	{ target: '#Ziggy', text: 'That shes kid-fat now!', imageClass: "concerned"}
+	];
+	
+ cadet[2].banter = [
+    { target: '#Ziggy', text: 'Whoa! C-captain?', imageClass: "surprised"},
+    { target: '#Glint', text: 'What happened in here!? Melon!?', imageClass: "surprised"},
+    { target: '#Valnos', text: 'Oh...! Oh my! She cant have!', imageClass: "surprised"},
+	{ target: '#Ziggy', text: 'She did, she ate the captain! Ah, shes long gone too!', imageClass: "sad"},
+	{ target: '#Glint', text: 'W-what do we tell the crew?', imageClass: "blush"},
+	{ target: '#Valnos', text: 'What else is there to say?', imageClass: "sad"},
+	{ target: '#Ziggy', text: 'That shes kid-fat now!', imageClass: "concerned"}
+];
 		
       })
 	   	$('#button-10').on('click', function(e) {
