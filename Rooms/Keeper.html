@@ -14,6 +14,13 @@
   <script src="/main.js"></script>
 
   <script>
+		if (_.contains(state.events, "eatArn") || _.contains(state.events, "toziggy") || _.contains(state.events, "raptoriansRebel")) {
+			 state.events.push("noArn");
+		}
+		else {
+			state.events.push("arn");
+		}
+  
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.

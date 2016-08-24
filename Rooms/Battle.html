@@ -18,7 +18,7 @@
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
       	
-	 if (_.contains(state.events, "eatArn") || _.contains(state.events, "toziggy") || _.contains(state.events, "raptoriansRebel")) {
+	 if (_.contains(state.events, "noArn")) {
 		$('#arnDead').removeClass('hidden');
 	
 		}
@@ -87,6 +87,8 @@
 		state.battle.push("fire")
         // end by using lib.goTo
          lib.dialogue(e, "bucket")
+		 state.crewMorale -= 1
+		 state.shipHealth -= 1
 		 $("#button-4").removeClass("hidden");
 		$("#button-5").removeClass("hidden");
 		$("#button-6").removeClass("hidden");
@@ -94,6 +96,8 @@
 		$("#intercept").addClass("hidden")
 		$("#wait").addClass("hidden")
 		$("#advice").addClass("hidden")
+		displayMoraleStatus();
+		displayShipStatus();
       })
 	  
 	   $('#intercept').on('click', function(e) {
@@ -101,10 +105,13 @@
 	   console.log("intercept")
         if (_.contains(state.battle, "standby")) {
 		lib.dialogue(e, "intercept")
+		state.crewMorale += 1
 		}
 		else {
 		state.battle.push("fire")
 		lib.dialogue(e, "interceptFail")
+		state.crewMorale -= 2
+		state.shipHealth -= 1
 		}
        
 		 $("#button-4").removeClass("hidden");
@@ -114,6 +121,8 @@
 		$("#intercept").addClass("hidden")
 		$("#wait").addClass("hidden")
 		$("#advice").addClass("hidden")
+		displayMoraleStatus();
+		displayShipStatus();
       })
 	  
 	  $('#wait').on('click', function(e) {
@@ -121,6 +130,7 @@
 		
         // end by using lib.goTo
          lib.dialogue(e, "wait")
+		 state.crewMorale += 1
 		 $("#button-4").removeClass("hidden");
 		$("#button-5").removeClass("hidden");
 		$("#button-6").removeClass("hidden");
@@ -128,12 +138,15 @@
 		$("#intercept").addClass("hidden")
 		$("#wait").addClass("hidden")
 		$("#advice").addClass("hidden")
+		displayMoraleStatus();
+		displayShipStatus();
       })
 	  
 	  $('#advice').on('click', function(e) {
         // change state here
 		// end by using lib.goTo
          lib.dialogue(e, "advice")
+		 state.crewMorale += 2
 		$("#button-4").removeClass("hidden");
 		$("#button-5").removeClass("hidden");
 		$("#button-6").removeClass("hidden");
@@ -141,6 +154,8 @@
 		$("#intercept").addClass("hidden")
 		$("#wait").addClass("hidden")
 		$("#advice").addClass("hidden")
+		displayMoraleStatus();
+		displayShipStatus();
       })
 	  
 	  
@@ -150,64 +165,78 @@
 		state.battle.push("approach")
         // end by using lib.goTo
          lib.dialogue(e, "approach")
-	
+		state.crewMorale -= 2
+		state.shipHealth -= 2
 		$("#button-4").addClass("hidden")
 		$("#button-5").addClass("hidden")
 		$("#button-6").addClass("hidden")
 		$("#button-7").removeClass("hidden");
 		$("#button-8").removeClass("hidden");
-	
-	$("#button-10").removeClass("hidden");
+		$("#button-10").removeClass("hidden");
+		displayMoraleStatus();
+		displayShipStatus();
       })
 	  $('#button-5').on('click', function(e) {
         // change state here
 		state.battle.push("manouver")
         // end by using lib.goTo
          lib.dialogue(e, "manouver")
-
+		state.crewMorale -= 2
+		state.shipHealth -= 2
 		$("#button-9").removeClass("hidden");
 		$("#button-7").removeClass("hidden");
 		$("#button-8").removeClass("hidden");
 		$("#button-4").addClass("hidden")
 		$("#button-5").addClass("hidden")
 		$("#button-6").addClass("hidden")
+		displayMoraleStatus();
+		displayShipStatus();
       })
 	  $('#button-6').on('click', function(e) {
         // change state here
 		state.battle.push("range")
         // end by using lib.goTo
          lib.dialogue(e, "range")
-
+		state.crewMorale -= 2
+		state.shipHealth -= 2
 		$("#button-10").removeClass("hidden");
 		$("#button-7").removeClass("hidden");
 		$("#button-8").removeClass("hidden");
 		$("#button-4").addClass("hidden")
 		$("#button-5").addClass("hidden")
 		$("#button-6").addClass("hidden")
+		displayMoraleStatus();
+		displayShipStatus();
       })
 	  
 	  $('#button-7').on('click', function(e) {
         // change state here
 		state.battle.push("retreat")
         // end by using lib.goTo
-        if (state.battle.indexOf("sails") > -1)
+        if (_.contains(state.battle, "sails") || _.contains(state.events, "arn"))
 		{
 		$("#escape").removeClass("hidden");
 		}
 		else {
-	
+			
 		$("#button-11").removeClass("hidden");
 		}
-		if (state.battle.indexOf("sails") > -1) {
+		if (_.contains(state.battle, "sails")) {
 			lib.dialogue(e, "retreat")
 		}
-		else  {
+		else if (_.contains(state.events, "arn")){
+			lib.dialogue(e, "hardBlowArn")
+			
+		}
+		else {
 			lib.dialogue(e, "retreatnosails")
 		}
 		$("#button-7").addClass("hidden")
 		$("#button-8").addClass("hidden")
 		$("#button-9").addClass("hidden")
 		$("#button-10").addClass("hidden")
+		displayMoraleStatus();
+		displayShipStatus();
       })
 	  
 	  $('#button-8').on('click', function(e) {
@@ -215,30 +244,38 @@
 		state.battle.push("samePlan")
         // end by using lib.goTo
          lib.dialogue(e, "samePlan")
-	$("#button-7").addClass("hidden")
-	$("#button-8").addClass("hidden")
-	$("#button-9").addClass("hidden")
-	$("#button-10").addClass("hidden")
-	$("#button-11").removeClass("hidden");
+		 state.shipHealth -= 1
+		$("#button-7").addClass("hidden")
+		$("#button-8").addClass("hidden")
+		$("#button-9").addClass("hidden")
+		$("#button-10").addClass("hidden")
+		$("#button-11").removeClass("hidden");
+		displayMoraleStatus();
+		displayShipStatus();
       })
 	  
 	$('#button-9').on('click', function(e) {
         // change state here
 		state.battle.push("changeCharge")
 		state.battle.push("changePlan");
+		state.shipHealth -= 2
         // end by using lib.goTo
 		if (_.contains(state.battle, "fire")) {
 		lib.dialogue(e, "fireloss")
+		state.shipHealth -= 3
 		$("#button-7").removeClass("hidden");
+		$("#button-11").removeClass("hidden");
 		}
 		else {
 		lib.dialogue(e, "changeCharge")
 		$("#button-11").removeClass("hidden");
+		$("#button-7").addClass("hidden")
 		}
         
-	$("#button-7").addClass("hidden")
-	$("#button-8").addClass("hidden")
-	$("#button-9").addClass("hidden")
+		$("#button-8").addClass("hidden")
+		$("#button-9").addClass("hidden")
+		displayMoraleStatus();
+		displayShipStatus();
 	
       })
 	  
@@ -246,71 +283,119 @@
         // change state here
 		state.battle.push("changeManouver");
 		state.battle.push("changePlan");
+		state.shipHealth -= 2
         // end by using lib.goTo
         if (_.contains(state.battle, "fire")) {
-		lib.dialogue(e, "fireloss")
+		lib.dialogue(e, "fireloss"),
+		state.shipHealth -= 1
 		$("#button-7").removeClass("hidden");
+		$("#button-11").removeClass("hidden");
 		}
 		else {
 		lib.dialogue(e, "changeManouver")
 		$("#button-11").removeClass("hidden");
+		$("#button-7").addClass("hidden")
 		}
-	$("#button-7").addClass("hidden")
-	$("#button-8").addClass("hidden")
-	$("#button-9").addClass("hidden")
-	$("#button-10").addClass("hidden")
 	
+		$("#button-8").addClass("hidden")
+		$("#button-9").addClass("hidden")
+		$("#button-10").addClass("hidden")
+		displayMoraleStatus();
+		displayShipStatus();
       })
 	  
-	  
+	  /*
 	 $('#board').on('click', function(e) {
         // change state here
 		
         // end by using lib.goTo
          lib.dialogue(e, "board")
-	$("#button-10").addClass("hidden")
-	$("#button-11").addClass("hidden")
-	$("#board").addClass("hidden")
-	$("#onwards").removeClass("hidden");
+		 state.shipHealth -= 2
+		$("#button-10").addClass("hidden")
+		$("#button-11").addClass("hidden")
+		$("#board").addClass("hidden")
+		$("#onwards").removeClass("hidden");
+		displayMoraleStatus();
+		displayShipStatus();
       })
-	  
+	  */
 	    $('#button-11').on('click', function(e) {
         // change state here
 		console.log("Explosion")
         // end by using lib.goTo
 		if ((state.battle.indexOf("range") > -1) && (state.battle.indexOf("samePlan") > -1))  {
 		 lib.dialogue(e, "hardBlow")
-		 $("#button-13").removeClass("hidden");
-		 $("#button-14").removeClass("hidden");
+		 state.shipHealth -= 4
+		$("#faceDefeat").removeClass("hidden");
 		}
 		else if ((state.battle.indexOf("retreat") > -1) && state.battle.indexOf("sails") == -1){
+			if (_.contains(state.events, "arn")){
+			lib.dialogue(e, "hardBlowArn")
+			$("#escape").removeClass("hidden");
+			$("#button-7").addClass("hidden")
+			}
+			else {
 			lib.dialogue(e, "hardBlow")
-			$("#button-13").removeClass("hidden");
-			$("#button-14").removeClass("hidden");
+			state.shipHealth -= 4
+			$("#faceDefeat").removeClass("hidden");
+			$("#button-7").addClass("hidden")
+			
+			}
 		}
 		else if ((state.battle.indexOf("fire") > -1) && state.battle.indexOf("changePlan") > -1){
-			lib.dialogue(e, "hardBlow")
-			$("#button-13").removeClass("hidden");
-			$("#button-14").removeClass("hidden");
+			lib.dialogue(e, "hardBlow2")
+			state.shipHealth -= 4
+			$("#faceDefeat").removeClass("hidden");
+			$("#button-7").addClass("hidden")
+			
 		}
 		else if ((state.battle.indexOf("approach") > -1) && state.battle.indexOf("samePlan") > -1){
+			if (_.contains(state.events, "hard")) {
+			lib.dialogue(e, "boardTung")
+			state.battle.push("boardTung")
+			state.crewMorale += 3
+			
+			$("#button-12").removeClass("hidden");
+			$("#button-7").addClass("hidden")
+			}
+			else if (state.crewMorale >= 6) {
 			lib.dialogue(e, "board")
 			state.battle.push("board")
+			state.crewMorale += 3
+			
 			$("#button-12").removeClass("hidden");
+			$("#button-7").addClass("hidden")
+			}
+			else {
+			lib.dialogue(e, "boardLow")
+			state.battle.push("boardLow")
+			state.crewMorale -= 2
+			
+			$("#button-7").removeClass("hidden");
+			}
+			
 		}	
 		else if ((state.battle.indexOf("manouver") > -1) && state.battle.indexOf("changePlan") > -1){
 			lib.dialogue(e, "board")
 			state.battle.push("board")
+			state.crewMorale += 3
 			$("#button-12").removeClass("hidden");
+			$("#button-7").addClass("hidden")
 		}	
 		else {
          lib.dialogue(e, "explosion")
 		 state.battle.push("explosion")
+		 state.shipHealth -= 1
+		 state.crewMorale += 4
 			$("#button-12").removeClass("hidden");
+			$("#button-7").addClass("hidden")
 		 }
 
-	$("#button-10").addClass("hidden")
-	$("#button-11").addClass("hidden")
+		$("#button-10").addClass("hidden")
+		
+		$("#button-11").addClass("hidden")
+		displayMoraleStatus();
+		displayShipStatus();
       })
 	  
 	$('#button-12').on('click', function(e) {
@@ -322,11 +407,30 @@
         if (_.contains(state.battle, "board")) {
 		lib.dialogue(e, "victory2")
 		}
+		else if (_.contains(state.battle, "boardTung")){
+		lib.dialogue(e, "victory3")
+		}
 		else {
 		lib.dialogue(e, "victory")
 		}
         		 
 		$("#button-12").addClass("hidden")
+		displayMoraleStatus();
+		displayShipStatus();
+      })
+	  
+	  	$('#faceDefeat').on('click', function(e) {
+        // change state here
+	
+        // end by using lib.goTo
+		state.shipHealth -= 2
+		 
+         lib.dialogue(e, "defeat")
+		 $("#button-13").removeClass("hidden");
+		 $("#button-14").removeClass("hidden");
+		 $("#faceDefeat").addClass("hidden")
+		displayMoraleStatus();
+		displayShipStatus();
       })
 	  $('#button-13').on('click', function(e) {
         // change state here
@@ -335,6 +439,9 @@
          lib.dialogue(e, "surrender")
 		$("#button-13").addClass("hidden")
 		$("#button-14").addClass("hidden")
+		$("#restart").removeClass("hidden");
+		displayMoraleStatus();
+		displayShipStatus();
       })
 	  $('#button-14').on('click', function(e) {
         // change state here
@@ -343,6 +450,9 @@
          lib.dialogue(e, "surrender2")
 		$("#button-14").addClass("hidden")
 		$("#button-13").addClass("hidden")
+		$("#restart").removeClass("hidden");
+		displayMoraleStatus();
+		displayShipStatus();
       })
 	  $('#escape').on('click', function(e) {
         // change state here
@@ -350,15 +460,20 @@
 		$("#escape").addClass("hidden")
         // end by using lib.goTo
          lib.dialogue(e, "escape")
-	
+		displayMoraleStatus();
+		displayShipStatus();
       })
 	    $('#onwards').on('click', function(e) {
         // change state here
 	
         // end by using lib.goTo
-         lib.goTo('Shipspotted2.html')
+         lib.goTo('Scars.html')
 	
       })
+	  $('#restart').on('click', function(e) {
+       location.reload(true)
+		
+    })
 	  
 	  
     })
@@ -372,6 +487,10 @@
 <body>
 <h1></h1>
 <hr />
+
+<p> Crew morale appears to be <span class="Crew-morale-description"><script>displayMoraleStatus()</script></span> </p>
+<p> The ships status is: <span class="Ship-Health-description"><script>displayShipStatus()</script></span> </p>
+--------------
 <div id="story-text">
 <p>The enemy ship is approaching rapidly. I say enemy because it has no discernable markings or banners to herald it allegiance or intent. </p>
 
@@ -420,14 +539,15 @@
 <button class="btn btn-default hidden" id="button-9">Change of plans: Charge!</button>
 <button class="btn btn-default hidden" id="button-10">Change of plans: Manouver!</button>
 
-<button class="btn btn-default hidden" id="button-11">Continue</button>
+<button class="btn btn-default hidden" id="button-11">Enemy manouvers</button>
 
 <button class="btn btn-default hidden" id="button-12">Victory</button>
 <button class="btn btn-default hidden" id="button-13">Surrender</button>
 <button class="btn btn-default hidden" id="button-14">Desperate Attack</button>
+<button class="btn btn-default hidden" id="faceDefeat">In the face of Defeat</button>
 
 <button class="btn btn-default hidden" id="escape">Escape</button>
-
+<button class="btn btn-default hidden" id="restart">Restart Battle</button>
 <button class="btn btn-default hidden" id="onwards">Onwards</button>
 
 <div class="ballista hidden"><strong>Ballista</strong>
@@ -501,9 +621,9 @@
 
 <p>Many are forced to glide back to the ship and re-climb the masts, panting heavily to leap back into the combat. </p>
 
-<p>But between them and the sniping bolts whistling in the air towards them, the sheer press of bodies and their intensity in defending the ship, appear to be keeping the Gryphs at bay and from keeping their payload from hitting their ships. I spot a few objects fall short and into the water or smash against the outer hull in a burst of flame, but nowhere where they'd pose a threat. </p>
+<p>But between them and the sniping bolts whistling in the air towards them, the sheer press of bodies and their intensity in defending the ship appear to be keeping the Gryphs at bay and from keeping their payload from hitting their ships. I spot a few objects fall short and into the water or smash against the outer hull in a burst of flame, but nowhere where they'd pose a threat. </p>
 
-<p>The gryphs are already returning to their ship, chased off or out of their munitions. </p>
+<p>The gryphs are already returning to their ship, chased off or out of their munitions. Its a good thing i kept those extra reserves ready, numbers seem to have prevailed. </p>
 
 <p>At least they've now made their intentions abundantly clear. </p>
 
@@ -594,7 +714,7 @@
 
 
 <div class="manouver hidden"><strong>Manouver</strong>
-<p>Charging in or staying at a safe enough distance do not feel like the right approach. One is too aggressive and the other to cautious. Like pieces on a playing-board we have to use our ship to the fullest and pin down our foe. </p>
+<p>Charging in or staying at a safe enough distance do not feel like the right approach. One is too aggressive and the other too cautious. Like pieces on a playing-board we have to use our ship to the fullest and pin down our foe. </p>
 
 <p>I order the sails tightened for a burst of speed, I intend to fling us past them quickly and then come around behind them and try to stay on them. </p>
 
@@ -829,6 +949,20 @@ $('#FromRange').removeClass('hidden');
 <p> They'd easily catch up to us now! This was big trouble! </p>
 
 </div>
+<div class="hardBlow2 hidden"><strong>A hard blow</strong>
+<p> "Retreat is not an option!" I shout over the din and smoke, giving a kick to a wide-awed sooty Awe who hesitates too long in my way. </p> 
+
+<p> There has to be some way to turn this around, there are still crew working to obey my orders to change plans, for all the damage and chaos, we are still in this fight! </p>
+
+<p> I cursed, we still been able to land effective fire on them. Some of their sails had holes and here and there ropes fluttered, but they had a diligent repair crew. </p>
+
+<p> The next whistling shot was devastating. A loud crack told of a impact above and i had barely enough time to look up and see the top half of our main-mast come crashing down! </p>
+
+<p> Loud cries and desperate shouts followed as Awes dove for cover when sails, rope and a heavy piece of mast crashed against the deck. I gave it all some less flattering curses, having escaped getting smushed, but just barely! </p>
+
+<p> They'd easily catch up to us now! This was big trouble! </p>
+
+</div>
 
 <div class="hardBlowArn hidden"><strong>A hard blow</strong>
 
@@ -851,7 +985,7 @@ $('#FromRange').removeClass('hidden');
 
 <p>“Silence those weapons! Hop too it! Attack!” I waved my sword in the direction of the ship, which was doing its best to try to maneuver and keep itself from being crashed into. But we were close enough for my crew to leap over. I could see the figures on the enemy ship clearer now, Gators. They were large reptiles, similar to Raptorians but far more bulky, armored and rotund. </p>
 
-<p>A mass of eager crew leap on over from the masts already, descending on the enemy ship with Mid-Officer Garsh in the lead. It would be a very hard fight, if they were anywhere as tough as a Raptorian. Said Raptorians who i knew waited eagerly for the command to charge as we locked ships. </p>
+<p>A mass of eager crew leap on over from the masts already, descending on the enemy ship with Mid-Officer Garsh in the lead. It would be a very hard fight, if they were anywhere as tough as a Raptorian but despite all that happened their spirits were not broken! Said Raptorians i knew waited eagerly for the command to charge as we locked ships. Right now they were of little use and stayed out of the way. </p>
 
 <p>BOOM! One of the weapons fired at near point blank range. The shot crashed straight through the side of our ship and out the other. It knocked me off my feet hard, not only that, we were suddenly off course, loosing distance. Too far to further assault and back up those who already leapt over. I could see them fighting in a tight knot by the enemy weapons, they had landed right ontop of them, preventing them from firing further. </p>
 
@@ -867,7 +1001,51 @@ $('#FromRange').removeClass('hidden');
 
 <p> But it seems that whatever they managed to do over there was enough to drive them back. The gators are hoisting full sails, making a break for it while i order us to slow down to pick up our crew. I will not abandon anyone to the cold sea.</p>
 
+</div>
 
+<div class="boardTung hidden"><strong>A clash of arms</strong>
+<p>“We are close enough!” I shout over the din of noise to be heard over the whole ship while I rushed over the deck, signaling my officers that it was time to attack, indeed now or never. </p>
+
+<p>“Silence those weapons! Hop too it! Attack!” I waved my sword in the direction of the ship, which was doing its best to try to maneuver and keep itself from being crashed into. But we were close enough for my crew to leap over. I could see the figures on the enemy ship clearer now, Gators. They were large reptiles, similar to Raptorians but far more bulky, armored and rotund. </p>
+
+<p>A mass of eager crew leap on over from the masts already, descending on the enemy ship with a ferociously howling Mid-Officer Tung leading the charge and Garsh trailing to keep up. It would be a very hard fight, if they were anywhere as tough as a Raptorian but despite all that happened their spirits were not broken, not with Officer Tung as an example! Said Raptorians i knew waited eagerly for the command to charge as we locked ships. Right now they were of little use and stayed out of the way. </p>
+
+<p>BOOM! One of the weapons fired at near point blank range. The shot crashed straight through the side of our ship and out the other. It knocked me off my feet hard, not only that, we were suddenly off course, loosing distance. Too far to further assault and back up those who already leapt over. I could see them fighting in a tight knot by the enemy weapons, they had landed right ontop of them, preventing them from firing further. </p>
+
+<p>“Permission to join the fight, captain.” I wheeled around to see my three grim-faced scouts, cloaks tossed aside and impressive wings on display. </p>
+
+<p>“Buy them time! I will close the gap.” I nodded in assent. They immediately leap and take flight, speeding above the water to join the fighting. </p>
+
+<p>High-Officer Nyxie at the helm was already compensating, getting us closer again. Our ballista kept firing with sharp Twangs, they were doing their best to cover the surrounded crew. </p>
+
+<p>We seem to arrive back in range just in time, our few attackers leap over the side and glide back in retreat before I can order reinforcements for them. The gator ship is full of armored and armed gators now, any further glide attacks would be sending our Awes to their doom. </p>
+
+<p>Some are already wounded and missing, not all manage to glide all the way and are tossed ropes and rescue floats to be hauled out of the sea. </p>
+
+<p> But it seems that whatever they managed to do over there was enough to drive them back. The gators are hoisting full sails, making a break for it while i order us to slow down to pick up our crew. I will not abandon anyone to the cold sea.</p>
+
+</div>
+
+<div class="boardLow hidden"><strong>A clash of arms</strong>
+<p>“We are close enough!” I shout over the din of noise to be heard over the whole ship while I rushed over the deck, signaling my officers that it was time to attack, indeed now or never. </p>
+
+<p>“Silence those weapons! Hop too it! Attack!” I waved my sword in the direction of the ship, which was doing its best to try to maneuver and keep itself from being crashed into. But we were close enough for my crew to leap over. I could see the figures on the enemy ship clearer now, Gators. They were large reptiles, similar to Raptorians but far more bulky, armored and rotund. </p>
+
+<p>Crew leap over, led by Mid-Officer Garsh. But i can tell he has trouble leading them. Morale is low, understandably so, a lot of whats happened has been a shock. It would be a very hard fight, if they were anywhere as tough as a Raptorian. Said Raptorians i knew waited eagerly for the command to charge as we locked ships. Right now they were of little use and stayed out of the way. </p>
+
+<p>BOOM! One of the weapons fired at near point blank range. The shot crashed straight through the side of our ship and out the other. It knocked me off my feet hard, not only that, we were suddenly off course, loosing distance. Too far to further assault and back up those who already leapt over. I could see them fighting desperatly against near hopeless odds, backs to the sea. They had landed close to the weapons, preventing them from firing further, for now. </p>
+
+<p>“Permission to join the fight, captain.” I wheeled around to see my three grim-faced scouts, cloaks tossed aside and impressive wings on display. </p>
+
+<p>“Buy them time! I will close the gap.” I nodded in assent. They immediately leap and take flight, speeding above the water to join the fighting or at least help out however they can. </p>
+
+<p>High-Officer Nyxie at the helm was already compensating, getting us closer again. Our ballista kept firing with sharp Twangs, they were doing their best to cover the surrounded crew. </p>
+
+<p>We seem to arrive back in range just in time, our few attackers leap over the side and glide back in retreat before I can order reinforcements for them. The gator ship is full of armored and armed gators now, any further glide attacks would be sending our Awes to their doom. </p>
+
+<p>Only a fraction make it back to the ship, Garsh is missing, most who escape the gators clutched do not manage to glide all the way and are tossed ropes and rescue floats to be hauled out of the sea. </p>
+
+<p>Whatever damage they managed to do over there it doesent seem like enough. There is bustling around the weapon devices that have been responsible for the thunder and damage. We might only have bought ourself a moments respite at great cost. </p>
 
 </div>
 
@@ -927,11 +1105,26 @@ $('#FromRange').removeClass('hidden');
 
 <p>I glanced up at fast retreating ship, we are safe for now. We could pursue them, but for now I dont wish to push our luck further. We've also taken an amount of damage and injuries yet to be assessed. </p>
 
+<div class="victory3 hidden"><strong>Victory!</strong>
+<p> The enemy ship is in retreat. </p>
+
+<p> Im still stunned at our sudden victory. The crew really pulled through bravely in face of such danger. </p>
+
+<p>Soon I receive a report from Garsh, limping and supported by a scout. </p>
+
+<p>“Their weapons are disabled. They were VERY protective of them. So much so that they dared not fully advance while we held them. They were made out of Iron captain, we could not smash them. But we smashed what we could, supports and such. We also scattered black powder all around from barrels, thats what made them really mad and forced us to flee. “</p>
+
+<p>“You are to be commended for this Officer Garsh, you and all those who fought with you!” As I moved to give him a pat on the shoulder he eyes me hard, making me pause.</p>
+
+<p> "Officer Tung did not make it. That we succeeded at all were thanks to him! He inspired the crew to fight harder, jumped into the thick of them with no fear! We'd have been overwhelmed if it were not for him." Garsh speaks urgently. I nod firmly to him and sent him to the infirmary. Whatever differances i might have had with Tung in the past, he was a great officer. </p>
+
+<p>I glanced up at fast retreating ship, we are safe for now. We could pursue them, but for now I dont wish to push our luck further. We've also taken an amount of damage and injuries yet to be assessed. </p>
+
 
 </div>
 <div class="defeat hidden"><strong>In the face of defeat</strong>
 
-<p> We were not dead in the water, but we could no longer escape nor attack. Whatever we did, could catch us or out-pace us as it was right now </p>
+<p> We were not entierly dead in the water, but we could no longer escape nor attack. Whatever we did, they could catch us or out-pace us as it was right now </p>
 
 <p> I growled and bristled, there were not many options left to me. I considered briefly laying a trap, hide most of the crew under deck like that Wulf-ship had to us back in the east sea. </p>
 

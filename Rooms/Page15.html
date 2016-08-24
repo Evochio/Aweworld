@@ -43,7 +43,12 @@
       })
    $('#button-4').on('click', function() {
         // change state here
+		if (_.contains(state.events, "forbid")) {
+		state.crewMorale -= 2;
+		}
+		else {
 		state.crewMorale -= 3;
+		}
 		state.events.push("eatArn");
 	        // end by using lib.goTo
         lib.goTo('Page17d.html')

@@ -81,7 +81,13 @@
 		 lib.dialogue(e, "short")
 		console.log("No keeper")
 		}
-		$("#button-4").removeClass("hidden")	
+		if (_.contains(state.events, "keeper")) {
+			$('#keepers').removeClass('hidden');
+	
+		}
+		else {
+		 $("#button-4").removeClass("hidden")	
+		}	
 		})
 	  $('#button-3').on('click', function(e) {
          lib.dialogue(e, "wulf")
@@ -486,7 +492,7 @@ As soon as a plank was lowered, a short figure marched over. Wearing a captains 
 
 <p> "Mewler! Speak-dare! Awe-speak!" She almost spat, angered. "Viska take gift! But old-deal still no-deal!" She marched up to Keeper who made an visible effort to stay put and yanked the binder from him and then marched back toward her ship.</p>
 
-<div>
+</div>
 
 <div class="cabin hidden">
 <p>The captains cabin of the Wulf-ship was sparse and barely even larger then a low-ranking officers hut. But it had the privacy and room for two captains to converse in peace. </p>

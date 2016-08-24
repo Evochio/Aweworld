@@ -26,6 +26,7 @@
 	   $("#button-2").addClass("hidden")
 	   $("#button-3").addClass("hidden")
 		state.crewMorale -= 2;
+		state.raptorians += 1
         // end by using lib.goTo
         lib.dialogue(e, "confront")
       })
@@ -37,6 +38,7 @@
 	   $("#button-2").addClass("hidden")
 	   $("#button-3").addClass("hidden")
 		state.crewMorale -= 1;
+		state.raptorians += 1
         // end by using lib.goTo
 		lib.dialogue(e, "limmit")
        

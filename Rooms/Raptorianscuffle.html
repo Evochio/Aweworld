@@ -25,6 +25,7 @@
       $('#button-1').on('click', function(e) {
 		lib.dialogue(e, "break"),
 		state.events.push("break");
+		state.crewMorale += 1;
 		$("#button-3").addClass("hidden")
 		$("#button-1").addClass("hidden")
 		$("#button-2").addClass("hidden")

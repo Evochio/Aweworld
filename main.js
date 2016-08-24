@@ -222,20 +222,20 @@ state = lib.load('state-'+lastPart) || initialState;
 
 displayMoraleStatus = function () {
 	console.trace();
-	if (state.crewMorale >= 9 && state.crewMorale < 13 ) {
-		$(".Crew-morale-description").text("Great").css('color', 'darkgreen');;
+	if (state.crewMorale >= 8 && state.crewMorale < 13 ) {
+		$(".Crew-morale-description").text("Good").css('color', 'darkgreen');;
 	}
-	else if (state.crewMorale >= 7 && state.crewMorale < 9 ) {
-		$(".Crew-morale-description").text("Good").css('color', 'green');;
+	else if (state.crewMorale >= 6 && state.crewMorale < 8 ) {
+		$(".Crew-morale-description").text("Normal").css('color', 'green');;
 	  } 
-	else if (state.crewMorale >= 5 && state.crewMorale < 7 ) {
-		$(".Crew-morale-description").text("Normal").css('color', 'greenYellow');
+	else if (state.crewMorale >= 5 && state.crewMorale < 6 ) {
+		$(".Crew-morale-description").text("Shaky").css('color', 'Orange');
 	  } 
 	else if (state.crewMorale >= 3 && state.crewMorale < 5 ) {
-		$(".Crew-morale-description").text("Poor").css('color', 'Yellow');
+		$(".Crew-morale-description").text("Poor").css('color', 'Orange');
 	  } 
 	  else if (state.crewMorale >= 1 && state.crewMorale < 3 ) {
-		$(".Crew-morale-description").text("Mutinous").css('color', 'Orange');
+		$(".Crew-morale-description").text("Terrible!").css('color', 'red');
 	  } 
 	   else if (state.crewMorale >= -5 && state.crewMorale < 1 ) {
 		$(".Crew-morale-description").text("Open rebellion").css('color', 'red');
@@ -256,10 +256,13 @@ displayShipStatus = function () {
 		$(".Ship-Health-description").text("Listing in the water").css('color', 'Orange');
 	  } 
 	  else if (state.shipHealth >= 1 && state.shipHealth < 3 ) {
-		$(".Ship-Health-description").text("Disastrous").css('color', 'OrangeRed');
+		$(".Ship-Health-description").text("Taking on water!").css('color', 'OrangeRed');
 	  } 
 	   else if (state.shipHealth >= -5 && state.shipHealth < 1 ) {
-		$(".Ship-Health-description").text("About to sink").css('color', 'red');
+		$(".Ship-Health-description").text("About to sink!").css('color', 'red');
+	  } 
+	  else if (state.shipHealth < -5 ) {
+		$(".Ship-Health-description").text("Floating wreckage").css('color', 'red');
 	  } 
 	}
 
