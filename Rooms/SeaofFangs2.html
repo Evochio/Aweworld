@@ -20,6 +20,7 @@
       
       $('#button-1').on('click', function(e) {
 		lib.dialogue(e, "search"),
+		state.delay += 1;
 		$("#button-3").removeClass("hidden")
 		$("#button-4").removeClass("hidden")
 		$("#button-1").addClass("hidden")
@@ -135,6 +136,7 @@
 				
     	$("#retreat").addClass("hidden")
 		$("#fight").addClass("hidden")
+		$("#restart").removeClass("hidden")
 		
 	 })
 	 
@@ -151,6 +153,11 @@
         // end by using lib.goTo
         lib.goTo('Raptorianscuffle.html')
       })
+	  
+	   $('#restart').on('click', function(e) {
+       location.reload(true)
+		
+    })
     })
   </script>
   
@@ -160,7 +167,7 @@
 
 </head>
 <body>
-<h1>Admiral Avolc</h1>
+<h1>The Sea of Fangs</h1>
 <hr />
 <div id="story-text">
 
@@ -192,6 +199,7 @@
 <button class="btn btn-default hidden" id="retreat"> Rush back to ship! </button>
 <button class="btn btn-default hidden" id="fight"> Hold them off! </button>
 <button class="btn btn-default hidden" id="button-5"> Continue </button>
+<button class="btn btn-default hidden" id="restart"> Restart Event </button>
 <span id="cadetButtons"> </span>
 
 <div class="search hidden"><p><strong>Search</strong></p>
@@ -322,6 +330,12 @@
 <p> I manage to surface and gasp, i see one of my scouts in the air, dropping a rope, a lifeline. My fur is quickly wet and making me heavy and sluggish in the water. Around my fellow Awes in the water yelp and gasp as black shapes and large dorsal phins sweet past and snatch them away. </p>
 
 <p> Im nearly at the rope as something comes up right ahead of me, toothy pink maw wide open. When did i drop my spear? The jaws engulph me, a thick tongue squezzes against me and force me down a tight passage. </p> 
+
+<p> 'GLUK', the passage constricts, nearly crushing me. I end up plummiting into the depths of the beast. A dark and somewhat spaceous chamber that smells of fish soon holds me. Crawling around briefly does nothing but sate panic and frustration. </p>
+
+<p> Im alone in the belly of the large seabeast. My rowers do not join me, that might mean they got rescued or that the other 2 Sea-wolves got them. I punch and kick at a wall, hoping to be unappetizing. It seems to have the opposite effect as i hear a crooning noise i could have sworn sounds pleased.</p>
+
+<p> There will be no rescue for this former Captain of the Admirality. I will only end up as a cautionary tale, attached to the legend of the Sea-wolfs.</p>
 </div>
 
 
@@ -338,7 +352,7 @@
 
 <p>I order us around and back on course. We did our duty to the best of our ability, but getting wrecked here or needlessly risking the crew will help nobody.</p>
 
-<p>We make it back to the charted sailing lane safely and without further incident. One day someone will have to properly chart and map every reef and rock in this place, I do not envy them the task.</p>
+<p>It takes the rest of the day to untangle ourselves from the maze of jagged white cliffs we call "Fangs", but we make it back to the charted sailing lane safely and without further incident. One day someone will have to properly chart and map every reef and rock in this place, I do not envy them the task.</p>
 </div>
 <script>
 cadet[0].banter = [

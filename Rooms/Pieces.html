@@ -37,7 +37,13 @@
         // change state here
 		
         // end by using lib.goTo
+       if (state.delay >= 3)
+		{
+		lib.goTo('Late.html')
+		}
+		else {
         lib.goTo('Wulfcaptain.html')
+		}
       })
     })
   </script>
@@ -48,7 +54,7 @@
 
 </head>
 <body>
-<h1>Admiral Avolc</h1>
+<h1>Picking up Pieces</h1>
 <hr />
 <div id="story-text">
 <p> With the raptorian problem dealt with im still left with picking up the pieces of what that incident shattered. </p>

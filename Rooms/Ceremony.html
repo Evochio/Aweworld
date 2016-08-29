@@ -27,7 +27,7 @@
 	  
       $('#agreed').on('click', function(e) {
 		lib.dialogue(e, "agreed"),
-		
+		state.piety += 1;
 		$("#agreed").addClass("hidden")
 		 $("#denied").addClass("hidden")
 		$("#ceremony").removeClass("hidden")
@@ -35,6 +35,7 @@
 		
 		$('#agreed2').on('click', function(e) {
 		lib.dialogue(e, "agreed2"),
+		state.piety += 1;
 		$("#agreed2").addClass("hidden")
 		 $("#denied").addClass("hidden")
 		$("#ceremony").removeClass("hidden")
@@ -59,6 +60,17 @@
        lib.dialogue(e, "ceremony"),
 	   $("#ceremony").addClass("hidden")
 	   $("#ceremony2").removeClass("hidden")
+	   if (state.piety >= 3) {
+	    $("#volunteer").removeClass("hidden")
+	   
+	   }
+	   
+	    $('#volunteer').on('click', function(e) {
+       lib.dialogue(e, "volunteer"),
+	   $("#ceremony2").addClass("hidden")
+	   $("#volunteer").addClass("hidden")
+	   
+	   $("#reset").removeClass("hidden")
 		
       })
 	  $('#ceremony_no').on('click', function(e) {
@@ -90,7 +102,7 @@
 
 </head>
 <body>
-<h1>Admiral Avolc</h1>
+<h1>Ceremony</h1>
 <hr />
 <div id="story-text">
 <p>“Captain” A soft voice spoke to me through the doorway. “May we have a word?” </p>
@@ -130,7 +142,7 @@
 <button class="btn btn-default hidden" id="ceremony2">Volunteers</button>
 <button class="btn btn-default hidden" id="volunteer">Volunteer yourself</button>
 <button class="btn btn-default hidden" id="continue">Continue</button>
-
+<span id="cadetButtons"> </span>
 
 <div class="agreed hidden"><p><strong>Agreed</strong></p>
 
@@ -233,10 +245,43 @@
 <p> In a barely weeks time when the first islands came to view, we would see. </p>
 </div>
 
-<div class="volunteer hidden"><p><strong>Ceremony</strong></p>
+<div class="volunteer hidden"><p><strong>Fatal attraction</strong></p>
 
+<p> There is a terrible beauty in the Soft-spoken. I cant help but be taken in by the perfection of her. She is like the base of Awekind, that of which all others are molded from. As close to the First-Awe one could imagine </p>
 
+<p> I feel the pull of her and understand it for what it is. This is what those others wishing to deepen with another have felt, those that i have sometimes scoffed at in the past. </p>
 
+<p> Its more of an attraction, its a need to be part of something bigger then you. Someone who can represent what you want to be better then yourself. With a shiver and shudder i realize that i cant and wont stop myself from volunteering to join her body. </p>
+
+<p> All my other responsibilites are secondary, the ship, the crew, the mission, it will work itself out without me. Heck, they can elect the soft-spoken as captain, once im part of her she'll be more then i ever was. </p>
+
+<p> I step up to the podium she's standing on with some others. Others who feel the same call as i do. I feel an unexpected rivalry toward them. </p>
+
+<p> The soft-spoken loom ahead of me. She smiles a radiating smile and puts her wide paw on my head. </p>
+
+<p> "All are equal in the eyes of the First-awe. The consumed join the stature of their eater as one day she might join another. Blessed are those however who honor their call, for there are no greater purpose then oneness with your chosen." </p>
+
+<p> She swept a paw over the assembly and leaned closer, inviting me to commit to my decision and give her white-furred belly a sealing kiss </p>
+
+<p> I pressed my snout against the soft fur and closed my eyes. My head was swimming, part of me was rebelling against my decision, wondering if i was under some spell. But spell or not, i had now committed to my decision to become an addition to this Awes hips. </p>
+
+<p> I didnt even notice her annoint and bless the other volunteers. She stood before me again soon and pulled me forward. As she opened her jaws i slipped inside over the velvety tongue. </p>
+
+<p> She took me in, swallowing around my head, heaving me up against her. I was being devoured willingly infront of a crowd and no one said a word. Wet 'gulk'ing swallows echoed around me as the tightness of her body enveloped me. Shoulders, chest and then down to the waist. I was in her mercy. </p>
+
+<p> I could hear her heartbeat, feel her heat, her strength over me. I shuddered and she gulped in response as if she had waited for it, plunging me on down into her stomach. The chamber stretched and squelched. It was probably a stomach that had seen many before me and would see many more. </p>
+
+<p> But i understood now her purpose as well as mine. Hers was to spread the word, the creed and light the path to keep our kind safe. She provided the comfort of knowing existance would always be, through the light inside you and then the light inside others. </p>
+
+<p> I curled up tight, others would soon join me. It would be cramped and difficult. But she'd manage us. She'd digest us. </p>
+
+<p> Already the low rumbling of her body was a comfort. A comfort that she let herself slip deep down into, relax and accept. </p>
+
+<br /> 
+
+<p> The soft-spoken laid heavy and swollen upon the deck, supported against a wall. She knew she might have overdone it this time. Her body was protesting to shere mass of meals within her, it would take such tremendous effort to absorb it all. </p>
+
+<p> But she was built for this, she had trained for this. To win over a captain was a surprise, of all Awes, they were the ones of strongest will and usually unaffected by temptings of a deepening. She was honored however, the late captains prestige now belonged to her. </p>
 </div>
 
 <div class="cermony2 hidden"><p><strong>Ceremony</strong></p>
@@ -283,6 +328,36 @@
 <p> In a barely weeks time when the first islands came to view, we would see. </p>
 </div>
 
+<script>
+cadet[0].banter = [
+    { target: '#Ziggy', text: 'She is pretty, that priestess.', imageClass: "neutral"},
+	{ target: '#Glint', text: 'Yes. She is a Mountain-Awe. All our ancestors were once like her', imageClass: "neutral"},
+	{ target: '#Ziggy', text: 'Thought us yellowish Awes came from Plains-Awes.', imageClass: "surprised"},
+	{ target: '#Glint', text: 'You are correct. Todays Awes are a cross between Plains and Mountains', imageClass: "blush"},
+	{ target: '#Glint', text: 'But Plains-Awes came from the mountains originaly.', imageClass: "neutral"},
+	{ target: '#Ziggy', text: 'Oh... But why are there not more white Awes?', imageClass: "concerned"},
+	{ target: '#Valnos', text: 'Yellow fur of the plains is more hereditary.', imageClass: "smug"},
+	{ target: '#Valnos', text: 'Fur color is an interesting topic. Awes isolated in one place can change the tone of their fur in just a few generations.', imageClass: "happy"}
+	];
 
+cadet[1].banter = [
+    { target: '#Glint', text: 'The Soft-spoken has kept her features hidden until now for a reason.', imageClass: "neutral"},
+	{ target: '#Glint', text: 'She wished for a following of the words, nothing else.', imageClass: "happy"},
+	{ target: '#Glint', text: 'Ofcourse i knew the secret. My house has long been a sponsor of the Order.', imageClass: "neutral"},
+	{ target: '#Glint', text: 'I was so happy to hear a priestess would be joining us. Im glad our voices are starting to be taken seriously.', imageClass: "smug"}
+	];
+	
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'This is nice, comming together like this.', imageClass: "neutral"},
+	{ target: '#Valnos', text: 'Even if i dont particularly feel convinced about the mysticism of First-Awes and inner lights.', imageClass: "angry"},
+	{ target: '#Valnos', text: 'I do agree with a feeling of togetherness.', imageClass: "happy"},
+	{ target: '#Ziggy', text: 'Yeah, makes  you remember home and what you are here for.', imageClass: "neutral"},
+	{ target: '#Valnos', text: 'Yeah, exactly! Are you feeling better now Ziggy?', imageClass: "smug"},
+	{ target: '#Ziggy', text: 'Yeah, a little bit. Thanks.', imageClass: "blush"},
+	{ target: '#Valnos', text: 'We are in this together, okay?', imageClass: "happy"},
+	{ target: '#Ziggy', text: 'Hehe, look at Glint on the stage. How she oogles the priestess.', imageClass: "smug"},
+	{ target: '#Valnos', text: 'I see it.', imageClass: "happy"}
+];
+</script>
 </body>
 </html>

@@ -16,6 +16,7 @@
   <script>
   state.Ziggy.status = 'available';
   
+	state.shipHealth +=2 ;
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
@@ -60,7 +61,7 @@
 
 </head>
 <body>
-<h1></h1>
+<h1>Blueleaf</h1>
 <hr />
 <div id="story-text">
 <p>Repairs are ongoing under heavy sheets of rain, but to really fix some of the more serious damage, we need a few days or more in a port. I was taking a moments respite from overseeing the work, admiring a recovered projectile shot on my desk, a heavy ball or iron as it turned out, when the alarm came again. I heard it this time and was dressed and marching toward the door when the knock from my cadet came. </p>
@@ -186,6 +187,36 @@
 
 
 </div>
+<script>
+cadet[0].banter = [
+    { target: '#Ziggy', text: 'There was one of those meeting things soon, yeah?', imageClass: "concerned"},
+	{ target: '#Glint', text: 'Yes. The Tri-moon ceremony to honor the First-Awe.', imageClass: "neutral"},
+	{ target: '#Ziggy', text: 'Okay.', imageClass: "surprised"},
+	{ target: '#Glint', text: 'Thinking of showing up?', imageClass: "blush"},
+	{ target: '#Ziggy', text: 'Maybe.', imageClass: "neutral"},
+	{ target: '#Glint', text: 'Okay, now im worried.', imageClass: "concerned"}
+	];
 
+cadet[1].banter = [
+    { target: '#Glint', text: 'House Blueleaf and their mighty cruiser!', imageClass: "concerned"},
+	{ target: '#Glint', text: 'I was thinking about your Battle-cruiser idea earlier Ziggy', imageClass: "happy"},
+	{ target: '#Glint', text: 'If we managed to reproduce a ship this size, we could in theory mount ballistas into the sides and have them below deck.', imageClass: "neutral"},
+	{ target: '#Glint', text: 'They would be safer from damage, not have to be assembled and the ship could unload a frightening broadside!', imageClass: "smug"},
+	{ target: '#Valnos', text: 'That would something! Imagine mounting those thunder-tubes instead!', imageClass: "blush"},
+	{ target: '#Ziggy', text: 'Yeah. That would be scary.', imageClass: "sad"}
+	];
+	
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'Are you okay Ziggy?', imageClass: "neutral"},
+	{ target: '#Ziggy', text: 'Yeah.', imageClass: "neutral"},
+	{ target: '#Valnos', text: 'We were worried about you. Thought you were hurt!', imageClass: "sad"},
+	{ target: '#Ziggy', text: 'Thanks.', imageClass: "concerned"},
+	{ target: '#Glint', text: 'Are you mad you never got to punch anyone or something?', imageClass: "concerned"},
+	{ target: '#Ziggy', text: 'Why are you so wet?', imageClass: "neutral"},
+	{ target: '#Glint', text: 'Ugh! Dont remind me! I will never get this dampness out!', imageClass: "surprised"},
+	{ target: '#Ziggy', text: 'Heh.', imageClass: "neutral"},
+	{ target: '#Valnos', text: '...', imageClass: "sad"}
+];
+</script>
 </body>
 </html>

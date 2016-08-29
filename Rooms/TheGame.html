@@ -459,6 +459,7 @@
 		{
         lib.dialogue(e, "conclusion4")
 		state.events.push("gamblingForbid");
+		state.raptorians += 2
 		$("#except").removeClass("hidden")
 		cadet[0].banter = [
 					
@@ -470,6 +471,7 @@
 		{
         lib.dialogue(e, "conclusion5")
 		state.events.push("gamblingForbid");
+		state.raptorians += 2
 		cadet[0].banter = [
 					
 					{ target: '#Ziggy', text: 'You play pretty well cap!', imageClass: "blushing"}
@@ -480,6 +482,7 @@
 		{
         lib.dialogue(e, "conclusion6")
 		state.events.push("gamblingForbid");
+		state.raptorians += 2
 		cadet[0].banter = [
 					
 					{ target: '#Ziggy', text: 'Haha, look at their faces!', imageClass: "happy"},
@@ -542,7 +545,7 @@
 
 </head>
 <body>
-<h1>Admiral Avolc</h1> 
+<h1>The Game - Flock</h1> 
 <p> Personal score: <div class="current-score"></div></p>
 <p> Team score: <div class="team-score"></div> Opponent Team score: <div class="oteam-score"></div></p>
 <div class="current-cards"></div>

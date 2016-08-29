@@ -146,7 +146,7 @@
         // change state here
 		// end by using lib.goTo
          lib.dialogue(e, "advice")
-		 state.crewMorale += 2
+		 state.crewMorale += 1
 		$("#button-4").removeClass("hidden");
 		$("#button-5").removeClass("hidden");
 		$("#button-6").removeClass("hidden");
@@ -226,7 +226,7 @@
 		}
 		else if (_.contains(state.events, "arn")){
 			lib.dialogue(e, "hardBlowArn")
-			
+			$("#button-11").addClass("hidden")
 		}
 		else {
 			lib.dialogue(e, "retreatnosails")
@@ -262,7 +262,7 @@
         // end by using lib.goTo
 		if (_.contains(state.battle, "fire")) {
 		lib.dialogue(e, "fireloss")
-		state.shipHealth -= 3
+		state.shipHealth -= 1
 		$("#button-7").removeClass("hidden");
 		$("#button-11").removeClass("hidden");
 		}
@@ -326,6 +326,7 @@
 		if ((state.battle.indexOf("range") > -1) && (state.battle.indexOf("samePlan") > -1))  {
 		 lib.dialogue(e, "hardBlow")
 		 state.shipHealth -= 4
+		 state.crewMorale -= 2
 		$("#faceDefeat").removeClass("hidden");
 		}
 		else if ((state.battle.indexOf("retreat") > -1) && state.battle.indexOf("sails") == -1){
@@ -337,6 +338,7 @@
 			else {
 			lib.dialogue(e, "hardBlow")
 			state.shipHealth -= 4
+			state.crewMorale -= 2
 			$("#faceDefeat").removeClass("hidden");
 			$("#button-7").addClass("hidden")
 			
@@ -345,6 +347,7 @@
 		else if ((state.battle.indexOf("fire") > -1) && state.battle.indexOf("changePlan") > -1){
 			lib.dialogue(e, "hardBlow2")
 			state.shipHealth -= 4
+			state.crewMorale -= 2
 			$("#faceDefeat").removeClass("hidden");
 			$("#button-7").addClass("hidden")
 			
@@ -410,6 +413,9 @@
 		else if (_.contains(state.battle, "boardTung")){
 		lib.dialogue(e, "victory3")
 		}
+		else if (_.contains(state.battle, "desperate")){
+		lib.dialogue(e, "desperateV")
+		}
 		else {
 		lib.dialogue(e, "victory")
 		}
@@ -447,10 +453,19 @@
         // change state here
 	
         // end by using lib.goTo
+		if (_.contains(state.events, "hard") || _.contains(state.events, "raptoriansRebel") || _.contains(state.events, "noArn") || state.crewMorale < 6) {
          lib.dialogue(e, "surrender2")
+
+		$("#restart").removeClass("hidden");
+		 }
+		 else {
+			lib.dialogue(e, "desperateA")
+			state.battle.push("desperate")
+			$("#button-12").removeClass("hidden");
+		 }
+		 
 		$("#button-14").addClass("hidden")
 		$("#button-13").addClass("hidden")
-		$("#restart").removeClass("hidden");
 		displayMoraleStatus();
 		displayShipStatus();
       })
@@ -485,7 +500,7 @@
 
 </head>
 <body>
-<h1></h1>
+<h1>The Battle</h1>
 <hr />
 
 <p> Crew morale appears to be <span class="Crew-morale-description"><script>displayMoraleStatus()</script></span> </p>
@@ -1092,6 +1107,26 @@ $('#FromRange').removeClass('hidden');
 <p> Look-outs had claimed to report seeing a few gryphs escape the blast and fly off, but as good a flyers as they may be, this was the open sea. Our scouts which took a few laps in the air around the ship reported no sightings of land or other ships for them to fly too. </p>
 
 </div>
+<div class="desperateV hidden"><strong>Victory!</strong>
+<p> Somehow we had won. </p>
+
+<p> Things were in a bit of a chaos at first, the explosion had left our sails in a mess, but luckily not torn them apart. Awes were still in the water, some dazed and confused and rescues were being done. </p>
+
+<p> It took a while to puzzle out what had happened, but my ballistic officer, an ecstatic Officer Ulv quickly filled me in. </p>
+
+<p> "I was watching them real close, we were giving cover with the remaining ballista." Ulv grinned, she was from the same region as Ziggy i guessed by her maner of speech. </p>
+
+<p> "Whatever those barrels were filled with it was highly flamable! Like oil but more so! Once the contents started burning, it went woosh! And then it spread to the other barrels and that was more of a KABOOM. Glad ya had the sense to order everyone to jump, or you'd be crisps!" </p>
+
+<p> Despite a devastating sudden victory, we had taken considerable damage from the battle. There was much work to be done just to make sure we did not sink from the next big wave. </p>
+
+<p> We tried to recover as much of the enemy ship we could. But whatever worthwhile there had been had sunk to the bottom of the sea. Of the enemy crew there was unsuprisingly little trace of the living. </p>
+
+<p> Some had claimed to report seeing a few gryphs escape the blast and fly off, but as good a flyers as they may be, this was the open sea. Our scouts which took a few laps in the air around the ship reported no sightings of land or other ships for them to fly too. </p>
+
+</div>
+
+
 <div class="victory2 hidden"><strong>Victory!</strong>
 <p> The enemy ship is in retreat. </p>
 
@@ -1217,6 +1252,46 @@ $('#FromRange').removeClass('hidden');
 <p> A gatorgut can be spaceous, until it gets crowded, which it quickly got.</p>
 
 </div>
+
+<div class="desperateA hidden"><strong>Desperate attack</strong>
+
+<p> There was only one way to reach the enemy ship. It was a last-ditch attack that I ordered simply to get the crew moving and remove that pitiful dejection and defeat out of their eyes.  </p>
+
+<p> I roared my orders, calling everyone to their duties who were able too. We were assaulting that ship no matter what! And the only way to do so was to float there from the top of our remaining masts. </p>
+
+<p> Its a form of boarding attack thats in the book, but often not one prefered, especially at these distances. But it was one everyone had drilled and knew the manouvers for. I kept them moving and hustling so they would not consider the shere desperation of it. </p>
+
+<p> Shots still came whistling in, but they had somehow lost their edge and shock. Though they might have thrown some to the ground or sent vital pieces of the ships shattering. We had a goal and purpose in mind now. </p>
+
+<p> I climbed with them and in quick succession ordered them to leap from the mast and glide toward the enemy ship. In knots of 3-4, brave Awes, regardless of flight-capability score assaulted the enemy. They might have suspected what was going on, they started to turn and put distance between us before even half of us were in the air. By then I too was gliding over, wings outspread and aching terribly </p>
+
+<p> A third made it across clean to land on the enemy deck. Mostly those of high flight-scores, males and scouts. Another third clambered or bounced off the side of their vessel while the rest made a cold wet landing just short of the hull of the ship. Awes are not the best of swimmers, there were yelps and desperate floundering. A large portion resign themselves to just tread water and float. 
+
+<p> By the time i climb onto the deck of the enemy ship i realize the battle is in full swing. My Awes are fighting ferociously, with the kind of desperate fury a cornered Awe might exibit when that instinctual beast deep down in them takes over. </p>
+
+<p> I spot Arn and Tung, side by side, swiping dodging, driving back several gators on their own as they perform a dance of arms with their long sharp officer swords, finding gaps in armor and plate. I see other Awes who managed to bring with them or procure spears having formed a phallanx to hold off a large portion of the gator crew and keep our flank safe. </p>
+
+<p> I let out a bellow of my own, which is more of a squeal compared to the guttural growls of the gator warriors, and hop in to join the fray. </p>
+
+<p> I stick my sword in a Gryph who has hopped down from the masts to flank a few of my Awes. I help direct the efforts towards gaps in the fighting or where we are hard-pressed. Its becomming quickly apperent though that this is an unwinnable battle. Maybe if we had the hard shock-troops of our Raptorians, but those are still left on our ship, the few who remain uninjured from the bombardment anyway. </p>
+
+<p> Just as i finnish that thought, a large lumbering pressence heaves himself onboard. Evok arrives, dripping and wet. He does not bellow or growl or make a sound, he just suddenly pounces in, leaping over Awes and pinning a gator underneath his bulk. He swipes his tail and smacks another to the ground with a crushing blow to their snout. He must have leapt overboard with the rest of us and swum all the way here.</p>
+
+<p> Alas Evok seems to be on his own and while he's a considerable force multiplier on his own, the course of the battle is set unless something drastic changes. </p> 
+
+<p> Thats when i spot it, while looking for weaknesses in the thick enemy ranks to exploit, i see they're guarding something. A large knot of gators surround barrels that stand stacked in a corner not far from the big metallic looking tubes that belched thunder and destruction at us. </p>
+
+<p> I check a fallen gryph and find a vial of liquid fire like the ones they were dropping on our ship earlier. I hurl it over the heads of Awes and Gators alike and it lands with a splash and ignites among the barrels. </p>
+
+<p> There's a shout of anger and fear. Then the spot is suddenly bursting violently with spreading fire. The battle seems to pause as all heads turn to briefly assess this new development. </p>
+
+<p> "Back to the ship!" I shout as loudly as i can. The last of us barely make it off the side of the ship, some might not have. As the enemy ship goes up in a loud explosion of violent flames and pressure. </p>
+
+<p> My head is ringing as i tread water, my wings are wet and heavy. Its hard to stay afloat. The waves toss me about. A set of jaws grab me and fling me onto a surface. I lay draped over the back of a Raptorian, i dont know who. </p>
+
+<p> Somehow, despite all odds. We made it. But at great cost.</p>
+</div>
+
 <div class="escape hidden"><strong>Escape</strong>
 <p> With our sails going strong we put more and more distance between ourselves and the enemy ship. They gave chase a while, even fired once or twice more, but shot wide and lost a lot of distance doing so. It might have been a last-ditch apptempt to cripple us. </p>
 

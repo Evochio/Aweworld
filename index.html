@@ -14,35 +14,23 @@
   <script src="main.js"></script>
   
   <script>
-   /*
-    $(document).ready(function() {
-      $('#to-room-2').on('click', function() {
-        state.crewMorale += 2;
-        state.inventory.push('Sword');
-        lib.goTo('room-2.html') */
-		
-    $(document).ready(function() {
-      $('#reset').on('click', function() { localStorage.clear() });
-	  
+ 	    $(document).ready(function() {
 	  $('#button-1').on('click', function() {
 	 
         // change state here
         // end by using lib.goTo
         lib.goTo('Rooms/Prelude.html')
+		
       })
-	  $('#button-2').on('click', function() {
+	    $('#button-2').on('click', function() {
+	 
         // change state here
+
         // end by using lib.goTo
-        lib.goTo('Rooms/TheGame.html')
-		})
-		$('#button-3').on('click', function() {
-        // change state here
-        // end by using lib.goTo
-		state.events.push("deepening");
-		state.inventory.push("gratitude");
-        lib.goTo('Rooms/Groomery.html')
-		})
-    })
+        lib.goTo('Rooms/Ship_crew.html')
+		
+      })
+	 })
   </script>
   
 </head>
@@ -60,10 +48,8 @@ As a player you will be guiding her actions and influencing her choices, help he
 	But there is Morale, Piety, injury, reputation with various characters, time and other secrets being measured from your choices that might lead you down different paths or unexpected ends. </p>
 
 <hr />
-<button id="button-1">Begin</button>
-<button id="reset">Reset</button>
-<button id="button-2">other test</button>
-<button id="button-3">Dont test this yet</button>
+<button class="btn btn-default" id="button-1">Begin</button>
+<button class="btn btn-default" id="button-2">Skip Prologue</button>
 <p><img src="Rooms/images/" /></p>
 </body>
 </html>

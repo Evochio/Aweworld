@@ -47,7 +47,7 @@
 
 </head>
 <body>
-<h1>Admiral Avolc</h1>
+<h1>The Game - Flock</h1>
 <hr />
 <p>After the turbulent day of dealing with the gambling problem on the ship, im relieved to finally try to let things go back to normal. We are close to arriving at the start of Sea of fangs where pirate activity has been reported. Just another day or so if all goes well and we should start to see the small jagged islands and cliffs which dot this treacherous sea. We&#39;ll have to keep a close eye on the charts and our position. There are reefs here that appear to stick up out of nowhere in the middle of the sea which give the place their namesake. Our lookouts will have their work cut out for them.</p>
 
@@ -73,6 +73,30 @@
 		{ target: '#Valnos', text: 'Its unfortunate things had to go so far.', imageClass: "sad"},
 		{ target: '#Valnos', text: 'I did not know you and Arn had such a disagreement.', imageClass: "concerned"},
 		{ target: '#Valnos', text: 'If i had known i would have spoken up sooner.', imageClass: "sad" }
+		];
+		
+		}
+		
+		else if (_.contains(state.events, "gamblingLessons")) {
+		
+		cadet[0].banter = [
+		{ target: '#Ziggy', text: 'Gah!', imageClass: "concerned"},
+		{ target: '#Ziggy', text: 'No wonder the Raptorians have been loosing!', imageClass: "angry"},
+		{ target: '#Ziggy', text: 'They have no concept of bluffing, no sleight of hand or patiance', imageClass: "angry"},
+		{ target: '#Glint', text: 'Sleight of hand? You are teaching them to cheat', imageClass: "surprised"},
+		{ target: '#Ziggy', text: 'Another lamb!', imageClass: "suprised"}
+		];
+		cadet[1].banter = [
+		{ target: '#Glint', text: 'Im not sure if....', imageClass: "surprised"},
+		{ target: '#Glint', text: 'Well, who am i to question the captains decisions.', imageClass: "sad"},
+		{ target: '#Glint', text: 'Just dont think leaving Ziggy responsible over a bunch of disgrunted shock-troops...', imageClass: "concerned"},
+		{ target: '#Ziggy', text: 'Oh shush! We are having a merry time!', imageClass: "suprised"}
+		];
+		 cadet[2].banter = [
+		{ target: '#Valnos', text: 'This is probably not the last we have heard about this.', imageClass: "sad"},
+		{ target: '#Valnos', text: 'I dont really see whats so great about the gambling thing anyway.', imageClass: "concerned"},
+		{ target: '#Valnos', text: 'Its all probability and chance.', imageClass: "sad" },
+		{ target: '#Ziggy', text: 'Spoken like a novice!', imageClass: "happy"}
 		];
 		
 		}

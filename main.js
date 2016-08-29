@@ -222,9 +222,12 @@ state = lib.load('state-'+lastPart) || initialState;
 
 displayMoraleStatus = function () {
 	console.trace();
-	if (state.crewMorale >= 8 && state.crewMorale < 13 ) {
-		$(".Crew-morale-description").text("Good").css('color', 'darkgreen');;
+	if (state.crewMorale >= 10 && state.crewMorale < 13 ) {
+		$(".Crew-morale-description").text("Soaring").css('color', 'darkgreen');;
 	}
+	else if (state.crewMorale >= 8 && state.crewMorale < 10 ) {
+		$(".Crew-morale-description").text("Good").css('color', 'green');;
+	  } 
 	else if (state.crewMorale >= 6 && state.crewMorale < 8 ) {
 		$(".Crew-morale-description").text("Normal").css('color', 'green');;
 	  } 
