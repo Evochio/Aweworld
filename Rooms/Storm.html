@@ -39,6 +39,7 @@
 	 $('#trust').on('click', function(e) {
 		lib.dialogue(e, "trust"),
 		state.events.push("stormtrust");
+		state.shipHealth -= 1;
 		state.crewMorale -= 1;
 		$("#trust").addClass("hidden")
 		$("#takeover").addClass("hidden")
@@ -49,6 +50,7 @@
 		lib.dialogue(e, "takeover"),
 		state.events.push("storminjury");
 		state.injuries += 1;
+		state.shipHealth -= 1;
 		$("#trust").addClass("hidden")
 		$("#takeover").addClass("hidden")
 		

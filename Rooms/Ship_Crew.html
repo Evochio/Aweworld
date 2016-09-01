@@ -18,6 +18,12 @@
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
       
+	   $('#ship').on('click', function(e) {
+		lib.dialogue(e, "ship")
+		
+	
+	})
+	  
       $('#officers').on('click', function(e) {
 		lib.dialogue(e, "officers"),
 		
@@ -47,6 +53,7 @@
 	   $('#confrontation').on('click', function(e) {
        lib.dialogue(e, "confrontation"),
 		$("#confrontation").addClass("hidden")
+		$("#ship").addClass("hidden")
         $("#hard").removeClass("hidden")
 		$("#soft").removeClass("hidden")
       })
@@ -129,6 +136,7 @@
 <hr />
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="ship">Ship</button>
 <button class="btn btn-default" id="officers">Officers</button>
 <button class="btn btn-default hidden" id="confrontation">Confrontation</button>
 <button class="btn btn-default hidden" id="hard">Hard-line approach</button>
@@ -179,7 +187,7 @@
 
 <p>“Such is them politics 'cap, rumour has it this one went straight over our dear Admirals cap aswell. There are some faithful in the crew I know. As long as they get their poetry nights there wont be trouble.”</p>
 
-<p> There was not much to add to that so i left it be for now. Whatever my objections this was a decision appears to have been made back in the capital. Hopefully it would not become a problem. </p>
+<p> There was not much to add to that so i left it be for now. Whatever my objections this was a decision appears to have been made back in the capital. Hopefully it would not become a problem. Though i could see some objecting already to a civilian being given a quarters, albeit small, of their own when the rest were nearly shoulder to shoulder.</p>
 </div>
 
 <div class="confrontation hidden"><p><strong>Confrontation</strong></p>
@@ -255,6 +263,18 @@
 
 <p>My concern is whether they'll blend in with the crew well, being fresh as they are out of the academy. Im sure they train them on ships there a while, but not the true rigours of deep-sea voyage. </p>
 
+</div>
+
+<div class="ship hidden"><p><strong>The Attentive</strong></p>
+<p>I took a tour around the ship “Attentive” to get my bearings of the vessel I was now to command and live on for some time to come. </p>
+
+<p>It was larger then any ship we had in the east, yet the Admiral had stated it was an escort. I had seen some of the hulls under construction, the progress of the future was moving steadily on. It seemed that every time I returned to shore from a mission there was some new innovation and marvel to admire. </p>
+
+<p>The ship had a sleek and slightly long look to it. Its forecastle was larger then the aft one. The forward bow overall was sturdy and the hull around it reinforced. If I had rammed Nipfangs ship with this in full-speed I got the impression I would have cleaved right through them and kept going. But although this ship had a ramming bow its purpose was to protect it in approach or pursuit, no deep-sea ship is ever built for ramming.</p>
+
+<p>I'll have to study how the ship handles more closely later. </p>
+
+<p>Despite the size of the ship, the holds below were cramped. Made worse by the amount of extra crew the ship was taking on for this journey. Crew would be sleeping in shifts and even officers were going to have to share quarters. I had a modest captains quarters for myself. I had to make sure the crew stayed happy and united in purpose</p>
 </div>
 
 

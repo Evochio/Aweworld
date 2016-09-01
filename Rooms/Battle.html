@@ -213,7 +213,7 @@
         // change state here
 		state.battle.push("retreat")
         // end by using lib.goTo
-        if (_.contains(state.battle, "sails") || _.contains(state.events, "arn"))
+        if ((_.contains(state.battle, "sails") || _.contains(state.events, "arn")) && state.shipHealth >= 5)
 		{
 		$("#escape").removeClass("hidden");
 		}
@@ -221,7 +221,11 @@
 			
 		$("#button-11").removeClass("hidden");
 		}
-		if (_.contains(state.battle, "sails")) {
+		if (state.shipHealth <= 5) {
+			lib.dialogue(e, "retreatDamage")
+		}
+		
+		else if (_.contains(state.battle, "sails")) {
 			lib.dialogue(e, "retreat")
 		}
 		else if (_.contains(state.events, "arn")){
@@ -245,7 +249,7 @@
         // end by using lib.goTo
          lib.dialogue(e, "samePlan")
 		 state.shipHealth -= 1
-		$("#button-7").addClass("hidden")
+		
 		$("#button-8").addClass("hidden")
 		$("#button-9").addClass("hidden")
 		$("#button-10").addClass("hidden")
@@ -269,7 +273,7 @@
 		else {
 		lib.dialogue(e, "changeCharge")
 		$("#button-11").removeClass("hidden");
-		$("#button-7").addClass("hidden")
+		
 		}
         
 		$("#button-8").addClass("hidden")
@@ -294,7 +298,7 @@
 		else {
 		lib.dialogue(e, "changeManouver")
 		$("#button-11").removeClass("hidden");
-		$("#button-7").addClass("hidden")
+		
 		}
 	
 		$("#button-8").addClass("hidden")
@@ -325,19 +329,26 @@
         // end by using lib.goTo
 		if ((state.battle.indexOf("range") > -1) && (state.battle.indexOf("samePlan") > -1))  {
 		 lib.dialogue(e, "hardBlow")
-		 state.shipHealth -= 4
+		 state.shipHealth -= 3
 		 state.crewMorale -= 2
 		$("#faceDefeat").removeClass("hidden");
 		}
 		else if ((state.battle.indexOf("retreat") > -1) && state.battle.indexOf("sails") == -1){
-			if (_.contains(state.events, "arn")){
+			if (state.shipHealth <= 5) {
+			lib.dialogue(e, "hardBlow")
+			state.shipHealth -= 3
+			state.crewMorale -= 2
+			$("#faceDefeat").removeClass("hidden");
+			$("#button-7").addClass("hidden")
+			}
+			else if (_.contains(state.events, "arn")){
 			lib.dialogue(e, "hardBlowArn")
 			$("#escape").removeClass("hidden");
 			$("#button-7").addClass("hidden")
 			}
 			else {
 			lib.dialogue(e, "hardBlow")
-			state.shipHealth -= 4
+			state.shipHealth -= 3
 			state.crewMorale -= 2
 			$("#faceDefeat").removeClass("hidden");
 			$("#button-7").addClass("hidden")
@@ -346,7 +357,7 @@
 		}
 		else if ((state.battle.indexOf("fire") > -1) && state.battle.indexOf("changePlan") > -1){
 			lib.dialogue(e, "hardBlow2")
-			state.shipHealth -= 4
+			state.shipHealth -= 3
 			state.crewMorale -= 2
 			$("#faceDefeat").removeClass("hidden");
 			$("#button-7").addClass("hidden")
@@ -395,7 +406,7 @@
 		 }
 
 		$("#button-10").addClass("hidden")
-		
+		$("#button-7").addClass("hidden")
 		$("#button-11").addClass("hidden")
 		displayMoraleStatus();
 		displayShipStatus();
@@ -522,7 +533,7 @@
 <div class="hidden" id="arnLives">Arn has graced the deck with his pressence. No matter what i think about him, he's still for better or worse the First-officer. Until that changes i might aswell make use of him.
 <p>"Any oppinion on deployment First-officer?" I mutter to him calmly. He should tell by the tone im annoyed at his tardiness. </p>
 
-<p> "We're not sure what we're up against Captain. Speed... might be prudent, in case we need it." Arn offers, glancing towards the sails. </p>
+<p> "We're not sure what we're up against Captain. I'd suggest keeping them on stand-by. I can oversee the sails without the need of extra help." Arn offers, glancing towards the sails. </p>
  </div>
  
 <div class="hidden" id="arnDead">
@@ -791,6 +802,20 @@
 
 
 </div>
+<div class="retreatDamage hidden"><strong>Retreat!</strong>
+<p>They have some devastating weapons we have no information about, it out-ranges us and out-fires us. This would explain why ships go missing without a trace. Who could stand a chance against anything like this!?</p>
+
+<p>We can not stay, we've already taken too much damage! I quickly order the ship around, full sails up. The weapons seem to be side-mounted on starboard side. We're close enough now that I can see figures working on a black tube of some sort. There appears to be two of them. Luckily they appear to take a long time to load. </p>
+
+<p>I feint our ship towards port in favor of the wind and order our sails prepared for half-sail. Its the obvious escape route and what would get us most speed. They anticipate our move, moving to turn along with us and keep us in their firing arch. I grin and turn the ship suddenly hard starboard, crew working hard to keep up with my orders, pulling up the sails to give us a better turn. </p>
+
+<p>But our ship is listing slightly and hard to steer, some sails and masts are damaged and not at full capacity! The ship might have taken too many hits to be able to make a proper run for it.<p>
+
+<p>We might be out of their firing arch for now, but the enemy ship is turning and we'll be in line of sight sooner then i'd hoped. </p> 
+
+
+</div>
+
 
 <script>
 /*
@@ -979,7 +1004,7 @@ $('#FromRange').removeClass('hidden');
 
 </div>
 
-<div class="hardBlowArn hidden"><strong>A hard blow</strong>
+<div class="hardBlowArn hidden"><strong>Arn at work</strong>
 
 <p> Our ship raced to keep distance as theirs was intent on closing in. But it was hard to fully out-pace them, we didnt quite have as much wind in our sails as we needed, we became an easy target to fire upon. </p>
 
@@ -998,17 +1023,19 @@ $('#FromRange').removeClass('hidden');
 <div class="board hidden"><strong>A clash of arms</strong>
 <p>“We are close enough!” I shout over the din of noise to be heard over the whole ship while I rushed over the deck, signaling my officers that it was time to attack, indeed now or never. </p>
 
-<p>“Silence those weapons! Hop too it! Attack!” I waved my sword in the direction of the ship, which was doing its best to try to maneuver and keep itself from being crashed into. But we were close enough for my crew to leap over. I could see the figures on the enemy ship clearer now, Gators. They were large reptiles, similar to Raptorians but far more bulky, armored and rotund. </p>
+<p>“Silence those weapons! Hop too it! Attack! Fire boarding hooks!” I waved my sword in the direction of the ship, which was doing its best to try to maneuver and keep itself from being crashed into. But we were close enough for my crew to leap over. I could see the figures on the enemy ship clearer now, Gators. They were large reptiles, similar to Raptorians but far more bulky, armored and rotund. </p>
 
 <p>A mass of eager crew leap on over from the masts already, descending on the enemy ship with Mid-Officer Garsh in the lead. It would be a very hard fight, if they were anywhere as tough as a Raptorian but despite all that happened their spirits were not broken! Said Raptorians i knew waited eagerly for the command to charge as we locked ships. Right now they were of little use and stayed out of the way. </p>
 
-<p>BOOM! One of the weapons fired at near point blank range. The shot crashed straight through the side of our ship and out the other. It knocked me off my feet hard, not only that, we were suddenly off course, loosing distance. Too far to further assault and back up those who already leapt over. I could see them fighting in a tight knot by the enemy weapons, they had landed right ontop of them, preventing them from firing further. </p>
+<p>BOOM! One of the weapons fired at close range. The shot crashed straight through the side of our ship and out the other. It knocked me off my feet hard, not only that, we were suddenly off course, loosing distance. Too far to further assault and back up those who already leapt over. I could see them fighting in a tight knot by the enemy weapons, they had landed right ontop of them, preventing them from firing further. </p>
+
+<p>"Where were those boarding hooks!" I yell at the ballista crew who were working hard. They had missed their chance, only one had fired off their hook before we were out of range again, but had not managed to get a hold. </p>
 
 <p>“Permission to join the fight, captain.” I wheeled around to see my three grim-faced scouts, cloaks tossed aside and impressive wings on display. </p>
 
-<p>“Buy them time! I will close the gap.” I nodded in assent. They immediately leap and take flight, speeding above the water to join the fighting. </p>
+<p>“Buy them time! I will close the gap.” I nodded in assent. They immediately leap and take flight, speeding above the water to join the fighting. Scouts were not meant for close melees, im sure they would do their best to provide what help they could however.</p>
 
-<p>High-Officer Nyxie at the helm was already compensating, getting us closer again. Our ballista kept firing with sharp Twangs, they were doing their best to cover the surrounded crew. </p>
+<p>High-Officer Nyxie at the helm was already compensating, getting us closer again. Our ballista kept firing with sharp Twangs, they were doing their best to cover the surrounded crew with long range darts. I order them to prepare shooting boarding hooks and not miss this time.</p>
 
 <p>We seem to arrive back in range just in time, our few attackers leap over the side and glide back in retreat before I can order reinforcements for them. The gator ship is full of armored and armed gators now, any further glide attacks would be sending our Awes to their doom. </p>
 
@@ -1021,17 +1048,19 @@ $('#FromRange').removeClass('hidden');
 <div class="boardTung hidden"><strong>A clash of arms</strong>
 <p>“We are close enough!” I shout over the din of noise to be heard over the whole ship while I rushed over the deck, signaling my officers that it was time to attack, indeed now or never. </p>
 
-<p>“Silence those weapons! Hop too it! Attack!” I waved my sword in the direction of the ship, which was doing its best to try to maneuver and keep itself from being crashed into. But we were close enough for my crew to leap over. I could see the figures on the enemy ship clearer now, Gators. They were large reptiles, similar to Raptorians but far more bulky, armored and rotund. </p>
+<p>“Silence those weapons! Hop too it! Attack! Fire boarding hooks!” I waved my sword in the direction of the ship, which was doing its best to try to maneuver and keep itself from being crashed into. But we were close enough for my crew to leap over. I could see the figures on the enemy ship clearer now, Gators. They were large reptiles, similar to Raptorians but far more bulky, armored and rotund. </p>
 
 <p>A mass of eager crew leap on over from the masts already, descending on the enemy ship with a ferociously howling Mid-Officer Tung leading the charge and Garsh trailing to keep up. It would be a very hard fight, if they were anywhere as tough as a Raptorian but despite all that happened their spirits were not broken, not with Officer Tung as an example! Said Raptorians i knew waited eagerly for the command to charge as we locked ships. Right now they were of little use and stayed out of the way. </p>
 
 <p>BOOM! One of the weapons fired at near point blank range. The shot crashed straight through the side of our ship and out the other. It knocked me off my feet hard, not only that, we were suddenly off course, loosing distance. Too far to further assault and back up those who already leapt over. I could see them fighting in a tight knot by the enemy weapons, they had landed right ontop of them, preventing them from firing further. </p>
 
+<p>"Where were those boarding hooks!" I yell at the ballista crew who were working hard. They had missed their chance, only one had fired off their hook before we were out of range again, but had not managed to get a hold. </p>
+
 <p>“Permission to join the fight, captain.” I wheeled around to see my three grim-faced scouts, cloaks tossed aside and impressive wings on display. </p>
 
 <p>“Buy them time! I will close the gap.” I nodded in assent. They immediately leap and take flight, speeding above the water to join the fighting. </p>
 
-<p>High-Officer Nyxie at the helm was already compensating, getting us closer again. Our ballista kept firing with sharp Twangs, they were doing their best to cover the surrounded crew. </p>
+<p>High-Officer Nyxie at the helm was already compensating, getting us closer again. Our ballista kept firing with sharp Twangs, they were doing their best to cover the surrounded crew with long range darts. I order them to prepare shooting boarding hooks and not miss this time.</p></p>
 
 <p>We seem to arrive back in range just in time, our few attackers leap over the side and glide back in retreat before I can order reinforcements for them. The gator ship is full of armored and armed gators now, any further glide attacks would be sending our Awes to their doom. </p>
 
@@ -1044,11 +1073,13 @@ $('#FromRange').removeClass('hidden');
 <div class="boardLow hidden"><strong>A clash of arms</strong>
 <p>“We are close enough!” I shout over the din of noise to be heard over the whole ship while I rushed over the deck, signaling my officers that it was time to attack, indeed now or never. </p>
 
-<p>“Silence those weapons! Hop too it! Attack!” I waved my sword in the direction of the ship, which was doing its best to try to maneuver and keep itself from being crashed into. But we were close enough for my crew to leap over. I could see the figures on the enemy ship clearer now, Gators. They were large reptiles, similar to Raptorians but far more bulky, armored and rotund. </p>
+<p>“Silence those weapons! Hop too it! Attack! Fire boarding hooks!” I waved my sword in the direction of the ship, which was doing its best to try to maneuver and keep itself from being crashed into. But we were close enough for my crew to leap over. I could see the figures on the enemy ship clearer now, Gators. They were large reptiles, similar to Raptorians but far more bulky, armored and rotund. </p>
 
 <p>Crew leap over, led by Mid-Officer Garsh. But i can tell he has trouble leading them. Morale is low, understandably so, a lot of whats happened has been a shock. It would be a very hard fight, if they were anywhere as tough as a Raptorian. Said Raptorians i knew waited eagerly for the command to charge as we locked ships. Right now they were of little use and stayed out of the way. </p>
 
 <p>BOOM! One of the weapons fired at near point blank range. The shot crashed straight through the side of our ship and out the other. It knocked me off my feet hard, not only that, we were suddenly off course, loosing distance. Too far to further assault and back up those who already leapt over. I could see them fighting desperatly against near hopeless odds, backs to the sea. They had landed close to the weapons, preventing them from firing further, for now. </p>
+
+<p>"Where were those boarding hooks!" I yell at the ballista crew who were working hard. They had missed their chance, only one had fired off their hook before we were out of range again, but had not managed to get a hold. </p>
 
 <p>“Permission to join the fight, captain.” I wheeled around to see my three grim-faced scouts, cloaks tossed aside and impressive wings on display. </p>
 
@@ -1249,7 +1280,7 @@ $('#FromRange').removeClass('hidden');
 
 </br>
 
-<p> A gatorgut can be spaceous, until it gets crowded, which it quickly got.</p>
+<p> A gatorgut can be spaceous, until it gets crowded, which it quickly got. The tight pressure of bodies and muscles pushing together under the taut and scaled gatorbelly soon become too much.</p>
 
 </div>
 

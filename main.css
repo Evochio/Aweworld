@@ -39,6 +39,33 @@ float:right;
 }
 
 
+html {
+
+	
+}
+body {
+	background-image: url("Rooms/Images/wood.jpg");
+
+}
+hr {
+	background: "yellow";
+	
+}
+.btn {
+	padding-right: 50px;
+}
+#story-text {
+background-image: url("Rooms/Images/Paper.jpg");
+background-size: cover;
+border: 1px solid black;
+margin-left: 40px;
+margin-right: 150px;
+	padding-top: 20px;
+    padding-right: 50px;
+    padding-bottom: 10px;
+    padding-left: 50px;
+	text-align: justify;
+}
 
 /* 
 #Ziggy:disabled {
