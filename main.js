@@ -269,11 +269,12 @@ displayShipStatus = function () {
 	  } 
 	}
 
-
+/*
 moraleFailureCheck = function() {
 	if (state.crewMorale < -4) {
 	document.location.href = '/terrible-end.html'; }
 }
+*/
 $(document).ready(function() {
   // EDIT THIS ///////////////
   // Code you want to run at the beginning of every page load goes here.

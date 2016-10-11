@@ -1,5 +1,5 @@
 /* Put styling there that applies to more than one page. */
-#Valnos, #Ziggy, #Ziggydis, #Glint{
+#Valnos, #Ziggy, #Glint{
 float:right;
 }
 
@@ -28,43 +28,67 @@ float:right;
 	position: relative;
 	text-align: center;
 }
-#Ziggydis {
-	background-image: url(/Rooms/Images/Valnosface.png);
-	height: 286px;
-	width: 200px;
-	cursor: pointer;
-	position: relative;
-	text-align: center;
-	background-position: 200px 0px;
+
+#html {
+
+background-color: #331a00;
 }
 
+#head.btn {
+	padding-left: 50px;
+}
+#head {
+	background-color: #996633;
+	border: 6px solid #331a00;
+	
+	border-radius: 20px;
+	/*
+background-image: url("Rooms/Images/purplebanner.jpg");		
+*/
+width: 100%;
+text-align: center;
+ float: left;
+ clear: both;
+ color: white;
+}
+#lore {
+top: 10px;
+right: 50px;	
+position: absolute;
+}
+#tail {
 
-html {
+	background-color: #996633;
+	border: 6px solid #331a00;
+	border-radius: 20px;
+	
+	position: fixed;
+    bottom: 0px;
 
+	clear: both;
+	width: 100%;
+	height: 10%;
 	
 }
-body {
-	background-image: url("Rooms/Images/wood.jpg");
 
-}
-hr {
-	background: "yellow";
-	
-}
-.btn {
-	padding-right: 50px;
-}
 #story-text {
-background-image: url("Rooms/Images/Paper.jpg");
-background-size: cover;
-border: 1px solid black;
-margin-left: 40px;
-margin-right: 150px;
+	background-image: url("Rooms/Images/Paper.jpg");
+	background-size: cover;
+	border: 1px solid black;
+	float: left;
+	border: 6px solid #600080;
+ 
+  
+	
+	margin-left: 40px;
+	margin-right: 150px;
+	margin-top: 100px;
 	padding-top: 20px;
     padding-right: 50px;
     padding-bottom: 10px;
     padding-left: 50px;
 	text-align: justify;
+	
 }
 
 /* 
