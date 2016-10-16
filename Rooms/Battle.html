@@ -511,12 +511,13 @@
 
 </head>
 <body>
+<div id="head">
 <h1>The Battle</h1>
-<hr />
+
 
 <p> Crew morale appears to be <span class="Crew-morale-description"><script>displayMoraleStatus()</script></span> </p>
 <p> The ships status is: <span class="Ship-Health-description"><script>displayShipStatus()</script></span> </p>
---------------
+</div>
 <div id="story-text">
 <p>The enemy ship is approaching rapidly. I say enemy because it has no discernable markings or banners to herald it allegiance or intent. </p>
 
@@ -542,7 +543,7 @@
 <p> But in the end, its always up to the captain to make the final call anyway. </p>
 </div>
 </div>
-<hr />
+<div id="tail">
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1">Extra crew: Second Ballista</button>
@@ -575,7 +576,7 @@
 <button class="btn btn-default hidden" id="escape">Escape</button>
 <button class="btn btn-default hidden" id="restart">Restart Battle</button>
 <button class="btn btn-default hidden" id="onwards">Onwards</button>
-
+</div>
 <div class="ballista hidden"><strong>Ballista</strong>
 <p>We need more firepower, on my order the parts for the second weapon start to make their way up. The crew have drilled well, it looks like they'll just about get it in working order before the enemy ship is in range. </p>
 

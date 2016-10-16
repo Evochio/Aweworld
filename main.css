@@ -3,6 +3,16 @@
 float:right;
 }
 
+#ValnosThumb, #ZiggyThumb, #GlintThumb{
+float:right;
+}
+#ValnosThumb {
+	background-image: url(/Rooms/Images/Valnosface.png);
+	height: 50px;
+	width: 200px;	
+}
+
+
 #Valnos {
 	background-image: url(/Rooms/Images/Valnosface5.png);
 	height: 286px;
@@ -10,6 +20,9 @@ float:right;
 	cursor: pointer;
 	position: relative;
 	text-align: center;
+	bottom: 200px;
+	border: 6px solid #996633;
+	border-radius: 10px;
 }
 #Glint {
 	background-image: url(/Rooms/Images/GlintFace2.png);
@@ -18,6 +31,9 @@ float:right;
 	cursor: pointer;
 	position: relative;
 	text-align: center;
+	bottom: 200px;
+	border: 6px solid #996633;
+	border-radius: 10px;
 }
 
 #Ziggy {
@@ -27,6 +43,22 @@ float:right;
 	cursor: pointer;
 	position: relative;
 	text-align: center;
+	bottom: 200px;
+	border: 6px solid #996633;
+	border-radius: 10px;
+}
+img {
+	margin-left: 40px;
+	margin-bottom: 100px;
+	float: left;
+	bottom: 10%;
+	border: 6px solid #331a00;
+	
+	border-radius: 20px;
+}
+html {
+
+background-color: #331a00;
 }
 
 #html {
@@ -34,32 +66,39 @@ float:right;
 background-color: #331a00;
 }
 
-#head.btn {
-	padding-left: 50px;
+#tail .btn {
+	top: 25px;
+	left: 40px;
+	position: relative;
+	
 }
 #head {
 	background-color: #996633;
 	border: 6px solid #331a00;
-	
+	position: fixed;
+	z-index: 99;
 	border-radius: 20px;
-	/*
-background-image: url("Rooms/Images/purplebanner.jpg");		
-*/
-width: 100%;
-text-align: center;
- float: left;
- clear: both;
+	border-bottom: none;
+	width: 100%;
+	text-align: center;
+	
+
  color: white;
 }
+#head .scores {
+	text-align: justify;
+	
+}
 #lore {
-top: 10px;
-right: 50px;	
+top: 20px;
+right: 40px;	
 position: absolute;
 }
 #tail {
 
 	background-color: #996633;
 	border: 6px solid #331a00;
+	border-top: none;
 	border-radius: 20px;
 	
 	position: fixed;
@@ -74,12 +113,12 @@ position: absolute;
 #story-text {
 	background-image: url("Rooms/Images/Paper.jpg");
 	background-size: cover;
-	border: 1px solid black;
 	float: left;
-	border: 6px solid #600080;
- 
-  
-	
+	border: 6px solid grey;
+	font-size: 130%;
+	position: relative;
+	clear: both;
+	margin-bottom: 10%;
 	margin-left: 40px;
 	margin-right: 150px;
 	margin-top: 100px;
@@ -88,6 +127,9 @@ position: absolute;
     padding-bottom: 10px;
     padding-left: 50px;
 	text-align: justify;
+	
+}
+#cadetbuttons {
 	
 }
 
@@ -105,7 +147,8 @@ position: absolute;
 	
 }
 .blush {
-	background-position: 600px 0px;  
+	background-position: 600px 0px; 
+		
 }
 .angry {
 	background-position: 400px 0px; 
@@ -136,4 +179,5 @@ position: absolute;
 }
 .new {
 	background-position: 200px 572px; 
+	
 }

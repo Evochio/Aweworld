@@ -30,6 +30,7 @@ lib.dialogue = function(e, className) {
 	}
 }
 
+
 //new button system. 
 var ziggy = {};
 var glint = {};
@@ -37,9 +38,42 @@ var valnos = {};
 
 var cadet = [ziggy, glint, valnos];
 var createCadetButtons = function() {
-	
-	
+	//Test thumbnail buttons
 	if (state.Glint.status == 'available') {
+	var button = $(' <button id=GlintThumb>  </button> ')
+		$('#cadetButtons').append(button)
+		button.on('click', function() {
+		$("#GlintThumb").addClass("hidden")
+		$("#Glint").removeClass("hidden")
+		cadetIndex = 1;
+		showNextDialogue();
+		
+		};
+	}
+	if (state.Ziggy.status == 'available') {
+	var button = $(' <button id=ZiggyThumb>  </button> ')
+		$('#cadetButtons').append(button)
+		button.on('click', function() {
+		$("#ZiggyThumb").addClass("hidden")
+		$("#Ziggy").removeClass("hidden")
+		cadetIndex = 0;
+		showNextDialogue();
+		}
+	}
+		if (state.Valnos.status == 'available') {
+	var button = $(' <button id=ValnosThumb>  </button> ')
+		$('#cadetButtons').append(button)
+		button.on('click', function() {
+		$("#ValnosThumb").addClass("hidden")
+		$("#Valnos").removeClass("hidden")
+		cadetIndex = 2;
+		showNextDialogue();
+		}
+	
+	}
+	
+	 
+	
 		var button = $(' <button id=Glint>  </button> ')
 		$('#cadetButtons').append(button)
 		button.on('click', function() {
@@ -50,8 +84,8 @@ var createCadetButtons = function() {
 			showNextDialogue();
 			});
 			button.popover(options)
-	}
-	if (state.Ziggy.status == 'available') {
+	
+	
 		var button = $(' <button id=Ziggy>  </button> ')
 		$('#cadetButtons').append(button)
 		button.on('click', function() {
@@ -62,9 +96,9 @@ var createCadetButtons = function() {
 			showNextDialogue();
 			});
 			button.popover(options)
-	}
+	
 
-	if (state.Valnos.status == 'available') {
+
 		var button = $(' <button id=Valnos>  </button> ')
 		$('#cadetButtons').append(button)
 		button.on('click', function() {
@@ -75,7 +109,7 @@ var createCadetButtons = function() {
 			showNextDialogue();
 			});
 			button.popover(options)
-	}
+	
 }
 var cadetIndex;
 var i = 0;

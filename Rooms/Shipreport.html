@@ -38,9 +38,10 @@
 
 </head>
 <body>
+<div id="head">
 <h1>Ship&Crew report</h1>
-<hr />
-
+</div>
+<div id="story-text">
 <p>Ship report:</p>
 <p> The ships status is: <span class="Ship-Health-description"><script>displayShipStatus()</script></span> </p>
 <script>
@@ -91,12 +92,12 @@ switch($(".Crew-morale-description").text()) {
 </script>
 </p>
 <p>Events:</p>
-
-<hr />
+</div>
+<div id="tail">
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button id="button-1">Button 1</button>
 <button id="button-2">Button 2</button>
-
+</div>
 </body>
 </html>

@@ -69,8 +69,9 @@
 
 </head>
 <body>
+<div id="head">
 <h1>Gamblers</h1>
-<hr />
+</div>
 <div id="story-text">
 
 <p>Its come to my attention we are down 1 Raptorian. 
@@ -87,7 +88,7 @@
 
 <p>Still, i feel the gambling is at fault here, i have to decide whether to put a stop to this practice or at least put restrictions on it. <span class="hidden" id="deepen">I'd hate to micromanage, crew wont like their captain butting in, and what do i know how deeply the raptorian desired to be Wulf-meat. But the matter rubs me the wrong way. </span><span class="hidden" id="nodeepen">I'd hate to micromanage, crew wont like their captain butting in, but it feels like denying one thing and allowing another might be disingenuous. </span> </p>
 
-<hr />
+
 <script>
  if (_.contains(state.events, "deepening")) {
 	 $('#deepen').removeClass('hidden');
@@ -99,6 +100,7 @@
 </script>
 
 </div>
+<div id="tail">
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1"> Confront and forbid the game </button>
 <button class="btn btn-default" id="button-2"> Limmit the game </button>
@@ -106,7 +108,7 @@
 <button class="btn btn-default hidden" id="button-4">The Merchants</button>
 <span id="cadetButtons"> </span>
 
-
+</div>
 
 <div class="confront hidden"><p><strong>Confront and forbid the game</strong></p>
 <p>I decided to put a stop to it and with Cadet Ziggy in tow, confronted First-Officer Arn and Keeper about it in the holds below, apperently they spend much time together. Keeper was drowsy from his big meal but it didn&rsquo;t stop him from trying to be clever with me. Wulfs can be infuriating in how they walk the line between polite formality and veiled snark.</p>

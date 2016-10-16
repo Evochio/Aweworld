@@ -12,11 +12,26 @@
  <link rel="stylesheet" href="/bootstrap.min.css"></link>
   <link rel="stylesheet" href="/bootstrap-theme.min.css"></link>
   <script src="/main.js"></script>
-  <style>
- .surprised {
+<style>
+.surprised {
 	background-position: 400px 286px;  
 }
-  
+.scores
+{
+	padding: 10px;
+	color: white;
+	position: fixed;
+	margin-left: 10px;
+	top: 30%;
+	right: 0px;
+	background-color: #996633;
+	border: 6px solid #331a00;
+	border-radius: 20px;
+}
+#story-text {
+margin-right: 200px;
+}
+
   </style>
   <script>
 		state.Glint.status = "invisible"
@@ -545,11 +560,15 @@
 
 </head>
 <body>
+<div id="head">
 <h1>The Game - Flock</h1> 
-<p> Personal score: <div class="current-score"></div></p>
-<p> Team score: <div class="team-score"></div> Opponent Team score: <div class="oteam-score"></div></p>
-<div class="current-cards"></div>
-<hr />
+
+</div>
+<div class="scores">
+<p> Personal score: <div class="current-score"></div>Team score: <div class="team-score"></div>Opponent Team score: <div class="oteam-score"></div>
+<div class="current-cards"></div></p>
+</div>
+
 <div id="story-text">
 <p>The game started. In many ways it was a offshoot of the very common Wulf card game where you received two random cards, bet based on their value and then everyone match their two cards up against a open set of 5 cards on the table. Best combination wins.</p>
 
@@ -569,7 +588,7 @@
 
 <p>I was glad i had Ziggy by my side. I glanced toward her and it seemed she had something on her mind, her brow furrowed. I&#39;d rarely seen her with a serious face on, but it seemed she was in her element now.</p>
 </div>
-<hr />
+<div id="tail">
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1">The Game - Ship rules - Round 1</button>
@@ -598,7 +617,7 @@
 <button class="btn btn-default hidden" id="toziggy">Report to Ziggys quarters</button>
 <button class="btn btn-default hidden" id="eaten">continue</button>
 <!--GAMESCORES HERE? -->
-
+</div>
 
 <div class="round1 hidden"><p><strong>The Game - Ship rules - Round 1</strong></p>
 

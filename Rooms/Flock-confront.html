@@ -21,34 +21,138 @@
       $('#button-1').on('click', function(e) {
         // change state here
 	        // end by using lib.goTo
-		 
-		 
-		if (_.contains(state.events, "forbid")) {
-		lib.dialogue(e, "confront")
+		$("#agree").removeClass("hidden")
+		$("#agree").removeClass("hidden")
+		$("#compromise").removeClass("hidden")
+		$("#button-1").addClass("hidden")
+		$("#button-2").addClass("hidden")
+		$("#button-3").addClass("hidden")		
+		if (_.contains(state.events, "ignore")) {
+		lib.dialogue(e, "confront2")
 
 		}
-		else if (_.contains(state.events, "limmit")) {
+		else {
 		lib.dialogue(e, "confront")
+		$("#deny").removeClass("hidden")
+		$("#EatArn").removeClass("hidden")
+		}
+	 })
+			
+     
+	   $('#button-2').on('click', function(e) {
+        // change state here
+		// end by using lib.goTo
+		$("#agree").removeClass("hidden")
+		$("#compromise").removeClass("hidden")
+		$("#button-1").addClass("hidden")
+		$("#button-2").addClass("hidden")
+        if (_.contains(state.events, "ignore")) {
+		lib.dialogue(e, "drop2");
+
+		}
+		else {
+		lib.dialogue(e, "drop");
 	
 		}
-		else if (_.contains(state.events, "ignore")) {
-		lib.dialogue(e, "confront2")
-	
-	}
-		 //lib.goTo('Page15.html')
       })
-	   $('#button-2').on('click', function() {
-        // change state here
-		        // end by using lib.goTo
-        lib.goTo('Page15b.html')
-      })
-	   $('#button-3').on('click', function() {
+	   $('#button-3').on('click', function(e) {
 	   state.raptorians -= 2;
         // change state here
 	        // end by using lib.goTo
-        lib.goTo('Page15c.html')
+        lib.dialogue(e, "lessons")
+		$("#button-1").addClass("hidden")
+		$("#button-2").addClass("hidden")
+		$("#button-3").addClass("hidden")
+		$("#normal").removeClass("hidden")		
       })
-	  	
+	  
+	   $('#agree').on('click', function(e) {
+	   state.raptorians -= 2;
+        // change state here
+	        // end by using lib.goTo
+        lib.dialogue(e, "agree")
+		$("#agree").addClass("hidden")
+		$("#Game").removeClass("hidden")
+		$("#EatArn").addClass("hidden")
+		$("#deny").addClass("hidden")
+		$("#compromise").addClass("hidden")
+      })
+	  $('#compromise').on('click', function(e) {
+	    state.crewMorale -= 1;
+		state.events.push("flockCompromise");
+		state.events.push("gamblingForbid");
+        // change state here
+	        // end by using lib.goTo
+        lib.dialogue(e, "compromise")
+		$("#compromise").addClass("hidden")
+		$("#EatArn").addClass("hidden")
+		$("#agree").addClass("hidden")
+		$("#deny").addClass("hidden")
+		$("#normal").removeClass("hidden")		
+      })
+	  	$('#compromise2').on('click', function(e) {
+	    state.crewMorale += 1;
+		state.events.push("flockCompromise");
+		state.events.push("gamblingForbid");
+        // change state here
+	        // end by using lib.goTo
+        lib.dialogue(e, "compromise2")
+		$("#compromise2").addClass("hidden")
+		$("#agree").addClass("hidden")
+		$("#deny").addClass("hidden")
+		$("#normal").removeClass("hidden")		
+      })
+	   $('#deny').on('click', function(e) {
+        // change state here
+		state.crewMorale -= 2;
+		state.events.push("flockForbid");
+		state.events.push("gamblingForbid");
+	        // end by using lib.goTo
+			
+		if (_.contains(state.events, "eatArn")) {
+		lib.dialogue(e, "forbidArn")
+	
+		}
+		else {
+		lib.dialogue(e, "forbidNoarn")
+		
+		}
+		$("#deny").addClass("hidden")
+		$("#compromise").addClass("hidden")
+		$("#compromise2").addClass("hidden")
+		$("#normal").removeClass("hidden")
+		$("#agree").addClass("hidden")
+		$("#EatArn").addClass("hidden")			
+      })
+	  
+	  $('#EatArn').on('click', function(e) {
+        // change state here
+		if (_.contains(state.events, "forbid")) {
+		state.crewMorale -= 2;
+		}
+		else {
+		state.crewMorale -= 3;
+		}
+		state.events.push("eatArn");
+	        // end by using lib.goTo
+        lib.dialogue(e, "EatArn")
+		$("#compromise").addClass("hidden")
+		$("#EatArn").addClass("hidden")
+		$("#agree").addClass("hidden")
+		$("#deny").addClass("hidden")
+		$("#deny").removeClass("hidden")
+		$("#compromise2").removeClass("hidden")		
+      })
+	    $('#Game').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('TheGame.html')
+      })
+	  $('#normal').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('Page18.html')
+      })
 	
     })
   </script>
@@ -59,8 +163,9 @@
 
 </head>
 <body>
-<h1>Admiral Avolc</h1>
-<hr />
+<div id="head">
+<h1>To bet or not to bet</h1>
+</div>
 
 <div id="story-text">
 
@@ -100,7 +205,7 @@
 <span class="hidden" id="nodeepen">
 <p>I did not allow deepenings for a reason. Im not sure whos idea it was to think i'd somehow approve of this without my asking.</p>
 </span>
-<hr />
+
 
 <script>
 	if (state.injuries > 0) {
@@ -132,10 +237,18 @@
 		}
 </script>
 </div>
+<div id="tail">
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1"> Confront Arn in private</button>
 <button class="btn btn-default" id="button-2"> Drop in on a Game unannounced</button>
 <button class="btn btn-default hidden" id="button-3"> Ask Ziggy to give Raptorians gambling lessons. </button>
+<button class="btn btn-warning hidden" id="agree"> Agree to play</button>
+<button class="btn btn-default hidden" id="compromise"> No, we'll compromise here and now. </button>
+<button class="btn btn-default hidden" id="compromise2"> Restrictions </button>
+<button class="btn btn-warning hidden" id="deny"> No more games!</button>
+<button class="btn btn-warning hidden" id="EatArn"> Eat Arn </button>
+<button class="btn btn-default hidden" id="normal"> Getting things back to normal</button>
+<button class="btn btn-default hidden" id="Game">The Game</button>
 
 <script>
  if (_.contains(state.events, "ignore")) {
@@ -144,7 +257,7 @@
 	}
 </script>
 
-
+</div>
 <div class="confront hidden"><p><strong>Confront Arn in private</strong></p>
 <p>Arn was not surprised to see me. He welcomed me cordially and with suitable respect and bade me sit down with him over a drink. It was slightly off-putting, considering the somewhat rugged nature I&#39;ve come to associate him with, to see him follow protocol and act gentleawely.</p>
 
@@ -190,6 +303,40 @@
 
 <p>Or perhaps i&#39;d teach them all a lesson in their own turf. Its suited me to play ignorant of this game and its rules so far.</p>
 
+</div>
+
+<div class="confront2 hidden"><p><strong>Confront Arn in private</strong></p>
+<p>I&#39;ve decided to go see Arn and hear from him what all the fuss was about.</p>
+
+<p>Surely he had things under control, didnt he?</p>
+
+<p>He didnt quite expect to see me, actually being in the middle of a gambling game at my arrival. Which at my annoyance he did not immediately abandon until i started to look peeved.</p>
+
+<p>We moved a way off to talk.</p>
+
+<p>&quot;Officer, whats this about me loosing crew to your games?&quot; I began, sharp in tone.</p>
+
+<p>&quot;They are not my games captain!&quot;</p>
+
+<p>&quot;Well someone has to be in control of it. You cant just let all my Raptorians and sailors get eaten before we even arrive at the Sea of fangs.&quot;</p>
+
+<p>&quot;I understand captain... There has been some unfortunate upsets lately. I see how why you would be concerned.&quot; Arn made a placating gesture. It annoyed me further.</p>
+
+<p>&quot;As i have the right to be. Why should i not close it down?&quot;</p>
+
+<p>&quot;The games have become a familiar pass time for this crew, it was played long before your time on this ship and our late captain turned a blind eye too it. The mix of chance and skill mean anyone can pick up and play it and the risks involved are what make it all the more exciting. Sailors will always gamble, The Game gives them an outlet for that with universally agreed upon rules so there&#39;s no grudges and bickering. Is that not reasonable?&quot;</p>
+
+<p>&quot;I do not fully agree with these &quot;Risks&quot;. Attrition is normal, yes, but encouraging it with this kind of gambling can only lead to trouble. Especially if it antagonizes the Raptorians!&quot;</p>
+
+<p>&quot;No one has forced the Raptorians to play. They&#39;re not bad gamblers, some have just taken too steep risks and paid for it. Besides, have you even tried the game, you&#39;d see its quite fair if you did.&quot;</p>
+
+<p>&quot;Its not about whether its fair or not, i have to minimize the &#39;risks&#39; to the crew so we have the highest likelihood of success on our journey.&quot; I snapped.</p>
+
+<p>&quot;Its in your right to command the games stopped once and for all, of course. Or charge us to no longer allow high-stakes that lead to loss of crew. But im telling you now, the crew will feel it unfair.&quot;&nbsp;</p>
+
+<p>&quot;Its your job as first-officer to control the crew.&quot;</p>
+
+<p>&quot;And its what i&#39;ve been doing!&quot; Arn sighed then and crossed his arms and sighed. &quot;I figure theres one way we can settle this which will keep the crew happy, no matter the results. Play me for it in a game. If you win, we&#39;ll back down or do whatever you command. Thats properly high stakes, is it not? The crew would accept and even welcome that. Perhaps you&#39;ll even like it and start to join us more!&quot;</p>
 </div>
 
 <div class="drop hidden"><p><strong>Drop in on a Game</strong></p>
@@ -257,49 +404,8 @@
 
 <p>Keeper was a Wulf true to his kins wily ways. Issuing a challenge like that. Things had reached their conclusion. They now waited my decision. Would i stay the course and forbid the games or perhaps i&#39;d teach them all a lesson in their own turf. Its suited me to play ignorant of this game and its rules so far.</p>
 </div>
-<div class="lessons hidden"><p><strong>Gambling lessons</strong></p>
-<p>The Raptorians got themselves in this mess and they&#39;ll have to get themselves out of it. I cant go interfering and micro-managing individual gambling debts, what kind of captain would that make me?</p>
 
-<p>No, since i&#39;ve allowed the games to take place i cant undo it because someone complains. </p>
-
-<p>I can however assign Ziggy to help them improve their play. Or better yet, refrain from getting further in debt!</p>
-</div>
-
-<div class="confront2 hidden"><p><strong>Confront Arn in private</strong></p>
-<p>I&#39;ve decided to go see Arn and hear from him what all the fuss was about.</p>
-
-<p>Surely he had things under control, didnt he?</p>
-
-<p>He didnt quite expect to see me, actually being in the middle of a gambling game at my arrival. Which at my annoyance he did not immediately abandon until i started to look peeved.</p>
-
-<p>We moved a way off to talk.</p>
-
-<p>&quot;Officer, whats this about me loosing crew to your games?&quot; I began, sharp in tone.</p>
-
-<p>&quot;They are not my games captain!&quot;</p>
-
-<p>&quot;Well someone has to be in control of it. You cant just let all my Raptorians and sailors get eaten before we even arrive at the Sea of fangs.&quot;</p>
-
-<p>&quot;I understand captain... There has been some unfortunate upsets lately. I see how why you would be concerned.&quot; Arn made a placating gesture. It annoyed me further.</p>
-
-<p>&quot;As i have the right to be. Why should i not close it down?&quot;</p>
-
-<p>&quot;The games have become a familiar pass time for this crew, it was played long before your time on this ship and our late captain turned a blind eye too it. The mix of chance and skill mean anyone can pick up and play it and the risks involved are what make it all the more exciting. Sailors will always gamble, The Game gives them an outlet for that with universally agreed upon rules so there&#39;s no grudges and bickering. Is that not reasonable?&quot;</p>
-
-<p>&quot;I do not fully agree with these &quot;Risks&quot;. Attrition is normal, yes, but encouraging it with this kind of gambling can only lead to trouble. Especially if it antagonizes the Raptorians!&quot;</p>
-
-<p>&quot;No one has forced the Raptorians to play. They&#39;re not bad gamblers, some have just taken too steep risks and paid for it. Besides, have you even tried the game, you&#39;d see its quite fair if you did.&quot;</p>
-
-<p>&quot;Its not about whether its fair or not, i have to minimize the &#39;risks&#39; to the crew so we have the highest likelihood of success on our journey.&quot; I snapped.</p>
-
-<p>&quot;Its in your right to command the games stopped once and for all, of course. Or charge us to no longer allow high-stakes that lead to loss of crew. But im telling you now, the crew will feel it unfair.&quot;&nbsp;</p>
-
-<p>&quot;Its your job as first-officer to control the crew.&quot;</p>
-
-<p>&quot;And its what i&#39;ve been doing!&quot; Arn sighed then and crossed his arms and sighed. &quot;I figure theres one way we can settle this which will keep the crew happy, no matter the results. Play me for it in a game. If you win, we&#39;ll back down or do whatever you command. Thats properly high stakes, is it not? The crew would accept and even welcome that. Perhaps you&#39;ll even like it and start to join us more!&quot;</p>
-</div>
-
-<div class="limmit hidden"><p><strong>Limmit high-stakes</strong></p>
+<div class="drop2 hidden"><p><strong>Drop in on a Game</strong></p>
 <p>Evoc seemed genuinely concerned about this. I dont know if its because he&#39;s deeply in debt himself or if he really thinks the Raptorians will take matters into their own paws eventually, which is a scary thought.</p>
 
 <p>I cant and wont forbid the games but i can put a lid on the dangerous escalation of debts leading to crew members eating one another unnecessarily much.</p>
@@ -317,6 +423,114 @@
 <p>&quot;Its in your right to command the games stopped once and for all, of course. Or charge us to no longer allow high-stakes that lead to loss of crew. But im telling you now, the crew will feel it unfair.&quot; He tapped his foot and then gestured toward a table.</p>
 
 <p>&quot;Play me for it in a game. If you win, we&#39;ll back down or do whatever you command. Thats properly high stakes, is it not? The crew would accept and even welcome that. If anything atleast to try it out before you pass judgment.&quot;</p>
+</div>
+
+
+<div class="lessons hidden"><p><strong>Gambling lessons</strong></p>
+<p>The Raptorians got themselves in this mess and they&#39;ll have to get themselves out of it. I cant go interfering and micro-managing individual gambling debts, what kind of captain would that make me?</p>
+
+<p>No, since i&#39;ve allowed the games to take place i cant undo it because someone complains. </p>
+
+<p>I can however assign Ziggy to help them improve their play. Or better yet, refrain from getting further in debt!</p>
+</div>
+
+<div class="agree hidden"><p><strong>Agree to play</strong></p>
+<p>&quot;Very well. I&#39;ll play your game and we&#39;ll see what happens.&quot; I sighed and crossed my arms.&nbsp;</p>
+
+<p>I was no fool, I knew this was what they wanted. This way they had several chances of winning me over. Either by me seeing the &#39;fun&#39; of this game, or them physically winning the rights from me to continue their gambling.</p>
+
+<p>I ofcourse had no real obligation to follow any results of this game. But once committed, what kind of captain would I be if I went back on my word.</p>
+
+<p>Arn was pleased. He quickly got us setup at a table with cards at the ready.</p>
+
+<p>&quot;Alright captain. An ideal game is for four players. To make things fair and represent our respective agendas, why dont you pick a player partner up with you.&quot;</p>
+
+<p>I didnt even have to look around, Ziggy who had been hovering close by was immediately at my side.</p>
+
+<p>&quot;Let me do this &#39;cap!&quot;</p>
+
+<p>I nodded, she was as good as any. The cadets were the only allies I could truly trust anyway.</p>
+
+<p>By the time we were all seated, a minor audience had gathered. They tried to be subtle and out of the way, but none could hide their curiosity.</p>
+
+<p>At the table was me, Arn, Ziggy and Keeper with his prominent and occasionally quietly gworbling gut. Raptorians evidently took a long time to process, even for Wulfs.&nbsp;</p>
+
+<p>&quot;We&#39;ll be playing Ships rules then.&quot; Arn announced. This got a nod from Keeper and a glance and shrug from Ziggy.</p>
+
+<p> As no one seemed to have objections I agreed too </p>
+</div>
+
+<div class="compromise hidden"><p><strong>Compromise</strong></p>
+<p>&quot;You&#39;ve made your point well enough Arn&quot; I had to concede in the end. &quot;I understand this passtime of yours and the crews have become important for you.&quot; I sighed and held up a paw before Arn could speak.</p>
+
+<p>&quot;But the fact still remains that you all went behind my back with this. You can keep your games, but all further gambling with currency and debts are over. Likewise all current standing debts people might have are wiped!&quot; Arn was about to protest, i raised my voice further and put some steel behind it, not giving him a chance.&nbsp;</p>
+
+<p>&quot;These are my final words on this! And i will make sure they&#39;re followed through! I catch any word, hint or sniff of anyone disobeying these restrictions you can count on YOU and the party responsible getting to get a visit to the captains quarters. Though i promise you, you&#39;ll be riding on my hips when going there!&quot;</p>
+
+<p>Arn settled back down and only gave a curt nod. It was a loss for him, there&#39;d no doubt be quite a bit of grumbling from the crew. But this way i&#39;d ensure we stayed intact as a crew.</p>
+</div>
+
+<div class="EatArn hidden"><p><strong>Eating Arn</strong></p>
+<p>I had listened to him plead his case, but i had sensed no remorse in his actions, only excuses. His final act of inviting me to be part of the gambling was the last straw of it. He probably thought he had been successfully convincing&nbsp; as i smiled at him, but that quickly changed as i shook my head and pulled out a piece of paper and placed it on the table.</p>
+
+<p>&quot;I trust you&#39;ll be able to sign this one. It&#39;ll look good on your record if you sign your own waiver.&quot;</p>
+
+<p>Arn looked flabbergasted to say the least. It might not have been the kindest way to deliver the news, just when they had their hopes up.</p>
+
+<p>The first officers duty was to take care and sign all paperwork involving the crew. Each, promotion, demotion or loss in the act of duty had a respective record tied to its action. For most cases a simple scribbled entry into the crew manifest. But for demotions to food, a piece of paper called &quot;The waiver&quot; was involved. It was signed by the demoted or the First officer if that was not possible.&nbsp;</p>
+
+<p>Arn stared at the waiver, a deflated look to him with his shoulders and wings sagging. I chose to say nothing, because nothing needed to be said. I rose from the chair and begab ti unbuckle my belt, it would be getting in the way soon.</p>
+
+<p>&quot;I can sign it for you...&quot;&nbsp; I stated calmly. That got his attention and he almost jumped in his chair. He gave me a look, blinked at my unfastening of the belt, stared at the waiver and then looked around him in the room as if to find salvation.</p>
+
+<p>&quot;But.. C-captain!&quot; He stumbled out of his chair as i approached him. No doubt things were moving too fast for him, but thats the way i preferred it done. Atleast with officers.</p>
+
+<p>The decision to devour the First-mate of the Attentive might be a controversial decision. Usually the First-mate and the captain are who stand closest together on a ship and go down together. As he unagreeable kicked his way down my gullet, i could at least be sure which of us would be going down into who and who&#39;d be doing the standing.</p>
+
+<p>Getting my jaws around his head was not hard, but as he had not agreed with previous issues, he did not much agree on adding himself to my figure. We scuffled for a while, he might even given me a bruise, but a male is as usual no match to the bulk and weight of a female and before long his kicking were fruitless. I tried to keep it quick and formal but as we were alone in his cabin, it was hard to resist not letting himself tire himself out first pedaling at the air. My habit of giving a dominant purr while feeding quieted him down however and the rest of him soon filled my stomach up nice and round.</p>
+
+<p>I signed the waiver of his demotion with his and my name and made my way back.</p>
+
+<p>Im unsure whether the baffled looks i got was because of the angry jostling and unbecoming muffled shouting of Arn or the fact that they were even surprised it came to this. Direct disobedience has its price, we have stern rules in the Admiralty for a good reason.</p>
+
+<p>Still, Arns words gave me some thought. Sailors like to gamble, perhaps there was something in letting them keep their game but with restrictions. At least like this i had demonstrated with high-stakes gambling will lead you too if you start gambling with the rules.</p>
+</div>
+
+<div class="compromise2 hidden"><p><strong>Restrictions</strong></p>
+<p> I understood this passtime of the crew had become important. </p>
+
+<p> They can keep their game, ban one type of game and another will take its place anyway. But all further gambling with currency and debts are over. Likewise all current standing debts people might have are wiped!</p>
+
+<p>These would be my final words on this! And I made it known i would make sure they&#39;re followed through! I catch any word, hint or sniff of anyone disobeying these restrictions the party responsible would be getting an invitation to visit to the captains quarters to join Arn.</p>
+
+</div>
+
+<div class="forbidArn hidden"><p><strong>Forbidding the Games</strong></p>
+
+<p>We are the Admiralty, not some salty crew of fray-furred fishermen! And while on an Admiralty ship we follow admiralty rules. They were set for a reason!</p>
+
+<p>I let the cadets call for a quick general assembly on the main deck where i announced the declaration that anyone caught gambling would get a strike on their record. Two strikes and they got to join Arn. If they were caught gambling for money or debts, that was an automatic two strikes.</p>
+
+<p>I told them that while i hoped there&#39;d be no problem following a simple rule i&#39;d have no problem taking care of the ones that couldnt.</p>
+
+<p>A new First-officer had to be chosen, eventually. For now Mid-officer Mirr was temporarily promoted to take over some of the crew decisions and duties Arn had, pending full promotion if she proved up for the task. She has been managing shifts and other crew arrangments without a single complaint from anyone so far. And despite being somewhat petite her crisp clear voice when relaying commands had a ring of authority to it.</p>
+
+<p>For what its worth, Arn was a tough piece of seafluff to digest, kept me up most of the following night. But in the end his disobedience ended with a wet belch.</p>
+</div>
+
+<div class="forbidNoarn hidden"><p><strong>Forbidding the Games</strong></p>
+
+<p>We are the Admiralty, not some salty crew of fray-furred fishermen! And while on an Admiralty ship we follow admiralty rules. They were set for a reason!</p>
+
+<p>My mind was set, the crew may crumble but no amount of protests would sway my oppinion about this. I let the responsible know that they were being let off easy for this. I let the cadets call for a quick general assembly on the main deck where i announced the declaration that anyone caught gambling would get a strike on their record. If they were caught gambling for money or debts, that was an automatic two strikes.</p>
+
+<p>I told them that while i hoped there&#39;d be no problem following a simple rule i&#39;d have no problem taking care of the ones that couldnt.</p>
+
+<p>I was tempted to choose a new First-officer because of this whole event. But we could not afford the potential turbulence of such a decision while out at sea.</p>
+
+<p>For what its worth, Arn bowed his head to my orders and obeyed, offering no further resistance. But the cleft between us had grown even further.</p>
+</div>
+
 </div>
 
 </body>
