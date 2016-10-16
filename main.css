@@ -41,7 +41,7 @@ float:right;
 	height: 286px;
 	width: 200px;
 	cursor: pointer;
-	position: relative;
+	position: fixed;
 	text-align: center;
 	bottom: 200px;
 	border: 6px solid #996633;
