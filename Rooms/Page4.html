@@ -28,15 +28,37 @@
         // end by using lib.goTo
         lib.goTo('Page5.html')
       })
-		
+	  /*
+		  $('#test').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+		    
+        	$("#test").addClass("hidden")
+			cadetIndex = 1;
+			showNextDialogue();
+			var button = $(' <button id=Ziggy>  </button> ')
+			
+			button.on('click', function() {
+			
+			$(this).removeClass("new");
+			$(this).siblings().attr('disabled', true);
+			cadetIndex = 0;
+			showNextDialogue();
+			});
+			button.popover(options)
+      })
+		*/
     })
-		state.Glint.status = "available"
-		state.Valnos.status = "available"
-		state.Ziggy.status = "available"
+
   </script>
   
   <style>
     /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	#story-text span {
+	 text-decoration: underline;
+	 color: black;
+	 
+	}
   </style>
 
 </head>
@@ -52,11 +74,11 @@
 
 <p>Uneventful days have at least given me the chance to further socialize and I am starting to grow familiar with some of the crew, my attentive competitive cadets most of all. They have given me some interesting academy-younglings on this voyage, i was twice their age when i finnished the Academy. They are eager to please and impress and have become something of my eyes and ears about the goings on in the crew.</p>
 
-<p><em>Cadet Glint, of the three, she's the most stoic and mature. Proud of her background she'll happilly tell you about her prestigious family. But i have seen hints of mischievousness and ambition lurking under the surface, not bad officer traits, but for better or worse she seems a bit of a stickler for the rules. She&rsquo;s taken to the ships Soft-spoken and the Awe&rsquo;s who attend her services. Say what you will of the new religion, its here to stay and the following is larger then I expected. Im told a quarter the awes on the ship are followers and regularly attend service.</em></p>
+<p><em><b><span>Cadet Glint</span></b>, of the three, she's the most stoic and mature. Proud of her background she'll happilly tell you about her prestigious family. But i have seen hints of mischievousness and ambition lurking under the surface, not bad officer traits, but for better or worse she seems a bit of a stickler for the rules. She&rsquo;s taken to the ships Soft-spoken and the Awe&rsquo;s who attend her services. Say what you will of the new religion, its here to stay and the following is larger then I expected. Im told a quarter the awes on the ship are followers and regularly attend service.</em></p>
 
-<p><em>Cadet Valnos seems Initially a quiet and wary sort. I first worried if he had the nerve to serve on a real ship or was of any officer material at all for that matter, he just seemed to timid to ever have graduated from the tough demands of the academy. But he hides an inquisitive kind of bravery in him that surprised me. He may seem easily cowed and intimidated but he&rsquo;s got the fluff to stick his snout into things nevertheless, is observant and has a knack to move about unnoticed and ignored. He's also a little fountain of knowledge and happy to share it and has a knack for book-keeping and writing. Acctually seems to enjoy the work. </em></p>
+<p><em><b><span>Cadet Valnos</span></b> seems Initially a quiet and wary sort. I first worried if he had the nerve to serve on a real ship or was of any officer material at all for that matter, he just seemed to timid to ever have graduated from the tough demands of the academy. But he hides an inquisitive kind of bravery in him that surprised me. He may seem easily cowed and intimidated but he&rsquo;s got the fluff to stick his snout into things nevertheless, is observant and has a knack to move about unnoticed and ignored. He's also a little fountain of knowledge and happy to share it and has a knack for book-keeping and writing. Acctually seems to enjoy the work. </em></p>
 
-<p><em>Cadet Ziggy might be Valnoses opposite, if you don&#39;t see her, you can most certainly hear her. If there&rsquo;s raucous laughter and merry on-goings somewhere on the ship, you&rsquo;ll find her in the center of it all. Wild and brash, she has a swashbucklers way about her and have gotten into the good graces of the toughest lot on the ship. Even the Raptorians seem to enjoy her presence. Only one she doesent seem to get along with is Glint. Her familiarity with the crew is certainly useful, she has insight in the ongoings. She's tardy and sometimes mouthy, but has prooven herself having her heart in the right place.</em></p>
+<p><em><b><span>Cadet Ziggy</span></b> might be Valnoses opposite, if you don&#39;t see her, you can most certainly hear her. If there&rsquo;s raucous laughter and merry on-goings somewhere on the ship, you&rsquo;ll find her in the center of it all. Wild and brash, she has a swashbucklers way about her and have gotten into the good graces of the toughest lot on the ship. Even the Raptorians seem to enjoy her presence. Only one she doesent seem to get along with is Glint. Her familiarity with the crew is certainly useful, she has insight in the ongoings. She's tardy and sometimes mouthy, but has prooven herself having her heart in the right place.</em></p>
 
 <p>The three of them seem to get along most of the time, at least so far. Its still early and their days in the academy together to bind them. But im sure they are all aware that its rare for more then one out of three academy cadets in a batch to advance into true officers ranks on their first journey.</p>
 </div>
@@ -65,6 +87,7 @@
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1"> Continue </button>
+
 <span id="cadetButtons"> </span>
 <script>
 cadet[0].banter = [

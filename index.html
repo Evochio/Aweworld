@@ -13,10 +13,14 @@
   <link rel="stylesheet" href="bootstrap-theme.min.css">
   <script src="main.js"></script>
   <style>
-
+#test {
+ right: 50px;
+}
 </style>
   <script>
+state.Glint.status = 'available';
  	    $(document).ready(function() {
+		$("#Glint").addClass("hidden")
 	  $('#button-1').on('click', function() {
 	 
         // change state here
@@ -32,6 +36,17 @@
         lib.goTo('Rooms/Ship_crew.html')
 		
       })
+	  $('#test').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+		    
+        	$("#test").addClass("hidden")
+			$("#Glint").removeClass("hidden")
+			cadetIndex = 1;
+			showNextDialogue();
+	
+      })
+	  
 	 })
   </script>
   
@@ -57,8 +72,16 @@ As a player you will be guiding her actions and influencing her choices, help he
 
 <button class="btn btn-default" id="button-1">Begin</button>
 <button class="btn btn-default" id="button-2">Skip Prologue</button>
+<button class="btn btn-default" id="test"></button>
+<span id="cadetButtons"> </span>
 
+<script>
+cadet[1].banter = [
+    { target: '#Glint', text: 'Dont mind me', imageClass: "neutral"},
+    { target: '#Glint', text: 'We are just testing some buttons to enhance the experience', imageClass: "happy"},
+	 { target: '#Glint', text: 'The tale will soon be ready for full perusing', imageClass: "smug"}
+];
+</script>
 </div>
-
 </body>
 </html>

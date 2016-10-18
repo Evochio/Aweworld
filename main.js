@@ -38,7 +38,49 @@ var valnos = {};
 var cadet = [ziggy, glint, valnos];
 var createCadetButtons = function() {
 	
+	// Thumbnail system
+	if (state.Glint.status == 'available') {
+		var button = $(' <button id=GThumb>  </button> ')
+		$('#cadetButtons').append(button)
+		button.on('click', function() {
+			$("#Gthumb").addClass("hidden")
+        	$("#ZThumb, #GThumb, #VThumb").addClass("hidden")
+			$("#Ziggy, #Glint, #Valnos").removeClass("hidden")
+			cadetIndex = 1;
+			showNextDialogue();
 	
+      });
+	  
+	}
+	if (state.Ziggy.status == 'available') {
+		var button = $(' <button id=ZThumb>  </button> ')
+		$('#cadetButtons').append(button)
+		button.on('click', function() {
+			$("#Zthumb").addClass("hidden")
+        	$("#ZThumb, #GThumb, #VThumb").addClass("hidden")
+			$("#Ziggy, #Glint, #Valnos").removeClass("hidden")
+			cadetIndex = 0;
+			showNextDialogue();
+	
+      });
+	  
+	}
+	if (state.Valnos.status == 'available') {
+		var button = $(' <button id=VThumb>  </button> ')
+		$('#cadetButtons').append(button)
+		button.on('click', function() {
+			$("#Vthumb").addClass("hidden")
+        	$("#ZThumb, #GThumb, #VThumb").addClass("hidden")
+			$("#Ziggy, #Glint, #Valnos").removeClass("hidden")
+			cadetIndex = 2;
+			showNextDialogue();
+	
+      });
+	  
+	}
+	
+	
+	// .......
 	if (state.Glint.status == 'available') {
 		var button = $(' <button id=Glint>  </button> ')
 		$('#cadetButtons').append(button)
@@ -120,6 +162,9 @@ var showNextDialogue = function () {
     if(i >= banter.length) {
         // reset i, stop the popover from being shown
         i = 0;
+		$('#ZThumb, #GThumb, #VThumb').removeClass("hidden");
+		$('#ZThumb, #GThumb, #VThumb').attr('disabled', false);
+		$('#Ziggy, #Glint, #Valnos').addClass("hidden");
         $('#Ziggy, #Glint, #Valnos').attr('disabled', false);
         return;
     }
@@ -130,11 +175,14 @@ var showNextDialogue = function () {
 	}
     i += 1;
 };
+
+/*
 var newDialogue = function () {
 $("#Ziggy").addClass("new")
 $("#Glint").addClass("new")
 $("#Valnos").addClass("new")
 }
+*/
 // Old button system. 
 /*
 
@@ -280,6 +328,6 @@ $(document).ready(function() {
  createCadetButtons();
  
   console.log('Current state:', JSON.stringify(state, null, '\t'))
-  
+  $('#Ziggy, #Glint, #Valnos').addClass("hidden");
   ////////////////////////////
 });

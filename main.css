@@ -3,15 +3,47 @@
 float:right;
 }
 
-#ValnosThumb, #ZiggyThumb, #GlintThumb{
+#Vthumb, #Zthumb, #Gthumb{
 float:right;
 }
-#ValnosThumb {
-	background-image: url(/Rooms/Images/Valnosface.png);
-	height: 50px;
-	width: 200px;	
+#VThumb {
+	top: 25px;
+	right: 40px;
+	background-image: url(/Rooms/Images/valnosthumb.png);
+	width: 200px;
+	height: 45px;
+	float: right;
+	border: 1px solid #996633;
+	border-radius: 5px;
+	position: relative;
+	cursor: pointer;
+	
 }
-
+#GThumb {
+	top: 25px;
+	right: 40px;
+	background-image: url(/Rooms/Images/glintthumb.png);
+	width: 200px;
+	height: 45px;
+	float: right;
+	border: 1px solid #996633;
+	border-radius: 5px;
+	cursor: pointer;
+	position: relative;
+	
+}
+#ZThumb {
+	top: 25px;
+	right: 40px;
+	background-image: url(/Rooms/Images/ziggythumb.png);
+	width: 200px;
+	height: 45px;
+	float: right;
+	border: 1px solid #996633;
+	border-radius: 5px;
+	position: relative;
+	cursor: pointer;
+}
 
 #Valnos {
 	background-image: url(/Rooms/Images/Valnosface5.png);
@@ -24,6 +56,7 @@ float:right;
 	border: 6px solid #996633;
 	border-radius: 10px;
 }
+
 #Glint {
 	background-image: url(/Rooms/Images/GlintFace2.png);
 	height: 286px;
@@ -41,7 +74,7 @@ float:right;
 	height: 286px;
 	width: 200px;
 	cursor: pointer;
-	position: fixed;
+	position: relative;
 	text-align: center;
 	bottom: 200px;
 	border: 6px solid #996633;
@@ -49,22 +82,19 @@ float:right;
 }
 img {
 	margin-left: 40px;
-	margin-bottom: 100px;
+	margin-bottom: 50px;
 	float: left;
 	bottom: 10%;
 	border: 6px solid #331a00;
 	
 	border-radius: 20px;
+	Width: 50%
 }
 html {
 
 background-color: #331a00;
 }
 
-#html {
-
-background-color: #331a00;
-}
 
 #tail .btn {
 	top: 25px;
@@ -129,7 +159,7 @@ position: absolute;
 	text-align: justify;
 	
 }
-#cadetbuttons {
+#cadetButtons {
 	
 }
 
@@ -141,11 +171,7 @@ position: absolute;
 	background-position: 200px 286px;
 }
 /* If you want text inside shit */
-#Glint span {
-	position: absolute;
-	bottom: -20px;
-	
-}
+
 .blush {
 	background-position: 600px 0px; 
 		
