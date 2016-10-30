@@ -163,6 +163,7 @@ var showNextDialogue = function () {
         // reset i, stop the popover from being shown
         i = 0;
 		$('#ZThumb, #GThumb, #VThumb').removeClass("hidden");
+		$('#ZThumb, #GThumb, #VThumb').removeClass("new");
 		$('#ZThumb, #GThumb, #VThumb').attr('disabled', false);
 		$('#Ziggy, #Glint, #Valnos').addClass("hidden");
         $('#Ziggy, #Glint, #Valnos').attr('disabled', false);
@@ -176,13 +177,13 @@ var showNextDialogue = function () {
     i += 1;
 };
 
-/*
+
 var newDialogue = function () {
-$("#Ziggy").addClass("new")
-$("#Glint").addClass("new")
-$("#Valnos").addClass("new")
+$("#ZThumb").addClass("new")
+$("#GThumb").addClass("new")
+$("#VThumb").addClass("new")
 }
-*/
+
 // Old button system. 
 /*
 
@@ -326,7 +327,7 @@ $(document).ready(function() {
   // For example, code that tests the state to see if morale is low enough to redirect you to an ending.
 // lib.makeCadetButtons();
  createCadetButtons();
- 
+ $("#VThumb").addClass("new")
   console.log('Current state:', JSON.stringify(state, null, '\t'))
   $('#Ziggy, #Glint, #Valnos').addClass("hidden");
   ////////////////////////////

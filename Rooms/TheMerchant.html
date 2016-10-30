@@ -14,7 +14,9 @@
   <script src="/main.js"></script>
 
   <script>
-
+		state.Glint.status = 'available';
+		state.Valnos.status = 'available';
+		state.Ziggy.status = 'available';
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
@@ -124,9 +126,9 @@
         // change state here
 		lib.dialogue(e, "digested")
 		$("#digested").addClass("hidden");
-		$("#Valnos").addClass("new");
-		$("#Glint").addClass("new");
-		$("#Ziggy").addClass("new");
+		state.Glint.status = 'available';
+		state.Valnos.status = 'available';
+		state.Ziggy.status = 'available';
 		$("#restart").removeClass("hidden");
 		cadet[0].banter = [
     { target: '#Ziggy', text: 'Whoa! C-captain?', imageClass: "surprised"},
@@ -193,13 +195,18 @@ cadet[1].banter = [
         // end by using lib.goTo
         lib.goTo('Storm.html')
       })
-	  
+	  	   $('#restart').on('click', function(e) {
+       location.reload(true)
+		
+    })
 	
     })
   </script> 
 
   <style>
     /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	
+	
   </style>
 
 </head>
@@ -252,6 +259,7 @@ cadet[1].banter = [
 
 <button class="btn btn-default hidden" id="button-12"> Storm </button>
 <button class="btn btn-default hidden" id="button-13"> Continue </button>
+<button class="btn btn-default hidden" id="restart"> Restart Event </button>
 
 
 <span id="cadetButtons"> </span>
@@ -437,7 +445,7 @@ cadet[1].banter = [
 <p>And so she did, using every bit of stubbornness and flexible Awe anatomy to her advantage, the youngling swallowed up Admiral, demoted to Cadet, down to her waist. By then Avolcs head was well inside the gut of the young Awe and having lost her nerve kicked feebly and flopped with her body. Her muffled shouts lost from under layers of flesh and fur and drowned out by heavy labored gulps.</p>
 
 <p>&nbsp;</p>
-
+<img src="images/assets/Melonvore.png" height="40%" width="40%"/> 
 
 <p>Melon felt every bit of relief as she finally only had the adult Awes legs left to swallow, no longer strained and feeling like her jaws were about to pop, she heaves herself back wards, pulling the massive weight gathering in her belly along with her to sit. The large kicking hindpaws go down like any wiggly large fish she&#39;s eaten and she gulps them all the same.</p>
 
@@ -446,11 +454,12 @@ cadet[1].banter = [
 <p>Avolc meanwhile can hardly believe it, or comprehend the mental fact that she&#39;s just been devoured whole and alive, cape and all, by Melon. She can barely move her body, laying curled up tight in the uncomfortably packed stomach of the young little awe. Her arms are still tied, she cant even properly speak, perhaps from shock.</p>
 
 <p>Melon groans, uncomfortable and slightly confused. This was the first time she&#39;d fully experienced the haze, that mechanism which helps an Awe devour large prey with full focus and without distraction. Groggily she rubs over her wiggling large gut, trying to remember what she was doing just before. She&#39;d been playing a game. It seemed so distant and unimportant now. She swallows the last of that tail and moans, stretching to get comfortable and adjust that huge meal tight against her body so it feels right.</p>
-
+<br/>
 <p>Exhaustion claims her and she passes out in automatic food-lethargy, her muscles and body had worked hard, adjusted and shifted to accommodate such a huge meal. She will need all her energies now to deal with food in her stomach. She does not hear Avolcs muffled questioning moans from within her, she does not hear the slight knock on the door from an inquiring cadet who&#39;s there to remind them of dinner. She far from needs any more dinner anyway.&nbsp; She luckily does not hear as she digests her beloved idol alive.</p>
 
 <p>With no response from the knock, the cadet leaves, figuring the Admiral has already departed for dinner with her young little charge. They&#39;re somewhere lost in the hustle and bustle of repair work and people moving everywhere.</p>
 
+<img src="images/assets/Melonvore2.png" height="40%" width="40%"/> 
 </div>
 <div class="digested hidden"><p><strong>Digested by Melon</strong></p>
 <p>It wasn&#39;t the despair as much as the humiliation over her predicament that got Avolc to stop wriggling and shouting. She could feel walls of the stomach constantly closing in, wishing to adjust her into optimal position for digestion. She fought it at first, slowed her demise in hopes of being found. But the more time passed in the dark and wetly groaning gut of the young awe, the more she hoped it&#39;d be over before they did.</p>
@@ -470,7 +479,7 @@ cadet[1].banter = [
 <p>No punishment was given to young Melon however, no one could have been convinced she&#39;d ever overpower and devour an admiral out of malice. Whatever happened was an accident or carelessness on Avolcs part.&nbsp;</p>
 
 <p>Admiral Avolcs passing was glossed over in the records, to save the Admiralty face she was&nbsp;reported&nbsp;as &quot;Lost in service&quot;.</p>
-
+<img src="images/assets/Melondigest.png" height="40%" width="40%"/> 
 </div>
 
 <div class="decline hidden"><p><strong>A report</strong></p>
@@ -501,7 +510,7 @@ cadet[1].banter = [
 <p>&nbsp;</p>
 
 <p>First-officer Arn rounded up the little trial quickly enough and i retired to my cabin.</p>
-
+<img src="images/assets/Avolcvore5.png" height="40%" width="40%"/> 
 </div>
 
 <div class="cadetPrize hidden"><p><strong>A cadets prize</strong></p>

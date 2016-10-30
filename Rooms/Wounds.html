@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Admiral Avolc Game</title>
+
+  <link rel="stylesheet" href="/main.css"></link>
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css"></link>
+  <link rel="stylesheet" href="/bootstrap-theme.min.css"></link>
+  <script src="/main.js"></script>
+
+  <script>
+	  state.Ziggy.status = 'invisible';
+	
+    $(document).ready(function() {
+	
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      state.events.push("nokeeper");
+	  
+	  
+	    $('#safe').on('click', function(e) {
+		lib.dialogue(e, "safe"),
+		
+		$("#safe").addClass("hidden")
+			
+      })
+	  
+      $('#duty').on('click', function(e) {
+		lib.dialogue(e, "duty"),
+		
+		$("#duty").addClass("hidden")
+			
+      })
+	    $('#button-2').on('click', function(e) {
+		lib.dialogue(e, "tough"),
+		$("#button-6").removeClass("hidden")
+		$("#button-1").addClass("hidden")
+		$("#button-2").addClass("hidden")
+			
+      })
+		
+	
+		$('#button-6').on('click', function(e) {
+        // change state here
+		
+        // end by using lib.goTo
+        lib.goTo('Shipspotted2.html')
+      })
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<div id="head">
+<h1>Wounds</h1>
+</div>
+<div id="story-text">
+<p>The warm comforting embrace of a matrons pouch, its enough to bring an Awe back to her early childhood, when the world consisted of little more then the safe comforting cocoon of warmth and softness. Occasionally a soothing voice and purr would calm any other worries.</p>
+
+<p>Such a place surrounds me now again. Its strangely become a place of familiarity, the scent of Elda is not unlike my own Matrons. The scent of rest and recuperation. It drifts me in and out of consciousness, making sure I stay still and asleep while my body burns away its malady or injury. I cant remember how I got here or what happened, it feels like it doesn't matter anymore, nothing matters anymore. My body is leaden, so tired. </p>
+
+<p>I feel a faint comforting rub along my back, gentle but firm.</p>
+
+</div>
+<div id="tail">
+
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="safe">You are safe now, rest.</button>
+<button class="btn btn-default" id="duty">There are duties to fulfill.</button>
+<button class="btn btn-default hidden" id="button-2">Tough love</button>
+<button class="btn btn-default hidden" id="button-6">Continue</button>
+<span id="cadetButtons"> </span>
+</div>
+<div class="safe hidden"><p><strong>You are safe now, rest. </strong></p>
+
+
+<p>Its just Elda is telling me everything is fine. I can rest a while longer. </p>
+
+<p>It feels like im floating weightlessly inside her, held so firmly and deeply. Occasionally I make out the fate of her walk as she carries me along. I hope im not a great inconvenience, but somehow im sure her pouch has wrapped itself tight around me, holding me close against her body, against her belly and hips to make sure I dont jostle around or get in the way. </p>
+
+
+<p>I can hear her heartbeat from here and my own attunes itself with hers. I let the deep rest take me, focusing on each comforting beat to relax my worries and put aside my responsibilities. Someone else will deal with it while im gone. Elda is my matron now, my time is with her. </p>
+
+
+<p><br />
+</p>
+</div>
+
+<p>“When will the captain be back to duty?” Glint the young Cadet asks from the doorway of the Groomery. </p>
+
+
+<p>Elda had asked herself this very same question recently. But now the answer she had been worried about seemed clearer then ever. With a paw on rounded bulge in her lower abdomen, deep in her pouch, she feels the former captain slip away inside her ever deeper. Its past the point of return now, she had felt some hope when she sensed the Awe within her stir to the vigorous rubbing she had applied. But it seems Avolc had decided to not respond. </p>
+
+
+<p>“Im afraid to say, that I think she might not.” Elda spoke softly in a professional calm voice. The cadet still squirmed on her feet in the doorway, unsure what to do with that information. She continued to make herself crystal clear.</p>
+
+<p>“Captain Avolc has been unable to recover from her injuries or treatment. She is now cycling from recovery mode to depth state. Im afraid she is lost to my hips, my dear.”</p>
+
+
+<p>“Oh...” Cadet Glint, drummed her digits for a moment against her forearms. “Very well. Thank you for the information.” She responded curtly and turned to be off. She was ever ambitious and pragmatic that one. </p>
+
+
+<p>One way or another, the ship would go on with other temporary leadership. </p></div>
+
+<div class="duty hidden"><p><b>There are duties to fulfill. Expectations to fill. </b> </p>
+
+
+<p>I cant waste more time here, as much as i'd like to. The rub is enough to stir me back to reality, to let the memories flood back. The ship must be in a disarray without me, those Awes cant do anything without a firm paw and steely gaze watching over them. </p>
+
+
+
+<p>I wiggle and shift. The pouch responds and loosens its grip around me as I move. I am really quite snugly stuck in there, wrapped tight by the inner warmth of the pouch. I might be waking up too soon in my healing cycle, im not sure, but done is done. Constant wriggling seems to loosen things up steadily, enough for 2 pairs of paws to grab a hold of my feet and pull me back out. </p>
+
+<p><br />
+</p>
+
+<p>“Welcome back to the living, Captain” Eldas voice purrs as im slightly blinded by the light, my head spinning dizzily. Part of my body aches and itches too, the parts that have been under heightened healing. </p>
+
+
+
+<p>“H-how long was I out?” I ask huskily. My mouth is dry, im dehydrated, im given a cup of water before I need to ask.</p>
+
+
+<p>“A bit too long Avolc. Honestly I was afraid we'd lost you, you would not stir no matter how I tried.” </p>
+
+
+
+<p>“Couldnt you just have pulled me out?” I ask, sitting down to wait for my head to stop spinning. Fresh air was filling my lungs, clearing my head little by little. </p>
+
+
+<p>“Its not that easy, not without potential considerable damage to us both. As I explained before, frequent pouch treatments carry risk. Pheromones put you to slumber and activate your inner burn to heal swiftly. Do this too often however and its a slumber you wont recover from. The pouch will seal itself and you will... well.. be absorbed. “</p>
+
+
+<p>I looked at Elda closely for a while. Had I relaxed I would have deepened with her. I suppose there are worse fates. But this means there will be no more pouch-cures for me on this trip. I finally nodded and excused myself, I was starting to feel ravenous. I'd fill my needs and see whats become of my ship while I was out of it. </p>
+
+</div>
+
+<div class="tough hidden">
+<p> "Ziggy" I murmur low and put a paw on her shoulder. She seems to tense at the touch. "We are not flawless, no one expected you to be the hero." I squezze her shoulder gently but firmly.</p>
+
+<p> "But you set yourself up to be one. Hid away your tensions behind a mask of bravado." Ziggy looks down, unable to meet my gaze, ashamed. "You cannot hide from yourself, or you'll end up overwhelmed by what you refused to face when it matters!" </p>
+
+<p> "S-so i must accept that im a coward?" Whimpered Ziggy in a low pained voice, glancing up at me. </p>
+
+<p> "You must accept that you're afraid! Only then might you learn to face it." I said and held up one of my paws infront of her. It was shaking. All the adrenaline and fear of the battle was slowly leaving my body. Ziggy stared at my shaking paw and then up at me. She swallowed hard and sighed deeply </p>
+
+<p> She looked defeated still, but she seemed relieved i was not here to punish her for her cowardice. </p>
+
+<p> "Thank you captain. I'll... try my best." </p>
+
+<p> "Just be true to yourself." I picked up her cadets hat that lay on the ground next to her and placed it back on her head. She pulled it down low over her brow to hide her teared up eyes. </p>
+
+<p> Ziggy would need time to recover, i told her to rest a while and then report for duties, it was best not to wallow in self-pity for too long. I remember my first battle myself. I didnt quite hide, but i certainly was no help to no one. </p>
+</div>
+
+
+<script>
+
+cadet[1].banter = [
+    { target: '#Glint', text: 'Where is Ziggy?', imageClass: "concerned"},
+	{ target: '#Valnos', text: 'I-im not sure. I did not see her during the battle. Where were you?', imageClass: "sad"},
+	{ target: '#Glint', text: 'I was ordered to help emergency repairs by Officer Tick', imageClass: "surprised"},
+	{ target: '#Glint', text: 'We were taking on a lot of water in lower cargo for a while. I think i swallowed half the sea while helping to fix that.', imageClass: "concerned"},
+	{ target: '#Valnos', text: 'I hope Ziggy is okay.', imageClass: "sad"},
+	{ target: '#Glint', text: 'Yeah.', imageClass: "sad"}
+	];
+	
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'Those weapons they were using', imageClass: "sad"},
+	{ target: '#Valnos', text: 'What devastating power!', imageClass: "concerned"},
+	{ target: '#Valnos', text: 'What if... No nevermind. No point worrying.', imageClass: "sad"},
+	{ target: '#Glint', text: 'Valnos you are bleeding..! And all sooty!', imageClass: "surprised"},
+	{ target: '#Valnos', text: 'Its... just a gash. Got hit by flying splinters putting out a fire.', imageClass: "blush"},
+	{ target: '#Glint', text: 'No wonder you look like our Scout-master', imageClass: "concerned"}
+
+];
+</script>
+</body>
+</html>
