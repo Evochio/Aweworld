@@ -17,14 +17,7 @@
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
-      if (_.contains(state.events, "deepening")) {
-		$("#agreed").removeClass("hidden")
-		
-	  }
-	  else {
-		$("#agreed2").removeClass("hidden")
-	  }
-	  
+    
       $('#agreed').on('click', function(e) {
 		lib.dialogue(e, "agreed"),
 		state.piety += 1;
@@ -62,9 +55,9 @@
 	   $("#ceremony2").removeClass("hidden")
 	   if (state.piety >= 3) {
 	    $("#volunteer").removeClass("hidden")
-	   
-	   }
-	   
+	   	   }
+		   
+	    })
 	    $('#volunteer').on('click', function(e) {
        lib.dialogue(e, "volunteer"),
 	   $("#ceremony2").addClass("hidden")
@@ -83,6 +76,7 @@
        lib.dialogue(e, "ceremony2"),
 	   $("#ceremony2").addClass("hidden")
 	   $("#continue").removeClass("hidden")
+	    $("#volunteer").addClass("hidden")
       })
 	 
 	   $('#continue').on('click', function() {
@@ -90,11 +84,11 @@
 		
         
         lib.goTo('end.html')
-		
-		
+				
       })
-    })
-  </script>
+   
+	}) 
+</script>
   
   <style>
     /* Put styling that is specific to this page here. This is a CSS comment btw. */
@@ -126,7 +120,12 @@
 
 <p>“A Ceremony, yes! It is a sacred time. If conditions permit, I would like to honor the lost in the light of the three moons, help usher their spirits back to the light. I believe it will put many hearts at ease.”</p>
 
-<p>I considered her words. The weather had seemed to calm considerably. As long as we kept a look-out, we'd be in no danger for a nights distraction. </p>
+<p>I considered her words. The weather had seemed to calm considerably, i would even venture to call it mild. As long as we kept a look-out, we'd be in no danger for a nights distraction. You couldnt really be snuck up on in the open sea.</p>
+
+<span id="lowPiety" class="hidden"> <p>Question was though if it was prudent to allow such frivolity to distract the minds of the crew when we were so far away from home in hostile seas. </p> </span>
+
+<span id="highPiety" class="hidden"> <p>From the few times i've attended the ceremonies, this seemed like a harmless and possibly positive idea.</p> </span>
+
 
 </div>
 <div id="tail">
@@ -144,6 +143,8 @@
 <button class="btn btn-default hidden" id="volunteer">Volunteer yourself</button>
 <button class="btn btn-default hidden" id="continue">Continue</button>
 <span id="cadetButtons"> </span>
+
+
 </div>
 <div class="agreed hidden"><p><strong>Agreed</strong></p>
 
@@ -212,6 +213,8 @@
 <p>She gripped either side of belly with both paws, caressing it almost seductively upwards in a light heave while she spoke.</p>
 
 <p>"Tonight, at the brightest night, we honor the first Awe and what she taught us. For it was the same light that called to the First Awe that the darkness had been vanquished. Who among you will join with me, in worship and strength and aid in making a light so bright to guide and usher those lost back into the fold!”</p>
+
+<span id="tempted" class="hidden"><p> I found myself inexplicably enthralled by her, her primal-like beauty, her powerfull frame. She called for Awes to join her body and i was suprised by my urge to volunteer. This must be what those who wish to deepen to another feel like. A form of not only physical attraction but a... spiritual one. I want to be this Awe.</p></span>
 </div>
 
 <div class="ceremony_no hidden"><p><strong>Ceremony</strong></p>
@@ -248,7 +251,7 @@
 
 <div class="volunteer hidden"><p><strong>Fatal attraction</strong></p>
 
-<p> There is a terrible beauty in the Soft-spoken. I cant help but be taken in by the perfection of her. She is like the base of Awekind, that of which all others are molded from. As close to the First-Awe one could imagine </p>
+<p> There is a terrible beauty in the Soft-spoken. I cant help but be taken in by the perfection of her. She is like the base of Awekind, that of which all others are molded from. As close to the First-Awe one could imagine. </p>
 
 <p> I feel the pull of her and understand it for what it is. This is what those others wishing to deepen with another have felt, those that i have sometimes scoffed at in the past. </p>
 
@@ -256,39 +259,46 @@
 
 <p> All my other responsibilites are secondary, the ship, the crew, the mission, it will work itself out without me. Heck, they can elect the soft-spoken as captain, once im part of her she'll be more then i ever was. </p>
 
-<p> I step up to the podium she's standing on with some others. Others who feel the same call as i do. I feel an unexpected rivalry toward them. </p>
+<p> I step up to the make-shift altar she's standing on with some others. Others who feel the same call as i do. I feel an unexpected rivalry toward them. </p>
 
 <p> The soft-spoken loom ahead of me. She smiles a radiating smile and puts her wide paw on my head. </p>
 
-<p> "All are equal in the eyes of the First-awe. The consumed join the stature of their eater as one day she might join another. Blessed are those however who honor their call, for there are no greater purpose then oneness with your chosen." </p>
+<p> "All are equal in the eyes of the First-awe. The consumed join the stature of their eater, as one day she might join another. Blessed are those however who honor their call, for there are no greater purpose then oneness with your chosen." </p>
 
-<p> She swept a paw over the assembly and leaned closer, inviting me to commit to my decision and give her white-furred belly a sealing kiss </p>
+<p> She swept a paw over the assembly and leaned closer, inviting me to seal my decision and give her white-furred belly and thick pouch a kiss of commitment.</p>
 
-<p> I pressed my snout against the soft fur and closed my eyes. My head was swimming, part of me was rebelling against my decision, wondering if i was under some spell. But spell or not, i had now committed to my decision to become an addition to this Awes hips. </p>
+<p> I pressed my snout against the soft fur and closed my eyes. My head was swimming, a small muffled part of me was rebelling against my decision, wondering if i was under some spell. But spell or not, i had now committed to my decision to become an addition to this Awes hips. </p>
 
-<p> I didnt even notice her annoint and bless the other volunteers. She stood before me again soon and pulled me forward. As she opened her jaws i slipped inside over the velvety tongue. </p>
+<p> I didnt even notice her annoint and bless the other volunteers. She stood before me again soon and pulled me forward, leaning in to whisper her secret name in my ear. </p> 
 
-<p> She took me in, swallowing around my head, heaving me up against her. I was being devoured willingly infront of a crowd and no one said a word. Wet 'gulk'ing swallows echoed around me as the tightness of her body enveloped me. Shoulders, chest and then down to the waist. I was in her mercy. </p>
+<p> "Chant my name and think of me closely as my body takes you, for then your spirit might best join mine" She cooed softly washing her warm breath over my face as she as she opened her jaws and I slipped inside over the velvety tongue. </p>
 
-<p> I could hear her heartbeat, feel her heat, her strength over me. I shuddered and she gulped in response as if she had waited for it, plunging me on down into her stomach. The chamber stretched and squelched. It was probably a stomach that had seen many before me and would see many more. </p>
+<p> She took me in, swallowing around my head, heaving me up against her. I was being devoured willingly infront of a crowd and no one said a word or questioned my decision. This was sacred. </p>
 
-<p> But i understood now her purpose as well as mine. Hers was to spread the word, the creed and light the path to keep our kind safe. She provided the comfort of knowing existance would always be, through the light inside you and then the light inside others. </p>
+<p> Wet 'gulk'ing swallows echoed around me as the tightness of her body enveloped me. Shoulders, chest and then down to the waist. She paused here, with my legs and tail sticking out of her jaws, I was in her mercy. </p>
+
+<p> I could hear her heartbeat, feel her heat, her strength over and around me. I shuddered and she gulped in response as if she had waited for it, plunging me on down into her stomach. The chamber stretched and squelched. It was probably a stomach that had seen many before me and would see many more. </p>
+
+<p> But i understood now her purpose as well as mine. Hers was to spread the word, the creed and light and the path to keep our kind safe. She provided the comfort of knowing existance would always be, either through the light inside you and then ultimately, as the light inside others. </p>
 
 <p> I curled up tight, others would soon join me. It would be cramped and difficult. But she'd manage us. She'd digest us. </p>
 
-<p> Already the low rumbling of her body was a comfort. A comfort that she let herself slip deep down into, relax and accept. </p>
+<p> Already the low rumbling of her gut was a comfort. A comfort that I let myself slip deep down into, relax and accept. </p>
 
+<p> "Lysa... Lysa." I began. </p>
 <br /> 
 
-<p> The soft-spoken laid heavy and swollen upon the deck, supported against a wall. She knew she might have overdone it this time. Her body was protesting to shere mass of meals within her, it would take such tremendous effort to absorb it all. </p>
+<p> The soft-spoken laid heavy and swollen upon the altar, slightly too large to fit upon it now but making do. She had make herself available for the many who wanted to approach the blessing of a touch on her belly or white fur. She knew she might have overdone it this time. Her body was protesting to shere mass of meals within her, it would take such tremendous effort to absorb it all. Already her gut was audibly churning hard around her willing deepeners.</p>
 
-<p> But she was built for this, she had trained for this. To win over a captain was a surprise, of all Awes, they were the ones of strongest will and usually unaffected by temptings of a deepening. She was honored however, the late captains prestige now belonged to her. </p>
+<p> But she was built for this, she had trained for this. To win over a captain was a surprise, of all Awes, they were the ones of strongest will and usually unaffected by temptings of a deepening. She was honored however, the late captains prestige now belonged to her. She'd spend it well. </p>
+
+<p> She swallowed a belch, denying its escape. They must be permitted to fully do their last act of pious devotion for as long as possible. She and those around her might not hear it, but she was sure felt the voices calling her name. It feelt good!</p>
 </div>
 
-<div class="cermony2 hidden"><p><strong>Ceremony</strong></p>
+<div class="ceremony2 hidden"><p><strong>Ceremony</strong></p>
 <p>Unsurprisingly, volunteers stepped up. Awes either swayed by her words and charisma or feeling like they're doing the right thing, probably both. </p>
 
-<p>4 of them in total, approach the podium and kneel, wishing to be consumed by the Mountain-Awe. I frown at this, I had not accounted for her asking for volunteers like this. </p>
+<p>4 of them in total, approach the altar and kneel, wishing to be consumed by the Mountain-Awe. I frown at this, I had not accounted for her asking for volunteers like this. </p>
 
 <p>But I choose to say nothing, interrupting something which had already gone this far would win me no favors. I would be seen as taking back my word. Instead I find myself, like the rest, staring fascinated as the Soft-spoken blesses each in turn, standing before them so that they may give her pouch and belly a kiss in final commitment. </p>
 
@@ -359,6 +369,25 @@ cadet[1].banter = [
 	{ target: '#Ziggy', text: 'Hehe, look at Glint on the stage. How she oogles the priestess.', imageClass: "smug"},
 	{ target: '#Valnos', text: 'I see it.', imageClass: "happy"}
 ];
+
+
+if (_.contains(state.events, "deepening")) {
+		$("#agreed").removeClass("hidden")
+		
+	  }
+	  else {
+		$("#agreed2").removeClass("hidden")
+	  }
+	if (state.piety == 0 ) {
+		$("#lowPiety").removeClass("hidden")
+		
+	  }
+	 else if (state.piety == 2)
+	 {
+	 $("#highPiety, #tempted").removeClass("hidden")
+	 }
+
+
 </script>
 </body>
 </html>

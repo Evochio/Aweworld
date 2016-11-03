@@ -9,11 +9,11 @@ float:right;
 #VThumb {
 	top: 25px;
 	right: 40px;
-	background-image: url(/Rooms/Images/valnosthumbnew2.png);
+	background-image: url(/Rooms/Images/valnosthumbnew3.png);
 	width: 200px;
 	height: 50px;
 	float: right;
-	border: 1px solid #996633;
+	border: 1px solid #331a00;
 	border-radius: 5px;
 	position: relative;
 	cursor: pointer;
@@ -22,11 +22,11 @@ float:right;
 #GThumb {
 	top: 25px;
 	right: 40px;
-	background-image: url(/Rooms/Images/glintthumb.png);
+	background-image: url(/Rooms/Images/glintthumb3.png);
 	width: 200px;
-	height: 45px;
+	height: 50px;
 	float: right;
-	border: 1px solid #996633;
+	border: 1px solid #331a00;
 	border-radius: 5px;
 	cursor: pointer;
 	position: relative;
@@ -35,11 +35,11 @@ float:right;
 #ZThumb {
 	top: 25px;
 	right: 40px;
-	background-image: url(/Rooms/Images/ziggythumb.png);
+	background-image: url(/Rooms/Images/ziggythumb2.png);
 	width: 200px;
-	height: 45px;
+	height: 50px;
 	float: right;
-	border: 1px solid #996633;
+	border: 1px solid #331a00;
 	border-radius: 5px;
 	position: relative;
 	cursor: pointer;
@@ -104,7 +104,7 @@ background-color: #331a00;
 }
 #head {
 	background-color: #996633;
-	border: 6px solid #331a00;
+	border: 6px solid #cb9969;
 	position: fixed;
 	z-index: 99;
 	border-radius: 20px;
@@ -127,7 +127,7 @@ position: absolute;
 #tail {
 
 	background-color: #996633;
-	border: 6px solid #331a00;
+	border: 6px solid #cb9969;
 	border-top: none;
 	border-radius: 20px;
 	

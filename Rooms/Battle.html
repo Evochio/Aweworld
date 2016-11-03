@@ -506,7 +506,19 @@
   </script>
 
   <style>
-    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+ 
+ #status {
+	background-color: #331a00;
+	Width: 20%;
+	margin: auto;
+	border: 6px solid #cb9969;
+	border-radius: 20px;
+	
+ }
+ #story-text {
+ margin-top: 10%;
+ }
+ 
   </style>
 
 </head>
@@ -514,9 +526,10 @@
 <div id="head">
 <h1>The Battle</h1>
 
-
+<div id="status">
 <p> Crew morale appears to be <span class="Crew-morale-description"><script>displayMoraleStatus()</script></span> </p>
 <p> The ships status is: <span class="Ship-Health-description"><script>displayShipStatus()</script></span> </p>
+</div>
 </div>
 <div id="story-text">
 <p>The enemy ship is approaching rapidly. I say enemy because it has no discernable markings or banners to herald it allegiance or intent. </p>
@@ -725,7 +738,7 @@
 
 <p>The forward ballista readies itself to fire, there is still a good way to go before they can aim at anything worthwhile. </p>
 
-<p>The enemy ship is close enough now that I can see figures moving on their deck. There is also a peculiar thing...</p>
+<p>The enemy ship is close enough now that I can see figures moving on their deck. They are making a strange manouver, despite our charge they are turning their side towards us, there is also a peculiar thing...</p>
 
 <p>A flash, smoke. It looks like something exploded on their ship. Its follow by a thundering 'THOOM'. </p>
 
@@ -733,7 +746,7 @@
 
 <p>We were hit with something! Something strong enough to damage and even puncture the hull! Crew look dazed, some pick up help the wounded limp below deck. </p>
 
-<p>Another flash and 'THOOM' draws my attention back from the damage. Something whistles by in the air loudly, just above the main deck, narrowly missing a mast and tearing a circular hole through one of the sails. </p>
+<p>Another flash and 'THOOM' draws my attention back from the damage. Something whistles by in the air loudly, just above the main deck, narrowly missing a mast and tearing a circular hole through one of the sails before splashing into the sea on the far side. </p>
 
 <p>The crew look to me for instructions, fear on many of their faces. This was new and terrifying. </p>
 
@@ -745,7 +758,7 @@
 
 <p>I order the sails tightened for a burst of speed, I intend to fling us past them quickly and then come around behind them and try to stay on them. </p>
 
-<p>As we speed on by outside weapons-range the enemy ship is close enough now that I can see figures moving on their deck. There is also a peculiar thing...</p>
+<p>As we speed on by outside weapons-range the enemy ship is close enough now that I can see figures moving on their deck. They are making a strange manouver, turning their side towards us far out of range, there is also a peculiar thing...</p>
 
 <p>A flash, smoke. It looks like something exploded on their ship. Its follow by a thundering 'THOOM'. </p>
 
@@ -753,7 +766,7 @@
 
 <p>We were hit with something! Something strong enough to damage and even puncture the hull! Crew look dazed, some pick up help the wounded limp below deck. </p>
 
-<p>Another flash and 'THOOM' draws my attention back from the damage. Something whistles by in the air loudly, just above the main deck, narrowly missing a mast and tearing a circular hole through one of the sails. </p>
+<p>Another flash and 'THOOM' draws my attention back from the damage. Something whistles by in the air loudly, just above the main deck, narrowly missing a mast and tearing a circular hole through one of the sails before splashing into the sea on the far side. </p>
 
 <p>The crew look to me for instructions, fear on many of their faces. This was new and terrifying. </p>
 </div>
@@ -761,7 +774,7 @@
 <div class="range hidden"><strong>Keep Range</strong>
 <p>We'll test their mettle at range first. I have trust in the sturdiness of this ship from the journey here. The ballista crews stand ready, I do not need to tell them what to aim at. They know their weapons better then me. </p>
 
-<p>I keep a close eye on the enemy ship. Its getting closer now, I can see figures moving on their deck. There is also a peculiar thing...</p>
+<p>I keep a close eye on the enemy ship. Its getting closer now, I can see figures moving on their deck. They are making a strange manouver, turning their side towards us far out of range, there is also a peculiar thing...</p>
 
 <p>A flash, smoke. It looks like something exploded on their ship. Its follow by a thundering 'THOOM'. </p>
 
@@ -769,7 +782,7 @@
 
 <p>We were hit with something! Something strong enough to damage and even puncture the hull! Crew look dazed, some pick up help the wounded limp below deck. </p>
 
-<p>Another flash and 'THOOM' draws my attention back from the damage. Something whistles by in the air loudly, just above the main deck, narrowly missing a mast and tearing a circular hole through one of the sails. </p>
+<p>Another flash and 'THOOM' draws my attention back from the damage. Something whistles by in the air loudly, just above the main deck, narrowly missing a mast and tearing a circular hole through one of the sails before splashing into the sea on the far side.  </p>
 
 <p>The crew look to me for instructions, fear on many of their faces. This was new and terrifying. </p>
 
@@ -1055,7 +1068,7 @@ $('#FromRange').removeClass('hidden');
 
 <p>BOOM! One of the weapons fired at near point blank range. The shot crashed straight through the side of our ship and out the other. It knocked me off my feet hard, not only that, we were suddenly off course, loosing distance. Too far to further assault and back up those who already leapt over. I could see them fighting in a tight knot by the enemy weapons, they had landed right ontop of them, preventing them from firing further. </p>
 
-<p>"Where were those boarding hooks!" I yell at the ballista crew who were working hard. They had missed their chance, only one had fired off their hook before we were out of range again, but had not managed to get a hold. </p>
+<p>"Where were those boarding hooks! I need to get me over there!" I yell at the ballista crew in frustration who were working hard. They had missed their chance, only one had fired off their hook before we were out of range again, but had not managed to get a hold. </p>
 
 <p>“Permission to join the fight, captain.” I wheeled around to see my three grim-faced scouts, cloaks tossed aside and impressive wings on display. </p>
 
@@ -1067,7 +1080,9 @@ $('#FromRange').removeClass('hidden');
 
 <p>Some are already wounded and missing, not all manage to glide all the way and are tossed ropes and rescue floats to be hauled out of the sea. </p>
 
-<p> But it seems that whatever they managed to do over there was enough to drive them back. The gators are hoisting full sails, making a break for it while i order us to slow down to pick up our crew. I will not abandon anyone to the cold sea.</p>
+<p> If we dock together now its going to be a brutal and hard fight. </p>
+
+<p> But! It seems that whatever they managed to do over there was enough to drive them back. The gators are suddenly hoisting full sails, making a break for it while i order us to slow down to pick up our crew. I could catch them, but I will not abandon anyone to the cold sea.</p>
 
 </div>
 
@@ -1080,7 +1095,7 @@ $('#FromRange').removeClass('hidden');
 
 <p>BOOM! One of the weapons fired at near point blank range. The shot crashed straight through the side of our ship and out the other. It knocked me off my feet hard, not only that, we were suddenly off course, loosing distance. Too far to further assault and back up those who already leapt over. I could see them fighting desperatly against near hopeless odds, backs to the sea. They had landed close to the weapons, preventing them from firing further, for now. </p>
 
-<p>"Where were those boarding hooks!" I yell at the ballista crew who were working hard. They had missed their chance, only one had fired off their hook before we were out of range again, but had not managed to get a hold. </p>
+<p>"Where were those boarding hooks! I need to get me over there!" I yell at the ballista crew in frustration who were working hard. They had missed their chance, only one had fired off their hook before we were out of range again, but had not managed to get a hold. </p>
 
 <p>“Permission to join the fight, captain.” I wheeled around to see my three grim-faced scouts, cloaks tossed aside and impressive wings on display. </p>
 
@@ -1159,23 +1174,23 @@ $('#FromRange').removeClass('hidden');
 </div>
 
 
-<div class="victory2 hidden"><strong>Victory!</strong>
+<div class="victory2 hidden"><strong>Enemy Routed.</strong>
 <p> The enemy ship is in retreat. </p>
 
-<p> Im still stunned at our sudden victory. The crew really pulled through bravely in face of such danger. </p>
+<p> Im still stunned at our sudden victory. The crew really pulled through bravely in face of such danger and shocking weapons. I should consider the briefness of the battle a blessing.</p>
 
 <p>Soon I receive a report from Garsh, limping and supported by a scout. </p>
 
 <p>“Their weapons are disabled. They were VERY protective of them. So much so that they dared not fully advance while we held them. They were made out of Iron captain, we could not smash them. But we smashed what we could, supports and such. We also scattered black powder all around from barrels, thats what made them really mad and forced us to flee. “</p>
 
-<p>“You are to be commended for this Officer Garsh, you and all those who fought with you! Now go get yourself seen too.” I gave him a pat on the shoulder and he threw a quick salute and limped down below-deck.</p>
+<p>“You are to be commended for this Officer Garsh, you and all those who fought with you! Now go get yourself seen too.” I gave him a pat on the shoulder and he threw a quick salute, he looked solemn as he limped down below-deck and i knew why. Despite the success, we appear to have lost many in that desperate fight.</p>
 
 <p>I glanced up at fast retreating ship, we are safe for now. We could pursue them, but for now I dont wish to push our luck further. We've also taken an amount of damage and injuries yet to be assessed. </p>
 
-<div class="victory3 hidden"><strong>Victory!</strong>
+<div class="victory3 hidden"><strong>Enemy Routed.</strong>
 <p> The enemy ship is in retreat. </p>
 
-<p> Im still stunned at our sudden victory. The crew really pulled through bravely in face of such danger. </p>
+<p> Im still stunned at our sudden victory. The crew really pulled through bravely in face of such danger and shocking weapons.  I should consider the briefness of the battle a blessing.</p>
 
 <p>Soon I receive a report from Garsh, limping and supported by a scout. </p>
 
@@ -1183,7 +1198,7 @@ $('#FromRange').removeClass('hidden');
 
 <p>“You are to be commended for this Officer Garsh, you and all those who fought with you!” As I moved to give him a pat on the shoulder he eyes me hard, making me pause.</p>
 
-<p> "Officer Tung did not make it. That we succeeded at all were thanks to him! He inspired the crew to fight harder, jumped into the thick of them with no fear! We'd have been overwhelmed if it were not for him." Garsh speaks urgently. I nod firmly to him and sent him to the infirmary. Whatever differances i might have had with Tung in the past, he was a great officer. </p>
+<p> "Officer Tung did not make it. That we succeeded at all were thanks to him! He inspired the crew to fight harder, jumped into the thick of them with no fear! We'd have been overwhelmed or lost many more if it were not for him." Garsh speaks urgently. I nod firmly to him and sent him to the infirmary. Whatever differances i might have had with Tung in the past, he was a great officer. </p>
 
 <p>I glanced up at fast retreating ship, we are safe for now. We could pursue them, but for now I dont wish to push our luck further. We've also taken an amount of damage and injuries yet to be assessed. </p>
 
@@ -1282,7 +1297,7 @@ $('#FromRange').removeClass('hidden');
 </br>
 
 <p> A gatorgut can be spaceous, until it gets crowded, which it quickly got. The tight pressure of bodies and muscles pushing together under the taut and scaled gatorbelly soon become too much.</p>
-
+<img src="images/assets/gatorvore.png" height="40%" width="40%"/> 
 </div>
 
 <div class="desperateA hidden"><strong>Desperate attack</strong>
