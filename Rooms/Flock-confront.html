@@ -134,6 +134,8 @@
 		state.crewMorale -= 3;
 		}
 		state.events.push("eatArn");
+		state.events.push("noArn");
+		
 	        // end by using lib.goTo
         lib.dialogue(e, "EatArn")
 		$("#compromise").addClass("hidden")

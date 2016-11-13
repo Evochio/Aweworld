@@ -91,7 +91,14 @@
 		$("#noquestions").removeClass("hidden")
       })
 	  $('#button-8').on('click', function(e) {
-	     lib.dialogue(e, "objectives")
+	     lib.dialogue(e, "ready")
+		 $("#button-6").addClass("hidden")
+		 $("#button-7").addClass("hidden")
+		 $("#button-8").addClass("hidden")
+        $("#continue").removeClass("hidden")
+      })
+	   $('#continue').on('click', function(e) {
+	    
         lib.goTo('Ship_Crew.html')
       })
 	  
@@ -198,6 +205,8 @@
 <button class="btn btn-default hidden" id="wulfs">Are we working with the Wulfs now?</button>
 <button class="btn btn-default hidden" id="tide">Three-moon Tide</button>
 <button class="btn btn-default hidden" id="captain">What acctually happened with the Captain?</button>
+<button class="btn btn-default hidden" id="continue">Meeting Ship and Crew</button>
+
 </div>
 <div class="culprits hidden"><p><strong>Culprits</strong></p>
 
@@ -217,7 +226,7 @@
 
 <div class="fleet hidden"> <p><strong>Fleet</strong></p>
 
-<p>“The only natural response to this provocation was to send a War-fleet. We cant hug all our ships close to our ports, that leaves us blind to whats out there and ensures we loose all our trade sponsors. It would be repeating the mistakes of the First-Age. No, they right response is attack.”</p>
+<p>“The only natural response to this provocation was to send a War-fleet. We cant hug all our ships close to our ports, that leaves us blind to whats out there and ensures we loose all our trade sponsors. It would be repeating the mistakes of the First-Age. No, the right response is attack.”</p>
 
 <p> The Admiral paced to look out a window at the ship-yards below.</p>
 
@@ -233,7 +242,7 @@
 
 <p>“Im to join this fleet?” </p>
 
-<p> "Yes, you will captain the 14th ship, replacing a captain after some incident on the ship left them... indisposed. The fleet itself however left months ago. They've sent scattered report by bird, that they've arrived intact and have begun their search and so on. But its unreliable means of communication, some reports that arrive are older then the last ones! But no doubt they're having trouble finding the pirate-haven, its not called Thousand-isles for nothing."
+<p> "Yes, you will captain the 14th ship, replacing a captain after some incident on the ship left them... indisposed. The fleet itself however left a month ago. They've sent scattered report by bird, that they've arrived intact and have begun their search and so on. But its unreliable means of communication, some reports that arrive are older then the last ones! But no doubt they're having trouble finding the pirate-haven, its not called Thousand-isles for nothing."
 
 <p>“So..”</p>
 
@@ -317,6 +326,23 @@ I need the best captain i can get, And right now, thats you.”</p>
 <p>“Im sure you're Awe enough to handle anything that crops up. You'll do as you see fit as the captain. Just try to maintain everyone's respect for your authority while doing it.”</p>
 
 </div>
+ <div class="ready hidden"> <p><strong>I am Ready!</strong></p>
+
+<p>“I am ready” I announced confidently. I felt the call of the challenge. Only the best were assigned to the west-sea fleet. I was now one of them. </p>
+
+
+<p>“Very good, captain! I realize this might have been a bit much to take in.” The Grand-Admiral sat down opposite me and studied me closely. A bundle of pages in her paw. “You have a fire in you, I can see that. I will send you out there if you truly feel you're up for it." The Grand-Admiral stared me hard in the eyes, seeming to search my soul. </p>
+
+<p>"But you've been to sea nearly non-stop for 10 years now. You are well within your right to turn this down, have a mid-retirement. Make a family. I understand it that you've had no younglings yet.”</p>
+
+
+<p>“I... I've been down that path. It was not for me. This is more important.” I don't want to miss this opportunity. Or let other thoughts distract me. </p>
+
+
+<p>“Very well. You are an career-Awe not unlike myself. Welcome to the West-Seas Captain Avolc!” We both rose and clasped our paws together.</p>
+
+</div>
+
 
 </body>
 </html>

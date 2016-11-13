@@ -14,6 +14,7 @@
   <script src="/main.js"></script>
 
   <script>
+  
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
@@ -31,8 +32,10 @@
 		state.piety += 1;
 		$("#agreed2").addClass("hidden")
 		 $("#denied").addClass("hidden")
-		$("#ceremony").removeClass("hidden")
+		$("#allow").removeClass("hidden")
+		$("#noallow").removeClass("hidden")
       })
+	  
       $('#denied').on('click', function(e) {
        lib.dialogue(e, "denied"),
 		
@@ -77,6 +80,20 @@
 	   $("#ceremony2").addClass("hidden")
 	   $("#continue").removeClass("hidden")
 	    $("#volunteer").addClass("hidden")
+      })
+	  
+	  $('#noallow').on('click', function(e) {
+      
+	   $("#noallow").addClass("hidden")
+	   $("#ceremony_no").removeClass("hidden")
+	    $("#allow").addClass("hidden")
+      })
+	 
+	 $('#allow').on('click', function(e) {
+       
+	   $("#noallow").addClass("hidden")
+	   $("#ceremony").removeClass("hidden")
+	    $("#allow").addClass("hidden")
       })
 	 
 	   $('#continue').on('click', function() {

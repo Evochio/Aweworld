@@ -249,88 +249,14 @@
         // end by using lib.goTo
          lib.dialogue(e, "samePlan")
 		 state.shipHealth -= 1
+		
 		$("#button-8").addClass("hidden")
 		$("#button-9").addClass("hidden")
 		$("#button-10").addClass("hidden")
 		$("#button-11").removeClass("hidden");
-		if (state.battle.indexOf("approach") > -1) { 
-		$("#ram").removeClass("hidden");
-		$("#board").removeClass("hidden");
-		$("#button-11").addClass("hidden")
-		}
-		
 		displayMoraleStatus();
 		displayShipStatus();
       })
-	  $('#ram').on('click', function(e) {
-        // change state here
-		state.battle.push("ram")
-        // end by using lib.goTo
-         lib.dialogue(e, "ram")
-		 
-		$("#ram").addClass("hidden")
-		$("#board").addClass("hidden")
-		$("#leadF").removeClass("hidden");
-		$("#leadB").removeClass("hidden");
-		})
-		
-		 $('#board').on('click', function(e) {
-        // change state here
-		state.battle.push("board")
-        // end by using lib.goTo
-         
-		 if (_.contains(state.events, "hard")) {
-			lib.dialogue(e, "boardTung")
-			state.battle.push("boardTung")
-			state.crewMorale += 3
-			
-			$("#button-12").removeClass("hidden");
-			$("#button-7").addClass("hidden")
-			}
-			else if (state.crewMorale >= 6) {
-			lib.dialogue(e, "board")
-			state.battle.push("board")
-			state.crewMorale += 3
-			
-			$("#button-12").removeClass("hidden");
-			$("#button-7").addClass("hidden")
-			}
-			else {
-			lib.dialogue(e, "boardLow")
-			state.battle.push("boardLow")
-			state.crewMorale -= 2
-			$("#button-7").removeClass("hidden");
-			}
-		 		 
-		$("#ram").addClass("hidden")
-		$("#board").addClass("hidden")
-			})
-		
-		
-		$('#leadF').on('click', function(e) {
-        // change state here
-	
-        // end by using lib.goTo
-         lib.dialogue(e, "leadF")
-		$("#button-7").addClass("hidden")
-		$("#leadF").addClass("hidden")
-		$("#leadB").addClass("hidden")
-		$("#wounds").removeClass("hidden");
-		
-		})
-		
-		$('#leadB').on('click', function(e) {
-        // change state here
-	
-        // end by using lib.goTo
-         lib.dialogue(e, "leadB")
-		$("#button-7").addClass("hidden") 
-		$("#leadF").addClass("hidden")
-		$("#leadB").addClass("hidden")
-		$("#wounds").removeClass("hidden");
-		
-		})
-		
 	  
 	$('#button-9').on('click', function(e) {
         // change state here
@@ -399,14 +325,13 @@
 	  */
 	    $('#button-11').on('click', function(e) {
         // change state here
-		
+		console.log("Explosion")
         // end by using lib.goTo
 		if ((state.battle.indexOf("range") > -1) && (state.battle.indexOf("samePlan") > -1))  {
 		 lib.dialogue(e, "hardBlow")
 		 state.shipHealth -= 3
 		 state.crewMorale -= 2
 		$("#faceDefeat").removeClass("hidden");
-		$("#button-7").addClass("hidden")
 		}
 		else if ((state.battle.indexOf("retreat") > -1) && state.battle.indexOf("sails") == -1){
 			if (state.shipHealth <= 5) {
@@ -438,7 +363,6 @@
 			$("#button-7").addClass("hidden")
 			
 		}
-		// -----
 		else if ((state.battle.indexOf("approach") > -1) && state.battle.indexOf("samePlan") > -1){
 			if (_.contains(state.events, "hard")) {
 			lib.dialogue(e, "boardTung")
@@ -462,7 +386,7 @@
 			state.crewMorale -= 2
 			$("#button-7").removeClass("hidden");
 			}
-			// Above boarding code might be discarded.
+			
 		}	
 		else if ((state.battle.indexOf("manouver") > -1) && state.battle.indexOf("changePlan") > -1){
 			lib.dialogue(e, "board")
@@ -476,12 +400,12 @@
 		 state.battle.push("explosion")
 		 state.shipHealth -= 1
 		 state.crewMorale += 4
-			$("#wounds").removeClass("hidden");
+			$("#button-12").removeClass("hidden");
 			$("#button-7").addClass("hidden")
 		 }
 
 		$("#button-10").addClass("hidden")
-		
+		$("#button-7").addClass("hidden")
 		$("#button-11").addClass("hidden")
 		displayMoraleStatus();
 		displayShipStatus();
@@ -571,13 +495,6 @@
          lib.goTo('Scars.html')
 	
       })
-	    $('#wounds').on('click', function(e) {
-        // change state here
-	
-        // end by using lib.goTo
-         lib.goTo('Wounds.html')
-	
-      })
 	  $('#restart').on('click', function(e) {
        location.reload(true)
 		
@@ -633,7 +550,7 @@
  </div>
  
 <div class="hidden" id="arnDead">
-<p> Despite everything that has happened, i wish i had a stout First-officer by my side now to help me prepare. My officers are doing good work. Even my cadets are diligently providing assistance in their assigned tasks. But i cant help but feel slightly alone. </p>
+<p> Despite everything that has happened, i wish i had a stout First-officer by my side now to help me prepare. My officers are doing good work. Even my cadets are diligently providing assistance in their assigned tasks. But i cant help but feel slightly alone </p>
 
 <p> But in the end, its always up to the captain to make the final call anyway. </p>
 </div>
@@ -656,24 +573,19 @@
 <button class="btn btn-default hidden" id="button-5">Plan: Manouver</button>
 <button class="btn btn-default hidden" id="button-6">Plan: Keep Range</button>
 
-<button class="btn btn-danger hidden" id="button-7">Retreat!</button>
+<button class="btn btn-default hidden" id="button-7">Retreat!</button>
 <button class="btn btn-default hidden" id="button-8">Keep course and plan!</button>
 <button class="btn btn-default hidden" id="button-9">Change of plans: Charge!</button>
 <button class="btn btn-default hidden" id="button-10">Change of plans: Manouver!</button>
 
 <button class="btn btn-default hidden" id="button-11">Enemy manouvers</button>
-<button class="btn btn-default hidden" id="ram">Ram and board them!</button>
-<button class="btn btn-default hidden" id="board">Boarding hooks!</button>
-<button class="btn btn-default hidden" id="leadF">Lead from the Front!</button>
-<button class="btn btn-default hidden" id="leadB">Lead from the Back!</button>
 
-<button class="btn btn-success hidden" id="button-12">Victory</button>
+<button class="btn btn-default hidden" id="button-12">Victory</button>
 <button class="btn btn-default hidden" id="button-13">Surrender</button>
 <button class="btn btn-default hidden" id="button-14">Desperate Attack</button>
-<button class="btn btn-warning hidden" id="faceDefeat">In the face of Defeat</button>
+<button class="btn btn-default hidden" id="faceDefeat">In the face of Defeat</button>
 
 <button class="btn btn-default hidden" id="escape">Escape</button>
-<button class="btn btn-default hidden" id="wounds">Wounds</button>
 <button class="btn btn-default hidden" id="restart">Restart Battle</button>
 <button class="btn btn-default hidden" id="onwards">Onwards</button>
 </div>
@@ -949,11 +861,9 @@ $('#retreatnosails').removeClass('hidden');
 
 <p>The shot rips through several sails and rigging, causing the top left part of the main sail to sag and flutter. Several crew fall towards the deck but are luckily able to break their fall with outspread wings and safety harnesses. </p>
 
-<p>'THOOM' goes the second weapon. It hits the bow of the ship, where we are the most armored. With a loud clang the armor rings like a discordant bell and whole ship seems to shudder but there is no immediate sign of damage. If it breached the hull im sure someone will be along to tell me about it soon. </p>
+<p>'THOOM' goes the second weapon. It hits the bow of the ship, where we are the most armored. The whole ship seems to shudder with the impact but there is no immediate sign of damage. If it breached the hull im sure someone will be along to tell me about it soon. </p>
 
 <p>“KEEP COURSE! STAND FIRM!” I shout to maintain discipline. The crew must not give in to despair and flight. </p>
-
-<p>We are almost upon them now, "The Attentive" charging head-long toward them. We had wind in our backs and high speed. There are seconds to choose action.</p>
 </div>
 <div class="hidden" id="manouver2">
 <p> Our original plan of manouvering is sound, we just have to stay out of their starboard side and those dangerous weapons wont be a threat while our Ballistas can do their job and disable their movement or perhaps even those weapons. </p>
@@ -988,6 +898,7 @@ $('#retreatnosails').removeClass('hidden');
 <p>“KEEP COURSE! STAND FIRM!” I shout to maintain discipline. The crew must not give in to despair and flight. Leaning over the side it looks like the hole isnt low enough to be a leak </p>
 </div>
 <script>
+console.log("whats going on")
 if (state.battle.indexOf("range") > -1) {
 $('#range2').removeClass('hidden');
 }
@@ -1022,8 +933,6 @@ $('#charge2').removeClass('hidden');
 <p>“KEEP COURSE! STAND FIRM!” I shout to maintain discipline. The crew must not give in to despair and flight. </p>
 
 <p>They need to stay brave, counting the reload time of their weapons, we'll be hit by another salvo before we reach them. </p>
-
-<p>We are almost upon them now, "The Attentive" charging head-long toward them. We had wind in our backs and high speed. There are seconds to choose action.</p>
 
 </div>
 
@@ -1208,15 +1117,12 @@ $('#FromRange').removeClass('hidden');
 
 <p> We've ended up circling each other, they do not want us to close the gap too much, afraid of loosing the edge their weapon provides mayhaps. Our ballistas are hammering them, i can see our forward piece has already done good work sabotaging their sails with repeated fire, slowing them down. Im unsurprised to see Gryphs, no doubt mercenaries or conscripts, swooping to and fro to undo the damage. </p>
 
-<p> But in this exchange we are clearly loosing, frustration amounts as each shot causes our ship to shudder from the impact and the pained yells of those hit from flying splinters or worse. </p>
+<p> I cant quite remember what i was yelling at some bumbling crew, for what happened next threw everyone down violently. One moment a streak of light from our rear ballista it landed among the enemy crew fussing and loading their odd weapons, the next, a dramatic explosion, followed by the loudest thunderclap, sent a wall of wind at us as fire consumed their ship in a large blooming ball of heat and light. </p>
 
-<p> I cant quite remember what i was yelling at some bumbling crew, for what happened next threw everyone down violently. One moment a streak of light from our rear ballista it landed among the enemy crew fussing and loading their odd weapons, the next, a dramatic explosion, followed by the loudest thunderclap, sent a wall of wind at us as fire consumed their ship in a large blooming ball of heat and light. Debris whistled past and clattered onto our deck. </p>
+<p> My ears rang as i clutched the deck, the force of it rocked our ship back hard and tore some sails loose from the mast. All was confusion for several moments until i got back on my feet and was able to assess the situation. </p>
 
-<p> My ears rang as i clutched the deck, the force of it rocked our ship back hard and tore some sails loose from the mast. All was confusion for several moments until i got back on my feet unsteadilly trying to assess the situation with my head ringing. </p>
+<p> Someone was cheering. The rear ballista crew were hooting and soon the rest of the dazed crew joined, raising paws in the air at the enemy ship that had seemed to have broken in two, both pieces on fire and breaking apart further. </p>
 
-<p> Someone was cheering? The rear ballista crew were hooting and soon the rest of the dazed crew joined, raising paws in the air at the enemy ship that had seemed to have broken in two, both pieces on fire and breaking apart further. But the sounds and voices were fading, my vision blurring, fur sticky.</p>
-
-<p> Someone yelled. "The captain is down!" </p>
 </div>
 
 <div class="victory hidden"><strong>Victory!</strong>
@@ -1230,7 +1136,7 @@ $('#FromRange').removeClass('hidden');
 
 <p> "With what?" I interrupted, more wondering out loud, but she took it as an inquiry. </p>
 
-<p> "Couldnt tell ya, captain!" She shrugged. "But i figured it was what made it go 'BOOM' all loud-like". </p>
+<p> "Couldnt tell ya, Admiral!" She shrugged. "But i figured it was what made it go 'BOOM' all loud-like". </p>
 
 <p> "Mmm" I nodded. It had looked like they were fussing around quite a bit between shots, but i never had the time for a closer look like Ulv had. </p>
 
@@ -1238,7 +1144,7 @@ $('#FromRange').removeClass('hidden');
 
 <p> "You've done well, more then well. You might have saved our fluff!" I gave Ulv a hard slap on her shoulder and she beamed proudly. </p>
 
-<p> "Wasent all me, Captain! Me crew did well too!" </p>
+<p> "Wasent all me, Admiral! Me crew did well too!" </p>
 
 <p> "I'll see you all commended, but you most of all." I sent her on her way with a salute. Despite a devastating sudden victory, we had taken quite some damage from just a few hits of this new weapon. There was work to be done.  </p>
 
@@ -1371,17 +1277,13 @@ $('#FromRange').removeClass('hidden');
 
 <p> I roared my orders, calling everyone to their duties who were able too. We were assaulting that ship no matter what! And the only way to do so was to float there from the top of our remaining masts. </p>
 
-<p>
-<span id="boarded" class="hidden"> "We're boarding again! Second time is a charm, this time we commit to it! MOVE!"</span>
-<span id="noBoard" class="hidden"> Its a form of boarding attack thats in the book, but often not one prefered, especially at these distances. But it was one everyone had drilled and knew the manouvers for.</span> I kept them moving and hustling so they would not consider the shere desperation of it. </p>
+<p> Its a form of boarding attack thats in the book, but often not one prefered, especially at these distances. But it was one everyone had drilled and knew the manouvers for. I kept them moving and hustling so they would not consider the shere desperation of it. </p>
 
-<p> Shots still came whistling in from the thundering weapons, but they had somehow lost their edge and shock. Though they might still have thrown some crew to the ground or sent vital pieces of the ships shattering. The brave Awes of 'The Attentive' had a goal and purpose in mind now. </p>
+<p> Shots still came whistling in, but they had somehow lost their edge and shock. Though they might have thrown some to the ground or sent vital pieces of the ships shattering. We had a goal and purpose in mind now. </p>
 
 <p> I climbed with them and in quick succession ordered them to leap from the mast and glide toward the enemy ship. In knots of 3-4, brave Awes, regardless of flight-capability score assaulted the enemy. They might have suspected what was going on, they started to turn and put distance between us before even half of us were in the air. By then I too was gliding over, wings outspread and aching terribly </p>
 
-<p> Below Raptorians were already jumping into the cold sea, doing their part in the attack, trying to swim over. Perhaps some of the strongest swimmers among them would even catch-up to the ship. </p>
-
-<p> A third of the Awes made it across clean to land on the enemy deck. Mostly those of high flight-scores, males and scouts. Another third clambered or bounced off the side of their vessel while the rest made a cold wet landing just short of the hull of the ship. Awes are not the best of swimmers, there were yelps and desperate floundering. A large portion resign themselves to just tread water and float. 
+<p> A third made it across clean to land on the enemy deck. Mostly those of high flight-scores, males and scouts. Another third clambered or bounced off the side of their vessel while the rest made a cold wet landing just short of the hull of the ship. Awes are not the best of swimmers, there were yelps and desperate floundering. A large portion resign themselves to just tread water and float. 
 
 <p> By the time i climb onto the deck of the enemy ship, i realize its over before we even had a chance. Gators were large brutish looking reptiles, in some ways similar to Raptorians, but far more bulky, armored and rotund. Such a disorganized attack could never have succeeded, deep down i knew it all along. But it beat hoisting the white flag. </p>
 
@@ -1395,18 +1297,6 @@ $('#FromRange').removeClass('hidden');
 
 <p> A gatorgut can be spaceous, until it gets crowded, which it quickly got. The tight pressure of bodies and muscles pushing together under the taut and scaled gatorbelly soon become too much.</p>
 <img src="images/assets/gatorvore.png" height="40%" width="40%"/> 
-<script>
-
-if (_.contains(state.battle, "board")) {
-$('#boarded').removeClass('hidden');
-
-}
-else {
-$('#noBoard').removeClass('hidden');
-}
-
-</script>
-
 </div>
 
 <div class="desperateA hidden"><strong>Desperate attack</strong>
@@ -1457,50 +1347,8 @@ $('#noBoard').removeClass('hidden');
 
 </div>
 
-
-<div class="ram hidden"><Strong>Ram them!</strong>
-
-<p>“Brace for impact! Prepare to secure sails! Prepare your spears!” I yell, almost gleefully as I directed our ship to head straight for them. It was time to put our armored ramming bow to the test, Admiralty book of tactics be damned!</p>
-
-<p>'The Attentive' dove headlong towards the enemy ship. I heard them fire once. 'Thoooom', loud now that we were so close, the armor made another loud clang and this time I saw a piece of it rip away and hurtle off. They did not have time for a second shot as they realized our intent and started turning avoid impact. But too late.</p>
-
-<p>“Brace!” I shouted and the ship did a grinding crash. We did not quite hit their side head on, which was good in some ways. Crew who did not hold on properly tumbled across deck, but the worst of it was felt by the enemy as their somewhat smaller and lighter ship rocked backwards violently, almost looking like it would capsize for a second before turning back upright. I saw Gators and crew tossed violently about and I heard their hull clearly crack from impact.</p>
-
-<p>Wood ground against wood as our ships pressed up against each-other. There was a moment of brief stand-still as everyone recovered, then the melee started. Somehow their captain had prepared them enough for this outcome. Hulking green-scaled gators hissed and growled as they rushed onto our ships mid-deck. Trying to overwhelm us before we were ready.</p>
-
-<p>Awes still forming battle-lines are pushed back. Raptorians emerging from their mustering point below deck are engaged one by one as they emerge from the tight passage. </p>
-
 </div>
 
-<div class="leadF hidden"><Strong>Lead from the Front!</strong>
-<p>I hesitate only for a moment before leaping toward where the fighting is the toughest. The gators are stronger and larger then my brave soldiers. They hack with brute strength, wielding blunt cleavers and heavy halberds and force their foes backwards. Its easy to forget your training when pressed by such a force. </p>
-
-<p>But as I join the lines with my sword drawn I shout and lead by example. They lack our discipline, our lines can flex and as a gators size can be their detriment, as they press forward we can surround them swiftly and take them down or force them back.</p>
-
-<p>I stand wing to wing with Garsch. He motions his wing against mine, preparing me a moment before lunging forward and slicing at the claws gripping a weapon so I can follow suit only half a breath later to jab my weapon in another weak-spot.</p>
-
-<p>Nearby I spot the Raptorians starting to come into their own as fighting now is pushed back toward the enemy deck. Halberds with pointy ends can efficiently hold back a Raptorian or two, but we have more then a few and these are trained in the art of war. I glimpse a Raptorian leaping across the air, having jumped off the crouched back of a companion to hurtle himself over or on top of the line of gators that thought they could form up an impromptu phalanx and hold them back. That line quickly crumbled as more Raptorians follow suit or rush into the gaps. Loud snarls and terrifying roars betray the inevitable outcome of the rest of that out of sight skirmish. It seems soon we'll have them all routed.</p>
-
-<p>A desperate wing motion to my right tries to warn me but too late. My attention had been elsewhere for too long. A desperate backhand swing aimed at the Awes to my right swishes the air toward me. Its too late to dodge, I put up my sword to block. I don't remember the impact. </p>
-</div>
-
-<div class="leadB hidden"><Strong>Lead from the Back!</strong>
-
-<p>I fight the urge to dive into the fight. At this point my troops need direction rather then direct encouragement. </p>
-
-<p>The gators are stronger and larger then my brave soldiers. They hack with brute strength, wielding blunt cleavers and heavy halberds and force their foes backwards. Its easy to forget your training when pressed by such a force. </p>
-
-<p>I steel my voice to be overheard, standing upon the stern over the main fighting on the mid-deck. The fighting is thick below me, I see Officer Garsch holding things together, maintaining a disciplined line, buckling and pushing where it needs to. Gators seem to lack our discipline and leadership, our lines can flex and as a gators size can be their detriment, as they press forward we can surround them swiftly and take them down or force them back.</p>
-
-<p>Awes keep flooding the deck from below, I shout for for a Low-officer to take charge of a section of them and flank around the fore-deck. Another I direct to relieve a hard-pressed squad down center and a third I shout to take position behind the Raptorians who are starting to come into their own.</p>
-
-<p>Halberds with pointy ends can efficiently hold back a Raptorian or two, but we have more then a few and these are trained in the art of war. I glimpse a Raptorian leaping across the air, having jumped off the crouched back of a companion to hurtle himself over or on top of the line of gators that thought they could form up an impromptu phalanx and hold them back. That line quickly crumbled as more Raptorians follow suit or rush into the gaps.</p>
-
-<p>Chomping jaws and heavy smack of blunt armored tails amidst a chorus of snarling and roaring make short work of the Gators rear lines as we start to drive them back toward their own ship. I am glad the Raptorians are on our side, few as they are, they are a ferocious force.</p>
-
-<p>“Captain!” A voice calls out in warning. I turn in time to see a hurtling weapon, a crude cleaver, having been tossed toward me. There is no time to dodge, I try to block it but the impact is hard. And soon painful. </p>
-
-</div>
 
 </body>
 </html>

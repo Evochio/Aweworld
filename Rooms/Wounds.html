@@ -15,32 +15,46 @@
 
   <script>
 	  state.Ziggy.status = 'invisible';
-	
+	state.events.push("noArn");
     $(document).ready(function() {
 	
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
-      state.events.push("nokeeper");
+      if (_.contains(state.events, "noArn")) {
+		$('.arnDead').removeClass('hidden');
+	
+		}
+	  else {
+		 $('.arnLives').removeClass('hidden');
+	  }
 	  
 	  
 	    $('#safe').on('click', function(e) {
 		lib.dialogue(e, "safe"),
 		
 		$("#safe").addClass("hidden")
-			
+		$("#duty").addClass("hidden")	
       })
 	  
       $('#duty').on('click', function(e) {
 		lib.dialogue(e, "duty"),
 		
 		$("#duty").addClass("hidden")
+		$("#safe").addClass("hidden")
+		$("#answers").removeClass("hidden")
 			
       })
-	    $('#button-2').on('click', function(e) {
-		lib.dialogue(e, "tough"),
+	    $('#answers').on('click', function(e) {
+		 if (_.contains(state.battle, "explosion")) {
+		
+		lib.dialogue(e, "answersE")
+		}
+	  else {
+		lib.dialogue(e, "fight")
+	  }
+		
 		$("#button-6").removeClass("hidden")
-		$("#button-1").addClass("hidden")
-		$("#button-2").addClass("hidden")
+		$("#answers").addClass("hidden")
 			
       })
 		
@@ -66,21 +80,35 @@
 <div id="story-text">
 <p>The warm comforting embrace of a matrons pouch, its enough to bring an Awe back to her early childhood, when the world consisted of little more then a safe comforting cocoon of warmth and softness. Occasionally a soothing voice and purr would calm any other worries.</p>
 
-<p>Such a place surrounds me now again. Its strangely become a place of familiarity, the scent of Elda is not unlike my own Matrons. The scent of rest and recuperation, sweet and cinnamony. It drifts me in and out of consciousness, making sure I stay still and asleep while my body burns away its malady or injury. I cant remember how I got here or what happened, it feels like it doesn't matter anymore, nothing matters anymore. My body is leaden, so tired. </p>
+<p>Such a place surrounds me now again. <span id="injuryProne" class="hidden"> Its strangely become a place of familiarity, the scent of Elda is not unlike my own Matrons.</span> The scent of rest and recuperation, sweet and cinnamony. It drifts me in and out of consciousness, making sure I stay still and asleep while my body burns away its malady or injury. I cant remember how I got here or what happened, it feels like it doesn't matter anymore, nothing matters anymore. My body is leaden, so tired. </p>
 
-<p>I feel a faint comforting rub along my back, gentle but firm.</p>
+<p>I feel a faint comforting rub along my back, gentle but firm. <span id="injuryFirst" class="hidden"> It stirs me back to reality. I remember thunder, battle and desperate faces.</p>
 
 </div>
-<div id="tail">
 
+
+<div id="tail">
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="safe">You are safe now, rest.</button>
 <button class="btn btn-default" id="duty">There are duties to fulfill.</button>
-<button class="btn btn-default hidden" id="button-2">Tough love</button>
+<button class="btn btn-default hidden" id="answers">Answers</button>
 <button class="btn btn-default hidden" id="button-6">Continue</button>
 <span id="cadetButtons"> </span>
 </div>
+
+<script>
+	if (state.injuries >= 1 ) {
+	 $('#injuryProne').removeClass('hidden');
+	 }
+	 else {
+		$('#injuryFirst').removeClass('hidden');
+		$("#safe").addClass("hidden")
+		}
+
+
+</script>
+
 <div class="safe hidden"><p><strong>You are safe now, rest. </strong></p>
 
 
@@ -94,7 +122,7 @@
 
 <p><br />
 </p>
-</div>
+
 
 <p>“When will the captain be back to duty?” Glint the young Cadet asks from the doorway of the Groomery. </p>
 
@@ -111,7 +139,7 @@
 
 
 <p>One way or another, the ship would go on with other leadership, temporary or otherwise. </p></div>
-
+</div>
 <div class="duty hidden"><p><b>There are duties to fulfill. Expectations to fill. </b> </p>
 
 
@@ -128,10 +156,10 @@
 
 
 
-<p>“H-how long was I out?” I ask huskily. My mouth is dry, im dehydrated, im given a cup of water before I need to ask.</p>
+<p>“H-how long was I out?” I ask huskily. My mouth is dry, im dehydrated, im given a cup of water before I need to ask. I am in the Groomery, there are other injured around, sleeping. Its suprisingly quiet.</p>
 
 
-<p>“A bit too long Avolc. Honestly I was afraid we'd lost you, you would not stir no matter how I tried.” </p>
+<p>“A bit too long Avolc. Honestly I was afraid we'd lost you, you would not stir no matter how I tried. Your injury must have been deeper then we thought.” </p>
 
 
 
@@ -140,13 +168,111 @@
 
 <p>“Its not that easy, not without potential considerable damage to us both. As I explained before, frequent pouch treatments carry risk. Pheromones put you to slumber and activate your inner burn to heal swiftly. Do this too often however and its a slumber you might not recover from. The pouch will seal itself and you will... well.. be absorbed. “</p>
 
-
 <p>I looked at Elda closely for a while. Had I relaxed more deeply, I would have deepened with her. There certainly are worse fates, but i'd been abandoning my duty early. Shis means there will be no more pouch-cures for me on this trip. </p>
 
-<p>Finally I nodded and excused myself, I was starting to feel ravenous. I'd fill my needs and see whats become of my ship while I was out of it. Hopefully the place had not fallen apart while i was out.</p>
+<p>Finally I nodded and excused myself, I was starting to feel ravenous. I'd fill my needs and see whats become of my ship while I was out of it. It appears we made it somehow while i was out, i needed to find whoever was in charge in my absence.</p>
 
 </div>
 
+<div class="answersE hidden"><p><b>Answers</b> </p>
+
+<p> Somehow we had won. Violently and suddenly, but won nevertheless.</p>
+
+<p>While sipping broth, I sat in a quick conference with a few high-officers i could find.<span class="arnLives hidden"> Arn was looking different. The recent ruckus of battle and fighting seems to have 'woken' him up. I have him to thank for holding things together while i was out. </span>
+  Nyxie spoke first, arm in a sling. </p>
+
+<p> "Things were in a bit of a chaos at first, the explosion had left our sails in a mess, but luckily not torn them apart. We had been very close to the other ship when it blew." </p>
+
+<p> An ecstatic Officer Ulv quickly continued eager to retell her part in the ordeal. </p>
+
+<p> "I was watching them real close, they weres filling them tubes between shots right." Ulv grinned, she was from the same region as Ziggy i guessed by her maner of speech. </p>
+
+<p> "With what?" I interrupted, more wondering out loud, but she took it as an inquiry. </p>
+
+<p> "Couldnt tell ya, Captain!" She shrugged. "But i figured it was what made it go 'BOOM' all loud-like". </p>
+
+<p> "Mmm" I nodded. It had looked like they were fussing around quite a bit between shots, but i never had the time for a closer look like Ulv had. </p>
+
+<p> "So we figured, right, what if we put some fire on tha stuff they're pouring in! So we did! Got it straigt on the second shot, aimed it meself, quite the show!" Ulv thumped her chest proudly and smirked.</p>
+
+<p> "You've done well, more then well. You might have saved our fluff!" I gave Ulv a hard slap on her shoulder and she beamed proudly. </p>
+
+<p> "Well, maybe wasent all me, Captain! Me crew did well too!" Ulv purred, finding some inkling of humility from somewhere. </p>
+
+<p> "I'll see you all commended, but you most of all." I replied with reassurance.</p>
+
+<p> Despite a devastating sudden victory, we had taken quite some damage from just a few hits of this new weapon. There was work to be done.  </p>
+
+<span class="arnLives hidden">"Tick reported none of the damage received is critical, they have already plugged the worst of the breaches." Arn spoke gruffly, finally speaking up. "But he very firmly pointed out that we nearly bit the rot on this one."</span>
+
+<p> "We tried to recover as much of the enemy ship they could. But whatever worthwhile there had been had sunk to the bottom of the sea. Of the enemy crew there was unsuprisingly little trace." Officer<span class="arnLives hidden">Arn</span><span class="arnDead hidden">Nyxie</span>  spoke calmly.</p>
+
+<p> The scout-master who had been lurking quietly on-foot in a corner spoke up. </p>
+
+<p> "Look-outs claimed to report seeing a few gryphs escape the blast and fly off, but as good a flyers as they may be, this was the open sea. We took a few laps in the air for as far as we dared go, but there are no sightings of land or other ships for them to have flied too." </p>
+
+<p> The room was silent a while. Everyone had reported what they could and i felt sufficiently up to speed. I could not deny my raging appetite any longer, this broth could not fill the deep pit in my stomach that the pouch-cure seemed to have made. Unfortunately it seems we had no prisoners. </p>
+
+<p> "Dismissed then, good work everyone." I muttered, before my officers started to look too delectable. </p>
+</div>
+<div class="fight hidden">
+<p>We had beat them back. They had retreated.</p>
+
+<p>After I had taken the hit in the fight we had pushed them all the way back to their own deck. But the pirates had not let themselves be captured. In the chaos of battle the ships had started to float apart as our connection was cut loose.</p>
+
+<p>Garsch, the officer commanding the troops at the time, scratched at his old face-gash and looked somewhat sullen as he recounted the event.</p>
+
+<p>“It happened fast, the ships suddenly floating apart. The fight went out of them when we started to push in on their deck and nearing those thunder-weapons, we did what we could to try to mess them up. I had to ensure we were not trapped and outnumbered on our ship, most were holding defensive positions. So I pulled everyone back.” The rugged officer sighed. “I think in doing so we missed our chance in securing the enemy ship. I take full responsibility.” The officer sat a bit firmer at attention.</p>
+
+<p>I had to grin wryly. I did not really blame him for the outcome, unfortunate as it was.</p>
+
+<p>“So they just fled? We made no attempt to pursue?” I looked to the other officers.<span class="arnLives hidden"> Arn in particular.</span></p>
+
+<span class="arnLives hidden">
+<p>“The ship was in bad condition as it was and so were you. Even if we had tried to catch them, our sails were in a bad condition.” Arn replied calmly. “As Garsch pointed out, their weapons were disabled. So they were no longer a threat.”</p>
+
+<p>“Did you come to that conclusion before or after they did not turn around to continue fire upon us?” I chided and frowned. But I knew I was being needlessly moody, my hunger making my cranky. I waved away his attempt at excuses.</p>
+</span>
+<span class="arnDead hidden">
+<p> Officer Nyxie was the one to speak after a moment of silence. </p>
+
+<p> "Truthfully Captain. With you down, we had no one to quite take charge of the overall situation i think." She looked slightly ashamed, but i knew who the real blame. The chain of command was missing a few links due to recent events. I suppose we should consider ourselves lucky they were unable or unwilling to turn back to fire upon us again. </p>
+</span>
+
+<p>“What matters is that we came out of this encounter in one piece." I reassured them. "I saw the battle, they were better prepared and armed then any reports of this sea have told of. How has the ship held together?”</p>
+
+<span class="arnLives hidden">
+<p>“Tick reported none of the damage received is critical, they have already plugged the worst of the breaches." Arn spoke gruffly, finally speaking up. "But he very firmly pointed out that we nearly bit the rot on this one. We could not have handled a prolonged fight."</p>
+
+<p> There was little arguing that oppinion. A few more well-placed shots could have put too many holes in the hull to repair in time. </p>
+</span>
+<span class="arnDead hidden">
+<p>Tick our Maintinance-Officer, had found his way out of the relusiveness of his workshop to attend the meeting. I had to perk my ears to hear his words. "Critical repairs are completed. Only one of the shots hit close to the waterline to cause a leak." </p>
+
+<p>"Sounds like the ship faired suprisingly well." I ventured. But Tick shook his head. </p>
+
+<p>"Luck experienced should not be taken into account for overall chances. The battle was fortunatly brief. Only our armored bow withstood direct fire captain. A prolonged fight would be dire!" </p>
+
+<p> I nodded to the somewhat quirky Officer. I had to take his warning into full account. </p> </span>
+
+<p>I looked around for anyone else who might have something to report, the scout-master who had been lurking quietly on-foot in a corner spoke up.<br />
+<br />
+“We tried to follow the ship for as long as we could, but whenever we got too close they sent their fliers to meet us. They were last seen sailing north-west, we lost sight of them at night.”<br />
+<br />
+The room was silent a while. Everyone had reported what they could and i felt sufficiently up to speed. I could not deny my raging appetite any longer, this broth could not fill the deep pit in my stomach that the pouch-cure seemed to have made. </p>
+
+<p>“Prisoners?” I ventured with this in mind.</p>
+
+<p>Garsch shook his head, indicating none alive remained. “A few grunts. The ones we captured had nothing to say nor seemed to understand our speech or Trade-tongue. They were lotted out accordingly.” Yet still Garsch seemed to miss the distinct shape of one who had a large meal recently. He must have omitted his lot to someone else. </p>
+
+<p>"Dismissed then, good work everyone." I muttered, before my officers started to look too delectable.<br />
+<br />
+</p>
+
+
+
+</div>
+</div>
 
 
 

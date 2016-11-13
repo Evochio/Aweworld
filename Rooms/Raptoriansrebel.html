@@ -18,6 +18,8 @@
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
       state.events.push("raptoriansRebel");
+	  state.events.push("noArn");
+	  
       $('#button-1').on('click', function(e) {
 		lib.dialogue(e, "admit"),
 		state.crewMorale -= 1;
