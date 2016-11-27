@@ -14,6 +14,8 @@
   <script src="/main.js"></script>
 
   <script>
+
+  
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
@@ -438,7 +440,7 @@
 			$("#button-7").addClass("hidden")
 			
 		}
-		// -----
+		// ----- below code might be discarded
 		else if ((state.battle.indexOf("approach") > -1) && state.battle.indexOf("samePlan") > -1){
 			if (_.contains(state.events, "hard")) {
 			lib.dialogue(e, "boardTung")
@@ -568,7 +570,7 @@
         // change state here
 	
         // end by using lib.goTo
-         lib.goTo('Scars.html')
+         lib.goTo('Debriefing.html')
 	
       })
 	    $('#wounds').on('click', function(e) {
@@ -675,7 +677,7 @@
 <button class="btn btn-default hidden" id="escape">Escape</button>
 <button class="btn btn-default hidden" id="wounds">Wounds</button>
 <button class="btn btn-default hidden" id="restart">Restart Battle</button>
-<button class="btn btn-default hidden" id="onwards">Onwards</button>
+<button class="btn btn-default hidden" id="onwards">Debriefing</button>
 </div>
 <div class="ballista hidden"><strong>Ballista</strong>
 <p>We need more firepower, on my order the parts for the second weapon start to make their way up. The crew have drilled well, it looks like they'll just about get it in working order before the enemy ship is in range. </p>
@@ -1210,7 +1212,7 @@ $('#FromRange').removeClass('hidden');
 
 <p> But in this exchange we are clearly loosing, frustration amounts as each shot causes our ship to shudder from the impact and the pained yells of those hit from flying splinters or worse. </p>
 
-<p> I cant quite remember what i was yelling at some bumbling crew, for what happened next threw everyone down violently. One moment a streak of light from our rear ballista it landed among the enemy crew fussing and loading their odd weapons, the next, a dramatic explosion, followed by the loudest thunderclap, sent a wall of wind at us as fire consumed their ship in a large blooming ball of heat and light. Debris whistled past and clattered onto our deck. </p>
+<p> I cant quite remember what i was yelling at some bumbling crew, for what happened next threw everyone down violently. One moment a streak of light from our rear ballista it landed among the enemy crew fussing and loading their odd weapons, the next, a dramatic explosion, followed by the loudest thunderclap, sent a wall of wind at us as fire consumed their ship in a large blooming ball of heat and light. Debris whistled past my ear and clattered onto our deck. </p>
 
 <p> My ears rang as i clutched the deck, the force of it rocked our ship back hard and tore some sails loose from the mast. All was confusion for several moments until i got back on my feet unsteadilly trying to assess the situation with my head ringing. </p>
 
