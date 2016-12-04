@@ -14,6 +14,7 @@
   <script src="/main.js"></script>
 
   <script>
+  state.days += 3;
       state.Glint.status = 'available';
     state.Valnos.status = 'available';
 	state.Ziggy.status = 'available';
@@ -45,6 +46,11 @@
 </head>
 <body>
 <div id="head">
+<div id="dayCounter">
+Day: <span class="days"><script>displayDays()</script></span>
+<br/>
+<span class="schedule"><script>displayShedule()</script></span>
+</div>
 <h1>Pale-Rock</h1>
 </div>
 <div id="story-text">

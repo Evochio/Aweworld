@@ -53,7 +53,7 @@ margin-right: 200px;
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
-    $("#Ziggy").addClass("new")
+   
 	var updateGameScore = function() {
 	state.flock.team = (state.flock.avolc + state.flock.ziggy);
 	state.flock.opponent = (state.flock.arn + state.flock.keeper);
@@ -92,7 +92,7 @@ margin-right: 200px;
 		$("#button-2").addClass("hidden")
 		$("#button-3").addClass("hidden")
 		$("#button-4").addClass("hidden")
-		$("#Ziggy").addClass("new")
+		$("#ZThumb").addClass("new")
 		cadet[0].banter = [
     { target: '#Ziggy', text: 'Pssst, hey, something is up.', imageClass: "suspicious"},
     { target: '#Ziggy', text: 'Trust me? Its risky, but force a redraw in round two by fumbling. Then play Matron in 3!', imageClass: "smug"},
@@ -113,7 +113,7 @@ margin-right: 200px;
 		$("#button-2").addClass("hidden")
 		$("#button-3").addClass("hidden")
 		$("#button-4").addClass("hidden")
-		$("#Ziggy").addClass("new")
+		$("#ZThumb").addClass("new")
 		cadet[0].banter = [
     { target: '#Ziggy', text: 'Pssst, hey, something is up.', imageClass: "suspicious"},
     { target: '#Ziggy', text: 'Trust me? Its risky, but force a redraw in round two by fumbling. Then play Matron in 3!', imageClass: "smug"},
@@ -134,7 +134,7 @@ margin-right: 200px;
 		$("#button-2").addClass("hidden")
 		$("#button-3").addClass("hidden")
 		$("#button-4").addClass("hidden")
-		$("#Ziggy").addClass("new")
+		$("#ZThumb").addClass("new")
 		cadet[0].banter = [
     { target: '#Ziggy', text: 'Pssst, hey, something is up.', imageClass: "suspicious"},
     { target: '#Ziggy', text: 'Trust me? Its risky, but force a redraw in round two by fumbling. Stay low, then play Matron in 3!', imageClass: "smug"},
@@ -149,7 +149,9 @@ margin-right: 200px;
 		$("#button-8").removeClass("hidden")
 		$("#button-5").addClass("hidden")
 		$("#ziggyplan").addClass("hidden")
+		$("#ZThumb").removeClass("new")
     	$("#Ziggy").addClass("disabled")
+		
 				cadet[0].banter = [
     { target: '#Ziggy', text: 'Ziggy looks busy', imageClass: "suspicious"}
  
@@ -166,7 +168,7 @@ margin-right: 200px;
 		$("#button-5").addClass("hidden")
 		$("#ziggyplan").addClass("hidden")
 		
-    	state.Ziggy.status = "disabled";
+    	
       })
 	  
 	  
@@ -276,10 +278,7 @@ margin-right: 200px;
 		$("#button-10").addClass("hidden")
 		$("#button-11").addClass("hidden")
 		
-		cadet[0].banter = [
-					{ target: '#Ziggy', text: ''}
-					
-				];
+		
 		
 		
 		if (_.contains(state.events, "ziggyplan")) {
@@ -290,6 +289,10 @@ margin-right: 200px;
 		state.flock.ziggy -=10;
 		state.flock.arn -=10;
 		state.flock.keeper +=25;
+		cadet[0].banter = [
+					{ target: '#Ziggy', text: 'Ziggy Winks'}
+					
+				];
 		}
 			else {
 		lib.dialogue(e, "round3-nobet")	
@@ -306,8 +309,9 @@ margin-right: 200px;
 	 $('#button-12').on('click', function(e) {
 		$("#button-12").addClass("hidden")
 		state.Ziggy.status = "available";
+		$("#ZThumb").removeClass("disabled")
 		$("#Ziggy").removeClass("disabled")
-		$("#Ziggy").addClass("new")
+		$("#ZThumb").addClass("new")
 		if (_.contains(state.events, "ziggyplan") && _.contains(state.events, "nomatron")) {
 				lib.dialogue(e, "round4keep"),
 				$("#betzig").removeClass("hidden")	
@@ -440,8 +444,9 @@ margin-right: 200px;
 	   $('#button-16').on('click', function(e) {
 	   
 		$("#button-17").removeClass("hidden")
+		$("#ZThumb").removeClass("disabled")
 		$("#Ziggy").removeClass("disabled")
-		$("#Ziggy").addClass("new")
+		$("#ZThumb").addClass("new")
 	   if (state.flock.team <= -10 && state.flock.team > -20)
 	   {
         lib.dialogue(e, "conclusion")
@@ -572,6 +577,11 @@ margin-right: 200px;
 </head>
 <body>
 <div id="head">
+<div id="dayCounter">
+Day: <span class="days"><script>displayDays()</script></span>
+<br/>
+<span class="schedule"><script>displayShedule()</script></span>
+</div>
 <h1>The Game - Flock</h1> 
 
 </div>
@@ -583,7 +593,7 @@ margin-right: 200px;
 <div id="story-text">
 <p>The game started. In many ways it was a offshoot of the very common Wulf card game where you received two random cards, bet based on their value and then everyone match their two cards up against a open set of 5 cards on the table. Best combination wins.</p>
 
-<p>But in this variation, called "The Flock" the two cards you get is all you get that round and your betting currency is fixed to 6 chips. The Matron, of which you get one chip (worth 10 points), 2 Awe Chips (5 points) and 3 Male chips (3 points). Over 4 rounds you bet minimum of one of your chips blind against the others bets, you can only use your own starting chips. The Matron chip is special, which if you decide to pitch it always counts as first bet and done openly. The other players have to then either match it, in a challenge, with their own Matron chip and hope to win with higher value of cards or be forced to ceede a Awe chip. If you do not have a Awe chip, you must match with your own Matron or you are bust and have to give all your winnings over. After the fourth round, the one holding the biggest pool of Chip bets of another player win whatever was at stake in this game.</p>
+<p>But in this variation, called "The Flock" the two cards you get per round is all you get. Your betting currency is fixed to 6 chips. The Matron, of which you get one chip (worth 10 points), 2 Awe Chips (5 points) and 3 Male chips (3 points). Over 4 rounds you bet minimum of one of your chips blind against the others bets, you can only use your own starting chips. The Matron chip is special, which if you decide to pitch it always counts as first bet and done openly. The other players have to then either match it, in a challenge, with their own Matron chip and hope to win with higher value of cards or be forced to ceede a Awe chip. If you do not have a Awe chip, you must match with your own Matron or you are bust and have to give all your winnings over. After the fourth round, the one holding the biggest pool of Chip bets of another player win whatever was at stake in this game.</p>
 
 <p>For example, if Keeper was so confident in his cards he bet his Matron chip in round one. Ziggy challenges him with her own 10 pointer and wins, getting his Matron and the Awe cards from the other players, playing it safe. </p>
 
@@ -1011,7 +1021,7 @@ margin-right: 200px;
 
 <p>  The rumor spreads fast in the ship, I hear whispers and catch glances as the news of Arns defeat and the manner of it becomes known. To my surprise, most seem to snicker about it. There is something deeply ironic about his date, like it reached a pivotal end that he had set himself up for. Whatever underlying loyalty I feared he'd held seemed to be absent. So even though i've just fed my first-officer to my trainee officer-cadet, its not an agitated buzz I sense, but one of curious amusement.  I find myself unable to resist a grin as I make my way back to the main deck to oversee our course and speed. </p>
 
-<img src="images/assets/Ziggybelly.png" height="40%" width="40%"/> 
+<img src="images/assets/Ziggybelly.jpg" height="40%" width="40%"/> 
 </div>
 
 <script>

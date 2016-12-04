@@ -14,6 +14,7 @@
   <script src="/main.js"></script>
 
   <script>
+  state.days += 2;
 		state.Glint.status = 'available';
 		state.Valnos.status = 'available';
 		state.Ziggy.status = 'available';
@@ -36,7 +37,7 @@
 	   $('#button-2').on('click', function(e) {
         // change state here
 
-		
+			state.days += 1;
 			state.delay += 1;
 			state.crewMorale += 1;
 			state.inventory.push("gratitude");
@@ -50,6 +51,7 @@
       })
 	   $('#button-3').on('click', function(e) {
         // change state here
+		state.days += 2;
 		state.delay += 2;
 		state.crewMorale += 1;
 		state.inventory.push("gratitude");
@@ -91,6 +93,7 @@
 	  
 	  	$('#button-6').on('click', function(e) {
         // change state here
+		state.vore += 2;
 		lib.dialogue(e, "dealBoth")
 		$("#button-6").addClass("hidden");
 		$("#button-7").addClass("hidden");
@@ -99,6 +102,7 @@
       })
 	  	$('#button-7').on('click', function(e) {
         // change state here
+		state.vore += 1;
 		lib.dialogue(e, "cadetPrize")
 		$("#button-6").addClass("hidden");
 		$("#button-7").addClass("hidden");
@@ -203,13 +207,20 @@ cadet[1].banter = [
 
   <style>
     /* Put styling that is specific to this page here. This is a CSS comment btw. */
-	
+	img {
+	width: 60%;
+	}
 	
   </style>
 
 </head>
 <body>
 <div id="head">
+<div id="dayCounter">
+Day: <span class="days"><script>displayDays()</script></span>
+<br/>
+<span class="schedule"><script>displayShedule()</script></span>
+</div>
 <h1>The merchant ship</h1>
 </div>
 <div id="story-text">
@@ -241,7 +252,7 @@ cadet[1].banter = [
 
 <button class="btn btn-default hidden" id="button-6"> Deal with them both yourself </button>
 <button class="btn btn-default hidden" id="button-7"> A cadets prize and a commanders priviledge </button>
-<button class="btn btn-default hidden" id="button-8"> Let Captain Russel decide, a show of good-will </button>
+<button class="btn btn-default hidden" id="button-8"> Let Captain Russel decide </button>
 
 <button class="btn btn-default hidden" id="play2"> Entertain the girl</button>
 

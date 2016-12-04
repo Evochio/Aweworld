@@ -48,6 +48,11 @@
 </head>
 <body>
 <div id="head">
+<div id="dayCounter">
+Day: <span class="days"><script>displayDays()</script></span>
+<br/>
+<span class="schedule"><script>displayShedule()</script></span>
+</div>
 <h1>The Game - Flock</h1>
 </div>
 <div id="story-text">
@@ -163,7 +168,7 @@
 				];
 		
 		}
-		else if (_.contains(state.events, "ziggyplan") && (state.events, "nomatron"))
+		else if (_.contains(state.events, "ziggyplan") && _.contains(state.events, "nomatron"))
 		{
 		cadet[0].banter = [
     { target: '#Ziggy', text: 'You should have trusted me Captain. I was close to taking the game for us.', imageClass: "sad"},

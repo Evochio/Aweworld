@@ -88,7 +88,7 @@ img {
 	border: 6px solid #331a00;
 	
 	border-radius: 20px;
-	Width: 80%
+	Width: 60%
 }
 html {
 
@@ -124,6 +124,18 @@ top: 20px;
 right: 40px;	
 position: absolute;
 }
+#dayCounter {
+ float: left;
+ border: 3px solid #cb9969;
+ border-top: none;
+ border-left: none;
+ background-color: #331a00;
+ border-radius: 20px;
+ 
+ position: fixed;
+ padding: 5px;
+}
+
 #tail {
 
 	background-color: #996633;

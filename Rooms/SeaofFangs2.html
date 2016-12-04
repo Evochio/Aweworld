@@ -14,6 +14,7 @@
   <script src="/main.js"></script>
 
   <script>
+  state.days += 2;
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
@@ -21,6 +22,7 @@
       $('#button-1').on('click', function(e) {
 		lib.dialogue(e, "search"),
 		state.delay += 1;
+		state.days += 1;
 		$("#button-3").removeClass("hidden")
 		$("#button-4").removeClass("hidden")
 		$("#button-1").addClass("hidden")
@@ -168,6 +170,11 @@
 </head>
 <body>
 <div id="head">
+<div id="dayCounter">
+Day: <span class="days"><script>displayDays()</script></span>
+<br/>
+<span class="schedule"><script>displayShedule()</script></span>
+</div>
 <h1>The Sea of Fangs</h1>
 </div>
 <div id="story-text">

@@ -14,6 +14,7 @@
   <script src="/main.js"></script>
 
   <script>
+  	state.days += 1;
   state.Glint.status = 'available';
     state.Valnos.status = 'available';
 	state.Ziggy.status = 'available';
@@ -34,16 +35,24 @@
   
   <style>
     /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	img {
+ width: 50%;
+}
   </style>
 
 </head>
 <body>
 <div id="head">
+<div id="dayCounter">
+Day: <span class="days"><script>displayDays()</script></span>
+<br/>
+<span class="schedule"><script>displayShedule()</script></span>
+</div>
 <h1>The First-Officer</h1>
 </div>
 <div id="story-text">
 
-<p>Overcast with strong winds keep us on a steady course. At this rate we will be at Sea of fangs in a week.</p>
+<p>Overcast with strong winds keep us on a steady course. At this rate we will be at Sea of fangs in merely a weeks time. But i know better then to expect the west-sea to be kind.</p>
 
 <p>I have started to grow concerns about First-mate Arn.</p>
 

@@ -14,6 +14,8 @@
   <script src="/main.js"></script>
 
   <script>
+		state.days += 1;
+  
     $(document).ready(function() {
 	
       // Put logic that is specific to this page here, mainly what happens when buttons to other
@@ -45,6 +47,11 @@
 </head>
 <body>
 <div id="head">
+<div id="dayCounter">
+Day: <span class="days"><script>displayDays()</script></span>
+<br/>
+<span class="schedule"><script>displayShedule()</script></span>
+</div>
 <h1>Packmaster</h1>
 </div>
 <div id="story-text">

@@ -17,7 +17,7 @@
 	//state.preludeEvents.push("nipfang");
 	//state.preludeEvents.push("defensive");
 	//state.inventory.push("burntRope");
-		
+	state.days += 1;
 	
 	var hideQuestions = function(){
 		$("#button-5").addClass("hidden")
@@ -333,6 +333,16 @@
        location.reload(true)
 		
     })
+	
+	if ( state.delay == 0 ) {
+	$(".time").removeClass("hidden")
+	}
+	else 
+	{
+	$(".late").removeClass("hidden")
+	}
+	
+	
 	})
   </script>
   
@@ -343,10 +353,18 @@
 </head>
 <body>
 <div id="head">
+<div id="dayCounter">
+Day: <span class="days"><script>displayDays()</script></span>
+<br/>
+<span class="schedule"><script>displayShedule()</script></span>
+</div>
 <h1>Wulfcaptain</h1>
 </div>
 <div id="story-text">
-<p>We arrived well one time at the western point of Pale-rock. Impressive jagged cliffs decorated the end of the windswept cold island. Southeast from here lay the Wulf lands. It is strange to consider how close our nations lay to each other. But besides the somewhat calm east-sea the routes are long and ever fraught with perils.</p>
+<p>
+<span class="late hidden">We've arrived late </span>
+<span class="time hidden">We arrived well one time </span>
+at the western point of Pale-rock. Impressive jagged cliffs decorated the end of the windswept cold island. Southeast from here lay the Wulf lands. It is strange to consider how close our nations lay to each other. But besides the somewhat calm east-sea the routes are long and ever fraught with perils.</p>
 <p>It does not take long for our spotter to detect the sails of another ship heading for us. A Wulf interceptor by the look of it. Wulfs have always preferred small nimble ships, the interceptor was the quickest of their kind. It might even rival the perked ear while going straight. But its strengths lay in its agility and quick turns. </p>
 <p>One interceptor was no threat however, it is merely half our size and has a smaller crew. But the problem with Wulfs were that they often came in groups.
 This interceptor appeared to be alone and as it closed in, its flags were confirmed as part of the &ldquo;The sailing company&rdquo;, which would be the Wulf organized navy of privateers. Our contacts. </p>
@@ -354,7 +372,9 @@ This interceptor appeared to be alone and as it closed in, its flags were confir
 <p>As they came in along-side to dock with our ship, I ordered most personnel on deck, with weapons at the ready not far from reach. My experiences with Wulfs on the east sea has taught me to never fully make assumptions of their intentions. The Raptorians I kept under deck for now, as a potential surprise. <br />
 The docking was uneventful. The differences in crew was as always interesting. Where our brave Awes stood in fine rows, the wulfs seemed content with having no organization what so ever, standing in spaced bunches in every feasible nook of their ship and an alarming number of them gawking down from the sails and ropes. <br />
 As soon as a plank was lowered, a short figure marched over. Wearing a captains overcoat a young looking Wulf lass peered around with suspicion before fixing me with a sneer.<br />
-&ldquo;You captain?&rdquo; She asked with a youthful voice.</p>
+<span class="late hidden">"You late!" She spat angrily.</span>
+<span class="time hidden">&ldquo;You captain?&rdquo; She asked with a youthful voice.</span>
+</p>
 <span class="hidden" id="keeper">I glanced over at Keeper, who was looking somewhat chagrined, this sure wasent Captain Viriltri. Things just got complicated.</span>
 <span class="hidden" id="nokeeper">This clearly wasent Captain Viriltri. This might be a good thing or a bad thing considering Keepers absence.</span>
 <p><span class="evokBelly hidden">The wulf seemed to stare long and hard at my prominently rounded gut. </span> </p> 

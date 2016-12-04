@@ -14,6 +14,7 @@
   <script src="/main.js"></script>
 
   <script>
+	state.days += 1;
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
@@ -46,6 +47,7 @@
 		$("#compromise").removeClass("hidden")
 		$("#button-1").addClass("hidden")
 		$("#button-2").addClass("hidden")
+		$("#button-3").addClass("hidden")	
         if (_.contains(state.events, "ignore")) {
 		lib.dialogue(e, "drop2");
 
@@ -166,6 +168,11 @@
 </head>
 <body>
 <div id="head">
+<div id="dayCounter">
+Day: <span class="days"><script>displayDays()</script></span>
+<br/>
+<span class="schedule"><script>displayShedule()</script></span>
+</div>
 <h1>To bet or not to bet</h1>
 </div>
 

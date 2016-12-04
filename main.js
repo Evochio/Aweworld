@@ -236,6 +236,7 @@ var initialState = {
   crewMorale: 6,
   shipHealth: 10,
   vore: 0,
+  days: 0,
   piety: 0,
   raptorians: 3,
   injuries: 0,
@@ -267,18 +268,20 @@ var parts = document.location.href.split('/');
 var lastPart = parts[parts.length-1];
 state = lib.load('state-'+lastPart) || initialState;
 
-
+ displayDays = function () {
+$(".days").text(state.days).css('color', 'white');
+	}
 
 displayMoraleStatus = function () {
 	console.trace();
 	if (state.crewMorale >= 10 && state.crewMorale < 13 ) {
-		$(".Crew-morale-description").text("Soaring").css('color', 'darkgreen');;
+		$(".Crew-morale-description").text("Soaring").css('color', 'darkgreen');
 	}
 	else if (state.crewMorale >= 8 && state.crewMorale < 10 ) {
-		$(".Crew-morale-description").text("Good").css('color', 'green');;
+		$(".Crew-morale-description").text("Good").css('color', 'green');
 	  } 
 	else if (state.crewMorale >= 6 && state.crewMorale < 8 ) {
-		$(".Crew-morale-description").text("Normal").css('color', 'green');;
+		$(".Crew-morale-description").text("Normal").css('color', 'green');
 	  } 
 	else if (state.crewMorale >= 5 && state.crewMorale < 6 ) {
 		$(".Crew-morale-description").text("Shaky").css('color', 'Orange');
@@ -317,6 +320,26 @@ displayShipStatus = function () {
 		$(".Ship-Health-description").text("Floating wreckage").css('color', 'red');
 	  } 
 	}
+	
+	displayShedule = function () {
+	console.trace();
+	if (state.delay == 0 ) {
+		$(".schedule").text("On Schedule").css('color', 'white');
+	}
+	else if (state.delay == 1) {
+		$(".schedule").text("Behind Schedule").css('color', 'Yellow');
+	  } 
+	else if (state.delay == 2) {
+		$(".schedule").text("Running late").css('color', 'Orange');
+	  } 
+	else if (state.delay == 3) {
+		$(".schedule").text("Very Late").css('color', 'Red');
+	  } 
+	else if (state.delay == 4) {
+		$(".schedule").text("Extremely late").css('color', 'Red');
+	  } 
+	}
+	
 
 /*
 moraleFailureCheck = function() {

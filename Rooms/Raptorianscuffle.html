@@ -14,6 +14,7 @@
   <script src="/main.js"></script>
 
   <script>
+  state.days += 1;
       state.Glint.status = 'invisible';
     state.Valnos.status = 'available';
 	state.Ziggy.status = 'invisible';
@@ -43,7 +44,7 @@
 		$("#button-1").addClass("hidden")
 		$("#button-2").addClass("hidden")
 		$("#Judgement").removeClass("hidden")
-		$("#Valnos").addClass("new")
+		$("#VThumb").addClass("new")
 		 cadet[2].banter = [
 	{ target: '#Valnos', text: 'It was problably smart to wait for Evok, glad no one was seriously hurt. Too bad about the damage to the supplies, we&#39;ll be eating some drier rations for a while.', imageClass: "concerned"},
 
@@ -57,7 +58,7 @@
 		$("#button-1").addClass("hidden")
 		$("#button-2").addClass("hidden")
 		$("#Judgement").removeClass("hidden")
-		$("#Valnos").addClass("new")
+		$("#VThumb").addClass("new")
 		 cadet[2].banter = [
 	{ target: '#Valnos', text: 'Ow... N-no.. dont worry about me. J-just got hit on the head and twisted my leg a bit.', imageClass: "sad"},
 	{ target: '#Valnos', text: 'Why I jumped in? I... eh... Didnt want you to loose face when no one obeyed.', imageClass: "sad"}
@@ -125,6 +126,7 @@
       })
 	  $('#Eat').on('click', function(e) {
        lib.dialogue(e, "eat"),
+		state.vore += 1;
 		$("#Labor").addClass("hidden")
 		$("#Eat").addClass("hidden")
 		$("#Overboard").addClass("hidden")
@@ -154,6 +156,11 @@
 </head>
 <body>
 <div id="head">
+<div id="dayCounter">
+Day: <span class="days"><script>displayDays()</script></span>
+<br/>
+<span class="schedule"><script>displayShedule()</script></span>
+</div>
 <h1>Raptorian Scuffle</h1>
 </div>
 <div id="story-text">

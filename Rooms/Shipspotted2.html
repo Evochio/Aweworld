@@ -17,7 +17,7 @@
   state.Ziggy.status = 'available';
   state.Glint.status = 'available';
   state.Valnos.status = 'available';
-  
+  state.days += 1;
 	state.shipHealth +=2 ;
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
@@ -27,12 +27,14 @@
         // change state here
 		
         // end by using lib.goTo
+		
         lib.goTo('Ceremony.html')
       })
 
       $('#button-2').on('click', function(e) {
         // change state here
         lib.dialogue(e, "information"),
+		$("#button-2").addClass("hidden")
 		$("#button-1").removeClass("hidden")
         
       })
@@ -48,6 +50,9 @@
 		}
 	else if (_.contains(state.battle, "board")) {
 		$('#board').removeClass('hidden')
+		}
+	else if (_.contains(state.battle, "ram")) {
+		$('#ram').removeClass('hidden')
 		}	
 	else {
 		$('#retreat').removeClass('hidden')
@@ -67,7 +72,7 @@
 <h1>Blueleaf</h1>
 </div>
 <div id="story-text">
-<p>Repairs are ongoing under heavy sheets of rain, but to really fix some of the more serious damage, we need a few days or more in a port. I was taking a moments respite from overseeing the work, admiring a recovered projectile shot on my desk, a heavy ball or iron as it turned out, when the alarm came again. I heard it this time and was dressed and marching toward the door when the knock from my cadet came. </p>
+<p>Repairs are ongoing under heavy sheets of rain, but to really fix some of the more serious damage, we need a week or more in a port. I was taking a moments respite from overseeing the work, admiring a recovered projectile shot on my desk, a heavy ball or iron as it turned out, when the alarm came again. I heard it this time and was dressed and marching toward the door when the knock from my cadet came. </p>
 
 <p>Another ship is spotted by the look-out, this one appearing from the east and closing in fast. I was not feeling overly confident in another encounter, especially if they're as fast as that. </p>
 
@@ -102,9 +107,9 @@
 </div>
 <div class="hidden" id="noHelped">
 
-<p>“Oh...! That merchant-vessel you asked us to check on. We found them floating in the water, more drifting in the tide then going anywhere.” Kveest looked momentarily troubled. It was a hard storm that hit them. We recovered who we could. It is an unfortunate business this. </p>
+<p>“Oh...! That merchant-vessel you asked us to check on. We found them floating in the water, more drifting in the tide then going anywhere.” Kveest looked momentarily troubled. "It was a hard storm that hit them, we recovered who we could. It is an unfortunate business this, their captain was quite distraught with loss." </p>
 
-<p>Kveest motions toward some of the damage of my ship. </p>
+<p>Kveest motions toward some of the damage of my ship, eager to change the subject. Im grateful for it.</p>
 </div>
 
 <p>“Your fine ship is injured. Did you catch those pirates responsible?”</p>
@@ -123,7 +128,12 @@
 <p>“So it was them we spotted heading south-east. We thought it an unusually large Wulf-ship.” Kveest regards the damage of the ship. "You look to have made a wise choice to take wing."</p>
 
 </div>
+<div class="hidden" id="ram">
+<p> "We rammed them hard and fought. But they managed to break off and escape. But atleast we managed to disable their weapons." I spoke proudly, glancing at the crew around me. </p>
 
+<p> "Ah!" Kveest whistled approvingly. "The fabled prowess and courage of Awes proven true once more then! But they escaped your grasp?" </p>
+
+</div>
 <div class="hidden" id="board">
 <p> "It was a hard battle, we managed to board them, but we were driven off. But atleast we managed to disable their weapons." I spoke proudly, glancing at the crew around me. </p>
 
