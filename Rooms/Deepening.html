@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
   <meta charset="UTF-8">
-  <title>Admiral Avolc Game</title>
+  <title>Aweworld</title>
 
  <link rel="stylesheet" href="/main.css">
 
@@ -15,6 +15,7 @@
 
   <script>
   state.days += 1;
+  
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
@@ -22,6 +23,7 @@
       $('#arn').on('click', function(e) {
 		lib.dialogue(e, "arn"),
 		state.crewMorale += 1;
+		state.crewLoss += 1;
 		state.events.push("deepening");
 		$("#arn").addClass("hidden")
 		$("#interview").addClass("hidden")
@@ -42,6 +44,7 @@
       $('#approve').on('click', function(e) {
        lib.dialogue(e, "approve"),
 		state.events.push("deepening");
+		state.crewLoss += 1;
 		state.crewMorale += 1;
 		$("#approve").addClass("hidden")
 		$("#deny").addClass("hidden")

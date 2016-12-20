@@ -78,7 +78,7 @@
 	 })
 	 
 	  	$('#boatArn').on('click', function(e) {
-				
+		state.crewLoss += 1;		
         $(".arn").removeClass("hidden")
 		$(".both").removeClass("hidden")
 		$("#boatArn").addClass("hidden")
@@ -98,7 +98,8 @@
 		$("#boatAvolc").addClass("hidden")
 		$("#button-5").removeClass("hidden")
     	state.shipHealth -= 1;
-		state.crewMorale -= 1;	
+		state.crewMorale -= 1;
+		state.crewLoss += 5;
 		lib.dialogue(e, "boat2")
 	 })
 	 	$('#boatGarsch').on('click', function(e) {
@@ -237,6 +238,8 @@ Day: <span class="days"><script>displayDays()</script></span>
 </div>
 
 <div class="scout hidden"><p><strong>Scouts</strong></p>
+<p>The scouts shed their protective heavy cloaks and climb the masts to fly over from a high position as possible. Their wings are large and well-groomed and take them effortlessly to the broken ship. </p> 
+
 <p>They searched the ship carefully but not for very long before they hurried on back over. One of them nearly didnt make it and managed to only barely cling to side of our ship, wings quickly having made wet by a sudden spray.</p>
 
 <p>They reported the ship, a broken up blackened half of a ship lay crashed against the pointy cliffs. In a day or two and most of it would be smashed to pieces by the waves. No traces of living nor dead. The broken-up hold below had no traces of cargo either. The ship had taken massive damage, they reported deep gouges and even holes that looked to have gone straight through the hull. The fire and wrecking damage has come afterwards. The only thing they found were a piece of rope which they brought over.</p>
@@ -271,7 +274,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p> With what looked like panic they turned the boat around and rowed back toward the ship in a great rush. 
 <span class="tung hidden">Tung is shouting but his words are carried away by the wind. Suddenly something knocks the boat nearly onto the side. Awes cling to what they can but some spill into the water. Crew gasp around me. Its the seawolves!</span>
-<span class="arn hidden">Arn is pointing and giving directions, his movements are rushed, i've never quite seen him so animated. He peers concerned over the side, having procured a spear they brought along and jabs with it into the water. I suddenly realize whats happening, Sea-wolves! </span>
+<span class="arn hidden">Arn is pointing and giving directions, his movements are rushed, i've never quite seen him so animated. He peers concerned over the side, having procured a spear they brought along and jabs with it into the water. The boat jostles again as Arn apperently struck something, the jolt sends one Awe reeling and splashing into the cold sea. I suddenly realize whats happening, Sea-wolves! </span>
 <span class="garsch hidden">Garsch is encouraging them to row faster, setting a steady pace for them to focus on. But suddenly something knocks into the boat, nearly tipping it over. Its a miracle no one falls in, Garsch has grabbed one of the Awes by the tail and yanks them back. Its the Sea-wolves! </span>
 </p>
 <p> I quickly order ropes readied. They might have to be pulled back onboard in a rush. Scout Civi is quick to react and grabs the end of a rope and flaps her way out there to meet them. </p>
@@ -286,6 +289,9 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p> With the help of the rope they're pulled in quickly for the last bit of the journey and all brought aboard, panting and looking poofed up in fright. But safe </p>
 </div>
+<span class="arn hidden"> Arn curses loudly, last to leave the boat. He throws a oar across the deck and kicks over a barrel. He lost a crewmember out there, im surprised to see him cares so much. I leave him be.</span>
+
+<span class="garsch hidden">Officer Garsch managed to get everyone back safely. Though he did not look it i could tell he was unnerved as i commended him and gave him a pat on the back. He'd be drowning himself in spirits later, i made a mental note to have Officer Mirr give him a shift off.</span>
 <p> We abandon any further apptempt to reach the wreckage. Its secrets are left to be washed away with the tides. </p>
 
 <p>On our return towards the charted sailing lanes, there&#39;s another ominous scrape along the whole length of the hull. I cursed and peered into the water behind the ship. The reef had been impossible to spot, it was like a dagger sticking out of the dark depths just under the surface.</p>

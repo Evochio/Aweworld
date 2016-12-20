@@ -55,6 +55,8 @@ Days elapsed:
 <span class="days"><script>displayDays()</script></span>
 <br/>
 Crew Lost:
+You lost <span class="crew"><script>displayCrew()</script></span> Crewmembers. 
+
 <br/>
 Morale: 
 <span class="Crew-morale-description"><script>displayMoraleStatus()</script></span>
@@ -69,11 +71,11 @@ Voracity:
 <span class="Vore"><script>displayVore()</script></span>
 <br/>
 
-<span class="arn hidden">Arn is Alive</span>
-<span class="arnNo hidden">You lack a First-officer.</span>
+<span class="arn hidden">Arn is keeping the crew in check and ever ready to give you a hard time.</span>
+<span class="arnNo hidden">You lack a First-officer. With Arn lost, your control of the crew seem teneous at best. His responsibilities are split among the remaining officers.</span>
 <br/>
-<span class="intel hidden">You have the intel</span>
-<span class="intelNo hidden">You failed to aquire the intel.</span>
+<span class="intel hidden">You have the intel. Its secrets remain hidden, but surely it will be of value in the comming days. It will surely be of value to someone in the Main fleet.</span>
+<span class="intelNo hidden">You failed to aquire the intel. Whatever secrets it held will remain unknown.</span>
 <script>
  if (_.contains(state.events, "noArn")) {
 		$('.arnNo').removeClass('hidden');

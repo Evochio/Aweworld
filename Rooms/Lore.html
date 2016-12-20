@@ -4,48 +4,109 @@
   <meta charset="UTF-8">
   <title>Admiral Avolc Game</title>
 
- <link rel="stylesheet" href="/main.css">
-
   <script src="/jquery-2.1.3.js"></script>
   <script src="/underscore.js"></script>
 	<script src="/bootstrap.min.js"></script>
  <link rel="stylesheet" href="/bootstrap.min.css">
   <link rel="stylesheet" href="/bootstrap-theme.min.css">
+   <link rel="stylesheet" href="/main.css">
   <script src="/main.js"></script>
 
   <script>
  
     $(document).ready(function() {
-
-
+	  
+  
+	$('.aweOverview').on('click', function(e) {
+      
+		lib.dialogue(e, "aweOverview2")
+	  })
+	
+	$('.aweHistory').on('click', function(e) {
+      
+		lib.dialogue(e, "aweHistory2")
+	  })
+	$('.aweBiology').on('click', function(e) {
+      
+		lib.dialogue(e, "aweBiology2")
+	  })
+	  
+	$('.aweCulture').on('click', function(e) {
+      
+		lib.dialogue(e, "aweCulture2")
+	  })
     })
 	
   </script>
   
   <style>
+
+  
 #side
 {
-	padding: 10px;
+	padding: 0.5em;
 	color: white;
 	position: fixed;
-	
+	margin-top: 6em;
 	width: 10%;
-	height: 100%;
+	height: 80%;
 	left: 0px;
 	background-color: #996633;
 	border: 6px solid #cb9969;
 	border-radius: 20px;
 }
-#side .btn {
-	margin-left: 20%;
-	top: 200px;
-	float: left;
-	clear: both;
-}
 
 #story-text {
-margin-left: 20%;
+margin-left: 15%;
 }
+
+
+
+ul, li, button {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	
+}
+
+li {
+	display: block;
+	width: 100%;
+	line-height: 2em;
+	font-size: 1em;
+	text-decoration: none;
+	background:  #cb9969;
+	color: white;
+	text-align: center;
+	border-bottom: .125em solid white;
+}
+
+button {
+	
+	width: 100%;
+	line-height: 2em;
+	font-size: 1em;
+	text-decoration: none;
+	background:  #D5973C;
+	color: white;
+	
+}
+
+button:hover, li:hover {
+	background: #87492F;
+}
+/*dropdown menu styles*/
+
+button:active,
+button:focus,
+button.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+		  background: #87492F;
+}
+
   </style>
 
 </head>
@@ -55,33 +116,71 @@ margin-left: 20%;
 </div>
 
 <div id="side">
-<button class="btn btn-default" id="Awes">Awes </button>
-<button class="btn btn-default" id="Awes">Awes </button>
-<button class="btn btn-default" id="Awes">Awes </button>
-<button class="btn btn-default" id="Awes">Awes </button>
-<button class="btn btn-default" id="Awes">Awes </button>
+
+<ul class="topmenu">
+ <li>Races of Aweworld</li>
+
+	<ul class="Racemenu">
+	  <li><button data-toggle="collapse" data-target=".Awemenu" id="Awes">Awes </button></li>
+		<ul class="collapse Awemenu">
+		<li><button class="sub aweOverview">Overview</li>
+		<li><button class="sub aweHistory">History</li>
+		<li><button class="sub aweBiology">Biology</li>
+		<li><button class="sub aweCulture">Culture</li>
+		</ul>
+	  <li><button data-toggle="collapse" data-target=".Wulfmenu" id="Wulfs">Wulfs </button></li>
+		<ul class="collapse Wulfmenu">
+		<li>Option 4</li>
+		<li>Option 5</li>
+		<li>Option 6</li>
+		</ul>
+	  <li><button data-toggle="collapse" data-target=".Gryphmenu" id="Gryphs">Gryphs </button></li>
+		<ul class="collapse Gryphmenu">
+		<li>Option 7</li>
+		<li>Option 8</li>
+		<li>Option 9</li>
+		</ul>
+	  <li><button data-toggle="collapse" data-target=".Gatormenu" id="Gators">Gators </button></li>
+	  <ul class="collapse Gatormenu">
+		<li>Option 7</li>
+		<li>Option 8</li>
+		<li>Option 9</li>
+		</ul>
+	  <li><button data-toggle="collapse" data-target=".submenu" id="Drudges">Drudges </button></li>
+	</ul>
+	
+	<li>Known World</li>
+	
+	
+	
+</ul>
 </div>
 <div id="story-text">
 
 Lore text
 </div>
 <div id="tail">
-<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<!--Put buttons to other rooms here. This is an HTML comment btw. 
+
+-->
 
 
-<!--
-<span>
-    <button id="Glint" class="btn btn-default">
-      Glint.
-    </button>
-    <button id="Ziggy" class="btn btn-default">
-      Ziggy.
-    </button>
-	<button id="Valnos" class="btn btn-default">
-      Valnos.
-    </button>
-</span>-->
+</div>
 
+<div class="aweOverview2 hidden"><p><strong>Overview of Awes</strong></p>
+Dis be Awes
+</div>
+
+<div class="aweHistory2 hidden"><p><strong>History of Awes</strong></p>
+A bunch of history
+</div>
+
+<div class="aweBiology2 hidden"><p><strong>Biology</strong></p>
+They are made of Fluff
+</div>
+
+<div class="aweCulture2 hidden"><p><strong>Culture</strong></p>
+Awes will consume all other
 </div>
 
 </body>

@@ -6,6 +6,10 @@ float:right;
 #Vthumb, #Zthumb, #Gthumb{
 float:right;
 }
+
+
+
+
 #VThumb {
 	top: 25px;
 	right: 40px;
@@ -175,13 +179,6 @@ position: absolute;
 	
 }
 
-/* 
-#Ziggy:disabled {
-	background-position: 200px 0px;
-}
-#Ziggy:'quest' {
-	background-position: 200px 286px;
-}
 /* If you want text inside shit */
 
 .blush {

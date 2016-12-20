@@ -14,6 +14,8 @@
   <script src="/main.js"></script>
 
   <script>
+	state.battle.push("")
+	state.events.push("arn")
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
@@ -23,6 +25,9 @@
         // end by using lib.goTo
 		if (_.contains(state.battle, "retreat")) {
         lib.dialogue(e, "retreated")
+		}
+		else if (_.contains(state.battle, "desperate")) {
+        lib.dialogue(e, "desperate")
 		}
 		else {
 		lib.dialogue(e, "boarded")
@@ -37,7 +42,16 @@
         // end by using lib.goTo
         lib.goTo('scars.html')
 		})
-    
+		
+	
+	if (_.contains(state.events, "noArn")) {
+	 $('.noarn').removeClass('hidden');
+	 }
+	 else if (_.contains(state.events, "arn")) {
+		$('.arn').removeClass('hidden');
+	}
+	
+	
     })
   </script>
   
@@ -51,9 +65,10 @@
 <h1>Debriefing</h1>
 </div>
 <div id="story-text">
-<p>My officers sat assembled for the debriefing. At least the ones still around or who I were not immediately needed elsewhere or being patched up. They were a motley dirty and fur-fluffed bunch, all in some way showing signs of battle and stress. Some were injured, although lightly, others had a haunted post-battle look too them. But they were well-trained, they all had kept their composure where lesser Awes would have curled up to hide. </p>
 
-<p>An iron ball stood upon the table, a recovered projectile of what they had been shooting at us.</p>
+<p>My officers sat assembled for the debriefing. At least the ones still around or who I were not immediately needed elsewhere or being patched up, like my Arms officers. They were a motley dirty and fur-fluffed bunch, all in some way showing signs of battle and stress. Some were injured, although lightly, others had a haunted post-battle look too them. But they were well-trained, they all had kept their composure where lesser Awes would have curled up to hide. </p>
+
+<p>An iron ball lay upon the table, a recovered projectile of what they had been shooting at us.</p>
 
 <p> Outside the room was the distinct noise and bustle of crew hard at work with their appointed tasks for clean-up and repair. We had to make this quick, there was much to do. </p>
 
@@ -101,8 +116,82 @@
 
 </div>
 
+<div class="desperate hidden">
+
+<p>The battle had taken a lot out of everyone, around the ship before assembling everyone here the scene had been the same all around. Slumped and worn, Awes trying to recover their senses and will to move from hard battle we just faced. </p>
+
+<p>I feel the weight of fatigue myself and my coat is uncomfortably wet still. I wish for nothing more then to sleep under the sun and get dry. Still, as the commander of this crew, there is little time to relax. Especially now.</p>
+
+<p>Its a dejected, ruffled and worn out selection of Awes sitting around the conference table of our briefing room however. <div class="arn">Only Arn appeared to be attentively waiting for things to proceed, eyes firm.</div></p>
+
+<p>I thud the table loudly with a large iron ball against the table, it startles most at attendance and their eyes seem to focus and turn toward me.</p>
+
+<p>“We won.” I state calmly. “We faced a new threat but we perservered and won. Thats what matters right now.” I look at my officers, each in turn. “Now we must pick up the pieces and move on. Tick, how is the ship?”</p>
+
+<p>Tick, my ship maintinance officer looked haggard, soaked and like he'd rather be elsewhere. The debriefing had to wait on him to arrive and be able to attend for a minute. He had a lot of work to do around the ship. He got straight to the point.</p>
+
+<p>“We've suffered extreme damage. We are literally picking up the pieces you've mentioned in some places. But we are afloat and I should be able to keep us that way. Most breaches are clean and the serious ones were plugged before we flooded.” Tick was fidgeting with his measuring tool while he spoke. It was rare to see him so animated and outspoken.</p>
+
+<p>“Im glad to hear this. “The Attentive” is tough and stood up well against tehse unknown thunder-weapons it seems. We'll be able to carry on to Thousand islands then I assume?”</p>
+
+<p>Tick frowned and looked unhappy.</p>
+
+<p>“We should make it there, but we'll need repairs that cant be done at open sea. I credit our survival to luck and our foes lack of good aim. Just because we survived, I must be clear, we CANNOT take sustained fire like that. Captain, I advice we take flight if we encounter a threat again.”</p>
+
+<p>“Noted” I replied, displeased by his outburst. He was out of line, but I understood his concern and let it slide. I turned toward Mirr.</p>
+
+<p>“How are the crew, what are our casualties?”</p>
+
+<p>Mirr had a distant look on her face, the fur on her paws were faintly crimson. She blinked once and locked her eyes with mine.</p>
+
+<p>“Exhausted, demoralized and near breaking. There are more injured then uninjured and i've yet to assertain how many we lost but I estimate up to 40.”</p>
+
+<p>I drummed my paw on the table, the news stung. The battle had been a disaster. But we were still alive. I turned to Nyxie.</p>
+
+<p>“Maintain course westward. How long until we are in sight of the first isles?”</p>
+
+<p>Nyxie my navigator had her arm in a sling, but she looked unconcerned with it. She seemed to be coping well with having been at the helm of that fight, but the frazzled look of her fur betrayed the stress she'd been going through.</p>
+
+<p>“Aye captain. A week with good winds. We are on the westward current now so it will not take longer then two regardless of weather.”</p>
+
+<div class="noarn">
+<p>“Very well. Back to your duties everyone.”</p>
+</div>
+
+<div class="arn">
+<p> "Very well, if there was nothing else..."
+
+<p>Arn, who had been silently glowering in a brooding manner at the corner of the table finally spoke up. </p>
+
+<p>"That was more then a close shave captain, its a miracle we're still alive! The whole order of battle was a disaster. I have no aspirations for captaincy, you know that. But, for the good of the crew, you better change your tactics." </p>
+
+<p> The table fell into an uncomfortable silence as the First-Officer and I held our gazes locked. It was no mild admonishent i had recieved. </p>
+
+<p> "Are you suggesting that you'd do a better job Arn?" I drummed the table with my claws </p>
+
+<p> "It'd be a feat to do worse." Before i could reply to such an open insult he raised his paws and continued. "Punish me if you must, but it needed to be said."</p>
+
+<p> I found myself grinding my teeth. Arn could be such a infuriating fluffbiter. But somehow i felt it was justified. I would not push this further, it would lead nowhere good when there were more important matters at hand. </p>
+
+<p> "Back to your duties" I dismissed with a hiss. </p> 
+</div>
+
+<div class="arnMorale hidden"><p>Arn, who had been silently glowering in a brooding manner at the corner of the table finally spoke up. </p>
+
+<p>"That was more then a close shave captain, its a miracle we're still alive! The whole order of battle was a disaster. I have no aspirations for captaincy, you know that. But, for the good of the crew, I will not watch you lead us toward disaster like that again." </p>
+
+<p> The table fell into an uncomfortable silence as the First-Officer and I held our gazes locked. It was no mild admonishent i had recieved. But somehow i felt it was justified.</p>
+  
+<p> "Are you suggesting that..." I started but he interrupted me firmly. </p>
+
+<p> "The crew has lost faith in you. Resign to my belly right now, let me take over peacefully. You might be able to recover this through me." There was only firm determination on Arns face.</p>
+</div>
+
+
+</div>
+
+
 <div class="boarded hidden">
-<div class="arn hidden">
 
 <p>“We have driven them off and it looks like they are in retreat.” I spoke calmly. “I have chosen not to pursue. Our main objectives lie elsewhere and it feels ever more important we reach the fleet.” No one objects to my decision. I did not expect them too. “How is the ship? Will we have problems reaching Thousand Islands?”</p>
 
@@ -130,52 +219,11 @@
 
 <p>“Aye captain. A week with good winds. We are on the westward current now so it will not take longer then two regardless of weather.”</p>
 
-<p> Arn sat silently, face a brooding mask and hard to read. He seemed to have little to add to the table. I left him to his silence. </p>
+<span class="arn hidden"><p> Arn sat silently, face a brooding mask and hard to read. He seemed to have little to add to the table. I left him to his silence. </p></span>
 
 <p>“Very well. Back to your duties everyone.”</p>
 
 </div>
-<div class="noarn hidden">
-
-<p>“We have driven them off and it looks like they are in retreat.” I spoke calmly. “I have chosen not to pursue. Our main objectives lie elsewhere and it feels ever more important we reach the fleet.” No one objects to my decision. I did not expect them too. “How is the ship? Will we have problems reaching Thousand Islands?”</p>
-
-<p>Tick, my ship maintenance officer looked soaked and like he'd rather be elsewhere and I understood his need. This was the time his expertise and leadership over repair would be needed the most.</p>
-
-<p>“'The Attentive' has sustained damage, but only one of the 'Impacts' were critical and at water level. We took in some water but the breach has been fixed.” Tick responded speed rapid and impatient while fidgeting with one of his measuring tools.</p>
-
-<p>“It sounds like the ship stood up well in her first battle against these unknown thunder-weapons.” I ventured optimistically, rolling the iron ball under my paw, it was heavy. I had expected much worse news.</p>
-
-<p>“Oh, I think that might be some credit to luck, our foes choice of targets or lack of aim. Save for our armored ramming-bow, we CANNOT take sustained fire like that. Captain, I advice we take flight if we encounter such a threat again.” Tick spoke harshly. It was out of order for him to recommend action like that, but I saw it was out of genuine concern then cowardice.</p>
-
-<p>“Noted, but we are not out here to flee our foes at first sight. We are a warship.” I turned towards Mirr, our crew-officer.</p>
-
-<p>“How is the crew, what are our casualties?”</p>
-
-<p>Mirr had a distant look on her face, the usually eloquent officer has not escaped unruffled herself, the fur on her paws were stained faintly crimson. She blinked once and locked her eyes with mine.</p>
-
-<p>“Confused, dazed, but focused on their tasks. We have 50 reported injured, most of them light. 23 have turned to the spirits or missing.”</p>
-
-<p>I drummed my paws on the table. I knew this would happen, but it was never easy to hear. I did not let the silence stretch for too long. I turned to Nyxie.</p>
-
-<p>“Maintain course westward. How long until we are in sight of the first isles?”</p>
-
-<p>Nyxie my navigator had her arm in a sling, but she looked unconcerned with it. She seemed to be coping well with having been at the helm of that fight, but the frazzled look of her fur betrayed the stress she'd been going through.</p>
-
-<p>“Aye captain. A week with good winds. We are on the westward current now so it will not take longer then two regardless of weather.”</p>
-
-<p>“Very well. Back to your duties everyone.”</p>
-
-</div>
-<script>
-	if (_.contains(state.events, "noArn")) {
-	 $('.noarn').removeClass('hidden');
-	 }
-	 else {
-		$('.arn').removeClass('hidden');
-	}
-</script>
-</div>
-
 
 </div>
 </body>

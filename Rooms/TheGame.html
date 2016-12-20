@@ -529,7 +529,7 @@ margin-right: 200px;
 	    $('#button-17').on('click', function(e) {
         
 		$("#button-17").addClass("hidden")
-		lib.goTo('Page18.html')
+		lib.goTo('Normal.html')
       })
 	     $('#eaten').on('click', function(e) {
         
@@ -559,6 +559,7 @@ margin-right: 200px;
       })
 	   $('#toziggy').on('click', function(e) {
         lib.dialogue(e, "toziggy"),
+		state.crewLoss += 1;
 		state.events.push("toziggy");
 		state.events.push("noArn");
 		$("#button-17").removeClass("hidden")
@@ -612,7 +613,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 <div id="tail">
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default" id="button-1">The Game - Ship rules - Round 1</button>
+<button class="btn btn-default" id="button-1">The Game - Ships rules - Round 1</button>
 <button class="btn btn-default hidden" id="button-2">Round 1 bet: Matron! 10 points. </button>
 <button class="btn btn-default hidden" id="button-3">Round 1 bet: Awe 5 points</button>
 <button class="btn btn-default hidden" id="button-4">Round 1 bet: Male 3 points</button>
@@ -661,6 +662,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>As result i reaped a Awe chip from all three, but its the two from Arn and Keeper that count. Im already at 10 points! I just have to keep my lead.</p>
 
+<p>I notice Ziggy subtly trying to get my attention </p>
 </div>
 
 <div class="round1-5 hidden"> <p><strong>Round 1 bet: Awe 5 points</strong></p>
@@ -682,6 +684,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 <p>I got a male from Arn and Keeper and an Awe chip from Ziggy. The Awe cant be won with a male card so it goes back in Ziggys hand. Overall a low win.&nbsp;</p>
 
 <p>Ziggy keeps her straight face on. She must have noticed my glance as the cadet gives me a wink and then turns her eyes back to Keepers cards intently.</p>
+
 </div>
  
 
@@ -1000,28 +1003,29 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>“Well, have anything to say?”</p>
 
-<p>Arn says nothing. He averts his eyes though. Guilty. I wonder what made him like this, once he must have done well to become someones First-officer. But he never was mine.</p>
+<p>Arn says nothing. He averts his eyes though. Guilty. I wonder what made him like this, once he must have done well to become First-officer. But he never was mine.</p>
 
+<p>Still, perhaps it was enough to give him this one scare to put him straight. They all waited for my judgment.</p>
 </div>
 
 <div class="dismissed hidden"> <p><strong>"Dismissed"</strong></p>
 
-<p>I dismiss them all. Ziggy shuffles out too, disappointed, but she does not object. I feel slightly guilty for getting her hopes up. </p>
+<p>I dismiss them all. Arn seems to let out a deep breath he'd been holding. Ziggy shuffles out too, disappointed, but she does not object. I feel slightly guilty for getting her hopes up. </p>
 
-<p>Arn might remain a problem. I'll have to keep a close eye out for dissent. </p>
+<p>Arn might remain a problem. I'll have to keep a close eye out for dissent. But hopefully this was the last time he troubles me.</p>
 </div>
 
 <div class="toziggy hidden"> <p><strong>Report to Ziggys quarters</strong></p>
 
 <p>The whole room seems stunned. Only Ziggy lets out a smirking chuckle. </p>
 
-<p>“Come along, oh first-officer Arn. You and me are gonna get close.” She mocks harshly. I've half a mind to tell her to be respectful, but let her be her flavor of sass. It'd be both a reward for her help and fitting punishment for Un-Aweish behavior by the former first-officer. </p>
+<p>“Come along, oh First-officer. You and me are gonna get close.” She mocks harshly. I've half a mind to tell her to be respectful, but let her be her flavor of sass. It'd be both a reward for her help and fitting punishment for Un-Aweish behavior by the former first-officer. </p>
 
-<p>Arn looks glum. If there's fight in him, he isnt showing it. To be sure he does not do anything unwarranted, I summon Mid-officer Garsch to watch him. </p>
+<p>Arn looks glum. If there's fight in him, he isnt showing it. To be sure he does not do anything unwarranted, I summon Mid-officer Garsch to watch him and Ziggy. </p>
 
-<p>  The rumor spreads fast in the ship, I hear whispers and catch glances as the news of Arns defeat and the manner of it becomes known. To my surprise, most seem to snicker about it. There is something deeply ironic about his date, like it reached a pivotal end that he had set himself up for. Whatever underlying loyalty I feared he'd held seemed to be absent. So even though i've just fed my first-officer to my trainee officer-cadet, its not an agitated buzz I sense, but one of curious amusement.  I find myself unable to resist a grin as I make my way back to the main deck to oversee our course and speed. </p>
+<p>  The rumor spreads fast in the ship, I hear whispers and catch glances as the news of Arns defeat and the manner of it becomes known. To my surprise, most seem to snicker about it. There is something deeply ironic about his fate, like it reached a pivotal end that he had set himself up for. Whatever underlying loyalty I feared he'd held seemed to be absent. So even though i've just fed my first-officer to my trainee officer-cadet, its not an agitated buzz I sense, but one of curious amusement.  I find myself unable to resist a grin as I make my way back to the main deck to oversee our course and speed. </p>
 
-<img src="images/assets/Ziggybelly.jpg" height="40%" width="40%"/> 
+<img src="images/assets/Ziggyvore2.png" height="40%" width="40%"/> 
 </div>
 
 <script>

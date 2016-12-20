@@ -127,6 +127,7 @@
 	  $('#Eat').on('click', function(e) {
        lib.dialogue(e, "eat"),
 		state.vore += 1;
+		state.crewLoss += 1;
 		$("#Labor").addClass("hidden")
 		$("#Eat").addClass("hidden")
 		$("#Overboard").addClass("hidden")

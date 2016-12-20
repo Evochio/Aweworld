@@ -235,6 +235,8 @@ var initialState = {
 	},
   crewMorale: 6,
   shipHealth: 10,
+  crewLoss: 0,
+  crewLossBattle: 0,
   vore: 0,
   days: 0,
   piety: 0,
@@ -271,6 +273,10 @@ state = lib.load('state-'+lastPart) || initialState;
  displayDays = function () {
 $(".days").text(state.days).css('color', 'white');
 	}
+	
+ displayCrew = function () {
+$(".crew").text(state.crewLoss);
+	}
 
 displayMoraleStatus = function () {
 	console.trace();
@@ -305,7 +311,7 @@ displayShipStatus = function () {
 		$(".Ship-Health-description").text("Serviceable").css('color', 'green');
 	  } 
 	else if (state.shipHealth >= 5 && state.shipHealth < 7 ) {
-		$(".Ship-Health-description").text("Poor").css('color', 'Yellow');
+		$(".Ship-Health-description").text("Lightly damaged").css('color', 'Yellow');
 	  } 
 	else if (state.shipHealth >= 3 && state.shipHealth < 5 ) {
 		$(".Ship-Health-description").text("Listing in the water").css('color', 'Orange');

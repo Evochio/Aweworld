@@ -30,8 +30,14 @@
 		lib.dialogue(e, "start"),
 		$("#button-2").removeClass("hidden")
 		$("#button-1").addClass("hidden")
-		
-			
+		$("#point").removeClass("hidden")			
+      })
+	  
+	  	$('#point').on('click', function(e) {
+        lib.dialogue(e, "what4"),
+		$("#point").addClass("hidden")
+		$("#button-2").addClass("hidden")
+		$("#button-6").removeClass("hidden")
       })
 		$('#button-2').on('click', function(e) {
         lib.dialogue(e, "what"),
@@ -47,6 +53,7 @@
 		$('#button-4').on('click', function(e) {
 		lib.dialogue(e, "what3"),
         $("#button-4").addClass("hidden")
+		$("#point").addClass("hidden")
 		$("#button-5").removeClass("hidden")
 	})
 		$('#button-5').on('click', function(e) {
@@ -71,6 +78,9 @@
   
   <style>
     /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	img {
+	width: 40%
+	}
   </style>
 
 </head>
@@ -88,7 +98,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>He was surprised to see me enter, one does not always expect the captain to be wandering about and making visits. </p>
 
-<p>“Ah, Captain!” The Wulf rose from his chair. “I was just thinking about you. We are close to our rendezvous, yes? I expect you want some information.”</p>
+<p>“Ah, Captain!” The Wulf rose from his chair, he'd gained quite a bit of weight since we first set out. “I was just thinking about you. We are close to our rendezvous, yes? I expect you want some information.”</p>
 
 <p>I nodded firmly.</p>
 
@@ -104,12 +114,13 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>“You are a Spy!?” I tensed in my seat, putting my paw on the saber at my hip. </p>
 
-<p>“No, well maybe yes. I have served that function, but right now I am here with the Grand admirals blessing. But im more of and exchange-agent. One of yours serve as an envoy among us with similar priviledges”</p>
+<p>“No, well maybe yes. I have served that function, but right now I am here with the Grand admirals blessing. But im more of and exchange-agent. One of yours serve as an envoy among us with similar priviledges.”</p>
 
 <p>“Explain.” I muttered.</p>
 
 <p>“Hmm, where do I begin” Keeper mused. </p>
 
+<img src="Images/assets/Keeper.png" height="40%" width="40%"/>
 </div>
 <div id="tail">
 
@@ -120,6 +131,8 @@ Day: <span class="days"><script>displayDays()</script></span>
 <button class="btn btn-default hidden" id="button-4">“Who could be responsible?”</button>
 <button class="btn btn-default hidden" id="button-5">Upcoming rendezvous</button>
 <button class="btn btn-default hidden" id="button-6">Rendevouz</button>
+<button class="btn btn-default hidden" id="point">Lets get straight to the point.</button>
+
 <span id="cadetButtons"> </span>
 </div>
 <div class="start hidden"><p><strong>Start with why you're here, if not as an officer.</strong></p>
@@ -139,6 +152,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 <p>“Well, im to help you make negotiation go smoothly and vouch for the information traded, not do them for you. Its still up to you to deal with Captain Viriltri. It will be fun to see how you handle homeland-Wulfs.” Keeper snickered mischievously. </p>
 
 <p>“Im sure it will go fine though. They will have sent someone thats dealt with you Awes and your peculiar speech before.”</p>
+
 
 </div>
 

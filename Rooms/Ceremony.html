@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
   <meta charset="UTF-8">
-  <title>Admiral Avolc Game</title>
+  <title>Aweworld</title>
 
  <link rel="stylesheet" href="/main.css">
 
@@ -79,7 +79,8 @@
        lib.dialogue(e, "ceremony2"),
 	   $("#ceremony2").addClass("hidden")
 	   $("#continue").removeClass("hidden")
-	    $("#volunteer").addClass("hidden")
+	   $("#volunteer").addClass("hidden")
+	   state.crewLoss += 4;
       })
 	  
 	  $('#noallow').on('click', function(e) {

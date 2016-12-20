@@ -265,6 +265,7 @@
     })
 	 $('#button-13').on('click', function(e) {
         lib.dialogue(e, "sacrifice")
+		state.crewLoss += 1;
 		state.inventory.push("intel");
 		$("#button-12").addClass("hidden")
 		$("#button-13").addClass("hidden")
@@ -574,6 +575,8 @@ As soon as a plank was lowered, a short figure marched over. Wearing a captains 
 <p>Viska fidgeted visibly at this. Some of it must rub her the wrong way. </p>
 
 <p>“Surely some form of compromise can be reached.” I ventured, not sure how much you could compromise her terms. </p>
+
+<p> Viska kept squirming in her seat, arms crossed stubbornly. </p>
 </div>
 <div class="plead hidden">
 <p>“Viska, please. You've claimed to have read the reports, so you know it must be important to us. To the safety of our coast!”</p>
@@ -582,7 +585,7 @@ As soon as a plank was lowered, a short figure marched over. Wearing a captains 
 
 <p>“Your kind saw devastating raids from slavers barely a century ago. We might suffer the same if we cant have these documents! Dont be stubborn!” I pleaded to her conscience, surely she'd see what her stubbornness was risking. But I assumed wrong. </p>
 
-<p>“Awe-captain say please-please, like pup without snack-eats. But is not Viska-deal that will raid. Is Awe-captain that is stubborn. Be Viska! Awe-home then safe.”</p>
+<p>“Awe-captain say please-please, like pup without snack-eats. But is not Viska-deal that will raid. Is Awe-captain that is stubborn. Be Viska! Awe-home then safe, maybe.”</p>
 </div>
 <div class="rope hidden">
 <p>“Where are your companion-ships Viska? I know enough of your tactics that small interceptors like this travel alone. You like to back each-other up. “</p>
@@ -961,7 +964,7 @@ $('#noIntel').removeClass('hidden');
 </div>
 
 <div class="viskasBelly hidden">
-<p>With her belly bulging and sagging down from my weight and form, she marched us out of the cabin in a waddling slow pace. I had to groan at the cramped squelching confines of her stomach, I could not move. I was larger then her, but her body compress me in close against her, I felt the muscles of her walk as it jostled me around from side to side in squeezing motions. </p>
+<p>With her belly bulging and sagging down from my weight and form, she marched us out of the cabin in a waddling slow pace. I had to groan at the cramped squelching confines of her stomach, I could not move. I was larger then her, but her body compressed me in close against her, I felt the muscles of her walk as it jostled me around from side to side in squeezing motions. </p>
 
 <p>A crooning hoot went up, as her crew celebrated with approving sounds at their triumphant captain. No doubt she was quite a sight, slowly marching across her ship back towards ours with lazy casual superiority, flaunting her huge Awe-filled stomach. </p>
 
