@@ -19,7 +19,8 @@
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
-      	
+      
+	  
 	 if (_.contains(state.events, "noArn")) {
 		$('#arnDead').removeClass('hidden');
 	
@@ -291,7 +292,7 @@
 		state.battle.push("board")
         // end by using lib.goTo
          
-		 if (_.contains(state.events, "hard")) {
+		 if (_.contains(state.events, "soft")) {
 			lib.dialogue(e, "boardTung")
 			state.battle.push("boardTung")
 			state.crewMorale += 3
@@ -341,13 +342,22 @@
         // change state here
 	
         // end by using lib.goTo
+		if (_.contains(state.inventory, "injury")) {
+		
+			lib.dialogue(e, "leadBinj")
+			$("#wounds").removeClass("hidden");
+		}
+		else {
+			lib.dialogue(e, "leadB")
+		$("#onwards").removeClass("hidden");
+		}
 		state.crewLoss += 10;
 		state.crewLossBattle += 10;
-         lib.dialogue(e, "leadB")
+         
 		$("#button-7").addClass("hidden") 
 		$("#leadF").addClass("hidden")
 		$("#leadB").addClass("hidden")
-		$("#wounds").removeClass("hidden");
+		
 		
 		})
 		
@@ -505,7 +515,7 @@
 		
 		else if ((state.battle.indexOf("manouver") > -1) && state.battle.indexOf("changePlan") > -1){
 			
-			 if (_.contains(state.events, "hard")) {
+			 if (_.contains(state.events, "soft")) {
 			lib.dialogue(e, "boardTung")
 			state.battle.push("boardTung")
 			state.crewMorale += 3
@@ -534,13 +544,22 @@
 			
 		}	
 		else {
-         lib.dialogue(e, "explosion")
+         
 		 state.battle.push("explosion")
 		 state.shipHealth -= 1
 		 state.crewLoss += 6;
 		 state.crewLossBattle += 6;
 		 state.crewMorale += 4
+		 if (_.contains(state.events, "hard")) {
+			lib.dialogue(e, "explosion")
 			$("#wounds").removeClass("hidden");
+		}
+		else {
+			$("#button-12").removeClass("hidden");
+			lib.dialogue(e, "explosion2")
+		}
+		 
+			
 			$("#button-7").addClass("hidden")
 		 }
 
@@ -556,11 +575,11 @@
 		$("#onwards").removeClass("hidden");
         // end by using lib.goTo
 		
-        if (_.contains(state.battle, "board")) {
-		lib.dialogue(e, "victory2")
-		}
-		else if (_.contains(state.battle, "boardTung")){
+        if (_.contains(state.battle, "boardTung")) {
 		lib.dialogue(e, "victory3")
+		}
+		else if (_.contains(state.battle, "board")){
+		lib.dialogue(e, "victory2")
 		}
 		else if (_.contains(state.battle, "desperate")){
 		lib.dialogue(e, "desperateV")
@@ -1276,14 +1295,35 @@ $('#FromRange').removeClass('hidden');
 
 <p> But in this exchange we are clearly loosing, frustration amounts as each shot causes our ship to shudder from the impact and the pained yells of those hit from flying splinters or worse. </p>
 
-<p> I cant quite remember what i was yelling at some bumbling crew, for what happened next threw everyone down violently. One moment a streak of light from our rear ballista it landed among the enemy crew fussing and loading their odd weapons, the next, a dramatic explosion, followed by the loudest thunderclap, sent a wall of wind at us as fire consumed their ship in a large blooming ball of heat and light. Debris whistled past my ear and clattered onto our deck. </p>
+<p> I cant quite remember what i was yelling at some bumbling crew, for what happened next threw everyone down violently. One moment a streak of light from our rear ballista it landed among the enemy crew fussing and loading their odd weapons, the next, a dramatic explosion, followed by the loudest thunderclap, sent a wall of wind at us as fire consumed their ship in a large blooming ball of heat and light. Debris hurtled past my ear and clattered onto our deck. </p>
 
 <p> My ears rang as i clutched the deck, the force of it rocked our ship back hard and tore some sails loose from the mast. All was confusion for several moments until i got back on my feet unsteadilly trying to assess the situation with my head ringing. </p>
 
 <p> Someone was cheering? The rear ballista crew were hooting and soon the rest of the dazed crew joined, raising paws in the air at the enemy ship that had seemed to have broken in two, both pieces on fire and breaking apart further. But the sounds and voices were fading, my vision blurring, fur sticky.</p>
 
 <p> Someone yelled. "The captain is down!" </p>
+
 </div>
+
+<div class="explosion2 hidden"><strong>Explosion!</strong>
+<p> Something bright streaks toward the enemy ship and thwangs dead-center on their hull, I see our rear ballista has changed ammunition to incendiary. I refrain from telling them that they cant hope to light them on fire like that, they probably know their jobs. </p>
+
+<p> We are close enough now that i can make out that the figures on the enemy ship are mostly Gators. Could it be the empire on the warpath then after all? But i do not recognize any markings, flags or insignia. Gators on the warpath are far from subtle, they tend to want you to know who's beating them. </p> 
+
+<p> We've ended up circling each other, they do not want us to close the gap too much, afraid of loosing the edge their weapon provides mayhaps. Our ballistas are hammering them, i can see our forward piece has already done good work sabotaging their sails with repeated fire, slowing them down. Im unsurprised to see Gryphs, no doubt mercenaries or conscripts, swooping to and fro to undo the damage. </p>
+
+<p> But in this exchange we are clearly loosing, frustration amounts as each shot causes our ship to shudder from the impact and the pained yells of those hit from flying splinters or worse. </p>
+
+<p> I cant quite remember what i was yelling at some bumbling crew, for what happened next threw everyone down violently. One moment a streak of light from our rear ballista it landed among the enemy crew fussing and loading their odd weapons, the next, a dramatic explosion, followed by the loudest thunderclap, sent a wall of wind at us as fire consumed their ship in a large blooming ball of heat and light. A figure stepped infront of me and pulled me down to the deck just as debris hurtled past.</p>
+
+<p> My ears rang as i clutched the deck, the force of it rocked our ship back hard and tore some sails loose from the mast. All was confusion for several moments until i got back on my feet unsteadilly trying to assess the situation with my head ringing. </p>
+
+<p> Someone was cheering? The rear ballista crew were hooting and soon the rest of the dazed crew joined, raising paws in the air at the enemy ship that had seemed to have broken in two, both pieces on fire and breaking apart further. I rose and untangled myself from the person who had thrown me down, it was Officer Tung. He groaned in pain, he'd taken a large chunk of wood into his back. </p>
+
+<p> "I need a physician!" I yelled over the din. </p>
+
+</div>
+
 
 <div class="victory hidden"><strong>Victory!</strong>
 <p> Somehow we had won. </p>
@@ -1556,6 +1596,35 @@ $('#noBoard').removeClass('hidden');
 
 <p>The gators are stronger and larger then my brave soldiers. They hack with brute strength, wielding blunt cleavers and heavy halberds and force their foes backwards. Its easy to forget your training when pressed by such a force. </p>
 
+<p>I steel my voice to be overheard, standing upon the stern over the main fighting on the mid-deck. The fighting is thick below me, I see Officer Garsch holding things together, maintaining a disciplined line, buckling and pushing where it needs to. Gators seem to lack our discipline and leadership, our lines can flex and a gators size can be their detriment, as they press forward we can surround them swiftly and take them down or force them back.</p>
+
+<p>Awes keep flooding the deck from below, I shout for for a Low-officer to take charge of a section of them and flank around the fore-deck. Another I direct to relieve a hard-pressed squad down center and a third I shout to take position behind the Raptorians who are starting to come into their own.</p>
+
+<p>Halberds with pointy ends can efficiently hold back a Raptorian or two, but we have more then a few and these are trained in the art of war. I glimpse a Raptorian leaping across the air, having jumped off the crouched back of a companion to hurtle himself over or on top of the line of gators that thought they could form up an impromptu phalanx and hold them back. That line quickly crumbled as more Raptorians follow suit or rush into the gaps.</p>
+
+<p>Chomping jaws and heavy smack of blunt armored tails amidst a chorus of snarling and roaring make short work of the Gators rear lines as we start to drive them back toward their own ship. I am glad the Raptorians are on our side, few as they are, they are a ferocious force.</p>
+
+<p>“Captain!” A voice calls out in warning. I turn in time to see a hurtling weapon, a crude cleaver, having been thrown toward me. There is no time to dodge, I try to deflect it with my sword and manage to angle my body away, the hurtling cleaver just misses me and knocks my sword out of my paws from the force of it. My paw stings but im no worse for wear.</p>
+
+<p>As I return my eyes back to the battle the pirates are in full retreat, now merely working on holding off my troops. Both ships give a great shudder as they manage to dislodge themselves from us. I see Officer-Garsch quickly calling anyone back before they are stranded on the pirate ship.</p>
+
+<p>Before I can call for any order of pursuit or even begin to consider the matter Officer Tick, in charge of ship maintinance hurries up to my side. He's soaked through and dripping of sea-water. He looks like he's been waiting for this opportunity.</p>
+
+<p>“Captain, we have several leaks! Unless you want our supplies flooded and ruined its crucial we stop and repair.”</p>
+
+<p>I watch the pirates hoist their sails and make a break for it. The side of their ship is in tatters from our ram. They would be easy to pursue, they could not get far. Infact im surprised they are not sinking already.</p>
+
+<p>But our mission has to come first.</p>
+
+<p>“Stand down!” I cry out. The battle was over.</p>
+</div>
+
+<div class="leadBinj hidden"><Strong>Lead from the Back!</strong>
+
+<p>I fight the urge to dive into the fight. At this point my troops need direction rather then direct encouragement. </p>
+
+<p>The gators are stronger and larger then my brave soldiers. They hack with brute strength, wielding blunt cleavers and heavy halberds and force their foes backwards. Its easy to forget your training when pressed by such a force. </p>
+
 <p>I steel my voice to be overheard, standing upon the stern over the main fighting on the mid-deck. The fighting is thick below me, I see Officer Garsch holding things together, maintaining a disciplined line, buckling and pushing where it needs to. Gators seem to lack our discipline and leadership, our lines can flex and as a gators size can be their detriment, as they press forward we can surround them swiftly and take them down or force them back.</p>
 
 <p>Awes keep flooding the deck from below, I shout for for a Low-officer to take charge of a section of them and flank around the fore-deck. Another I direct to relieve a hard-pressed squad down center and a third I shout to take position behind the Raptorians who are starting to come into their own.</p>
@@ -1564,8 +1633,7 @@ $('#noBoard').removeClass('hidden');
 
 <p>Chomping jaws and heavy smack of blunt armored tails amidst a chorus of snarling and roaring make short work of the Gators rear lines as we start to drive them back toward their own ship. I am glad the Raptorians are on our side, few as they are, they are a ferocious force.</p>
 
-<p>“Captain!” A voice calls out in warning. I turn in time to see a hurtling weapon, a crude cleaver, having been tossed toward me. There is no time to dodge, I try to block it but the impact is hard. And soon painful. </p>
-
+<p>“Captain!” A voice calls out in warning. I turn in time to see a hurtling weapon, a crude cleaver, having been thrown toward me. There is no time to dodge, I try to deflect it with my sword  but my injury comes to haunt me, there is no strength in my arm. The impact is hard enough to knock me over. And soon painful. </p>
 </div>
 
 </body>

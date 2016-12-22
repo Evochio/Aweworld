@@ -14,8 +14,10 @@
   <script src="/main.js"></script>
 
   <script>
-	state.battle.push("")
-	state.events.push("arn")
+	 displayCrewBattle = function () {
+$(".crewbattle").text(state.crewLossBattle);
+	}
+
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
@@ -28,6 +30,9 @@
 		}
 		else if (_.contains(state.battle, "desperate")) {
         lib.dialogue(e, "desperate")
+		}
+		else if (_.contains(state.battle, "explosion")) {
+        lib.dialogue(e, "explosion")
 		}
 		else {
 		lib.dialogue(e, "boarded")
@@ -99,7 +104,7 @@
 
 <p>Mirr had a distant look on her face, the usually eloquent officer has not escaped unruffled herself, the fur on her paws were stained faintly crimson. She blinked once and locked her eyes with mine.</p>
 
-<p>“Confused, dazed, but focused on their tasks. We have 30 reported injured, most of them light. 9 have turned to the spirits or missing.”</p>
+<p>“Confused, dazed, but focused on their tasks. We have 30 reported injured, most of them light. <span class="crewbattle"><script>displayCrewBattle()</script></span> have turned to the spirits or missing.”</p>
 
 <p>I drummed my paws on the table. I knew this would happen, but it was never easy to hear. I did not let the silence stretch for too long. I turned to Nyxie.</p>
 
@@ -144,7 +149,7 @@
 
 <p>Mirr had a distant look on her face, the fur on her paws were faintly crimson. She blinked once and locked her eyes with mine.</p>
 
-<p>“Exhausted, demoralized and near breaking. There are more injured then uninjured and i've yet to assertain how many we lost but I estimate up to 40.”</p>
+<p>“Exhausted, demoralized and near breaking. There are more injured then uninjured and i've yet to assertain how many we lost but I estimate up to  <span class="crewbattle"><script>displayCrewBattle()</script></span>.”</p>
 
 <p>I drummed my paw on the table, the news stung. The battle had been a disaster. But we were still alive. I turned to Nyxie.</p>
 
@@ -209,7 +214,7 @@
 
 <p>Mirr had a distant look on her face, the usually eloquent officer has not escaped unruffled herself, the fur on her paws were stained faintly crimson. She blinked once and locked her eyes with mine.</p>
 
-<p>“Confused, dazed, but focused on their tasks. We have 50 reported injured, most of them light. 23 have turned to the spirits or missing.”</p>
+<p>“Confused, dazed, but focused on their tasks. We have 50 reported injured, most of them light.  <span class="crewbattle"><script>displayCrewBattle()</script></span> have turned to the spirits or missing.”</p>
 
 <p>I drummed my paws on the table. I knew this would happen, but it was never easy to hear. I did not let the silence stretch for too long. I turned to Nyxie.</p>
 
@@ -224,6 +229,44 @@
 <p>“Very well. Back to your duties everyone.”</p>
 
 </div>
+
+
+<div class="explosion hidden">
+
+<p>“A devastating and sudden victory” I spoke calmly. “It seems the cost of such power comes with a great risk.” Everyone assembled seem a bit dazed still. It would take time to process this encounter. </p>
+
+<p> “How is the ship? Will we have problems reaching Thousand Islands?”</p>
+
+<p>Tick, my ship maintenance officer looked soaked and like he'd rather be elsewhere and I understood his need. This was the time his expertise and leadership over repair would be needed the most.</p>
+
+<p>“'The Attentive' has sustained damage, but only one of the 'Impacts' were critical and at water level. We took in some water but the breach has been fixed. That blast tore our sails to tatters, it will take some time to put up the spares.” Tick responded speed rapid and impatient while fidgeting with one of his measuring tools. He sighed. "It will take many nights of mending and sewing to repair."</p>
+
+<p>“It sounds like the ship stood up well in her first battle against these unknown thunder-weapons.” I ventured optimistically, rolling the iron ball under my paw, it was heavy. I had expected much worse news.</p>
+
+<p>“Oh, I think that might be some credit to luck, our foes choice of targets or lack of aim. Save for our armored ramming-bow, we CANNOT take sustained exchange of fire like that. Captain, I advice we take flight if we encounter such a threat again. We cannot rely on lucky-shots or whatever that was!” Tick spoke harshly. It was out of order for him to recommend action like that, but I saw it was out of genuine concern then cowardice.</p>
+
+<p>“Noted, but we are not out here to flee our foes at first sight. We are a warship.” I turned towards Mirr, our crew-officer.</p>
+
+<p>“How is the crew, what are our casualties?”</p>
+
+<p>Mirr had a distant look on her face, the usually eloquent officer has not escaped unruffled herself, the fur on her paws were stained faintly crimson. She blinked once and locked her eyes with mine.</p>
+
+<p>“Confused, dazed, but focused on their tasks. We have 35 reported injured, most of them light.  <span class="crewbattle"><script>displayCrewBattle()</script></span> have turned to the spirits or missing. Oh and Tung looks like he will make it Captain.”</p>
+
+<p>I drummed my paws on the table. I knew this would happen, but it was never easy to hear. I did not let the silence stretch for too long. I turned to Nyxie.</p>
+
+<p>“Maintain course westward. How long until we are in sight of the first isles?”</p>
+
+<p>Nyxie my navigator had her arm in a sling, but she looked unconcerned with it. She seemed to be coping well with having been at the helm of that fight, but the frazzled look of her fur betrayed the stress she'd been going through.</p>
+
+<p>“Aye captain. A week with good winds. We are on the westward current now so it will not take longer then two regardless of weather.”</p>
+
+<span class="arn hidden"><p> Arn sat silently, face a brooding mask and hard to read. He seemed to have little to add to the table. I left him to his silence.</p></span>
+
+<p>“Very well. Back to your duties everyone.”</p>
+
+</div>
+
 
 </div>
 </body>

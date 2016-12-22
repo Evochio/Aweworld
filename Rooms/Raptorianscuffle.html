@@ -27,6 +27,7 @@
 		lib.dialogue(e, "break"),
 		state.events.push("break");
 		state.crewMorale += 1;
+		state.injuries += 1;
 		$("#button-3").addClass("hidden")
 		$("#button-1").addClass("hidden")
 		$("#button-2").addClass("hidden")
@@ -76,6 +77,7 @@
 	   }
 	   else {
 	   $('#eldaPouch').removeClass('hidden');
+	   state.events.push("pouched");
 	   }
 	   
        lib.dialogue(e, "elda")
@@ -106,14 +108,9 @@
 		if (_.contains(state.events, "order")) {
 			$("#Overboard").removeClass("hidden")
 		}
-		
-		$("#Labor").removeClass("hidden")
-		if (_.contains(state.events, "pouched")) {
-			$("#eat2").removeClass("hidden")
-		}
-		else {
 		$("#Eat").removeClass("hidden")
-		}
+		$("#Labor").removeClass("hidden")
+		
       })
 	   $('#Labor').on('click', function(e) {
 	   state.crewMorale -= 1;
@@ -125,7 +122,13 @@
 		$("#button-4").removeClass("hidden")
       })
 	  $('#Eat').on('click', function(e) {
-       lib.dialogue(e, "eat"),
+	  if (_.contains(state.events, "pouched")) {
+		lib.dialogue(e, "eat2")
+		}
+		else {
+		lib.dialogue(e, "eat")
+		}
+       
 		state.vore += 1;
 		state.crewLoss += 1;
 		$("#Labor").addClass("hidden")
@@ -312,6 +315,8 @@ Day: <span class="days"><script>displayDays()</script></span>
 <p>It was a painful fit and the heavy fullness that followed is one that i&#39;ll not soon forget. Raptorians take tremendous effort of the body to digest. Their reputation for toughness is not unwarranted.&nbsp;</p>
 
 <p>I've been provided poultices by Elda to help speed things along. Food-lethargy with its deep sleep beckons. </p>
+
+<img src="images/assets/Avolcvore4.png" height="40%" width="40%"/> 
 </div>
 
 <div class="eat2 hidden"><p><strong>Eat one of them</strong></p>

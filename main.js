@@ -277,9 +277,30 @@ $(".days").text(state.days).css('color', 'white');
  displayCrew = function () {
 $(".crew").text(state.crewLoss);
 	}
+	
+ displayMorale = function () {
+$(".morale").text(state.crewMorale);
+	}
+
+	
+displayHealth = function () {
+
+	if (state.injuries == 0 ) {
+		$(".health").text("You've been careful and made it through unscathed and without injury. 'Better safe then sorry'!")
+	}
+	else if (state.injuries == 1) {
+		$(".health").text("You've recieved a bump, easily healed however. Expected in the line of duty.")
+	  } 
+	else if (state.injuries == 2) {
+		$(".health").text("You've put yourself on the forefront of danger and it shows. But whats another scar?")
+	  } 
+	else if (state.injuries == 3) {
+		$(".health").text("You've been injured more then anyone on the crew! Your body aches as it tries to keep up with your will.")
+	  } 
+	}
 
 displayMoraleStatus = function () {
-	console.trace();
+
 	if (state.crewMorale >= 10 && state.crewMorale < 13 ) {
 		$(".Crew-morale-description").text("Soaring").css('color', 'darkgreen');
 	}
@@ -287,7 +308,7 @@ displayMoraleStatus = function () {
 		$(".Crew-morale-description").text("Good").css('color', 'green');
 	  } 
 	else if (state.crewMorale >= 6 && state.crewMorale < 8 ) {
-		$(".Crew-morale-description").text("Normal").css('color', 'green');
+		$(".Crew-morale-description").text("Steady").css('color', 'green');
 	  } 
 	else if (state.crewMorale >= 5 && state.crewMorale < 6 ) {
 		$(".Crew-morale-description").text("Shaky").css('color', 'Orange');
@@ -303,7 +324,7 @@ displayMoraleStatus = function () {
 	  } 
 	}
 displayShipStatus = function () {
-	console.trace();
+
 	if (state.shipHealth >= 9 && state.shipHealth < 13 ) {
 		$(".Ship-Health-description").text("Great").css('color', 'darkgreen');
 	}
@@ -328,7 +349,7 @@ displayShipStatus = function () {
 	}
 	
 	displayShedule = function () {
-	console.trace();
+
 	if (state.delay == 0 ) {
 		$(".schedule").text("On Schedule").css('color', 'white');
 	}
