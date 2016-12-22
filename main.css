@@ -9,7 +9,6 @@ float:right;
 
 
 
-
 #VThumb {
 	top: 25px;
 	right: 40px;
@@ -21,6 +20,12 @@ float:right;
 	border-radius: 5px;
 	position: relative;
 	cursor: pointer;
+	
+}
+#VThumb:hover, #GThumb:hover, #ZThumb:hover {
+	
+	border: 2px solid red;
+	
 	
 }
 #GThumb {
@@ -98,6 +103,43 @@ html {
 
 background-color: #331a00;
 }
+
+.btn-default {
+	
+	
+	line-height: 2em;
+	font-size: 1em;
+	text-decoration: none;
+	background:  #D5973C; 
+	color: white;
+	
+}
+.btn-info {
+	
+	
+	line-height: 2em;
+	font-size: 1em;
+	text-decoration: none;
+	background:  #87492F;
+	color: white;
+	
+}
+.btn-danger, .btn-warning {
+	line-height: 2em;
+	font-size: 1em;
+}
+	
+.btn-default:hover, .btn-info:hover {
+	background: #87492F;
+	text-decoration: none;
+	color: white;
+	
+}
+.btn-default:active, .btn-default:focus,  .btn-info:active, .btn-info:focus {
+
+	background: #331a00;
+}
+	
 
 
 #tail .btn {

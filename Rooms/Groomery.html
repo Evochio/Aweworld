@@ -12,7 +12,7 @@
  <link rel="stylesheet" href="/bootstrap.min.css">
   <link rel="stylesheet" href="/bootstrap-theme.min.css">
   <script src="/main.js"></script>
-
+ <link rel="stylesheet" href="/main.css">
   <script>
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
@@ -92,10 +92,35 @@
 	  	$('#button-4').on('click', function(e) {
         // change state here
 		lib.dialogue(e, "act")
-	   $("#button-5").removeClass("hidden");
+	   $("#family").removeClass("hidden");
 	   $("#button-4").addClass("hidden")
 		
 		})
+		$('#family').on('click', function(e) {
+        // change state here
+		lib.dialogue(e, "family")
+	   $("#answer").removeClass("hidden");
+	   $("#decline").removeClass("hidden");
+	   $("#family").addClass("hidden")
+		
+		})
+		$('#answer').on('click', function(e) {
+        // change state here
+		lib.dialogue(e, "answer")
+	   $("#button-5").removeClass("hidden");
+	   $("#answer").addClass("hidden")
+	   $("#decline").addClass("hidden")
+		
+		})
+		$('#decline').on('click', function(e) {
+        // change state here
+		lib.dialogue(e, "decline")
+	   $("#button-5").removeClass("hidden");
+	   $("#decline").addClass("hidden")
+	   $("#answer").addClass("hidden")
+		
+		})
+		
         if (_.contains(state.inventory, "gratitude")) {
 			$("#generous").removeClass("hidden");
 			if (_.contains(state.events, "deepening")) {
@@ -270,6 +295,9 @@ Day: <span class="days"><script>displayDays()</script></span>
 <button class="btn btn-default hidden" id="moraleBad">(Morale) Disastrous! </button>
 <button class="btn btn-default hidden" id="button-3">The fate of Officer Tung </button>
 <button class="btn btn-default hidden" id="button-4">What makes a good captain</button>
+<button class="btn btn-default hidden" id="family">A personal question</button>
+<button class="btn btn-default hidden" id="answer">Before the sea</button>
+<button class="btn btn-default hidden" id="decline">Leave the past forgotten</button>
 <button class="btn btn-default hidden" id="button-5">Continue </button>
 <span id="cadetButtons"> </span>
 
@@ -442,6 +470,55 @@ Day: <span class="days"><script>displayDays()</script></span>
 <p>Elda took her job as responsible for the crews health seriously. She was not afraid to give the captain a reality check and ask the hard questions. She was a strong Matron-Awe.</p>
 </span>
 </div>
+
+<div class="family hidden"><p><strong>Family</strong></p>
+<p>“Can I ask you a personal question Captain?” Elda suddenly and quietly changed the subject. </p>
+
+<p>“Ask away Elda. We'll see about the answer though.”</p>
+
+<p>“You are nearing your mid-years and as far as I understand you're still childless. Have you put the idea of younglings aside?” </p>
+
+<p>I sighed audibly. It seems every Matron is intent on asking these questions. </p>
+
+<p>“Do you have to know this? My reasons are my own and this has nothing to do with my captaincy. I dont need any family planning counseling at this stage.” I answered guardedly. Elda just seemed to chuckle ruefully, amused by my consternation. </p>
+
+<p>“Its our duty to pester about these things Captain. I just want to understand you better.” </p>
+</div>
+
+<div class="decline hidden"><p><strong></strong></p>
+<p>“My reasons are my own Elda. I'd rather keep them to myself. ” I sighed and crossed my arms, determined. Elda did not push but instead backed away, her grooming complete. My coat did look better and felt cleaner. It was not all for nothing. </p>
+
+<p>“Very well, we're all done here then. I'll see you again soon captain.”</p>
+
+<p></p>
+
+</div>
+
+<div class="answer hidden"><p><strong>Before the sea</strong></p>
+<p>I mulled on wether how much or how to answer a while, but if she wanted to understand me, why not give the full story.</p>
+
+<p>Elda remained respectfully silent, though she seemed done with her grooming, she brushed as I talked. </p>
+
+<p>"I was a single born, had no direct siblings of older or younger generation either. I was not unhappy, I liked it. But as i got older i became curious about what i had missed out on. Everyone seemed to have this... "connection", that i could not understand." </p>
+
+<p>"So I became a teacher. Or was training to be. Was among younglings every day." Elda raised her brow at this, surprised."</p>
+
+<p>"Among all these boisterous young, I began to realize the kind of family I missed out on growing up." I paused a while, old forgotten bitterness welling back.</p>
+
+<p>"What happened?" Elda cooed, trying to soothe me. </p>
+
+<p>"Nothing happened!" I spat. </p>
+
+<p>“Oh..."   She cut right to it, able to see right through me. "You are barren...” I found myself relieved that she did, no dancing around a subject usually so taboo among Awes. I nod in response. </p>
+
+<p>"My family line isnt particularly large for a reason it turned out. Signed up for Admirality not long after. I wanted all or nothing, I was a bitter youth." </p>
+
+<p> There was a quiet pause between us. There was not more else to say. </p>
+
+<p>“Us Matrons must be insufferably insensitive at times. I apologize for pestering you about this.” Elda backed away. My coat felt fresh and clean. We bid our farewells. It was the first time I seen Elda a little stumped. </p>
+</div>
+
+
 <script>
 
  cadet[2].banter = [

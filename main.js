@@ -25,9 +25,10 @@ lib.dialogue = function(e, className) {
 	var answer1 = $("."+ className).html()
 	$("#story-text").animate({opacity: 0}, function(){$(this).html(answer1)}).animate({opacity: 1})
 	$("."+ className+":first").remove()
-	if (!$("."+ className).length) {
+	/*if (!$("."+ className).length) {
 		$(e.target).removeClass("btn-default").addClass("btn-info")
 	}
+	*/
 }
 
 //new button system. 
