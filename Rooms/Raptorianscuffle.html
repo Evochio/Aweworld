@@ -138,6 +138,7 @@
       })
 	  $('#Overboard').on('click', function(e) {
 	  state.raptorians -= 1;
+	  state.crewLoss += 2;
        lib.dialogue(e, "overboard"),
 		$("#Labor").addClass("hidden")
 		$("#Eat").addClass("hidden")

@@ -19,7 +19,8 @@
       // rooms get clicked.
       state.events.push("raptoriansRebel");
 	  state.events.push("noArn");
-	  
+	  state.events.push("hard");
+	  state.crewLoss += 13;
       $('#button-1').on('click', function(e) {
 		lib.dialogue(e, "admit"),
 		state.crewMorale -= 1;
@@ -57,6 +58,7 @@
       })
 	   $('#evokEat').on('click', function(e) {
        lib.dialogue(e, "evokEat"),
+	   state.crewLoss += 5;
 	    $("#evokEat").addClass("hidden")
 		$("#evokEaten").addClass("hidden")
 		$("#sentence").addClass("hidden")
@@ -67,6 +69,7 @@
 	  $('#sentence').on('click', function(e) {
        lib.dialogue(e, "sentence"),
 	   state.crewMorale += 2;
+	   state.crewLoss += 6;
         $("#evokEat").addClass("hidden")
 		$("#evokEaten").addClass("hidden")
 		$("#sentence").addClass("hidden")
@@ -76,12 +79,13 @@
 		$('#digested').on('click', function(e) {
 		lib.dialogue(e, "digested"),
         $("#digested").addClass("hidden")
-		
+		$("#restart").removeClass("hidden")
 				
       })
 	  	$('#rescued').on('click', function(e) {
 		lib.dialogue(e, "rescued"),
         state.crewMorale += 1;
+		state.crewLoss += 8;
 		$("#rescued").addClass("hidden")
 		$("#button-4").removeClass("hidden")		
       })
@@ -89,6 +93,8 @@
        lib.dialogue(e, "evokEaten"),
 	   state.inventory.push("evokBelly");
 	   state.crewMorale += 1;
+	   state.vore += 1;
+		state.crewLoss += 1;
         $("#evokEat").addClass("hidden")
 		$("#evokEaten").addClass("hidden")
 		$("#sentence").addClass("hidden")
@@ -102,6 +108,11 @@
         // end by using lib.goTo
         lib.goTo('Pieces.html')
       })
+	   $('#restart').on('click', function(e) {
+       location.reload(true)
+		
+    })
+	  
     })
   </script>
   
@@ -162,7 +173,7 @@ if (_.contains(state.events, "gamblingForbid")) {
 
 <button class="btn btn-default hidden" id="digested">Hopeless?</button>
 <button class="btn btn-default hidden" id="rescued">Hopeless?</button>
-
+<button class="btn btn-default hidden" id="restart">Restart</button>
 <button class="btn btn-default hidden" id="button-4">Pale Rock</button>
 <span id="cadetButtons"> </span>
 </div>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Aweworld</title>
+
+  <script src="/jquery-2.1.3.js"></script>
+  <script src="/underscore.js"></script>
+	<script src="/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-theme.min.css">
+  <script src="/main.js"></script>
+   <link rel="stylesheet" href="/main.css">
+
+  <script>
+		state.Glint.status = "available"
+		state.Valnos.status = "available"
+		state.Ziggy.status = "available"
+		
+	$(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#bane').on('click', function(e) {
+        lib.dialogue(e, "bane"),
+		$("#bane").addClass("hidden")
+		$("#normal").addClass("hidden")
+		$("#fast").removeClass("hidden")
+		$("#slow").removeClass("hidden")
+      })
+	  
+	   $('#normal').on('click', function(e) {
+        lib.dialogue(e, "normal"),
+		$("#bane").addClass("hidden")
+		$("#normal").addClass("hidden")
+		$("#continue").removeClass("hidden")
+		
+      })
+	     $('#fast').on('click', function(e) {
+        lib.dialogue(e, "fast"),
+		state.events.push("fast");
+		$("#fast").addClass("hidden")
+		$("#slow").addClass("hidden")
+		$("#around").removeClass("hidden")
+		$("#through").removeClass("hidden")
+      })
+	  $('#slow').on('click', function(e) {
+        lib.dialogue(e, "slow"),
+		state.events.push("slow");
+		$("#fast").addClass("hidden")
+		$("#slow").addClass("hidden")
+		$("#around").removeClass("hidden")
+		$("#through").removeClass("hidden")
+      })
+	  
+	  $('#around').on('click', function(e) {
+		if (_.contains(state.events, "fast")) {
+		lib.dialogue(e, "aroundFast")
+		state.shipHealth -= 1;
+		}
+		else if (_.contains(state.events, "slow")) {
+        lib.dialogue(e, "aroundSlow")
+		state.delay -= 1;
+		}
+		
+		$("#around").addClass("hidden")
+		$("#through").addClass("hidden")
+		$("#continue").removeClass("hidden")
+		
+      })
+	  
+	  $('#through').on('click', function(e) {
+		if (_.contains(state.events, "fast")) {
+		lib.dialogue(e, "throughFast")
+		state.delay -= 2;
+		}
+		else if (_.contains(state.events, "slow")) {
+        lib.dialogue(e, "throughSlow")
+		}
+		
+		$("#around").addClass("hidden")
+		$("#through").addClass("hidden")
+		$("#continue").removeClass("hidden")
+		
+      })
+	  	$('#continue').on('click', function(e) {
+        // change state here
+		
+        // end by using lib.goTo
+        lib.goTo('SeaofFangs3.html')
+      })
+	 
+	 
+	 })
+	 
+		
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<div id="head">
+<div id="dayCounter">
+Day: <span class="days"><script>displayDays()</script></span>
+<br/>
+<span class="schedule"><script>displayShedule()</script></span>
+</div>
+<h1>The Game - Flock</h1>
+</div>
+<div id="story-text">
+<p>I stood on the deck, watching the pointy eroding cliffs and shadows of reefs pass by in the distance when im approached by Nyxie, our navigator.</p>
+
+<p>“Captain!” She saluted, paw over chest, always formal and close to protocol. It was a comforting trait. I nodded for her to speak.</p>
+
+<p>“As you may well be aware we are severely behind schedule and at risk at missing our scheduled rendeuvouz.” She spoke calmly, no hint of criticism in her tone. Still I could not help but bristle slightly.</p>
+
+<p>“Keenly.” I responded with unintended icyness. Nyxie would not be mentioning this unless she had some sort of plan. She was a straightforward Awe.</p>
+
+<p>“Well, with the current status of the tides, there's a chance for a possible short-cut.”</p>
+
+<p>She had my full interest now. Nyxie showed me the charts while she explained.</p>
+
+<p>“The route we are following snakes around the perilous areas of the fangs. But we could save a days worth of travel if we cut through here.” She pointed. “'Banes corridor' its called. Normally nearly impassable, due to the reefs, but the current high-tide has raised sea-levels enough for us to safely pass over them.”</p>
+
+<p>I nodded in understanding. But I had my reservations.</p>
+
+<p>“Its a risky proposition but not without merit. Why isnt the corridor used more often?” I pondered aloud.</p>
+
+<p>“Because even during high-tide when its the most passable, its a narrow corridor and the currents drift you treachorously. The risk is not worth saving a day or two for most. I would normally not propose this course, but I figured it would be amiss of me not to present this opportunity to aid in our objectives.” Nyxie straightened. I could tell she was a bit proud of her plan and confident she could handle it.</p>
+
+</div>
+<div id="tail">
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="bane"> Banes Corridor </button>
+<button class="btn btn-default" id="normal"> Normal route </button>
+<button class="btn btn-default hidden" id="fast"> Go Fast </button>
+<button class="btn btn-default hidden" id="slow"> Go Slow </button>
+<button class="btn btn-default hidden" id="through"> Go through it! </button>
+<button class="btn btn-default hidden" id="around"> Go around it! </button>
+<button class="btn btn-default hidden" id="continue"> Continue </button>
+
+<span id="cadetButtons"> </span>
+
+</div>
+
+<div class="bane hidden"><p><strong>Banes Corridor</strong></p>
+
+<p>“Very well, we shall apptempt it. As its your plan, you better see us through this in one piece.“ I smiled. Nyxie saluted sharply and hurried off to take over the helm again. </p>
+
+<p>This would be a risky manouver. The Sea of fangs have seen countless wrecks and accidents over the years. Explorers have long tried to find the best passages through and many going missing doing so. Ofcourse, all of its passages, 'corridors' and shortcuts are not known. Some would be closely held “trade-secrets” or... pirate routes. As demonstrated by the recent raid of ThunderHill.</p>
+
+<p>One thing was certain, Admirality would be scouring these fangs more closely over the coming years. Our passage through this Banes Corridor, foreboding a name as it is, will assist in that venture.</p>
+
+<p>Nyxie has proposed two plans of passage. Either we go fast, almost at full sail, to keep our drift due to currents minimal and more easilly managable. Or we take it slower and give ourselves more room for manouverability.</p>
+
+<p>Both pose risks in their own right, but Nyxie reccomends going slow, confident in that she can compensate for currents. </p>
+
+<p><span class="arn hidden">Arn joined me briefly on deck, joining the discussion.</p>
+<p> "'Banes Corridor' huh? I've heard of this passage. Isnt the talk of the traders that you 'Go fast or risk ruin.'." </p>
+
+<p> Nyxie seemed to shrug, she acted a lot more casual around Arn. "Either we listen to old Trader superstition or our common-sense" </p>
+
+</span>
+
+<p><span class="noArn hidden">If Nyxie kept up this kind of innitiative, i did not have to long long for a new First-Officer</span></p>
+
+<script>
+if (_.contains(state.events, "noArn")) {
+	$('.noArn').removeClass('hidden');
+}
+else {
+	$('.arn').removeClass('hidden');
+}
+
+
+</script>
+</div>
+
+<div class="normal hidden"><p><strong>Normal Route</strong></p>
+
+<p>"I like the suggestion, but we'll take the normal charted route. Late or not, we'll have to hope they have patiance to wait for us."</p>
+
+<p> "Aye Captain." Nyxie nodded and saluted sharply again. She showed no dissapointment, she may have only been doing her duty to suggest the faster route. But i wondered if there was a deeper will to explore and push herself under that formal exterior </p> 
+ 
+<p> The Sea of fangs have seen countless wrecks and accidents over the years. Explorers have long tried to find the best passages through and many going missing doing so. Ofcourse, all of its passages, 'corridors' and shortcuts are not known. Some would be closely held “trade-secrets” or... pirate routes. As demonstrated by the recent raid of ThunderHill.</p>
+
+<p>One thing was certain, Admirality would be scouring these fangs more closely over the coming years. 'Banes Corridor', would no doubt one day be fully mapped.</p>
+ 
+</div>
+
+<div class="fast hidden"><p><strong>We should go fast.</strong></p>
+
+<p>I decided we should go fast. </p>
+
+<p>Sails were raised and her speed soon picked up. Keen-eyed lookouts stood ready to shout and sign for course-correction should any unexpected reef show up in our path. Some were worryingly hard to spot however, nothing more then spikes lurking beneath waves, ready to rend the underside of the ship.</p>
+
+<p>We make good pace. Im joined on deck by our reclusive maintinance officer Tick. He glances worriedly at the cliffs and reefs visible on either side of the ship. Some too close for comfort, we were passing through some pretty narrow passages. If he has reservations by our chosen actions he keeps them to himself. Though im sure what he'd say if i'd ask for his input.</p>
+
+<p>“Flotsam! Flotsam!” Calls a lookout from above. Jerking my attention back to the waters ahead.</p>
+
+<p>The waves had concealed it well, but it was a whole patch of accumulated debris floating on the water ahead. Nyxie glanced to me for instructions. With our speed, there was little time to ponder the matter.</p>
+
+<p>Either we veer off course or ram straight through it. </p>
+</div>
+
+<div class="slow hidden"><p><strong>We choose to go slow.</strong></p>
+
+
+<p>With half-sails its a suprising crawl that we end up taking through Banes Corridor. Fighting the current which try to push us northward has us sailing in a diagonal course to go straight.</p>
+
+<p>Keen-eyed lookouts stood ready to shout and sign for course-correction should any unexpected reef show up in our path. Some were worryingly hard to spot however, nothing more then spikes lurking beneath waves, ready to rend the underside of the ship.</p>
+
+<p>Im joined on deck by our reclusive maintinance officer Tick. He glances worriedly at the cliffs and reefs visible on either side of the ship. Some too close for comfort, we were passing through some pretty narrow passages. If he has reservations by our chosen actions he keeps them to himself. Though im sure what he'd say if i'd ask for his input.</p>
+
+<p>“Flotsam! Flotsam!” Calls a lookout from above. Jerking my attention back to the waters ahead.</p>
+
+<p>The waves had concealed it well, but it was a whole patch of accumulated debris floating on the water ahead. Nyxie glanced to me for instructions.</p>
+
+<p>“We can probably ease our way through. There shouldnt be any reefs underneath.”</p>
+
+<p>Either we go around it or through it.</p>
+</div>
+
+<div class="throughFast hidden"><p><strong>Go through</strong></p>
+
+
+<p>“Go through it.” I state calmly with confidence I dont quite feel. This ship had a prominent armored ramming bow. It was not all decoration. Only mostly. </p>
+
+<p>“Brace for impact!” Nyxie calls out a general alert so no one is caught offguard.</p>
+
+<p>We crash through the debris and driftwood with audible clunks to the bow. The ship only shudders slightly as it shears through the floating mess. There was indeed pieces of a ships-hull here too, it looked old and rotted. Which was fortunate as we appear to break through with little resistance.</p>
+
+<p>Luckilly the patch was not deep and no reefs underneath.</p>
+
+<p>With the threat behind us there's a collective breath of relief around the ship as many bristled coats are smoothed.</p>
+
+<p>Tick mutters nearby, glancing over the side to look for damage. He seems to find none but still lets me know what he thought of that stunt.</p>
+
+<p>“Captain! I dont need to tell you that was reckless. But as your maintinance officer I strong recommend against ramming random sea-obstacles in the future!”</p>
+
+<p>I nod to him firmly but am unable to keep a slight smirk off my face. Luckily Tick has moved on to make further inspections. I got the impression that little else mattered to him then the wellfare fo this ship.</p>
+
+<p>The rest of the passage through Banes Corridor is mostly without incident. </p>
+
+</div>
+
+<div class="throughSlow hidden"><p><strong>Go through</strong></p>
+
+
+<p>“Go through it” I nod, taking Nyxies reccomendation.</p>
+
+<p>The ship slowly shears through the mess of debris. Its quite a long trail of it stretching north and south that we are trying to break through. It looks like a whole forest has washed out to sea. Among are pieces of old rotten flotsam from unknown wrecks too.</p>
+
+<p>It soon becomes apperent that we are not moving through it. We are stuck in it and slowly floating off course with the current.</p>
+
+<p>I order crew to ready long pikes and ropes and have them push the floating debris away from the ship. In one spot the mess is so thick that a few bold Awes could stand atop of it.</p>
+
+<p>We make it through eventually and make it back on course. But not without having spent much of the day doing it, loosing us the advantage in time we were seeking with this passage.</p>
+
+<p>Officer Nyxie is remorseful and trying to take the blame. But I do not reprimand her.</p>
+
+<p>“I should have taken into account that the high-tide season would wash through “The Thick” and float up major debris this way.”</p>
+
+<p>In the end we lost nor gained nothing but a little extra knowledge of the Sea of fangs.</p>
+
+</div>
+
+<div class="aroundFast hidden"><p><strong>Go around</strong></p>
+
+
+<p>“Turn!” I order to Nyxie. Who knows how thick that soup of driftwood and debris is or what lurks underneath it.</p>
+
+<p>Nyxie veers the ship to the side while shouting for sails to be lowered to we can cut speed. The floating debris is wide and with our speed we end up going off course from Banes Corridor and into less charted waters.</p>
+
+<p>It does not take long for a look out to yell out a warning for reefs ahead and signaling course correction. Nyxie works hard to get us back on track, her fur pooffed with concentration and stress. She's the expert and knows the ship best, so I merely assist best I can by reading the charts.</p>
+
+<p>An ominous scrape along the ship has my Maintinance-officer Tick rushing off below deck to inspect for damages with a string of low muttering. I could not fault the look outs for that one, the dark waters reveal nothing of what we brushed up against in our passing.</p>
+
+<p>We are back on the right course a fur-shedding while later. A displeased report from Officer Tick soon reach me that the scrape was just that, a scrape. The integrity of the ship was not compromised. I have a feeling the messenger was omitting a lot of 'flowery' language in the report. Tick cared for the wellfare of the ship above all.</p>
+
+<p>The rest of the passage through Banes Corridor is mostly without incident. </p>
+
+</div>
+
+<div class="aroundSlow hidden"><p><strong>Go around</strong></p>
+
+
+<p>“Go around it” I order, electing to be extra cautious.</p>
+
+<p>Its quite a long trail of it stretching north and south that we are trying to get around. It looks like a whole forest has washed out to sea. Among are pieces of old rotten flotsam from unknown wrecks too.</p>
+
+<p>We end up slightly off course from Banes Corridor going around it all. It does not take long for a look out to yell out a warning for reefs ahead and signaling course correction. Nyxie works to get us back on track, her fur pooffed with concentration and stress. She's the expert and knows the ship best, so I merely assist best I can by reading the charts.</p>
+
+<p>It takes a little while going around, but we make it back the to corridor without incident. I pat Nyxie on a shoulder and commend her for a job well-done.</p>
+
+<p>The rest of the passage through Banes Corridor is mostly without incident. Our slow passage did not save us as much time as I had hoped. But it was not a complete loss. And we gained some valuable knowledge of the Sea fangs.</p>
+
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

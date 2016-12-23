@@ -14,15 +14,12 @@
   <script src="/main.js"></script>
  <link rel="stylesheet" href="/main.css">
   <script>
-	if (_.contains(state.events, "eatArn") || _.contains(state.events, "toziggy") || _.contains(state.events, "raptoriansRebel")) {
-			 state.events.push("noArn");
-		}
-		
+		state.events.push("nokeeper");
   
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
-      state.events.push("nokeeper");
+     
 	  
       $('#button-1').on('click', function(e) {
 		lib.dialogue(e, "start"),
