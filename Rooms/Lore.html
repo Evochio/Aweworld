@@ -16,7 +16,8 @@
   <script>
  
     $(document).ready(function() {
-	  
+	 
+	
   
 	$('.aweOverview').on('click', function(e) {
       
@@ -27,17 +28,65 @@
       
 		lib.dialogue(e, "aweHistory2")
 	  })
-	$('.aweBiology').on('click', function(e) {
+	$('.raptorians').on('click', function(e) {
       
-		lib.dialogue(e, "aweBiology2")
+		lib.dialogue(e, "raptorians2")
+		console.log("derp222")
 	  })
 	  
-	$('.aweCulture').on('click', function(e) {
+	$('.admiralty').on('click', function(e) {
       
-		lib.dialogue(e, "aweCulture2")
+		lib.dialogue(e, "admiralty2")
+		console.log("derp")
 	  })
-    })
+	  
 	
+	$('.wulfOverview').on('click', function(e) {
+      
+		lib.dialogue(e, "wulfOverview2")
+	  })
+	 $('.wulfHistory').on('click', function(e) {
+      
+		lib.dialogue(e, "wulfHistory2")
+	  })
+	 $('.sailingCompany').on('click', function(e) {
+      
+		lib.dialogue(e, "sailingCompany2")
+	  })
+	  
+	   $('.gryphOverview').on('click', function(e) {
+      
+		lib.dialogue(e, "gryphOverview2")
+	  })
+	   $('.kingdom').on('click', function(e) {
+      
+		lib.dialogue(e, "kingdom2")
+	  })
+	   $('.republic').on('click', function(e) {
+      
+		lib.dialogue(e, "republic2")
+	  })
+	  
+	  
+	   
+	   $('.gatorOverview').on('click', function(e) {
+      
+		lib.dialogue(e, "gatorOverview2")
+	  })
+	   
+	   $('.gatorHistory').on('click', function(e) {
+      
+		lib.dialogue(e, "gatorHistory2")
+	  })
+	   
+	   $('.vassals').on('click', function(e) {
+      
+		lib.dialogue(e, "vassals2")
+	  })
+	  
+    
+	 })
+	 
   </script>
   
   <style>
@@ -81,6 +130,12 @@ li {
 	color: white;
 	text-align: center;
 	
+}
+
+.main {
+background-color: #331a00;
+padding: 0.5em;
+border-radius: 0.4em;
 }
 
 button {
@@ -128,35 +183,36 @@ margin-bottom: 0.2em;
 <div id="side">
 
 <ul class="topmenu">
- <li>Races of Aweworld</li>
+ <li><span class="main"> Races of Aweworld</span></li>
 
 	<ul class="Racemenu">
 	  <li><button data-toggle="collapse" data-target=".Awemenu" class="midmenu" id="Awes">Awes </button></li>
 		<ul class="collapse Awemenu">
 		<li class="sub aweOverview">Overview</li>
 		<li class="sub aweHistory">History</li>
-		<li class="sub aweBiology">Biology</li>
-		<li class="sub aweCulture">Culture</li>
+		<li class="sub raptorians">Raptorians</li>
+		<li class="sub admiralty">The Admiralty</li>
 		</ul>
 	  <li><button data-toggle="collapse" data-target=".Wulfmenu" class="midmenu" id="Wulfs">Wulfs </button></li>
 		<ul class="collapse Wulfmenu">
-		<li>Option 4</li>
-		<li>Option 5</li>
-		<li>Option 6</li>
+		<li class="sub wulfOverview">Overview</li>
+		<li class="sub wulfHistory">History</li>
+		<li class="sub sailingCompany">The Sailing company</li>
 		</ul>
 	  <li><button data-toggle="collapse" data-target=".Gryphmenu" class="midmenu" id="Gryphs">Gryphs </button></li>
 		<ul class="collapse Gryphmenu">
-		<li>Option 7</li>
-		<li>Option 8</li>
-		<li>Option 9</li>
+		<li class="sub gryphOverview">Overview</li>
+		<li class="sub kingdom">Kingdom of Plumes</li>
+		<li class="sub republic">(Fallen)Republic of Preenlon</li>
 		</ul>
 	  <li><button data-toggle="collapse" data-target=".Gatormenu" class="midmenu" id="Gators">Gators </button></li>
 	  <ul class="collapse Gatormenu">
-		<li>Option 7</li>
-		<li>Option 8</li>
-		<li>Option 9</li>
+		<li class="sub gatorOverview">Overview</li>
+		<li class="sub gatorHistory">History</li>
+		<li class="sub vassals">Vassals</li>
 		</ul>
 	  <li><button data-toggle="collapse" data-target=".submenu" class="midmenu" id="Drudges">Drudges </button></li>
+	  
 	</ul>
 	
 	<li>Known World</li>
@@ -178,19 +234,258 @@ Lore text
 </div>
 
 <div class="aweOverview2 hidden"><p><strong>Overview of Awes</strong></p>
-Dis be Awes
+<p>Average Height: 1.6m</p>
+
+<p>Average Lifespan: </p>
+
+<p>Males: 80 years</p>
+
+<p>Females: 140 years</p>
+
+<p><br />
+</p>
+
+<p>Awes hail from the mountains they call Homepeaks that dominate the central parts of the eastern continent. They are thick of fur and able to tolerate most weathers but are not overly fond of high tempratures. </p>
+
+<p>Males are light of build and have larger wings then females while females are stouter and stronger.</p>
+
+<p>While they now dominate most of the northern parts of the continent, most of them living where the growing of food is the easiest, they always have a fondness for mountains, deep valleys and hills. </p>
+
+<p>Awes are highly social and enjoy the company of eachother. They are born in litters of 1-4 and families tend to be big and help raise and take care of eachother.</p>
+
+<p>Awes are matriarchal. Females, who are of more heavier and robust build then males, are always the leaders of their communities.</p>
+
+<p>Females undergo a minor transformation when they reach menopause around the age of 70, becoming what they call 'Matrons'. They gain a minor growth-spurt, some as far as nearly doubling in mass if enough sustenance is available. Matrons are the leaders, teachers and caretakers of young in Awe society, their wisdom always defered to by others Awes.</p>
+
+<p>There exists a few variations of Awes. While the vast majority are tones of yellow or golden of fur with a brown mane (males of slightly darker shades), tone of fur tend to noticably differ in communities isolated from one another in just a few generations.</p>
+
+<p>MountainAwes</p>
+
+<p>Deep in the mountains of Homepeaks ancestral Awes with white fur still live with the traditions and lifestyles of old. Slightly nomadic, they forage the land and travel in tribes between ancestral homesteads depending on availability of food. Reclusive and prefering to keep to themselves, they remain apart from the general Awe population.</p>
+
+<p>RavenEyes</p>
+
+<p>On the peninsula dubbed RavenIsle to the north-east of the continent lives Awes who have black fur and yellow eyes, which gave them their names. The far north have long dark nights which permits Raveneyes to hide well. Raveneyes originate from refugees from the fall of the First Age who survived by hiding from Raptorian Horde of the time. Raveneyes are generaly timid and of slightly smaller build then common Awes.</p>
 </div>
 
 <div class="aweHistory2 hidden"><p><strong>History of Awes</strong></p>
-A bunch of history
+<p>Awe written history is short, but the oral one stretches far back into the annals of time. </p>
+
+<p>Because of this lack of record, a complete or for that matter fully accurate historical recounting is at best difficult.</p>
+
+<p>But researchers have now collected enough record and documented enough oral traditions and stories to paint a clearer image of our past. Understanding our past and its lessons are what will help us face the challenges of tomorrow. And so we do no repeat the mistakes we've painfully suffered before.</p>
+
+<p>Earliest tales of Awe come from the cold mountains of Homepeaks. Although its a whole different matter of debate still at the time of writing under contention, everyone agrees that Awes originate from the south mountains.</p>
+
+<p>These tales hold old dialects and are often made to rhyme so they're remembered better. Their contents tell of cold dark nights, of travels and of hardships. Most of them are, in practicality, lessons on how to survive and how to prosper and what to watch out for.</p>
+
+<p>A fact learned from these collective stories tell of a nomadic way of life, traveling through the mountains as the seasons changed. It is to believed the old Awes of those days traveled regularly from the northwest to the southeast, in time with the shifting of the season winds, so that the tall peaks would shield them from the worst of the frigid winds.</p>
+
+<p>This rugged way of life seems to have persisted for many generations and it is undoubtedly where we as a species developed our thick coats of fur. It is believed the climate at the time was of a harsher and colder nature. It is quite likely that the north continent was covered in a receding ice and did not offer much in the way of alternative living.</p>
+
+<p>Cautionary tales, though their meaning under question, also tell of the dangers of wandering beyond the protective peaks. Or one would be swept away by 'night-wanderers'.</p>
+
+<p>However around 3000 years ago, Awes are known to have started moving north and settle down. The climate had gotten milder and the fertile lands that had been hidden under the ice emerged.</p>
+
+<p>Though Awes might have been moving throughout the region earlier, the excavations found tell of the first semi-permanent settlements emerging at this time.</p>
+
+<p>Numare and Tranquil, on the east-coast both have layer upon layer of history if one digs for it.</p>
+
+<p>Other major settlements include the Hrystcrag on the west-coast and Lean on what used to be the shorelines of Lake Sigh.</p>
+
+<p>This is when our first written records begin to emerge.</p>
+
+<p>Awes of this time did not practise advanced agriculture, they hunted and tended herds and picked from the seasonal fruits in rudimentary orchards they created.</p>
+
+<p>The first ever written record from this time recovered is in fact of a trade treaty between two villages. One place was rich in apples and the other was close the the seasonal migration of Horned beast.</p>
+
+<p>Its believed this growing practise of trade is what sparked the thriving golden-age of the time that we nowadays merely call “The First Age”.</p>
+
+<p><br />
+</p>
+
+<p>The First Age</p>
+
+<p>Awes of the First age were slightly different from today's Awes in that they resembled Raveneyes in height and stature, though its well-documented they were mostly fully golden.</p>
+
+<p>The First Age marked a time of unchecked expansion and growth for our species. Communities grew and spread and left their mark on the land. Where First-Age Awes lived aplenty, fruit-trees can always be found growing wild.</p>
+
+<p>It was also a time of fracture, while communities and early-cities traded prominently there existed very little unity. Many recovered treaties, often chiseled in stone, clearly state forage rights and borders. Awes of the time guarded their resources preciously, for it was their means of which to trade themselves other desired goods.</p>
+
+<p>There is even believed to have been minor armed conflicts between competitors. In much of a way, the First-Age Awes had a close resemblance to the City-states of the Wulfs of the time. Which might not be so strange because there exists much evidence of communication and trade existing between our two peoples even then. Though under debate, First-Age Awes could very well be emulating the wingless cousins of the south. There exists a lot of evidence in the similarity of writing and even metallurgy from this time-period.</p>
+
+<p><br />
+</p>
+
+<p>The Fall of the First-Age</p>
+
+<p>As communities grew and agriculture developed, the First-Age Awes took up more space and came into more and more conflict with the Raptorians of the time. Though usually satisfied to leave eachother alone, the matter which brought the most conflict were the large herds of horned beasts that the Raptorians of the time more or less relied on for survival. A herd passing through is believed to have trampled and stripped the lands near bare and could be a disaster to community of Awes.</p>
+
+<p>Hunting of Horned-Beasts for the safety of crops and their meat for consumption and trade was thus extensive, especially in the northern cities around Lake Sigh who were adjacent to their believed lands of roaming. </p>
+
+<p>Many recovered documents also exists of the meat being in high demand with the southern cities and communities, who themselves were expert toolmakers and bronze workers. There even exists scattered hints of this meat being traded on to Wulf cities.</p>
+
+<p>So what caused the Raptorian horde and the Fall of the First Age of Awes? Common folk-lore try to depict Raptorians as some creatures of malice and destruction who came from the north to lay ruin to all. While the events of the time might lend a hint of credence to such tales, the real reason could have been much more mundane and tragic.</p>
+
+<p>Its believed the Horned-beasts were either hunted to extinction or all perished to some manner of disease. It could well be a combination of the two. This must have driven the Raptorians to near starvation and desperation.</p>
+
+<p>How they managed to organize is unknown, it could well have been that the northern First-Age Awes were able to defend themselves well enough for the Raptorians to be forced to.</p>
+
+<p>The combined and unified Raptorian tribes swept over everything. Consuming all in their wake.</p>
+
+<p>The speed and ravenousness of this assault was so great that little documentation of the assault exists except scattered communications among the southern communities of Tranquil between the local Matrons who discuss how to handle and distribute the huge influx of refugees. This is also where the first mention of an organized armed force is mentioned in writing. </p>
+
+<p>“1<sup>st</sup> &amp; 3<sup>rd</sup> Heavy guard dispatched. Supply requested. Hera commands.”</p>
+
+<p>But what became of this force is unknown. Tranquil itself was overrun not long after and most of its populace along with any other low-land community fled for the perceived safety of their ancestral homes in mountains of Homepeaks.</p>
+
+<p>What had been a sprawling civilization of Awes with countless cities and a growing craft for Art and craftsmanship fell in a short few years to the horde. What followed was a bleak time for conqueror and conquered both as the true enemy of all, that which sparked the conflict to begin with, descended upon all. The time of Hunger.</p>
+
+<p><br />
+</p>
+
+<p>The Time of Hunger and the War of folly. </p>
+
+<p>With so many Awe refugees flooding the Peaks, it was inevitable that the original inhabitants of the mountains and the desperate newcomers clash.</p>
+
+<p>The spectre of hunger drove Awe against Awe in the first truly recorded Civil-war among Awes. 'The war in the mountains' as it was called at the time or the 'War of Folly' as it now more known as played out in many pockets of verdant valleys and mountainside pasturelands.</p>
+
+<p>First there existed many sides, as communities banded together according to former alliances and occupied what they could to sustain themselves and their families. But it shifted quickly to a form of North Awes against South Awes as the southern communities of 'Tranquil' and later 'Lagoons' blamed the scattered Northern Awes refugees to have brought the wroth of Raptorians upon all.</p>
+
+<p>But the war did not truly escalate until the united MountainAwes intervened in an attempt to expel both sides from what they considered, perhaps rightfully, to be their ancestral lands and bread-baskets.</p>
+
+<p>During this time of chaos there existed as many voices of reason as there did discord. Greed and folly saw some valleys destroyed in landslides or avalanches rather then lost to the paws of their enemies, trapped as they were, such was the desperation that could have driven Awekind to destruction.</p>
+
+<p>One recorded community of Lagoon Awes are reported to have attempted to flee south of the Homepeaks, into the jungles of 'The Thick' in an attempt to reach Wulflands. But no Wulfish records ever report any such Awes arriving to their destination.</p>
+
+<p>Another scattered alliance of Northern Awes attempted to march back north in force through the west coast, but were driven back in a route when the Raptorian horde found them before they made it very far.</p>
+
+<p>Although the war had few winners and most likely would have had fewer still had it continued, the dominant faction who in the end brokered the treaty to whom all parties would sign and agree to were the MountainAwes. Although few in number their inherent strength and knowledge of the mountains, their leader Avon, saw them to a string of victories which forced all factions to pause and consider their offer for parley seriously.</p>
+
+<p>Avon assembled and hosted a council of the Matrons from all major parties involved and made them see the folly of continued conflict. And although the terms of peace were harsh, they were so equally so for all. </p>
+
+<p>All Awes were to renounce their past affiliations, all Awes were to mix among each other equally so that no community had majority and mates were to be chosen from as distant kin possible to ensure all Awes would become one kind, one community.</p>
+
+<p>Only the children of these unions were to be permitted to mate hence-on and the rule of mateship would persist for 5 generations.</p>
+
+<p>The treaty was embraced slowly at first, but as Mountainawes took the first step to intermingle, so other soon followed. Those who resisted were quickly swept away as single Awe future embraced with fervor.</p>
+
+<p>Modern History and Second-Age</p>
+
+<p>The 6<sup>th</sup> generation became our pilgrims and settlers and spread back north again. Though not without trepidation and caution. But all that was found were ruins of the First-age. Overgrown or razed. The Raptorian Horde became a legend, for they no longer patrolled the feet of the mountains or came lurking in the lower valleys. They had seemed to vanish along with the age they ended.</p>
+
+<p>The land as we understand it was different from the land of the First-Awes too. Overgrown and wild once more. Young forest had sprung up where before had been prairie and bare hills. No large horned beasts roamed the land any longer nor other larger animals it seemed.</p>
+
+<p>Raptorians were eventually rediscovered, few in number, in the colder northern shores where they clung to life among the colonies of seals for the meat they needed to survive. Although imposing, far were they from the bloodlusting hungering legends of a few generations past.</p>
+
+<p>We are currently in what many refer to the Second-Age of Awes. We have once more spread across the north continent and established ourselves. But this time as one people, organized and supporting one another, for the interest of all rather than a few.</p>
+
+<p>We've learned from the lessons of the First-Awes. We will be one step ahead of any folly and see no disaster fall upon us again. The world is big, dangerous and much of it undiscovered. For Awes to thrive and be safe, we must find the dangers before they find us and be prepared to deal with it. Be it with force of Arms or with wit and skill. </p>
+
 </div>
 
-<div class="aweBiology2 hidden"><p><strong>Biology</strong></p>
-They are made of Fluff
+<div class="raptorians2 hidden"><p><strong>Raptorians</strong></p>
+<p>Raptorians</p>
+
+<p>Height: 2.5 meters</p>
+
+<p>Average lifespan:</p>
+
+<p>60-100 years.</p>
+
+<p>Raptorians are nomadic hunter-gatherers. They live in packs and wander the land, in the past they tracked vast herds of horned grazers. Its believed that they even to some extent herded them to pastures. The health of the herd was the health of the pack. </p>
+
+<p>Its of some dispute where Raptorians originate from. They are currently found no other continent then the northern part of Awelands. Some believe they wandered in from the east along with their herds during the time of ice, but no landmass have been found within safe sailing distance so at the moment it is mere speculation. </p>
+
+<p>Raptorians are strong, bipedal and furless. They handle the cold with eating plenty and maintaining a layer of fat under their hides. But of recent times when integrating into Awe society, many Raptorians prefer living and working in warmer southern valleys when given the chance. </p>
+
+<p>An ordinary Raptorian pack consists of an Alpha, often the strongest of them who are also smart enough to maintain alliances of strong beta males. An Alpha may be either male or female, there are few physiological differences between males and females except that 3 in 4 are born male. Thus females are often coveted and guarded closely in a pack by an escort of male guardians/suitors. Raptorians are slow breeders and a female may only have one offspring every 2-3 years. </p>
+
+<p>Raptorians are today almost fully integrated into Awe society. They even have local representation in regional councils. </p>
+
+<p>Although the average Raptorian is highly intelligent, able to learn numbers and letters, even a craft. Raptorians prefer to hire themselves out as laborers, doing physical labor and tasks that are too grueling for ordinary Awes to perform. They are quiet and uncomplaining workers, seeming to be satisfied with simple tasks for the pay of meat, social security and a cut going back to their pack. </p>
+
+<p>Some packs are more close-knit and specialized, hiring themselves out in groups. Most of such packs work for the Awe military. </p>
+
+<p><br />
+</p>
+
+<p>The Raptorian Horde</p>
+
+<p>The immense horde of Raptorians which ended the first-age of Awes. Its believed it formed when a majority of the Horned-Beasts the raptorians relied on for food inexplicably died out. Something unified the Packs and drove them to attack, consume and destroy all Awe settlements they could find on the northern continent. </p>
+
+<p>This immense mega-pack of sorts are estimated to have had Raptorians in their many thousands perhaps tens of thousands. Surviving accounts are few and scattered.</p>
+
+<p>After all Awes were driven into the mountains or consumed, its believed the pack turned on itself. Unable to pursue Awes in the mountains they scoured the land of every living thing until there was none left to feed the horde. </p>
+
+<p>Large quantities of Raptorians bones have been found scattered around the feet of the mountains and around the southern part valleys. </p>
+
+<p>When Awes once more spread into the north continent many generations later, the raptorians who were eventually found up in the coasts and north numbered merely in their hundreds. </p>
+
+<p>The oral account of these Raptorians were that they were not part of the Pack that disappeared south. They had been the remnants, the old and the very young, who had been left behind. In their lore the event was called “They betrayal”. But in the years they struggled to survive, the true meaning behind the name was lost, perhaps purposely so.</p>
+
+<p>Today Raptorians once more number in the many thousands. Though a fraction of Awe population, they are an integral and accepted part of it. </p>
+
 </div>
 
-<div class="aweCulture2 hidden"><p><strong>Culture</strong></p>
-Awes will consume all other
+<div class="admiralty2 hidden"><p><strong>The Admiralty</strong></p>
+<p>The Admiralty</p>
+
+<p>The Admiralty is the Awe military organization in charge of the Navy. Its not THE navy, but the institution that has been given leadership over it. </p>
+
+<p>Though it may be considered a technicality, for the navy would today not be able to operate without the Admirality, they would be nothing but a bunch of Awes in hats and capes without the navy employing them. </p>
+
+<p>The navy itself, the ships, the resources for their maintainance is all owned by the state. The Admirality are the crew, the captains and the know-how. Though of late the Admiralty itself has begun to commission ships of their own requested specification.</p>
+
+<p>This was not always so. The Admiralty came to power and fame during the East-sea piracy crisis. A band of knowledgable captains, formers traders and merchanters aswell as many “retired” navy captains, took it upon themselves to organize in a manner that the inflexible state navy was unable to do. </p>
+
+<p>This was a time before the western passage was found and the west sea off the coast of Aweland considered too dangerous for sailing. Back then all trade, even with the far west Kingdom of Plumes and the Empire came through the east, around or through the Wulf-Lands. </p>
+
+<p>As the second-age of Awes bloomed, so their their demand for goods and technology. Trade grew exponentially in a few decades and so did those who would take advantage of it. Piracy grew with it, until it reached such levels that nearly half of the trade was stiffled and thus prices grew. </p>
+
+<p>The state responded with the purchase and repurposing of tradeships into escorts for the Awe-Guard. But these prooved inefficient at their tasks, they were overarmored and armed, crewed by soldiers and led by captains chosen from senior military commanders of the Awe-guard with little to no sea-experience. </p>
+
+<p>Tired of seeing their nation humuliated at sea, a select number of captains from various backgrounds banded together and formed their own force. The Admiralty. Some of it was an emulation on how Gryphs crewed their ships. With an officer-core of absolute authority and a structure of under-officers to lead the rest of the crew. Crew which were prioritized to having sea-faring experience over miltary. </p>
+
+<p>Together the organization drove away or captured many a Wulfish merchanters and known pirates and grew in strength. In their final act, now joined by the navy, they even blockaded Wulfish ports to pressure the neutral Wulf city-states to stop harboring known criminals and their pirate businesses. </p>
+
+<p>The operation was succesfull and piracy in the east was practicaly stiffled to non-existant levels. The Council of Matrons were quick to employ The Admiralty and put it in charge. </p>
+
+<p>The Admiralty has since then expanded its influence and might to such a level that it is now the largest and most prominent miltary organization of the Awes. They are the first line of defence for Awelands and its interests.</p>
+
+<p>Since the Western trade routes were discovered and opened. The Admiralty has pooled a majority of its resources on the westcoast and moved its headquarters from Tranquil to Hrystcrags. </p>
+
+<p>The Academy</p>
+
+<p>As the demand for more ships and crew grow, so do the demand for competent officers and commanders. </p>
+
+<p>The Academy was first founded by the order of the Council of Matrons to pass on the knowledge of military leaders to new generations. But it saw scarce use until the Admiralty was given charge to train captains and officers there. </p>
+
+<p>The Admiralty, now newly in charge of the navy, conversely pooled most of their funding into expanding it.</p>
+
+<p>Its now grown to be one of the foremost places of learning in Awelands and a prestigious school of high reputation, even abroad. Though it trains foremost officers for the Admirality and the Awe-guard, its since expanded into more civilian fields to take advantage of their expertise curriculum.</p>
+
+<p>Raptorians and squires</p>
+
+<p>Raptorians brought out to sea isn't an entirely new concept. They've willingly worked as laborers in many industries and enterprises and proven to be tough, able and willing to listen. </p>
+
+<p>Trouble arose when ships are out to sea for extended periods of time. Raptorians are large and require space but they also do not do well with idleness. A lot of the work done on a ships is technical and except hoisting sails, do not require their stronger physique, so they end up brooding in whatever quarters assigned to them until they're needed. Not being needed makes a raptorian wish to move on, normally they are free to do so, but at sea they will suddenly find themselves extremely restless and trapped.</p>
+
+<p>The first instances of the normally placid Raptorians turning on their employers were reported from long-distance trading vessels. In one case almost the entire crew of a trading vessel off the east coast were lost to a hungry rampage. </p>
+
+<p>This caused for a time a problem to their reputation and naval vessels refused to hire them. </p>
+
+<p>However, the need for heavy duty labor as well as bodyguards for increasingly dangerous trade-lanes are undeniable. The role of the raptorians have become ever more compulsory in working Awe society. </p>
+
+<p>In facing this problem during the early formation of the Admiralty, the thinkers behind the creation of the new Awe navy came up with a simple solution.</p>
+
+<p>Squires. </p>
+
+<p>In a way, caretakers, tenders or supervisors of raptorians have never been a new thing. While Raptorians are in no way dumb, they work better and more efficiently under supervision.</p>
+
+<p>An investigation in the shipping industry found that where Raptorians had close bonds with their supervisors and otherwise had higher levels of interaction reported little to no problems. </p>
+
+<p>Assigning Awes who are skilled at working closely with raptorian into a role of squire of one or more raptorians has almost entirely rooted out the restlessness problems previously faced and is now an adopted standard practise for the admiralty. </p>
 </div>
 
 </body>

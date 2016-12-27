@@ -24,9 +24,12 @@ lib.goTo = function (href) {
 lib.dialogue = function(e, className) { 
 	var answer1 = $("."+ className).html()
 	$("#story-text").animate({opacity: 0}, function(){$(this).html(answer1)}).animate({opacity: 1})
-	$("."+ className+":first").remove()
+	/*
+	$("."+ className+":first").remove();   <- What does this do? When removed stops making text get stuck on buttons you revisit to read on example lore page.
+	console.log($("."+ className+":first"))
+	
 	/*if (!$("."+ className).length) {
-		$(e.target).removeClass("btn-default").addClass("btn-info")
+		$(e.target).removeClass("btn-default").addClass("btn-info")      // feature i no longer need atm
 	}
 	*/
 }
