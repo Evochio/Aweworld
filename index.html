@@ -17,6 +17,9 @@
 img {
  width: 50%;
 }
+#belly {
+cursor: pointer;
+}
 </style>
   <script>
 state.Glint.status = 'available';
@@ -36,7 +39,25 @@ state.Glint.status = 'available';
         // end by using lib.goTo
         lib.goTo('Rooms/Ship_crew.html')
 		
+     
+	  })
+	    $('#lore').on('click', function() {
+	 
+        // change state here
+
+        // end by using lib.goTo
+        lib.goTo('Rooms/Lore.html')
+		
       })
+	   
+	   
+	   $('#belly').on('click', function() {
+		$("#belly").attr('src',"Rooms/Images/assets/Avolcbelly_s.png");
+		
+      })
+	  
+	  
+	  
 	  $('#test').on('click', function() {
         // change state here
         // end by using lib.goTo
@@ -56,7 +77,7 @@ state.Glint.status = 'available';
 
 <div id="head">
 <h1>Aweworld</h1>
-<button class="btn btn-default" id="lore">Lore</button>
+
 </div>
 <div id="story-text">
 <p>You are Avolc, experienced captain of the east-sea Admiralty, the navy of the Awes.<br />
@@ -68,7 +89,9 @@ As a player you will be guiding her actions and influencing her choices, help he
 
 <p>You will be measured in various stats, most of them hidden. <br />
 	But there is Morale, Piety, injury, reputation with various characters, time and other secrets being measured from your choices that might lead you down different paths or unexpected ends. </p>
-<img src="Rooms/images/assets/AvolcBelly.png" height="40%" width="40%"/> 
+ <img id="belly" src="Rooms/Images/assets/Avolcbelly_cut.png"/> 
+	
+	
 	</div>
 <div id="tail">
 

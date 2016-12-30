@@ -370,7 +370,15 @@ displayShipStatus = function () {
 		$(".schedule").text("Extremely late").css('color', 'Red');
 	  } 
 	}
+
+	loreButton = function () {
+	var button = $(' <button class="btn btn-default" id=lore>Lore</button> ')
+		$('#head').append(button)
+		button.on('click', function() {
+		window.open('Lore.html')	
 	
+      });
+}
 
 /*
 moraleFailureCheck = function() {
@@ -384,6 +392,7 @@ $(document).ready(function() {
   // For example, code that tests the state to see if morale is low enough to redirect you to an ending.
 // lib.makeCadetButtons();
  createCadetButtons();
+ loreButton();
  newDialogue();
   console.log('Current state:', JSON.stringify(state, null, '\t'))
   $('#Ziggy, #Glint, #Valnos').addClass("hidden");
