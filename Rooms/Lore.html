@@ -2,25 +2,27 @@
 <html>
 <head lang="en">
   <meta charset="UTF-8">
-  <title>Aweworld</title>
+  <title>Aweworld Lore</title>
 
-  <script src="/jquery-2.1.3.js"></script>
-  <script src="/underscore.js"></script>
-	<script src="/bootstrap.min.js"></script>
- <link rel="stylesheet" href="/bootstrap.min.css">
-  <link rel="stylesheet" href="/bootstrap-theme.min.css">
-   <link rel="stylesheet" href="/main.css">
-  <script src="/main.js"></script>
- <link rel="stylesheet" href="/main.css">
+
+
+  <script src="../jquery-2.1.3.js"></script>
+  <script src="../underscore.js"></script>
+	<script src="../bootstrap.min.js"></script>
+ <link rel="stylesheet" href="../bootstrap.min.css"></link>
+  <link rel="stylesheet" href="../bootstrap-theme.min.css"></link>
+  <script src="../main.js"></script>
+  <link rel="stylesheet" href="../main.css"></link>
  
   <script>
- 
-    $(document).ready(function() {
-	 
 	
-  
+   	
+	$(document).ready(function() {
+	 
+	removeLore();
+     currentPage();
 	$('.aweOverview').on('click', function(e) {
-      
+		
 		lib.dialogue(e, "aweOverview2")
 	  })
 	
@@ -79,9 +81,9 @@
 		lib.dialogue(e, "gatorHistory2")
 	  })
 	   
-	   $('.vassals').on('click', function(e) {
+	   $('.drudgeOverview').on('click', function(e) {
       
-		lib.dialogue(e, "vassals2")
+		lib.dialogue(e, "drudgeOverview2")
 	  })
 	  
     
@@ -99,8 +101,9 @@
 	position: fixed;
 	margin-top: 6em;
 	width: 10%;
-	height: 80%;
+	height: 90%;
 	left: 0px;
+	bottom: 0px;
 	background-color: #996633;
 	border: 6px solid #cb9969;
 	border-radius: 20px;
@@ -109,6 +112,7 @@
 #story-text {
 margin-left: 15%;
 }
+
 
 
 
@@ -122,7 +126,7 @@ ul, li, button {
 
 li {
 	display: block;
-	width: 100%;
+
 	line-height: 2em;
 	font-size: 1em;
 	text-decoration: none;
@@ -130,27 +134,49 @@ li {
 	color: white;
 	text-align: center;
 	
+	
 }
 
 .main {
-background-color: #331a00;
+
+
+width: 100%;
 padding: 0.5em;
-border-radius: 0.4em;
+border: 3px solid #331a00;
+border-radius: 10px;
+background: #d5973c;
+background: -moz-linear-gradient(top,  #d5973c 31%, #eab92d 100%);
+background: -webkit-linear-gradient(top,  #d5973c 31%,#eab92d 100%);
+background: linear-gradient(to bottom,  #d5973c 31%,#eab92d 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d5973c', endColorstr='#eab92d',GradientType=0 );
+
 }
 
 button {
 	
-	width: 100%;
+	width: 90%;
 	line-height: 2em;
 	font-size: 1em;
 	text-decoration: none;
-	background:  #D5973C;
-	color: white;
 	
+	color: white;
+	border-radius: 10px;
+	
+background: #d5973c;
+background: -moz-linear-gradient(top,  #d5973c 31%, #eab92d 100%);
+background: -webkit-linear-gradient(top,  #d5973c 31%,#eab92d 100%);
+background: linear-gradient(to bottom,  #d5973c 31%,#eab92d 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d5973c', endColorstr='#eab92d',GradientType=0 );
+
 }
 
 button:hover, .sub:hover, .sub:active, .sub:focus {
-	background: #87492F;
+	
+background: #593013;
+background: -moz-linear-gradient(top, #593013 31%, #7f4400 100%);
+background: -webkit-linear-gradient(top, #593013 31%,#7f4400 100%);
+background: linear-gradient(to bottom, #593013 31%,#7f4400 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#593013', endColorstr='#7f4400',GradientType=0 );
 }
 
 .sub {
@@ -158,11 +184,17 @@ cursor: pointer;
 
 }
 
-.Racemenu {
+.current {
 
-text-align: center;
+background: #593013;
+background: -moz-linear-gradient(top, #593013 31%, #7f4400 100%);
+background: -webkit-linear-gradient(top, #593013 31%,#7f4400 100%);
+background: linear-gradient(to bottom, #593013 31%,#7f4400 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#593013', endColorstr='#7f4400',GradientType=0 );
+
 
 }
+
 .midmenu {
 
 margin-bottom: 0.2em;
@@ -183,7 +215,7 @@ margin-bottom: 0.2em;
 <div id="side">
 
 <ul class="topmenu">
- <li><span class="main"> Races of Aweworld</span></li>
+ <li><div class="main"><strong> Races of Aweworld</strong></div></li>
 
 	<ul class="Racemenu">
 	  <li><button data-toggle="collapse" data-target=".Awemenu" class="midmenu" id="Awes">Awes </button></li>
@@ -206,32 +238,25 @@ margin-bottom: 0.2em;
 		<li class="sub republic">(Fallen)Republic of Preenlon</li>
 		</ul>
 	  <li><button data-toggle="collapse" data-target=".Gatormenu" class="midmenu" id="Gators">Gators </button></li>
-	  <ul class="collapse Gatormenu">
+	   <ul class="collapse Gatormenu">
 		<li class="sub gatorOverview">Overview</li>
 		<li class="sub gatorHistory">History</li>
-		
 		</ul>
-	  <li><button data-toggle="collapse" data-target=".submenu" class="midmenu" id="Drudges">Drudges </button></li>
-	  
+	  <li><button data-toggle="collapse" data-target=".Drudgemenu" class="midmenu" id="Drudges">Drudges </button></li>
+		<ul class="collapse Drudgemenu">
+		<li class="sub drudgeOverview">Overview</li>
 	</ul>
 	
-	<li>Known World</li>
+	<li><div class="main"><strong>Known World</strong></div></li>
 	
 	
 	
 </ul>
 </div>
 <div id="story-text">
-
-Lore text
+Welcome to the Lore of Aweworld
 </div>
-<div id="tail">
-<!--Put buttons to other rooms here. This is an HTML comment btw. 
 
--->
-
-
-</div>
 
 <div class="aweOverview2 hidden"><p><strong>Overview of Awes</strong></p>
 <p>Average Height: 1.6m</p>
@@ -249,21 +274,23 @@ Lore text
 
 <p>Males are light of build and have larger wings then females while females are stouter and stronger.</p>
 
-<p>While they now dominate most of the northern parts of the continent, most of them living where the growing of food is the easiest, they always have a fondness for mountains, deep valleys and hills. </p>
+<p>While they now dominate most of the flatter northern parts of the continent, living where the growing of food is the easiest, they always have a fondness for mountains, deep valleys and hills. </p>
 
 <p>Awes are highly social and enjoy the company of eachother. They are born in litters of 1-4 and families tend to be big and help raise and take care of eachother.</p>
 
-<p>Awes are matriarchal. Females, who are of more heavier and robust build then males, are always the leaders of their communities.</p>
+<p>Awes are matriarchal. Females, who are of more heavier and robust build then males, are nearly always the leaders of their communities.</p>
 
-<p>Females undergo a minor transformation when they reach menopause around the age of 70, becoming what they call 'Matrons'. They gain a minor growth-spurt, some as far as nearly doubling in mass if enough sustenance is available. Matrons are the leaders, teachers and caretakers of young in Awe society, their wisdom always defered to by others Awes.</p>
+<p>Females undergo a minor transformation when they reach menopause around the age of 70-80, becoming what they call 'Matrons'. They gain a minor growth-spurt, increasing mostly in mass and robustness over height, how much depends on availablity of sustenance. </p>
 
-<p>There exists a few variations of Awes. While the vast majority are tones of yellow or golden of fur with a brown mane (males of slightly darker shades), tone of fur tend to noticably differ in communities isolated from one another in just a few generations.</p>
+<p>Despite this added size and strength, Matrons are not good warriors, they loose a lot of their reflexes and physical edge. Instead they are leaders, administrators, teachers and caretakers of young in Awe society. Their wisdom and seniority is traditionaly always defered to by others Awes and they take this responsibility seriously.</p>
 
-<p>MountainAwes</p>
+<p>There exists a few variations of Awes. While the vast majority are tones of yellow or golden of fur with a brown mane (males of slightly darker shades), tones tend to noticably differ in communities isolated from one another in just a few generations, making it sometimes easy to spot what region of a continent an Awe is from. But there exists some that are even more different still.</p>
+
+<b><p>MountainAwes</p></b>
 
 <p>Deep in the mountains of Homepeaks ancestral Awes with white fur still live with the traditions and lifestyles of old. Slightly nomadic, they forage the land and travel in tribes between ancestral homesteads depending on availability of food. Reclusive and prefering to keep to themselves, they remain apart from the general Awe population.</p>
 
-<p>RavenEyes</p>
+<b><p>RavenEyes</p></b>
 
 <p>On the peninsula dubbed RavenIsle to the north-east of the continent lives Awes who have black fur and yellow eyes, which gave them their names. The far north have long dark nights which permits Raveneyes to hide well. Raveneyes originate from refugees from the fall of the First Age who survived by hiding from Raptorian Horde of the time. Raveneyes are generaly timid and of slightly smaller build then common Awes.</p>
 </div>
@@ -275,7 +302,7 @@ Lore text
 
 <p>But researchers have now collected enough record and documented enough oral traditions and stories to paint a clearer image of our past. Understanding our past and its lessons are what will help us face the challenges of tomorrow. And so we do no repeat the mistakes we've painfully suffered before.</p>
 
-<p>Earliest tales of Awe come from the cold mountains of Homepeaks. Although its a whole different matter of debate still at the time of writing under contention, everyone agrees that Awes originate from the south mountains.</p>
+<p>Earliest tales of Awe come from the cold mountains of Homepeaks. Although its a whole different matter of debate still at the time of writing under contention, everyone agrees that Awes originate from the giant mountainranges that split the south and north part of the continent.</p>
 
 <p>These tales hold old dialects and are often made to rhyme so they're remembered better. Their contents tell of cold dark nights, of travels and of hardships. Most of them are, in practicality, lessons on how to survive and how to prosper and what to watch out for.</p>
 
@@ -285,13 +312,13 @@ Lore text
 
 <p>Cautionary tales, though their meaning under question, also tell of the dangers of wandering beyond the protective peaks. Or one would be swept away by 'night-wanderers'.</p>
 
-<p>However around 3000 years ago, Awes are known to have started moving north and settle down. The climate had gotten milder and the fertile lands that had been hidden under the ice emerged.</p>
+<p>However around 5000 years ago, Awes are known to have started moving north and settle down as the great glaciers withdrew. The climate had gotten milder and the fertile lands that had been hidden or blocked by the ices emerged.</p>
 
 <p>Though Awes might have been moving throughout the region earlier, the excavations found tell of the first semi-permanent settlements emerging at this time.</p>
 
 <p>Numare and Tranquil, on the east-coast both have layer upon layer of history if one digs for it.</p>
 
-<p>Other major settlements include the Hrystcrag on the west-coast and Lean on what used to be the shorelines of Lake Sigh.</p>
+<p>Other major settlements include the Hrystcrag on the west-coast and Lean on what used to be the shorelines of the great central lake.</p>
 
 <p>This is when our first written records begin to emerge.</p>
 
@@ -304,20 +331,22 @@ Lore text
 <p><br />
 </p>
 
-<p>The First Age</p>
+<b><p>The First Age</p></b>
 
-<p>Awes of the First age were slightly different from today's Awes in that they resembled Raveneyes in height and stature, though its well-documented they were mostly fully golden.</p>
+<p>Awes of the First age were slightly different from today's Awes in that they resembled "Raveneyes" in height and stature, though its well-documented they were mostly fully golden or brown.</p>
 
 <p>The First Age marked a time of unchecked expansion and growth for our species. Communities grew and spread and left their mark on the land. Where First-Age Awes lived aplenty, fruit-trees can always be found growing wild.</p>
 
 <p>It was also a time of fracture, while communities and early-cities traded prominently there existed very little unity. Many recovered treaties, often chiseled in stone, clearly state forage rights and borders. Awes of the time guarded their resources preciously, for it was their means of which to trade themselves other desired goods.</p>
 
-<p>There is even believed to have been minor armed conflicts between competitors. In much of a way, the First-Age Awes had a close resemblance to the City-states of the Wulfs of the time. Which might not be so strange because there exists much evidence of communication and trade existing between our two peoples even then. Though under debate, First-Age Awes could very well be emulating the wingless cousins of the south. There exists a lot of evidence in the similarity of writing and even metallurgy from this time-period.</p>
+<p>There is even believed to have been minor armed conflicts between competitors. In much of a way, the First-Age Awes had a close resemblance to the City-states of the Wulfs of the time. Which might not be so strange because there exists much evidence of communication and rudimentary trade existing between our two peoples even then. </p>
+
+<p> Though under debate, First-Age Awes could very well be emulating the wingless cousins of the south. There exists a lot of evidence in the similarity of writing and even metallurgy from this time-period.</p>
 
 <p><br />
 </p>
 
-<p>The Fall of the First-Age</p>
+<b><p>The Fall of the First-Age</p></b>
 
 <p>As communities grew and agriculture developed, the First-Age Awes took up more space and came into more and more conflict with the Raptorians of the time. Though usually satisfied to leave eachother alone, the matter which brought the most conflict were the large herds of horned beasts that the Raptorians of the time more or less relied on for survival. A herd passing through is believed to have trampled and stripped the lands near bare and could be a disaster to community of Awes.</p>
 
@@ -335,7 +364,7 @@ Lore text
 
 <p>The speed and ravenousness of this assault was so great that little documentation of the assault exists except scattered communications among the southern communities of Tranquil between the local Matrons who discuss how to handle and distribute the huge influx of refugees. This is also where the first mention of an organized armed force is mentioned in writing. </p>
 
-<p>“1<sup>st</sup> &amp; 3<sup>rd</sup> Heavy guard dispatched. Supply requested. Hera commands.”</p>
+<p>“1<sup>st</sup> &amp; 3<sup>rd</sup> Heavy guard dispatched. Supply requested. Hara commands.”</p>
 
 <p>But what became of this force is unknown. Tranquil itself was overrun not long after and most of its populace along with any other low-land community fled for the perceived safety of their ancestral homes in mountains of Homepeaks.</p>
 
@@ -344,7 +373,7 @@ Lore text
 <p><br />
 </p>
 
-<p>The Time of Hunger and the War of folly. </p>
+<b><p>The Time of Hunger and the War of folly. </p></b>
 
 <p>With so many Awe refugees flooding the Peaks, it was inevitable that the original inhabitants of the mountains and the desperate newcomers clash.</p>
 
@@ -380,12 +409,11 @@ Lore text
 
 <p>We are currently in what many refer to the Second-Age of Awes. We have once more spread across the north continent and established ourselves. But this time as one people, organized and supporting one another, for the interest of all rather than a few.</p>
 
-<p>We've learned from the lessons of the First-Awes. We will be one step ahead of any folly and see no disaster fall upon us again. The world is big, dangerous and much of it undiscovered. For Awes to thrive and be safe, we must find the dangers before they find us and be prepared to deal with it. Be it with force of Arms or with wit and skill. </p>
+<p>We've learned from the lessons of the First-Age. We will be one step ahead of any folly and see no disaster fall upon us again. The world is big, dangerous and much of it undiscovered. For Awes to thrive and be safe, we must find the dangers before they find us and be prepared to deal with them. Be it with force of Arms, wit and skill or guiding paw. </p>
 
 </div>
 
 <div class="raptorians2 hidden"><p><strong>Raptorians</strong></p>
-<p>Raptorians</p>
 
 <p>Height: 2.5 meters</p>
 
@@ -393,9 +421,11 @@ Lore text
 
 <p>60-100 years.</p>
 
-<p>Raptorians are nomadic hunter-gatherers. They live in packs and wander the land, in the past they tracked vast herds of horned grazers. Its believed that they even to some extent herded them to pastures. The health of the herd was the health of the pack. </p>
+<p>Vassals of Awe</p>
 
-<p>Its of some dispute where Raptorians originate from. They are currently found no other continent then the northern part of Awelands. Some believe they wandered in from the east along with their herds during the time of ice, but no landmass have been found within safe sailing distance so at the moment it is mere speculation. </p>
+<p>Raptorians were nomadic hunter-gatherers. They lived in packs and wandered the land, in the past they tracked vast herds of horned grazers. Its believed that they even to some extent herded them to pastures. The health of the herd was the health of the pack. </p>
+
+<p>Its of some dispute where Raptorians originate from. They are currently found no other continent then the northern part of Awelands. Some believe they wandered in from the east along with their herds during the time of ice, but no landmass have yet been found within safe sailing distance so at the moment it is mere speculation. </p>
 
 <p>Raptorians are strong, bipedal and furless. They handle the cold with eating plenty and maintaining a layer of fat under their hides. But of recent times when integrating into Awe society, many Raptorians prefer living and working in warmer southern valleys when given the chance. </p>
 
@@ -410,7 +440,7 @@ Lore text
 <p><br />
 </p>
 
-<p>The Raptorian Horde</p>
+<b><p>The Raptorian Horde</p></b>
 
 <p>The immense horde of Raptorians which ended the first-age of Awes. Its believed it formed when a majority of the Horned-Beasts the raptorians relied on for food inexplicably died out. Something unified the Packs and drove them to attack, consume and destroy all Awe settlements they could find on the northern continent. </p>
 
@@ -429,7 +459,6 @@ Lore text
 </div>
 
 <div class="admiralty2 hidden"><p><strong>The Admiralty</strong></p>
-<p>The Admiralty</p>
 
 <p>The Admiralty is the Awe military organization in charge of the Navy. Its not THE navy, but the institution that has been given leadership over it. </p>
 
@@ -455,7 +484,7 @@ Lore text
 
 <p>Since the Western trade routes were discovered and opened. The Admiralty has pooled a majority of its resources on the westcoast and moved its headquarters from Tranquil to Hrystcrags. </p>
 
-<p>The Academy</p>
+<b><p>The Academy</p></b>
 
 <p>As the demand for more ships and crew grow, so do the demand for competent officers and commanders. </p>
 
@@ -465,7 +494,7 @@ Lore text
 
 <p>Its now grown to be one of the foremost places of learning in Awelands and a prestigious school of high reputation, even abroad. Though it trains foremost officers for the Admirality and the Awe-guard, its since expanded into more civilian fields to take advantage of their expertise curriculum.</p>
 
-<p>Raptorians and squires</p>
+<b><p>Raptorians and squires</p></b>
 
 <p>Raptorians brought out to sea isn't an entirely new concept. They've willingly worked as laborers in many industries and enterprises and proven to be tough, able and willing to listen. </p>
 
@@ -479,7 +508,7 @@ Lore text
 
 <p>In facing this problem during the early formation of the Admiralty, the thinkers behind the creation of the new Awe navy came up with a simple solution.</p>
 
-<p>Squires. </p>
+<b><p>Squires. </p></b>
 
 <p>In a way, caretakers, tenders or supervisors of raptorians have never been a new thing. While Raptorians are in no way dumb, they work better and more efficiently under supervision.</p>
 
@@ -494,15 +523,15 @@ Lore text
 
 <p>Average Lifespan: 60 years</p>
 
-<p>Wulfs live primarily in the southern half of the east continent. They are an dextrous and agile people who are at home in trees which they are able to scamper across and climb with ease.</p>
+<p>Wulfs live primarily in the southern half of the east continent. They are an dextrous and agile people who are at home in trees which they are able to scamper across and climb with ease. Their coats can vary wildly in color, from green and sandy yellow to even red. While color isnt entierly hereditary, as blood mixes often among Wulfs, majority have some form of stripes or patches of black over their bodies or tails that are.</p>
 
 <p>Most of their cities are in forests along the coasts and among the tree-tops, where their dwellings span with bridges from tree to tree. Larger cities however are so populous that the trees end up partially encased in construction. </p>
 
 <p>Wulf male and females look mostly similar and are equal in strength and position. Infact in Wulf culture and language there exists no male or female pronouns, instead they have pronouns that describe their main characteristic, wether they are of subtle or dominant nature. But such distinctions are so hard to make for Non-wulfs that is best not apptempted, for getting the pronouns wrong can be considered an insult.</p>
 
-<p>Wulfs birth litters of 2-3 Wulfs. Once the Wulf-pups are old enough to run around by themselves, they are often left to their own devices. Wulf young are thus taught to be very independent at a startlingly early age.</p>
+<p>Wulfs birth litters of 2-3 Wulfs. Once the Wulf-pups are old enough to run around by themselves, they are often left to their own devices. Wulf young are thus taught to be very independent at a startlingly early age. This has translated into Wulfs having highly individualistic view on personal freedom and often migrate openly between cities until a place is found where they feel at home and can practise their craft.</p>
 
-<p>Wulfs have little to no central government. Each citystate is loosely ruled by the general will of its population. For a long time one could have considered their governance being a form of near Anarchy, many of the smaller cities still are. But Wulfs tend to emulate success and have adopted something of a council in its larger cities that help determine the distribution of labor. </p>
+<p>Wulfs have little to no central government. Each citystate is loosely ruled by the general will of its population. The demand for a craft or service being determined and regulated by a complicated system of food and produce donation. For a long time one could have considered their governance being a form of near Anarchy and chaos, many of the smaller cities still are, especially for outsiders. But Wulfs tend to emulate success and have adopted something of a council in its larger cities that better help determine the distribution of labor. </p>
 
 </div>
 
@@ -513,57 +542,64 @@ Lore text
 
 <p>While Wulfs are not as bestial as their warrior brethren of the jungles, smaller of stature then most of all of “The Races”, they are sometimes jokingly called “Domesticated Wulfs”. Be careful, for though small in stature, underestimating a Wulf might be one of the last things you do.</p>
 
-<p>They are in essence a folk that have been around for a long time, living off the land in smaller communes. </p>
+<p>They are in essence a folk that have been around for a long time, living off the land in smaller clans and spreading themselves into every nook and corner of the south continent. </p>
 
-<p>It’s uncertain at what point in history they split of from cousins in the “The Thick” and when they settled permanently and created their first city. Opinions of which of the many core city-states were the first are split. The truth may lie in that once one working city rose, able to support itself with rudimentary agriculture, Wulfs of other clans quickly followed suit to imitate the success. </p>
+<p>It’s uncertain at what point in history they settled permanently and created their first city. Opinions of which of the many core city-states were the first are split. The truth may lie in that once one working city rose, able to support itself with rudimentary agriculture, the practise spread as Wulfs imitate success. </p>
 
-<p>Wulfs free-roaming nature and strong values on individual freedom might also be an underlying cause of the near simultaneous rise of cities all across their continent.</p>
+<p>Their very first cities may infact not have been built by themselves but been old ruins moved into. Scattered stonework found in the oldest City-states are thought too advanced in cut for early Wulfs who prefered trees to have produced.</p>
 
-<p>The most fascinating aspect of Wulf culture are their lack of any formal currency or goverment. Skills and to some extent knowledge, is what is considered worth something, so Wulf would be prone to migrate where their skills would be in demand.</p>
+<p>Another controversial topic is whether it was the sudden pressence of Gryph explorer-traders that set the settlements into real motion as they brought with them knowledge of crafts and culture of the Westlands. The period of the early rise of Wulf cities coincide with the Fall of the Republic of Preenlon far in the West. </p>
+
+<p>The pressence of the east continent and its Wulfish people became a somewhat well-known secret among Kingdom traders around this time. But permanent trade never took off in any large measure because of the distances and dangers involved and Wulfs were said to be a crude deceptive and backward folk that had little of considered value that was not perishable. </p>
+
+<p>Part of their disdain might have been the mismatch of ideologies and contact between the lands fell into near forgotten obscure minimal contact for centuries. Only the most intrepid or desperate Gryph traders pushed out of regular markets, braved the perilous seas.</p>
+</br>
+<p>The most fascinating aspect of Wulf culture, that flustered early Gryph traders, are their lack of any formal currency or goverment. Skills and to some extent knowledge, is what is considered worth something, so Wulfs would be prone to migrate where their skills would be in demand.</p>
 
 <p>With a lack of currency and official leaders, Wulfs agree to a sort of unspoken social contract. They must all contribute to the success of the whole. They learn skills while growing up, hunt, farm or produce to justify their existence and pool their resources, sharing equally. They do this in seeming anarchy, policing themselves, devouring those who are considered not worth their weight in meat. Harsh as this may seem, this does not quite happen as often as one might think.</p>
 
-<p>Paradoxically, this will to share and interchange of skills and knowledge between cities from open migration did not translate into open cooperation between the rising city-states. Instead cities, as if entities of their own, are extremely competitive with each other. Especially when it comes to trade.</p>
+<p>Paradoxically, this will to share and interchange of skills and knowledge between cities from open migration, while certainly helping the spread of succesfull ideas, did not translate into open cooperation between the rising city-states. Instead cities, perhaps as a instinctive remnant of their clan-like days, are extremely competitive with each other. Especially when it comes to trade.</p>
 
-<p>While individual Wulfs may have little prejudice toward each other, they fiercely struggle ensure the city they consider their home to be the strongest and most dominant. Trade is a vital tool of survival and prosperity for any city. But Wulfs will stop at little to gain an edge, even cheating and stealing is fair game if it’s done to another city. But rarely tolerated to your own.</p>
+<p>While individual Wulfs may have little prejudice toward each other, they fiercely struggle to ensure the city they consider their home to be the strongest and most dominant. Trade is a vital tool of survival and prosperity for any city. But Wulfs will stop at little to gain an edge, even cheating and stealing is fair game if it’s done to another city. But rarely tolerated to your own.</p>
 
 <p>Hostilities and rivalries between cities are common, but never quite to the point of any open wars. Most conflicts are based around local resources and production. The fiercest of struggles might arise when two nearby cities producing the same resources will fight fiercely for their right to be sole exporter of said goods, for the alternative means undercutting the other and devaluing their goods to the benefit of other cities.</p>
-
-<p>Treating with Wulfs as an outsider can be difficult unless one learns to expect and anticipate the way Wulfs make deals. They will always seek an advantage over you and the cleverest ones are those who manage this without you noticing others might leave you little alternative choice.</p>
 
 <p><br />
 </p>
 
-<p><b>From States to Nation?</b></p>
+<p><b>Invasion</b></p>
 
-<p>Wulfs were historically never interested in broadening their territory beyond their continent. While they built rudimentary ships these were mostly for fishing or transporting goods.</p>
+<p>Although centuries of contact with Gryph traders inevitably changed Wulf society to become more 'Western', Wulfs were historically never interested in broadening their territory and slow with accepting new technology. Though they are always interested in the availability of resources and inventive enough to build rudimentary ships for fishing and transporting goods.</p>
 
-<p>But during the rule of Warlord Clix and his drive in expansion and exploration, the gator Empire set eyes on their lands for a brief time.</p>
+<p>But during the time of Warlord Clix and his drive in expansion and exploration, the gator Empire set eyes on their lands for a brief time.</p>
 
-<p>The 5<sup>th</sup> Land-grabbers made landfall on the Wulfish west-shores, tasked to gather slaves and assess the local potential for expansion. Although they found clear signs of habitation, they found none to capture.</p>
+<p>The 5<sup>th</sup> Land-grabbers made landfall on the Wulfish west-shores, tasked to explore, gather slaves and assess the local potential for expansion. Although they found clear signs of habitation, they found none to capture.</p>
 
-<p>The Wulfs had cleverly hid themselves from the foreign army, refusing confrontation with the invaders, evacuating minor settlements in their wake and at the most trying to raid their supply-lines. In frustration the gator commander marched on the Wulf City-state of Thistletimber and set fire to it to lure them out, but even this proved fruitless. </p>
+<p>The Wulfs had recieved warning and cleverly hid themselves from the foreign army, refusing confrontation with the invaders, evacuating minor settlements in their wake and at the most trying to raid their supply-lines. In frustration the gator commander marched on the Wulf City-state of Thistletimber and set fire to it to lure them out, but even this proved fruitless. None came to rescue their belongings or buildings at the settlement and most of the forest burned to ash. </p>
 
-<p>In fact, it stirred nearby neighboring cities and minor settlements into action. The first unified Wulf force ever, gathered itself to repulse the invaders en masse.</p>
+<p>It did however stir nearby neighboring cities and minor settlements into action. The first unified Wulf force ever, gathered itself to repulse the invaders en masse.</p>
 
-<p>Together they poured over the gator force in a tide bodies and fangs, but suffered catastrophic losses against the more organized, hardened and well-armed light explorative force.</p>
+<p>Together they poured over the gator force in a tide bodies, daggers and fangs, but suffered catastrophic losses against the more organized, hardened and well-armed small explorative force.</p>
 
 <p>While the day was won, it was a pyrrhic victory that taught Wulfs a hard lesson about a broader world.</p>
 
-<p>Luckily for the Wulfs, Warlord Clix set his eyes west rather then east before the reports of Wulflands reached him and no more forces were sent across the sea.</p>
+<p>Luckily for the Wulfs, Warlord Clix set his eyes and vast armada westestwards rather then east before the reports of Wulflands reached him and no further Gator forces were sent across the sea.</p>
 
 <p>The concept of foreign invaders and the danger they possessed should have been enough to unify the many city-states to a common goal. But any attempts into some form of unified government ended in failure long before it began. While the danger was admitted as real, no consensus could be reached in how to organize, because large-scale organization itself was never a popular concept among the individualistic Wulfs.</p>
 
-<p>What was however agreed upon was the need of Warriors as a new class of occupation. Wulfs who learned how to scout, fight and raid and could do so as a focus and be supported by their commune or city.</p>
+<p>What was however agreed upon was that the current way of life was too lax, there was a need of Warriors as a new dedicated class of occupation. Wulfs who learned how to scout, fight and raid and could do so as a focus and be supported by their commune or city.</p>
 
 <p>These warriors were initially to be considered neutral and stateless, not to be used or recruited for City-state conflicts. But the “rules” were made intentionally vague. It take long for idle Warriors to be forced to find ways to uphold the social-contract and contribute to the city that supported them. And through what other way then through skills they were taught. It was not long before city-states conflicts were no longer limited to mere raiding.</p>
 
+<p>The brief invasion saw a kindled interests in Wulfs for technology, they had been bested by iron arms and armor. Success required immitation. So the rare Gryph traders that braved the long voyage for exotic goods soon found Wulfs trying hard to appease them and interested in all manner of goods and techniques. The new demand among Wulflands would make a few Gryph Trading houses very rich indeed.</p>
 <p><b><br />
 </b></p>
 
 <p><b>Recent History</b></p>
 
-<p>The rise and rapid growth of the Awes in the north, forming their own nation, saw considerable boosts in trade for the Wulfs. For long the only safe link to the western continent for the Awes were from their east coast through Wulf-lands and the Wulfs profited greatly from the increased traffic not only in trade but piracy and tariffs or both.</p>
+<p>The rise and rapid regrowth of the Awes in the north, saw considerable boosts in trade for the Wulfs, who by now was adopting Gryph ideas for commerce whole-heartedly and growing increasingly reliant on the supply and demand of goods. </p>
+
+<p>At the time the only safe link to the western continent for the Awes were from their east coast through Wulf-lands and the Wulfs profited greatly from the increased traffic not only in trade but piracy and tariffs or both.</p>
 
 <p>Idle warriors from their respective city-states often found their fortunes stealing or raiding from the fledgling nation of the north. It was not unusual for a Wulf “Trader” to exchange goods from a raided trade ship they themselves robbed if the goods were not in their liking.</p>
 
@@ -592,12 +628,12 @@ Lore text
 <p>This has given the company less then a favorable reputation with Awes and even Gryph trading houses. </p>
 </div>
 
-<div class="gryphOverview2 hidden"><p><strong>Overview</strong></p>
+<div class="gryphOverview2 hidden"><p><strong>Gryph Overview</strong></p>
 <p>Height: 2 m</p>
 
 <p>Average lifespan: 150-200 years</p>
 
-<p>Gryphs call the temperate southern islands and peninsulas of the vast west continent their home. While the largest collective of them live in the Kingdom of plumes, they tend to exist slightly everywhere and are a common sight as laborers in the empire aswell as distant villages on far-off isles, they are a scattered people.</p>
+<p>Gryphs call the temperate southern islands and peninsulas of the vast west continent their home. While the largest collective of them live in the Kingdom of plumes on the peninsula called Clewas, they tend to exist slightly everywhere and are a common sight as laborers in the empire aswell as distant villages on far-off isles, they are a scattered people and thus come in a variety of plumages and statures.</p>
 
 <p>Gryph genders are easy to tell apart. Males often have colorful feathers and plumages, from red, green and sometimes even blue feathers with a crest of taller expressive feathers upon their head and necks. Females have more earthy colors of brown, grey or black and white.</p>
 
@@ -610,10 +646,13 @@ Lore text
 <p>The first-born of young Gryphs often follow in their sires footsteps to add to or continue their trade or craft. The later ones, if hatched, often end up working for their elder brothers or leave to find their own path.</p>
 
 <p>The Kingdom of Plumes is an oligarchy, led by several princess of wealthy houses. Wealth equals power, so being a prince is not a birthright. Anyone could rise their family name to become a prince and it is this that is a Gryphs third goal in life. Status. Gryphs living in other nations tend to follow the customs of the area, though they are primarily loyal to their lineage. </p>
+
 </div>
 
 <div class="kingdom2 hidden"><p><strong>The Kingdom of Plumes</strong></p>
-<p>The kingdom is a nation of wealthy merchant princess. The 9 wealthiest and powerful of family houses are the ones which are allowed to house a palace on the 9 branches of the oldest of the World trees. Of these one is chosen King, often the wealthiest, giving them veto rights. Together they are sworn to protect the World trees of the Kingdom and all its inhabitants.</p>
+<p>The kingdom is a nation of wealthy merchant princess. Known through the world for its influence and control over majority of coastal trade. Kingdom traders, always on the quest of new fortunes are also the ones who discovered the East continent, or rather the safe passages there, with its people of Wulfs and Awes. Connecting the world through trade for a wealthier tomorow. </p>
+
+<p>The 9 wealthiest and powerful of family houses are the ones which are allowed to house a palace on the 9 branches of the oldest of the World trees. Of these one is chosen King, often the wealthiest, giving them veto rights. Together they are sworn to protect the World trees of the Kingdom and all its inhabitants.</p>
 
 <p>The world trees are what the Kingdom's existence have always existed around. Immense thick trees of over a 100 meters, some of the oldest up to 200. These are what have sustained Gryphs of the kingdom for as long as there is memory. They are sacred to most Gryphs of the kingdom and are cared meticulously by the Gryphs who live on them and under them.</p>
 
@@ -645,7 +684,7 @@ Lore text
 
 <p>It was during this time of crisis, that the Kingdoms became the Kingdom. To survive as a whole and in fear of being the next target of Gator assault they united and put their minds and plumes together.</p>
 
-<p>Although the Kingdom saw conflicts with the Gator empires that now surrounded it in the coming times, shrewd diplomacy and diplomacy as well as a focus on being a more valuable ally and trading partner has had it last to this day.</p>
+<p>Although the Kingdom saw conflicts with the Gator empires that now surrounded it in the coming times, even seeing its own brief invasion of Warlord Maw, shrewd diplomacy and diplomacy as well as a focus on being a more valuable ally and trading partner has had it last to this day.</p>
 </div>
 
 <div class="republic2 hidden"><p><strong>The Republic of Preenlon</strong></p>
@@ -690,13 +729,13 @@ Lore text
 
 <p>It is said the remnants of the Preenlon army, reservist, formerly retired and volunteers held the final passage of Anchor pass (A thin stretch of land which divides a southern part of Preenlon from its fertile northern wetlands) for a whole week to allow as much of the populace to be evacuated by the navy as possible. The press of gator bodies pushing in from the north are rumoured to have been a sea of green that the brave Preenlon Gryphs stood against day and night until every last one fell to iron or toothy jaws.</p>
 
-<p>The surviving Preenlon gryphs spread themselves to wherever they could, never to reclaim their homelands. Those who settled in the Kingdom became little better then serfs, forced to live among the roots of the world trees, to scrape their living as best they could with whatever crafts they could bring. Subjects now in a system of wealthy princes and merchantlords.</p>
+<p>The surviving Preenlon gryphs spread themselves to wherever they could, never to reclaim their homelands. Most who settled in the Kingdoms became little better then serfs, forced to live among the roots of the world trees, to scrape their living as best they could with whatever crafts they could bring. Subjects now in a system of wealthy princes and merchantlords. Some became landless merchants, of which there exists Houses of to this day with their fleets of merchant-ships.</p>
 
 <p>Some consolidation for the survivors were that the Warlord Krakow (Forever a name cursed among Gryphs), perished in the aftermath of the final siege as his uncontrolled armies turned on itself in ferocious infighting.</p>
 
 </div>
 
-<div class="gatorOverview2 hidden"><p><strong>Overview</strong></p>
+<div class="gatorOverview2 hidden"><p><strong>Gator Overview</strong></p>
 <p>Height: 2 meters or above</p>
 
 <p>Average lifespan: 100 years</p>
@@ -722,13 +761,13 @@ Lore text
 
 <p>Here are a list of the most notable ones which brought the largest change. </p>
 
-<p>Warlord Gatox the Mighty ca 4000 years ago</p>
+<b><p>Warlord Gatox the Mighty ca 4000 years ago</p></b>
 
 <p>Warlord Gatox is the first recorded true warlord of Gator-kind. Most Gators of today will claim to have lineage tracing back to Gatox. Gatox is rumored to rallied his kind into an epic rebellion against overlords who ruled them. Its unclear who these overlords were but some believe it was the Drudges, who has today retreated to isolation on their isle. </p>
 
 <p>Though tales of Gatoxes exploits diverge, there are many epics about mighty cloud-towering beasts he slew and ate, countless legendary warriors he slew and ate and ancient cities he single-handedly also conquered and ate. Tales of his fall also diverge, but most seem to agree on that he one day simply tried to eat too much.</p>
 
-<p>Warlord Harrow the Conqueror ca 2500 years ago. </p>
+<b><p>Warlord Harrow the Conqueror ca 2500 years ago. </p></b>
 
 <p>Hundreds of years after Gatoxes time, Gator-kind knew nothing else but wars and conflicts. Clan rivalries and warrior kings ruled the lands and fought over breeding grounds and fertile marches. Many legendary warriors came and went but though some came close, none ruled supreme or changed things for the better. Until Harrow rose to power with a small organized army from the Midland center marches.</p>
 
@@ -742,7 +781,7 @@ Lore text
 
 <p>One could argue Harrow was more of a settler then a conqueror. But Harrow the settler would have not given credit to this tactical genius. </p>
 
-<p>Warlord Krakow the pillager 2000 years ago</p>
+<b><p>Warlord Krakow the pillager 2000 years ago</p></b>
 
 <p>What Harrow built, Krakow nearly tore down. Krakow is an example of a Warlord that truly can represent the most dangerous of what Gators can be. A ferocious near mindless fighting force with a singular goal. </p>
 
@@ -754,7 +793,7 @@ Lore text
 
 <p>Leaderless the hordes of gator warriors spread and rampaged the lands of Preenlon in minor warbands for years to come, putting a permanent end to the Gryphs ancestral homes, nations and varied city-states. Back up north, the void left by so many warriors leaving their homes or returning with unsatisfied bloodlust, destabilized gator kingdoms to such a degree that it inevitably sparked new chaotic wars that put an end to the time of stability that Harrow built. </p>
 
-<p>Warlord Nindar the builder, 1500 years ago.</p>
+<b><p>Warlord Nindar the builder, 1500 years ago.</p></b>
 
 <p>The Story of Nindar is an unlikely one, his actions were not given a “Warlords” status and recognized until nearly a few hundred years later by Core the Unifier. </p>
 
@@ -774,7 +813,7 @@ Lore text
 
 <p>What Nindar perhaps unwittingly achieved with his construction was a kind of peace no Warlord of time could have achieved. His many forts that now dotted the land gave stability and security to the many kingdoms previously not seen. In the few cases where war did break out, Nindars Forts proved themselves to be very costly affairs to siege time and time again. </p>
 
-<p>Warlord Core the Unifier, 1000 years ago </p>
+<b><p>Warlord Core the Unifier, 1000 years ago </p></b>
 
 <p>Core went by many names throughout his life and was at times thought to be several people. He rose to power in the stability or rather uneasy truces and alliances that followed the many kingdoms held. The cost of war was high, none wished to expose their back to another by tying up their resources on one flank or be bogged down by Nindars Forts. Yet greed and ambition would not be sated and the situation gave rise to a new sort of warfare. Mercenary wars. If threatened a kingdom could quickly bolster its forces with coin and just as quickly stand such an army down.</p>
 
@@ -792,7 +831,7 @@ Lore text
 
 <p>Many put focus on Cores guile and cleverness in how he conquered and deceived the old kingdoms into his mercy. But few truly realize how the domestic policies and laws he set in place thereafter made sure the Empire he helped create held and did not fracture apart under its own weight even long after he was gone. The provinces he conquered and its surrounding provinces would hereafter be named the Core domains and their stability and alliances have since then been strong and become the heart of the Empire. </p>
 
-<p>Warlord Maw the burner 500 years ago</p>
+<b><p>Warlord Maw the burner 500 years ago</p></b>
 
 <p>Maw is the most infamous Warlord of recent times and his status of Warlord is often an argued topic. </p>
 
@@ -813,7 +852,7 @@ Lore text
 <p><br />
 </p>
 
-<p>Warlord Clix the explorer 300 years ago</p>
+<b><p>Warlord Clix the explorer 300 years ago</p></b>
 
 <p>A ship-builder and innovator. He drove gators to follow him out to sea and mapped most of the surrounding islands and lands. </p>
 
@@ -841,6 +880,23 @@ Lore text
 
 <p>For the sheer scale of his overall contributions to the Gator empire, the Emperor, perhaps relieved to see him gone, posthumously named him Warlord Clix the explorer. Though it would take years to rebuild the Gator navy.</p>
 </div>
+
+<div class="drudgeOverview2 hidden"><p><strong>Drudge Overview</strong></p>
+<p>Height: Highly varies</p>
+
+<p>Average lifespan: Unknown</p>
+
+<p>Drudges are an isolationist and xenophobic species that live on their sizable island Novinus south of the Empire and the former Preenlon republic. They do not permit outsiders and only practise a very highly regulated trade in a designated public port. </p>
+
+<p>Though some would argue Drudges are related to the furred species of the east, carrying similar muzzles and short-furred coats, they differ in that they appear to be more subterranian in nature. They walk with a hunch, have armored backs and tails with long claws upon their paws. They appear to dislike bright light and are often seen with heavy cloaks and cowls when out in the open. </p> 
+
+<p>Little is known of their internal culture and goverment, outsiders are not permitted inside their land and their shores are highly guarded. Apptempts to explore Novinus, covertly or otherise to make light of their secrets have been turned back aggresively or found little signs of large settlements besides agriculture. Its thought their society stretches deep underground. </p>
+
+<p>A big curiosity about Drudges seem to be that they were not always as withdrawn a race. Historical and even archeological records show a clear pressence of Drudges in the worlds history. The fallen Republic of Preenlon is well known for having had more extensive diplomatic relations with them, but the traces predate even that. Its clear they used to be as widespread race and its thought some traces of them have even been found in the East continents of Awelands and Wulflands. Its even thought the overlords whom the Gators and their warlord Gatox rebelled against in their folklore were an ancient Drudge culture.</p> 
+
+
+</div>
+
 
 </div>
 </body>

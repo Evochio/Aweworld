@@ -48,9 +48,11 @@ var createCadetButtons = function() {
 		$('#cadetButtons').append(button)
 		button.on('click', function() {
 			$(this).removeClass("new");
+			$('#Glint').siblings().attr('disabled', true);
 			$("#Gthumb").addClass("hidden")
         	$("#ZThumb, #GThumb, #VThumb").addClass("hidden")
 			$("#Ziggy, #Glint, #Valnos").removeClass("hidden")
+			
 			cadetIndex = 1;
 			showNextDialogue();
 	
@@ -62,9 +64,11 @@ var createCadetButtons = function() {
 		$('#cadetButtons').append(button)
 		button.on('click', function() {
 			$(this).removeClass("new");
+			$('#Ziggy').siblings().attr('disabled', true);
 			$("#Zthumb").addClass("hidden")
         	$("#ZThumb, #GThumb, #VThumb").addClass("hidden")
 			$("#Ziggy, #Glint, #Valnos").removeClass("hidden")
+			
 			cadetIndex = 0;
 			showNextDialogue();
 	
@@ -75,10 +79,13 @@ var createCadetButtons = function() {
 		var button = $(' <button id=VThumb>  </button> ')
 		$('#cadetButtons').append(button)
 		button.on('click', function() {
+			
 			$(this).removeClass("new");
+			$('#Valnos').siblings().attr('disabled', true);
 			$("#Vthumb").addClass("hidden")
         	$("#ZThumb, #GThumb, #VThumb").addClass("hidden")
 			$("#Ziggy, #Glint, #Valnos").removeClass("hidden")
+			
 			cadetIndex = 2;
 			showNextDialogue();
 	
@@ -92,7 +99,6 @@ var createCadetButtons = function() {
 		var button = $(' <button id=Glint>  </button> ')
 		$('#cadetButtons').append(button)
 		button.on('click', function() {
-			
 			$(this).removeClass("new");
 			$(this).siblings().attr('disabled', true);
 			cadetIndex = 1;
@@ -117,7 +123,6 @@ var createCadetButtons = function() {
 		var button = $(' <button id=Valnos>  </button> ')
 		$('#cadetButtons').append(button)
 		button.on('click', function() {
-			
 			$(this).removeClass("new");
 			$(this).siblings().attr('disabled', true);
 			cadetIndex = 2;
@@ -370,11 +375,17 @@ displayShipStatus = function () {
 		$(".schedule").text("Extremely late").css('color', 'Red');
 	  } 
 	}
-
+	function removeLore() {
+    var elem = document.getElementById('lore');
+    elem.parentNode.removeChild(elem);
+    return false;
+	}
+	
 	loreButton = function () {
 	var button = $(' <button class="btn btn-default" id=lore>Lore</button> ')
 		$('#head').append(button)
 		button.on('click', function() {
+		
 		window.open('Lore.html')	
 	
       });
@@ -386,6 +397,17 @@ moraleFailureCheck = function() {
 	document.location.href = '/terrible-end.html'; }
 }
 */
+	currentPage = function () {
+	$('.sub').on('click', function() {
+	$("ul").find(".current").removeClass("current");
+	$(this).addClass("current");
+	
+	
+	$(this).parent().removeClass("current");
+	});
+	}
+
+
 $(document).ready(function() {
   // EDIT THIS ///////////////
   // Code you want to run at the beginning of every page load goes here.

@@ -113,6 +113,13 @@ background-color: #331a00;
 	background:  #D5973C; 
 	color: white;
 	
+background: #d5973c;
+background: -moz-linear-gradient(top,  #d5973c 31%, #eab92d 100%);
+background: -webkit-linear-gradient(top,  #d5973c 31%,#eab92d 100%);
+background: linear-gradient(to bottom,  #d5973c 31%,#eab92d 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d5973c', endColorstr='#eab92d',GradientType=0 );
+
+	
 }
 .btn-info {
 	
@@ -133,11 +140,19 @@ background-color: #331a00;
 	background: #87492F;
 	text-decoration: none;
 	color: white;
+
+	background: #331a00;
+background: -moz-linear-gradient(top, #331a00 31%, #7f4400 100%);
+background: -webkit-linear-gradient(top, #331a00 31%,#7f4400 100%);
+background: linear-gradient(to bottom, #331a00 31%,#7f4400 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#331a00', endColorstr='#7f4400',GradientType=0 );
 	
 }
 .btn-default:active, .btn-default:focus,  .btn-info:active, .btn-info:focus {
 
 	background: #331a00;
+	
+
 }
 	
 
