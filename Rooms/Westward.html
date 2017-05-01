@@ -16,6 +16,12 @@
   <link rel="stylesheet" href="../main.css"></link>
   <script>
   state.days += 1;
+    state.Glint.status = 'available';
+    state.Valnos.status = 'available';
+	state.Ziggy.status = 'available';
+	
+	
+	
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
@@ -30,6 +36,11 @@
 		lib.goTo('Shipspotted.html')
       })
       
+	  if (_.contains(state.inventory, "intel")) {
+	 $("#button-1").removeClass("hidden") 
+	 $("#withIntel").removeClass("hidden") 
+	 }
+	
     })
   </script>
   
@@ -46,51 +57,73 @@ Day: <span class="days"><script>displayDays()</script></span>
 <h1>Further westward</h1>
 </div>
 <div id="story-text">
-<p>I set our course Westward. The Wulf-ship turns around and with full sails races back south-east toward Wulf-lands. </p>
+<p>I set our course Westward. The Wulf-ship has turned around and with full sails races back south-east toward Wulf-lands. </p>
 
+<div class="withIntel hidden">
 <p>It was always peculiar dealing with the Wulfs. They have no larger centralized government like us yet still manage to function under some sort of basis of mutual benefit and cooperation. What looks near anarchistic on the surface they manage to somehow thrive under. It always made dealing with them a haphazard affair however, one that could turn one way or another. </p>
+</div>
 
 <div class="hidden" id="withIntelViska">
-<p>Still, things had gone surprisingly well in the end this time. Though I wish they were simpler to deal with sometimes i cant complain about getting to skip on today rations, the former Wulf-captain has settled in nicely! </p>
+<p>Though I wish they were simpler to deal with sometimes i cant complain about getting to skip on today rations, the former Wulf-captain has settled in nicely! To have such a stubborn young gal turn on her heels so quickly to willingly be my meal, Wulfs are indeed peculiar. With this action my renown among the Wulf-fleets will grow, if that means an increased diet of Wulf-captains, I welcome it.</p>
 </div>
 
-<div class="hidden" id="withIntel">
 
-<p>Still, things had gone surprisingly well in the end this time. Though I wish they were simpler to deal with. </p>
-
-</div>
 <div class="hidden" id="viskaBelly">
 
-<p>As proven today, there was no end of trouble when individuals could decide to act however they wanted under no seeming limits. At least we got what we came for. </p>
+<p>As proven today, there was no end of trouble when individuals could decide to act however they wanted under no seeming limits. Being swallowed by that brat, to give myself over to those smirking jaws and being flaunted about, its something i wish not repeat. Now afterwards im acctually somewhat surprised to still be here, that she kept her word. </p>
 
 </div>
+
+<div class="withIntel hidden">
+
+<p>Things went surprisingly well in the end this time, we got what we came for, no matter the means. Though I wish they, the wulf peoples, were simpler to deal with. I have little confidence in long-term diplomatic cooperation if every encounter is like this.</p>
+
+</div>
+
 <div class="hidden" id="noIntel">
 
-<p>Today was a great example of what a disaster things can turn out to be when captains are allowed to act under the slightest whim and self-benefit. We'll have to carry on without the documents somehow. Their importance were never specified to be anything of the utmost and critical. </p>
+<p>Today was a great example of what a disaster things can turn out to be when captains are allowed to act under the slightest whim and self-benefit. We'll have to carry on without the documents, their importance were never specified to be anything of the utmost and critical, but failing our first objective is still a hard blow. </p>
 
+</div>
+
+<div class="hidden" id="attackViska">
+<p>My conduct in this encounter will no doubt come under review when I return home. I did not only fail to acquire the information but I might have soured our diplomatic links that ambassadors back home had worked so hard for. </p>
+
+<p>However, Captain Viska gave me little choice in her conduct and I don't feel bad about putting her in her place. She's settled in now, her 'strength' is mine, as they say. </br>
+Although Wulfs do like to play around with words, perhaps this firm action will strengthen Admiralty reputation as not to be messed with. </p>
 </div>
 
 <br />
 
 <p>We still have to find the rest of our fleet, who no doubt will be at the archipelago sea, or Thousand Islands as its called here in the west. Though how we're expected to find them in that chaotic cluster of islands im still unsure of. 'Port Nowhere' is my only clue, but the name is anything but encouraging. </p>
 
-<div class="hidden" id="withIntel">
+<div class="withIntel hidden">
 <p>Perhaps the aquired intel will shed some light on this.</p>
 </div>
+
+
 
 <script>
 if (_.contains(state.wulfQuestions, "viska")) {
 $('#withIntelViska').removeClass('hidden');
+state.crewMorale += 1;
 }
-else if (_.contains(state.wulfQuestions, "decline")) {
-$('#withIntel').removeClass('hidden');
+else if (_.contains(state.inventory, "intel")) {
+state.crewMorale += 1;
+$('.withIntel').removeClass('hidden');
 }
 else if (_.contains(state.wulfQuestions, "viskasBelly")) {
+state.crewMorale -= 1;
 $('#viskaBelly').removeClass('hidden');
 }
 else if (_.contains(state.wulfQuestions, "noIntel"))
 {
 $('#noIntel').removeClass('hidden');
+ state.crewMorale -= 2;
+}
+if (_.contains(state.wulfQuestions, "attackViska"))
+{
+$('#attackViska').removeClass('hidden');
 }
 
 </script>
@@ -100,7 +133,7 @@ $('#noIntel').removeClass('hidden');
 
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-success" id="button-1">Intel</button>
+<button class="btn btn-success hidden" id="button-1">Intel</button>
 <button class="btn btn-default" id="button-2">Onwards</button>
 <span id="cadetButtons"> </span>
 </div>
@@ -151,7 +184,7 @@ cadet[1].banter = [
 	{ target: '#Glint', text: 'A merchants paradise, but no doubt lawless and dangerous', imageClass: "neutral"},
 	{ target: '#Valnos', text: 'I imagine they keep some sort of order, or they would not attract trade.', imageClass: "smug"},
 	{ target: '#Valnos', text: 'Strange that the port is on no maps however.', imageClass: "suspicious"},
-	{ target: '#Glint', text: 'Indeed, even if it was a port only priviledged merchants gained access too, secrets among merchants have a way of getting bartered.', imageClass: "concerned"},
+	{ target: '#Glint', text: 'Indeed, even if it was a port only priviledged merchants gained access to, secrets among merchants have a way of getting bartered.', imageClass: "concerned"},
 	{ target: '#Ziggy', text: 'Sure owns up to its name! Sounds like a fun place!', imageClass: "happy"}
 	];
 	}

@@ -18,6 +18,7 @@
       state.Glint.status = 'invisible';
     state.Valnos.status = 'available';
 	state.Ziggy.status = 'invisible';
+	
   
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
@@ -72,7 +73,7 @@
 	   if (_.contains(state.events, "storminjury")) {
 	 $('#pouchChoice').removeClass('hidden');
 		 $("#injury").removeClass("hidden")
-		 $("#pouched").removeClass("hidden")
+		 $("#pouchHeal").removeClass("hidden")
 		 $("#Judgement").addClass("hidden")
 	   }
 	   else {
@@ -91,13 +92,22 @@
 	   state.events.push("pouched");
 		$("#pouched").addClass("hidden")
 		$("#injury").addClass("hidden")
-        $("#Judgement").removeClass("hidden")
+        $("#button-4").removeClass("hidden")
 		
       })
+	  
+	  $('#pouchHeal').on('click', function(e) {
+       lib.dialogue(e, "pouchHeal")
+	   state.events.push("pouched");
+	   	$("#pouchHeal").addClass("hidden")
+		$("#injury").addClass("hidden")
+        $("#Judgement").removeClass("hidden")
+		 })
+	  
 	  $('#injury').on('click', function(e) {
        lib.dialogue(e, "injury")
 	   state.inventory.push("injury");
-		$("#pouched").addClass("hidden")
+		$("#pouchHeal").addClass("hidden")
 		$("#injury").addClass("hidden")
         $("#Judgement").removeClass("hidden")
 		
@@ -115,26 +125,39 @@
 	   $('#Labor').on('click', function(e) {
 	   state.crewMorale -= 1;
 	   state.raptorians += 1;
-       lib.dialogue(e, "labor"),
+       lib.dialogue(e, "labor")
+	   if (_.contains(state.events, "break")) {
+			$("#pouched").removeClass("hidden")
+		}
+		else {
+		$("#button-4").removeClass("hidden")
+		}
 		$("#Labor").addClass("hidden")
 		$("#Eat").addClass("hidden")
 		$("#Overboard").addClass("hidden")
-		$("#button-4").removeClass("hidden")
+		
       })
+	  
 	  $('#Eat').on('click', function(e) {
 	  if (_.contains(state.events, "pouched")) {
 		lib.dialogue(e, "eat2")
 		}
 		else {
 		lib.dialogue(e, "eat")
-		}
-       
 		state.vore += 1;
+		}
+       if (_.contains(state.events, "break")) {
+			$("#pouched").removeClass("hidden")
+		}
+		else {
+		$("#button-4").removeClass("hidden")
+		}
+		
 		state.crewLoss += 1;
 		$("#Labor").addClass("hidden")
 		$("#Eat").addClass("hidden")
 		$("#Overboard").addClass("hidden")
-		$("#button-4").removeClass("hidden")
+		
       })
 	  $('#Overboard').on('click', function(e) {
 	  state.raptorians -= 1;
@@ -176,6 +199,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 <p>Two Raptorians were at each other in the main stairway down to the cargo storage. Wood splintered as tails lashed and one tackled into the other. Their scuffle was getting increasingly violent and soon they might not only damage themselves but important supplies and equipment.</p>
 
 <p>This was unacceptable and the gathering crowd were looking toward me for a solution.&nbsp;</p>
+
 </div>
 <div id="tail">
 
@@ -184,6 +208,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 <button class="btn btn-default" id="button-2">Wait for Packmaster Evok</button>
 <button class="btn btn-default" id="button-3">Order them stopped</button>
 <button class="btn btn-default hidden" id="Elda">Pouch-Matron Elda</button>
+<button class="btn btn-default hidden" id="pouchHeal">Pouch heal</button>
 <button class="btn btn-default hidden" id="pouched">Pouch heal</button>
 <button class="btn btn-default hidden" id="injury">Natural heal</button>
 <button class="btn btn-default hidden" id="Judgement">Judgment for Raptorians</button>
@@ -261,18 +286,26 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p> "This is not a serious injury, though it will slow you down and definitely stop you from using your wings in any manner for a while." Elda relaxed and awaited my choice. </p>
 
-<p> The easy path would be to submit to her treatment and try to stay out of trouble in the future. But one never knew what could happen. Or i can tough it out and be sluggish a while. </p>
+<p> The easy path would be to submit to her treatment and try to stay out of trouble in the future. But one never knew what could happen. Or i can tough it out and be sluggish and in pain a while. </p>
 </div>
 </div>
 <div class="pouched hidden">
+<p> With the Raptorian situation dealt with, the last issue at hand could be put off no further. Elda hovered nearby, keeping an eye on me. The wing was starting hurt, no doubt a swelling was comming on. As if sensing my discomfort, Elda led me away. </p>
+
 <p> "Get all your things in order, have a big hearty meal with plenty sugars and lets get you tucked in." Elda smiled warmly while she out of habit gripped the lip of her sizable pouch in both paws, she loved her job.</p>
 
-<p>I would be spending the following three days curled and comatose in the good matrons sagging pouch. It is peculiar how the scent of a matrons pouch puts you to deep sleep in moments. You do not feel a thing until you wake up, days later, a little sore, dizzy and extremely ravenous.</p>
-
-<p> But first it was time to deal with the Raptorians. Injuring a captain was a serious offence. </p>
+<p>I would be spending the following three days curled and comatose in the good matrons sagging pouch. It is peculiar how the scent of a matrons pouch puts you to deep sleep in moments. You do not feel a thing until you wake up, days later, a little sore, dizzy and extremely ravenous. But recovered from most of your ailments.</p>
 
 <img src="Images/assets/Eldapouch.png" height="40%" width="40%"/> 
 
+</div>
+
+<div class="pouchHeal hidden"><p><strong>Pouch-Matron Elda</strong></p>
+<p> "I'll take my chances in your care Elda, its best that im recovered as soon as possible. But first i must deal with this situation with the Raptorians" I agreed to her reccomendation. The first time in that pouch had not been so bad.</p>
+
+<p> Elda smiled warmly and straightened. She was ofcourse openly happy with the choice. </p>
+
+<p> "You do that, I'll make the preperations. Dont take too long or the swelling in your wing will make things awkward.</p>
 </div>
 
 <div class="injury hidden"><p><strong>Pouch-Matron Elda</strong></p>
@@ -318,6 +351,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 <p>I've been provided poultices by Elda to help speed things along. Food-lethargy with its deep sleep beckons. </p>
 
 <img src="Images/assets/Avolcvore4.png" height="40%" width="40%"/> 
+
 </div>
 
 <div class="eat2 hidden"><p><strong>Eat one of them</strong></p>

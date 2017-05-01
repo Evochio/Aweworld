@@ -14,10 +14,13 @@
   <script src="../main.js"></script>
   <link rel="stylesheet" href="../main.css"></link>
   <script>
+  state.crewMorale -= 3;
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
       
+	  
+	  
       $('#button-1').on('click', function(e) {
 		lib.goTo('Shipspotted.html')
 	})

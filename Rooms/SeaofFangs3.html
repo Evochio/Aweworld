@@ -59,10 +59,16 @@
 		if (_.contains(state.events, "fast")) {
 		lib.dialogue(e, "aroundFast")
 		state.shipHealth -= 1;
+			if (_.contains(state.events, "stormtrust")) {
+			state.shipHealth -= 1;
+			}
 		}
 		else if (_.contains(state.events, "slow")) {
         lib.dialogue(e, "aroundSlow")
 		state.delay -= 1;
+			if (_.contains(state.events, "stormtrust")) {
+			state.shipHealth -= 1;
+			}
 		}
 		
 		$("#around").addClass("hidden")
@@ -89,7 +95,7 @@
         // change state here
 		
         // end by using lib.goTo
-        lib.goTo('raptorianscuffle.html')
+        lib.goTo('Raptorianscuffle.html')
       })
 	 
 	 
@@ -131,7 +137,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>“Its a risky proposition but not without merit. Why isnt the corridor used more often?” I pondered aloud.</p>
 
-<p>“Because even during high-tide when its the most passable, its a narrow corridor and the currents drift you treachorously. The risk is not worth saving a day or two for most. I would normally not propose this course, but I figured it would be amiss of me not to present this opportunity to aid in our objectives.” Nyxie straightened. I could tell she was a bit proud of her plan and confident she could handle it.</p>
+<p>“Because even during high-tide when its the most passable, its a narrow corridor and the currents drift you treachorously. The risk is not worth saving a day or two for most. I would normally not propose this course, but I figured it would be amiss of me not to present this opportunity to aid in our objectives.” Nyxie straightened. I could tell she was a bit proud of her plan and confident she could handle it. <span class="nyxInj hidden">Nyxies shoulder was still bandaged from her injury during the storm. But seeing as she made no mention of it being a problem, neither did I.</span></p>
 
 </div>
 <div id="tail">
@@ -167,7 +173,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 </span>
 
-<p><span class="noArn hidden">If Nyxie kept up this kind of innitiative, i did not have to long long for a new First-Officer</span></p>
+<p><span class="noArn hidden">If Nyxie kept up this kind of innitiative, i did not have to look long for a new First-Officer</span></p>
 
 <script>
 if (_.contains(state.events, "noArn")) {
@@ -277,14 +283,19 @@ else {
 
 <p>Nyxie veers the ship to the side while shouting for sails to be lowered to we can cut speed. The floating debris is wide and with our speed we end up going off course from Banes Corridor and into less charted waters.</p>
 
-<p>It does not take long for a look out to yell out a warning for reefs ahead and signaling course correction. Nyxie works hard to get us back on track, her fur pooffed with concentration and stress. She's the expert and knows the ship best, so I merely assist best I can by reading the charts.</p>
+<p>It does not take long for a look out to yell out a warning for reefs ahead and signaling course correction. Nyxie works hard to get us back on track, her fur poofed with concentration and stress. She's the expert and knows the ship best, so I merely assist best I can by reading the charts<span class="nyxInj hidden">, but i wondered again if that injury she sustained during the storm was affecting her.</span></p>
 
-<p>An ominous scrape along the ship has my Maintinance-officer Tick rushing off below deck to inspect for damages with a string of low muttering. I could not fault the look outs for that one, the dark waters reveal nothing of what we brushed up against in our passing.</p>
+<p><span class="nyx hidden">An ominous scrape along the ship has my Maintinance-officer Tick rushing off below deck to inspect for damages with a string of low muttering. I could not fault the look outs for that one, the dark waters reveal nothing of what we brushed up against in our passing.</span></p>
 
-<p>We are back on the right course a fur-shedding while later. A displeased report from Officer Tick soon reach me that the scrape was just that, a scrape. The integrity of the ship was not compromised. I have a feeling the messenger was omitting a lot of 'flowery' language in the report. Tick cared for the wellfare of the ship above all.</p>
+<span class="nyxInj hidden"><p>A thud hard enough to shake the ship has everyone tense and freeze in a moment of fright. I dont believe one coat of fur remained unruffled. Nyxie curses and corrects the ship, though we are left rocking omniously. Tick is the second one to move, scampering across deck to inspect the damage. But that appears to have been the worst of it for now. We did not run aground.</p></span>
 
-<p>The rest of the passage through Banes Corridor is mostly without incident. </p>
+<p>A fur-shedding while later we are back on the right course along Banes corridor. A displeased report from Officer Tick soon reach me that<span class="nyx hidden"> the scrape was just that, a scrape. The integrity of the ship was not compromised.</span><span class="nyxInj hidden"> the bump was rough enough to cause some of the forward hull to buckle inward and leak slightly, but he would be able to fix the worst of it.</span> I have a feeling the messenger was omitting a lot of 'flowery' language in the report. Tick cared for the wellfare of the ship above all.</p>
 
+<span class="nyxInj hidden"><p>"Im sorry captain. I put us at great risk. I should not have been steering when i was not at my best." Nyxie apologized firmly. I could tell she was troubled about the damage sustained. But in the end the decision to sail through Banes corridor had been mine. </p>
+
+<p>"Dont worry about it Officer Nyxie. Go take a rest."</p></span>
+
+<p>The rest of the passage through Banes Corridor is mostly without incident. We've might have saved some time but alas at some expense of the ships integrity.</p>
 </div>
 
 <div class="aroundSlow hidden"><p><strong>Go around</strong></p>
@@ -294,11 +305,58 @@ else {
 
 <p>Its quite a long trail of it stretching north and south that we are trying to get around. It looks like a whole forest has washed out to sea. Among are pieces of old rotten flotsam from unknown wrecks too.</p>
 
-<p>We end up slightly off course from Banes Corridor going around it all. It does not take long for a look out to yell out a warning for reefs ahead and signaling course correction. Nyxie works to get us back on track, her fur pooffed with concentration and stress. She's the expert and knows the ship best, so I merely assist best I can by reading the charts.</p>
+<p>We end up slightly off course from Banes Corridor going around it all. It does not take long for a look out to yell out a warning for reefs ahead and signaling course correction. Nyxie works to get us back on track, her fur poofed with concentration and stress. She's the expert and knows the ship best, so I merely assist best I can by reading the charts<span class="nyxInj hidden">, but i wondered again if that injury she sustained during the storm was affecting her.</span></p>
 
-<p>It takes a little while going around, but we make it back the to corridor without incident. I pat Nyxie on a shoulder and commend her for a job well-done.</p>
+<p><span class="nyxInj hidden">The answer came as another shout from the look out called for hasty course correction and Nyxie whinced while turning she ship. She was a fraction too slow and a low thud echoed through the ship as the ship glanced against something.</span></p>
+
+<p><span class="nyx hidden">It takes a little while going around, but we make it back the to corridor without incident. I pat Nyxie on a shoulder and commend her for a job well-done.</span></p>
+
+<span class="nyxInj hidden"><p>"Im sorry captain. I put us at risk. I should not have been steering when i was not at my best." Nyxie apologized firmly. I could tell she was troubled about the little scrape we had. But in the end the decision to sail through Banes corridor had been mine. </p>
+
+<p>"Dont worry about it Officer Nyxie. Go take a rest."</p></span>
 
 <p>The rest of the passage through Banes Corridor is mostly without incident. Our slow passage did not save us as much time as I had hoped. But it was not a complete loss. And we gained some valuable knowledge of the Sea fangs.</p>
+
+<script>
+if (_.contains(state.events, "stormtrust")) {
+	$('.nyxInj').removeClass('hidden');
+}
+else {
+	$('.nyx').removeClass('hidden');
+}
+
+
+</script>
+
+<script>
+cadet[0].banter = [
+    { target: '#Ziggy', text: 'Just look at all those cliffs!', imageClass: "surprised"},
+    { target: '#Ziggy', text: 'Imagine if you had to name each one, you would run out of names!', imageClass: "blush"},
+	{ target: '#Valnos', text: 'Only the big islands are worth naming.', imageClass: "happy"},
+	{ target: '#Ziggy', text: 'Well, that one over there with the funny holes is a big one! I name it Ziggyland!', imageClass: "happy"},
+	{ target: '#Glint', text: 'Barren, empty and miserable from wind blowing through it. Your head found a match indeed!', imageClass: "smug"},
+	{ target: '#Ziggy', text: 'Yeah, you gotta be tough to live there!', imageClass: "suspicious"}
+ 
+];
+
+cadet[1].banter = [
+    { target: '#Glint', text: 'While i approve of expedience I hope we take the safer route ', imageClass: "concerned"},
+	{ target: '#Glint', text: 'I mean... we should be in one piece to be able to achieve our objectives.', imageClass: "concerned"},
+	{ target: '#Glint', text: 'One day perhaps Banes Corridor will be sufficiently charted for common use.', imageClass: "surprised"},
+	{ target: '#Valnos', text: 'That day might never come if no one takes risks.', imageClass: "angry"},
+	{ target: '#Ziggy', text: 'I want to do what Glint doesent want to do!', imageClass: "happy"}
+	];
+	
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'Oh boy, Banes corridor!', imageClass: "surprised"},
+	{ target: '#Valnos', text: 'I hope we go through!', imageClass: "happy"},
+	{ target: '#Glint', text: 'Werent you just eager to be out this place in the safest way possible?', imageClass: "suspicious"},
+	{ target: '#Glint', text: 'Something called "Banes" corridor hardly seems "safe".', imageClass: "surprised"},
+	{ target: '#Valnos', text: 'Yes, but, its a part of the sea hardly explored. We might see something no one else has seen before!', imageClass: "blush"},
+	{ target: '#Glint', text: 'No one living perhaps.', imageClass: "concerned"}
+];
+</script>
+
 
 </div>
 

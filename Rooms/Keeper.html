@@ -14,17 +14,24 @@
   <script src="../main.js"></script>
   <link rel="stylesheet" href="../main.css"></link>
   <script>
-		if (_.contains(state.events, "eatArn") || _.contains(state.events, "toziggy") || _.contains(state.events, "raptoriansRebel")) {
-			 state.events.push("noArn");
-		}
-		else {
-			state.events.push("arn");
-		}
+		
   
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
       state.events.push("keeper");
+	  
+	  if (_.contains(state.events, "noArn")) {
+			$("#noArn").removeClass("hidden")
+		}
+		else if	(_.contains(state.events, "eatArn") || _.contains(state.events, "toziggy") || _.contains(state.events, "raptoriansRebel")) {
+			 state.events.push("noArn");
+			 $("#noArn").removeClass("hidden")
+		}
+		else {
+			state.events.push("arn");
+		}
+	  
 	  
       $('#button-1').on('click', function(e) {
 		lib.dialogue(e, "start"),
@@ -106,9 +113,11 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>I sat down at the offered chair. “Im unsure why I could not have been informed of the specifics of this information prior to departure.”</p>
 
-<p>“Oh you know! Insurance for one. I could never be sure if I'd be deemed... disposable if I had no leverage. Secondly, I wanted to make sure you deserved information.” </p>
+<p>“Oh you know! Insurance for one. I could never be sure if I'd be deemed... disposable if I had no leverage. Secondly, I wanted to make sure you deserved information.”<span class="hidden" id="noArn"> Keeper shifted in his seat and continued. </br>
 
-<p>I had to quirk a brow at that and cross my arms. But before I could say anything Keeper held up a paw.</p>
+"Honestly, it could as well have been Arn in your position right now. But thats how twists of fate might turn on a ship. You Awes are not so different from us Wulfs you know."</span></p>
+
+<p>I had to quirk a brow at that and cross my arms. But before I could say anything Keeper held up a paw and cleared his throat, getting to the heart of his purpose here.</p>
 
 <p>“Both the Grand admiral and I have not been entierly forthwith with you. On my request acctually. You see, im not so much a citizen of Aweland as I am a member of 'The sailing company'.”</p>
 
@@ -120,7 +129,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>“Hmm, where do I begin” Keeper mused. </p>
 
-<img src="Images/assets/Keeper.png" height="40%" width="40%"/>
+<img src="Images/assets/Keeper.png" height="80%" width="80%"/>
 </div>
 <div id="tail">
 

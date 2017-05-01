@@ -218,6 +218,7 @@
 	   $('#button-11').on('click', function(e) {
         lib.dialogue(e, "attackViska")
 		state.wulfQuestions.push("attackViska");
+		state.wulfQuestions.push("noIntel");
 		$("#Apin").removeClass("hidden")
 		$("#Athunk").removeClass("hidden")
 		$("#ASword").removeClass("hidden") 
@@ -266,6 +267,7 @@
 	 $('#button-13').on('click', function(e) {
         lib.dialogue(e, "sacrifice")
 		state.crewLoss += 1;
+		state.crewMorale -= 1;
 		state.inventory.push("intel");
 		$("#button-12").addClass("hidden")
 		$("#button-13").addClass("hidden")

@@ -58,7 +58,7 @@
 		}
       })
 	   $('#button-3').on('click', function(e) {
-	   state.raptorians -= 2;
+	   state.raptorians -= 3;
 	   state.events.push("gamblingLessons");
         // change state here
 	        // end by using lib.goTo
@@ -94,7 +94,7 @@
 		$("#normal").removeClass("hidden")		
       })
 	  	$('#compromise2').on('click', function(e) {
-	    state.crewMorale += 1;
+	    state.crewMorale -= 1;
 		state.events.push("flockCompromise");
 		state.events.push("gamblingForbid");
         // change state here
@@ -131,10 +131,10 @@
 	  $('#EatArn').on('click', function(e) {
         // change state here
 		if (_.contains(state.events, "forbid")) {
-		state.crewMorale -= 2;
+		state.crewMorale -= 3;
 		}
 		else {
-		state.crewMorale -= 3;
+		state.crewMorale -= 4;
 		}
 		state.events.push("eatArn");
 		state.events.push("noArn");
@@ -253,7 +253,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 <button class="btn btn-default" id="button-1"> Confront Arn in private</button>
 <button class="btn btn-default" id="button-2"> Drop in on a Game unannounced</button>
 <button class="btn btn-default hidden" id="button-3"> Ask Ziggy to give Raptorians gambling lessons. </button>
-<button class="btn btn-warning hidden" id="agree"> Agree to play</button>
+<button class="btn btn-warning hidden" id="agree">(Minigame) Agree to play</button>
 <button class="btn btn-default hidden" id="compromise"> No, we'll compromise here and now. </button>
 <button class="btn btn-default hidden" id="compromise2"> Restrictions </button>
 <button class="btn btn-warning hidden" id="deny"> No more games!</button>
