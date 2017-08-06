@@ -54,7 +54,7 @@
 		$("#button-4").addClass("hidden");
 		$("#button-5").addClass("hidden");
 		$("#button-6").addClass("hidden");
-		if (state.preludeEvents[2] == 'rescue') {
+		if (_.contains(state.preludeEvents, "rescue")) {
 		$("#button-7").removeClass("hidden");
 		}
 		else { 
@@ -67,20 +67,44 @@
 		$("#button-4").addClass("hidden");
 		$("#button-5").addClass("hidden");
 		$("#button-6").addClass("hidden");
+		$("#wing").removeClass("hidden");
+		$("#fury").removeClass("hidden");
+		
+		
+      })
+	   $('#wing').on('click', function(e) {
+        lib.dialogue(e, "wing")
+		state.preludeEvents.push("wing")
+		$("#wing").addClass("hidden");
+		$("#fury").addClass("hidden");
+		$("#button-7").removeClass("hidden")
+	  
+	   })
+	   
+	   $('#fury').on('click', function(e) {
+       
+		state.preludeEvents.push("fury")
+		$("#wing").addClass("hidden");
+		$("#fury").addClass("hidden");
 		if (state.preludeScore == 2) {
 			$("#button-7").removeClass("hidden")
+			 lib.dialogue(e, "tackleWin")
 		}
 		else { 
 			$("#button-9").removeClass("hidden"); 
+			 lib.dialogue(e, "fury")
 		}
-      })
+	  
+	   })
+	  
+	  
 	   $('#button-6').on('click', function(e) {
         lib.dialogue(e, "defensive")
 		state.preludeEvents.push("defensive")
 		$("#button-4").addClass("hidden");
 		$("#button-5").addClass("hidden");
 		$("#button-6").addClass("hidden");
-		if (state.preludeScore < 0 && state.preludeEvents[0] == "subordinates" ) {
+		if (state.preludeScore < 0 && _.contains(state.preludeEvents, "subordinates")) {
 		$("#button-9").removeClass("hidden"); 	
 		}
 		else {
@@ -97,8 +121,10 @@
 	  })
 	  $('#button-9').on('click', function() { 
 	  localStorage.clear()
+	  lib.goTo('../index.html')
+	  /*
 	  document.location.href = '../index.html'
-	  
+	  */
 	  });
     })
   </script>
@@ -124,22 +150,15 @@
    
   <span class="hidden" id="chase">the raptors you sent to chase the Wulfs around were suprisingly effective. It kept the pirates on their toes and unable to commit anywhere, or face the jaws of a raptor.</span>
     <script>
-console.log(state.preludeEvents);
-	switch(state.preludeEvents[1]) {
-    case 'attack':
-        $('#attack').removeClass('hidden');
-        break;
-    case 'defend':
-		$('#defend').removeClass('hidden');
-        break;
-    case 'chase':
-		$('#chase').removeClass('hidden');
-         break;
-			
-    default: 
-        console.log("WHAT?");
-}
-
+	if (_.contains(state.preludeEvents, "attack")) {
+	 $('#attack').removeClass('hidden');
+	}
+	else if (_.contains(state.preludeEvents, "defend")) {
+	 $('#defend').removeClass('hidden');
+	}
+	else if (_.contains(state.preludeEvents, "chase")) {
+	 $('#chase').removeClass('hidden');
+	}
 </script></p>
 <p>
 <span class="hidden" id="rescue">With your first-mate by your side you managed to organize the crew more cohesively between yourself. But they gain quite and advantage in numbers and positioning.</span>
@@ -148,19 +167,16 @@ console.log(state.preludeEvents);
 
 <span class="hidden" id="forecastle">Your mad-dash towards the forecastle to assist the knot of crew in trouble, while brave, was still too late and resulted in some confusion and no gain. Eager crew broke lines to join their charging captain, giving the enemy advantage. </span>
 <script>
-switch(state.preludeEvents[2]) {
-    case 'rescue':
-	$('#rescue').removeClass('hidden');
-       break;
-    case 'rigging':
-	$('#rigging').removeClass('hidden');
-        break;
-    case 'forecastle':
-	$('#forecastle').removeClass('hidden');
-        break;	
-    default: 
-        console.log("WHAT?");
-}
+if (_.contains(state.preludeEvents, "rescue")) {
+	 $('#rescue').removeClass('hidden');
+	}
+	else if (_.contains(state.preludeEvents, "rigging")) {
+	 $('#rigging').removeClass('hidden');
+	}
+	else if (_.contains(state.preludeEvents, "forecastle")) {
+	 $('#forecastle').removeClass('hidden');
+	}
+
 </script>
 </p>
 <script>
@@ -185,26 +201,35 @@ switch(state.preludeEvents[2]) {
 	}
 	
 </script>	
-<p> Battle advantage: <span class="Prelude-battle"><script>preludeBattleStatus()</script></span></p>
 
-
-<p> 
 
 <div class="hidden" id="-2">A clear line between Awes and Wulfs have formed. Outnumbered and cornered your tired crew face-off against the leering and confident numbers of scruffy Wulf pirates. A loud cackle erupts! Captain NipFang the dread pirate captain himself emerges at the front.
-<p>- 'Awe-feast tonight lads!' he taunted in accented Awe-speech, licking his chops and rubbing his belly suggestively, sure of their victory.</p></div> 
+<p>- 'Awe-feast tonight lads!' he taunted in accented Awe-speech, licking his chops and rubbing his belly suggestively, sure of their victory.</p>
+<p> He has every reason to be confident, the Wulfs have thoroughly outmanouvered us. Things are not over yet! I can still turn this around somehow. </p>
+
+</div> 
 
 <div class="hidden" id="-1">A clear line between crew and Wulfs have formed. Outnumbered your crew face-off against the leering numbers of scruffy Wulf pirates. A loud cackle erupts! Captain NipFang the dread pirate captain himself emerges at the front. 
-<p>- 'Dey fight brave! But we likes a bit of kick in our feast, dont we!' he taunted in accented Awe-speech and licked his chops.</p></div>
+<p>- 'Dey fight brave! But we likes a bit of kick in our feast, dont we!' he taunted in accented Awe-speech and licked his chops.</p>
+<p> He has good reason to be confident, The Wulfs hold the edge in position and numbers. But things are not over yet! Nipfang isnt the only one that can bluster. </p>
+</div>
 
 <div class="hidden" id="0">A clear line between crew and Wulfs have formed. Your brave crew face-off against an equal number of leering and growling scruffy Wulf pirates. A loud cackle erupts! Captain NipFang the dread pirate captain himself emerges at the front.
-<p>- 'Ye fight brave and hard! Surrender Awes! And we will divide you amongst ourselves quick and easy!' he taunted in accented Awe-speech and licked his chops.</p></div>
+<p>- 'Ye fight brave and hard! Surrender Awes! And we will divide you amongst ourselves quick and easy!' he taunted in accented Awe-speech and licked his chops.</p>
+<p> Nipfang blusters, but its clear that a battle would become quite fierce and even. I have a feeling he's likely to try slip away during battle if things turn sour, if i want a chance to capture him I should have to hear him out. </p>
+</div>
 
 <div class="hidden" id="1">A clear line between crew and Wulfs have formed. Your brave crew face-off against a number of growling scruffy and weary Wulf pirates. A loud growl erupts! Captain NipFang the dread pirate captain himself emerges at the front.
-<p>- 'Ye be hard fighters! But the best of ye is no match for me! How about a deal, aye?' he tried to bargain in accented Awe-speech.</p></div>
+<p>- 'Ye be hard fighters! But the best of ye is no match for me! How about a deal, aye?' he tried to bargain in accented Awe-speech.</p>
+<p> Nipfang seemed desperate, he's no fool and can tell we hold the edge here. I have a feeling he's likely to slip away in a battle, if i want a chance to capture him I should have to hear him out. </p>
+</div>
 
 <div class="hidden" id="2">A clear line between crew and Wulfs have formed. Your brave and confident crew face-off against a number of growling scruffy and weary Wulf pirates. Captain NipFang the dread pirate captain himself emerges at the front, slinking forward.
-<p>- 'Ye be hard fighters! But any of you brave enough to face me in combat!? How about a deal, aye?' He tried to bargain in accented Awe-speech.</p></div>
+<p>- 'Ye be hard fighters! But any of you brave enough to face me in combat!? How about a deal, aye?' He tried to bargain in accented Awe-speech.</p>
+<p> Nipfang seemed desperate, perhaps trying to reverse his crews fortune by negotiation. I have a feeling he's likely to slip away in a battle, if i want a chance to capture him I should have to hear him out. </p>
+</div>
 
+<p> Due to our efforts in the innitial melee, we are at a <span class="Prelude-battle"><script>preludeBattleStatus()</script></span> for an outright battle.</p>
 <script>
  
 switch(state.preludeScore) {
@@ -228,48 +253,24 @@ switch(state.preludeScore) {
         console.log("WHAT?");
 }
 
-</script></p>
+</script>
 
 </div>
 <div id="tail">
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default hidden" id="button-2">Battle</button>
+<button class="btn btn-default" id="button-2">Battle</button>
 <button class="btn btn-default hidden" id="button-1">Duel</button>
-<button class="btn btn-default hidden" id="button-3">Negotiate</button>
+<button class="btn btn-default" id="button-3">Negotiate</button>
 <button class="btn btn-default hidden" id="button-4">Offensive swordplay</button>
 <button class="btn btn-default hidden" id="button-5">Tackle</button>
+<button class="btn btn-default hidden" id="wing">Wings of Composure</button>
+<button class="btn btn-default hidden" id="fury">Inner fury</button>
 <button class="btn btn-default hidden" id="button-6">Defensive duelling</button>
 <button class="btn btn-default hidden" id="button-7">Duel Victory</button>
 <button class="btn btn-default hidden" id="button-8">Battle Victory</button>
 <button class="btn btn-default hidden" id="button-9">Restart</button>
-<p> <script>
- //Currently unneccesary code
-switch(state.preludeScore) {
-	case -2:
-	$("#button-2").removeClass("hidden");
-	$("#button-3").removeClass("hidden");
-		break;
-    case -1:
-	$("#button-2").removeClass("hidden");
-	$("#button-3").removeClass("hidden");
-		break;
-    case 0:
-	$("#button-2").removeClass("hidden");
-	$("#button-3").removeClass("hidden");
-        break;
-    case 1:
-	$("#button-3").removeClass("hidden");
-	$("#button-2").removeClass("hidden");
-         break;
-	case 2:
-	$("#button-3").removeClass("hidden");
-	$("#button-2").removeClass("hidden");	
-		break;
-	default: 
-        console.log("WHAT?");
-}
 
-</script></p>
+
 </div>
 <div class="battle hidden"><p><strong>Battle</strong></p>
 <div class="battleBigDis hidden">
@@ -301,13 +302,13 @@ switch(state.preludeScore) {
 <p> Nipfangs pleads and challenges meant nothing. Why would I give up a tactical advantage for some show of personal prowess?! I ordered the attack and my crew got to work.</p>
 <p> The wulfs fought hard and with the kind of desperation of cornered animals. With no ship to escape back to they had nowhere to run. But with methodical discipline and drilled tactics everyone including the Raptorians knew what to do and how to do it</p>
 <p> We swept most of them off the ship at first, subdued the ones that fell or surrendered and surrounded the last of them and achieved victory. </p>
-<p> Unfortunately, when rounding up all the prisoners, Nipfang could not be found. Nor did anyone admit to his consumption. Its believed he  braved the open seas on a piece of wreckage.</p>
+<p> Unfortunately, Nipfang made his escape in the initial turmoil of our attack. He was seen leaping overboard and paddling away toward the nearby isle on a piece of wreckage. I feel bitter about loosing him, but a Wulf without a ship or crew is hardly a threat. Let him live marooned on these islands.</p>
 
 </div>
 <div class="battleBigAdv hidden">
 <p> Nipfangs pleads and challenges were ridiculous. Why would I give up a superior tactical advantage for some show of personal prowess?! I ordered the attack and we quickly routed them, they were tired and demoralized as it was so it was hardly a fight.</p>
 <p> It was a resounding victory overall, we completely turned their little trap on its head and showed them the superiority of a true fighting force. </p>
-<p> Unfortunately, Nipfang made his escape in the initial turmoil of our attack. He was seen leaping overboard and paddling away with a piece of wreckage. The seas should take him, but in-case he does not, a Wulf without a ship or crew is hardly a threat. </p>
+<p> Unfortunately, Nipfang made his escape in the initial turmoil of our attack. He was seen leaping overboard and paddling away toward the nearby isle on a piece of wreckage. I feel bitter about loosing him, but a Wulf without a ship or crew is hardly a threat. Let him live marooned on these islands.</p>
 </div>
 
 
@@ -340,21 +341,22 @@ switch(state.preludeScore) {
 </div>
 
 <div class="duel hidden"><p><strong>Duel</strong></p>
-<p> Nipfang is a big brute of an Igwulf. This is a chance to pin him down in single-combat and capture him for sure!<p>
+<p> Nipfang is a big brute of a Wulf. This is a chance to pin him down in single-combat and capture him for sure!<p>
 
 <p>"Duel it is you savage! Lets see what you know about honour and losing fair and square!"</p>
 <p> The Wulf captain just scoffs and laughs heartily. He has a wicked blade with a hook on the end brandished and ready. He does not wait but lunges with it </p>
 <p> Tactics on how to proceed flash through my head. <p>
+<p> That hooked blade of his is my main concern, he could disarm me if im not careful and overreach. 
 </div>
 <div class="swordplay hidden"><p><strong>Swordplay</strong></p>
 <p> A savage like Nipfang should be easy to overpower with speed and trained sword techniques. A quick slash and thrust has him backing away, with a scowl on his face.</p>
-<p> But i barely have time to relish my advantage as he with shere force flicks the sword out of my grip with a twist of his sword and with the use of that devious hook at the end of his blade! </p>
+<p> But i barely have time to relish my advantage as the next time our blades meet, he flicks my sword out of my grip with a twist of that devious hook at the end of his blade! </p>
 <div class="swordplayMate hidden">
 <p> The sword clatters along the deck and I barely dodge a vicious follow-up blow by diving after it. Luckily it lands at the feet of my First-mate who's quick to kick it back in my direction expertly.</p>
 <p> Sure of his victory, Nipfang lunges after me, only to find his sword-arm nicked as I turn and slash. I know the tricks of his blade now and the rest is just about keeping an eye open for further dirty tricks. I soon have him pinned against a wall, sword pointed at his neck. </p>
 </div>
 <div class="swordplayBulge2 hidden">
-<p> The sword clatters along the deck and I barely dodge a vicious follow-up blow by diving after it. It lands at the feet of a familiar red-furred Wulf who's sporting a sizeable rounded and squirming gut, the one that ate my first-mate!. She leers at me and kicks the sword out of my reach just as I reach for it. </p>
+<p> The sword clatters along the deck and I barely dodge a vicious follow-up blow by diving after it. It lands at the feet of a familiar red-furred Wulf who's sporting a sizeable rounded and squirming gut, the one that ate my first-mate! She leers at me and kicks the sword out of my reach just as I reach for it. </p>
 <p> I barely have time to curse her as i feel the sharp edge of Nipfangs blade press down on my back between my wings. </p>
 <p> "It appears, despite all, that I'll be having a grand feast tonight". The blade is replaced by a sizeable foot-paw at the back of my head, pressing me down against the deck. </p>
 <p> "Yer all my dinner!" He cheered and let his hungry eyes sweep over my former crew.</p>
@@ -380,79 +382,79 @@ switch(state.preludeScore) {
 
 </div>
 <script>
-switch(state.preludeScore) {
-	case -2:
-	switch(state.preludeEvents[2]) {
-	case 'rescue':
-	$('.swordplayMate').removeClass('hidden');
-
-	break;
-    
-    default: 
-        $('.swordplayBulge').removeClass('hidden');
+	if (state.preludeScore == -2) {
+		if (_.contains(state.preludeEvents, "rescue")) {
+	 $('.swordplayMate').removeClass('hidden');
+		}
+		else  {
+	 $('.swordplayBulge').removeClass('hidden');
 	}
-	break;
 
-	
-	case -1:
-	switch(state.preludeEvents[2]) {
-	case 'rescue':
-	$('.swordplayMate').removeClass('hidden');
-	
-	break;
-    
-    default: 
-        $('.swordplayBulge').removeClass('hidden');
+ }
+ 
+	if (state.preludeScore == -1) {
+		if (_.contains(state.preludeEvents, "rescue")) {
+	 $('.swordplayMate').removeClass('hidden');
+		}
+		else  {
+	 $('.swordplayBulge').removeClass('hidden');
 	}
-	break;
 
-	
-	case 0:
-	switch(state.preludeEvents[2]) {
-	case 'rescue':
-	$('.swordplayMate').removeClass('hidden');
-
-	break;
-    
-    default: 
-        $('.swordplayBulge').removeClass('hidden');
+ }
+	if (state.preludeScore == 0) {
+		if (_.contains(state.preludeEvents, "rescue")) {
+	 $('.swordplayMate').removeClass('hidden');
+		}
+		else  {
+	 $('.swordplayBulge').removeClass('hidden');
 	}
-	break;
 
-	
-	case 1:
-	switch(state.preludeEvents[2]) {
-	case 'rescue':
-	$('.swordplayMate').removeClass('hidden');
-	
-	break;
-    
-    default: 
-        $('.swordplayBulge2').removeClass('hidden');
+ }
+	if (state.preludeScore == 1) {
+		if (_.contains(state.preludeEvents, "rescue")) {
+	 $('.swordplayMate').removeClass('hidden');
+		}
+		else  {
+	 $('.swordplayBulge2').removeClass('hidden');
 	}
-	break;
 
-	
-	case 2:
-	switch(state.preludeEvents[2]) {
-	case 'rescue':
-	$('.swordplayMate').removeClass('hidden');
-	
-	break;
-    
-    default: 
-        $('.swordplayBulge2').removeClass('hidden');
-	}
-	break;
-	
 }
+
+	if (state.preludeScore == 2) {
+		if (_.contains(state.preludeEvents, "rescue")) {
+	 $('.swordplayMate').removeClass('hidden');
+		}
+		else  {
+	 $('.swordplayBulge2').removeClass('hidden');
+	}
+
+ }
+
 </script>
 </div>
 
 <div class="tackle hidden"><p><strong>Tackle</strong></p>
 <p>I dont leave the big brute waiting. I surge forward and knock into his centre mass in a hasty tackle, confident that he'd not expect to tangle so closely and suddenly.</p>
-<p>We go down in a tumble, im ontop and about level my sword against him when I feel his dexterous tail wrap around my waist and yank me backwards. A kick from his foot quickly followed and I went tumbling along the deck backwards, wind knocked out of me.</p>
-<p>Im barely on my feet before I feel my feet pulled out from under me, that tail again! I try to slash at it but Nipfangs sword meets mine and blocks it and disarms me with a twist of his odd sword. He's thoroughly in control of the fight and does not let me get on my feet. </p>
+<p>We go down in a tumble, im bareky ontop and about level my sword against him when I feel his dexterous tail wrap around my wrist and yank me backwards in surprising strength. A kick from his foot quickly followed and I went tumbling along the deck backwards, wind knocked out of me.</p>
+<p>I try to rise on my feet before I feel them pulled out from under me, that tail again! I try to slash at it but Nipfangs sword meets mine and blocks it and disarms me with a twist of his odd sword. He's thoroughly in control of the fight and does not let me get on my foot. </p>
+<p> Im on the verge of defeat and my whole crew might join me in it. I can already see the gloating grin of confidence spread on Nipfangs face, it infuriates me! I grit my teeth and make my move. </p>
+</div>
+
+<div class="tackleWin hidden">
+<p> I feel the eyes of the crew upon me. This is no way to set an example! To loose ourselves to Wulf appetites now when we had victory in our grasp, all because of me, is unacceptable! </p>
+<p> With a surge of adrenaline and anger I lock my feet around Wulfs and twist my body hard, pulling him to the ground just as he was confident of his victory. I leap upon him and give his snout a punch and then another. </p>
+<p> He twists and squirms like the elusive Wulf-kin he is, but ill have none of it and keep him down with a hail of blows. </p>
+<p> In the end holds his paws up in surrender and I feel the fire within me subside. It wasent the most dignified victory, but sure enough the Wulfs surrender all the same in the face of such ferocity. </p>
+</div>
+<div class="wing hidden">
+<p>Wulfs may have their tails, but Awe wings are not only for show either.  As I try to rise again and feel the pull of his tail trying to trip me up I flap hard to compensate in balance and manage to maintain it, floating to my feet. </br> Nipfang has time for perplexed bemusement on his face before I give it a 1-2-3 of a jab, smack and buffet of my right wing. I step inside the dazed angry swing of his sword and knee him hard and he crumples to the ground, sword dropped. </p>
+
+<p>Victory is mine.</p>
+</div>
+<div class="fury hidden">
+<p> I feel the eyes of the crew upon me. This is no way to set an example! To loose ourselves to Wulf appetites now when we had victory in our grasp, all because of me, is unacceptable! </p>
+<p> With a surge of adrenaline and anger I lock my feet around Wulfs and twist my body hard, pulling him to the ground just as he was confident of his victory. I leap upon him and give his snout a punch and then another. </p>
+<p> But Wulfs are twisty and agile and despite Nipfang being a bulkier sort of Wulf, he seems to retain all of their dexterity. He slithers in my grip and twists out of it, avoiding my punches. My fury turns to frustration as soon he's turned control of the fight around once more and has me in a vice like grip I cant get out of. </p>
 
 <div class="tackleLoose hidden">
 <p> I spend a few undignified moments getting trashed about before Nipfang cackles loudly again and levels his sword against my back </p>
@@ -461,6 +463,7 @@ switch(state.preludeScore) {
 <p> As darkness of hot flesh and squeezing muscle enveloped me, I accepted I'd lost and I was now Wulf-food. And so was my crew, short of the few they'd keep around as entertainment. </p>
 <p>Your legacy was a unremarkable and embarassing defeat to the sword and belly of Wulf-pirates. Forgotten in the annals of history </p>
 </div>
+
 <div class="tackleLoose2 hidden">
 <p> I spend a few undignified moments getting trashed about before Nipfang cackles loudly again and levels his sword against my back </p>
 <p> "So much for that!" Nipfan chuckled gleefully. "There's fire in you, all of you! Now its all mine!" He laughed again triumphant. He'd turned a bad situation into his favour through my folly. </p>
@@ -469,18 +472,9 @@ switch(state.preludeScore) {
 <p>Your legacy was a unremarkable and embarassing defeat to the sword and belly of Wulf-pirates. Forgotten in the annals of history </p>
 
 </div>
-<div class="tackleWin hidden">
-<p> I feel the eyes of the crew upon me. This is no way to set an example! To loose ourselves to Wulf appetites now when we had victory in our grasp, all because of me, is unacceptable! </p>
-<p> With a surge of adrenaline and anger I lock my feet around Wulfs and twist my body hard, pulling him to the ground just as he was confident of his victory. I leap upon him and give his snout a punch and then another. </p>
-<p> He twists and squirms like the elusive Wulf-kin he is, but ill have none of it and keep him down with a hail of blows. </p>
-<p> In the end holds his paws up in surrender and I feel the fire within me subside. It wasent the most dignified victory, but sure enough the Wulfs surrender all the same in the face of such ferocity. </p>
-</div>
 <script>
 switch(state.preludeScore) {
-	case 2:
-	$('.tackleWin').removeClass('hidden');
 	
-	break;
 	case 1:
 	$('.tackleLoose2').removeClass('hidden');
 	break;
@@ -488,6 +482,7 @@ switch(state.preludeScore) {
     default: 
     $('.tackleLoose').removeClass('hidden');
 }
+
 </script>
 </div>
 
@@ -495,7 +490,7 @@ switch(state.preludeScore) {
 <p>Patience and a cool head prevails, I level my sword with Nipfang and wait for him to make the first move. He soon barges in, swinging that wicked hooked sword of his around in dangerous arcs</p>
 <p>I can see his ploy, he seems glad that im fighting defensively, trying to get me to parry a dangerous blow so he can twist my sword out of my grip. I'll have none of it and take easy steps around the circle we occupy, bidding my time and counting his weaknesses and openings. </p>
 
-<div class="defensiveBigDis hidden">
+
 
 <div class="defensiveWin hidden">
 <p> Nipfang grows increasingly frustrated, he's been trying to end things quickly while i've only made moves to draw things out. Though i've recieved a few nicks that have trimmed my fur in places, im not the one panting and unable to properly hold my sword up </p>
@@ -507,7 +502,7 @@ switch(state.preludeScore) {
 <p> Yet still he's leering at me after having glanced about a few time. I follow his glance and spot too late how he throws a dagger at me that he seems to have aquired from somewhere! </p> 
 <p> I manage to deflect the dagger, but it distracts me long enough for Nipfang to lunge in hard and bat my sword away with his own, disarming me. </p>
 <p> "I HAVE YOU NOW!" He gleefully cackled. </p>
-<p>I look around for a replacement weapon, but spot only a familiar green-furred Wulf winking at me, this fellow is making a point out of showing off his huge gut tauntingly, i should have dealt with him myself. Im inevitably cornered and at sword-point, defeated.</p>
+<p>I look around for a replacement weapon, but spot only a familiar green-furred Wulf with daggers winking at me, this fellow is making a point out of showing off his huge Awe-filled gut tauntingly, i should have dealt with him myself! Im inevitably cornered and at sword-point, defeated.</p>
 <p> "Quite the workout you've given me!" Nipfang leaned his snout in close to my face. "I'll make sure to give you one inside me!"</p>
 <p> With a sudden jerk forward my vision was enveloped by a red blur. Nipfang held my head within the darkness of his maw, as I struggled in his grip. My back touched ground, as he leaned his weight against me and pinned me down. It seemed he was taking delight in my hopeless situation, as he chuckled around my head. </p>
 <p> He yanks me upwards, my face forced against his gullet. My body quickly pulls out from under him, Nipfang forcing and pushing his squirming meal into his face until he can finally close that gaping maw, tilting his head back and gulping one last time. </p>
@@ -516,27 +511,8 @@ switch(state.preludeScore) {
 <p>Your legacy was a unremarkable and embarassing defeat to the sword and belly of Wulf-pirates. Forgotten in the annals of history </p>
 </div>
 
-</div>
 
-<div class="defensiveWin hidden">
-<p> Nipfang grows increasingly frustrated, he's been trying to end things quickly while i've only made moves to draw things out. Though i've recieved a few nicks that have trimmed my fur in places, im not the one panting and unable to properly hold my sword up </p>
-<p> I can see the Wulf-captain look around for any sort of edge he could use, but whatever or whoever he's looking for isnt there to help him. Only concentrated Awes stare back at him </p>
-<p> I take the next opportunity to change pace and suddenly attack, Nipfangs sword soon clatters to the deck as he clutches his cut paw and hisses angrily. He's defeated and outplayed!</p>
-</div>
-<div class="defensiveLoose hidden">
-<p> Nipfang grows increasingly frustrated, he's been trying to end things quickly while i've only made moves to draw things out. Though i've recieved a few nicks that have trimmed my fur in places, im not the one panting and unable to properly hold my sword up </p>
-<p> Yet still he's leering at me after having glanced about a few time. I follow his glance and spot too late how he throws a dagger at me that he seems to have aquired from somewhere! </p> 
-<p> I manage to deflect the dagger, but it distracts me long enough for Nipfang to lunge in hard and bat my sword away with his own, disarming me. </p>
-<p> "I HAVE YOU NOW!" He gleefully cackled. </p>
-<p>I look around for a replacement weapon, but spot only a familiar green-furred Wulf winking at me, this fellow is making a point out of showing off his huge gut tauntingly, i should have dealt with him myself. Im inevitably cornered and at sword-point, defeated.</p>
-<p> "Quite the workout you've given me!" Nipfang leaned his snout in close to my face. "I'll make sure to give you one inside me!"</p>
-<p> With a sudden jerk forward my vision was enveloped by a red blur. Nipfang held my head within the darkness of his maw, as I struggled in his grip. My back touched ground, as he leaned his weight against me and pinned me down. It seemed he was taking delight in my hopeless situation, as he chuckled around my head. </p>
-<p> He yanks me upwards, my face forced against his gullet. My body quickly pulls out from under him, Nipfang forcing and pushing his squirming meal into his face until he can finally close that gaping maw, tilting his head back and gulping one last time. </p>
-<p> My futile kicks and struggles are plenty enough workout to wear me out, before finally submitting to the confines of the sizeable wulfs gut. </p>
-<p></p>
-<p>Your legacy was a unremarkable and embarassing defeat to the sword and belly of Wulf-pirates. Forgotten in the annals of history </p>
- 
-</div>
+
 <div class="defensiveDefault hidden">
 <p> Nipfang grows increasingly frustrated, he's been trying to end things quickly while i've only made moves to draw things out. Though i've recieved a few nicks that have trimmed my fur in places, im not the one panting and unable to properly hold my sword up </p>
 <p> I can see the Wulf-captain look around for any sort of edge he could use, but whatever or whoever he's looking for isnt there to help him. Only concentrated Awes stare back at him </p>
@@ -544,48 +520,31 @@ switch(state.preludeScore) {
 </div>
 
 <script>
-switch(state.preludeScore) {
+	if (state.preludeScore == -2) {
 	
-	case -2:
-	$('.defensiveBigDis').removeClass('hidden');
-	
-		switch(state.preludeEvents[0]) {
-	case 'sword':
-	$('.defensiveWin').removeClass('hidden');
-	
-	break;
-	
-	case 'kick':
-	$('.defensiveWin').removeClass('hidden');
-	
-	break;
-	default:
-	$('.defensiveLoose').removeClass('hidden');
+
+		if (_.contains(state.preludeEvents, "sword" || state.preludeEvents, "kick")) {
+	 $('.defensiveWin').removeClass('hidden');
+		}
+		else  {
+	 $('.defensiveLoose').removeClass('hidden');
 	}
-	break;
-	
-    case -1:
-	$('.defensiveDis').removeClass('hidden');
-		
-		switch(state.preludeEvents[0]) {
-	case 'sword':
-	$('.defensiveWin').removeClass('hidden');
-	
-	break;
-	
-	case 'kick':
-	$('.defensiveWin').removeClass('hidden');
-	
-	break;
-	default:
-	$('.defensiveLoose').removeClass('hidden');
+
 	}
-	break;
-	
-    default: 
-        $('.defensiveDefault').removeClass('hidden');
-		
-}
+	else if (state.preludeScore == -1) {
+		if (_.contains(state.preludeEvents, "sword" || state.preludeEvents, "kick")) {
+	 $('.defensiveWin').removeClass('hidden');
+		}
+		else  {
+	 $('.defensiveLoose').removeClass('hidden');
+			}
+
+	}
+ 
+	else { 
+		 $('.defensiveDefault').removeClass('hidden');
+	}
+
 </script>
 </div>
 
@@ -624,7 +583,7 @@ switch(state.preludeScore) {
 <p>"Words are wind! None of us will submit to any fancy 'promises' of yours!" </p>
 <p>"Then you'll all be beaten, rounded up and disposed of as rations! A generous fate for such undeserving wretches!" I glowered. </p>
 <p>He leveled his sword and pointed at me. "How about this then, brave Admiralty Captain, face me in combat! Prove your superiority! Then ill surrender myself and my crew without a big fight!"</p>
-<p>Its a risk doing a deal with a pirate-wulf. But his offer was tempting.</p>
+<p>Its a risk doing a deal with a pirate-wulf. But his offer was tempting but risky, for should i loose the reverse is likely to take place.</p>
 </p>
 </div>
 <div class="negotiateBigAdv hidden"><p>
@@ -633,7 +592,7 @@ switch(state.preludeScore) {
 <p>"Words are wind! None of us will submit to any fancy 'promises' of yours! Especially from a coward who refuses to face me!" </p>
 <p>"Then you'll all be beaten, rounded up and disposed of as rations! A generous fate for such undeserving wretches!" I glowered. </p>
 <p>He leveled his sword and pointed at me. "How about this then, brave Admiralty Captain, face me in combat! Prove your superiority! Then ill surrender myself and my crew all peacefull like!"</p>
-<p>Its a risk doing a deal with a pirate-wulf. But his offer was tempting.</p>
+<p>Its a risk doing a deal with a pirate-wulf. But his offer was tempting but risky, for should i loose the reverse is likely to take place.</p>
 </p>
 </div>
 

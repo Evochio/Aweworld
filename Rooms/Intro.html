@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Aweworld</title>
+
+  <link rel="stylesheet" href="../main.css"></link>
+
+  <script src="../jquery-2.1.3.js"></script>
+  <script src="../underscore.js"></script>
+	<script src="../bootstrap.min.js"></script>
+ <link rel="stylesheet" href="../bootstrap.min.css"></link>
+  <link rel="stylesheet" href="../bootstrap-theme.min.css"></link>
+  <script src="../main.js"></script>
+  <link rel="stylesheet" href="../main.css"></link>
+  <script>
+  
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+	  
+	  
+      $('#button-1').on('click', function(e) {
+		lib.goTo('Prelude.html')
+	})
+		
+
+    })
+  </script>
+  
+  <style>
+
+  #side
+{
+	padding: 0.5em;
+	color: white;
+	position: fixed;
+	display: inline-block;
+	margin-top: 8em;
+	max-height: 70%;
+	left: 0.5em;
+	background-color: #996633;
+	border: 6px solid #cb9969;
+	border-radius: 20px;
+	overflow: auto;
+	overflow-x: hidden;
+	
+}
+<!-- old intro box #intro
+ {
+	margin-top: 10%;
+	float: right;
+	width: 50%;
+	font-size: 130%;
+	text-align: justify;
+	position: relative;
+	background-color: #996633;
+	border: 6px solid #cb9969;
+	border-radius: 20px;
+	color: white;
+ } -->
+ #avolc
+ {
+ background-color: #331a00;
+ margin: 1em;
+ width: 30%;
+ display: inline-block;
+ border: 3px solid #cb9969;
+ border-radius: 10px; 
+ text-align: left;
+ }
+ 
+ #intro
+ {
+	width: 50%;
+	margin: 1em;
+	margin-left: 5em;
+	max-height: 70%;
+	display: inline-block;
+	font-size: 130%;
+	text-align: justify;
+	background-color: #331a00;
+	border: 6px solid #cb9969;
+	border-radius: 20px;
+	color: white;
+	
+ }
+ 
+  
+  
+  </style>
+
+</head>
+<body>
+<div id="head">
+
+<h1>Introduction</h1>
+</div>
+<div id="side">
+ <img id="avolc" src="Images/assets/avolc_transparentv2.png"/>
+
+<div id="intro">
+<p>This is you, you are Avolc. Up and coming captain in the Awe navy simply called &ldquo;The Admiralty&rdquo;.<br />
+You will guide Avolcs choices and conscience and lead her through this somewhat linear story through various perils and conflicts. Whether she becomes a beloved or feared captain among her crew is up to you. <br />
+Through the journey you will learn more about her as well as the world she lives in. </p>
+
+
+<p>The game records things like morale, injuries, ship health and crew-losses, though the stats are mostly hidden, so listen closely to the grumblings of your crew and officers or you might find yourself in a mutiny, devoured and replaced or worse.</p>
+
+<p>Colored yellow buttons represent <button class="btn btn-warning">&ldquo;Risk&rdquo; </button> and may carry danger or great reward. Red buttons represent <button class="btn btn-danger">'Grave peril'</button>  and will often have fateful outcomes. <br />
+Sometimes, you may have little choice as to what to pick due to your chain of previous choices. </p>
+
+<p>The game does not have a save feature yet, so resuming play if you leave the site might be tricky as stats tend to reset. Only choice at the moment is to re-click your way to where you were last.</p>
+
+<p>This is a playful project I've been working on for my spare time for the past years, to help me learn HTML and javascript as well as improve my writing.<br />
+Read, enjoy and leave me feedback. With enough of the later I might be inspired to write Chapter 2.</p>
+
+</div>
+</div>
+<div id="tail">
+
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1">Begin</button>
+
+
+
+</div> 
+</body>
+</html>
