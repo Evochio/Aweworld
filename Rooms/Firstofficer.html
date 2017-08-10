@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Aweworld</title>
+
+  <link rel="stylesheet" href="../main.css"></link>
+
+  <script src="../jquery-2.1.3.js"></script>
+  <script src="../underscore.js"></script>
+	<script src="../bootstrap.min.js"></script>
+ <link rel="stylesheet" href="../bootstrap.min.css"></link>
+  <link rel="stylesheet" href="../bootstrap-theme.min.css"></link>
+  <script src="../main.js"></script>
+  <link rel="stylesheet" href="../main.css"></link>
+  <script>
+  	state.days += 1;
+  state.Glint.status = 'available';
+    state.Valnos.status = 'available';
+	state.Ziggy.status = 'available';
+    $(document).ready(function() {
+	 newDialogue();
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('Deepening.html')
+      })
+
+	  $('#mirr').on('click', function(e) {
+       lib.dialogue(e, "mirr")
+			$("#mirr").addClass("hidden")
+			$("#button-1").addClass("hidden")
+			 $("#bother").removeClass("hidden")
+			 $("#side").removeClass("hidden")
+			$("#arn").removeClass("hidden")
+			$("#sea").removeClass("hidden")
+			$("#bye").removeClass("hidden")
+				  
+	     }) 
+		 
+		 $('#bother').on('click', function(e) {
+			lib.dialogue(e, "bother")
+			$("#bother").addClass("hidden")
+			
+			$("#factions").removeClass("hidden")
+			 
+	     }) 
+		 
+		 $('#arn').on('click', function(e) {
+			lib.dialogue(e, "arn")
+			$("#arn").addClass("hidden")
+			
+			$("#shift").removeClass("hidden")
+			 
+	     }) 
+		 
+		 $('#shift').on('click', function(e) {
+			lib.dialogue(e, "shift")
+			$("#shift").addClass("hidden")
+			
+			$("#favors").removeClass("hidden")
+			 
+	     }) 
+		 
+		  $('#factions').on('click', function(e) {
+			lib.dialogue(e, "factions")
+			$("#factions").addClass("hidden")
+			
+			 
+	     }) 
+		 
+		 $('#favors').on('click', function(e) {
+			lib.dialogue(e, "favors")
+			$("#favors").addClass("hidden")
+									 
+	     }) 
+		  $('#sea').on('click', function(e) {
+			lib.dialogue(e, "sea")
+			$("#sea").addClass("hidden")
+									 
+	     }) 
+		 $('#bye').on('click', function(e) {
+			 lib.goTo('Deepening.html')
+									 
+	     }) 
+		 
+	  
+    })
+	
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  #side
+{
+	padding: 0.5em;
+	color: white;
+	position: fixed;
+	display: inline-block;
+	width: 20%;
+	margin-top: 8em;
+	max-height: 70%;
+	left: 0.5em;
+	background-color: #996633;
+	border: 6px solid #cb9969;
+	border-radius: 20px;
+	overflow: auto;
+	overflow-x: hidden;
+	
+}
+img {
+margin: auto;
+Width: 100%
+
+}
+
+  </style>
+
+</head>
+<body>
+<div id="head">
+<div id="dayCounter">
+Day: <span class="days"><script>displayDays()</script></span>
+<br/>
+<span class="schedule"><script>displayShedule()</script></span>
+</div>
+<h1>The First-Officer</h1>
+</div>
+<div class="hidden" id="side">
+ <img id="mirrimg" src="Images/assets/Mirr.png"/>
+</div>
+<div id="story-text">
+
+<p>Overcast with strong winds keep us on a steady course as we make it across Bay of Spines. At this rate we will be at Sea of fangs in merely a weeks time. But i know better then to expect the west-sea to be kind.<br />
+While it bothers me I was not allowed to pick my own senior crew, i understand the rush of our deployment permitted very little flexibility in this matter. Were I a more conservative Awe I might had been troubled by the amount of male officers we were left with for one. Or perhaps the idea that I were left with the dregs the rest of the war fleet left behind.<br />
+It might come as a little surprise then that I have started to grow concerns about my given First-Officer, Arn.<br />
+His daily reports are scant at best and most of the time he's harder to find then a mane-flea. <br />
+I find myself increasingly relying on the fresh cadets to carry out certain orders or stay in the know.</p>
+
+<p>A First-officer duties are to act as a buffer between crew and captain, his loyalty should always unquestionably lay with the captain first, then the crew. But I am starting to suspect the case here is otherwise. </p>
+
+<p>In one of my daily quests to find the First-Officer I happened upon Crew-Officer Mirr, enjoying her tobacco near the rear of the ship, out of the way of the day to day activity of the ship. There was a forlorn and distantly weary look to her, she did not even notice my approach.</p>
+</div>
+<div id="tail">
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1"> Continue </button>
+<button class="btn btn-default" id="mirr"> Speak to Mirr </button>
+
+<button class="btn btn-default hidden" id="bother"> Is something bothering her? </button>
+<button class="btn btn-default hidden" id="factions"> Factions </button>
+<button class="btn btn-default hidden" id="arn"> Arn </button>
+<button class="btn btn-default hidden" id="shift"> Shift trading </button>
+<button class="btn btn-default hidden" id="favors"> Favors </button>
+<button class="btn btn-default hidden" id="sea"> What brought you out to sea? </button>
+
+<button class="btn btn-default hidden" id="bye"> Good bye </button>
+<!--
+<span>
+    <button id="Glint" class="btn btn-default">
+      Glint.
+    </button>
+    <button id="Ziggy" class="btn btn-default">
+      Ziggy.
+    </button>
+	<button id="Valnos" class="btn btn-default">
+      Valnos.
+    </button>
+</span>-->
+
+<span id="cadetButtons"> </span>
+<script>
+cadet[0].banter = [
+    { target: '#Ziggy', text: 'Arn is the type of guy you can easily have a lot of drinks with.', imageClass: "blush"},
+    { target: '#Ziggy', text: 'But if it comes down to a brawl, you wont know who he will swing at, if you know what i mean.', imageClass: "surprised"},
+    { target: '#Ziggy', text: 'Id keep him where i can see him', imageClass: "concerned"}
+    
+];
+
+cadet[1].banter = [
+    { target: '#Glint', text: 'He takes the quick and easy way to solve a problem. And he does not attend to service of the Order.', imageClass: "concerned"},
+    { target: '#Glint', text: 'But he is been generous to grant other leave or changed work shifts to attend... for a favor', imageClass: "neutral"}
+];
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'When the crew has a problem or a complaint they turn to Arn.', imageClass: "neutral"},
+   { target: '#Valnos', text: 'He is in some ways the unofficial captain of the ship, which is a First-mates duty i suppose.', imageClass: "smug"},
+	{ target: '#Valnos', text: 'My concern lays in his way of defusing malcontent, he distracts rather then straightens them out.', imageClass: "angry" }
+];
+
+/*
+$('#Glint').popover(options);
+$('#Ziggy').popover(options);
+$('#Valnos').popover(options); */
+</script>
+</div>
+
+<div class="mirr hidden">
+<p>“Hello Captain, its nice to see you.” She saluted briefly and smiled. “What can I do for you?”  </p>
+
+</div>
+
+<div class="bother hidden">
+<p>“Oh, just a busy past few days is all. So much new crew, everyone has to be assigned to duties and managed. Work-crews wishing to trade tasks or shifts and disagreements among crew factions to mediate.” She chuckled. “I barely have time to maintain my tobacco addiction, perish the thought.”</p>
+</div>
+
+<div class="factions hidden">
+<p>“Oh, perhaps factions were not the right word. But you know, the gambler types and “The Order” followers mainly. Limited space, difference in opinions in ideology is bound to get some furs bristling at one another on how free spaces are best to be used.”</p>
+
+<p>“Is this going to be a problem?” I ask warily. </p>
+
+<p>“Oh... im not sure. Probably not. Everyone are just getting acclimated I think.”</p>
+</div>
+
+<div class="arn hidden">
+<p>“Arn? Yes, he's mostly down in the lower holds, snout in the cards. He would never claim to be in charge of it, but he mediates most of the gambling disputes and shift trading down there. Its something the Core crew have up to since we were all assigned and trained on this ship a year ago”</p>
+</div>
+
+<div class="shift hidden">
+<p>“Well, any crew-member is allowed to change shifts with one another as you know. This is normally not a problem and allow the crew some sense of flexibility. <br />
+But shift-trading has become a bit of a racket of late. Along with 'favors', its used as currency in gambling and the core crew has been fleecing the newer ones good the past few days. I imagine some 'lucky' individuals will not be forced to work for days.”</p>
+
+<p>“This sounds highly unconventional.” I frown deeply. </p>
+
+<p>“Its not too uncommon on larger ships I hear. There's nothing in Admiralty rules against it. So not much to do about it.”</p>
+</div>
+
+<div class="favors hidden">
+<p>“Quite inquisitive about this, are you?” Mirr chuckled. ”Don't say your previous commands didn't have a bit of well you know... Favors! You scratch my wings and I'll scratch yours. Except... more one-way.“</p>
+
+<p>“I see.” I mutter quietly. </p>
+
+<p>“I don't judge how others pass their time Captain.” Mirr smiles and taps some ash over the side of the ship.</p>
+</div>
+
+<div class="sea hidden">
+<p>“Oh... quite a personal question that. Oh don't worry, I don't mind answering.” Mirr shifted position to lean back against the railing behind her in an informal manner. </p>
+
+<p>“I don't particularly like the sea. Salt-water is terrible to the fur. But I joined up because I was heading towards a life I enjoyed even less.” She looked toward the horizon deep in thought. I felt slightly bemused at the way she put on airs, it did not seem conscious act on her part, which made it more tolerable then it should be. </p>
+
+<p>“The Admiralty, with its clear hierarchies, silly costumes and rigid rules. It offers a form of stability. For the most part, you know whats what, there are no wrangling of half-truths or hidden games underneath it all. You perform your assigned duties and if you do it well for long enough, you receive more of them in a promotion, if you want. ”</p>
+
+<p>“The Meritocracy of it is what draws you?” I inquire. Mirr cocked her head to the side and then nodded. </p>
+
+<p>“Yes, I suppose thats an acceptable simplification.”</p>
+</div>
+
+
+</body>
+</html>

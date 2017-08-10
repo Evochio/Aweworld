@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Aweworld</title>
+
+  <link rel="stylesheet" href="../main.css"></link>
+
+  <script src="../jquery-2.1.3.js"></script>
+  <script src="../underscore.js"></script>
+	<script src="../bootstrap.min.js"></script>
+ <link rel="stylesheet" href="../bootstrap.min.css"></link>
+  <link rel="stylesheet" href="../bootstrap-theme.min.css"></link>
+  <script src="../main.js"></script>
+  <link rel="stylesheet" href="../main.css"></link>
+  <script>
+  state.days += 1;
+  state.crewLoss += 1;
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      $('#drills').on('click', function(e) {
+        // change state here
+		state.events.push("drills");
+	   $("#button-4").removeClass("hidden");
+	   $("#drills").addClass("hidden")
+	   $("#nodrills").addClass("hidden")
+	   state.crewMorale -= 1;
+		// end by using lib.goTo
+        lib.dialogue(e, "drills")
+      })
+	   $('#nodrills').on('click', function(e) {
+        // change state here
+		
+	   $("#button-4").removeClass("hidden");
+	   $("#drills").addClass("hidden")
+	   $("#nodrills").addClass("hidden")
+	   
+		// end by using lib.goTo
+        lib.dialogue(e, "nodrills")
+      })
+        
+	   $('#button-4').on('click', function(e) {
+        // change state here
+		
+        lib.goTo('TheMerchant.html')
+      })
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<div id="head">
+<div id="dayCounter">
+Day: <span class="days"><script>displayDays()</script></span>
+<br/>
+<span class="schedule"><script>displayShedule()</script></span>
+</div>
+<h1>Drills and Idleness</h1>
+</div>
+<div class="hidden" id="side">
+ <img src="Images/assets/Garsch.png"/>
+</div>
+<div id="story-text">
+<p>“Captain!” A precise salute and straightened back greets me as Arms Officer Garsch greets me.</p>
+
+<p>“Officer, what can I do for you?” I inquire curiously. I had seen Garsch about the deck, maintaining order and performing disciplinary actions on crew who earned his ire. </p>
+
+<p>“I have a concern and a proposition for you.” Garsch maintained his rigged at-attention position. </p>
+
+<p>“Speak. And do relax.” I suggest politely. There's too much riggid drill-instructor in this old officer sometimes, not that I really considered it a flaw. Garsch relaxed his posture and continued. </p>
+
+<p>“I notice a lot of idle paws around the ship, some who manage to get away with little hard work at all. Such kind of laxity will draw Awes to temptation and complacency. I am concerned of our preparedness for possible incidents will deteriorate severely over time.” </p>
+
+<p>“We have more crew aboard then there are possible duties to perform. What do you suggest Officer Garsch?” I ask, genuinely curious. </p>
+
+<p>“We Drill once a week, but perhaps we can arrange for a more frequent schedule. Bi-daily practice for anyone without tasks for either martial exercises, fire drills, sail maintenance. This would keep the crew on their feet and sharp.”</p>
+
+<p>“Have you brought this up with Arn?” Suggestions like this should normally come from him. </p>
+
+<p>“Yes. But he thought that it would cause too much discontent among the crew and that we'd risk overworking and exhausting them for when it really does count.”</p>
+
+<p>“Since you've come directly to me, you do not agree.” I smile faintly. </p>
+
+<p>“No Captain. While he is probably right about it not raising morale, I believe as an Admiralty ship its our duty to be at the best we can be. That is all.” Garsch seemed to relax further, now that he's said his peace.</p>
+
+<p>“You've given me something to think about Officer.” I nodded in dismissal and Garsch marched off, as informal as ever. If I permitted this, I had no doubt he would drive the crew hard. But he was certainly not the kind of officer who cared about being unpopular.</p>
+
+</div>
+<div id="tail">
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+
+<button class="btn btn-default" id="drills">Go with Garschs plan</button>
+<button class="btn btn-default" id="nodrills">No extra drills</button>
+<button class="btn btn-default hidden" id="button-4">The Merchants</button>
+<span id="cadetButtons"> </span>
+
+</div>
+
+<div class="drills hidden"><p><strong></strong></p>
+<p>I saw no downsides to being more prepared. Truth be told, i had noticed the crew not being quite the well-groomed and expedient machine i wished them to be. Too much free- time put them in trouble, like with the gambling incident from the other day. </p>
+
+<p>They might grumble, but i soon had written orders ready for Garsch to arrange a schedule for increased drills every 3 days. I was not completely without mercy.<br />
+There will be a lot of running up and down the deck and masts for the crew ahead.</p>
+</div>
+
+
+<div class="nodrills hidden"><p><strong></strong></p>
+<p>While Garsches concerns are valid. I do not quite share the opinion that some free time will have too much deteriorating effect upon crew efficiency. <br />
+A well-rested and happy crew may perform just as well as a thoroughly whipped one. </p>
+
+<p>Its not like the weekly drill is not hard enough.</p>
+</div>
+
+<div class="ignore hidden"><p></p>
+
+</div>
+
+
+
+<script>
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'Back in the Academy we had drills every day.', imageClass: "neutral"},
+	{ target: '#Valnos', text: 'Ofcourse, im not saying thats something we need here', imageClass: "blush"},
+	{ target: '#Valnos', text: 'I rather enjoy the extra time for study', imageClass: "happy" },
+	{ target: '#Ziggy', text: 'Guh! You are doing that willingly?', imageClass: "surprised"},
+	{ target: '#Valnos', text: 'What, reading?!', imageClass: "surprised"},
+	{ target: '#Glint', text: 'Dont mind her, she can barely spell her name', imageClass: "suspicious"},
+	{ target: '#Ziggy', text: 'Z-I-G-Y', imageClass: "suspicious"},
+	{ target: '#Valnos', text: '...', imageClass: "suspicious"}
+	
+];
+
+ cadet[1].banter = [
+	{ target: '#Glint', text: 'I think Garsch has a point', imageClass: "smug"},
+	{ target: '#Glint', text: 'Crew are making up their own activities to fill the time', imageClass: "concerned"},
+	{ target: '#Glint', text: 'And its not always the most productive of activities', imageClass: "angry" },
+	{ target: '#Ziggy', text: 'Haha, as if you pouch-worshippers are up to any good.', imageClass: "smug"},
+	{ target: '#Glint', text: 'P-pouch what?', imageClass: "blush"},
+	{ target: '#Glint', text: 'Stop giving the Order funny names!', imageClass: "surprised"}
+	
+];
+
+ cadet[0].banter = [
+	{ target: '#Ziggy', text: 'Oh yeah! Lets do fencing and wrestling every day!', imageClass: "happy"},
+	{ target: '#Ziggy', text: 'We are a ship of war, we should be ready pulverize anyone!', imageClass: "angry"},
+	{ target: '#Glint', text: 'You know that would mean no more card nights.', imageClass: "smug" },
+	{ target: '#Ziggy', text: 'Well okay, not every day!', imageClass: "concerned"},
+
+];
+</script>
+</body>
+</html>

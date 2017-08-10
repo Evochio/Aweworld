@@ -12,10 +12,10 @@
  <link rel="stylesheet" href="bootstrap.min.css">
   <link rel="stylesheet" href="bootstrap-theme.min.css">
   <script src="main.js"></script>
-   <link rel="stylesheet" href="/main.css">
+   <link rel="stylesheet" href="main.css">
   <style>
 img {
- width: 50%;
+ width: 70%;
 }
 #belly {
 cursor: pointer;
@@ -28,6 +28,7 @@ position: absolute;
 </style>
   <script>
 state.Glint.status = 'available';
+
  	    $(document).ready(function() {
 		removeLore();
 		$("#Glint").addClass("hidden")
@@ -35,7 +36,7 @@ state.Glint.status = 'available';
 	 
         // change state here
         // end by using lib.goTo
-        lib.goTo('Rooms/Prelude.html')
+        lib.goTo('Rooms/Intro.html')
 		
       })
 	    $('#button-2').on('click', function() {
@@ -43,7 +44,7 @@ state.Glint.status = 'available';
         // change state here
 
         // end by using lib.goTo
-        lib.goTo('Rooms/Ship_crew.html')
+        lib.goTo('Rooms/Ship_Crew.html')
 		
      
 	  })
@@ -87,23 +88,21 @@ state.Glint.status = 'available';
 
 </div>
 <div id="story-text">
-<p>You are Avolc, experienced captain of the east-sea Admiralty, the navy of the Awes.<br />
-As a player you will be guiding her actions and influencing her choices, help her become a better captain and leader or perhaps lead her to her doom.</p>
 
-<p>Together you are about to face the challenges of a sea-captain during a crucial time in history where swathes of the world and seas remain unmapped and fledgeling aswell as old nations experience growth, modernization, social challenges and looming conflict. </p>
+<p>Welcome to Aweworld. </br>
+A Vore text-adventure game.  </br>
+Contains Soft Vore and entires of implied to mild digestion. </br>
 
-<p>Your choices will affect the outcome of the story and perhaps even the fate of the nations.</p>
+</p>
 
-<p>You will be measured in various stats, most of them hidden. <br />
-	But there is Morale, Piety, injury, reputation with various characters, time and other secrets being measured from your choices that might lead you down different paths or unexpected ends. </p>
  <img id="belly" src="Rooms/Images/assets/Avolcbelly_cut.png"/> 
 	
 	
 	</div>
 <div id="tail">
 
-<button class="btn btn-default" id="button-1">Begin</button>
-<button class="btn btn-default" id="button-2">Skip Prologue</button>
+<button class="btn btn-default" id="button-1">Introduction</button>
+<button class="btn btn-default" id="button-2">Skip Introduction & Prologue</button>
 
 <span id="cadetButtons"> </span>
 
@@ -111,7 +110,20 @@ As a player you will be guiding her actions and influencing her choices, help he
 cadet[1].banter = [
     { target: '#Glint', text: 'Dont mind me', imageClass: "neutral"},
     { target: '#Glint', text: 'We are just testing some buttons to enhance the experience', imageClass: "happy"},
-	 { target: '#Glint', text: 'The tale will soon be ready for full perusing', imageClass: "smug"}
+	 { target: '#Glint', text: 'The tale will soon be ready for full perusing', imageClass: "smug"},
+	 { target: '#Glint', text: state.crewMorale, imageClass: "smug"}
+];
+cadet[2].banter = [
+   { target: '#Valnos', text: 'neutral', imageClass: "neutral"},
+    { target: '#Valnos', text: 'blush', imageClass: "blush"},
+	 { target: '#Valnos', text: 'angry', imageClass: "angry"},
+	 { target: '#Valnos', text: 'happy', imageClass: "happy"},
+	  { target: '#Valnos', text: 'concerned', imageClass: "concerned"},
+	   { target: '#Valnos', text: 'sad', imageClass: "sad"},
+	    { target: '#Valnos', text: 'smug', imageClass: "smug"},
+		 { target: '#Valnos', text: 'suspicious', imageClass: "suspicious"},
+		  { target: '#Valnos', text: 'surprised', imageClass: "surprised"},
+		  { target: '#Valnos', text: 'neutral2', imageClass: "neutral"}
 ];
 </script>
 </div>

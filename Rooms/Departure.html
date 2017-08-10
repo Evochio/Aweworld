@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Aweworld</title>
+
+  <link rel="stylesheet" href="../main.css"></link>
+
+  <script src="../jquery-2.1.3.js"></script>
+  <script src="../underscore.js"></script>
+	<script src="../bootstrap.min.js"></script>
+ <link rel="stylesheet" href="../bootstrap.min.css"></link>
+  <link rel="stylesheet" href="../bootstrap-theme.min.css"></link>
+  <script src="../main.js"></script>
+  <link rel="stylesheet" href="../main.css"></link>
+  <script>
+	state.days += 2;
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('Cadets.html')
+      })
+
+	   $('#tour').on('click', function() {
+       
+       $("#incognito").removeClass("hidden")
+	   $("#dress").removeClass("hidden")
+	   $("#button-1").addClass("hidden")
+	   $("#tour").addClass("hidden")
+		
+      })
+	  
+	  $('#dress').on('click', function(e) {
+       lib.dialogue(e, "dress2"),
+	   state.events.push("dress");
+       $("#quarters").removeClass("hidden")
+	   $("#pens").removeClass("hidden")
+	   $("#galley").removeClass("hidden")
+	   $("#storage").removeClass("hidden")
+		$("#dress").addClass("hidden")
+		$("#incognito").addClass("hidden")
+		$("#stop").removeClass("hidden")
+		$(".dress").removeClass("hidden")
+		
+      })
+	  $('#incognito').on('click', function(e) {
+       lib.dialogue(e, "incognito2"),
+	   state.events.push("incognito");
+       $("#quarters").removeClass("hidden")
+	   $("#pens").removeClass("hidden")
+	   $("#galley").removeClass("hidden")
+	   $("#storage").removeClass("hidden")
+		$("#dress").addClass("hidden")
+		$("#incognito").addClass("hidden")
+		$("#stop").removeClass("hidden")
+		
+		$(".incognito").removeClass("hidden")
+      })
+	  
+	   $('#quarters').on('click', function(e) {
+       lib.dialogue(e, "quarters")
+	   
+      	 if (_.contains(state.events, "incognito")){
+			$("#yes").removeClass("hidden")
+			$("#no").removeClass("hidden")
+			 $("#galley").addClass("hidden")
+			$("#storage").addClass("hidden")
+			$("#stop").addClass("hidden")
+			$("#pens").addClass("hidden")
+			$("#quarters").addClass("hidden")
+			}
+		
+      })  		
+		
+       $('#yes').on('click', function(e) {
+       lib.dialogue(e, "yes")
+			$("#yes").addClass("hidden")
+			$("#no").addClass("hidden")
+			$("#agree").removeClass("hidden")
+			$("#decline").removeClass("hidden")
+			$("#captain").removeClass("hidden")
+	  
+	     })  
+	  
+	  $('#no').on('click', function(e) {
+       lib.dialogue(e, "no")
+			$("#yes").addClass("hidden")
+			$("#no").addClass("hidden")
+			 $("#galley").removeClass("hidden")
+			$("#pens").removeClass("hidden")
+			$("#storage").removeClass("hidden")
+			$("#stop").removeClass("hidden")	
+	  
+	     })  
+		 
+		 $('#agree').on('click', function(e) {
+       lib.dialogue(e, "agree")
+			$("#agree").addClass("hidden")
+			$("#decline").addClass("hidden")
+			$("#captain").addClass("hidden")
+			$("#galley").removeClass("hidden")
+			$("#pens").removeClass("hidden")
+			$("#storage").removeClass("hidden")
+			$("#stop").removeClass("hidden")
+			
+	     }) 
+		 
+		 $('#decline').on('click', function(e) {
+       lib.dialogue(e, "decline")
+			$("#agree").addClass("hidden")
+			$("#decline").addClass("hidden")
+			$("#captain").addClass("hidden")
+			$("#galley").removeClass("hidden")
+			$("#pens").removeClass("hidden")
+			$("#storage").removeClass("hidden")
+			$("#stop").removeClass("hidden")
+			
+	     }) 
+		 
+		  $('#captain').on('click', function(e) {
+       lib.dialogue(e, "captain")
+			$("#agree").addClass("hidden")
+			$("#decline").addClass("hidden")
+			$("#captain").addClass("hidden")
+			$("#galley").removeClass("hidden")
+			$("#pens").removeClass("hidden")
+			$("#storage").removeClass("hidden")
+			$("#stop").removeClass("hidden")
+			
+	     }) 
+		 
+	  
+	    $('#galley').on('click', function(e) {
+       lib.dialogue(e, "galley")
+	  
+       if (_.contains(state.events, "incognito")){
+			$("#apologize").removeClass("hidden")
+			$("#noapologize").removeClass("hidden")
+			 $("#galley").addClass("hidden")
+			$("#storage").addClass("hidden")
+			$("#stop").addClass("hidden")
+			$("#pens").addClass("hidden")
+			$("#quarters").addClass("hidden")
+			}
+		
+      })
+	  
+	  $('#apologize').on('click', function(e) {
+       lib.dialogue(e, "apologize")
+	   $("#apologize").addClass("hidden")
+	   $("#noapologize").addClass("hidden")
+	   $("#quarters").removeClass("hidden")
+		$("#pens").removeClass("hidden")
+		$("#storage").removeClass("hidden")
+		$("#stop").removeClass("hidden")	
+	   
+	   })
+	   
+	   $('#noapologize').on('click', function(e) {
+	    lib.dialogue(e, "noapologize")
+	   $("#apologize").addClass("hidden")
+	   $("#noapologize").addClass("hidden")
+	   $("#apologize2").removeClass("hidden")
+		$("#insist").removeClass("hidden")
+	   
+	   }) 
+	   
+	   $('#apologize2').on('click', function(e) {
+       lib.dialogue(e, "apologize2")
+	   $("#apologize2").addClass("hidden")
+	   $("#insist").addClass("hidden")
+	   $("#quarters").removeClass("hidden")
+		$("#pens").removeClass("hidden")
+		$("#storage").removeClass("hidden")
+		$("#stop").removeClass("hidden")	
+	   
+	   })
+	   
+	   $('#insist').on('click', function(e) {
+	    lib.dialogue(e, "insist")
+	   $("#insist").addClass("hidden")
+	   $("#apologize2").addClass("hidden")
+	   $("#reset").removeClass("hidden")
+		
+	   
+	   }) 
+	   
+	  
+	  
+	    $('#storage').on('click', function(e) {
+		lib.dialogue(e, "storage")
+		/*
+		if (_.contains(state.events, "dress")){
+			lib.dialogue(e, "storage")
+			
+	    }
+		else if (_.contains(state.events, "incognito")){
+			lib.dialogue(e, "storage")
+			
+	    }
+        */     
+	   		
+		
+      })
+	  
+	  
+	    $('#pens').on('click', function(e) {
+       lib.dialogue(e, "pens")
+	   if (_.contains(state.events, "incognito")){
+			$("#pens2").removeClass("hidden")
+			}
+		else {
+		 $("#stare").removeClass("hidden")	
+		$("#push").removeClass("hidden")
+		$("#clear").removeClass("hidden")
+		$("#quarters").addClass("hidden")
+	   $("#galley").addClass("hidden")
+	   $("#storage").addClass("hidden")
+	   $("#stop").addClass("hidden")
+		}
+	   $("#pens").addClass("hidden")
+	   	  
+      })
+	  
+	   $('#pens2').on('click', function(e) {
+       lib.dialogue(e, "pens2"),
+       $("#pens2").addClass("hidden")
+	   $("#quarters").addClass("hidden")
+	   $("#galley").addClass("hidden")
+	   $("#storage").addClass("hidden")
+	   $("#stop").addClass("hidden")
+	   $("#stare").removeClass("hidden")	
+		$("#push").removeClass("hidden")
+		$("#ask").removeClass("hidden")
+      })
+	  
+	  $('#ask').on('click', function(e) {
+       lib.dialogue(e, "ask"),
+       
+	    $("#ask").addClass("hidden")
+		$("#ask2").removeClass("hidden")		
+	   				
+      })
+	  
+	   $('#ask2').on('click', function(e) {
+       lib.dialogue(e, "ask2"),
+		$("#stare").addClass("hidden")	
+		$("#stare2").addClass("hidden")	
+		$("#push").addClass("hidden")
+	    $("#ask2").addClass("hidden")
+		$("#reset").removeClass("hidden")		
+	   			
+      })
+	  
+	  $('#stare2').on('click', function(e) {
+       lib.dialogue(e, "stare2"),
+       
+	    $("#ask").addClass("hidden")
+		$("#ask2").addClass("hidden")	
+		$("#push").addClass("hidden")
+		$("#stare2").addClass("hidden")	
+	   	$("#quarters").removeClass("hidden")
+		$("#galley").removeClass("hidden")
+		$("#storage").removeClass("hidden")
+		$("#stop").removeClass("hidden")				
+      })
+	  
+	  
+	  
+	   $('#stare').on('click', function(e) {
+       lib.dialogue(e, "stare")
+	   if (_.contains(state.events, "incognito")){
+			$("#stare2").removeClass("hidden")
+			$("#stare").addClass("hidden")	
+			}
+				else {
+       $("#quarters").removeClass("hidden")
+	   $("#galley").removeClass("hidden")
+	   $("#storage").removeClass("hidden")
+	   $("#stop").removeClass("hidden")	
+	    $("#stare").addClass("hidden")	
+		$("#push").addClass("hidden")
+		$("#clear").addClass("hidden")
+	   		}
+		
+      })
+	   $('#push').on('click', function(e) {
+       lib.dialogue(e, "push")
+       if (_.contains(state.events, "incognito")){
+			$("#push").addClass("hidden")
+			}
+				else {
+       $("#quarters").removeClass("hidden")
+	   $("#galley").removeClass("hidden")
+	   $("#storage").removeClass("hidden")
+	   $("#stop").removeClass("hidden")	
+	    $("#stare").addClass("hidden")	
+		$("#push").addClass("hidden")
+		$("#clear").addClass("hidden")
+	   		}
+		
+      })
+	  
+	    $('#clear').on('click', function(e) {
+       lib.dialogue(e, "clear"),
+       $("#quarters").removeClass("hidden")
+	   $("#galley").removeClass("hidden")
+	   $("#storage").removeClass("hidden")
+	   $("#stop").removeClass("hidden")	
+	    $("#stare").addClass("hidden")	
+		$("#push").addClass("hidden")
+		$("#clear").addClass("hidden")
+	   		
+		
+      })
+	  
+	   $('#stop').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('Cadets.html')
+      })
+
+	  
+	  
+	  if (_.contains(state.events, 'hard')) {
+        $(".eatTung").removeClass("hidden")
+		}
+		else {
+		$(".tung").removeClass("hidden")
+		}
+   
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<div id="head">
+<div id="dayCounter">
+Day: <span class="days"><script>displayDays()</script></span>
+<br/>
+<span class="schedule"><script>displayShedule()</script></span>
+</div>
+<h1>Departure</h1>
+</div>
+<div id="story-text">
+<div class="eatTung hidden">
+<p> We've departed. It was done without pomp and ceremony as we were in some rush to catch up to schedule. I've been watching the crew in action and have so far been impressed by their speed and efficiency. </p>
+
+<p>The ship has been a bustle of activity and tension for the first day as everyone are getting acclimated to their roles on the ship. But past the second day things seem to have finally relaxed around the place, training and experience is clearly visible and they've all adjusted quickly.  </p>
+
+<p>We are making good progress; favorable winds are sure to put us ahead of schedule. The ship is fast and the crew knows her well. I expect us to arrive at the Sea of fangs in about 15 days. Our rendeuvouz with the Wulfs is in 25 days. We should just about make it, even with some days of bad winds.</p>
+
+<p>Tungs sudden demotion did not quite have as dramatic effect as I had first worried it would. In fact I've seen little trace of discontent or signs that his attitude were widespread among others. Or at the very least, none of my officers have reported anything amiss. </p>
+
+<p>There is a tradition among new crew members to go through a little bit of hazing on a new ship. I've heard and seen mischief around the ship with new crew members forced to take on the oddest of jobs or wearing “non-standard” clothing. The Core crew on this ship hardly outnumber the new ones, but that does not seem to matter. </p>
+
+<p>I've yet to tour all the corners of the ship and now would be good time to do this, the chaos of all the new faces aboard have also given me an idea though. If I wanted to, I could dress plainly and get a good look around disguised as a common sailor. Im still new enough that nearly none but my Officers should recognize me yet without Captains dress.</p>
+
+<p>Whichever I choose, I've worked off my meal enough to move freely again. It could be a good oppertunity to get some first-hand accounts from the mood around the ship.</p>
+</div>
+
+<div class="tung hidden">
+<p> We've departed. It was done without pomp and ceremony as we were in some rush to catch up to schedule. I've been watching the crew in action and have so far been impressed by their speed and efficiency. </p>
+
+<p>The ship has been a bustle of activity and tension for the first day as everyone are getting acclimated to their roles on the ship. But past the second day things seem to have finally relaxed around the place, training and experience is clearly visible and they've all adjusted quickly.  </p>
+
+<p>We are making good progress; favorable winds are sure to put us ahead of schedule. The ship is fast and the crew knows her well. I expect us to arrive at the Sea of fangs in about 15 days. Our rendeuvouz with the Wulfs is in 25 days. We should just about make it, even with some days of bad winds.</p>
+
+<p>Tungs animosity from our innitial meeting has so far not manifested in any other way. Arn made brief assurances there would be no further problems, but that remains to be seen. </p>
+
+<p>There is a tradition among new crew members to go through a little bit of hazing on a new ship. I've heard and seen mischief around the ship with new crew members forced to take on the oddest of jobs or wearing “non-standard” clothing. The Core crew on this ship hardly outnumber the new ones, but that does not seem to matter. </p>
+
+<p>I've yet to tour all the corners of the ship and now would be good time to do this, the chaos of all the new faces aboard have also given me an idea though. If I wanted to, I could dress plainly and get a good look around disguised as a common sailor. Im still new enough that nearly none but my Officers should recognize me yet without Captains dress.</p>
+
+<p>It could be a good oppertunity to get some first-hand accounts from the mood around the ship. </p>
+</div>
+</div>
+
+<div id="tail">
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1"> Continue </button>
+<button class="btn btn-default" id="tour"> Tour the ship </button>
+
+<button class="btn btn-warning hidden" id="incognito"> Incognito </button>
+<button class="btn btn-default hidden" id="dress"> With Captains Dress </button>
+
+<button class="btn btn-default hidden" id="quarters"> Living Quarters </button>
+<button class="btn btn-default hidden" id="no"> Answer No </button>
+<button class="btn btn-default hidden" id="yes"> Answer Yes </button>
+<button class="btn btn-default hidden" id="agree"> Agree </button>
+<button class="btn btn-default hidden" id="decline"> Decline </button>
+<button class="btn btn-default hidden" id="captain"> Reveal you're the Captain </button>
+
+<button class="btn btn-default hidden" id="galley"> The Galley and Mess </button>
+<button class="btn btn-default hidden" id="apologize"> Apologize </button>
+<button class="btn btn-default hidden" id="noapologize"> I'm the Captain </button>
+<button class="btn btn-default hidden" id="apologize2"> Apologize profusely </button>
+<button class="btn btn-default hidden" id="insist"> Insist you're the Captain.</button>
+
+<button class="btn btn-default hidden" id="pens"> The Raptorian Pens </button>
+
+<button class="btn btn-default hidden" id="pens2"> Explore the Pens </button>
+<button class="btn btn-default hidden" id="push"> Push him out of the way </button>
+<button class="btn btn-default hidden" id="stare"> Stare him down </button>
+<button class="btn btn-default hidden" id="stare2"> Keep Staring </button>
+<button class="btn btn-default hidden" id="clear"> Clear throat </button>
+<button class="btn btn-default hidden" id="ask"> Ask him what he wants. </button>
+<button class="btn btn-default hidden" id="ask2"> Tell him to go away</button>
+
+<button class="btn btn-default hidden" id="storage"> Storage rooms </button>
+
+<button class="btn btn-default hidden" id="stop"> Enough touring</button>
+</div>
+
+
+
+<div class="dress2 hidden">
+<p>
+I've decided to take a look around the interior ship I will be captaining in Captains dress. It might be a good idea to be seen around the ship and familiarize my way around the place. Many captains stay cooped up in the rear parts of their ships around their quarters and planning rooms. While that distance and limited fraternization is said to be helpful toward an authoritative air to the position, I think its good for a new crew to at least see their new captain among them. 
+</p>
+<p> 
+I arrive on deck and consider where to go. 
+</p>
+</div>
+
+<div class="incognito2 hidden">
+<p>I remove my Captains garments, sword, cape, hat and don a plain white sailors shirt I keep in my trunk. Its not really much of a disguise, anyone who knows me will immediately see that its me. But the point is that very few do know me yet. They might have seen me at a distance during the line up before we set sail, but with so many new faces, I shouldn't get more then a glance or two.</p>
+
+</div>
+
+<div class="quarters hidden">
+<div class="dress hidden">
+<p>I take the central stairs down below deck toward the living quarters of most of the crew. <br />
+Sailors here live in in small sections of work-groups, divided by thin walls. Its a bit like miniature dormitories, they sleep and work together for their shifts, curled together on wide mattresses or smaller bolt-holes for couples or those who desire privacy. <br />
+Awes may trade what shifts they belong to with others and during the first days there might be a lot of that as sailors. Its up to First-mate Arn and Officer Mirr to keep track of them all. <br />
+Its a busy bustle of movement and activity down there, being slightly overcrowded as we are its bound to be. <br />
+Most stop what they're doing and stand up straight to give me respectful nods as I pass. As informal as I intended my visit to be, I sense none are willing to take too much chances around a new captain.</p>
+</div>
+<div class="incognito hidden">
+<p>I take the central stairs down below deck toward the living quarters of most of the crew.<br />
+Sailors here live in in small sections of work-groups, divided by thin walls. Its a bit like miniature dormitories, they sleep and work together for their shifts, curled together on wide mattresses or smaller bolt-holes for couples or those who desire privacy.<br />
+Awes may trade what shifts they belong to with others and during the first days there might be a lot of that as sailors. Its up to First-mate Arn and Officer Mirr to keep track of them all.<br />
+Its a busy bustle of movement and activity down there, being slightly overcrowded as we are its bound to be. Awes were busy getting to know eachother with all the influx of new crew, there was a generally jovial almost festive atmosphere about. <br />
+I'm just one among them as I move through the groups of Awes, few take notice of me until suddenly one very woolly-furred Awe pins me to a wall with a gentle push.</p>
+
+<p>“You're one of the new ones around here aren't you?” There's a overly mischievous smile on her face.</p>
+</div>
+</div>
+
+<div class="no hidden">
+<p>“Liar, liar fur on fire!” She laughs mirthfully. Something tells me she's had one too many rations of “drink”. “Look I getcha, you're trying to avoid all the hazings, probably endured one too many pranks already! But we all went through it, so you're not getting away!” </p>
+
+<p>Before I can reply, the sailor is calling for others attention. </p>
+
+<p>“We've got one thats trying to get away here! I think she needs some soup!” </p>
+
+<p>Before I can raise objection or protest, I'm suddenly hoisted up off my feet by several paws and carried on shoulders.</p>
+
+<p>“Soup soup soup!” chanted the crowd and carried me into the mess-hall. <br />
+Ropes were produced from somewhere and with startling efficiency I soon found myself tied with my back to one of the ceiling beams, dangling above the dinner table.</p>
+
+<p>I was then spoon-fed cold soup by another blind-folded Awe and the subject to much laughter and misplaced spoonfuls of soup before I was left dangle up there and watch others come and go to eat as their shifts changed. </p>
+
+<p>I suppose I had been kind of asking for this as I ventured out in plain sailors uniform. I did not have to dangle above the dinner table for long. <br />
+Officer Tick happened by for lunch and sat below me, but did a double take upon seeing me up there. <br />
+After staring dumbfounded a while he subtly had me taken down without breaking my cover.</p>
+</div>
+
+<div class="yes hidden">
+<p>“Ah! Not even trying to hide are you! You're as brave as you are cute, I respect that.” She grinned widely. “But you are not getting away! Unless...!”</p>
+
+<p>“Unless what?” </p>
+
+<p>“Unless you let me protect you cutie! Get in my pouch, i'll keep you safe, alright?”<br />
+</p>
+</div>
+
+<div class="agree hidden">
+<p>I had seen some of the hazing rituals around the ship. They were all rather inappropriate for the Captain of the ship to go through would it be known it was me. </p>
+
+<p>I suppose I should have expected I'd be cornered this way one way or another in my “disguise”.</p>
+
+<p>The pouch of a fellow Awe, although a rather personal act, was a small price to pay if I could get out of some public humiliation. </p>
+
+<p>“For how long?” I found myself asking. The Woolly Awe giggled and with her arm around my shoulder pulled me away to what I assume was her share of the living space. </p>
+
+<p>“Until our next shift, yeah? It should have blown over by then.” She chuckled smugly.</p>
+
+<p>With a paw holding the lip of her pouch open invitingly I could but shrug and dive on in. <br />
+It took some manhandling and effort, not all pouches are created equal and adults are not quite as accommodating as a Pouch-Matrons spacious confines. <br />
+But the Woolly Awe, who's name I never seemed to catch, purred and managed with only my anonymous feet and tail left dangling out.<br />
+I was glad my overly warm pocket of refuge hid my blush and slight indignation. </p>
+
+<p>I seemed to have dozed off briefly when I'm awoken by the voice of Arn talking from a very close by. I feel a brief surge of embarrassment but realize quickly he's not talking to me or even know I'm there. </p>
+
+<p>“Alright, work crew 4 is standing in for crew 6 tonight. Standard extra rations and time compensation apply.” </p>
+
+<p>“Do crew 6 ever get work?” Complained a voice. </p>
+
+<p>“None of that lip Sailor. You have your orders.” His voice faded. After a while I felt a firm pat upon my back.</p>
+
+<p>“Well friend, this is where we part ways. Cant climb the sails with you about.”</p>
+</div>
+
+<div class="decline hidden">
+<p>“No? Aw, you disappoint me.”</p>
+
+<p>Before I can reply, the sailor is calling for others attention. </p>
+
+<p>“We've got one thats trying to get away here! I think she needs some soup!” </p>
+
+<p>Before I can raise objection or protest, im suddenly hoisted up off my feet by several paws and carried on shoulders.</p>
+
+<p>“Soup soup soup!” chanted the crowd and carried me into the mess-hall. <br />
+Ropes were produced from somewhere and with startling efficiency I soon found myself tied with my back to one of the ceiling beams, dangling above the dinner table.</p>
+
+<p>I was then spoon-fed cold soup by another blind-folded Awe and the subject to much laughter and misplaced spoonfuls of soup before I was left dangle up there and watch others come and go to eat as their shifts changed. </p>
+
+<p>I suppose I had been kind of asking for this as I ventured out in plain sailors uniform. I did not have to dangle above the dinner table for long. <br />
+Officer Tick happened by for lunch and sat below me, but did a double take upon seeing me up there. <br />
+After staring dumbfounded a while he subtly had me taken down without breaking my cover.</p>
+</div>
+
+<div class="captain hidden">
+<p>“Would you believe me if I said I was the captain?” I saw little choice but to reveal myself to get out of this situation and potential public embarrassment. </p>
+
+<p>“Hah, good one. I've seen the captain, she's a cute one too, you may... you may be alike.. but...” She turned her head to look at me from left and right. I only nodded at her as realization seemed to hit home. Luckily she had enough wits about her to see the obvious once it was pointed out to her. </p>
+
+<p>“Matrons breath, you ARE the captain!” The sailor stepped back quickly, no longer pinning me to the wall. </p>
+
+<p>“No harm done. Relax.” I reassured her. But whatever casual coy playfulness that had been in the air dissipated quickly. </p>
+
+<p>The word seemed to spread quickly through the quarters. No one bothered me or pretended to see me any longer.</p>
+</div>
+
+
+<div class="galley hidden">
+<div class="dress hidden">
+<p>The galley is situated toward the front of the ship. My journey there takes me past the lower mess hall where crew gather for their meals or other off-duty activity, its not a spacious place and fits tables for a quarter of the crew at a time. As I arrive its dinner hour and the place is so busy and loud I'm only noticed by those in the immediate presence that I have to squeeze past. There's laughter and distraction at a sailors predicament tied to the roof that another is trying to feed broth to with a spoon. I leave them to their merriment and enter the Kitchens. </p>
+
+<p>A plump yellow Wulf is busily tending to his duties as ships chef here. Im slightly taken aback in surprise by the thought of having a Wulf as ships chef. So many years spent on the east sea protecting against their ambitious kind will always put me on slight edge around them. <br />
+<p> I spot some delicate tarts cooling down on a table. They must be for the officers desert later, the sweet smell of them is too tempting and find myself sampling one in advance. Its delicious.
+The Chef seems to pause briefly in his busy tending of so many boiling pots and kettles to give me a look over. <br />
+“Can I help you.. er.. captain? Are you hungry?” While he talks his tail stirs another pot behind him with a firm grip around a ladle. </p>
+
+<p>“No, thank you. Just having a look around.” I nod briefly. Even as captain it feels like I'm intruding in someone else's busy domain. </p>
+
+<p>“Well, Zat is the name. I see you enjoy the pastries, I was going to send them up to your dessert later. If you ever need anything Captain then just send word.” It was as polite an dismissal as any, he was clearly busy. The chef no doubt does not work alone down here. I did my own share of kitchen duty prep-work as a young sailor.</p>
+<img src="Images/assets/Zatchef.png" height="40%" width="40%"/> 
+</div>
+<div class="incognito hidden">
+<p>The galley is situated toward the front of the ship. My journey there takes me past the lower mess hall where crew gather for their meals or other off-duty activity, its not a spacious place and fits tables for a quarter of the crew at a time. I pass it by unnoticed to the kitchens.</p>
+
+<p>A plump yellow Wulf is busily tending to his duties as ships chef here. I'm slightly taken aback in surprise by the thought of having a Wulf as ships chef. So many years spent on the east sea protecting against their ambitious kind will always put me on slight edge around them. <br />
+I spot some delicate tarts cooling down on a table. They must be for the officers desert later, the sweet smell of them is too tempting and find myself sampling one in advance. Its delicious.<br />
+A yellow striped tail suddenly wraps firmly around my paw.</p>
+
+<p>“Hey now thief! What have I kept telling you people! Those are for the Captain and the officers!” The chef stares me down angrily. I seem to have forgotten my 'disguise'. <br />
+</p>
+<img src="Images/assets/Zatchef.png" height="40%" width="40%"/> 
+</div>
+</div>
+
+<div class="apologize hidden">
+<p>I decide to maintain my disguise and humble myself to the Chef. He had a right to be angry from his point of view after all.</p>
+
+<p>“I'm sorry Chef. I could not help myself, the scent of them drove me to forget myself.” I apologized as genuinely as I could. </p>
+
+<p>This seemed to placate the Wulf and his grip around my paw relaxed and let go.</p>
+
+<p>“I can sympathize but don't enter my kitchen if you cant help yourself! And tell the others that next time Zat sees greedy paws in his kitchen he might not be able to help himself to some large appetizers of his own! Now scram!” The Wulf shooed me out and swung his ladle in my general direction. </p>
+
+<p>I left the kitchen in haste. <br />
+</p>
+</div>
+
+<div class="noapologize hidden">
+<p>Before this got out of hand, it was best to reveal to the poor Chef what was what. </p>
+
+<p>“Sorry, but I am the Captain! Now let me go Chef.”</p>
+
+<p>“Is that so!?” Zat snorted, clearly unconvinced. “In that case I am the Admiral! Admiral Zat!” The tail yanked me forward suddenly and surprisingly, the plump Wulf had quite some strength in him. He caught me in a tight bear-hug. </p>
+
+<p>“I warned you people to keep your greedy paws out of my kitchen. Until I get an apology out of you, you'll be under arrest and serve as an example!“ The chef growled and with a sudden yawn shoved my head into his maw. </p>
+
+<p>The suddenness of it caught my by surprise and I cant but yelp and grunt as the Wulfs blue-colored mouth and tongue wetly slurped around my face and swallowed, dragging me down into darkness and tightness. </p>
+
+<p>Wulfs are gluttonous consumers, I knew that from experience and the Chef, with his portly frame was no stranger to ferociously slurping down a huge meal. Struggle and kick as I might, I could do little stop my descent down the Wulf-chefs gullet and belly. </p>
+
+<p>I cried out in the hot encompassing confines of the Wulfs gut, but I knew none would be able to hear it. I felt him slurp and swallow around my foot-paws before sending the rest of me down to curl up tightly. <br />
+Had I survived 10 years in the East-Sea fighting off hungry Wulf pirates only to humiliatingly end up as a meal to my own ship's cook?</p>
+
+<p>A loud belch rumbled around me and I felt movement. Perhaps the chef went back to cooking. <br />
+</p>
+</div>
+
+<div class="apologize2 hidden">
+<p>It struck me that no one would know where I ended up if Zat decided to... 'keep' me. I had told no one where I was going and been incognito. I swallow my pride and cry out in an attempt to apologize and appease my devourer. </p>
+
+<p>“Im sorry Chef, Y-you've taught me valuable lesson! Let me.. let me learn from it!” </p>
+
+<p>Only silence met me and I found myself uncomfortably struggling for an upright position, unsuccessfully.</p>
+
+<p>“You are in the right here! I should not have stolen from you. Forgive me Zat!” Shame burns me to plead to a Wulf like this. But under the circumstances it the better option to other kinds of burning. </p>
+
+<p>“Very well.” A voice called out from around and above. “You seem remorseful enough. But if I see you in my kitchen again, no matter what, I'll assume you're down here to join my figure! Is that clear!?”</p>
+
+<p>“Very Clear...” I reply, realizing I probably could never risk enter the kitchen again, even in Captains dress.</p>
+
+<p>Moments later, wet and slimy, im heaved back up into an empty washing basin for dishes. Zat stares at me a while and then huffs and returns to his cooking that he's now fallen behind on. </p>
+
+<p>Shamefaced and humbled I dry myself briefly before departing in a hurry.</p>
+</div>
+
+<div class="insist hidden">
+<p>“Zat! This is a grave mistake! I am really the captain! Let me out right this moment!” I demand from within the Wulfs gut, pushing and shoving unsuccessfully to try to get myself upright.</p>
+
+<p>Im met only with silence from around me. It struck me that no one would know where I ended up if Zat decided to... 'keep' me. I had told no one where I was going and been incognito.</p>
+
+<p>“Just release me right away and we'll forget about this matter. I.. understand you confused me with a common sailor! But any more of this is most unbecoming!” I put on with a firmer tone. Trying to put as much authority I could into my tone. </p>
+
+<p>I sense movement from Zat as he moves around the kitchen, resuming his work. He was not listening, or caring.</p>
+
+<p>“Are you hearing me!” I demanded. </p>
+
+<p>“Shush in there meal!” Zat scolded and I felt a thud of his paw. “I dont know whats worse, having someone so unremorseful of their thieving ways or so blatantly lying about impersonating our good captain!”</p>
+
+<p>“Im not lying!” I growled and kicked.</p>
+
+<p>“That might be even worse then! Say you really were the captain. Here I've gone and accidentally eaten the captain herself, no good would come out of that!” Zat explained. </p>
+
+<p>“Thats right!” </p>
+
+<p>“Unless no one found out!” Zat chuckled and belched once more. </p>
+
+<p>I blink and feel suddenly very weary. There was an edge of finality to that tone and a paw patted me firmly from outside, as if to comfort me about the fate I was now to suffer. The Wulf cook was going to add me to his portly frame and none would be the wiser. I gave a hard shove, but already space was tightening and muscles slowly churning. </p>
+
+<p>Dinner was served on schedule for the Officers hours later. They were all offered delicious tarts. It looked like the Cook had recently binged on quite a few of his own. He moved sluggishly rubbed at his profound gut contently. <br />
+No one did find out where the captain disappeared to. It was one of those mysteries of the sea and a well debated tale aboard 'The Attentive'.<br />
+</p>
+</div>
+
+<div class="pens hidden">
+<div class="dress hidden">
+<p>Near the lowest levels of the ship, next to the storage rooms are the Raptorian pens and their attendants quarters.<br />
+As placid as they're trained to be, Raptorians are large and need their own space to be kept content on their long journeys at sea. <br />
+The scent of them is distinct down here and as I arrive a few squires, the Raptorian attendants, approach and welcome me. Im struck by how much more silent it is around here then at the rest of the ship.</p>
+
+<p>“Welcome Captain! We were not expecting you.” The speaking squire adjusts her gray vest to look more proper. </p>
+
+<p>“Worry not, just familiarizing myself around the ship. This is no inspection.” I reassure her. </p>
+
+<p>“Well, let me welcome you to the pens. I am Squire Brit this here is Squire Midlotta. Shall we show you around?” They seemed relaxed and confident, I suppose working with Raptorians you had to be. </p>
+
+<p>“Sure, i've commanded a ship with Raptorians before but not one with this many, nor with trained Raptorian warriors before.” I look around the pens casually. Each Raptorian have their own quiet nook, walled stalls along the walls with soft hay. I knew from experience that hierarchy was important among them, but to reduce possible conflict they all have similar sized pens and their own place of refuge. The two squires took me around. </p>
+
+<p>“The pens are built to impact the rest of the ship as little as possible and vice versa. We have our own armory right here and the dried meat they primarily consume is in the closest storage room. There is also quick access here to the main stairwell up to the top of the deck.” We walked around the lower holds, a few Raptorians came in to eye me curiously but remained silent. Besides their pack-master Evok, I was their leader. They wanted to size me up. </p>
+
+<p>One of them ended up standing in my way, unmoving mid tour. Squire Brit, busily leading the way did not notice.<br />
+</p>
+</div>
+<div class="incognito hidden">
+<p>Near the lowest levels of the ship, next to the storage rooms are the Raptorian pens and their attendants quarters.<br />
+As placid as they're trained to be, Raptorians are large and need their own space to be kept content on their long journeys at sea. <br />
+The scent of them is distinct down here and as I arrive a few squires, the Raptorian attendants with their grey vests, turn their heads at me.</p>
+
+<p>“Dont wonder around down here too much friend.”</p>
+
+<p>“Why not?” I ask, genuinely curious. </p>
+
+<p>“You're new arent you? Raptorians don't recognize you. They get testy.”</p>
+
+<p>I nod in acknowledgment and they move on to their other duties. Raptorians have quite a lot of space dedicated to them down here. There's more to see up ahead. They didn't outright forbid me entry.</p>
+</div>
+</div>
+
+<div class="stare hidden">
+<div class="dress hidden">
+<p>I stare up at the Raptorians eyes unflinchingly. They stared back in expressionless silence. <br />
+The staring contest might have gone on longer when Squire Brit interjected with an apologetic tone and stammer. She pushed at the Raptorian, rebuking him. She could never have forcibly moved him, but he stepped to where she pushed obediently.</p>
+
+<p>“Klo! Get out of the way, thats the Captain you numb-skull!”</p>
+
+<p>“Apology, Captain.” The Raptorian rumbled deeply in a throaty voice, seeming to smirk a little and moved back to a knot of other Raptorians, joining in their conversations.</p>
+
+<p>“Im sorry again captain, they've not been fed yet today and tend to become a little... uh.. slow-witted when hungry.” The other Squire, Midlotta, apologized. </p>
+
+<p>Not wishing to impose further and having seen what I came to see, I thank them and move on.</p>
+</div>
+<div class="incognito hidden">
+<p>I stare up at the Raptorians eyes unflinchingly. They stared back in expressionless silence. At the most he cocked his head slightly, as if curious or bemused... or angry. It was hard to tell.</p>
+</div>
+</div>
+
+<div class="pens2 hidden">
+<p>I slip on deeper into the Raptorian section of the ship and look around the pens casually. Each Raptorian have their own quiet nook, walled stalls along the walls with soft hay. I knew from experience that hierarchy was important among them, but to reduce possible conflict they all have similar sized pens and their own place of refuge. </p>
+
+<p>They had their own armory and food storage room attached. There main stairwell also ended on this level not far from here so they could make quick ascent to the main deck. </p>
+
+<p>As I moved around the Raptorians around the area eyed me with mostly disinterest until one blocked my path as I was inspecting on of the pens. <br />
+He loomed over me and stared in silence.</p>
+</div>
+<div class="push hidden">
+<div class="dress hidden">
+<p>I dont even pause my stride much. I put a firm paw to his chest and push as I move to keep up with the Squire. With his size and weight he could have been as immovable as the main mast if he wanted to, but curiously enough the Raptorian shifts out of the way wit the push, not challenging me. </p>
+
+<p>I don't even spare him a glance as I politely follow Squire Brits explanation of a squires duties and their own separate living areas close to the pens.</p>
+
+<p>“We are always close at hand to see to their needs and make sure they are in shape to whatever heavy duty needs you require of them Captain.” </p>
+
+<p>Not wishing to impose further and having seen what I came to see, I thank them and move on.</p>
+</div>
+<div class="incognito hidden">
+<p>I put a firm paw to his chest and push. With his size and weight he could have been as immovable as the main mast if he wanted to and he clearly did not want to budge.</p>
+</div>
+</div>
+
+<div class="clear hidden">
+<p>I give the testy Raptorian an annoyed glance and clear my throat loudly in a “Ahem”. He does not budge. <br />
+Squire Brit is quick on her feet however, she pushed at the Raptorian, rebuking him. She could never have forcibly moved him, but he stepped to where she pushed obediently.</p>
+
+<p>“Klo! Get out of the way, thats the Captain you numb-skull!”</p>
+
+<p>The Raptorian seemed to smirk a little and moved back to a knot of other Raptorians, joining in their quiet conversations.</p>
+
+<p>“Im sorry again captain, they've not been fed yet today and tend to become a little... uh.. slow-witted when hungry.” The other Squire, Midlotta, apologized. </p>
+
+<p>Not wishing to impose further and having seen what I came to see, I thank them and move on.</p>
+
+<p>
+</p>
+</div>
+<div class="stare2 hidden">
+<p>I keep staring down the big Raptorian in several long seconds until the finaly the Raptorian lets out a breath through his nostrils and looks away. I take it as my que and squeeze past him to walk out of there. <br />
+No more Raptorians challenge my passing, but there is little else to see around here.</p>
+</div>
+
+<div class="ask hidden">
+<p>“What do you want big fellow?” I inquire the big Raptorian casually.</p>
+
+<p>He seems to stare at my a little while longer before replying ominously.</p>
+
+<p>“I wish to eat.” <br />
+</p>
+</div>
+
+<div class="ask2 hidden">
+<p>I start to loose patience with this upstart Raptorian. Testy indeed. </p>
+
+<p>“Then go eat something and let me pass.” I grunt irritably. </p>
+
+<p>The raptorian seems to raise his brow and then nod. </p>
+
+<p>“Okay.” </p>
+
+<p>Then he casually closed his mouth around my head and shoulders, choosing me as his meal through his odd Raptorian logic. </p>
+
+<p>I let out a muffled shout of protest. But its quickly quelled as the large Raptorian tosses his head back in heavy gulp and plunge me halfway down his jaws with ease. </p>
+
+<p>Im hopelessly out-matched in strength and any hope I might have had that he was merely trying to scare me disappear down his throat along with my body as he tilts his head back and swallows me whole with a few easy head-tossing gulps. </p>
+
+<p>I twist down his thick neck and find myself crammed into the dark pit of his stomach deep down his body. The chamber hold me firmly, I cant feel myself make any impact or bulge as I struggle and shout in angry protest. I bet I hardly make a very sizable lump on the Raptorians rounded midsection , especially as he enters his pen and lays down on top of me, squashing me even further. </p>
+
+<p>The Raptorian knew when the Squires or Alpha were not looking. The others near his pen would not tattle on him, only be envious of the opportunity he had managed to seize.</p>
+
+<p>The low digestive grumbles from his gut did not over-voice the loud snores of the sleeping Raptorian when the Squires came to check up on them. None in the Raptorian pens would testify to have seen the disappeared Captain come this way. <br />
+</p>
+</div>
+
+
+<div class="storage hidden">
+<div class="dress hidden">
+<p>At the lowest levels of the ship, all along its bottom, are the storage areas. Though there is still technically one level below for heavy ballast this deep in the belly of the ship. </p>
+
+<p>Its not as busy here as elsewhere on the ship, not everyone are allowed to loiter around here without permission. But there are still crew moving around the tied up crates and barrels standing shoulder to shoulder nearly all the way to the roof. We are at max capacity and will not have any problems with provisions on this trip. That does not mean we can overindulge as the idea is that a lot of this cargo are to help resupply our fleet. </p>
+
+<p>As I enter one of the storage rooms from another through a smaller side-entrance I seem to have walked in on a minor gathering of Awes. They all look up startled and frozen at my sudden appearance, caught in the act of what seems to be a card game. </p>
+
+<p>“Uh... Captain!” One of them salutes with the wrong arm, other one holding a paw-full of cards behind her back. She was one of the Low-officers judging by her insignia on her right shoulder. </p>
+
+<p>“Wrong arm officer.” I chide her, unable to fully hide my bemusement. </p>
+
+<p>“R-right.” They stammered and obeyed, now holding a deck of cards against their chest, flushing profusely. </p>
+
+<p>“Carry on.” I smirk and decide to move on. Games of chance are not illegal, as long as its not on duty and they didnt seem to be gambling for any visible currency. But its not my intention to hound the crew at this moment. I imagine the collective sigh of relief that swept through the room after my departure was lesson enough.<br />
+</p>
+</div>
+<div class="incognito hidden">
+<p>At the lowest levels of the ship, all along its bottom, are the storage areas. Though there is still technically one level below for heavy ballast this deep in the belly of the ship.<br />
+Its not as busy here as elsewhere on the ship, not everyone are allowed to loiter around here without permission. But there are still crew moving around the tied up crates and barrels standing shoulder to shoulder nearly all the way to the roof. We are at max capacity and will not have any problems with provisions on this trip. That does not mean we can overindulge as the idea is that a lot of this cargo are to help resupply our fleet.<br />
+I hear several voices from one of the storage rooms and slip inside, curious to see whats going on. <br />
+An Awe at the door watches me enter and give a shrug. </p>
+
+<p>Inside is what looks like a small gambling setup. Several crates serve as makeshift tables for circles of Awes playing cards. Games of chance are not exactly illegal on the ship, but gambling for money and “favors” was always frowned upon by the Admiralty code. </p>
+
+<p>“New here? Wish to join a table?” A young looking ginger Awe looks up at me. </p>
+
+<p>I smile and politely shake my head, deciding its best not to speak out loud and call attention upon myself. Someone might still put my voice and face together. </p>
+
+<p>The Awe shrugs and moves on. I linger a while and listen to conversation around the tables. The place is not crowded, but I'm not the only curious onlooker. One line of conversation did strike my interest. </p>
+
+<div class="eatTung hidden">
+<p>“So who's the head bet-taker of ring now that Tung bit the fluff?” A sailor asked at one of the tables. </p>
+
+<p>“Arn I guess, until he delegates. But he was always kinda in-charge of it.” A low-officer with single emblem on his shoulder grunted, her nose in her cards. </p>
+
+<p>“New Cap seems like a tough tangle. She might keep him busy.” </p>
+
+<p>“Yeah, Arn, hard at work.” The Awe laughed and they all joined in jovially. </p>
+</div>
+
+<div class="tung hidden">
+<p>I moved on from the room as conversation shifted to lewder subjects.</p>
+
+<p>“You hear what Tung said to the new Cap?” A sailor asked at a table while dealing cards.</p>
+
+<p>“Did, seemed foolish to me.” A low-officer with single emblem on his shoulder grunted, her nose in her cards. </p>
+
+<p>“Maybe Arn put him up to it.” </p>
+
+<p>“Seems even more foolish to me. If he wanted to be captain he could've.” </p>
+
+<p>Unfortunately the conversation died out as the card game intensified.</p>
+</div>
+
+</div>
+
+
+
+</body>
+</html>

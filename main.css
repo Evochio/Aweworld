@@ -12,7 +12,7 @@ float:right;
 #VThumb {
 	top: 25px;
 	right: 40px;
-	background-image: url(/Rooms/Images/valnosthumbnew3.png);
+	background-image: url("Rooms/Images/valnosthumbnew3.png");
 	width: 200px;
 	height: 50px;
 	float: right;
@@ -31,7 +31,7 @@ float:right;
 #GThumb {
 	top: 25px;
 	right: 40px;
-	background-image: url(/Rooms/Images/Glintthumb3.png);
+	background-image: url("Rooms/Images/Glintthumb3.png");
 	width: 200px;
 	height: 50px;
 	float: right;
@@ -44,7 +44,7 @@ float:right;
 #ZThumb {
 	top: 25px;
 	right: 40px;
-	background-image: url(/Rooms/Images/ziggythumb2.png);
+	background-image: url("Rooms/Images/ziggythumb2.png");
 	width: 200px;
 	height: 50px;
 	float: right;
@@ -55,7 +55,7 @@ float:right;
 }
 
 #Valnos {
-	background-image: url(/Rooms/Images/Valnosface5.png);
+	background-image: url("Rooms/Images/Valnosface5.png");
 	height: 286px;
 	width: 200px;
 	cursor: pointer;
@@ -67,7 +67,7 @@ float:right;
 }
 
 #Glint {
-	background-image: url(/Rooms/Images/GlintFace2.png);
+	background-image: url("Rooms/Images/GlintFace2.png");
 	height: 286px;
 	width: 200px;
 	cursor: pointer;
@@ -79,7 +79,7 @@ float:right;
 }
 
 #Ziggy {
-	background-image: url(/Rooms/Images/ZiggyFace1.png);
+	background-image: url("Rooms/Images/ZiggyFace1.png");
 	height: 286px;
 	width: 200px;
 	cursor: pointer;
@@ -89,16 +89,19 @@ float:right;
 	border: 6px solid #996633;
 	border-radius: 10px;
 }
+
 img {
-	margin-left: 40px;
+	margin-left: 20px;
+	margin-right: 20px;
 	margin-bottom: 50px;
 	float: left;
 	bottom: 10%;
 	border: 6px solid #331a00;
 	
 	border-radius: 20px;
-	Width: 60%
+	Width: 100%
 }
+
 html {
 
 background-color: #331a00;
@@ -134,6 +137,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d5973c', end
 .btn-danger, .btn-warning {
 	line-height: 2em;
 	font-size: 1em;
+	border: 2px solid red;
+}
+.btn-warning {
+	 background: repeating-linear-gradient(
+    45deg,
+    #FF0000,
+    #FF0000 10px,
+    #FF8C00 10px,
+    #FF8C00 500px
+  );
 }
 	
 .btn-default:hover, .btn-info:hover {
@@ -148,6 +161,18 @@ background: linear-gradient(to bottom, #331a00 31%,#7f4400 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#331a00', endColorstr='#7f4400',GradientType=0 );
 	
 }
+
+.btn-warning:hover {
+	 background: repeating-linear-gradient(
+    45deg,
+    #FF0000,
+    #FF0000 10px,
+    #FF8C00 10px,
+    #FF8C00 500px
+  );
+	
+}
+
 .btn-default:active, .btn-default:focus,  .btn-info:active, .btn-info:focus {
 
 	background: #331a00;
@@ -155,7 +180,23 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#331a00', end
 
 }
 	
-
+#side
+{
+	padding: 0.5em;
+	color: white;
+	position: fixed;
+	display: inline-block;
+	width: 20%;
+	margin-top: 8em;
+	max-height: 70%;
+	left: 0.5em;
+	background-color: #996633;
+	border: 6px solid #cb9969;
+	border-radius: 20px;
+	overflow: auto;
+	overflow-x: hidden;
+	
+}
 
 #tail .btn {
 	top: 25px;
@@ -216,32 +257,35 @@ position: absolute;
 #story-text {
 	background-image: url("Rooms/Images/Paper.jpg");
 	background-size: cover;
-	float: left;
+	
 	border: 6px solid grey;
 	font-size: 130%;
 	position: relative;
+	
+	
+	
 	clear: both;
+	float: left;
 	margin-bottom: 10%;
-	margin-left: 40px;
-	margin-right: 150px;
+	margin-left: 25%;
+	margin-right: 500px;
 	margin-top: 100px;
+	
 	padding-top: 20px;
     padding-right: 50px;
     padding-bottom: 10px;
     padding-left: 50px;
 	text-align: justify;
+	width: 50%;
 	
 }
 #cadetButtons {
 	
 }
 
-/* If you want text inside shit */
+/*If you want text inside shit */
 
-.blush {
-	background-position: 600px 0px; 
-		
-}
+
 .angry {
 	background-position: 400px 0px; 
 }
@@ -268,6 +312,9 @@ position: absolute;
 }
 .disabled {
 	background-position: 200px 0px;
+}
+.blush {
+	background-position: 600px 0px; 
 }
 
 .new {
