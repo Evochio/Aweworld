@@ -79,7 +79,9 @@
 	 })
 	 
 	  	$('#boatArn').on('click', function(e) {
-		state.crewLoss += 1;		
+		state.crewLoss += 1;	
+		$("#side").removeClass("hidden")
+		$("#image").attr('src','Images/assets/Arnface.png');
         $(".arn").removeClass("hidden")
 		$(".both").removeClass("hidden")
 		$("#boatArn").addClass("hidden")
@@ -91,7 +93,9 @@
 		lib.dialogue(e, "boat2")
 	 })
 	 	$('#boatTung').on('click', function(e) {
-		state.events.push("hard");			
+		state.events.push("hard");		
+		$("#side").removeClass("hidden")
+		$("#image").attr('src','Images/assets/Tung.png');
         $(".tung").removeClass("hidden")
 		$("#boatArn").addClass("hidden")
 		$("#boatTung").addClass("hidden")
@@ -104,9 +108,9 @@
 		lib.dialogue(e, "boat2")
 	 })
 	 	$('#boatGarsch').on('click', function(e) {
-		
-			
-        $(".garsch").removeClass("hidden")
+		$("#side").removeClass("hidden")
+		$("#image").attr('src','Images/assets/Garsch.png');
+		$(".garsch").removeClass("hidden")
 		$(".both").removeClass("hidden")
 		$("#boatArn").addClass("hidden")
 		$("#boatTung").addClass("hidden")
@@ -167,6 +171,9 @@
   
   <style>
     /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	img {
+	margin:auto;
+	}
   </style>
 
 </head>
@@ -179,6 +186,11 @@ Day: <span class="days"><script>displayDays()</script></span>
 </div>
 <h1>The Sea of Fangs</h1>
 </div>
+<div id="side" class="hidden">
+ <img id="image" src=""/>
+
+</div>
+
 <div id="story-text">
 
 <p> Another fluff-shedding night in the sea of fangs has passed. We've been blessed with cloudless skies and the light of the moons to keep the fangs well in sight. I dare not consider braving the pass during poor weather and sight. While the charted route is detailed, I can easily imagine how even briefly getting lost out here would quickly spell doom. </p>
@@ -215,7 +227,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 <div class="search hidden"><p><strong>Search</strong></p>
 <p>I order a search and plot a new course which will take us past the larger and most likely cliffs that might have caught the wreckage.</p>
 
-<p>I&#39;d send up my scouts, but i&#39;d be more likely to end up searching and rescuing them instead if i did. The winds are too hard out here, with sudden dangerous up and down drafts which might toss them far out of range of the ship or worse, into the water where the sea-wolves lurk.</p>
+<p>I&#39;d send up my scouts, but I&#39;d be more likely to end up searching and rescuing them instead if I did. The winds are too hard out here, with sudden dangerous up and down drafts which might toss them far out of range of the ship or worse, into the water where the sea-wolves lurk.</p>
 
 <p>The search is perilous and on several occasions the lookouts up in the mast shout out warnings for course changes to avoid collisions with treacherous reefs. I have map-readers note everything down for future referances, if we&#39;re braving these dangers we might aswell make the best of it.</p>
 
@@ -223,7 +235,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>A loud thud, creak and long scrape has the whole crew cringing all of a sudden. We&#39;ve brushed against one of the reefs. I immediately order crew to check for major damage but its quickly apparent there are no major leaks.</p>
 
-<p>I clench my jaw. The ship is fast and sturdy. Im glad for the later. But at this moment i wish we were on my old smaller and maneuverable &#39;Barristan&#39;.</p><hr />
+<p>I clench my jaw. The ship is fast and sturdy. Im glad for the later. But at this moment I wish we were on my old smaller and maneuverable &#39;Barristan&#39;.</p><hr />
 </div>
 
 <div class="search2 hidden"><p><strong>Keep searching</strong></p>
@@ -231,11 +243,13 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>I directed us upwind and it wasn&#39;t long before I smelled it too. Then I saw the slight smoke rising from behind one of the pointy craggy cliffs that well made this sea worth its name.</p>
 
-<p> Cliffs and reefs are thick here however. We cant safely move ahead without significant risk to the ship. I could however send the scouts by wing out to investigate, but i have to be wary of when i use them, they're irreplacable. Or we could deploy one of our smaller boats to row on over. </p>
+<p> Cliffs and reefs are thick here however. We cant safely move ahead without significant risk to the ship. I could however send the scouts by wing out to investigate, but I have to be wary of when I use them, they're irreplacable. Or we could deploy one of our smaller boats to row on over. </p>
 
 <p> My reclusive black-furred scout-master Sixt now stands beside me. I want his oppinion first.</p>
 
 <p> "Aye Captain, we are ready whenever you need us. We can fly there no problem. Getting back can be a bit harder however if we cant take off somewhere high enough." He speaks in a low soft voice. The other two scouts, distinguishable by their heavy cloaks, linger nearby. </p>
+
+<img src="Images/assets/Raveneye.png"/> 
 </div>
 
 <div class="scout hidden"><p><strong>Scouts</strong></p>
@@ -257,7 +271,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p> I ordered the boat lowered and assembled. The hull of it is safely secured against the rear of the ship, to save space and protect it from wear, its components are kept apart and safely in storage. </p>
 
-<p> This is a task drilled into the crew countless time during training i can tell. The boat is quickly finnished and ready, bobbing in the waves next to our ship. </p>
+<p> This is a task drilled into the crew countless time during training I can tell. The boat is quickly finnished and ready, bobbing in the waves next to our ship. </p>
 
 <p> Now the only question is who to send out there to investigate. Everything is made extra risky out in the fangs, the operation needs a officer to lead it. </p>
 
@@ -269,31 +283,32 @@ Day: <span class="days"><script>displayDays()</script></span>
 <p> The boat bobs uncertainly before they start rowing away.
 <span class="tung hidden">Tung, took out his frustration on the 5 crewmembers he picked to join him on this venture. Shouting them into order and proper rowing form.</span>
 <span class="arn hidden">Arn had not looked pleased at my selection. He seemed about to object when he thought better of it, perhaps he did not wish to seem a coward. </span>
-<span class="garsch hidden">Officer Garsch sprung into action immidiatly. There was no hesitation in that Awe, i liked that. </span>
+<span class="garsch hidden">Officer Garsch sprung into action immidiatly. There was no hesitation in that Awe, I liked that. </span>
  </p>
-<p> They rowed for a while, while we watched. They were half-way in their approach to the cliff when one of them started jesticulating franticaly. Suddenly the boat jolted, as if they hit a rock. </p>
+<p> They rowed for a while, while we watched. They were half-way in their approach to the cliff when one of them started gesticulating frantically. Suddenly the boat jolted, as if they hit a rock. </p>
 
 <p> With what looked like panic they turned the boat around and rowed back toward the ship in a great rush. 
 <span class="tung hidden">Tung is shouting but his words are carried away by the wind. Suddenly something knocks the boat nearly onto the side. Awes cling to what they can but some spill into the water. Crew gasp around me. Its the seawolves!</span>
-<span class="arn hidden">Arn is pointing and giving directions, his movements are rushed, i've never quite seen him so animated. He peers concerned over the side, having procured a spear they brought along and jabs with it into the water. The boat jostles again as Arn apperently struck something, the jolt sends one Awe reeling and splashing into the cold sea. I suddenly realize whats happening, Sea-wolves! </span>
+<span class="arn hidden">Arn is pointing and giving directions, his movements are rushed, I've never quite seen him so animated. He peers concerned over the side, having procured a spear they brought along and jabs with it into the water. The boat jostles again as Arn apperently struck something, the jolt sends one Awe reeling and splashing into the cold sea. I suddenly realize whats happening, Sea-wolves! </span>
 <span class="garsch hidden">Garsch is encouraging them to row faster, setting a steady pace for them to focus on. But suddenly something knocks into the boat, nearly tipping it over. Its a miracle no one falls in, Garsch has grabbed one of the Awes by the tail and yanks them back. Its the Sea-wolves! </span>
 </p>
-<p> I quickly order ropes readied. They might have to be pulled back onboard in a rush. Scout Civi is quick to react and grabs the end of a rope and flaps her way out there to meet them. </p>
+<p> I quickly order ropes readied. They might have to be pulled back on board in a rush. Scout Civi is quick to react and grabs the end of a rope and flaps her way out there to meet them. </p>
 
-<div class="tung hidden"> <p> But before she reaches the boat it suddenly capsized in a spray of water as the black shape of a giant Sea-wolf crashes up from underneath with great force. Awes go flying into the cold sea, some trying desperatly to gain air before being dragged down by gravity. </p>
-<p> There is little anyone can do. Scout Civi circles back when she reaches the wreckage, dropping her rope. A shape launches from the water to try to catch her out of the air, A smaller seawolf, the white patches on its side clearly visible. But Civi is agile and pulls a daring manouver few Awes could replicate.</p>
+<div class="tung hidden"> <p> But before she reaches the boat it suddenly capsized in a spray of water as the black shape of a giant Sea-wolf crashes up from underneath with great force. Awes go flying into the cold sea, some trying desperately to gain air before being dragged down by gravity. </p>
+<p> There is little anyone can do. Scout Civi circles back when she reaches the wreckage, dropping her rope. A shape launches from the water to try to catch her out of the air, A smaller seawolf, the white patches on its side clearly visible. But Civi is agile and pulls a daring maneuver few Awes could replicate.</p>
 
 <p> By the time the water calms, none of the Awes who were on the boat are visible. Hungry jaws have snatched them and gulped them down. The mood on the ship is grim as we watch for any signs of anyone escaping the Sea-wolves appetite. But none stir. </p>
+<img src="Images/assets/Seawolf.png"/> 
 </div>
 <div class="both hidden">
 <p> The boat rushes back in a hurry and the Officer manages to get them back safely, but not without a few more jolting bumps and thumps that cause the boat to jump in the water. <p>
 
 <p> With the help of the rope they're pulled in quickly for the last bit of the journey and all brought aboard, panting and looking poofed up in fright. But safe </p>
 </div>
-<span class="arn hidden"> Arn curses loudly, last to leave the boat. He throws a oar across the deck and kicks over a barrel. He lost a crewmember out there, im surprised to see him cares so much. I leave him be.</span>
+<span class="arn hidden"> Arn curses loudly, last to leave the boat. He throws a oar across the deck and kicks over a barrel. He lost a crewmember out there, im surprised to see him care so much, if thats what his anger is directed at. I leave him be.</span>
 
-<span class="garsch hidden">Officer Garsch managed to get everyone back safely. Though he did not look it i could tell he was unnerved as i commended him and gave him a pat on the back. He'd be drowning himself in spirits later, i made a mental note to have Officer Mirr give him a shift off.</span>
-<p> We abandon any further apptempt to reach the wreckage. Its secrets are left to be washed away with the tides. </p>
+<span class="garsch hidden">Officer Garsch managed to get everyone back safely. Though he did not look it I could tell he was unnerved as I commended him and gave him a pat on the back. He'd be drowning himself in spirits later, I made a mental note to have Officer Mirr give him a shift off.</span>
+<p> We abandon any further attempt to reach the wreckage. Its secrets are left to be washed away with the tides. </p>
 
 <p>On our return towards the charted sailing lanes, there&#39;s another ominous scrape along the whole length of the hull. I cursed and peered into the water behind the ship. The reef had been impossible to spot, it was like a dagger sticking out of the dark depths just under the surface.</p>
 
@@ -313,7 +328,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 </div>
 
 <div class="boat3a hidden"><p><strong>Boat</strong></p>
-<p> I try not to startle my rowing Awes too much. But something in my tone seems to alert them nevertheless as i ask them to turn the boat around and return to the ship </p>
+<p> I try not to startle my rowing Awes too much. But something in my tone seems to alert them nevertheless as I ask them to turn the boat around and return to the ship </p>
 
 <p> Not soon after a huge thud impacts the boat from underneath, nearly capsizing the vessel. I grab ahold of a ledge and hold on and so do the others. </p>
 
@@ -323,9 +338,9 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p> By now the crew on the ship have reacted and I spy a scout flying out to meet us with a rope in her paws, to help pull us in quicker. </p>
 
-<p> With my paws free i manage to grab the rope and hold on as we're pulled in fast and get close enough to clamber onboard. We made it! </p>
+<p> With my paws free I manage to grab the rope and hold on as we're pulled in fast and get close enough to clamber onboard. We made it! </p>
 
-<p> There is little to be said. Most breathe a sigh of relief. Ziggy looks glad she didnt press the issue about volunteering, i've never seen the unflappable young awe so tense. </p> 
+<p> There is little to be said. Most breathe a sigh of relief. Ziggy looks glad she didnt press the issue about volunteering, I've never seen the unflappable young awe so tense. </p> 
 
 <p>We make it back to the charted sailing lane safely and without further incident. One day someone will have to properly chart and map every reef and rock in this place, I do not envy them the task.</p>
 </div>
@@ -342,15 +357,17 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p> I keep a look out for black shapes in the water, spear at the ready. But the next one comes from straight underneath. It shatters the boat and sends us all sprawling into the water. </p>
 
-<p> I manage to surface and gasp, i see one of my scouts in the air, dropping a rope, a lifeline. My fur is quickly wet and making me heavy and sluggish in the water. Around my fellow Awes in the water yelp and gasp as black shapes and large dorsal phins sweet past and snatch them away. </p>
+<p> I manage to surface and gasp, I see one of my scouts in the air, dropping a rope, a lifeline. My fur is quickly wet and making me heavy and sluggish in the water. Around my fellow Awes in the water yelp and gasp as black shapes and large dorsal fins sweep past and snatch them away. </p>
 
-<p> Im nearly at the rope as something comes up right ahead of me, toothy pink maw wide open. When did i drop my spear? The jaws engulph me, a thick tongue squezzes against me and force me down a tight passage. </p> 
+<p> Im nearly at the rope as something comes up right ahead of me, toothy pink maw wide open. When did I drop my spear? The jaws engulf me, a thick tongue squeezes against me and force me down a tight passage. </p> 
 
-<p> 'GLUK', the passage constricts, nearly crushing me. I end up plummiting into the depths of the beast. A dark and somewhat spaceous chamber that smells of fish soon holds me. Crawling around briefly does nothing but sate panic and frustration. </p>
+<p> 'GLUK', the passage constricts, nearly crushing me. I end up plummeting into the depths of the beast. A dark and somewhat spacious chamber that smells of fish soon holds me. Crawling around briefly does nothing but sate panic and frustration. </p>
 
-<p> Im alone in the belly of the large seabeast. My rowers do not join me, that might mean they got rescued or that the other 2 Sea-wolves got them. I punch and kick at a wall, hoping to be unappetizing. It seems to have the opposite effect as i hear a crooning noise i could have sworn sounds pleased.</p>
+<p> Im alone in the belly of the large seabeast. My rowers do not join me, that might mean they got rescued or that the other 2 Sea-wolves got them. I punch and kick at a wall, hoping to be unappetizing. It seems to have the opposite effect as I hear a crooning noise I could have sworn sounds pleased.</p>
 
-<p> There will be no rescue for this former Captain of the Admirality. I will only end up as a cautionary tale, attached to the legend of the Sea-wolfs.</p>
+<p> There will be no rescue for this former Captain of the Admiralty. I will only end up as a cautionary tale, attached to the legend of the Sea-wolfs.</p>
+
+<img src="Images/assets/Seawolf.png"/> 
 </div>
 
 
@@ -383,7 +400,7 @@ cadet[1].banter = [
 	{ target: '#Glint', text: 'When we pass one of the teeth the rock just seems to dissapear into the black of the sea.', imageClass: "neutral"},
 	{ target: '#Valnos', text: 'Hmm? Are you asking me?', imageClass: "surprised"},
 	{ target: '#Ziggy', text: 'Who else, youre the one who reads for leisure!', imageClass: "neutral"},
-	{ target: '#Valnos', text: 'I dont know! These seas are too perilous for extended studies. But i cant imagine its too deep, or these cliffs would be ridiculously tall and pointy.', imageClass: "surprised"}
+	{ target: '#Valnos', text: 'I dont know! These seas are too perilous for extended studies. But I cant imagine its too deep, or these cliffs would be ridiculously tall and pointy.', imageClass: "surprised"}
 	];
 	
  cadet[2].banter = [

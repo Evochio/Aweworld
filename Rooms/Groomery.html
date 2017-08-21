@@ -19,8 +19,8 @@
       // rooms get clicked.
       
 	  if(state.crewMorale > 5) {
-        // reset i, stop the popover from being shown
-        i = 0;
+        // reset I, stop the popover from being shown
+        I = 0;
         $('#button-2').addClass('disabled');
         
 		}
@@ -92,7 +92,13 @@
 	  	$('#button-4').on('click', function(e) {
         // change state here
 		lib.dialogue(e, "act")
-	   $("#family").removeClass("hidden");
+		
+		if(_.contains(state.events, "melon")) {
+		$('#family').removeClass('hidden');
+		}
+		else {
+		$('#button-5').removeClass('hidden');
+		}
 	   $("#button-4").addClass("hidden")
 		
 		})
@@ -315,7 +321,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 
 <div class="moralePoor hidden"><p><strong>(Morale) Could be better</strong></p>
-<p>“Things could be better, im not deaf to the grumbling on the ship. I expected it to be difficult to captain a new crew I did not help pick. But some choices i've made have not been popular.” </p>
+<p>“Things could be better, im not deaf to the grumbling on the ship. I expected it to be difficult to captain a new crew I did not help pick. But some choices I've made have not been popular.” </p>
 
 
 <p>Elda soothingly purred while she groomed.</p>
@@ -328,21 +334,21 @@ Day: <span class="days"><script>displayDays()</script></span>
 </div>
 
 <div class="moraleBad hidden"><p><strong>(Morale) Disatrous!</strong></p>
-<p> "I know things are bad." I admitt in a low tone. Everywhere i go i get sour looks and angry stares. </p>
+<p> "I know things are bad." I admitt in a low tone. Everywhere I go I get sour looks and angry stares. </p>
 
 <p> "Its good that you know! But do you care, my captain?" Elda purred while she groomed. </p>
 
-<p> "Ofcourse i care! But some of the choices i've made have been hard. But they had to be done." I respond resolutely. Im starting to wonder if this is some form of intervention. </p>
+<p> "Ofcourse I care! But some of the choices I've made have been hard. But they had to be done." I respond resolutely. Im starting to wonder if this is some form of intervention. </p>
 
 <p> "Your choices have been hard. Often done for the greater good of the fleet. But remember, ordinary sailors dont always see the bigger picture. Its day to day matters that are important." Elda sighs and continues. </p>
 
-<p> "I dont normaly go this far, i try not to interfere. I normaly only listen and give comfort. But captain you are on very thin ice." </p>
+<p> "I dont normaly go this far, I try not to interfere. I normaly only listen and give comfort. But captain you are on very thin ice." </p>
 
 <p> I let her words hang in the air a while before answering. </p>
 
 <p> "What have you heard? I mean, so far no one has been outright disobedient." </p>
 
-<p> "I listen, i do not speak, that would be a breach of trust. Though sometimes i ask questions. So lets start from the beginning." Elda spoke cooly.  "What about Officer Tung? </p>
+<p> "I listen, I do not speak, that would be a breach of trust. Though sometimes I ask questions. So lets start from the beginning." Elda spoke cooly.  "What about Officer Tung? </p>
 </div>
 
 <div class="tungFate hidden"><p><strong>The fate of Officer Tung</strong></p>
@@ -358,7 +364,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>“Oh, no no, its not my position to judge anything dear Captain, dont take it as criticism. But I tend to my crews need, I hear their concerns and worries. “</p>
 
-<p>“And do they worry i'll gobble them up at the first sign of challenging my authority?” I ask.</p>
+<p>“And do they worry I'll gobble them up at the first sign of challenging my authority?” I ask.</p>
 
 <p>“Should they? You lead the way you see best Captain. Ultimate authority might be your way. Regardless, I look forward to seeing the results of your command.”</p>
 </span>
@@ -476,13 +482,13 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>“Ask away Elda. We'll see about the answer though.”</p>
 
-<p>“You are nearing your mid-years and as far as I understand you're still childless. Have you put the idea of younglings aside?” </p>
+<p>“I could not help but notice you spent a lot of time with that merchants daughter, Melon. You are nearing your mid-years and as far as I understand you're still childless. Have you put the idea of younglings aside?” </p>
 
 <p>I sighed audibly. It seems every Matron is intent on asking these questions. </p>
 
 <p>“Do you have to know this? My reasons are my own and this has nothing to do with my captaincy. I dont need any family planning counseling at this stage.” I answered guardedly. Elda just seemed to chuckle ruefully, amused by my consternation. </p>
 
-<p>“Its our duty to pester about these things Captain. I just want to understand you better.” </p>
+<p>“Its our duty, as Matrons, to pester about these things Captain. I just want to understand you better.” </p>
 </div>
 
 <div class="decline hidden"><p><strong></strong></p>
@@ -499,7 +505,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>Elda remained respectfully silent, though she seemed done with her grooming, she brushed as I talked. </p>
 
-<p>"I was a single born, had no direct siblings of older or younger generation either. I was not unhappy, I liked it. But as i got older i became curious about what i had missed out on. Everyone seemed to have this... 'connection', that i could not understand." </p>
+<p>"I was a single born, had no direct siblings of older or younger generation either. I was not unhappy, I liked it. But as I got older I became curious about what I had missed out on. Everyone seemed to have this... 'connection', that I could not understand." </p>
 
 <p>"So I became a teacher. Or was training to be. Was among younglings every day." Elda raised her brow at this, surprised.</p>
 
@@ -535,16 +541,16 @@ Day: <span class="days"><script>displayDays()</script></span>
 	{ target: '#Ziggy', text: 'Elda aint dumb, is all. Aint needing an order as an excuse to fill herself with Awekin!', imageClass: "smug"},
 	{ target: '#Glint', text: 'Ziggy! Thats not what its about!', imageClass: "surprised"},
 	{ target: '#Ziggy', text: 'Yeah? Proove otherwise!', imageClass: "suspicious"},
-	{ target: '#Glint', text: 'I dont know why i bother', imageClass: "sad"}
+	{ target: '#Glint', text: 'I dont know why I bother', imageClass: "sad"}
 ];
 
  cadet[0].banter = [
 	{ target: '#Ziggy', text: 'Hah, summoned by the old Fluff herself were ya?', imageClass: "neutral"},
 	{ target: '#Ziggy', text: 'She try to pouch you?', imageClass: "happy"},
-	{ target: '#Ziggy', text: 'She always the best at banters when i go there to straighten out a tangle.', imageClass: "neutral" },
+	{ target: '#Ziggy', text: 'She always the best at banters when I go there to straighten out a tangle.', imageClass: "neutral" },
 	{ target: '#Valnos', text: 'Its like you are talking about a different person.', imageClass: "suspicious"},
 	{ target: '#Glint', text: 'You groom!?', imageClass: "blush"},
-	{ target: '#Ziggy', text: 'Hey i like to be tidy too!', imageClass: "angry"},
+	{ target: '#Ziggy', text: 'Hey I like to be tidy too!', imageClass: "angry"},
 	{ target: '#Ziggy', text: 'Once a week', imageClass: "suspicious"}
 ];
 </script>

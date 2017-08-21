@@ -14,6 +14,10 @@
   <script src="../main.js"></script>
   <link rel="stylesheet" href="../main.css"></link>
   <script>
+   function goBack() {
+    window.history.back();
+}
+  
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
@@ -27,7 +31,7 @@
 		$('#button-2').on('click', function() {
         // change state here
         // end by using lib.goTo
-        lib.goTo('.html')
+         goBack();
 		})
     
     })
@@ -66,6 +70,8 @@
 
 <p> He dragged his struggling belly and himself back up into his spot up in the crows-nest and sighed contently. The sun was coming down, just like Captain Avolcs career as a West-sea Captain. </p>
 
+<p> But as soft padding under ginger fur, success was certain.</p>
+
 </div>
 <div class="noarn hidden">
 <p>They come in the night, sneaking and whispering. Its hard to be prepared, when the majority of a crew rise up against you.</p>
@@ -88,6 +94,7 @@
 
 <p> He dragged his struggling belly and himself back up into his spot up in the crows-nest and sighed contently. The sun was coming down, just like Captain Avolcs career as a West-sea Captain. </p>
 
+<p> But as soft padding under ginger fur, success was certain.</p>
 </div>
 <img src="Images/assets/Mutiny.png"/> 
 </div>
@@ -103,6 +110,7 @@
 <div id="tail">
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1">Back to the start</button>
+<button class="btn btn-default" id="button-2">Retry Event</button>
 </div>
 </body>
 </html>

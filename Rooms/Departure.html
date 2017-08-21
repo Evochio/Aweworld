@@ -15,6 +15,15 @@
   <link rel="stylesheet" href="../main.css"></link>
   <script>
 	state.days += 2;
+	
+	 /*
+	var revealrooms = function(){
+	if ($( ".room" ).hasClass( "visited" )) {
+	$(".room").addClass("hidden")
+	}
+	}
+	*/
+		
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
@@ -63,7 +72,7 @@
 	  
 	   $('#quarters').on('click', function(e) {
        lib.dialogue(e, "quarters")
-	   
+	   $("#quarters").addClass("visited")
       	 if (_.contains(state.events, "incognito")){
 			$("#yes").removeClass("hidden")
 			$("#no").removeClass("hidden")
@@ -73,6 +82,7 @@
 			$("#pens").addClass("hidden")
 			$("#quarters").addClass("hidden")
 			}
+			
 		
       })  		
 		
@@ -135,8 +145,8 @@
 		 
 	  
 	    $('#galley').on('click', function(e) {
-       lib.dialogue(e, "galley")
-	  
+		lib.dialogue(e, "galley")
+		$("#galley").addClass("visited")
        if (_.contains(state.events, "incognito")){
 			$("#apologize").removeClass("hidden")
 			$("#noapologize").removeClass("hidden")
@@ -146,6 +156,7 @@
 			$("#pens").addClass("hidden")
 			$("#quarters").addClass("hidden")
 			}
+			
 		
       })
 	  
@@ -193,6 +204,7 @@
 	  
 	    $('#storage').on('click', function(e) {
 		lib.dialogue(e, "storage")
+		$("#storage").addClass("visited")
 		/*
 		if (_.contains(state.events, "dress")){
 			lib.dialogue(e, "storage")
@@ -210,6 +222,7 @@
 	  
 	    $('#pens').on('click', function(e) {
        lib.dialogue(e, "pens")
+	   $("#pens").addClass("visited")
 	   if (_.contains(state.events, "incognito")){
 			$("#pens2").removeClass("hidden")
 			}
@@ -324,6 +337,10 @@
         lib.goTo('Cadets.html')
       })
 
+	   $('#reset').on('click', function(e) {
+       location.reload(true)
+		
+    })
 	  
 	  
 	  if (_.contains(state.events, 'hard')) {
@@ -387,8 +404,9 @@ Day: <span class="days"><script>displayDays()</script></span>
 <div id="tail">
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default" id="button-1"> Continue </button>
 <button class="btn btn-default" id="tour"> Tour the ship </button>
+<button class="btn btn-default" id="button-1"> Continue (No Tour) </button>
+
 
 <button class="btn btn-warning hidden" id="incognito"> Incognito </button>
 <button class="btn btn-default hidden" id="dress"> With Captains Dress </button>
@@ -419,6 +437,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 <button class="btn btn-default hidden" id="storage"> Storage rooms </button>
 
 <button class="btn btn-default hidden" id="stop"> Enough touring</button>
+<button class="btn btn-default hidden" id="reset"> reset event</button>
 </div>
 
 
@@ -437,7 +456,7 @@ I arrive on deck and consider where to go.
 
 </div>
 
-<div class="quarters hidden">
+<div class="quarters room hidden">
 <div class="dress hidden">
 <p>I take the central stairs down below deck toward the living quarters of most of the crew. <br />
 Sailors here live in in small sections of work-groups, divided by thin walls. Its a bit like miniature dormitories, they sleep and work together for their shifts, curled together on wide mattresses or smaller bolt-holes for couples or those who desire privacy. <br />
@@ -543,7 +562,7 @@ After staring dumbfounded a while he subtly had me taken down without breaking m
 </div>
 
 
-<div class="galley hidden">
+<div class="galley room hidden">
 <div class="dress hidden">
 <p>The galley is situated toward the front of the ship. My journey there takes me past the lower mess hall where crew gather for their meals or other off-duty activity, its not a spacious place and fits tables for a quarter of the crew at a time. As I arrive its dinner hour and the place is so busy and loud I'm only noticed by those in the immediate presence that I have to squeeze past. There's laughter and distraction at a sailors predicament tied to the roof that another is trying to feed broth to with a spoon. I leave them to their merriment and enter the Kitchens. </p>
 
@@ -649,7 +668,7 @@ No one did find out where the captain disappeared to. It was one of those myster
 </p>
 </div>
 
-<div class="pens hidden">
+<div class="pens room hidden">
 <div class="dress hidden">
 <p>Near the lowest levels of the ship, next to the storage rooms are the Raptorian pens and their attendants quarters.<br />
 As placid as they're trained to be, Raptorians are large and need their own space to be kept content on their long journeys at sea. <br />
@@ -777,7 +796,7 @@ No more Raptorians challenge my passing, but there is little else to see around 
 </div>
 
 
-<div class="storage hidden">
+<div class="storage room hidden">
 <div class="dress hidden">
 <p>At the lowest levels of the ship, all along its bottom, are the storage areas. Though there is still technically one level below for heavy ballast this deep in the belly of the ship. </p>
 

@@ -54,13 +54,40 @@
 		lib.dialogue(e, "fight")
 	  }
 		
-		$("#button-6").removeClass("hidden")
+		$("#button-2").removeClass("hidden")
 		$("#answers").addClass("hidden")
 			
       })
 		
+		$('#resignation').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.dialogue(e, "resignation")
+		$("#resignation").addClass("hidden")
+		$("#button-2").removeClass("hidden")
+		})
 	
-		$('#button-6').on('click', function(e) {
+	if (_.contains(state.events, "arn")) {
+	 $('.arn').removeClass('hidden');
+	 }
+	 else if (_.contains(state.events, "mirr")) {
+		$('.mirr').removeClass('hidden');
+		$("#button-2").addClass("hidden")
+		$("#resignation").removeClass("hidden")
+	}
+	else if (_.contains(state.events, "nyxie")) {
+		$('.nyxie').removeClass('hidden');
+		$("#button-2").addClass("hidden")
+		$("#resignation").removeClass("hidden")
+	}
+	else if (_.contains(state.events, "garsch")) {
+		$('.garsch').removeClass('hidden');
+	}
+	else if (_.contains(state.events, "tung")) {
+		$('.tung').removeClass('hidden');
+	}
+	
+		$('#button-2').on('click', function(e) {
         // change state here
 		
         // end by using lib.goTo
@@ -94,7 +121,7 @@
 <button class="btn btn-default" id="safe">You are safe now, rest.</button>
 <button class="btn btn-default" id="duty">There are duties to fulfill.</button>
 <button class="btn btn-default hidden" id="answers">Answers</button>
-<button class="btn btn-default hidden" id="button-6">Continue</button>
+<button class="btn btn-default hidden" id="button-2">Continue</button>
 <span id="cadetButtons"> </span>
 </div>
 
@@ -221,7 +248,7 @@
 
 <p>After I had taken the hit in the fight we had pushed them all the way back to their own deck. But the pirates had not let themselves be captured. In the chaos of battle the ships had started to float apart as our connection was cut loose.</p>
 
-<p>Garsch, the officer commanding the troops at the time, scratched at his old face-gash and looked somewhat sullen as he recounted the event.</p>
+<p><span class="garsch hidden">First Officer </span>Garsch, commanding the troops at the time, scratched at his old face-gash and looked somewhat sullen as he recounted the event.</p>
 
 <p>“It happened fast, the ships suddenly floating apart. The fight went out of them when we started to push in on their deck and nearing those thunder-weapons, we did what we could to try to mess them up. I had to ensure we were not trapped and outnumbered on our ship, most were holding defensive positions. So I pulled everyone back.” The rugged officer sighed. “I think in doing so we missed our chance in securing the enemy ship. I take full responsibility.” The officer sat a bit firmer at attention.</p>
 
@@ -230,17 +257,38 @@
 <p>“So they just fled? We made no attempt to pursue?” I looked to the other officers.<span class="arnLives hidden"> Arn in particular.</span></p>
 
 <span class="arnLives hidden">
-<p>“The ship was in bad condition as it was and so were you. Even if we had tried to catch them, our sails were in a bad condition.” Arn replied calmly. “As Garsch pointed out, their weapons were disabled. So they were no longer a threat.”</p>
+<p>“The ship was in bad condition as it was and so were you. Even if we had tried to catch them, our sails were torn up from the battle.” Arn replied calmly. “As Garsch pointed out, their weapons were disabled. So they were no longer a threat.”</p>
 
 <p>“Did you come to that conclusion before or after they did not turn around to continue fire upon us?” I chided and frowned. But I knew I was being needlessly moody, my hunger making my cranky. I waved away his attempt at excuses.</p>
 </span>
-<span class="arnDead hidden">
-<p> Officer Nyxie was the one to speak after a moment of silence. </p>
 
-<p> "Truthfully Captain. With you down, we had no one to quite take charge of the overall situation i think." She looked slightly ashamed, but i knew who the real blame. The chain of command was missing a few links due to recent events. I suppose we should consider ourselves lucky they were unable or unwilling to turn back to fire upon us again. </p>
+<span class="nyxie hidden">
+<p> First Officer Nyxie was the one to speak after a moment of silence. </p>
+
+<p> "Truthfully Captain. With you down, we were in some confusion and they slipped away out of pursuit range." She looked slightly ashamed, she had been in charge, but she was so new at the job I felt sorry for her. The chain of command was not in the best shape. I suppose we should consider ourselves lucky they were unable or unwilling to turn back to fire upon us again. </p>
 </span>
 
-<p>“What matters is that we came out of this encounter in one piece." I reassured them. "I saw the battle, they were better prepared and armed then any reports of this sea have told of. How has the ship held together?”</p>
+<span class="mirr hidden">
+<p> First Officer Mirr straightened her back and responded</p>
+
+<p> "It did not quite enter my mind to pursue the fight with so much chaos and injured about. I was focused on seeing to that you got the care you needed." Mirr stood by her decision, but she looked deeply concerned. She was new at her job as First-officer, I felt I could not question her judgement. 
+</span>
+
+
+<span class="tung hidden">
+<p> My new First-officer Tung replied from his end of the table with a gruff confidence. </p>
+
+<p> "Oh i wanted to, but the sails were all ragged, we had injuries and damage all over. From all the reports we did not quite seem ready for round 2."  Tung had listened to his fellow officers and chosen not to pursue. I suppose that was a favorable trait to have, so I could not blame him for the decision and just nodded to him</p>
+
+</span>
+
+<span class="garsch hidden">
+<p> Garsch shook his head</p>
+
+<p>"No, the enemy was in retreat and I judged another assault too costly and risky. With you injured and the mounting damage reports I chose not to pursue."  Garsch had impeccable tactical sense, so if that was his judgement, I would not argue the point further. </p>
+</span>
+
+<p>“What matters is that we came out of this encounter in one piece." I reassured them. "They were better prepared and armed then any reports of this sea have told of. How has the ship held together?”</p>
 
 <span class="arnLives hidden">
 <p>“Tick reported none of the damage received is critical, they have already plugged the worst of the breaches." Arn spoke gruffly, finally speaking up. "But he very firmly pointed out that we nearly bit the rot on this one. We could not have handled a prolonged fight."</p>
@@ -275,7 +323,35 @@ The room was silent a while. Everyone had reported what they could and i felt su
 </div>
 </div>
 
+<div class="resignation hidden">
 
+<p> The Officers file out to do their respective duties. But my new First-officer remains. </p>
+<div class="nyxie hidden">
+<p>Nyxie hands me her First-officers insignia.</p>
+
+<p>“C-captain. I don't know how to say this. But I don't think I'm cut out for this job. <br />
+In that battle there. I was entirely overwhelmed. If you had not shouted at me what to do, I would been frozen on the spot. All I could think of was to steer the ship the way you wanted me to. I totally forgot about being the First-officer!” Nyxie squeaked distraught and shook her head. “I let so many people down who came to me for guidance!”</p>
+
+<p>“It was not the kindest first day for a First-Officer Nyxie. I understand you were overwhelmed.” I try to reassure her. </p>
+
+<p>“No captain, I do not want to do it, i-i-im so sorry! Im out of my depths, I only wish to sail, steer and navigate large beautiful ships! And its not fair to the crew to have someone like me in this position. If you want to demote me or punish me thats o-okay. I understand.” </p>
+
+<p>Nyxie lowered her head, as if to await my wroth and judgment. I can only exhale slowly and put a paw to her shoulder and squeeze gently. <br />
+</p>
+</div>
+<div class="mirr hidden">
+<p>Mirr meets my eyes with a firm and ashamed look. </p>
+
+<p>“I'm afraid I'm going to have to disappoint you, Captain.” She sighed. “I wish to step down as First-officer.” </p>
+
+<p>I feel my fur bristle involuntarily. Mirr, having anticipated my disappointment quickly speaks. </p>
+
+<p>“All that chaos of battle. I'm trained for it, in my head I knew what to do. I don't think I even had time to feel afraid. But I'm not an Awe who leads others into battle.” She held up her sword and looked at it with disdain. <br />
+“I know how to defend myself, I know where to cut and when to dodge. But after today... I do not have the spirit of battle. I cant be the one that tells others where to go bleed and perish, I do not have the heart and I hope you can respect that, my captain. I'm sorry.” </p>
+
+<p>She handed the First-officers insignia back at me, and stared into my eyes intently.</p>
+</div>
+</div>
 
 <script>
 /*

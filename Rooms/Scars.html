@@ -27,6 +27,7 @@
 		lib.dialogue(e, "ziggy"),
 		$("#button-1").removeClass("hidden")
 		$("#button-2").removeClass("hidden")
+		$("#side").addClass("hidden")
 		$("#ziggy").addClass("hidden")
 			
       })
@@ -53,11 +54,24 @@
         // end by using lib.goTo
         lib.goTo('Shipspotted2.html')
       })
+	  
+	 if (_.contains(state.events, "mirr")) {
+	 $('.mirr').removeClass('hidden');
+	  }
+	  
+	 else {
+		$('.nomirr').removeClass('hidden');
+	 }
+	  
     })
   </script>
   
   <style>
     /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	
+img {
+margin: auto;
+}
   </style>
 
 </head>
@@ -68,15 +82,32 @@ Day: <span class="days"><script>displayDays()</script></span>
 </div>
 <h1>Scars</h1>
 </div>
-<div id="story-text">
-<p> The officers leave hastily, already there are a line of lower officers outside our room waiting for instructions or to deliver reports. It will be a busy day for everyone </p>
+<div id="side">
 
-<p> Officer Mirr lingers parchment in paw, its the list of injured, lost and unaccounted. I spot Ziggys name among the casualties and point to it. </p>
+  <img class="mirr face" src="Images/assets/Mirr.png"/>
+ 
+</div>
+
+<div id="story-text">
+
+<div class="nomirr hidden">
+<p> Already there are a line of lower officers outside our room waiting for instructions or to deliver reports. It will be a busy day for everyone </p>
+
+<p> Officer Mirr lingers outside the door parchment in paw, its the list of injured, lost and unaccounted. I spot Ziggys name among the casualties and point to it. </p>
 
 <p> "Ah... Cadet Ziggy. Yes, i almost forgot. She's below deck, i think you should go see her. She's unhurt but... not okay." Mirr replies softly.</p>
 
 <p> "If there's something you think i can do to help her, i'll go have a look at her." We nod to one another. Everyone knows what to do. </p>
+</div>
+<div class="mirr hidden">
+<p> I'll have to abide and respect Mirrs decision, though I do not have to like it. </p>
 
+<p> Still she lingers, parchment in paw, its the list of injured, lost and unaccounted. More bad news, I spot Ziggys name among the casualties and point to it. </p>
+
+<p> "Ah... Cadet Ziggy. Yes, i almost forgot. She's below deck, i think you should go see her. She's unhurt but... not okay." Mirr replies softly.</p>
+
+<p> "If there's something you think i can do to help her, i'll go have a look at her." We nod to one another. I wish there more  I could say, some magic word to convince her reconsider. But if she didnt have the heart for it, that was that.</p>
+</div>
 </div>
 <div id="tail">
 

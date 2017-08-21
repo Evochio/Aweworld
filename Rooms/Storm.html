@@ -51,6 +51,7 @@
 	 $('#takeover').on('click', function(e) {
 		lib.dialogue(e, "takeover"),
 		state.events.push("storminjury");
+		$("#side").addClass("hidden")
 		state.injuries += 1;
 		state.shipHealth -= 1;
 		$("#trust").addClass("hidden")
@@ -69,6 +70,10 @@
   
   <style>
     /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	
+	img {
+	margin: auto;
+	}
 </style>
 
 </head>
@@ -81,14 +86,21 @@ Day: <span class="days"><script>displayDays()</script></span>
 </div>
 <h1>Storm</h1>
 </div>
+<div id="side">
+ <img src="Images/assets/Nyxie.png"/>
+</div>
 <div id="story-text">
 <em><p> I dreamt of green hills, fresh breezes, flowers and scents. The memories of home always seem to beckon unexpectedly. Of lonely carefree days, free of responsibility. </p>
 
 <p> Melons face, innocent and eyes alight with wonder. Like so many eager faces, hanging on my every word. Begging for more embellished storybook tales, whining about having to have to learn the numbers and letters. </p>
 
-<p> I left all that behind. Why did i write this down? </p> </em>
+<p> I left all that behind. Why did i write this down? </p></em>
 
-<p>Im awoken to the ship rocking unusually. That means on thing, storm on the horizon. It doesent look too big, but it lays straight in our path. We could try to sail around it, but that could still take many extra days. The crew is still fresh and the ship is in top shape so we could also chance going through it.</p>
+<p> Im awoken to the ship rocking unusually. That means on thing, storm on the horizon. </p> 
+
+<p> It doesent look too big, but it lays straight in our path. We could try to sail around it, but that could still take many extra days. The crew is still fresh and the ship is in top shape so we could also chance going through it.</p>
+
+<p> I'm slightly unnerved by how quickly it had materialized and closed in on us. The West sea was indeed more temperamental then the more predictable weather of the East.  </p>
 
 <p> I consulted with Officer Nyxie, our navigator. </P>
 </br>
@@ -106,8 +118,8 @@ Day: <span class="days"><script>displayDays()</script></span>
 <div id="tail">
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default" id="through">We are going through!</button>
-<button class="btn btn-default" id="around">Better play is safe.</button>
+<button class="btn btn-default" id="through">We are going through</button>
+<button class="btn btn-default" id="around">Better play is safe</button>
 <button class="btn btn-default hidden" id="trust">Shout a warning</button>
 <button class="btn btn-warning hidden" id="takeover">Push her out of the way</button>
 <button class="btn btn-default hidden" id="continue">Continue</button>

@@ -59,6 +59,7 @@
 		if (_.contains(state.events, "fast")) {
 		lib.dialogue(e, "aroundFast")
 		state.shipHealth -= 1;
+		$("#image").attr('src','Images/assets/Tick.png');
 			if (_.contains(state.events, "stormtrust")) {
 			state.shipHealth -= 1;
 			}
@@ -68,6 +69,7 @@
 		state.delay -= 1;
 			if (_.contains(state.events, "stormtrust")) {
 			state.shipHealth -= 1;
+			
 			}
 		}
 		
@@ -81,6 +83,7 @@
 		if (_.contains(state.events, "fast")) {
 		lib.dialogue(e, "throughFast")
 		state.delay -= 2;
+		$("#image").attr('src','Images/assets/Tick.png');
 		}
 		else if (_.contains(state.events, "slow")) {
         lib.dialogue(e, "throughSlow")
@@ -106,6 +109,9 @@
   
   <style>
     /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	img {
+	margin: auto;
+	}
   </style>
 
 </head>
@@ -118,6 +124,12 @@ Day: <span class="days"><script>displayDays()</script></span>
 </div>
 <h1>The Sea of Fangs</h1>
 </div>
+
+<div id="side">
+ <img id="image" src="Images/assets/Nyxie.png"/>
+
+</div>
+
 <div id="story-text">
 <p>I stood on the deck, watching the pointy eroding cliffs and shadows of reefs pass by in the distance when im approached by Nyxie, our navigator.</p>
 

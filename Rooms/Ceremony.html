@@ -30,6 +30,7 @@
 		$('#agreed2').on('click', function(e) {
 		lib.dialogue(e, "agreed2"),
 		state.piety += 1;
+		
 		$("#agreed2").addClass("hidden")
 		 $("#denied").addClass("hidden")
 		$("#allow").removeClass("hidden")
@@ -47,7 +48,7 @@
       })
 	    $('#quiet').on('click', function(e) {
        lib.dialogue(e, "quiet"),
-		
+		state.crewMorale += 1
         $("#quiet").addClass("hidden")
 		$("#continue").removeClass("hidden")
 		
@@ -56,10 +57,12 @@
        lib.dialogue(e, "ceremony"),
 	   $("#ceremony").addClass("hidden")
 	   $("#ceremony2").removeClass("hidden")
+	   state.crewMorale += 3
 	   if (state.piety >= 3) {
 	    $("#volunteer").removeClass("hidden")
 	   	   }
 		   
+		 $("#side").removeClass("hidden")   
 	    })
 	    $('#volunteer').on('click', function(e) {
        lib.dialogue(e, "volunteer"),
@@ -71,9 +74,10 @@
       })
 	  $('#ceremony_no').on('click', function(e) {
        lib.dialogue(e, "ceremony_no"),
+	   state.crewMorale += 2
 	   $("#ceremony_no").addClass("hidden")
 		$("#continue").removeClass("hidden")
-		
+		 $("#side").removeClass("hidden")   
       })
 	   $('#ceremony2').on('click', function(e) {
        lib.dialogue(e, "ceremony2"),
@@ -81,6 +85,7 @@
 	   $("#continue").removeClass("hidden")
 	   $("#volunteer").addClass("hidden")
 	   state.crewLoss += 4;
+	   
       })
 	  
 	  $('#noallow').on('click', function(e) {
@@ -110,6 +115,9 @@
   
   <style>
     /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	img {
+	margin: auto;
+	}
   </style>
 
 </head>
@@ -120,6 +128,9 @@
 Day: <span class="days"><script>displayDays()</script></span>
 </div>
 <h1>Ceremony</h1>
+</div>
+<div id="side" class="hidden">
+ <img src="Images/assets/Priestess.png"/>
 </div>
 <div id="story-text">
 <p>“Captain” A soft voice spoke to me through the doorway. “May we have a word?” </p>

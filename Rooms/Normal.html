@@ -26,11 +26,11 @@
         lib.goTo('Sea-wolves.html')
       })
 	  
-	  if (_.contains(state.events, "eatArn") && state.crewMorale  <= 4) {
+	  if (_.contains(state.events, "eatArn") && state.crewMorale  <= 3) {
 	  
 		lib.goTo('Mutiny.html')
 	  }
-	  else if (state.crewMorale  <= 3)
+	  else if (state.crewMorale  <= 2)
 	 {
 	  
 		lib.goTo('Mutiny.html')
@@ -70,7 +70,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 		
 		cadet[0].banter = [
 		{ target: '#Ziggy', text: 'That was the most fun i had in a while.', imageClass: "happy"},
-		{ target: '#Ziggy', text: 'Win or loose, nothing like playing high-stakes with the captain!', imageClass: "blushing"}
+		{ target: '#Ziggy', text: 'Win or loose, nothing like playing high-stakes with the captain!', imageClass: "blush"}
 		];
 		cadet[1].banter = [
 		{ target: '#Glint', text: 'Im glad thats over with.', imageClass: "surprised"},
@@ -112,7 +112,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 		
 		cadet[0].banter = [
 		{ target: '#Ziggy', text: 'You drive a hard bargain captain', imageClass: "surprised"},
-		{ target: '#Ziggy', text: 'Many wont be happy with this. But they will get over it!', imageClass: "blushing"},
+		{ target: '#Ziggy', text: 'Many wont be happy with this. But they will get over it!', imageClass: "blush"},
 		{ target: '#Ziggy', text: 'Theres always boardgames', imageClass: "happy"}
 		];
 		cadet[1].banter = [
@@ -133,7 +133,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 	 		cadet[1].banter = [
 		{ target: '#Glint', text: 'Im glad thats over with.', imageClass: "neutral"},
 		{ target: '#Glint', text: 'You made a stern decision. Im sure the crew will respect that!', imageClass: "smug"},
-		{ target: '#Glint', text: 'Eating Arn might seem harsch. But I think it was the right thing to do. He was undermining your authority and rules!', imageClass: "angry"}
+		{ target: '#Glint', text: 'Eating Arn might seem harsh. But I think it was the right thing to do. He was undermining your authority and rules!', imageClass: "angry"}
 		];
 	 		cadet[2].banter = [
 		{ target: '#Valnos', text: 'With Arn gone, i think thats the last we saw of that racket', imageClass: "happy"},
@@ -153,7 +153,7 @@ Day: <span class="days"><script>displayDays()</script></span>
     { target: '#Glint', text: 'Ugh, you are so crude and desipicable.', imageClass: "angry"},
     { target: '#Ziggy', text: 'Hah, so grumpy today! Whats the matter, dont sleep well? Something keep you up?', imageClass: "happy" },
     { target: '#Glint', text: 'Its no surprise your body is as crude and annoyingly noisy as you.', imageClass: "angry"},
-	{ target: '#Ziggy', text: 'Hah, sounds like someone is just envious! Valnos wasent bothered!', imageClass: "blushing"},
+	{ target: '#Ziggy', text: 'Hah, sounds like someone is just envious! Valnos wasent bothered!', imageClass: "blush"},
 	{ target: '#Valnos', text: 'Maybe a little...', imageClass: "sad"},
 	{ target: '#Glint', text: 'Im not envious.', imageClass: "concerned"},
 	{ target: '#Ziggy', text: 'Its okay, really, i understand. Its not fair.', imageClass: "neutral"},

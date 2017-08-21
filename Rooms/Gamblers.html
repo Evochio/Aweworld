@@ -20,10 +20,27 @@
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
       
+	   $('#investigate').on('click', function(e) {
+        // change state here
+		
+	   $("#button-1").removeClass("hidden");
+	   $("#button-2").removeClass("hidden")
+	    $("#ignore2").removeClass("hidden")
+		 $("#side").removeClass("hidden")
+	   $("#investigate").addClass("hidden")
+	   $("#button-3").addClass("hidden")
+		state.crewMorale -= 2;
+		state.raptorians += 1
+        // end by using lib.goTo
+        lib.dialogue(e, "investigate")
+      })
+	  
+	  
       $('#button-1').on('click', function(e) {
         // change state here
 		state.events.push("forbid");
 	   $("#button-4").removeClass("hidden");
+	   $("#ignore2").addClass("hidden")
 	   $("#button-1").addClass("hidden")
 	   $("#button-2").addClass("hidden")
 	   $("#button-3").addClass("hidden")
@@ -36,6 +53,7 @@
         // change state here
 		state.events.push("limmit");
 	   $("#button-4").removeClass("hidden");
+	   $("#ignore2").addClass("hidden")
 	   $("#button-1").addClass("hidden")
 	   $("#button-2").addClass("hidden")
 	   $("#button-3").addClass("hidden")
@@ -57,6 +75,20 @@
 		lib.dialogue(e, "ignore")
        
       })
+	   $('#ignore2').on('click', function(e) {
+        // change state here
+		state.events.push("ignore");
+	   $("#button-4").removeClass("hidden");
+	   $("#button-1").addClass("hidden")
+	   $("#button-2").addClass("hidden")
+	   $("#ignore2").addClass("hidden")
+		state.raptorians -= 1;
+        // end by using lib.goTo
+		lib.dialogue(e, "ignore")
+       
+      })
+	  
+	  
 	   $('#button-4').on('click', function(e) {
         // change state here
 		
@@ -67,6 +99,16 @@
   
   <style>
     /* Put styling that is specific to this page here. This is a CSS comment btw. */
+		img {
+	margin: auto;
+	
+	}
+	
+	
+	#fatkeeper {
+	width: 50%;
+	
+	}
   </style>
 
 </head>
@@ -79,63 +121,92 @@ Day: <span class="days"><script>displayDays()</script></span>
 </div>
 <h1>Gamblers</h1>
 </div>
+<div class="hidden" id="side">
+ <img class="face" src="Images/assets/Arnface.png"/>
+ <img class="face" src="Images/assets/Keeperface.png"/>
+</div>
 <div id="story-text">
 
 <p>Its come to my attention we are down 1 Raptorian. 
-<span class="hidden" id="deepen"> Apperently not to some sea-related disease or accident, but one chose to "deepen" itself with a Wulf! </span> 
-<span class="hidden" id="nodeepen">Apperently not to some sea-related disease or accident, but willingly giving himself to the belly of a Wulf. </span>
+<span class="deepen hidden"> Apperently not to some sea-related disease or accident, but one chose to "deepen" itself with a Wulf! </span> 
+<span class="nodeepen hidden">Apperently not to some sea-related disease or accident, but willingly giving himself to the belly of a Wulf. </span>
 </p>
 
 
 <p> Packmaster Evok reports that Logistics-Officer Keeper, has been engaging Raptorians in high-stakes gambling and winning. Winning so much in fact that he won the rights to devour one of them. Raptorians being what they are of course accepted the loss.</p>
 
-<p>Raptorians are an expensive resource and our best fighters for boarding actions. Im not sure i should tolerate unnecessary attrition to their numbers. <span class="hidden" id="nodeepen">Also this all sounds suspiciously like that deepening issue from barely a day ago. How can this be any different! </span> I have however been strongly recommended against forbidding the games the crew play on their ofttimes by First-officer Arn, its apparently a long-standing tradition on this ship and keeps them occupied to such a degree that it diverts them from other mischief. </p>
+<p>Raptorians are an expensive resource and our best fighters for boarding actions. Im not sure i should tolerate unnecessary attrition to their numbers. <span class="nodeepen hidden">Also this all sounds suspiciously like that deepening issue from barely a day ago. How can this be any different! </span> I have however been strongly recommended against forbidding the games the crew play on their ofttimes by First-officer Arn, its apparently a long-standing tradition on this ship and keeps them occupied to such a degree that it diverts them from other mischief. </p>
 
-<p>The games are apparently well documented and the stakes signed. Raptorian private Cusp had signed his will before willingly honoring his loss. I suppose we&rsquo;ve had an unusually low level of tension and attrition on this voyage so far, especially considering how over-capacity we are, though im hesitant to acknowledge the games as the cause. Also this ship isnt even that old, i doubt the age of this tradition.</p>
-
-<p>Still, i feel the gambling is at fault here, i have to decide whether to put a stop to this practice or at least put restrictions on it. <span class="hidden" id="deepen">I'd hate to micromanage, crew wont like their captain butting in, and what do i know of how deeply the raptorian desired to be Wulf-meat. But the matter rubs me the wrong way. </span><span class="hidden" id="nodeepen">I'd hate to micromanage, crew wont like their captain butting in, but it feels like denying one thing and allowing another might be disingenuous. </span> </p>
+<p>I have to decide whether to investigate and put a stop to this practice or at least put restrictions on it. <span class="deepen hidden">I'd hate to micromanage, crew wont like their captain butting in, and what do i know of how deeply the raptorian desired to be Wulf-meat. But the matter rubs me the wrong way. </span><span class="nodeepen hidden">I'd hate to micromanage, crew wont like their captain butting in, but it feels like denying one thing and allowing another might be disingenuous. </span> </p>
 
 
 <script>
  if (_.contains(state.events, "deepening")) {
-	 $('#deepen').removeClass('hidden');
+	 $('.deepen').removeClass('hidden');
 	
  }
 	else {
-		$('#nodeepen').removeClass('hidden');
+		$('.nodeepen').removeClass('hidden');
 	}
 </script>
 
 </div>
 <div id="tail">
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default" id="button-1"> Confront and forbid the game </button>
-<button class="btn btn-default" id="button-2"> Limit the game </button>
+<button class="btn btn-default" id="investigate">Investigate </button>
+<button class="btn btn-default hidden" id="button-1"> Forbid the games </button>
+<button class="btn btn-default hidden" id="button-2"> Limit the game </button>
+<button class="btn btn-default hidden" id="ignore2"> Let it go </button>
 <button class="btn btn-default" id="button-3"> Ignore it for now. </button>
 <button class="btn btn-default hidden" id="button-4">Continue</button>
 <span id="cadetButtons"> </span>
 
 </div>
 
-<div class="confront hidden"><p><strong>Confront and forbid the game</strong></p>
-<p>I decided to put a stop to it and with Cadet Ziggy in tow, confronted First-Officer Arn and Keeper about it in the holds below, apperently they spend much time together. Keeper was drowsy from his big meal but it didn&rsquo;t stop him from trying to be clever with me. Wulfs can be infuriating in how they walk the line between polite formality and veiled snark.</p>
+<div class="investigate hidden"><p><strong>Investigate</strong></p>
 
-<p>Arn gave me some speech about how morale will be affected if I go interfering in what my crew does for a pastime. And it is true these issues are above captains matters. But as I aptly explained to the officers, some games or personal debts should not endanger the crews chances to fulfill the mission. They belong to the Admiralty out here, not this Wulfs belly and if anyone&rsquo;s gut then mine above all. And that&rsquo;s where he&rsquo;d go if he kept misusing Admiralty resources. Atleast Keeper above all should know about use of ships resources.</p>
+<img id="fatkeeper" src="Images/assets/keepervore2.png" height="10%" width="10%"/> 
+
+<p>I've decided to investigate this issue personally before it becomes a potential big problem. There are too much questionable activity going on. </p>
+
+<p>I found Officer Keeper with Arn, apparently they spend some time together as Keeper has been recruited to maintain track of all bets of participants. I suppose a logistics officer would make an excellent bookkeeper. </p>
+
+<p>Keeper was drowsy from his big meal, unsurprisingly a whole Raptorian had been of little issue to his Wulfish metabolism. But it didn’t stop him from trying to be clever with me. Wulfs can be infuriating in how they walk the line between polite formality and veiled snark. </p>
+
+<p>“A pleasure to see you captain! A social visit, or perhaps you're interested in... joining in?” The smug Wulf smirked. </p>
+
+<p>“You both know why I'm here. Now explain to me why I should not be upset?” I frown at them both. </p>
+
+<p>“Things might have gotten slightly out of hand Captain. This isn't exactly status quo when it comes to bets. Come, look at this.” Arn surprisingly had some documentation to show. </p>
+
+<p>The games are apparently well documented and the stakes signed. Raptorian private Cusp had signed his will before willingly honoring his loss. <br />
+I suppose we’ve had an unusually low level of tension and attrition on this voyage so far, especially considering how over-capacity we are, though despite Arns insistence on the issue, I'm hesitant to acknowledge the games as the cause. </p>
+
+<p>“Crew member will find one way or another to jump down each-others throats, whether you permit it or not.” Arn rumbled calmly and coolly. “At least this way we have a manner of control over it. “</p>
+
+<p>The assurance sounded pretty, but the gambling is still at fault here, i have to decide whether to put a stop to this practice or at least put restrictions on it. <br />
+I'd hate to micromanage, crew wont like their captain butting in; And what do i know of how deeply the Raptorian desired to be Wulf-meat, signature or not. But the matter rubs me the wrong way.<br />
+</p>
+
+
+</div>
+
+<div class="confront hidden"><p><strong>Forbid the game</strong></p>
+
+<p>Arn gave me some speech about how morale will be affected if I go interfering in what my crew does for a pastime. And it is true these issues are above captains matters. But as I aptly explained to the officers, some games or personal debts should not endanger the crews chances to fulfill the mission. They belong to the Admiralty out here, if to anyone&rsquo;s gut then mine above all. And that&rsquo;s where he&rsquo;d go if he kept misusing Admiralty resources. Atleast Keeper above all should know about use of ships resources.</p>
 
 <p>The point was clearly taken, or so I thought when he made his bashful apology. Arn seemed to only reluctantly nod, one of his big brows twitching in agitation. I had a feeling i was stepping on some toes here.</p>
 
-<img src="Images/assets/keepervore2.png" height="10%" width="10%"/> 
 </div>
 
 
 <div class="limmit hidden"><p><strong>Limmit the game.</strong></p>
-<p>They can have their games, but im stopping the high-stakes part of it. With Cadet Ziggy in tow, I confronted First-Officer Arn and Keeper about it in the holds below, apperently they spend much time together . Keeper was drowsy from his big meal but it didn&rsquo;t stop him from trying to be clever with me. Wulfs can be infuriating in how they walk the line between polite formality and veiled snark.</p>
 
-<p>Arn gave me some speech about how morale will be affected if I go interfering in what my crew does for a pastime. And it is true these issues are above captains matters. But as I aptly explained to the officers, some games or personal debts should not endanger the crews chances to fulfill the mission. They belong to the Admiralty out here, not this Wulfs belly and if anyone&rsquo;s gut then mine above all. And that&rsquo;s where he&rsquo;d go if he kept misusing Admiralty resources. Atleast Keeper above all should know about use of ships resources.</p>
+<p>Arn gave me some speech about how morale will be affected if I go interfering in what my crew does for a pastime. And it is true these issues are above captains matters. But as I aptly explained to the officers, some games or personal debts should not endanger the crews chances to fulfill the mission. They belong to the Admiralty out here, if to anyone&rsquo;s gut then mine above all. And that&rsquo;s where he&rsquo;d go if he kept misusing Admiralty resources. Atleast Keeper above all should know about use of ships resources.</p>
 
 <p>The point was clearly taken, or so I thought when he made his bashful apology. Arn seemed to only reluctantly nod, one of his big brows twitching in agitation. I had a feeling i was stepping on some toes here.</p>
 
-<img src="Images/assets/keepervore2.png" height="10%" width="10%"/> 
+
 </div>
 
 <div class="ignore hidden"><p><strong>Ignore it for now</strong></p>
@@ -145,6 +216,12 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 </div>
 
+<div class="ignore2 hidden"><p><strong>Ignore it for now</strong></p>
+<p>I decided to let the matter go. Raptorians should know better then to engage a Wulf in a game of chance and cunning. Lets hope this has taught them to be more wary, or i&#39;d no doubt hear more of their digestive demise to Wulf stomach.</p>
+
+<p>The particular game of chance they play have been an ongoing thing for a long time amd seemed to be well-documented, its best not to stir things up. Crew matters are the First-officers duty, so I&#39;ll accept his judgment.</p>
+
+</div>
 
 
 <script>
@@ -169,7 +246,7 @@ Day: <span class="days"><script>displayDays()</script></span>
  cadet[0].banter = [
 	{ target: '#Ziggy', text: 'Its true, it keeps most of us occupied down there. I admit im part of the gambling myself.', imageClass: "neutral"},
 	{ target: '#Glint', text: 'Big surprise.', imageClass: "concerned"},
-	{ target: '#Ziggy', text: 'Ive managed to stay out of debt myself, mind you.', imageClass: "blushing" },
+	{ target: '#Ziggy', text: 'Ive managed to stay out of debt myself, mind you.', imageClass: "blush" },
 	{ target: '#Ziggy', text: 'Its not so bad really, raptorians are just bad at hedging their bets.', imageClass: "happy"},
 
 ];

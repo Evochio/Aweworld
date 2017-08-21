@@ -28,7 +28,7 @@
       
       $('#button-1').on('click', function(e) {
 		lib.dialogue(e, "intel"),
-		$("#button-2").removeClass("hidden")
+		$("#button-1").addClass("hidden");
 	})
 		
 		$('#button-2').on('click', function(e) {
@@ -36,10 +36,102 @@
 		lib.goTo('Shipspotted.html')
       })
       
-	  if (_.contains(state.inventory, "intel")) {
-	 $("#button-1").removeClass("hidden") 
-	 $("#withIntel").removeClass("hidden") 
-	 }
+	    $('#promotion').on('click', function(e) {
+		lib.dialogue(e, "promotion"),
+		$("#nyxie").removeClass("hidden")
+		$("#mirr").removeClass("hidden")
+		$("#garsch").removeClass("hidden")
+		$("#promotion").addClass("hidden");
+	})
+	
+	$('#arn').on('click', function(e) {
+		lib.dialogue(e, "arn"),
+		$("#button-2").removeClass("hidden")
+		$("#arn").addClass("hidden");
+	})
+	  
+	  $('#nyxie').on('click', function(e) {
+		state.events.push("nyxie");
+		lib.dialogue(e, "nyxie"),
+		$("#nyxie").addClass("hidden")
+		$("#mirr").addClass("hidden")
+		$("#garsch").addClass("hidden")
+		$("#button-2").removeClass("hidden");
+	})
+	
+	  $('#mirr').on('click', function(e) {
+		state.events.push("mirr");
+		lib.dialogue(e, "mirr"),
+		$("#nyxie").addClass("hidden")
+		$("#mirr").addClass("hidden")
+		$("#garsch").addClass("hidden")
+		$("#button-2").removeClass("hidden");
+	})
+	  
+	    $('#garsch').on('click', function(e) {
+		if (_.contains(state.events, "hard")) {
+		state.events.push("garsch");
+		lib.dialogue(e, "garsch"),
+		$("#nyxie").addClass("hidden")
+		$("#mirr").addClass("hidden")
+		$("#garsch").addClass("hidden")
+		$("#button-2").removeClass("hidden");
+		}
+		else {
+		$("#tung").removeClass("hidden")
+		$("#garsch").addClass("hidden")
+			lib.dialogue(e, "garschtung")
+			
+		}
+	})
+	
+	 $('#tung').on('click', function(e) {
+		state.events.push("tung");	
+		lib.dialogue(e, "tung"),
+		$("#nyxie").addClass("hidden")
+		$("#mirr").addClass("hidden")
+		$("#tung").addClass("hidden")
+		$("#button-2").removeClass("hidden");
+	})
+	  
+	  
+	  
+	
+	if (_.contains(state.events, "arn")) {
+	$("#arn").removeClass("hidden")
+	}
+	else {
+		$("#promotion").removeClass("hidden")
+	}
+	
+	if (_.contains(state.inventory, "intel")) {
+	state.crewMorale += 1;
+	$("#button-1").removeClass("hidden") 
+	$('.withIntel').removeClass('hidden');
+	}
+	else if (_.contains(state.wulfQuestions, "noIntel"))
+	{
+	$('.noIntel').removeClass('hidden');
+	state.crewMorale -= 2;
+	}
+	
+if (_.contains(state.wulfQuestions, "viska")) {
+$('.withIntelViska').removeClass('hidden');
+state.crewMorale += 1;
+}
+else if (_.contains(state.wulfQuestions, "viskasBelly")) {
+state.crewMorale -= 1;
+$('.viskaBelly').removeClass('hidden');
+}
+else if (_.contains(state.wulfQuestions, "convinced")) {
+$('.convinced').removeClass('hidden');
+}
+
+if (_.contains(state.wulfQuestions, "attackViska"))
+{
+$('.attackViska').removeClass('hidden');
+}
+
 	
     })
   </script>
@@ -63,14 +155,14 @@ Day: <span class="days"><script>displayDays()</script></span>
 <p>It was always peculiar dealing with the Wulfs. They have no larger centralized government like us yet still manage to function under some sort of basis of mutual benefit and cooperation. What looks near anarchistic on the surface they manage to somehow thrive under. It always made dealing with them a haphazard affair however, one that could turn one way or another. </p>
 </div>
 
-<div class="hidden" id="withIntelViska">
-<p>Though I wish they were simpler to deal with sometimes i cant complain about getting to skip on today rations, the former Wulf-captain has settled in nicely! To have such a stubborn young gal turn on her heels so quickly to willingly be my meal, Wulfs are indeed peculiar. With this action my renown among the Wulf-fleets will grow, if that means an increased diet of Wulf-captains, I welcome it.</p>
+<div class="withIntelViska hidden">
+<p>Though I wish they were simpler to deal with sometimes I cant complain about getting to skip on today rations, the former Wulf-captain has settled in nicely! To have such a stubborn young gal turn on her heels so quickly to willingly be my meal, Wulfs are indeed peculiar. With this action my renown among the Wulf-fleets will grow, if that means an increased diet of Wulf-captains, I welcome it.</p>
 </div>
 
 
-<div class="hidden" id="viskaBelly">
+<div class="viskaBelly hidden">
 
-<p>As proven today, there was no end of trouble when individuals could decide to act however they wanted under no seeming limits. Being swallowed by that brat, to give myself over to those smirking jaws and being flaunted about, its something i wish not repeat. Now afterwards im acctually somewhat surprised to still be here, that she kept her word. </p>
+<p>As proven today, there was no end of trouble when individuals could decide to act however they wanted under no seeming limits. Being swallowed by that brat, to give myself over to those smirking jaws and being flaunted about, its something I wish not repeat. Now afterwards im acctually somewhat surprised to still be here, that she kept her word. </p>
 
 </div>
 
@@ -80,13 +172,13 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 </div>
 
-<div class="hidden" id="noIntel">
+<div class="noIntel hidden">
 
 <p>Today was a great example of what a disaster things can turn out to be when captains are allowed to act under the slightest whim and self-benefit. We'll have to carry on without the documents, their importance were never specified to be anything of the utmost and critical, but failing our first objective is still a hard blow. </p>
 
 </div>
 
-<div class="hidden" id="attackViska">
+<div class="attackViska hidden">
 <p>My conduct in this encounter will no doubt come under review when I return home. I did not only fail to acquire the information but I might have soured our diplomatic links that ambassadors back home had worked so hard for. </p>
 
 <p>However, Captain Viska gave me little choice in her conduct and I don't feel bad about putting her in her place. She's settled in now, her 'strength' is mine, as they say. </br>
@@ -104,27 +196,6 @@ Although Wulfs do like to play around with words, perhaps this firm action will 
 
 
 <script>
-if (_.contains(state.wulfQuestions, "viska")) {
-$('#withIntelViska').removeClass('hidden');
-state.crewMorale += 1;
-}
-else if (_.contains(state.inventory, "intel")) {
-state.crewMorale += 1;
-$('.withIntel').removeClass('hidden');
-}
-else if (_.contains(state.wulfQuestions, "viskasBelly")) {
-state.crewMorale -= 1;
-$('#viskaBelly').removeClass('hidden');
-}
-else if (_.contains(state.wulfQuestions, "noIntel"))
-{
-$('#noIntel').removeClass('hidden');
- state.crewMorale -= 2;
-}
-if (_.contains(state.wulfQuestions, "attackViska"))
-{
-$('#attackViska').removeClass('hidden');
-}
 
 </script>
 
@@ -134,7 +205,16 @@ $('#attackViska').removeClass('hidden');
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-success hidden" id="button-1">Intel</button>
-<button class="btn btn-default" id="button-2">Onwards</button>
+<button class="btn btn-default hidden" id="button-2">Onwards</button>
+
+<button class="btn btn-default hidden" id="arn">Reconciliation</button>
+<button class="btn btn-default hidden" id="promotion">Promotions</button>
+
+<button class="btn btn-default hidden" id="nyxie">Nyxie</button>
+<button class="btn btn-default hidden" id="mirr">Mirr</button>
+<button class="btn btn-default hidden" id="garsch">Garsch</button>
+<button class="btn btn-default hidden" id="tung">Tung</button>
+
 <span id="cadetButtons"> </span>
 </div>
 <div class="intel hidden"><p><strong>The Intel</strong></p>
@@ -152,6 +232,126 @@ $('#attackViska').removeClass('hidden');
 
 <p>With a frustrated sigh and my eyes bleary in the candlelight I decide to leave things for the morrow. Dawn is a few hours away.</p>
 
+</div>
+
+
+<div class="arn hidden"><p><strong>A talk with Arn</strong></p>
+<p>A gentle knock on the door announces the arrival of my First-Officer Arn. <br />
+This is slightly past the usual hours he drags his tail past here for his daily crew reports. </p>
+
+<p>Something about the consternation tells that its not about the usual order business. </p>
+
+<p>“What is it Arn?” I raise my brow curiously at him as he helps himself to a seat in my room.</p>
+
+<p>“I have not been entirely fair with you.“ He speaks in a low voice, before giving a pause. I invite him to continue by offering silence. You're not a bad captain.” He finally says, looking up to meet my eyes. I find all of this slightly sudden. </p>
+
+<p>“What brought all this on? Are you in trouble Arn?” I frown at him somewhat unconvinced. Arn crossed his arms and tucked his wings tight as he replied.</p>
+
+<p>“I was fully ready for a fight with those Wulfs, we all were. I mean, you heard their captain, she seemed stark mad and a crew that follows someone like that must be even more off their rocks. But you dealt with them like I never could. That took a lot of guts.” Arn explained, leaning forward.</p>
+
+<div class="noIntel hidden">
+<p>“Even though I failed to acquire us the Intel?” </p>
+
+<p>“You cant be blamed for it as I see it, they changed the deal. You refused to play their with their tricked cards.” Arn smirked, of course using a gambling simile.</p>
+</div>
+
+<div class="attackViska hidden">
+<p>“You cant be blamed for it as I see it, they changed the deal. And you made that crazy brat pay for it.” Arn smirked and nodded toward my gut. </p>
+</div>
+
+<div class="viskaBelly hidden">
+<p>“Even though I potentially paid a high price for the Intel.”</p>
+
+<p>“Honestly, I thought you were a goner when she waddled out like that. But whats a little pride? That you even managed to get it at all without a major fight was a big win in my eyes.” Arn smirked.</p>
+</div>
+
+<div class="convinced hidden">
+<p> "But you saw us through it without incident. I dont know what you two talked about in there, but I dont think anyone here could have turned that around." </p>
+</div>
+<div class="withIntelViska hidden">
+<p> “Not only did you get what we came for, you even managed to get a bonus!” He pointed to my rounded belly. “Thats impressive most of all.” </p>
+</div>
+<p>“Well... I dont know what to say. Thanks for your sudden faith in me Arn.” He seemed genuine, but I could not shake he had some agenda with all this. He seemed to sense my suspicion. </p>
+
+<p>“Look, as I said, I've not been fair to you. There's a slight bias toward fresh East-sea captains, most of them are all bluster and dont get far through the Sea of Fangs. So I've do my job the best way I can to keep the crew as a unit." Arn waved his paw to sweep around the room. I could tell this admission was hard on him, but he was committed.</p>
+
+<p>"But I could not do the job you do. They offered me it, before they brought you in, but I turned it down. I'm not cut out for the big decisions. You clearly are. I know the crew and how to keep em steady, so I'll do that and support you. So there... thats all I had to say.” Arn rose as if to leave. I rose with him, unsure what to say. </p>
+
+<p>After a brief moment of hesitation we clasped paws and shook, then parted. Nothing more needed to be said.</p>
+
+</div>
+
+
+
+<div class="promotion hidden"><p><strong>Promotions</strong></p>
+<p>This rendezvous with the Wulf ship got me thinking hard about the situation about missing a First-Officer. <br />
+Had something happened to me, the ship would have been largely leaderless, vulnerable and in chaos.</p>
+
+<p>I have to promote someone to First-Officer, if only as a temporary substitute, until we arrive at the Fleet and hopefully can sort things out there with the Fleet-Admiral. </p>
+
+<p>I've considered my current high-ranking officers closely over the last few days and came down to 3 candidates.</p>
+<p>Nyxie, Mirr and Garsch. </p>
+
+<p>They all have their own strengths and weaknesses, but they are the ones who I believe would not turn the position down right away and have sufficient seniority. </p>
+
+<p>Nyxie is sharp and has shown initiative, dedication and a sort of staunch determination to see things through. She would be on-top of things as a First-Officer and navigate her way through issues probably as well as she did the Fangs. <br />
+My only concern is that her true love seems to be for navigation and steering the ship. She might not be happy to step away from that, but would do it out of duty. </p>
+
+<p>Mirr knows the crew well and knows how to read people in general. She is a great negotiator and would have no problem keeping the peace on the ship and everyone satisfied. She has hidden qualities of leadership and courage in her that she's trying to hide. <br />
+Which brings me to her downside. She is for some reason hiding from greater responsibility, perhaps she feel content in her simple role as Crew Officer. She's also not the most martially adept officer we have.</p>
+
+<p>Garsch has experience unlike any other. He's the oldest Officer aboard and has spent years training students in the Academy before he joined into this navy commission. He's unflappable and would be a stoic and reliable First-Officer. <br />
+Unfortunately, he's not very well liked among the crew. He drives them hard and has high expectations. His age might be a problem in the long-term, I cant shake the feeling this sudden assignment to sea is his last hurrah.</p>
+</div>
+
+<div class="nyxia hidden"><p><strong>Nyxie</strong></p>
+<p>“I-im honored that you've picked me for this Captain. I'll do my best to meet your expectations of me!” Nyxie wrung her officers-cap in her paw. She was nervous. </p>
+
+<p>“It will take some adjusting to Nyxie. But I think you will do very well at it. You have talent in all fields neccesary.” I reassured her and placed the First officers insignia on her shoulder pads.</p>
+
+<p>“Yes, captain! Thank you captain! I'll try to not let you down!”</p>
+</div>
+
+<div class="mirr hidden"><p><strong>Mirr</strong></p>
+<p>“I you truly feel I'm the one you need to back you up, I accept the position.” Mirr nodded. “But I'll come out and say right away that I'm not cut out tactics and flinging a sword around.” She smiled bemused. </p>
+
+<p>“Firstly, you're not supposed to fling the sword. Secondly, I'm aware of this, but your other strengths more then make up for it, if only you'd let it.” I placed the first-officer insignia on her shoulder pad. </p>
+
+<p>“Very well captain.” She saluted and smiled solemnly.</p>
+</div>
+
+
+<div class="garschtung hidden"><p><strong>Rejection</strong></p>
+<p>“Im going to have to respectfully decline, captain. I believe there is another that would be a stronger candidate then me that you would be amiss in overlooking.” Garsch spoke firmly and unflinchingly. </p>
+
+<p>“And who is that?” I was slightly taken aback by his rejection.</p>
+
+<p>“Officer Tung, Captain. He might be rough around the edges and loose lipped at times to be sure, but I've been grooming him and think he has potential to make a great captain himself one day. He's one of the best fighters on board and the crew respects him. A First-Officers position would suit him well.”</p>
+
+<p>“Are you sure about this Garsch?” I hesitate. Its true I had not even considered Tung. He had mostly stayed out of my way since the first day. </p>
+
+<p>“I'm too old and weary for the job Captain. If there were no other choice, I'd take the job of course. But I don't want it. No, either pick Tung or someone else. I'll do what I can to assist whoever you choose.”<br />
+</p>
+</div>
+
+<div class="tung hidden"><p><strong>Tung</strong></p>
+<p>“This is a bit sudden Captain. I mean, I accept and all. But you know, we haven't exactly seen eye to eye.” Tung stood straight and firm. He really was quite stout for a male Awe, there certainly was a lot of mountain blood in him. </p>
+
+<p>“I wont lie to you, you were not my first choice Tung. But you came heavily recommended and I think I might have unfairly overlooked you. Do you feel up for the job yourself?” </p>
+
+<p>“I do. I watched Arn do it, didn't seem that hard. I can do some things better.” Tung huffed, he certainly didn't lack confidence. </p>
+
+<p>“Very well then. With that kind of attitude you have a head-start.” I pinned the First-Officers insignias on his shoulders. “There'll be no more of that Soft-fur talk will there?” I fixed him with a hard glare. He looked right back and smirked. </p>
+
+<p>“Not with you, Captain.”</p>
+</div>
+
+<div class="garsch hidden"><p><strong>Garsch</strong></p>
+<p>“I understand your need for a First-Officer, Captain. A ship needs a clear chain of command, I will do my best to back you up.” The old Officer stood at attention. </p>
+
+<p>“You're the most reliable choice Garsch. I have confidence in you.” I pinned the First-officer insignia to his shoulder pads. </p>
+
+<p>“Thank you Captain. I shall perform my duty to you, the crew and the Admiralty.”</p>
 </div>
 
 <script>

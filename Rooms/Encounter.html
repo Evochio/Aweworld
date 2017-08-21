@@ -27,6 +27,7 @@
         // end by using lib.goTo
 		lib.dialogue(e, "envoy"),
         $("#button-1").addClass("hidden");
+		$("#side").addClass("hidden");
 		$("#button-2").removeClass("hidden");
       })
 		
@@ -42,6 +43,9 @@
   
   <style>
     /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	img {
+	margin:auto;
+	}
   </style>
 
 </head>
@@ -53,6 +57,9 @@ Day: <span class="days"><script>displayDays()</script></span>
 <span class="schedule"><script>displayShedule()</script></span>
 </div>
 <h1>An Encounter</h1>
+</div>
+<div id="side">
+ <img src="Images/assets/Arnface.png"/>
 </div>
 
 <div id="story-text">

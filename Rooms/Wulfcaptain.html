@@ -75,11 +75,11 @@
 		
 		if (_.contains(state.events, "keeper")) {
 			 lib.dialogue(e, "shortkeeper")
-			console.log("Keeper exists")
+			
 		}
 		else {
 		 lib.dialogue(e, "short")
-		console.log("No keeper")
+		
 		}
 		if (_.contains(state.events, "keeper")) {
 			$('#keepers').removeClass('hidden');
@@ -208,6 +208,7 @@
 		else {
 		lib.dialogue(e, "convinced")
 		state.inventory.push("intel");
+		state.wulfQuestions.push("convinced");
 		$("#decline").removeClass("hidden")
 		$("#button-14").removeClass("hidden")
 		$("#button-10").addClass("hidden")

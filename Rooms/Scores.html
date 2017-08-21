@@ -33,13 +33,13 @@ $(".days").text(state.days);
 	if (state.vore == 0) {
 		$(".voracity").text("You dont have the appetite for others. You'd rather see everyone make it through and dont mind giving second chances.")
 	}
-	else if (state.vore >= 6 && state.vore < 7 ) {
+	else if (state.vore >= 6 && state.vore <= 7 ) {
 		$(".voracity").text("Your stomach rumbles audibly anytime you feel irritated. And your crew knows to be wary of that sound. Anyone is fair game!")
 	  } 
-	else if (state.vore >= 3 && state.vore < 5 ) {
+	else if (state.vore >= 3 && state.vore <= 5 ) {
 		$(".voracity").text("Someone crosses you and they're as good as asking to become pudge under your belt!")
 	  } 
-	else if (state.vore >= 1 && state.vore < 2 ) {
+	else if (state.vore >= 1 && state.vore <= 2 ) {
 		$(".voracity").text("You dont go out of your way to eat others. Sometimes you just have no choice.")
 	  }
 	}
@@ -75,7 +75,8 @@ $(".days").text(state.days);
         // change state here
 		
         // end by using lib.goTo
-        lib.goTo('.html')
+        lib.goTo('/index.html')
+		localStorage.clear()
       })
     })
   </script>
@@ -94,7 +95,8 @@ $(".days").text(state.days);
 
 <p>The perils have been many, both from outside and within. But the journey has barely started, new lands and threats await. Will Avolcs arrival be what tips the scales to success or disaster?" </p>
 
-<p> Find out in Chapter 2. (Once its written)</p> 
+<p> Find out in Chapter 2. (Once its written)</p>
+<p> Feel free to leave feedback at: aweworldgame@gmail.com</p> 
 
 <p><b>Statistics!</b></p>
 
@@ -103,10 +105,11 @@ $(".days").text(state.days);
 <br/>
 <p><span class="speed"><script>speed()</script></span> </p>
 <b><p>Crew Lost: <p></b>
-You lost <span class="crew"><script>displayCrew()</script></span> out of 250 Crewmembers. 
+You lost <span class="crew"><script>displayCrew()</script></span> Crewmembers. 
 
 <b><p>Morale: </p></b>
-<span class="Crew-morale-description"><script>displayMoraleStatus()</script></span> <span class="morale"><script>displayMorale()</script></span> out of 10
+<p>Status: <span class="Crew-morale-description"><script>displayMoraleStatus()</script></span> </br>
+Morale points: <span class="morale"><script>displayMorale()</script></span> </p>
 
 <b><p> Ship Health: </p></b>
 <span class="Ship-Health-description"><script>displayShipStatus()</script></span> 
@@ -119,12 +122,15 @@ You lost <span class="crew"><script>displayCrew()</script></span> out of 250 Cre
 <p><span class="voracity"><script>voracity()</script></span> </p>
 
 <b><p> Officers of note:</p></b>
+<span class="garsch hidden">Garsch is your First-Officer. Hard but fair, he keeps the crew in line.<br/></span>
+<span class="none hidden">You are without a First-Officer. The leadership is on shaky ground.<br/></span>
+
 <span class="arn hidden">Arn is keeping the crew in check and ever ready to give you a hard time.</span>
-<span class="arnNo hidden">You lack a First-officer. With Arn lost, your control of the crew seem teneous at best. His responsibilities are split among the remaining officers.</span>
+<span class="arnNo hidden">Arn was lost along the way. His misdeeds finally caught up to him.</span>
 <br/>
 <span class="tung hidden">Tung the heavyset Arms-officer is around and ready for bruising.</span>
 <span class="tungNo hidden">Tung the heavyset Arms-officer was lost to your waistline early. His potential now part of yours.</span>
-<span class="tungNo2 hidden">Tung the heavyset Arms-officer was lost in battle, he saved quite a few Awes from a similar fate.</span>
+<span class="tungNo2 hidden">Tung the heavyset Arms-officer was lost in action.</span>
 <br/>
 <span class="keeper hidden">Keeper the Wulf Logistics officer and Agent is still around and keeping track of cargo and secrets.</span>
 <span class="keeperno hidden">Keeper the Wulf Logistics Officer alas hungered for one Raptorian too many. No one quite knows which one ate him.</span>
@@ -132,6 +138,13 @@ You lost <span class="crew"><script>displayCrew()</script></span> out of 250 Cre
 <span class="intel hidden">You have the intel. Its secrets remain hidden, but surely it will be of value in the coming days.</span>
 <span class="intelNo hidden">You failed to aquire the intel. Whatever secrets it held will remain unknown.</span>
 <script>
+ if (_.contains(state.events, "garsch")) {
+ $('.garsch').removeClass('hidden');
+ }
+  if (_.contains(state.events, "mirr") || _.contains(state.events, "nyxie")) {
+ $('.none').removeClass('hidden');
+ }
+
  if (_.contains(state.events, "noArn")) {
 		$('.arnNo').removeClass('hidden');
 	
@@ -148,14 +161,18 @@ You lost <span class="crew"><script>displayCrew()</script></span> out of 250 Cre
 		 $('.intelNo').removeClass('hidden');
 	  } 
 	  
-	if (_.contains(state.events, "hard")) {
-		$('.tungNo').removeClass('hidden');
+	if (_.contains(state.events, "soft") && (state.events, "hard")) {
+		$('.tungNo2').removeClass('hidden');
 		}
 	else if (_.contains(state.battle, "boardTung")) {
 		$('.tungNo2').removeClass('hidden');
 		}
-	  else {
+	  else if (_.contains(state.events, "soft"))
+	  {
 		 $('.tung').removeClass('hidden');
+	  }
+	  else {
+		$('.tungNo').removeClass('hidden');
 	  }
 	  if (_.contains(state.events, "noKeeper")) {
 		$('.keeperno').removeClass('hidden');

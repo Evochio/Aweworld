@@ -176,12 +176,18 @@
 		state.shipHealth -= 2
 		state.crewLoss += 3;
 		 state.crewLossBattle += 3;
-		$("#button-4").addClass("hidden")
-		$("#button-5").addClass("hidden")
-		$("#button-6").addClass("hidden")
+		 if (state.crewMorale < 1 ) {
+		$("#button-7").removeClass("hidden");
+		}
+		else {
 		$("#button-7").removeClass("hidden");
 		$("#button-8").removeClass("hidden");
 		$("#button-10").removeClass("hidden");
+		}
+		$("#button-4").addClass("hidden")
+		$("#button-5").addClass("hidden")
+		$("#button-6").addClass("hidden")
+				
 		displayMoraleStatus();
 		displayShipStatus();
       })
@@ -194,9 +200,14 @@
 		state.shipHealth -= 2
 		state.crewLoss += 3;
 		 state.crewLossBattle += 3;
+		 if (state.crewMorale < 1 ) {
+		$("#button-7").removeClass("hidden");
+		}
+		else {
 		$("#button-9").removeClass("hidden");
 		$("#button-7").removeClass("hidden");
 		$("#button-8").removeClass("hidden");
+		}
 		$("#button-4").addClass("hidden")
 		$("#button-5").addClass("hidden")
 		$("#button-6").addClass("hidden")
@@ -212,9 +223,14 @@
 		state.shipHealth -= 2;
 		state.crewLoss += 2;
 		state.crewLossBattle += 2;
+		if (state.crewMorale < 1 ) {
+		$("#button-7").removeClass("hidden");
+		}
+		else {
 		$("#button-10").removeClass("hidden");
 		$("#button-7").removeClass("hidden");
 		$("#button-8").removeClass("hidden");
+		}
 		$("#button-4").addClass("hidden")
 		$("#button-5").addClass("hidden")
 		$("#button-6").addClass("hidden")
@@ -226,7 +242,11 @@
         // change state here
 		state.battle.push("retreat")
         // end by using lib.goTo
-        if ((_.contains(state.battle, "sails") || _.contains(state.events, "arn")) && state.shipHealth >= 5)
+		if (_.contains(state.battle, "sails") && _.contains(state.events, "arn"))
+		{
+		$("#escape").removeClass("hidden");
+		}		
+        else if ((_.contains(state.battle, "sails") || _.contains(state.events, "arn")) && state.shipHealth >= 5)
 		{
 		$("#escape").removeClass("hidden");
 		}
@@ -668,6 +688,13 @@
 		
     })
 	  
+	  if (state.crewMorale < 1 ) {
+	  $(".moralefail").removeClass("hidden");
+	  }
+	  else {
+	  $(".morale").removeClass("hidden");
+	  }
+	  
 	  
     })
   </script>
@@ -676,14 +703,21 @@
  
  #status {
 	background-color: #331a00;
+	float: left;
 	Width: 20%;
-	margin: auto;
+	
+	margin-left: 2em;
 	border: 6px solid #cb9969;
 	border-radius: 20px;
 	
  }
  #story-text {
  margin-top: 10%;
+ }
+ 
+ h1 {
+ position: fixed;
+left: 50%;
  }
  
   </style>
@@ -694,12 +728,13 @@
 <div id="dayCounter">
 Day: <span class="days"><script>displayDays()</script></span>
 </div>
-<h1>The Battle</h1>
-
 <div id="status">
 <p> Crew morale appears to be <span class="Crew-morale-description"><script>displayMoraleStatus()</script></span> </p>
 <p> The ships status is: <span class="Ship-Health-description"><script>displayShipStatus()</script></span> </p>
 </div>
+<h1>The Battle</h1>
+
+
 </div>
 <div id="story-text">
 <p>The enemy ship is approaching rapidly. I say enemy because it has no discernable markings or banners to herald it allegiance or intent. </p>
@@ -721,9 +756,14 @@ Day: <span class="days"><script>displayDays()</script></span>
  </div>
  
 <div class="hidden" id="arnDead">
-<p> Despite everything that has happened, i wish i had a stout First-officer by my side now to help me prepare. My officers are doing good work. Even my cadets are diligently providing assistance in their assigned tasks. But i cant help but feel slightly alone. </p>
+<p> Despite everything that has happened, i wish i had a stout experienced First-officer by my side now to help me prepare. My newly promoted officer is doing good work, but busy with the task they are the most trained for,
+<span class="garsch hidden">Garsch is overseeing the armaments and tactical preperations.</span>
+<span class="nyxie hidden">Nyxie is doing what she knows best, at the helm and ready.</span>
+<span class="mirr hidden">Mirr is leading preperations for battle with crew below deck.</span>
+<span class="tung hidden">Tung is on deck, whipping everyone up to speed on assignments.</span>
+. But I'm uncertain about their readiness to take over should something happen to me. I cant help but feel slightly alone, with no one to bounce decisions with. </p>
 
-<p> But in the end, its always up to the captain to make the final call anyway. </p>
+<p> But in the end, its always up to the captain to make the final call anyway.</p>
 </div>
 </div>
 <div id="tail">
@@ -822,7 +862,14 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>At least they've now made their intentions abundantly clear. </p>
 
-<p> It is our turn to make a move, hostilities are now confirmed! Through the choking smoke that covers the ship I order the plan of attack. The crew looks just as eager for some payback.</p>
+<p> It is our turn to make a move, hostilities are now confirmed! Through the choking smoke that covers the ship I order the plan of attack. 
+<div class="morale hidden">
+ The crew looks just as eager for some payback.</p>
+</div>
+<div class="moralefail hidden">
+</p>
+<p> The crew around me look very anxious and worried.</p>
+</div>
 </div>
 
 <div class="intercept hidden"><strong>Intercept</strong>
@@ -842,8 +889,13 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>At least they've now made their intentions abundantly clear. </p>
 
-<p> It is our turn to make a move, hostilities are now confirmed! I order the plan of attack, feeling tingle of excitement of oncomming battle. The crew looks just as eager for some more closer action.</p>
-
+<p> It is our turn to make a move, hostilities are now confirmed! I order the plan of attack, feeling tingle of excitement of oncomming battle.<div class="morale hidden">
+ The crew looks just as eager for some payback.</p>
+</div>
+<div class="moralefail hidden">
+</p>
+<p> The crew around me look very anxious and worried.</p>
+</div>
 </div>
 
 <div class="interceptFail hidden"><strong>Intercept</strong>
@@ -869,7 +921,14 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>At least they've now made their intentions abundantly clear. </p>
 
-<p> It is our turn to make a move, hostilities are now confirmed! Through the choking smoke that covers the ship I order the plan of attack. The crew looks just as eager for some payback.</p>
+<p> It is our turn to make a move, hostilities are now confirmed! Through the choking smoke that covers the ship I order the plan of attack.</p>
+<div class="morale hidden">
+ The crew looks just as eager for some payback.</p>
+</div>
+<div class="moralefail hidden">
+</p>
+<p> The crew around me look very anxious and worried.</p>
+</div>
 </div>
 
 <div class="wait hidden"><strong>Wait</strong>
@@ -889,7 +948,15 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>Atleast they've now made their intentions abundantly clear. </p>
 
-<p> It is our turn to make a move, hostilities are now confirmed! I order the plan of attack, feeling tingle of excitement of oncomming battle. The crew looks just as eager for some action.</p>
+<p> It is our turn to make a move, hostilities are now confirmed! I order the plan of attack, feeling tingle of excitement of oncomming battle. 
+<div class="morale hidden">
+The crew looks just as eager for some action.</p>
+</div>
+<div class="moralefail hidden">
+</p>
+<p> The crew around me however do not quite give off the same vibe. I see several anxious and worried faces.</p>
+</div>
+
 </div>
 
 <div class="advice hidden"><strong>Benefit of foreknowledge</strong>
@@ -903,7 +970,14 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>At least they've now made their intentions abundantly clear. </p>
 
-<p> It is our turn to make a move, hostilities are now confirmed! I order the plan of attack, feeling tingle of excitement of oncomming battle. The crew looks just as eager for some action.</p>
+<p> It is our turn to make a move, hostilities are now confirmed! I order the plan of attack, feeling tingle of excitement of oncomming battle. 
+<div class="morale hidden">
+The crew looks just as eager for some action.</p>
+</div>
+<div class="moralefail hidden">
+</p>
+<p> The crew around me however do not quite give off the same vibe. I see several anxious and worried faces.</p>
+</div>
 
 </div>
 
@@ -919,12 +993,24 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>Before anyone in the crew or myself am able to react or process what happened, hull explodes into splinters and debris on our forward starboard side of the ship. Sending unfortunate awes tumbling backwards in yells and shrieks. </p>
 
-<p>We were hit with something! Something strong enough to damage and even puncture the hull! Crew look dazed, some pick up help the wounded limp below deck. </p>
+<p>We were hit with something! Something strong enough to damage and even puncture the hull! Crew look dazed, some pick up and help the wounded limp below deck. </p>
 
 <p>Another flash and 'THOOM' draws my attention back from the damage. Something whistles by in the air loudly, just above the main deck, narrowly missing a mast and tearing a circular hole through one of the sails before splashing into the sea on the far side. </p>
 
-<p>The crew look to me for instructions, fear on many of their faces. This was new and terrifying. </p>
 
+<div class="morale hidden">
+<p>I look around the crew and see fear on many of their faces and there is not one unbristled coat in sight. This was new and terrifying. But the crew still look to me for instructions.</p>
+</div>
+<div class="moralefail hidden">
+<p>This was new and terrifying.</p>
+
+<p>In fact, it IS too much for the crew, all over I see Awes abandoning their posts to hide or otherwise get in cover they imagine will protect them. </p>
+
+<p>I shout at them to get back in position, I can see Officer Garsch yanking hapless disobedient crew around to try to get them to do so but the general morale is too low, there is no spirit to fight! </p>
+
+<p>With growing dread I realize that if I pressed them further they will break and fail me utterly.<br />
+There is only one course of action.</p>
+</div>
 </div>
 
 
@@ -939,11 +1025,23 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>Before anyone in the crew or myself am able to react or process what happened, hull explodes into splinters and debris on our forward starboard side of the ship. Sending unfortunate awes tumbling backwards in yells and shrieks. </p>
 
-<p>We were hit with something! Something strong enough to damage and even puncture the hull! Crew look dazed, some pick up help the wounded limp below deck. </p>
+<p>We were hit with something! Something strong enough to damage and even puncture the hull! Crew look dazed, some pick up and help the wounded limp below deck. </p>
 
 <p>Another flash and 'THOOM' draws my attention back from the damage. Something whistles by in the air loudly, just above the main deck, narrowly missing a mast and tearing a circular hole through one of the sails before splashing into the sea on the far side. </p>
 
-<p>The crew look to me for instructions, fear on many of their faces. This was new and terrifying. </p>
+<div class="morale hidden">
+<p>I look around the crew and see fear on many of their faces and there is not one unbristled coat in sight. This was new and terrifying. But the crew still look to me for instructions.</p>
+</div>
+<div class="moralefail hidden">
+<p>This was new and terrifying.</p>
+
+<p>In fact, it IS too much for the crew, all over I see Awes abandoning their posts to hide or otherwise get in cover they imagine will protect them. </p>
+
+<p>I shout at them to get back in position, I can see Officer Garsch yanking hapless disobedient crew around to try to get them to do so but the general morale is too low, there is no spirit to fight! </p>
+
+<p>With growing dread I realize that if I pressed them further they will break and fail me utterly.<br />
+There is only one course of action.</p>
+</div>
 </div>
 
 <div class="range hidden"><strong>Keep Range</strong>
@@ -955,11 +1053,23 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>Before anyone in the crew or myself am able to react or process what happened, hull explodes into splinters and debris on our forward starboard side of the ship. Sending unfortunate awes tumbling backwards in yells and shrieks. </p>
 
-<p>We were hit with something! Something strong enough to damage and even puncture the hull! Crew look dazed, some pick up help the wounded limp below deck. </p>
+<p>We were hit with something! Something strong enough to damage and even puncture the hull! Crew look dazed, some pick up and help the wounded limp below deck. </p>
 
 <p>Another flash and 'THOOM' draws my attention back from the damage. Something whistles by in the air loudly, just above the main deck, narrowly missing a mast and tearing a circular hole through one of the sails before splashing into the sea on the far side.  </p>
 
-<p>The crew look to me for instructions, fear on many of their faces. This was new and terrifying. </p>
+<div class="morale hidden">
+<p>I look around the crew and see fear on many of their faces and there is not one unbristled coat in sight. This was new and terrifying. But the crew still look to me for instructions.</p>
+</div>
+<div class="moralefail hidden">
+<p>This was new and terrifying.</p>
+
+<p>In fact, it IS too much for the crew, all over I see Awes abandoning their posts to hide or otherwise get in cover they imagine will protect them. </p>
+
+<p>I shout at them to get back in position, I can see Officer Garsch yanking hapless disobedient crew around to try to get them to do so but the general morale is too low, there is no spirit to fight! </p>
+
+<p>With growing dread I realize that if I pressed them further they will break and fail me utterly.<br />
+There is only one course of action.</p>
+</div>
 
 </div>
 
@@ -1217,7 +1327,7 @@ $('#FromRange').removeClass('hidden');
 
 <p>“Silence those weapons! Hop too it! Attack! Fire boarding hooks!” I waved my sword in the direction of the ship, which was doing its best to try to maneuver and keep itself from being crashed into. But we were close enough for my crew to leap over. I could see the figures on the enemy ship clearer now, Gators. They were large reptiles, similar to Raptorians but far more bulky, armored and rotund. </p>
 
-<p>A mass of eager crew leap on over from the masts already, descending on the enemy ship with Mid-Officer Garsh in the lead. It would be a very hard fight, if they were anywhere as tough as a Raptorian but despite all that happened their spirits were not broken! Said Raptorians i knew waited eagerly for the command to charge as we locked ships. Right now they were of little use and stayed out of the way. </p>
+<p>A mass of eager crew leap on over from the masts already, descending on the enemy ship with Officer Garsh in the lead. It would be a very hard fight, if they were anywhere as tough as a Raptorian but despite all that happened their spirits were not broken! Said Raptorians i knew waited eagerly for the command to charge as we locked ships. Right now they were of little use and stayed out of the way. </p>
 
 <p>BOOM! One of the weapons fired at close range. The shot crashed straight through the side of our ship and out the other. It knocked me off my feet hard, not only that, we were suddenly off course, loosing distance. Too far to further assault and back up those who already leapt over. I could see them fighting in a tight knot by the enemy weapons, they had landed right ontop of them, preventing them from firing further. </p>
 
@@ -1227,7 +1337,7 @@ $('#FromRange').removeClass('hidden');
 
 <p>“Buy them time! I will close the gap.” I nodded in assent. They immediately leap and take flight, speeding above the water to join the fighting. Scouts were not meant for close melees, im sure they would do their best to provide what help they could however.</p>
 
-<p>High-Officer Nyxie at the helm was already compensating, getting us closer again. Our ballista kept firing with sharp Twangs, they were doing their best to cover the surrounded crew with long range darts. I order them to prepare shooting boarding hooks and not miss this time.</p>
+<p>Officer Nyxie at the helm was already compensating, getting us closer again. Our ballista kept firing with sharp Twangs, they were doing their best to cover the surrounded crew with long range darts. I order them to prepare shooting boarding hooks and not miss this time.</p>
 
 <p>We seem to arrive back in range just in time, our few attackers leap over the side and glide back in retreat before I can order reinforcements for them. The gator ship is full of armored and armed gators now, any further glide attacks would be sending our Awes to their doom. </p>
 
@@ -1242,7 +1352,7 @@ $('#FromRange').removeClass('hidden');
 
 <p>“Silence those weapons! Hop too it! Attack! Fire boarding hooks!” I waved my sword in the direction of the ship, which was doing its best to try to maneuver and keep itself from being crashed into. But we were close enough for my crew to leap over. I could see the figures on the enemy ship clearer now, Gators. They were large reptiles, similar to Raptorians but far more bulky, armored and rotund. </p>
 
-<p>A mass of eager crew leap on over from the masts already, descending on the enemy ship with a ferociously howling Mid-Officer Tung leading the charge and Garsh trailing to keep up. It would be a very hard fight, if they were anywhere as tough as a Raptorian but despite all that happened their spirits were not broken, not with Officer Tung as an example! Said Raptorians i knew waited eagerly for the command to charge as we locked ships. Right now they were of little use and stayed out of the way. </p>
+<p>A mass of eager crew leap on over from the masts already, descending on the enemy ship with a ferociously howling Officer Tung leading the charge and Garsh trailing to keep up. It would be a very hard fight, if they were anywhere as tough as a Raptorian but despite all that happened their spirits were not broken, not with Officer Tung as an example! Said Raptorians i knew waited eagerly for the command to charge as we locked ships. Right now they were of little use and stayed out of the way. </p>
 
 <p>BOOM! One of the weapons fired at near point blank range. The shot crashed straight through the side of our ship and out the other. It knocked me off my feet hard, not only that, we were suddenly off course, loosing distance. Too far to further assault and back up those who already leapt over. I could see them fighting in a tight knot by the enemy weapons, they had landed right ontop of them, preventing them from firing further. </p>
 
@@ -1252,7 +1362,7 @@ $('#FromRange').removeClass('hidden');
 
 <p>“Buy them time! I will close the gap.” I nodded in assent. They immediately leap and take flight, speeding above the water to join the fighting. </p>
 
-<p>High-Officer Nyxie at the helm was already compensating, getting us closer again. Our ballista kept firing with sharp Twangs, they were doing their best to cover the surrounded crew with long range darts. I order them to prepare shooting boarding hooks and not miss this time.</p></p>
+<p>Officer Nyxie at the helm was already compensating, getting us closer again. Our ballista kept firing with sharp Twangs, they were doing their best to cover the surrounded crew with long range darts. I order them to prepare shooting boarding hooks and not miss this time.</p></p>
 
 <p>We seem to arrive back in range just in time, our few attackers leap over the side and glide back in retreat before I can order reinforcements for them. The gator ship is full of armored and armed gators now, any further glide attacks would be sending our Awes to their doom. </p>
 
@@ -1269,7 +1379,7 @@ $('#FromRange').removeClass('hidden');
 
 <p>“Silence those weapons! Hop too it! Attack! Fire boarding hooks!” I waved my sword in the direction of the ship, which was doing its best to try to maneuver and keep itself from being crashed into. But we were close enough for my crew to leap over. I could see the figures on the enemy ship clearer now, Gators. They were large reptiles, similar to Raptorians but far more bulky, armored and rotund. </p>
 
-<p>Crew leap over, led by Mid-Officer Garsh. But i can tell he has trouble leading them. Morale is low, understandably so, a lot of whats happened has been a shock. It would be a very hard fight, if they were anywhere as tough as a Raptorian. Said Raptorians i knew waited eagerly for the command to charge as we locked ships. Right now they were of little use and stayed out of the way. </p>
+<p>Crew leap over, led by Officer Garsh. But i can tell he has trouble leading them. Morale is low, understandably so, a lot of whats happened has been a shock. It would be a very hard fight, if they were anywhere as tough as a Raptorian. Said Raptorians i knew waited eagerly for the command to charge as we locked ships. Right now they were of little use and stayed out of the way. </p>
 
 <p>BOOM! One of the weapons fired at near point blank range. The shot crashed straight through the side of our ship and out the other. It knocked me off my feet hard, not only that, we were suddenly off course, loosing distance. Too far to further assault and back up those who already leapt over. I could see them fighting desperatly against near hopeless odds, backs to the sea. They had landed close to the weapons, preventing them from firing further, for now. </p>
 
@@ -1279,7 +1389,7 @@ $('#FromRange').removeClass('hidden');
 
 <p>“Buy them time! I will close the gap.” I nodded in assent. They immediately leap and take flight, speeding above the water to join the fighting or at least help out however they can. </p>
 
-<p>High-Officer Nyxie at the helm was already compensating, getting us closer again. Our ballista kept firing with sharp Twangs, they were doing their best to cover the surrounded crew. </p>
+<p>Officer Nyxie at the helm was already compensating, getting us closer again. Our ballista kept firing with sharp Twangs, they were doing their best to cover the surrounded crew. </p>
 
 <p>We seem to arrive back in range just in time, our few attackers leap over the side and glide back in retreat before I can order reinforcements for them. The gator ship is full of armored and armed gators now, any further glide attacks would be sending our Awes to their doom. </p>
 
@@ -1472,6 +1582,7 @@ $('#FromRange').removeClass('hidden');
 
 <p> A ship and more slaves to savor then they knew what to do with. It had been a good haul and fight! Any resistance now grumbled away in low 'glouurgh's in the guts of his warriors. </p>
 
+<img src="Images/assets/Gatorvore2.png" height="40%" width="40%"/> 
 </div>
 
 <div class="surrender2 hidden"><strong>Desperate attack</strong>
@@ -1503,7 +1614,7 @@ $('#FromRange').removeClass('hidden');
 </br>
 
 <p> A gatorgut can be spaceous, until it gets crowded, which it quickly got. The tight pressure of bodies and muscles pushing together under the taut and scaled gatorbelly soon become too much.</p>
-<img src="Images/assets/gatorvore.png" height="40%" width="40%"/> 
+<img src="Images/assets/Gatorvore.png" height="40%" width="40%"/> 
 <script>
 
 if (_.contains(state.battle, "board")) {

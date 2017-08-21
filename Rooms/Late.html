@@ -31,6 +31,9 @@
   
   <style>
     /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	img {
+	margin:auto;
+	}
   </style>
 
 </head>
@@ -42,6 +45,9 @@ Day: <span class="days"><script>displayDays()</script></span>
 <span class="schedule"><script>displayShedule()</script></span>
 </div>
 <h1>Pale-Rock meeting</h1>
+</div>
+<div id="side" class="hidden">
+ <img src="Images/assets/Keeperface.png"/>
 </div>
 <div id="story-text">
 <p>We arrive at the western point of Pale-rock. Impressive jagged cliffs decorated the end of the windswept cold island. </p>
@@ -66,6 +72,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>“Perhaps indeed. In the end it was not even certain the Intel itself was critical to the mission. The only thing my sources would reveal that I was a lot of roundabout information and guesswork. Such things may lead one astray too!” He smiled and looked curiously relieved. An old instinct from my time in the East urges me to find out why and what he's hiding. But I decide not to press the issue, he is a crew-member despite his other affiliations, not a smuggler. </p>
 
+
 </div>
 <p>I make us wait around until sundown and then head out further westward and first light. </p>
 
@@ -75,6 +82,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 <script>
 if (_.contains(state.events, "keeper")) {
 $('#Keeper').removeClass('hidden');
+$('#side').removeClass('hidden');
 }
 
 

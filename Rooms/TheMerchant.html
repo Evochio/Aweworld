@@ -86,6 +86,7 @@
 	  	$('#play2').on('click', function(e) {
         // change state here
 		lib.dialogue(e, "play2")
+		state.events.push("melon");
 		$("#play2").addClass("hidden");
 		$("#button-11a").removeClass("hidden");
 		$("#button-9").removeClass("hidden");
@@ -126,6 +127,7 @@
 		lib.dialogue(e, "gamenom")
 		$("#button-9").addClass("hidden");
 		$("#digested").removeClass("hidden");
+		$("#restart").removeClass("hidden");
 		$("#button-11a").addClass("hidden");
       })
 	  
@@ -169,6 +171,7 @@ cadet[1].banter = [
 	   	$('#button-10').on('click', function(e) {
         // change state here
 		lib.dialogue(e, "goodbyes2")
+		state.crewMorale += 1;
 		$("#button-10").addClass("hidden");
 		$("#button-12").removeClass("hidden");
 		
@@ -228,13 +231,13 @@ Day: <span class="days"><script>displayDays()</script></span>
 </div>
 <div id="story-text">
 
-<p>Lookout reports ship on the horizon headed towards us at first light this morning. We are still a distance away from the Sea of fangs, but i had the ship and crew readied nevertheless for trouble.</p>
+<p>Lookout reports ship on the horizon headed towards us at first light this morning. We are still a distance away from the Sea of fangs, but I had the ship and crew readied nevertheless for trouble.</p>
 
 <p>As we got closer, it became evident that the approaching Merchant-ship was barely limping along in the water, showing signs of great damage from battle. Banners flew with the crest of the Awe and the merchant league.</p>
 
 <p>The ship was lilting slightly, one of its sails were in tatters and the aft portion of the ships looked scorched from fire. It seemed a miracle that it was still afloat, a bad storm would have been enough to topple this ship to its doom.</p>
 
-<p>I ordered us up alongside the ship, the &quot;Steady wing&quot; as its named, so we might connect, it seemed unlikely this was any pirate-ruse and was quickly greeted by a very grateful captain. His name was Russel, a male awe that looked like he&#39;d seen plenty of sea. Clinging to his side was also a little young awe, his daughter Melon.</p>
+<p>I ordered us up alongside the ship, the &quot;Steady wing&quot; as its named, so we might connect, it seemed unlikely this was any pirate-ruse and was quickly greeted by a very grateful captain. His name was Russel, a male awe that looked like he&#39;d seen plenty of sea. Clinging to his side was also a little young Aweling, his daughter Melon.</p>
 
 <p>They report being attacked by pirates, information they have would be important. But our mission was also pressing. I had to decide on appropriate course of action.</p>
 
@@ -254,7 +257,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 <button class="btn btn-default hidden" id="button-5"> Decline graciously, work to be overseen. </button>
 
 <button class="btn btn-default hidden" id="button-6"> Deal with them both yourself </button>
-<button class="btn btn-default hidden" id="button-7"> A cadets prize and a commanders priviledge </button>
+<button class="btn btn-default hidden" id="button-7"> A cadets reward</button>
 <button class="btn btn-default hidden" id="button-8"> Let Captain Russel decide </button>
 
 <button class="btn btn-default hidden" id="play2"> Entertain the girl</button>
@@ -280,13 +283,13 @@ Day: <span class="days"><script>displayDays()</script></span>
 cadet[0].banter = [
     { target: '#Ziggy', text: 'If they know anything about pirates in the area, we should get that information and pursue!', imageClass: "surprised"},
     { target: '#Ziggy', text: 'Its our job to catch these guys afterall!', imageClass: "suspicious"},
-    { target: '#Ziggy', text: 'And im itching for a fight!', imageClass: "angry"}
+    { target: '#Ziggy', text: 'And I'm itching for a fight!', imageClass: "angry"}
 
 ];
 
 cadet[1].banter = [
     { target: '#Glint', text: 'Those are from our own Merchant league, they are a large sponsor of the Admirality', imageClass: "neutral"},
-	{ target: '#Glint', text: 'If they are in need we are usualy obligated to help.', imageClass: "concerned"},
+	{ target: '#Glint', text: 'If they are in need we are usually obligated to help.', imageClass: "concerned"},
 	{ target: '#Glint', text: 'It can be a good oppertunity to get your name out too! Nothing like a grateful merchant!', imageClass: "smug"}
 
 	];
@@ -307,15 +310,15 @@ cadet[1].banter = [
 
 <p>With some reluctance the Captain recounted his tale.</p>
 
-<p>&quot;We were 2 months into our journey, just past Howlers point which separates the Sea of fangs from The great null sea. They were on us barely a day in, like they were watching the inlet. We tried to outrun them, but we had heavy cargo and trade from the Butterlands, we were low in the water...&quot;</p>
+<p>&quot;We were 3 months into our journey, just having entered Sea of Fangs through the main route, north of Pale-rocks eastern point. They were on us barely a day in, like they were watching the inlet. We tried to outrun them, but we had heavy cargo and trade from the Kingdom, we were low in the water...&quot;</p>
 
 <p>The captain looked glum then. I could imagine what they were forced to do. The captain took a swallow of offered drink and continued.&nbsp;</p>
 
-<p>&quot;As they got closer they sent flyers to harass us, Gryphs by the look of it. Getting at our sails and dropping fire. It was pretty clear then they had no good intentions for any of my crew, i ordered the cargo dumped overboard, to get speed. Our Awes tried to hold the fliers off valiantly, alas some were carried off. We are not fighters!&quot;</p>
+<p>&quot;As they got closer they sent fliers to harass us, Gryphs by the look of it. Getting at our sails and dropping fire. It was pretty clear then they had no good intentions for any of my crew, I ordered the cargo dumped overboard, to get speed. Our Awes tried to hold the fliers off valiantly, alas some were carried off. We are not fighters!&quot;</p>
 
 <p>He fixed me with an accusing glare that said &#39;Where were you!? The Admirality is&nbsp;supposed to protect us, these routes...!&#39;, but he paused, composed himself and wisely refrained from further impoliteness and continued his tale.</p>
 
-<p>&quot;There must have been something in the cargo we threw overboard that they valued higher then our ship and men. They soon veered off and gave up chase. Perhaps they thought they could catch up too us soon, a fire was blazing and we were taking in water from a hit of some sort of ballista&nbsp;on their forward bow.&quot;</p>
+<p>&quot;There must have been something in the cargo we threw overboard that they valued higher then our ship and crew. They soon veered off and gave up chase. Perhaps they thought they could catch up too us soon, a fire was blazing and we were taking in water from a hit of some sort of ballista&nbsp;on their forward bow.&quot;</p>
 
 <p>I asked him about further armaments and crew compliment, but the captain had nothing much useful to add. No doubt mourning the loss of his profits.</p>
 
@@ -328,21 +331,21 @@ cadet[1].banter = [
 
 <p>He began recounting his tale while little Melon roamed cabin, fascinated by my knickknacks. It was quite unusual to see a child being raised by its sire, that was the family Matrons job traditionally.</p>
 
-<p>&quot;We were 2 months into our journey, just past Howlers point which separates the Sea of fangs from The great null sea. They were on us barely a day in, like they were watching the inlet. We tried to outrun them, but we had heavy cargo and trade from the Butterlands, we were low in the water...&quot;</p>
+<p>&quot;We were 3 months into our journey, just having entered Sea of Fangs through the main route, north of Pale-rocks eastern point. They were on us barely a day in, like they were watching the inlet. We tried to outrun them, but we had heavy cargo and trade from the Kingdom, we were low in the water...&quot;</p>
 
 <p>The captain looked glum then. I could imagine what they were forced to do.</p>
 
-<p>&quot;As they got closer they sent flyers to harass us, Gryphs by the look of it. Getting at our sails and dropping fire. It was pretty clear then they had no good intentions for any of my crew, i ordered the cargo dumped overboard, to get speed. Our men tried to hold the fliers off valiantly, alas some were carried off. We are not fighters!&quot;</p>
+<p>&quot;As they got closer they sent fliers to harass us, Gryphs by the look of it. Getting at our sails and dropping fire. It was pretty clear then they had no good intentions for any of my crew, I ordered the cargo dumped overboard, to get speed. Our crew tried to hold the fliers off valiantly, alas some were carried off. We are not fighters!&quot;</p>
 
 <p>He fixed me with a look but then shook his head and continued his tale.</p>
 
-<p>&quot;There must have been something in the cargo we threw overboard that they valued higher then our ship and men. They soon veered off and gave up chase. Perhaps they thought they could catch up too us soon, a fire was blazing and we were taking in water from a hit of some sort of ballista on their forward bow.&quot;</p>
+<p>&quot;There must have been something in the cargo we threw overboard that they valued higher then our ship and crew. They soon veered off and gave up chase. Perhaps they thought they could catch up too us soon, a fire was blazing and we were taking in water from a hit of some sort of ballista on their forward bow.&quot;</p>
 
 <p>I asked him about further armaments and crew compliment, but the captain had nothing much useful to add, seeming distraught. Perhaps the loss of some crew weighed heavily on him.</p>
 
-<p>&quot;I want to be an Admiral!&quot; Little Melon suddenly squeaked with full conviction. This quickly brought a smile to both of us, the dark mood instantly dissipated.</p>
+<p>&quot;I want to be a Captain!&quot; Little Melon suddenly squeaked with full conviction. This quickly brought a smile to both of us, the dark mood instantly dissipated.</p>
 
-<p>&quot;One day, im sure you will be.&quot; I assured her and this made her beam and purr adorably.</p>
+<p>&quot;One day, I'm sure you will be.&quot; I assured her and this made her beam and purr adorably.</p>
 
 <p>The repairs would take a day.</p>
 
@@ -356,21 +359,21 @@ cadet[1].banter = [
 
 <p>He began recounting his tale while little Melon cheerfully roamed cabin, fascinated by my knickknacks. It was quite unusual to see a child being raised by its sire, that was the family Matrons job traditionally.</p>
 
-<p>&quot;We were 2 months into our journey, just past Howlers point which separates the Sea of fangs from The great null sea. They were on us barely a day in, like they were watching the inlet. We tried to outrun them, but we had heavy cargo and trade from the Butterlands, we were low in the water...&quot;</p>
+<p>&quot;We were 3 months into our journey, just having entered Sea of Fangs through the main route, north of Pale-rocks eastern point. They were on us barely a day in, like they were watching the inlet. We tried to outrun them, but we had heavy cargo and trade from the Kingdom, we were low in the water...&quot;</p>
 
 <p>The captain looked glum then. I could imagine what they were forced to do.</p>
 
-<p>&quot;As they got closer they sent flyers to harass us, Gryphs by the look of it. Getting at our sails and dropping fire. It was pretty clear then they had no good intentions for any of my crew, i ordered the cargo dumped overboard, to get speed. Our men tried to hold the fliers off valiantly, alas some were carried off. We are not fighters!&quot;</p>
+<p>&quot;As they got closer they sent fliers to harass us, Gryphs by the look of it. Getting at our sails and dropping fire. It was pretty clear then they had no good intentions for any of my crew, I ordered the cargo dumped overboard, to get speed. Our crew tried to hold the fliers off valiantly, alas some were carried off. We are not fighters!&quot;</p>
 
 <p>He fixed me with a look, there was pain there and he no doubt wished we&#39;d been there sooner. But he said nothing and continued his tale.</p>
 
-<p>&quot;There must have been something in the cargo we threw overboard that they valued higher then our ship and men. They soon veered off and gave up chase. Perhaps they thought they could catch up too us soon, a fire was blazing and we were taking in water from a hit of some sort of ballista on their forward bow.&quot;</p>
+<p>&quot;There must have been something in the cargo we threw overboard that they valued higher then our ship and crew. They soon veered off and gave up chase. Perhaps they thought they could catch up too us soon, a fire was blazing and we were taking in water from a hit of some sort of ballista on their forward bow.&quot;</p>
 
 <p>I asked him about further armaments and crew compliment, but the captain had nothing much useful to add, seeming distraught. Perhaps he lost more then just cargo.</p>
 
-<p>&quot;I want to be an Admiral!&quot; Little Melon suddenly squeaked with full conviction. This quickly brought a smile to both of us, the dark mood instantly dissipated.</p>
+<p>&quot;I want to be a Captain!&quot; Little Melon suddenly squeaked with full conviction. This quickly brought a smile to both of us, the dark mood instantly dissipated.</p>
 
-<p>&quot;One day, im sure you will be.&quot; I assured her and this made her beam and purr adorably.</p>
+<p>&quot;One day, I'm sure you will be.&quot; I assured her and this made her beam and purr adorably.</p>
 
 <p>It will take 3 days to do repairs enough to see the ship make it safely to closest port.</p>
 
@@ -378,9 +381,9 @@ cadet[1].banter = [
 </div>
 
 <div class="request hidden"><p><strong>Hopeful request</strong></p>
-<p>I was unsure at first on what to do with the request, i&#39;ve yet to have children of my own. But something about Melon reminded me of myself when i was but a wee floof.</p>
+<p>I was unsure at first on what to do with the request, I&#39;ve yet to have children of my own. But something about Melon reminded me slightly of myself when I was but a wee floof and my occupation before I joined the Admiralty.</p>
 
-<p>Captain Russel was grateful and honored i chose to entertain his daughter and promised he&#39;d let me know if he remembered or found out any more facts about the pirate vessel from his remaining crew.</p>
+<p>Captain Russel was grateful and honored I chose to entertain his daughter and promised he&#39;d let me know if he remembered or found out any more facts about the pirate vessel from his remaining crew.</p>
 
 <p>I spent the evening telling tales and going through admiralty protocol to the attentive little youngling.</p>
 
@@ -398,31 +401,31 @@ cadet[1].banter = [
 
 <p>I taught her about crew discipline and punishment. The idea that the Admirals rule is law, she can decide anything on a ship, eat those who cause trouble, seemed to greatly appeal to her and furthered her convictions about becoming one.</p>
 
-<p>As if on que a report arrived from Cadet glint shortly after. Two thieves have been caught in the act, separately, but almost at the same time. First if of the merchant ships &#39;Steady wing&#39;s crew and the second one from the "Attentive". Now as far as i understand from the reports, they both had the bright idea of using the busy bustle of repair work and almost free movement between ships as an opportunity to make off with some of the wares. But were caught in the act by astute officers keeping record of everything moved and a sharp eye out for trouble. Our very own Cadet Valnos was instrumental in catching the Steady wing thief and Captain Russel himself caught our wayward crew mate with a pouchful of coins coming from somewhere she shouldn&#39;t have been.</p>
+<p>As if on que a report arrived from Cadet Glint shortly after. Two thieves have been caught in the act, separately, but almost at the same time. First if of the merchant ships &#39;Steady wing&#39;s crew and the second one from the "Attentive". Now as far as I understand from the reports, they both had the bright idea of using the busy bustle of repair work and almost free movement between ships as an opportunity to make off with some of the wares. But were caught in the act by astute officers keeping record of everything moved and a sharp eye out for trouble. Our very own Cadet Valnos was instrumental in catching the Steady wing thief and Captain Russel himself caught our wayward crew mate with a pouchful of coins coming from somewhere she shouldn&#39;t have been.</p>
 
-<p>Since one thief belongs to the Admiralty and the other stole from my ship, it should be my judgment on what to do with both of these thieving fools. But i have been absent from most of the proceedings on deck so i thought it prudent to allow Captain Russels to pass judgment.</p>
+<p>Since one thief belongs to the Admiralty and the other stole from my ship, it should be my judgment on what to do with both of these thieving fools. But I have been absent from most of the proceedings on deck so I thought it prudent to allow Captain Russels to pass judgment.</p>
 
-<p>We&#39;ll be away as soon as the repairs are done. Hopefully there will be no more incidents. Though there seems to be little to sate young Melons enthusiasm. She&#39;s thoroughly fascinated about the idea of joining the admiralty as soon as she is of age. Wearing a too big captains hat, that she&#39;s somehow procured, she insists on one final game.</p>
+<p>We&#39;ll be away as soon as the repairs are done. Hopefully there will be no more incidents. Though there seems to be little to sate young Melons enthusiasm. She&#39;s thoroughly fascinated about the idea of joining the Admiralty as soon as she is of age. Wearing a too big captains hat, that she&#39;s somehow procured, she insists on one final game.</p>
 <img src="Images/Melon.png" />
 </div>
 
 
 <div class="gamenom hidden"><p><strong>It's all part of the game</strong></p>
-<p>&quot;Oh please Avolc, im having so much fun! Lets have one more game, i&#39;ll never meet an admiral like you!&quot; Melon whined, tugging at Avolcs arm while looking up with large admiring eyes, partially covered by the oversized hat.</p>
+<p>&quot;Oh please Avolc, I'm having so much fun! Lets have one more game, I&#39;ll never meet a Captain like you!&quot; Melon whined, tugging at Avolcs arm while looking up with large admiring eyes, partially covered by the oversized hat.</p>
 
-<p>&quot;Oh...&quot; the hardened admiral buckles.&nbsp; &quot;Just one more, but then we&#39;ll have to see you back to your father.&quot;</p>
+<p>&quot;Oh...&quot; the hardened Captain buckles.&nbsp; &quot;Just one more, but then we&#39;ll have to see you back to your father.&quot;</p>
 
-<p>&quot;Then i want to be the admiral and you be a cadet!&quot; Little Melon exclaimed enthusiastically and grinned.</p>
+<p>&quot;Then I want to be the Captain and you be a cadet!&quot; Little Melon exclaimed enthusiastically and grinned.</p>
 
 <p>With slight hesitation and then a slight smile, Avolc adjusted her captains hat on Melons head. It was much too big for her, but now&nbsp;out of her eyes.</p>
 
 <p>&quot;Alright, there.&quot;</p>
 
-<p>&quot;Haha! Im the admiral now!&quot; Melon quickly found her role. &quot;Stand to Cadet!&quot;</p>
+<p>&quot;Haha! Im the Captain now!&quot; Melon quickly found her role. &quot;Stand to Cadet!&quot;</p>
 
 <p>Avolc obediently stiffened and stood at attention in front of the diminutive little commander.</p>
 
-<p>&quot;Turn left!&quot; The little admiral commanded and Avolc turned left. &quot;Turn right!&quot; She ordered and it was obeyed.</p>
+<p>&quot;Turn left!&quot; The little Captain commanded and Avolc turned left. &quot;Turn right!&quot; She ordered and it was obeyed.</p>
 
 <p>Now giddy with her newfound power, Melon thought hard on how best to make the most fun out of such an opportunity.&nbsp; Why not use them for the greatest privilege of all! The ability to dispense of punishment.</p>
 
@@ -432,7 +435,7 @@ cadet[1].banter = [
 
 <p>Somewhat tiring from these quick demanding orders, Avolc slowly rises to attention. She seems to have awakened a little monster. The lax attitude is quickly picked up by the attentive little commander and she shakes her head disapprovingly making a &quot;tsk tsk&quot; sound.</p>
 
-<p>&quot;Not good! Not good at all!&quot; Admiral Melon paces backwards and forwards infront of her poor Cadet. &quot;We cant have slow and disobedient cadets! You are probably one of those thieves from today! You are now a prisoner!&quot; The young commander is quick to produce a little piece of twine.&nbsp;</p>
+<p>&quot;Not good! Not good at all!&quot; Captain Melon paces backwards and forwards infront of her poor Cadet. &quot;We cant have slow and disobedient cadets! You are probably one of those thieves from today! You are now a prisoner!&quot; The young commander is quick to produce a little piece of twine.&nbsp;</p>
 
 <p>&quot;Hands behind your back!&quot; Avolc sighed obeyed and soon found her paws surprisingly tightly tied by a sailors-knot behind her back.</p>
 
@@ -440,21 +443,21 @@ cadet[1].banter = [
 
 <p>&quot;Guilty&quot; Avolc grimly admitted in her best dastardly voice.</p>
 
-<p>Melon gasped. &quot;Guilty! Im afraid i must eat you then.&quot; She nodded, passing judgment and dropping her hat over her face while she patted at her petite tummy.</p>
+<p>Melon gasped. &quot;Guilty! Im afraid I must eat you then.&quot; She nodded, passing judgment and dropping her hat over her face while she patted at her petite tummy.</p>
 
-<p>Avolc gave the little Admiral a frown and a coy tilt of her head. &quot;Effective immediately?&quot; she asked, amused.</p>
+<p>Avolc gave the little Captain a frown and a coy tilt of her head. &quot;Effective immediately?&quot; she asked, amused.</p>
 
 <p>&quot;Immediately!&quot; Melon exclaimed, adjusting her hat out of her face so she can see. And is surprised to see the larger Awe crouched ahead of her so they&#39;re on the same level. She blinks uncertain.</p>
 
-<p>&quot;Better get too it then Admiral!&quot; Avolc smirks. Giving the youngling a bit more then she asked for would be a good way to teach her not to overreach and perhaps make her tire of the game. &quot;Or is an admirals word not law?&quot;</p>
+<p>&quot;Better get too it then Captain!&quot; Avolc smirks. Giving the youngling a bit more then she asked for would be a good way to teach her not to overreach and perhaps make her tire of the game. &quot;Or is an admirals word not law?&quot;</p>
 
-<p>Young Melon is not one to loose a challenge, nor give up such an opportunity! With a wide yawn she engulphs the snout of the larger awe and hooks her arms under Avolcs armpits. A mighty swallow and shifting of head from side to side ensures the head of her would be disobedient cadet slides over her tongue and actually pops right into her gullet. Cheecks bulging now the young admiral coos in delight at the turn of this game, she braces forward and spreads her jaws further, cramming the shoulders into her maw aswell. She&#39;ll devour this malcontent and show her!</p>
+<p>Young Melon is not one to loose a challenge, nor give up such an opportunity! With a wide yawn she engulphs the snout of the larger awe and hooks her arms under Avolcs armpits. A mighty swallow and shifting of head from side to side ensures the head of her would be disobedient cadet slides over her tongue and actually pops right into her gullet. Cheeks bulging, the young Captain coos in delight at the turn of this game, she braces forward and spreads her jaws further, cramming the shoulders into her maw aswell. She&#39;ll devour this malcontent and show her!</p>
 
 <p>Avolc meanwhile, with her head squished in dark tight drool-filled gullet was immediately starting to regret playing this game. Things were starting to get a bit humiliating and she might have humored the young girl a tad too much. As another series of steady gulps and swallows rippled along her head, neck and chest she had to remind herself that this was but a game. She&#39;d not loose her nerve and loose any more face by begging Melon to stop, let her get to her limit, which she&#39;s surely at and then help her recover from aching jaw.</p>
 
 <p>But Melon would have none of that, she&#39;s had few opportunities to test her limits, besides with large fish, which this certainly wasent but it was going down all the same. She was also stubborn and sore looser and would have none of that, Admirals rule was law, she&#39;d banish Avolc to her belly and win the game.</p>
 
-<p>And so she did, using every bit of stubbornness and flexible Awe anatomy to her advantage, the youngling swallowed up Admiral, demoted to Cadet, down to her waist. By then Avolcs head was well inside the gut of the young Awe and having lost her nerve kicked feebly and flopped with her body. Her muffled shouts lost from under layers of flesh and fur and drowned out by heavy labored gulps.</p>
+<p>And so she did, using every bit of stubbornness and flexible Awe anatomy to her advantage, the youngling swallowed up Captain, demoted to Cadet, down to her waist. By then Avolcs head was well inside the gut of the young Awe and having lost her nerve kicked feebly and flopped with her body. Her muffled shouts lost from under layers of flesh and fur and drowned out by heavy labored gulps.</p>
 
 <p>&nbsp;</p>
 <img src="Images/assets/Melonvore.png" height="40%" width="40%"/> 
@@ -469,7 +472,7 @@ cadet[1].banter = [
 <br/>
 <p>Exhaustion claims her and she passes out in automatic food-lethargy, her muscles and body had worked hard, adjusted and shifted to accommodate such a huge meal. She will need all her energies now to deal with food in her stomach. She does not hear Avolcs muffled questioning moans from within her, she does not hear the slight knock on the door from an inquiring cadet who&#39;s there to remind them of dinner. She far from needs any more dinner anyway.&nbsp; She luckily does not hear as she digests her beloved idol alive.</p>
 
-<p>With no response from the knock, the cadet leaves, figuring the Admiral has already departed for dinner with her young little charge. They&#39;re somewhere lost in the hustle and bustle of repair work and people moving everywhere.</p>
+<p>With no response from the knock, the cadet leaves, figuring the Captain has already departed for dinner with her young little charge. They&#39;re somewhere lost in the hustle and bustle of repair work and people moving everywhere.</p>
 
 <img src="Images/assets/Melonvore2.png" height="40%" width="40%"/> 
 </div>
@@ -480,17 +483,17 @@ cadet[1].banter = [
 
 <p>The young girl slept deeply in her food-coma, propped up against a wall with her legs splayed around her great gut. Avolc felt her body gently tugged closer, as the stomach walls tightened their embrace, she soon lay unable to move an inch tight against Melons young body.</p>
 
-<p>The churning grew from there, as well as the wet soaking feeling of juices building up in her fur, scrubbed against her as they slowly worked to dissolve her. This wasent how she had imagined ending her line of duty. Not quite the peril one expect to fall too, the appetite of young little floofling. In retrospect, Melon did indeed remind her of herself. Perhaps she&#39;s make an even greater admiral one day. She&#39;d certainly have quite some Admiral in her now.</p>
+<p>The churning grew from there, as well as the wet soaking feeling of juices building up in her fur, scrubbed against her as they slowly worked to dissolve her. This wasent how she had imagined ending her line of duty. Not quite the peril one expect to fall to, the appetite of young little floofling. In retrospect, Melon did indeed remind her of herself. Perhaps she&#39;s make an even greater Captain one day. She&#39;d certainly have quite some Captain in her now.</p>
 
-<p>The churning gut picked up pace and speed as process of turning Avolc into Melon got underway. The noise of digestion as the stomach went &#39;Glorg, Blourp and Gurgle&#39; didnt quite bother anyone but Avolc into her final moments. There was something grim about hearing the tune of your own digestion. Time passed, Melon slept peacefully while her body did its work. It was only with a shiver and lick of lip the young awe eventually stirred in her coma&nbsp;but by then&nbsp;the great admiral had succumbed to her young little body.</p>
+<p>The churning gut picked up pace and speed as process of turning Avolc into Melon got underway. The noise of digestion as the stomach went &#39;Glorg, Blourp and Gurgle&#39; didnt quite bother anyone but Avolc into her final moments. There was something grim about hearing the tune of your own digestion. Time passed, Melon slept peacefully while her body did its work. It was only with a shiver and lick of lip the young awe eventually stirred in her coma&nbsp;but by then&nbsp;the great Captain had succumbed to her young little body.</p>
 
 <p>No one wondered about the whereabouts of Avolc and Melon for that day. Having been seen together so vigorously getting along well together, there was no need for anyone to consider bother them until ship repairs were complete a whole 2 days later.</p>
 
-<p>What they found by then was too far gone to even consider saving. The captain were but&nbsp;soft gurgling chubbiness on a very plumpened young Melon. She had been awake by then and much too ashamed and fearful over what she&#39;d done to call attention to herself. Perhaps her young mind hoped she&#39;d finish digesting the late&nbsp;Admiral to such a degree that she&#39;d get away with it and escape guilt.</p>
+<p>What they found by then was too far gone to even consider saving. The captain were but&nbsp;soft gurgling softness on a very plumpened young Melon. She had been awake by then and much too ashamed and fearful over what she&#39;d done to call attention to herself. Perhaps her young mind hoped she&#39;d finish digesting the late&nbsp;Captain to such a degree that she&#39;d get away with it and escape guilt.</p>
 
-<p>No punishment was given to young Melon however, no one could have been convinced she&#39;d ever overpower and devour an admiral out of malice. Whatever happened was an accident or carelessness on Avolcs part.&nbsp;</p>
+<p>No punishment was given to young Melon however, no one could have been convinced she&#39;d ever overpower and devour an Captain out of malice. Whatever happened was an accident or carelessness on Avolcs part.&nbsp;</p>
 
-<p>Admiral Avolcs passing was glossed over in the records, to save the Admiralty face she was&nbsp;reported&nbsp;as &quot;Lost in service&quot;.</p>
+<p>Captain Avolcs passing was glossed over in the records, to save the Admiralty face she was&nbsp;reported&nbsp;as &quot;Lost in service&quot;.</p>
 <img src="Images/assets/Melondigest.png" height="40%" width="40%"/> 
 </div>
 
@@ -499,7 +502,7 @@ cadet[1].banter = [
 
 <p>She reminds me of Glint in some ways. A fact that Glint did not enjoy hearing when she delivered the evening report.</p>
 
-<p>Said report had some interesting and disappointing news. Two thieves were caught in the act, separately, but almost at the same time. First is&nbsp;of the merchant ships &#39;Steady wing&#39;s crew and the second one from the "Attentive". Now as far as i understand from the reports, they both had the bright idea of using the busy bustle of repair work and almost free movement between ships as an opportunity to make off with some of the wares. But were caught in the act by astute officers keeping record of everything moved and a sharp eye out for trouble. Our very own Cadet Valnos was instrumental in catching the Steady wing thief and Captain Russel himself caught our wayward crew mate with a pouchful of coins coming from somewhere she shouldn&#39;t have been.</p>
+<p>Said report had some interesting and disappointing news. Two thieves were caught in the act, separately, but almost at the same time. First is&nbsp;of the merchant ships &#39;Steady wing&#39;s crew and the second one from the "Attentive". Now as far as I understand from the reports, they both had the bright idea of using the busy bustle of repair work and almost free movement between ships as an opportunity to make off with some of the wares. But were caught in the act by astute officers keeping record of everything moved and a sharp eye out for trouble. Our very own Cadet Valnos was instrumental in catching the Steady wing thief and Captain Russel himself caught our wayward crew mate with a pouchful of coins coming from somewhere she shouldn&#39;t have been.</p>
 
 <p>Since one thief belongs to the Admiralty and the other stole from my ship, it is up to my judgment on what to do with both of these thieving fools. Though the punishment is pretty clear in Admiralty law, its more of a matter of who&#39;ll get to dispense punishment.</p>
 
@@ -507,7 +510,7 @@ cadet[1].banter = [
 </div>
 
 <div class="dealBoth hidden"><p><strong>Deal with them both</strong></p>
-<p>I will admit my stomach has been rumbling for this chance for some time now. The crew has been impeccably mannered and obedient so far and although that incident with Keeper had me considering my options, i cant go and devour Officers for every tiny defiance.</p>
+<p>I will admit my stomach has been rumbling for this chance for some time now. The crew has been impeccably mannered and obedient so far and although that incident with Keeper had me considering my options, I cant go and devour Officers for every tiny defiance.</p>
 
 <p>Thieves however!</p>
 
@@ -517,38 +520,38 @@ cadet[1].banter = [
 
 <p>I devoured the thief of the merchant crew first, he was lacking of discipline and was trying to make his case, interrupting the proceedings. Head-first down the gullet, he kicked and moaned all the way down and for a long while still afterwards. I did not note his name and cannot recall it now afterwards. He is also past asking.</p>
 
-<p>The other thief, crew-mate of the <em>Attentive</em> was a private named Finnik. She at least had backbone and stood straight and silent while she was read her sentencing. Nor did she did not struggle as i made her my meal. As a female this made her plumper form actually take some effort to swallow down. I think i might have purred, i dont quite fully recall, but i did draw a few eyes in my effort to get her down to an already rounded and jostling belly of mine.</p>
+<p>The other thief, crew-mate of the <em>Attentive</em> was a private named Finnik. She at least had backbone and stood straight and silent while she was read her sentencing. Nor did she did not struggle as I made her my meal. As a female this made her plumper form actually take some effort to swallow down. I think I might have purred, I dont quite fully recall, but I did draw a few eyes in my effort to get her down to an already rounded and jostling belly of mine.</p>
 
 <p>&nbsp;</p>
 
-<p>First-officer Arn rounded up the little trial quickly enough and i retired to my cabin.</p>
+<p>First-officer Arn rounded up the little trial quickly enough and I retired to my cabin.</p>
 <img src="Images/assets/Avolcvore5.png" height="40%" width="40%"/> 
 </div>
 
-<div class="cadetPrize hidden"><p><strong>A cadets prize</strong></p>
-<p>I will admit my stomach has been rumbling for this chance for some time now. The crew has been impeccably mannered and obedient so far and although that incident with Keeper had me considering my options, i cant go and devour Officers for every tiny defiance.</p>
+<div class="cadetPrize hidden"><p><strong>A cadets reward</strong></p>
+<p>I will admit my stomach has been rumbling for this chance for some time now. The crew has been impeccably mannered and obedient so far and although that incident with Keeper had me considering my options, I cant go and devour Officers for every tiny defiance.</p>
 
 <p>Thieves however!</p>
 
 <p>The law is clear, especially on an Admiralty ship where discipline and orderly conduct is everything. The actions of the crew reflects on its Captain and Admiralty itself thats why infractions like this are dealt with harshly and immediately. But so should good conduct also be rewarded!</p>
 
-<p>I made little ceremony out of the act, Cadet Valnos received a commendation for his vigilance and I granted him chance to deal with the thief he caught. He looked momentarily stunned. He had probably thought i&#39;d eat them both myself.</p>
+<p>I made little ceremony out of the act, Cadet Valnos received a commendation for his vigilance and I granted him chance to deal with the thief he caught. He looked momentarily stunned. He had probably thought I&#39;d eat them both myself.</p>
 
 <p>I realize now he probably had quite a bit of stage-fright, being the type that did not enjoy being put in the spotlight and be overly noticed. He was also under pressure to accept his reward and devour the thief, but he did however not shrink from the task. No one graduates the academy without some experience in the act of full consumption and young Cadet Valnos was very... textbook... in his method.</p>
 
-<p>The merchant crew thief had little discipline and made feeble attempts to make his case but his snout was soon was muffled by&nbsp; Valnoses jaws. All male Awes are pretty small, but Cadet Valnos was smaller then his prey. I should have considered this beforehand, but i also realize now i might also have unduly put him in risk of embarrassment if he could not get the thief down. For a moment it looked like he had some problems subduing the unwilling Thief. But i quickly recognized the good old and practiced academy Cling-shift-gulp method come into play, skillfully performed. His meal went down without even being able to cause any much fuss. The Cadet even managed to stay on his feet through the entire devouring. His old instructors would have been proud.</p>
+<p>The merchant crew thief had little discipline and made feeble attempts to make his case but his snout was soon was muffled by&nbsp; Valnoses jaws. All male Awes are pretty small, but Cadet Valnos was smaller then his prey. I should have considered this beforehand, but I also realize now I might also have unduly put him in risk of embarrassment if he could not get the thief down. For a moment it looked like he had some problems subduing the unwilling Thief. But I quickly recognized the good old and practiced academy Cling-shift-gulp method come into play, skillfully performed. His meal went down without even being able to cause any much fuss. The Cadet even managed to stay on his feet through the entire devouring. His old instructors would have been proud.</p>
 
 <p>I swear I saw a slight smugness to his face when he heavily stepped back in rank between the other two Cadets.</p>
 
-<p>The other thief, crew-mate of the <em>Attentive</em> was a private named Finnik. She at least had backbone and stood straight and silent while she was read her sentencing. Nor did she did not struggle as i made her my meal. As a female this made her plumper form actually take a little effort to swallow down. I think i might have purred, i dont quite fully recall, but i did draw a few eyes in my eagerness to get her down to fill my gut.</p>
+<p>The other thief, crew-mate of the <em>Attentive</em> was a private named Finnik. She at least had backbone and stood straight and silent while she was read her sentencing. Nor did she did not struggle as I made her my meal. As a female this made her plumper form actually take a little effort to swallow down. I think I might have purred, I dont quite fully recall, but I did draw a few eyes in my eagerness to get her down to fill my gut.</p>
 
-<p>First-officer Arn rounded up the little trial quickly enough and i retired to my cabin. I am pleased with today.</p>
+<p>First-officer Arn rounded up the little trial quickly enough and I retired to my cabin. I am pleased with today.</p>
 
 <img src="Images/assets/Valnosvore.jpg" height="40%" width="40%"/> 
 </div>
 
 <div class="russelChoice hidden"><p><strong>A cadets prize</strong></p>
-<p>The Captain chose mostly like i would have done if given the choice.</p>
+<p>The Captain chose mostly like I would have done if given the choice.</p>
 
 <p>The thief from his crew that our Cadet Valnos caught, he announced during the quick trial would to his catcher.</p>
 
@@ -556,9 +559,9 @@ cadet[1].banter = [
 
 <p>I realize now he probably had quite a bit of stage-fright, being the type that did not enjoy being put in the spotlight and be overly noticed. He was also under pressure now to accept his reward to&nbsp;devour the thief, he did however not shrink to the task. No one graduates the academy without some experience in this and young Cadet Valnos was very... textbook... in his method.</p>
 
-<p>The merchant crew thief had little discipline and made feeble attempts to make his case but his snout was soon was muffled by&nbsp; Valnoses jaws. All male Awes are pretty small, but Cadet Valnos was smaller then his prey. For a moment it looked like he had some problems subduing the unwilling Thief. But i quickly recognized the good old and practiced academy Cling-shift-gulp method come into play, skillfully performed. His meal went down without even being able to cause any more fuss. The Cadet even managed to stay on his feet through the entire devouring. His old instructors would have been proud.</p>
+<p>The merchant crew thief had little discipline and made feeble attempts to make his case but his snout was soon was muffled by&nbsp; Valnoses jaws. All male Awes are pretty small, but Cadet Valnos was smaller then his prey. For a moment it looked like he had some problems subduing the unwilling Thief. But I quickly recognized the good old and practiced academy Cling-shift-gulp method come into play, skillfully performed. His meal went down without even being able to cause any more fuss. The Cadet even managed to stay on his feet through the entire devouring. His old instructors would have been proud.</p>
 
-<p>The other thief, our old crew-mate, he said he&#39;d deal with personally at a later date. It was somewhat irregular but i decided not to make a fuss about it. I had left things to Captains judgment after all.</p>
+<p>The other thief, our old crew-mate, he said he&#39;d deal with personally at a later date. It was somewhat irregular but I decided not to make a fuss about it. I had left things to Captains judgment after all.</p>
 
 <p>Repairs were completed later that evening and Captain Russel vigorously shook my paw, glad for our help and service. They would now surely make it to port.</p>
 
@@ -566,7 +569,7 @@ cadet[1].banter = [
 
 <p>The firebombs they used were devious and made out of some sort of oil, it was in trying to put out the fire with water that it actually spread the fire further. It was only after it spread that it became a danger taking, if left alone most went out.</p>
 
-<p>I thanked him for the valuable information and we parted ways. Melon waved us off vigorously, she was sporting a very sizable gut and i think i can guess where our former crew-mate ended up. Such is the way of dotting parents.&nbsp;</p>
+<p>I thanked him for the valuable information and we parted ways. Melon waved us off vigorously, she was sporting a very sizable gut and I think I can guess where our former crew-mate ended up. Such is the way of dotting parents.&nbsp;</p>
 
 <p>It was hard to resist such cheer and many of the crew, including me, waved back; Sure now that they&#39;d make it safely to harbor.</p>
 
@@ -584,7 +587,7 @@ cadet[1].banter = [
 </div>
 
 <div class="goodbyes2 hidden"><p><strong>Time for goodbyes</strong></p>
-<p>The Captain chose mostly like i would have done if given the choice.</p>
+<p>The Captain chose mostly like I would have done if given the choice.</p>
 
 <p>The thief from his crew that our Cadet Valnos caught, he announced during the quick trial would to his catcher.</p>
 
@@ -592,13 +595,13 @@ cadet[1].banter = [
 
 <p>I realize now he probably had quite a bit of stage-fright, being the type that did not enjoy being put in the spotlight and be overly noticed. He was also under pressure now to accept his reward devour the thief, he did however not shrink to the task. No one graduates the academy without some experience in this and young Cadet Valnos was very... textbook... in his method.</p>
 
-<p>The merchant crew thief had little discipline and made feeble attempts to make his case but his snout was soon was muffled by&nbsp; Valnoses jaws. All male Awes are pretty small, but Cadet Valnos was smaller then his prey. For a moment it looked like he had some problems subduing the unwilling Thief. But i quickly recognized the good old and practiced academy Cling-shift-gulp method come into play, skillfully performed. His meal went down without even being able to cause any more fuss. The Cadet even managed to stay on his feet through the entire devouring. His old instructors would have been proud.</p>
+<p>The merchant crew thief had little discipline and made feeble attempts to make his case but his snout was soon was muffled by&nbsp; Valnoses jaws. All male Awes are pretty small, but Cadet Valnos was smaller then his prey. For a moment it looked like he had some problems subduing the unwilling Thief. But I quickly recognized the good old and practiced academy Cling-shift-gulp method come into play, skillfully performed. His meal went down without even being able to cause any more fuss. The Cadet even managed to stay on his feet through the entire devouring. His old instructors would have been proud.</p>
 
-<p>The other thief, our old crew mate, he said he&#39;d deal with personally at a later date. It was somewhat irregular but i decided not to make a fuss about it. I had left things to Captains judgment after all.</p>
+<p>The other thief, our old crew mate, he said he&#39;d deal with personally at a later date. It was somewhat irregular but I decided not to make a fuss about it. I had left things to Captains judgment after all.</p>
 
 <p>Repairs were soon completed and Captain Russel vigorously shook my paw and even embraced glad for our help and service. They would now surely make it to port.</p>
 
-<p>He was very grateful for the time i spent with his daughter and told me he lost his mate and melon his mother not long ago before the raid. The little girl had been most melancholy and nothing seemed to brighten her up. Now after Melon had spent a day or so in my care she apparently couldn&#39;t stop talking about the Admiralty and me.</p>
+<p>He was very grateful for the time I spent with his daughter and told me he lost his mate and Melon her mother not long ago before the raid. The little girl had been most melancholy and nothing seemed to brighten her up. Now after Melon had spent a day or so in my care she apparently couldn&#39;t stop talking about the Admiralty and me.</p>
 
 <p>As a token of his appreciation he&#39;s delivered some barrels of spirits they managed to hold on too. I tried to decline but Russel would have none of it. The crew will be happy.</p>
 
@@ -606,7 +609,7 @@ cadet[1].banter = [
 
 <p>The firebombs they used were devious and made out of some sort of self-combusting oil, it was in trying to put out the fire with water that it actually spread the fire further. It was only after it spread that it became a danger, if left alone most burned out on their own.</p>
 
-<p>I thanked him for the valuable information and we parted ways. Melon waved us off vigorously, she was sporting a very sizable gut and i think i can guess where our former crew-mate ended up. Such is the way of dotting parents. To think she was capable of such appetites, im somehow glad our games didnt take a wrong turn.</p>
+<p>I thanked him for the valuable information and we parted ways. Melon waved us off vigorously, she was sporting a very sizable gut and I think I can guess where our former crew-mate ended up. Such is the way of dotting parents. To think she was capable of such appetites, I'm somehow glad our games didnt take a wrong turn.</p>
 
 <p>It was hard to resist such cheer and many of the crew, including me, waved back; Sure now that they&#39;d make it safely to harbor.</p>
 </div>

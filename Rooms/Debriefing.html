@@ -17,7 +17,7 @@
 	 displayCrewBattle = function () {
 $(".crewbattle").text(state.crewLossBattle);
 	}
-
+	
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
@@ -38,30 +38,78 @@ $(".crewbattle").text(state.crewLossBattle);
 		lib.dialogue(e, "boarded")
 		}
 		
-		$("#button-1").addClass("hidden")
-		$("#button-2").removeClass("hidden")
+		if (_.contains(state.events, "mirr")) {
 		
+		$("#resign").removeClass("hidden")
+		}
+		else if (_.contains(state.events, "nyxie")) {
+		
+		$("#resign").removeClass("hidden")
+		}
+		else {
+		$("#button-2").removeClass("hidden")
+		}
+		$("#side").removeClass("hidden")			
+		$("#button-1").addClass("hidden")
+				
       })
+	  
 		$('#button-2').on('click', function() {
         // change state here
         // end by using lib.goTo
         lib.goTo('scars.html')
 		})
 		
+		$('#resign').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+        lib.dialogue(e, "resignation")
+		$("#resign").addClass("hidden")
+		$("#button-2").removeClass("hidden")
+		$(".face").addClass("hidden")
+		if (_.contains(state.events, "mirr")) {
+		
+		$('.mirr').removeClass('hidden');
+		}
+		else if (_.contains(state.events, "nyxie")) {
+		
+		$('.nyxie').removeClass('hidden');
+		}
+		})
 	
-	if (_.contains(state.events, "noArn")) {
-	 $('.noarn').removeClass('hidden');
+	if (_.contains(state.events, "arn")) {
+	 $('.arn').removeClass('hidden');
+	 $('.nyxieno').removeClass('hidden');
 	 }
-	 else if (_.contains(state.events, "arn")) {
-		$('.arn').removeClass('hidden');
+	 else if (_.contains(state.events, "mirr")) {
+		$('.nyxieno').removeClass('hidden');
+		$('.mirr').removeClass('hidden');
+		
 	}
-	
+	else if (_.contains(state.events, "nyxie")) {
+		$('.nyxie').removeClass('hidden');
+		
+		
+	}
+	else if (_.contains(state.events, "garsch")) {
+		$('.garsch').removeClass('hidden');
+		$('.nyxieno').removeClass('hidden');
+	}
+	else if (_.contains(state.events, "tung")) {
+		$('.tung').removeClass('hidden');
+		$('.nyxieno').removeClass('hidden');
+	}
 	
     })
   </script>
   
   <style>
     /* Put styling that is specific to this page here. This is a CSS comment btw. */
+		img {
+	margin: auto;
+	width: 50%;
+	
+	}
   </style>
 
 </head>
@@ -72,6 +120,15 @@ Day: <span class="days"><script>displayDays()</script></span>
 </div>
 <h1>Debriefing</h1>
 </div>
+<div class="hidden" id="side">
+<img class="garsch face hidden" src="Images/assets/Garsch.png"/>
+ <img class="face" src="Images/assets/Tick.png"/>
+  <img class="mirr face" src="Images/assets/Mirr.png"/>
+ <img class="nyxie face" src="Images/assets/Nyxie.png"/>
+  <img class="arn face hidden" src="Images/assets/Arnface.png"/>
+</div>
+
+
 <div id="story-text">
 
 <p>My officers sat assembled for the debriefing. At least the ones still around or who I were not immediately needed elsewhere or being patched up, like my Arms officers. They were a motley dirty and fur-fluffed bunch, all in some way showing signs of battle and stress. Some were injured, although lightly, others had a haunted post-battle look too them. But they were well-trained, they all had kept their composure where lesser Awes would have curled up to hide. </p>
@@ -85,6 +142,8 @@ Day: <span class="days"><script>displayDays()</script></span>
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1">Status</button>
 <button class="btn btn-default hidden" id="button-2">Continue</button>
+<button class="btn btn-default hidden" id="resign">Resignation</button>
+
 </div>
 
 <div class="retreated hidden">
@@ -105,7 +164,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>“How is the crew, what are our casualties?”</p>
 
-<p>Mirr had a distant look on her face, the usually eloquent officer has not escaped unruffled herself, the fur on her paws were stained faintly crimson. She blinked once and locked her eyes with mine.</p>
+<p><p><span class="mirr hidden">First Officer</span> Mirr had a distant look on her face, the usually eloquent officer has not escaped unruffled herself, the fur on her paws were stained faintly crimson. She blinked once and locked her eyes with mine.</p>
 
 <p>“Confused, dazed, but focused on their tasks. We have 30 reported injured, most of them light. <span class="crewbattle"><script>displayCrewBattle()</script></span> have turned to the spirits or missing.”</p>
 
@@ -118,6 +177,12 @@ Day: <span class="days"><script>displayDays()</script></span>
 <p>“Aye captain. A week with good winds. We are on the westward current now so it will not take longer then two regardless of weather.”</p>
 
 <span class="arn hidden"><p>Arn sat silently, face a brooding mask and hard to read. It was partly thanks to him that we made out escape, he managed to coordinate the sails and crew in the masts to give us maximum speed. But he seemed to have little to say or add to the table. </p></span>
+
+<span class="tung hidden"><p>“That was a close trim, but you saw us through in one piece captain.” First-Officer Tung rubbed his snout thoughtfully. </p>
+
+<p>“There are a lot of things I would have done differently in that battle were I the captain. And that just shows I still have a lot to learn from you.”</p></span>
+
+<span class="garsch hidden"><p>“The important thing is that we survived. The crew has tasted its first battle. But I sense many more to come. We must be ready for them.” First-Officer Garsch, who had been sitting quietly concluded.</p></span>
 
 <p>“Very well. Back to your duties everyone.”</p>
 
@@ -150,21 +215,31 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>“How are the crew, what are our casualties?”</p>
 
-<p>Mirr had a distant look on her face, the fur on her paws were faintly crimson. She blinked once and locked her eyes with mine.</p>
+<p><p><span class="mirr hidden">First Officer</span> Mirr had a distant look on her face, the fur on her paws were faintly crimson. She blinked once and locked her eyes with mine.</p>
 
 <p>“Exhausted, demoralized and near breaking. There are more injured then uninjured and i've yet to assertain how many we lost but I estimate up to  <span class="crewbattle"><script>displayCrewBattle()</script></span>.”</p>
 
-<p>I drummed my paw on the table, the news stung. The battle had been a disaster. But we were still alive. I turned to Nyxie.</p>
+<p>I drummed my paw on the table, the news stung. The battle had been a disaster. But we were still alive.  I turned to Nyxie<span class="nyxie hidden"> my First-Officer, but at the moment still in charge of navigation.</span></p>
 
 <p>“Maintain course westward. How long until we are in sight of the first isles?”</p>
 
-<p>Nyxie my navigator had her arm in a sling, but she looked unconcerned with it. She seemed to be coping well with having been at the helm of that fight, but the frazzled look of her fur betrayed the stress she'd been going through.</p>
+<span class="nyxie hidden">
+<p>Nyxie had her arm in a sling, the frazzled look of her fur betrayed the stress she'd been going through. Her paws were quivering. This had been a tough battle for her, with her first day on the job as First-officer.</p>
+<p>“Aye captain. A week with good winds. We are on the westward current now so it will not take longer then two regardless of weather.” She looked like she had more to say, but after the meeting.</p>
+</span>
+<span class="nyxieno hidden">
+<p>Nyxie my navigator had her arm in a sling. She seemed to be coping somewhat well with having been at the helm of that fight, but the frazzled look of her fur and slight quiver of paws betrayed the stress she'd been going through.</p>
 
-<p>“Aye captain. A week with good winds. We are on the westward current now so it will not take longer then two regardless of weather.”</p>
+<p>“A-aye captain. A week with good winds. We are on the westward current now so it will not take longer then two regardless of weather.”</p>
+</span>
+<span class="tung hidden"><p>“That was a fight unlike any other. But you saw us through in one piece captain.” First-Officer Tung rubbed his snout thoughtfully. </p>
 
-<div class="noarn">
-<p>“Very well. Back to your duties everyone.”</p>
-</div>
+<p>“There are a lot of things I would have done differently in that battle were I the captain. Im not sure i could have done better, but that we survived at all seemed down to luck.”</p>
+
+<p>I couldnt help but frown bitterly. </p>
+</span>
+
+<span class="garsch hidden"><p>“We misjudged the strength of our enemies. But the important thing is that we survived. The crew has tasted its first hard battle. But there may be more to come. We must be better prepared for them and not let the events of today repeat themselves.” First-Officer Garsch, who had been sitting quietly concluded.</p></span>
 
 <div class="arn">
 <p> "Very well, if there was nothing else..."
@@ -182,6 +257,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 <p> I found myself grinding my teeth. Arn could be such a infuriating fluffbiter. But somehow i felt it was justified. I would not push this further, it would lead nowhere good when there were more important matters at hand. </p>
 
 <p> "Back to your duties" I dismissed with a hiss. </p> 
+</div>
 </div>
 
 <div class="arnMorale hidden"><p>Arn, who had been silently glowering in a brooding manner at the corner of the table finally spoke up. </p>
@@ -215,19 +291,31 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>“How is the crew, what are our casualties?”</p>
 
-<p>Mirr had a distant look on her face, the usually eloquent officer has not escaped unruffled herself, the fur on her paws were stained faintly crimson. She blinked once and locked her eyes with mine.</p>
+<p><span class="mirr hidden">First Officer</span> Mirr had a distant look on her face, the usually eloquent officer has not escaped unruffled herself, the fur on her paws were stained faintly crimson. She blinked once and locked her eyes with mine.</p>
 
 <p>“Confused, dazed, but focused on their tasks. We have 50 reported injured, most of them light.  <span class="crewbattle"><script>displayCrewBattle()</script></span> have turned to the spirits or missing.”</p>
 
-<p>I drummed my paws on the table. I knew this would happen, but it was never easy to hear. I did not let the silence stretch for too long. I turned to Nyxie.</p>
+<p>I drummed my paws on the table. I knew this would happen, but it was never easy to hear. I did not let the silence stretch for too long. I turned to Nyxie<span class="nyxie hidden"> my First-Officer, but at the moment still in charge of navigation.</span></p>
 
 <p>“Maintain course westward. How long until we are in sight of the first isles?”</p>
 
+<span class="nyxie hidden">
+<p>Nyxie had her arm in a sling, the frazzled look of her fur betrayed the stress she'd been going through. This had been a tough battle for her, with her first day on the job as First-officer.</p>
+<p>“Aye captain. A week with good winds. We are on the westward current now so it will not take longer then two regardless of weather.” She looked like she had more to say, but after the meeting.</p>
+</span>
+<span class="nyxieno hidden">
 <p>Nyxie my navigator had her arm in a sling, but she looked unconcerned with it. She seemed to be coping well with having been at the helm of that fight, but the frazzled look of her fur betrayed the stress she'd been going through.</p>
 
 <p>“Aye captain. A week with good winds. We are on the westward current now so it will not take longer then two regardless of weather.”</p>
-
+</span>
 <span class="arn hidden"><p> Arn sat silently, face a brooding mask and hard to read. He seemed to have little to add to the table. I left him to his silence. </p></span>
+
+<span class="tung hidden"><p>“That was a battle unlike any other, but you saw us through in one piece captain.” First-Officer Tung rubbed his snout thoughtfully. </p>
+
+<p>“There are a lot of things I would have done differently in that battle were I the captain. And that just shows I still have a lot to learn from you.”</p></span>
+
+<span class="garsch hidden"><p>“The important thing is that we survived. The crew has tasted its first battle. But I sense many more to come. We must be ready for them.” First-Officer Garsch, who had been sitting quietly concluded.</p></span>
+
 
 <p>“Very well. Back to your duties everyone.”</p>
 
@@ -252,23 +340,65 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>“How is the crew, what are our casualties?”</p>
 
-<p>Mirr had a distant look on her face, the usually eloquent officer has not escaped unruffled herself, the fur on her paws were stained faintly crimson. She blinked once and locked her eyes with mine.</p>
+<p><span class="mirr hidden">First Officer</span> Mirr had a distant look on her face, the usually eloquent officer has not escaped unruffled herself, the fur on her paws were stained faintly crimson. She blinked once and locked her eyes with mine.</p>
 
-<p>“Confused, dazed, but focused on their tasks. We have 35 reported injured, most of them light.  <span class="crewbattle"><script>displayCrewBattle()</script></span> have turned to the spirits or missing. Oh and Tung looks like he will make it Captain.”</p>
+<p>“Confused, dazed, but focused on their tasks. We have 35 reported injured, most of them light. <span class="crewbattle"><script>displayCrewBattle()</script></span> have turned to the spirits or missing. Oh and Tung looks like he will make it Captain.”</p>
 
-<p>I drummed my paws on the table. I knew this would happen, but it was never easy to hear. I did not let the silence stretch for too long. I turned to Nyxie.</p>
+<p>I drummed my paws on the table. I knew this would happen, but it was never easy to hear. I did not let the silence stretch for too long. I turned to Nyxie<span class="nyxie hidden"> my First-Officer, but at the moment still in charge of navigation.</span></p>
 
 <p>“Maintain course westward. How long until we are in sight of the first isles?”</p>
 
+<span class="nyxie hidden">
+<p>Nyxie had her arm in a sling, the frazzled look of her fur betrayed the stress she'd been going through. This had been a tough battle for her, with her first day on the job as First-officer.</p>
+<p>“Aye captain. A week with good winds. We are on the westward current now so it will not take longer then two regardless of weather.” She looked like she had more to say, but after the meeting.</p>
+</span>
+<span class="nyxieno hidden">
 <p>Nyxie my navigator had her arm in a sling, but she looked unconcerned with it. She seemed to be coping well with having been at the helm of that fight, but the frazzled look of her fur betrayed the stress she'd been going through.</p>
 
 <p>“Aye captain. A week with good winds. We are on the westward current now so it will not take longer then two regardless of weather.”</p>
+</span>
 
 <span class="arn hidden"><p> Arn sat silently, face a brooding mask and hard to read. He seemed to have little to add to the table. I left him to his silence.</p></span>
+
+
+<span class="garsch hidden"><p>“The important thing is that we survived. The crew has tasted its first battle. But I sense many more to come. We must be ready for them.” First-Officer Garsch, who had been sitting quietly concluded.</p></span>
+
 
 <p>“Very well. Back to your duties everyone.”</p>
 
 </div>
+
+
+<div class="resignation hidden">
+
+<p> The Officers file out to do their respective duties. But my new First-officer remains. </p>
+<div class="nyxie hidden">
+<p>Nyxie hands me her First-officers insignia.</p>
+
+<p>“C-captain. I don't know how to say this. But I don't think I'm cut out for this job. <br />
+In that battle there. I was entirely overwhelmed. If you had not shouted at me what to do, I would been frozen on the spot. All I could think of was to steer the ship the way you wanted me to. I totally forgot about being the First-officer!” Nyxie squeaked distraught and shook her head. “I let so many people down who came to me for guidance!”</p>
+
+<p>“It was not the kindest first day for a First-Officer Nyxie. I understand you were overwhelmed.” I try to reassure her. </p>
+
+<p>“No captain, I do not want to do it, i-i-im so sorry! Im out of my depths, I only wish to sail, steer and navigate large beautiful ships! And its not fair to the crew to have someone like me in this position. If you want to demote me or punish me thats o-okay. I understand.” </p>
+
+<p>Nyxie lowered her head, as if to await my wroth and judgment. I can only exhale slowly and put a paw to her shoulder and squeeze gently. <br />
+</p>
+</div>
+<div class="mirr hidden">
+<p>Mirr meets my eyes with a firm and ashamed look. </p>
+
+<p>“I'm afraid I'm going to have to disappoint you, Captain.” She sighed. “I wish to step down as First-officer.” </p>
+
+<p>I feel my fur bristle involuntarily. Mirr, having anticipated my disappointment quickly speaks. </p>
+
+<p>“All that chaos of battle. I'm trained for it, in my head I knew what to do. I don't think I even had time to feel afraid. But I'm not an Awe who leads others into battle.” She held up her sword and looked at it with disdain. <br />
+“I know how to defend myself, I know where to cut and when to dodge. But after today... I do not have the spirit of battle. I cant be the one that tells others where to go bleed and perish, I do not have the heart and I hope you can respect that, my captain. I'm sorry.” </p>
+
+<p>She handed the First-officers insignia back at me, and stared into my eyes intently.</p>
+</div>
+</div>
+
 
 
 </div>

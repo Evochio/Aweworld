@@ -7,7 +7,7 @@
 
   <link rel="stylesheet" href="../main.css"></link>
 
-  <script src="../jquery-2.1.3.js"></script>
+  <script src="../jquery-3.2.1.js"></script>
   <script src="../underscore.js"></script>
 	<script src="../bootstrap.min.js"></script>
  <link rel="stylesheet" href="../bootstrap.min.css"></link>
@@ -15,10 +15,37 @@
   <script src="../main.js"></script>
   <link rel="stylesheet" href="../main.css"></link>
   <script>
+  
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
       
+	  
+	   $('#mirr2').on('click', function() {
+		$("#belly").attr('src','Images/assets/mirr.png');
+		});
+	  
+	   $('.nyxie').on('click', function() {
+		$("#side").attr('innerhtml', 'test');
+		$("#belly").attr('src','Images/assets/nyxie.png');
+		});
+	   $('.evok').on('click', function() {
+		$("#belly").attr('src','Images/assets/evok.png');
+		});
+		$('#garsch').on('click', function() {
+		$("#belly").attr('src','Images/assets/garsch.png');
+		});
+		$('.tung').on('click', function() {
+		$("#belly").attr('src','Images/assets/tung.png');
+		});
+		$('.tick').on('click', function() {
+		$("#belly").attr('src','Images/assets/tick.png');
+		});
+	  
+	  
+	  
+	  
+	  
 	   $('#crew').on('click', function(e) {
 		lib.dialogue(e, "crew")
 		$("#officers").removeClass("hidden")
@@ -26,55 +53,9 @@
 	})
 	  
       $('#officers').on('click', function(e) {
-		lib.dialogue(e, "officers"),
-		
-		$("#officers").addClass("hidden")
-		$("#confrontation").removeClass("hidden")
+		lib.goTo('Officers.html')
 	})
-		
-		
-      
-	   $('#confrontation').on('click', function(e) {
-       lib.dialogue(e, "confrontation"),
-		$("#confrontation").addClass("hidden")
-		
-        $("#threaten").removeClass("hidden")
-		$("#soft").removeClass("hidden")
-      })
-	  $('#hard').on('click', function(e) {
-       lib.dialogue(e, "hard"),
-	   state.events.push("hard");
-		state.crewMorale += 1;
-		state.vore += 1;
-		state.crewLoss += 1;
-		$("#hard").addClass("hidden")
-		$("#letgo").addClass("hidden")
-		$("#continue").removeClass("hidden")
-		
-      })
-	   $('#soft').on('click', function(e) {
-       lib.dialogue(e, "soft"),
-	   state.events.push("soft");
-		$("#threaten").addClass("hidden")
-		$("#soft").addClass("hidden")
-		$("#continue").removeClass("hidden")
-      })
-	  
-	   $('#threaten').on('click', function(e) {
-       lib.dialogue(e, "threaten"),
-	   
-		$("#threaten").addClass("hidden")
-		$("#soft").addClass("hidden")
-		$("#hard").removeClass("hidden")
-		$("#letgo").removeClass("hidden")
-      })
-	   $('#letgo').on('click', function(e) {
-       lib.dialogue(e, "letgo"),
-	   state.events.push("soft");
-		$("#letgo").addClass("hidden")
-		$("#hard").addClass("hidden")
-		$("#continue").removeClass("hidden")
-      })
+	
 	 
 	   $('#continue').on('click', function() {
         // change state here
@@ -82,11 +63,40 @@
 		lib.goTo('Departure.html')
 		
       })
-    })
+	  
+	  /*
+	  $('.evok').on('click', function(e) {
+	  $(".nyxie").addClass("hidden");
+	  $("#image").attr('src',"Images/assets/evok.png");
+	  $("#evok").removeClass("hidden")
+	  })
+	  
+	  
+	  $('#mirr2').on('click', function(){
+        $('#image').attr('src','Images/assets/mirr.png');
+			}
+		);
+	  
+	   $('.nyxie').on('click', function() {
+		$("#image").attr('src','Images/assets/nyxie.png');
+			}
+		);
+	  
+	    */
+    });
+
   </script>
   
   <style>
     /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	
+	img {
+	width: 60%
+	}
+	
+	.officer {
+	cursor: pointer;
+	}
   </style>
 
 </head>
@@ -94,7 +104,9 @@
 <div id="head">
 <h1>The Ship & Crew</h1>
 </div>
+
 <div id="story-text">
+
 <p> An elevator ride later down to the docks at sea-level my new ship stood before me. The "Attentive"!</p>
 
 <p>It was larger then any ship we had in the east, yet the Admiral had stated it was merely an escort. I had seen some of the hulls under construction, the progress of the future was moving steadily on. It seemed that every time I returned to shore from a mission there was some new innovation and marvel to admire.</p>
@@ -103,13 +115,13 @@
 
 <p> I'll have to study how the ship handles more closely later. The crew was lining up into rows in anticipation for my arrival, it looked like they had been ready to depart.</p>
 
-<p> My new First-Officer, Arn, came to meet me. He was a gruff looking fellow with large brows that gave him a perpetual frown and a more salt-frayed mane then most Awes i've seen. </p>
+<p> My new First-Officer, Arn, came to meet me. He was a gruff looking fellow with large brows that gave him a perpetual frown and a more salt-frayed mane then most Awes I've seen. </p>
 
 <p> His demeanour was just as rough and he clasped paws only briefly before turning toward the arrayed sailors in the distance</p>
 
 <p> "Im Arn, your new First. Lets not keep em waiting, shall we Captain?"
 
-<img src="Images/assets/Arn.png" height="40%" width="40%"/> 
+<img src="Images/assets/Arn.png"/> 
 </div>
 <div id="tail">
 
@@ -117,12 +129,6 @@
 <button class="btn btn-default" id="crew">Crew</button>
 
 <button class="btn btn-default hidden" id="officers">Officers</button>
-<button class="btn btn-default hidden" id="confrontation">Confrontation</button>
-<button class="btn btn-default hidden" id="hard">Eat Tung</button>
-<button class="btn btn-default hidden" id="soft">Diplomatic</button>
-<button class="btn btn-default hidden" id="threaten">Threaten</button>
-<button class="btn btn-default hidden" id="letgo">Let it go</button>
-<button class="btn btn-default hidden" id="continue">Continue</button>
 
 </div>
 
@@ -133,7 +139,7 @@
     This is a larger crew then I ever commanded, its one thing to read the numbers and another to have everyone lined up before you standing at attention. </p>
 	
 	<p> We would be quite over-capacity infact as I was expected to part with some of them when we reached the main-fleet as reinforcements. So despite the size of the ship, with the extra crew and supplies the ship was taking on for this journey, the holds below were going to be cramped. Crew would be sleeping in shifts and even officers were going to have to share quarters. I had to make sure the crew stayed happy and united in purpose.</p>
-	<p> But as i stood before them and introduced myself, i was struck on fast things had gone. Barely a few week earlier i had set port in the east with hopes of promotion. And here i was, the newcomer who was supposed to lead this large group of unknowns into foreign seas. </p>
+	<p> But as I stood before them and introduced myself, I was struck on fast things had gone. Barely a few week earlier I had set port in the east with hopes of promotion. And here I was, the newcomer who was supposed to lead this large group of unknowns into foreign seas. </p>
 	<p>
     The diversity of the crew surprised me too. There were Awes of all tones, taken from all over the lands. Even the Raptorians didnt appear to be all from the
     same Clan. These were no laborer Raptorians either, they were clearly warriors and stood with a disciplined stillness under the watchful gaze of their Packmaster and Alpha.
@@ -142,7 +148,7 @@
     Besides them stood a contingent of squires, dedicated Raptorian caretakers and armorers.
 </p>
 <p>
-    They had even assigned me 3 valuable Scouts. Awes with high flight-aptitude and rigorous training to make the best use of it. The three of them stood by themselves off to the side, heavy cloaks covering and protecting their large wings. The leader was a black-furred Raveneye, with eerie yellow eyes that
+    They had even assigned me 3 valuable Scouts. Awes with high flight-aptitude and rigorous training to make the best use of it. The three of them stood by themselves off to the side, heavy cloaks covering and protecting their large wings. The leader was a black-furred Ravenseye, with eerie yellow eyes that
     seemed to pierce straight through you when he looked your way.
 </p>
 <p>
@@ -170,128 +176,12 @@
 
 <p>“Such is them politics 'cap, rumour has it this one went straight over our dear Admirals cap aswell. There are some faithful in the crew I know. As long as they get their poetry nights there wont be trouble.”</p>
 
-<p> There was not much to add to that so i left it be for now. Whatever my objections this was a decision appears to have been made back in the capital. Hopefully it would not become a problem. Though i could see some objecting already to a civilian being given a quarters, albeit small, of their own when the rest were nearly shoulder to shoulder.</p>
+<p> There was not much to add to that so I left it be for now. Whatever my objections this was a decision appears to have been made back in the capital. Hopefully it would not become a problem. Though I could see some objecting already to a civilian being given a quarters, albeit small, of their own when the rest were nearly shoulder to shoulder.</p>
 
 </p>
 
-
-
-</div>
-<div class="officers hidden"><p><strong>Officers</strong></p>
-
-<p>The officers gathered in the spacious planning room attached to the captains cabin on the ship.</p>
-
-<p>They were a motley bunch of characters, 9 all in all. Some i no doubt would see more of then others as they performed their duties.</p>
-
-<p>Arn, made the introductions. I was increasingly sensing a coldness from him and he was all business in our meeting, revealing little about himself. Time would have to tell how well he'd serve. </p>
-
-<p>Keeper, Logistic-officer. A groomed looking Domestic Wulf with spectacles nodded politely in my direction. He had an orderly and respectable look to him, but I've seen a lot of Wulfs in my day and I knew a mischievous one when I saw one. </p>
-
-<p>Evok, Packmaster. As a Raptorian he took up most of the space of room with his presence. But he was the least animated of them all though, slow and deliberate in his movements. Anything more and he might have broken a wall. </p>
-
-<p>Nyxie, High-officer - Navigation. Nyxie resembled my former First-mate in more then appearance. Attentive eyes and thoughtful demeanor, little seemed to slip past her notice which is an important trait for navigation. </p>
-
-<p>Tick, High-officer - Maintenance. Tick, a small male, looked almost bored and unremarkable, didnt speak once. I wondered at what qualities had seen him promoted to high-officer, no doubt highly qualified in his job. </p>
-
-<p>Tung, Mid-Officer - Arms. Another male, surprisingly large one too, i did not know they came in these sizes. This brute seemed to be wearing a permanent scowl on his face (he'd make quite a pair with Arn), one mostly directed at me. Cant say I liked the look. </p>
-
-<p>Garsch, Mid-Officer – Arms. Sharp, curt and to the point if a little old. His first impression was promising however. He bore an impressive scar that seemed to split his ear and give his right eye a permanent squint.</p>
-
-<p>Mirr, Mid-officer – Crew. Of all the officers, Mirr seemed the youngest and newest. She had a curious choice in mane-styles and a City-Awe stance to her and a smell of tobacco. She seemed out of place but no doubt she was good at managing crew or she wouldn't be here. </p>
-
-<p>Ulv, Mid-officer – Ballistics. Of all my officers, Ulv looked the most predatory and eager of them all. She was itching to get out to sea. Her eagerness was promising. </p>
-
-<p>There were more officers in the crew, Low-officers all, who took orders directly from the Mid and high officers. For now these were the names and crew i'd mostly interact with directly however. I was sure that by the end of this voyage, i'd know the names of all under me. </p>
-
 </div>
 
-
-<div class="confrontation hidden"><p><strong>Confrontation</strong></p>
-<p>I laid out the plan as given to me by the Grand-Admiral to my officers and showed them our route and intended rendezvous with the Wulf ships and our intended route further west in pursuit of our main fleet. They all listen attentively and politely, all except one.</p> 
-
-<p> Through the whole briefing Tung gets increasingly complacent and sighs and scoffs quietly at my words to the point where ignoring it further would show that im not in control or afraid of confrontation. Perhaps what he's after all along. I had expected to be tested, but not quite so soon.</p>
-
-<p>“Officer Tung!” I eventually snap at him. “Do you have something to add?”</p>
-
-<p>“Why'd they send us another soft-fur from the East is what I wondering!” He began confrontationaly. It takes most at the table aback. </p>
-
-<p>“You question my ability?” I ask acidly, feeling my fur bristle. </p>
-
-<p>“Yeah! Last captain was weak and indecisive. Turned back at the first sign of trouble! You'll be the same, I can tell.”</p>
-
-<p>Arn was starting to clear his throat to diffuse the situation but I raised my paw and silenced him. I was the one had to deal with this. Im not sure what spawned this kind of open hostility and insolence, it was against all Admirality standards of conduct. </p>
-
-<p> Things must have gone seriously out of control on this ship with the previous captain. Despite the Admirals assurances. Or this was some kind of test. </p>
-
-<p> I can nip this problem in the bud right away or spare him with just a firm telling to. </p>
-</div>
-
-<div class="threaten hidden"><p><strong>Threaten</strong></p>
-
-<p>I could not have my officers questioning me before we were even under way. As a captain I had to prove myself strong and dominant and not as soft as my fur may have made me look, he wanted tough, i gave him tough. </p>
-
-<p>“Stand down or be downed.” I glowered at him, leaning over the table daring him to question my authority again. </p>
-
-<p>Tung chose to make a mocking huff and crossed his arms, sitting back down. Not exactly cowed but not outright matching my direct threat.</p>
-
-<p>“If there's going to be a problem between us Officer Tung? I can have you thrown off the ship now or just eat you for direct insubordination later. Which will it be?”</p>
-
-<p>Tung seemed to hesitate, perhaps he had expected me to show some form of hesitation or weakness. But i've faced Wulfs half his size that were scarier then him. </p>
-
-<p>"Well!? Do we have a problem?" I snapped.</p>
-
-<p>"You tell me Captain." He muttered glumly, averting his gaze in a cowed manner.</p>
-
-<p> Tung seemed to have laid it to rest but was it enough? </p>
-</div>
-
-<div class="letgo hidden"><p><strong>Let it go</strong></p>
-
-<p>I stared at him a long while but Tung remained subdued. The air was absolutely still inside the room. I felt like i had made my point, though i was not entierly satisfied with the result, this was not the time to start depopulating the core officers given to me. </p>
-
-<p>I had to earn the respect of this crew, I knew this. But it would take time.</p>
-
-<p>The meeting continued without interruption. </p>
-</div>
-
-<div class="hard hidden"><p><strong>Eat Tung</strong></p>
-<p> "Fine. You're henceforth demoted to status of ration. I will carry out your sentencing. If you'd all excuse us for a moment if privacy. </p>
-
-<p>A rather nonplussed officer cadre hesitated a moment, turned to look at Tung and then filed out of the room. Arn paused briefly but then exited wordlessly. </p>
-
-<p>Tung was heavy, complained loudly but not dumb enough to fight his superior officer, especially while at port. He must have thought i was bluffing up until the moment I swallowed him whole. For Insubordination, contempt and... being hungry. I hadent had a solid meal in my long trip west and have to admit I was cranky. </p>
-
-<p>But truth be told, I recognized Tungs type straight away. They can be solid officers and loyal to a fault, but only if you gain that loyalty to begin with. Otherwise they will find every opportunity to undermine you for their own agendas. </p>
-
-<p>Problem is that they rarely gain that attitude alone, there are deep-rooted problem somewhere in this crew. </p>
-
-<p>For now, this problem is deep in my gut. I called the officers back and resumed the meeting. No one made further remarks and chose to ignore any errant noise. </p>
-<img src="Images/assets/Avolcbelly3.png" height="40%" width="40%"/> 
-</div>
-
-<div class="soft hidden"><p><strong>Diplomatic</strong></p>
-<p>I pinned him to the spot with a hard glare. Undaunted by his direct accusation of incompetence. </p>
-
-<p>“Are you some sort of mystic Officer Tung?” I asked him with hard tone. </p>
-
-<p>He frowned at the question and then shook his head. </p>
-
-<p>“No... but..” He started before I interrupted him.</p>
-
-<p>“Are you perhaps above the Grand-Admiral?” I snapped quicker. </p>
-
-<p>“No, I am...” </p>
-
-<p>“Then don't embarrass yourself further with your insights. Perhaps go take it up with the Grand-Admiral up at the headquarters, I am sure she'd love to hear what you think about her judgement in Captains. Shall I send you up there, we're still in port.”</p>
-
-<p>Officer Tung visibly bit his lip and looked flustered. He was getting no support from the others as his eyes searched around. Arn seemed to shake his head slightly at him. </p>
-
-<p>“No...” He finally spoke in a low voice. “I'll be fine. I spoke out of turn.” </p>
-
-<p>Tung looked subdued, but the air was still thick with tension. He would probably not question me further for now. I had to earn the respect of this crew, I knew this. But I was already off to an uneasy start. </p>
-
-<p>The meeting continued without interruption. </p>
-</div>
 
 
 <div class="ship hidden"><p><strong>The Attentive</strong></p>

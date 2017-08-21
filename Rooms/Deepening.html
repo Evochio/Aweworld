@@ -25,6 +25,7 @@
 		state.crewMorale += 1;
 		state.crewLoss += 1;
 		state.events.push("deepening");
+		$("#side").removeClass("hidden")
 		$("#arn").addClass("hidden")
 		$("#interview").addClass("hidden")
 		$("#continue").removeClass("hidden")
@@ -66,6 +67,11 @@
   
   <style>
     /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	img {
+margin: auto;
+Width: 100%
+
+}
   </style>
 
 </head>
@@ -78,12 +84,15 @@ Day: <span class="days"><script>displayDays()</script></span>
 </div>
 <h1>Deepening</h1>
 </div>
+<div class="hidden" id="side">
+ <img id="arnface" src="Images/assets/Arnface.png"/>
+</div>
 <div id="story-text">
-<p>I was interrupted today by a peculiar request brought forward by First-mate Arn. Witht he blessing of the resident priestess of the Order, a couple are wishing to perform a 'Deepening'. We're barely started on our journey and already some Awes appear to have fallen deeply for one-another. I never had this arise in the East-sea, of course there was talk, like all sailors talk. And when I was captain I stated something to the effect of keeping close personal matters for when you're off-ship. But it was also a smaller tight-knit crew.</p>
+<p>First-mate Arn finaly deigned to show himself later in the day with an excuse and peculiar request. He has been approached by the resident priestess of the Order for permission to bless a couple request for a <b>'Deepening'</b>. We're barely started on our journey and already some Awes appear to have fallen deeply for one-another. I never had this arise in the East-sea, of course there was talk, like all sailors talk. And when I was captain I stated something to the effect of keeping close personal matters for when you're off-ship. But it was also a smaller tight-knit crew.</p>
 
-<p>I had to consult the tome of laws about this one and normally a Deepening is not an affair of the state at all, its considered a religious freedom and it needs only be registered by an official. Lately some regions have begun demanding written consent forms, such as the rise of bureaucracy is. </p>
+<p>I had to consult the tome of laws about this one and normally a Deepening is not an affair of the state at all, its considered a religious freedom and it needs only be registered by an official. Lately some regions have begun demanding written consent forms however, such as the rise of bureaucracy is. But that does not seem to apply to Admiralty yet.</p>
 
-<p>But its different in the Admiralty if you're in active duty, on-mission and fit to serve for the same reason pregnancies are highly discouraged. It takes an able-bodied Awe out of the action, being consumed kind of does that. Interestingly however nowhere could I find either actually were outright forbidden, just against normal policies of the fleet and captains. Each ship of course sets their own policies within this framework. </p>
+<p>But its different in the Admiralty if you're in active duty, on-mission and fit to serve for the same reason pregnancies are highly discouraged. It takes an able-bodied Awe out of the action, being consumed kind of does that.  Interestingly however, nowhere could I find either actually were outright forbidden, just against normal policies of the fleet and captains. Each ship of course sets their own policies within this framework. </p>
 
 <p>Im still new to this crew, i've spent long hours catching up on all documentation related to this ship, the crew-manifest most of all, this situation feels like a bit of a headache. I feel like just getting it over with. But who knows what im setting myself up for by either choice. Arn seem to be pressing for approval, I didnt quite take him for approving of the Order or being the compassionate Aweist type. </p>
 
