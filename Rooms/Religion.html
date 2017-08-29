@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Aweworld</title>
+
+  <link rel="stylesheet" href="../main.css"></link>
+
+  <script src="../jquery-2.1.3.js"></script>
+  <script src="../underscore.js"></script>
+	<script src="../bootstrap.min.js"></script>
+ <link rel="stylesheet" href="../bootstrap.min.css"></link>
+  <link rel="stylesheet" href="../bootstrap-theme.min.css"></link>
+  <script src="../main.js"></script>
+  <link rel="stylesheet" href="../main.css"></link>
+  <script>
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('Firstofficer.html')
+      })
+
+	  $('#attend').on('click', function(e) {
+		state.piety += 1;
+		lib.dialogue(e, "attend")
+		$("#attend").addClass("hidden")
+		$("#noattend").addClass("hidden")
+		$("#button-1").removeClass("hidden")
+	  
+	     })  
+	    $('#noattend').on('click', function(e) {
+       lib.dialogue(e, "noattend")
+			$("#attend").addClass("hidden")
+			$("#noattend").addClass("hidden")
+			 $("#button-1").removeClass("hidden")
+	  
+	     })  
+	  
+    
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+  </style>
+
+</head>
+<body>
+<div id="head">
+<div id="dayCounter">
+Day: <span class="days"><script>displayDays()</script></span>
+<br/>
+<span class="schedule"><script>displayShedule()</script></span>
+</div>
+<h1>The Order</h1>
+</div>
+<div id="story-text">
+
+<em>Cadet </em>Glint has been subtly hinting but increasingly insisting on me attending to one of the evening services of the Order,&nbsp; &quot;To keep up appearances&quot;.</p>
+
+<p>I have work to do, ive found some documents about the ships specifications that might be valuable to go through, but maybe i&#39;ll go see what kind of services this priest is holding. But it would be merely for curiosity sake, im not beholden to any organization.</p>
+
+
+</div>
+<div id="tail">
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="attend">Attend Service</button>
+<button class="btn btn-default" id="noattend">Do not attend</button>
+<button class="btn btn-default hidden" id="button-1"> Continue </button>
+<span id="cadetButtons"> </span>
+</div>
+
+<div class="attend hidden"><b>Attend Service</b>
+<p>The services seem reasonably unobtrusive to the ships overall goings on, though things get tight for the gatherings. I do not claim to be a believer in the order, or &#39;Order of the belly&#39; as its sometimes whimsically called. The priestess, curiously cowled and covered as always, made no grand entrance and started the service by reading aloud some Old-lore and explaining their meaning. I found my thoughts drifting, mostly thinking about what I&#39;ve learned about the ship during the service and some documents helped me dredge up.</p>
+
+<p>The Attentive is an interesting ship, very different from my old 2nd generation Schooner &#39;Barristan&#39; which i stubborn stuck with till the end. These "Frigates" are built for endurance and speed, as i first observed, an odd mix considering the extra weight usually needed to make her tough. </p>
+
+<p>But the shipbuilders have employed tricks of engineering that are both admirable and grating. The thick hull in the bow holds metal plates in its center, sandwiched between the wood. This makes us extra heavy in the water and along with the ship being long and thin makes us cut through waves and give us a high speed. The downside however is slower maneuverability and tighter compartments down below with reduced cargo hold for supplies. </p>
+
+<p>&nbsp;</p>
+<p> The cowled priestesses voice was soothing to listen to. Even if what most of what she said were platitudes about home and family. The harp and flute play by two crewmembers were also a nice change.</p>
+
+<p>I&#39;ve jotted down one of the hymns from the service. It stuck with me for some reason, despite being slightly ominous now when i think about it.</p>
+
+<p><strong>From the belly we come and to the belly we return. </strong></p>
+
+<p><strong>Of fluff of life we are made and to the fluff we return. </strong></p>
+
+<p><strong>May my eater take my spirit and keep me. </strong></p>
+
+<p><strong>So may we one day all be kept, as one. </strong></p>
+
+</div>
+
+<div class="noattend hidden"><b>Do not attend</b>
+<p>To poor Glints chagrin i turned her down on the evening service. I have more important work to do then to pretend to listen to supposed ancient scriptures and folktales.</p>
+
+<p>Besides, the small hold they keep the services are stuffy at best. There&#39;s not a lot of room in the hold of this frigate for larger gatherings.</p>
+
+<p>I took some time in studying the capabilities of The Attentive. Its an interesting ship, very different from my old 2nd generation Schooner &#39;Barristan&#39; which i stubbornly stuck with over the years. These "Frigates" are built for endurance and speed, an odd mix considering the extra weight usually needed to make her tough. </p>
+
+<p>But the shipbuilders have employed tricks of engineering that are both admirable and grating. The thick hull holds metal plates in its center, sandwiched between the wood. This makes us extra heavy in the water and along with the ship being long and thin makes us cut through waves and give us a high speed. The downside however is slower maneuverability and tighter compartments down below with reduced cargo hold for supplies.  </p>
+
+<p>The Attentive is like a raptor that will spot prey and give fast chase. Catching its prey in speedy sustained chase. Two ballistae can be assembled and mounted in the fore and aft sections. They are not heavy enough to pierce hull except on lighter ships, but can be used to cripple a ship or harass enemy crew.</p>
+
+<p>Fluff help me if our target is both fast and maneuverable however, it feels like my old Barristan could have easily out-danced this ship if the initial charge would to fail. I suppose thats were the toughness comes in. While two Ballistae can be provide fire they can also be used to fire hooks to pull us closer for boarding action, which will be a vital weapon for success for this ship.</p>
+<p>
+<img src="Images/Barristan.png" height="40%" width="40%"/>
+</p>
+
+</div>
+
+<script>
+cadet[0].banter = [
+    { target: '#Ziggy', text: 'Zzzz', imageClass: "neutral"},
+    { target: '#Glint', text: 'Ziggy...!', imageClass: "suspicious"},
+    { target: '#Ziggy', text: 'Guh.. im awake.', imageClass: "surprised"},
+	{ target: '#Glint', text: 'No you were not, you were drooling', imageClass: "angry"},
+	{ target: '#Ziggy', text: 'Hey my eyes were open, I was just thinking about a treat!', imageClass: "angry"},
+	{ target: '#Glint', text: 'How do you even sleep with eyes open, nevermind, i dont want to know.', imageClass: "concerned"},
+	{ target: '#Glint', text: 'But you were blankly staring at Low-Officer Blomm, he was starting to freak out.', imageClass: "concerned"},
+	{ target: '#Ziggy', text: 'I dunno why I agreed to attend this stupid service!', imageClass: "suspicious"}
+];
+
+cadet[1].banter = [
+    { target: '#Glint', text: 'It would be nice to have you attend tonight captain.', imageClass: "neutral"},
+	{ target: '#Glint', text: 'I know you hold some reservations for the pressence of the priestess Soft-spoken', imageClass: "concerned"},
+	{ target: '#Glint', text: 'But maybe seeing it for yourself will calm your qualms. Everyone needs a time for spiritual contemplation and hear some words of ancient lore.', imageClass: "happy"},
+	{ target: '#Ziggy', text: 'I hear its just a bunch of belly worship and that the "soft-spoken" eats you after you join!', imageClass: "surprised"},
+	{ target: '#Glint', text: 'Thats not true at all! Dont listen to her!', imageClass: "blush"},
+	{ target: '#Glint', text: 'Its a serious organization, dedicated to the morals, knowledge and wisdom recovered from the First-age.', imageClass: "angry"}
+	];
+	
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'I found those documents you requested on the ships specifications.', imageClass: "neutral"},
+	{ target: '#Valnos', text: 'I left them on your desk for review for when you find the time.', imageClass: "happy"}
+	
+];
+</script>
+</body>
+</html>

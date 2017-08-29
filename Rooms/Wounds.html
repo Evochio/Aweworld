@@ -34,7 +34,8 @@
 		lib.dialogue(e, "safe"),
 		
 		$("#safe").addClass("hidden")
-		$("#duty").addClass("hidden")	
+		$("#duty").addClass("hidden")
+		$("#restart").removeClass("hidden")
       })
 	  
       $('#duty').on('click', function(e) {
@@ -93,6 +94,18 @@
         // end by using lib.goTo
         lib.goTo('Shipspotted2.html')
       })
+	  
+	  	$('#back').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+         goBack();
+		})
+		
+		$('#restart').on('click', function(e) {
+       location.reload(true)
+		
+    })
+	  
     })
   </script>
   
@@ -122,6 +135,9 @@
 <button class="btn btn-default" id="duty">There are duties to fulfill.</button>
 <button class="btn btn-default hidden" id="answers">Answers</button>
 <button class="btn btn-default hidden" id="button-2">Continue</button>
+
+<button class="btn btn-default hidden" id="restart">Just a dream? (restart page)</button>
+
 <span id="cadetButtons"> </span>
 </div>
 

@@ -48,6 +48,8 @@
 		lib.dialogue(e, "arn"),
 		$("#button-2").removeClass("hidden")
 		$("#arn").addClass("hidden");
+		$("#side").removeClass("hidden")
+		$("#image").attr('src','Images/assets/Arnface.png');
 	})
 	  
 	  $('#nyxie').on('click', function(e) {
@@ -57,6 +59,8 @@
 		$("#mirr").addClass("hidden")
 		$("#garsch").addClass("hidden")
 		$("#button-2").removeClass("hidden");
+		$("#side").removeClass("hidden")
+		$("#image").attr('src','Images/assets/Nyxie.png');
 	})
 	
 	  $('#mirr').on('click', function(e) {
@@ -66,6 +70,8 @@
 		$("#mirr").addClass("hidden")
 		$("#garsch").addClass("hidden")
 		$("#button-2").removeClass("hidden");
+		$("#side").removeClass("hidden")
+		$("#image").attr('src','Images/assets/Mirr.png');
 	})
 	  
 	    $('#garsch').on('click', function(e) {
@@ -76,6 +82,7 @@
 		$("#mirr").addClass("hidden")
 		$("#garsch").addClass("hidden")
 		$("#button-2").removeClass("hidden");
+		
 		}
 		else {
 		$("#tung").removeClass("hidden")
@@ -83,6 +90,8 @@
 			lib.dialogue(e, "garschtung")
 			
 		}
+		$("#side").removeClass("hidden")
+		$("#image").attr('src','Images/assets/Garsch.png');
 	})
 	
 	 $('#tung').on('click', function(e) {
@@ -92,6 +101,8 @@
 		$("#mirr").addClass("hidden")
 		$("#tung").addClass("hidden")
 		$("#button-2").removeClass("hidden");
+		$("#side").removeClass("hidden")
+		$("#image").attr('src','Images/assets/Tung.png');
 	})
 	  
 	  
@@ -138,6 +149,14 @@ $('.attackViska').removeClass('hidden');
   
   <style>
     /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	img {
+	margin: auto;
+	}
+	
+	#image2 {
+	width: 30%;
+	
+	}
   </style>
 
 </head>
@@ -147,6 +166,10 @@ $('.attackViska').removeClass('hidden');
 Day: <span class="days"><script>displayDays()</script></span>
 </div>
 <h1>Further westward</h1>
+</div>
+<div id="side" class="hidden">
+ <img id="image" src=""/>
+
 </div>
 <div id="story-text">
 <p>I set our course Westward. The Wulf-ship has turned around and with full sails races back south-east toward Wulf-lands. </p>
@@ -294,17 +317,22 @@ Had something happened to me, the ship would have been largely leaderless, vulne
 
 <p>They all have their own strengths and weaknesses, but they are the ones who I believe would not turn the position down right away and have sufficient seniority. </p>
 
-<p>Nyxie is sharp and has shown initiative, dedication and a sort of staunch determination to see things through. She would be on-top of things as a First-Officer and navigate her way through issues probably as well as she did the Fangs. <br />
+<p><b>Nyxie</b> is sharp and has shown initiative, dedication and a sort of staunch determination to see things through. She would be on-top of things as a First-Officer and navigate her way through issues probably as well as she did the Fangs. <br />
 My only concern is that her true love seems to be for navigation and steering the ship. She might not be happy to step away from that, but would do it out of duty. </p>
 
-<p>Mirr knows the crew well and knows how to read people in general. She is a great negotiator and would have no problem keeping the peace on the ship and everyone satisfied. She has hidden qualities of leadership and courage in her that she's trying to hide. <br />
+<p><b>Mirr</b> knows the crew well and knows how to read people in general. She is a great negotiator and would have no problem keeping the peace on the ship and everyone satisfied. She has hidden qualities of leadership and courage in her that she's trying to hide. <br />
 Which brings me to her downside. She is for some reason hiding from greater responsibility, perhaps she feel content in her simple role as Crew Officer. She's also not the most martially adept officer we have.</p>
 
-<p>Garsch has experience unlike any other. He's the oldest Officer aboard and has spent years training students in the Academy before he joined into this navy commission. He's unflappable and would be a stoic and reliable First-Officer. <br />
+<p><b>Garsch</b> has experience unlike any other. He's the oldest Officer aboard and has spent years training students in the Academy before he joined into this navy commission. He's unflappable and would be a stoic and reliable First-Officer. <br />
 Unfortunately, he's not very well liked among the crew. He drives them hard and has high expectations. His age might be a problem in the long-term, I cant shake the feeling this sudden assignment to sea is his last hurrah.</p>
+
+<img id="image2" src="Images/assets/Nyxie.png"/>
+<img id="image2" src="Images/assets/Mirr.png"/>
+<img id="image2" src="Images/assets/Garsch.png"/>
+
 </div>
 
-<div class="nyxia hidden"><p><strong>Nyxie</strong></p>
+<div class="nyxie hidden"><p><strong>Nyxie</strong></p>
 <p>“I-im honored that you've picked me for this Captain. I'll do my best to meet your expectations of me!” Nyxie wrung her officers-cap in her paw. She was nervous. </p>
 
 <p>“It will take some adjusting to Nyxie. But I think you will do very well at it. You have talent in all fields neccesary.” I reassured her and placed the First officers insignia on her shoulder pads.</p>

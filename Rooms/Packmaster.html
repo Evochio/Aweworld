@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Aweworld</title>
+  <link rel="stylesheet" href="../main.css"></link>
+
+  <script src="../jquery-2.1.3.js"></script>
+  <script src="../underscore.js"></script>
+	<script src="../bootstrap.min.js"></script>
+ <link rel="stylesheet" href="../bootstrap.min.css"></link>
+  <link rel="stylesheet" href="../bootstrap-theme.min.css"></link>
+  <script src="../main.js"></script>
+  <link rel="stylesheet" href="../main.css"></link>
+  <script>
+		state.days += 1;
+  
+    $(document).ready(function() {
+	
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+	     state.Glint.status = 'available';
+		state.Valnos.status = 'available';
+		state.Ziggy.status = 'available';
+       newDialogue();
+      $('#button-1').on('click', function() {
+        // change state here
+		
+        // end by using lib.goTo
+        lib.goTo('Religion.html')
+      })
+
+      $('#button-2').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+        lib.goTo('Page6b.html')
+      })
+    
+    })
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	img {
+	margin:auto;
+	}
+  </style>
+
+</head>
+<body>
+<div id="head">
+<div id="dayCounter">
+Day: <span class="days"><script>displayDays()</script></span>
+<br/>
+<span class="schedule"><script>displayShedule()</script></span>
+</div>
+<h1>Packmaster</h1>
+</div>
+<div id="side">
+ <img id="mirrimg" src="Images/assets/Evok.png"/>
+</div>
+
+<div id="story-text">
+<p>We are on the more open seas of the Bay of spines, having finally lost sight of the mountainous west-coast. Wind is brisk and the weather has cleared, we have a good pace again, quickly making up for lost time.<br />
+Ship morale seems stable, my cadets report the crew mostly staying out of trouble. What little there's been, the Officers have been able to keep a lid on without escalating to me at least. <br />
+A large Core part of this crew has sailed together for nearly a year on this ship already, but the crew has nearly doubled in size for this journey with a mix of new recruits and older reserves. It pays to keep a close attention to it this early on. </p>
+
+<p>I got a chance to talk to Packmaster Evok of the Raptorians today. It seems the Raptorians, most of the time, keep to themselves on this ship, lightly tended by the Squires they trust. But that is hardly a surprise or anything uniquely new, they tend to prefer it that way and it is not because of any particular animosity toward Awes.<br />
+They are picked and then trained for being obedient and placid. Admiralty learned early that having the strongest and most aggressive Raptorian fighters caused more trouble then they made up for in increased fighting strength. Thats not to say that these Raptorians would not be ferocious fighters when its their due to fight.<br />
+Still, trained or not, it pays to make sure they are content and comfortable. You do not want 35 upset or bored Raptorians starting to consider change in diet and to make sport out of the rest of the crew. A few hundred of us in these tight confines are almost no match and we'd all soon find ourselves closely tied to Raptorian physiology. <br />
+In any case, Packmaster Evok, big brute of a Raptorian, seems reliable and smart. He will let me know if anything is amiss. He was surprisingly quite taken to Cadet Ziggy, who i worried had been bothering them with her sometimes raucous merrymaking.<br />
+</p>
+</div>
+<div id="tail">
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+
+<button class="btn btn-default" id="button-1"> Continue </button>
+<span id="cadetButtons"> </span>
+<script>
+cadet[0].banter = [
+    { target: '#Ziggy', text: 'Them Raptorians are just big softies.', imageClass: "neutral"},
+    { target: '#Ziggy', text: 'They may look mean, sound mean, smell mean and threaten to bitecha', imageClass: "happy"},
+    { target: '#Ziggy', text: 'But deep down they just crave a pet and a rub on the nose! You should try it Glint!', imageClass: "smug"},
+	{ target: '#Glint', text: 'Thanks... ill pass and just take your word for it.', imageClass: "concerned"}
+   
+];
+
+cadet[1].banter = [
+    { target: '#Glint', text: 'Raptorians make good hires.', imageClass: "neutral"},
+	{ target: '#Glint', text: 'Always on time, obedient and quiet', imageClass: "smug"},
+	{ target: '#Glint', text: 'We had a few on staff at the manor where I grew up.', imageClass: "happy"},
+	{ target: '#Valnos', text: 'Had?', imageClass: "suspicious"},
+	{ target: '#Ziggy', text: 'Manor!?', imageClass: "surprised"},
+	{ target: '#Glint', text: 'Yes, i mean... they have short contracts and...', imageClass: "blush"},
+	{ target: '#Ziggy', text: 'Always trying to show off!', imageClass: "suspicious"}
+	];
+	
+ cadet[2].banter = [
+	{ target: '#Ziggy', text: 'So... your dad, Tandtass.', imageClass: "smug"},
+	{ target: '#Valnos', text: 'What about him?', imageClass: "neutral"},
+	{ target: '#Ziggy', text: 'Why he go to the Thick anyway?', imageClass: "neutral"},
+	{ target: '#Valnos', text: 'I... well there are only his published journals to go by.', imageClass: "blush"},
+	{ target: '#Valnos', text: 'He not only wanted to find a passage through, but also find the lost city.', imageClass: "sad"},
+	{ target: '#Ziggy', text: 'Heh, a lost city, what a tale! Everyone knows there is nothing but water, jungle and IG-Wulfs in the Thick,', imageClass: "blush"},
+	{ target: '#Valnos', text: 'Not A city, THE city. The old City capitol of the ruin builders.', imageClass: "angry"},
+	{ target: '#Ziggy', text: 'Spooky!', imageClass: "happy"}
+	
+];
+
+
+</script>
+</div>
+</body>
+</html>

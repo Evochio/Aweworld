@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="../main.css"></link>
   <script>
 	state.days += 1;
+	state.piety += 1;
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
@@ -64,12 +65,13 @@
 		   
 		 $("#side").removeClass("hidden")   
 	    })
+		
 	    $('#volunteer').on('click', function(e) {
        lib.dialogue(e, "volunteer"),
 	   $("#ceremony2").addClass("hidden")
 	   $("#volunteer").addClass("hidden")
 	   
-	   $("#reset").removeClass("hidden")
+	   $("#restart").removeClass("hidden")
 		
       })
 	  $('#ceremony_no').on('click', function(e) {
@@ -89,18 +91,23 @@
       })
 	  
 	  $('#noallow').on('click', function(e) {
-      
+      lib.dialogue(e, "noallow"),
 	   $("#noallow").addClass("hidden")
 	   $("#ceremony_no").removeClass("hidden")
 	    $("#allow").addClass("hidden")
       })
 	 
 	 $('#allow').on('click', function(e) {
-       
+        lib.dialogue(e, "allow"),
 	   $("#noallow").addClass("hidden")
 	   $("#ceremony").removeClass("hidden")
 	    $("#allow").addClass("hidden")
       })
+	 
+	 $('#restart').on('click', function(e) {
+       location.reload(true)
+		
+    })
 	 
 	   $('#continue').on('click', function() {
         // change state here
@@ -109,6 +116,24 @@
         lib.goTo('end.html')
 				
       })
+	  
+	  
+	  if (_.contains(state.events, "deepening")) {
+		$("#agreed").removeClass("hidden")
+		
+	  }
+	  else {
+		$("#agreed2").removeClass("hidden")
+	  }
+	if (state.piety == 0 ) {
+		$(".lowPiety").removeClass("hidden")
+		
+	  }
+	 else if (state.piety == 2)
+	 {
+	 $(".highPiety, .tempted").removeClass("hidden")
+	 }
+
    
 	}) 
 </script>
@@ -135,7 +160,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 <div id="story-text">
 <p>“Captain” A soft voice spoke to me through the doorway. “May we have a word?” </p>
 
-<p>It was the Soft-spoken herself. Cowled and dressed in her long robe. If she'd deigned to come speak to me herself, it must be of some importance. She rarely left her chambers and most of the time, outside the meetings, i forgot she was onboard. I beckoned her inside. </p>
+<p>It was the Soft-spoken herself. Cowled and dressed in her long robe. If she'd deigned to come speak to me herself, it must be of some importance. She rarely left her chambers and most of the time, outside the meetings, I forgot she was onboard. I beckoned her inside. </p>
 
 <p>The Soft-spoken closed the door behind her and invited herself to a seat, perching over it rather then sitting properly. </p>
 
@@ -143,21 +168,21 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>I nodded humbly. “It was mostly the efforts of the crew.”</p>
 
-<p>“This may be correct, its the efforts of all of us that will see us through.“ She murrled quietly. </p>
+<p>“This may be correct, its the efforts of all of us that will see us through.“ She crooned softly and continued after a brief pause. </p>
 
 <p>“It is also why I am here. The efforts of those we've lost along the way, who's sacrifice have ushered us along. Many have fallen to the dark, unable to reach the light of the First Awe through beloved kin. We must honor them and help usher them toward the light!”</p>
 
-<p>I shifted uneasily. I didnt need a reminder of the brave Awes who were no longer among us. They haunted my dreams. </p>
+<p>I shifted uneasily, I didnt need a reminder of the brave Awes who were no longer among us, they haunted my dreams.<span class="highPiety hidden"> The thought of them banished to some sort of restless darkness gave me further unease. </span></p>
 
 <p>“You wish to hold another gathering?” I ventured.</p>
 
-<p>“A Ceremony, yes! It is a sacred time. If conditions permit, I would like to honor the lost in the light of the three moons, help usher their spirits back to the light. I believe it will put many hearts at ease.”</p>
+<p>“A Ceremony, yes! It is a rare sacred time. If conditions permit, I would like to honor the lost in the light of the three moons, help usher their spirits back to the light. I believe it will put many hearts at ease.”</p>
 
-<p>I considered her words. The weather had seemed to calm considerably, the rainclouds dispersing as suddenly as they had appeared, i would even venture to call it mild. As long as we kept a look-out, we'd be in no danger for a nights distraction. You couldnt really be snuck up on in the open sea.</p>
+<p>I considered her words. The weather had seemed to calm considerably, the rainclouds dispersing as suddenly as they had appeared, I would even venture to call it mild. As long as we kept a look-out, we'd be in no danger for a nights distraction. You couldnt really be snuck up on in the open sea.</p>
 
-<span id="lowPiety" class="hidden"> <p>Question was though if it was prudent to allow such frivolity to distract the minds of the crew when we were so far away from home in hostile seas. </p> </span>
+<span class="lowPiety hidden"> <p>Question was though if it was prudent to allow such frivolity to distract the minds of the crew when we were so far away from home in hostile seas. </p> </span>
 
-<span id="highPiety" class="hidden"> <p>From the few times i've attended the ceremonies, this seemed like a harmless and possibly positive idea.</p> </span>
+<span class="highPiety hidden"> <p>From the few times I've attended the ceremonies, this seemed like a harmless and possibly positive idea.</p> </span>
 
 
 </div>
@@ -175,15 +200,16 @@ Day: <span class="days"><script>displayDays()</script></span>
 <button class="btn btn-default hidden" id="ceremony2">Volunteers</button>
 <button class="btn btn-default hidden" id="volunteer">Volunteer yourself</button>
 <button class="btn btn-default hidden" id="continue">Continue</button>
+<button class="btn btn-default hidden" id="restart">(restart page)</button>
 <span id="cadetButtons"> </span>
 
 
 </div>
 <div class="agreed hidden"><p><strong>Agreed</strong></p>
 
-<p>"I thank you Captain, you are being wise. This is the purpose i am here for, to safeguard our souls and sheperd the stray out of the darkness." </p>
+<p>"I thank you Captain, you are being wise. This is the purpose I am here for, to safeguard our souls and shepherd the stray out of the darkness." </p>
 
-<p> Not quite sure how to respond to that i nodded. Her following had grown since the start of the journey and probably would even more the more i sanctioned their gatherings. But there had been no consequences from it thus far. </p>
+<p> Not quite sure how to respond to that I nodded. Her following had grown since the start of the journey and probably would even more the more I sanctioned their gatherings. But there had been no consequences from it thus far. </p>
 
 <p> Perhaps a little faith is what some needed to be brave. </p>
 
@@ -191,21 +217,44 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <div class="agreed2 hidden"><p><strong>Agreed</strong></p>
 
-<p> "I thank you Captain, you are being wise. This is the purpose i am here for, to safeguard our souls and sheperd the stray out of the darkness." </p>
+<p> "I thank you Captain, you are being wise. This is the purpose I am here for, to safeguard our souls and shepherd the stray out of the darkness." </p>
 
-<p> "There is however one more thing i must ask for." She continued. </p>
-
-<p> "You've set a policy to deny people wishing to deepen with one another. It might have proven a wise decision given the cirumstances that occured, the sacred act was under threat of abuse, but for tonight i wish to ask you lift this restriction."
+<p> "There is however one more thing I must ask for." She continued. "You've set a policy to deny people wishing to deepen with one another. It might have proven a wise decision given the circumstances that occurred, the sacred act was under threat of abuse, but for tonight I wish to ask you lift this restriction."
 
 <p> I quirked my brow at that and leaned forward. </p>
 
 <p> "And why is that priestess? Planning to give yourself away?"
 
-<p> She shook her head patiantly. </p>
+<p> She shook her head patiently. </p>
 
-<p> "For the ceremony to be complete, to create a strong light and a beacon for those lost, volunteers who join together are neccesary. Its when we honor the first-Awe and truly unite, heart AND body, that we are at our strongest."
+<p> "For the ceremony to be complete, to create a strong light and a beacon for those lost, volunteers who join together are necessary. Its when we honor the first-Awe and truly unite, heart AND body, that we are at our strongest."
 
 <p> I leaned back in my chair and thought about this. She had a way with words alright. </p> 
+
+</div>
+
+
+<div class="allow hidden"><p><strong>Allow</strong></p>
+<span class="highPiety hidden"> <p> I felt pretty sure her words of lost souls were not meant to guilt me. But thats what they did. </p> </span>
+
+<p> My contemplation was brief while the priestess politely waited. </p>
+
+<p> “Very well Priestess. I will permit Deepenings for this evening.” I sighed. “Do whatever it is you want to do. Unlike others, you came to me and actually asked first<span class="lowPiety hidden"> and it might help morale since so many of the crew are followers of your order</span><span class="highPiety hidden">. And I'm not entirely without sympathy for the reasoning.” I admitted carefully</span>.</p>
+
+<p>”Thank you Captain. You are being wise and pious by your reconsideration!” </p> 
+
+</div>
+
+<div class="noallow hidden"><p><strong>Denied</strong></p>
+<p> I did not think long. </p>
+<p> "I'm sorry priestess, on this matter I do not quite see eye to eye. I will permit some degree of freedom, but at sea on an Admiralty ship, the lives of the crew are not their own to spend.” </p>
+<p> I surprised to find her gazing into my eyes with quite some intent from within her cowl. My justification was being carefully considered. It drove me to further explain.</p>
+
+<p> “We are here to protect our whats ours and whatever liberties and freedoms those at home enjoy. That is our over-arching mission! We are here for them and every Awe counts.” </p>
+
+<p> The Priestess was still for a while. But then she bowed her head slowly in assent, offering no argument.</p>
+
+<p>”Understood Captain.” </p>
 
 </div>
 
@@ -215,7 +264,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p> "But Captain!" The Soft-spoken seemed to momentarily rise in her seat, she was larger then she pretended to be. "Think of those lost! Think of the hearts of your crew! We head further away from the peaks of our homes. Many might yet still not see them again." </p>
 
-<p> "That is for me to worry about!" I snapped. "I dont need my crews heads filled with distractions when they need to be alert!" </p>
+<p> "That is for me to worry about!" I snapped. "I don't need my crews heads filled with distractions when they need to be alert!" </p>
 
 <p> "Would you rather then that they be afraid?" The priestess retorted sharply.  "When the time comes to fight again, knowing they might take their final step and be lost in darkness might make most refuse to take it!" </p>
 
@@ -235,19 +284,25 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>She was a Mountain-Awe. The race of which all Awes are descendant from. I had heard some still remained in the furthest tallest reaches of the spiny mountains, keeping to themselves. There was something pure and raw about her that brought a hush to the assembled crowd. Despite her size , standing a head taller then myself and with thick Matron-like sturdiness to her, she seemed almost to float to the altar before facing the crowd. </p>
 
-<p>She raised her voice and it was crisp and clear, carrying an accent to it i could not quite place but felt distinctly familiar. She did not have this accent in our previous meetings. </p>
+<p>She raised her voice and it was crisp and clear, carrying an accent to it I could not quite place but felt distinctly familiar. She did not have this accent in our previous meetings. </p>
 
-<p>"We are gathered here this night of moons for the ceremony of the lost, initiation and worship!" </p>
+<p>"We are gathered here this night of three moons for the ceremony of the lost!" </p>
 
-<p>"We take our lesson from the first Awe. Matron of us all. Who at the darkest coldest night, took her kin upon herself, harboring them until they would persevere into the light together. Through her we emerged as a new stronger generation. It was through the full belly of the first Awe we saw salvation through darkness. Thus it is through the full belly we say thanks for the blessing of our strength and we are guided into the light!"</p>
+<p>We take our lesson from the first Awe. The nameless Matron of us all. Who at the darkest coldest night, took her kin upon herself and became, for a moment, the last Awe.<br />
+She harbored them and their light so they would persevere, for together they were brighter! <br />
+It was through the full belly of the first Awe we saw salvation through darkness. We emerged from her anew, a stronger generation and she ceased to be the last and became the First. <br />
+Thus it is through the full belly we say thanks, for the blessing of our strength comes from it.<br />
+Thanks to it, we all hold a part of the brightness of those who came before. <br />
+Through it, we ourselves are made part of the brightness of those who are and will be.</p>
 
 <p>The priestess climbed onto the altar and stood above the crowd, her abdomen revealed for all. She didn't quite as such have a paunch as her stocky frame seemed to lend her a generous natural full figure. The longer fuzz under the lip of her pouch was dotted with patches of gray. </p>
 
 <p>She gripped either side of belly with both paws, caressing it almost seductively upwards in a light heave while she spoke.</p>
 
-<p>"Tonight, at the brightest night, we honor the first Awe and what she taught us. For it was the same light that called to the First Awe that the darkness had been vanquished. Who among you will join with me, in worship and strength and aid in making a light so bright to guide and usher those lost back into the fold!”</p>
+<p>"Tonight, at the brightest night, we honor the first Awe and what she taught us. For it was the same light that guided the First Awe and told that the darkness had finally passed. <br />
+Who among you will join with me this night, in worship and strength and aid in making a light so bright it will guide and usher those lost back into the fold like a beacon!”</p>
 
-<span id="tempted" class="hidden"><p> I found myself inexplicably enthralled by her, her primal-like beauty, her powerfull frame. She called for Awes to join her body and i was suprised by my urge to volunteer. This must be what those who wish to deepen to another feel like. A form of not only physical attraction but a... spiritual one. I want to be this Awe.</p></span>
+<span class="tempted hidden"><p> I found myself inexplicably enthralled by her, her primal-like beauty, her powerful frame. She called for Awes to join her body and I was surprised by my urge to volunteer. This must be what those who wish to deepen to another feel like. A form of not only physical attraction but a... spiritual one. I want to be this Awe.</p></span>
 </div>
 
 <div class="ceremony_no hidden"><p><strong>Ceremony</strong></p>
@@ -261,23 +316,28 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>She was a Mountain-Awe. The race of which all Awes are descendant from. I had heard some still remained in the furthest tallest reaches of the spiny mountains, keeping to themselves. There was something pure and raw about her that brought a hush to the assembled crowd. Despite her size , standing a head taller then myself and with thick Matron-like sturdiness to her, she seemed almost to float to the altar before facing the crowd. </p>
 
-<p>She raised her voice and it was crisp and clear, carrying an accent to it i could not quite place but felt distinctly familiar. She did not have this accent in our previous meetings. </p>
+<p>She raised her voice and it was crisp and clear, carrying an accent to it I could not quite place but felt distinctly familiar. She did not have this accent in our previous meetings. </p>
 
 <p>"We are gathered here this night of moons for the ceremony of the lost." </p>
 
-<p>"We take our lesson from the first Awe. Matron of us all. Who at the darkest coldest night, took her kin upon herself, harboring them until they would persevere into the light together. Through her we emerged as a new stronger generation. It was through the full belly of the first Awe we saw salvation through darkness. Thus it is through the full belly we say thanks for the blessing of our strength and we are guided into the light!"</p>
+<p>We take our lesson from the first Awe. The nameless Matron of us all. Who at the darkest coldest night, took her kin upon herself and became, for a moment, the last Awe.<br />
+She harbored them and their light so they would persevere, for together they were brighter! <br />
+It was through the full belly of the first Awe we saw salvation through darkness. We emerged from her anew, a stronger generation and she ceased to be the last and became the First. <br />
+Thus it is through the full belly we say thanks, for the blessing of our strength comes from it.<br />
+Thanks to it, we all hold a part of the brightness of those who came before. <br />
+Through it, we ourselves are made part of the brightness of those who are and will be.</p>
 
 <p> Her eyes searched the crowd and paused briefly at me for a moment. Then she continued. </p>
 
-<p> "Under the light of the moons and the light of our souls gathered here by us together, we will usher our lost back into our fold." She raised a paw to the moons and in the light her white fur seemed to almost glimmer. </p>
+<p> "Under the guiding light of the moons and the brightness of our lights gathered together in purpose, we will usher our lost back into our fold." She raised a paw to the moons and in the light her white fur seemed to almost glimmer. </p>
 
-<p> "Have heart, have courage. For as long as the light of us all exists here and back home, we'll all find our way home." </p>
+<p> "Have heart, have courage. For as long as the light of us all exists, here and back home, there will always be guiding a light for those astray." </p>
 
-<p> The rest of the ceremony proceeded in a similar manner. Although the ritual seemed somewhat incomplete, the priestess seemed to make a good job of it, despite my adamant denial of her earlier request. </p>
+<p> The rest of the ceremony proceeded in a similar manner. Although the ritual seemed somewhat incomplete, the priestess seemed to make a good job of it, despite my denial of her earlier request. </p>
 
 <p> I stood at the deck and regarded the full moons, clouds had just broken and they made it almost as bright as dawn and seemed to drown out the stars. It was a bright quiet night, the unusually low waves parting peacefully before our advance to whatever awaited us. </p>
 
-<p> With all the turbulence of the last few days, i welcomed the feeling of warmth the gathering had brought. It was comforting to be surrounded by your kind, perhaps this what having a big family was really like. But I had the feeling it was the calm before the storms to come. If the fleet had met the kind of opposition we did, i could only hope they fared with as much fortune as we. </p>
+<p> With all the turbulence of the last few days, I welcomed the feeling of warmth the gathering had brought. It was comforting to be surrounded by your kind, perhaps this what having a big family was really like. But I had the feeling it was the calm before the storms to come. If the fleet had met the kind of opposition we did, I could only hope they fared with as much fortune as we. </p>
 
 <p> In a barely weeks time when the first islands came to view, we would see. </p>
 </div>
@@ -286,13 +346,13 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p> There is a terrible beauty in the Soft-spoken. I cant help but be taken in by the perfection of her. She is like the base of Awekind, that of which all others are molded from. As close to the First-Awe one could imagine. </p>
 
-<p> I feel the pull of her and understand it for what it is. This is what those others wishing to deepen with another have felt, those that i have sometimes scoffed at in the past. </p>
+<p> I feel the pull of her and understand it for what it is. This is what those others wishing to deepen with another have felt, those that I have sometimes scoffed at in the past. </p>
 
-<p> Its more of an attraction, its a need to be part of something bigger then you. Someone who can represent what you want to be better then yourself. With a shiver and shudder i realize that i cant and wont stop myself from volunteering to join her body. </p>
+<p> Its more of an attraction, its a need to be part of something bigger then you. Someone who can represent what you want to be better then yourself. With a shiver and shudder I realize that I cant and wont stop myself from volunteering to join her body. </p>
 
-<p> All my other responsibilites are secondary, the ship, the crew, the mission, it will work itself out without me. Heck, they can elect the soft-spoken as captain, once im part of her she'll be more then i ever was. </p>
+<p> All my other responsibilities are secondary, the ship, the crew, the mission, it will work itself out without me. Heck, they can elect the soft-spoken as captain, once I'm part of her she'll be more then I ever was. </p>
 
-<p> I step up to the make-shift altar she's standing on with some others. Others who feel the same call as i do. I feel an unexpected rivalry toward them. </p>
+<p> I step up to the make-shift altar she's standing on with some others. Others who feel the same call as I do. I feel an unexpected rivalry toward them. </p>
 
 <p> The soft-spoken loom ahead of me. She smiles a radiating smile and puts her wide paw on my head. </p>
 
@@ -300,19 +360,19 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p> She swept a paw over the assembly and leaned closer, inviting me to seal my decision and give her white-furred belly and thick pouch a kiss of commitment.</p>
 
-<p> I pressed my snout against the soft fur and closed my eyes. My head was swimming, a small muffled part of me was rebelling against my decision, wondering if i was under some spell. But spell or not, i had now committed to my decision to become an addition to this Awes hips. </p>
+<p> I pressed my snout against the soft fur and closed my eyes. My head was swimming, a small muffled part of me was rebelling against my decision, wondering if I was under some spell. But spell or not, I had now committed to my decision to become an addition to this Awes hips. </p>
 
-<p> I didnt even notice her annoint and bless the other volunteers. She stood before me again soon and pulled me forward, leaning in to whisper her secret name in my ear. </p> 
+<p> I didnt even notice her anoint and bless the other volunteers. She stood before me again soon and pulled me forward, leaning in to whisper her secret name in my ear. </p> 
 
-<p> "Chant my name and think of me closely as my body takes you, for then your spirit might best join mine" She cooed softly washing her warm breath over my face as she as she opened her jaws and I slipped inside over the velvety tongue. </p>
+<p> "Chant my name and think of me closely as my body takes you, for then your light might best join mine." She cooed softly washing her warm breath over my face as she as she opened her jaws and I slipped inside over the velvety tongue. </p>
 
-<p> She took me in, swallowing around my head, heaving me up against her. I was being devoured willingly infront of a crowd and no one said a word or questioned my decision. This was sacred. </p>
+<p> She took me in, swallowing around my head, heaving me up against her. I was being devoured willingly in front of a crowd and no one said a word or questioned my decision. This was sacred. </p>
 
 <p> Wet 'gulk'ing swallows echoed around me as the tightness of her body enveloped me. Shoulders, chest and then down to the waist. She paused here, with my legs and tail sticking out of her jaws, I was in her mercy. </p>
 
 <p> I could hear her heartbeat, feel her heat, her strength over and around me. I shuddered and she gulped in response as if she had waited for it, plunging me on down into her stomach. The chamber stretched and squelched. It was probably a stomach that had seen many before me and would see many more. </p>
 
-<p> But i understood now her purpose as well as mine. Hers was to spread the word, the creed and light and the path to keep our kind safe. She provided the comfort of knowing existance would always be, either through the light inside you and then ultimately, as the light inside others. </p>
+<p> But I understood now her purpose as well as mine. Hers was to spread the word, the creed and light and the path to keep our kind safe. She provided the comfort of knowing existence would always be, either through the light inside you and then ultimately, as the light inside others. </p>
 
 <p> I curled up tight, others would soon join me. It would be cramped and difficult. But she'd manage us. She'd digest us. </p>
 
@@ -321,7 +381,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 <p> "Lysa... Lysa." I began. </p>
 <br /> 
 
-<p> The soft-spoken laid heavy and swollen upon the altar, slightly too large to fit upon it now but making do. She had make herself available for the many who wanted to approach the blessing of a touch on her belly or white fur. She knew she might have overdone it this time. Her body was protesting to shere mass of meals within her, it would take such tremendous effort to absorb it all. Already her gut was audibly churning hard around her willing deepeners.</p>
+<p> The soft-spoken laid heavy and swollen upon the altar, slightly too large to fit upon it now but making do. She had make herself available for the many who wanted to approach the blessing of a touch on her belly or white fur. She knew she might have overdone it this time. Her body was protesting to sheer mass of meals within her, it would take such tremendous effort to absorb it all. Already her gut was audibly churning hard around her willing deepeners.</p>
 
 <p> But she was built for this, she had trained for this. To win over a captain was a surprise, of all Awes, they were the ones of strongest will and usually unaffected by temptings of a deepening. She was honored however, the late captains prestige now belonged to her. She'd spend it well. </p>
 
@@ -343,11 +403,11 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>With her stomach so full and taking space, Glint had to help push the final one into the priestesses pouch. It was the only moment through the whole ordeal that didn't seem quite as rehearsed and smooth as the rest. But to in the end, all in all the Soft-spoken had taken in 4 Awes into her body. She was unable to stand and lay upon the podium, voice strained as she stroked over her huge gut. </p>
 
-<p>“Oh First-Awe! By the light of our souls united! Let us guide those wayward ones, let us honor you and be stronger, together, in your name!”</p>
+<p>“Oh First-Awe! By the light of our souls united! Let us guide those wayward ones, let us honor you and be stronger, together!”</p>
 
 <p>With that the ceremony was over. The immobile priestess lay available for anyone who wished to step forward to receive a blessing or give her grand stomach a soft rub. </p>
 
-<p>I watched the proceeding and as people filed away back to their duties. I approached her myself, last of all and put a paw to her gut. It was grumbling and groaning loudly, digesting already. The movement of the Awes within her was clear to see, even the one in her pouch was sealed up to be absorbed. Peculiar, i thought that was only a trait Pouch-Matrons possesed.</p>
+<p>I watched the proceeding and as people filed away back to their duties. I approached her myself, last of all and put a paw to her gut. It was grumbling and groaning loudly, digesting already. The movement of the Awes within her was clear to see, even the one in her pouch was sealed up to be absorbed. Peculiar, I thought that was only a trait Pouch-Matrons possesed.</p>
 
 <p>I felt a moments inexplicable envy. Not to the priestess, but to those within her.</p>
 
@@ -357,19 +417,19 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p> I stood at the deck and regarded the full moons, they made it almost as bright as dawn and seemed to drown out the stars. It was a bright quiet night, the low waves parting peacefully before our advance to whatever awaited us. </p>
 
-<p> With all the turbulence of the last few days, i welcomed the feeling of unity the gathering had brought. It was comforting to be surrounded by your kind. But I had the feeling it was the calm before the storms to come. If the fleet had met the kind of opposition we did, i could only hope they fared with as much fortune as we. </p>
+<p> With all the turbulence of the last few days, I welcomed the feeling of unity the gathering had brought. It was comforting to be surrounded by your kind. But I had the feeling it was the calm before the storms to come. If the fleet had met the kind of opposition we did, I could only hope they fared with as much fortune as we. </p>
 
 <p> In a barely weeks time when the first islands came to view, we would see. </p>
 </div>
 
 <div class="quiet hidden"><p><strong>Quiet night</strong></p>
-<p> While i might not have allowed to ceremony to be held on-deck in any official manner, i could not stop what Awes did on their private time in the holds below. The priestess could have her little light-ceremony, as long as it didnt interrupt ship duties. </p>
+<p> While I might not have allowed to ceremony to be held on-deck in any official manner, I could not stop what Awes did on their private time in the holds below. The priestess could have her little light-ceremony, as long as it didnt interrupt ship duties. </p>
 
 <p> I stood at the deck and regarded the full moons, clouds had just broken and they made it almost as bright as dawn and seemed to drown out the stars. It was a bright quiet night, the unusually low waves parting peacefully before our advance to whatever awaited us. </p>
 
-<p> With all the turbulence of the last few days, i welcomed the soothing silence. It allowed for quiet reflection, i saw others around the deck taking in the same calm, my crew pausing in their duties to take in the moment. "My crew", i wondered briefly when i had gained the connection.</p>
+<p> With all the turbulence of the last few days, I welcomed the soothing silence. It allowed for quiet reflection, I saw others around the deck taking in the same calm, my crew pausing in their duties to take in the moment. "My crew", I wondered briefly when I had gained the connection.</p>
 
-<p>Alas, I had the feeling this was all the calm before the storms to come. If the fleet had met the kind of opposition we did, i could only hope they fared with as much fortune as we. </p>
+<p>Alas, I had the feeling this was all the calm before the storms to come. If the fleet had met the kind of opposition we did, I could only hope they fared with as much fortune as we. </p>
 
 <p> In a barely weeks time when the first islands came to view, we would see. </p>
 </div>
@@ -389,13 +449,13 @@ cadet[0].banter = [
 cadet[1].banter = [
     { target: '#Glint', text: 'The Soft-spoken has kept her features hidden until now for a reason.', imageClass: "neutral"},
 	{ target: '#Glint', text: 'She wished for a following of the words, nothing else.', imageClass: "happy"},
-	{ target: '#Glint', text: 'Ofcourse i knew the secret. My house has long been a sponsor of the Order.', imageClass: "neutral"},
+	{ target: '#Glint', text: 'Ofcourse I knew the secret. My house has long been a sponsor of the Order.', imageClass: "neutral"},
 	{ target: '#Glint', text: 'I was so happy to hear a priestess would be joining us. Im glad our voices are starting to be taken seriously.', imageClass: "smug"}
 	];
 	
  cadet[2].banter = [
 	{ target: '#Valnos', text: 'This is nice, comming together like this.', imageClass: "neutral"},
-	{ target: '#Valnos', text: 'Even if i dont particularly feel convinced about the mysticism of First-Awes and inner lights.', imageClass: "angry"},
+	{ target: '#Valnos', text: 'Even if I dont particularly feel convinced about the mysticism of First-Awes and inner lights.', imageClass: "angry"},
 	{ target: '#Valnos', text: 'I do agree with a feeling of togetherness.', imageClass: "happy"},
 	{ target: '#Ziggy', text: 'Yeah, makes  you remember home and what you are here for.', imageClass: "neutral"},
 	{ target: '#Valnos', text: 'Yeah, exactly! Are you feeling better now Ziggy?', imageClass: "smug"},
@@ -406,21 +466,6 @@ cadet[1].banter = [
 ];
 
 
-if (_.contains(state.events, "deepening")) {
-		$("#agreed").removeClass("hidden")
-		
-	  }
-	  else {
-		$("#agreed2").removeClass("hidden")
-	  }
-	if (state.piety == 0 ) {
-		$("#lowPiety").removeClass("hidden")
-		
-	  }
-	 else if (state.piety == 2)
-	 {
-	 $("#highPiety, #tempted").removeClass("hidden")
-	 }
 
 
 </script>
