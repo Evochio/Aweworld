@@ -120,7 +120,7 @@
 		lib.goTo('Prelude-3.html')
 	  })
 	  $('#button-9').on('click', function() { 
-	  localStorage.clear()
+	  window.localStorage.clear();
 	  lib.goTo('../index.html')
 	  /*
 	  document.location.href = '../index.html'
@@ -139,6 +139,10 @@
 <div id="head">
 <h1>Initial battle summary</h1>
 </div>
+<div id="side">
+ <img id="image" src="Images/assets/Nipfang.png"/>
+</div>
+
 <div id="story-text">
 <p>
 

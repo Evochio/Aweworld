@@ -6,7 +6,7 @@
 
   <link rel="stylesheet" href="../main.css"></link>
 
-  <script src="../jquery-2.1.3.js"></script>
+  <script src="../jquery-3.2.1.js"></script>
   <script src="../underscore.js"></script>
 	<script src="../bootstrap.min.js"></script>
  <link rel="stylesheet" href="../bootstrap.min.css"></link>
@@ -175,8 +175,15 @@
 		state.crewMorale -= 2
 		state.shipHealth -= 2
 		state.crewLoss += 3;
-		 state.crewLossBattle += 3;
-		 if (state.crewMorale < 1 ) {
+		state.crewLossBattle += 3;
+		if (_.contains(state.events, "drills")) {
+		$("#button-10").removeClass("hidden");
+		$("#button-7").removeClass("hidden");
+		$("#button-8").removeClass("hidden");
+		
+		}
+		
+		else if (state.crewMorale < 1 ) {
 		$("#button-7").removeClass("hidden");
 		}
 		else {
@@ -200,7 +207,16 @@
 		state.shipHealth -= 2
 		state.crewLoss += 3;
 		 state.crewLossBattle += 3;
-		 if (state.crewMorale < 1 ) {
+		 
+		 
+		if (_.contains(state.events, "drills")) {
+		$("#button-10").removeClass("hidden");
+		$("#button-7").removeClass("hidden");
+		$("#button-8").removeClass("hidden");
+		
+		}
+		
+		else if (state.crewMorale < 1 ) {
 		$("#button-7").removeClass("hidden");
 		}
 		else {
@@ -223,7 +239,15 @@
 		state.shipHealth -= 2;
 		state.crewLoss += 2;
 		state.crewLossBattle += 2;
-		if (state.crewMorale < 1 ) {
+		
+		if (_.contains(state.events, "drills")) {
+		$("#button-10").removeClass("hidden");
+		$("#button-7").removeClass("hidden");
+		$("#button-8").removeClass("hidden");
+		
+		}
+		
+		else if (state.crewMorale < 1 ) {
 		$("#button-7").removeClass("hidden");
 		}
 		else {
@@ -312,6 +336,9 @@
 		state.battle.push("board")
         // end by using lib.goTo
          
+		 
+		 	 		 
+		 
 		 if (_.contains(state.events, "soft")) {
 			lib.dialogue(e, "boardTung")
 			state.battle.push("boardTung")
@@ -330,6 +357,16 @@
 			$("#button-12").removeClass("hidden");
 			$("#button-7").addClass("hidden")
 			}
+			
+			else if (_.contains(state.events, "drills")) {
+			lib.dialogue(e, "boarddrill")
+			state.battle.push("board")
+			state.crewMorale += 3
+			state.crewLoss += 10;
+			state.crewLossBattle += 10;
+			$("#button-12").removeClass("hidden");
+			$("#button-7").addClass("hidden")
+				}
 			else {
 			lib.dialogue(e, "boardLow")
 			state.battle.push("boardLow")
@@ -688,12 +725,24 @@
 		
     })
 	  
-	  if (state.crewMorale < 1 ) {
-	  $(".moralefail").removeClass("hidden");
-	  }
-	  else {
+	  
+	  if (state.crewMorale >= 1 ) {
 	  $(".morale").removeClass("hidden");
 	  }
+	  else if (_.contains(state.events, "drills")) {
+	  $(".drills").removeClass("hidden");
+	  }
+	  else {
+	  $(".moralefail").removeClass("hidden");
+	  }
+	  	  
+	  if (state.crewMorale >= 1 ) {
+	  $(".moralehigh").removeClass("hidden");
+	  }
+	  else {
+	  $(".moralelow").removeClass("hidden");
+	  }
+	  
 	  
 	  
     })
@@ -863,10 +912,10 @@ Day: <span class="days"><script>displayDays()</script></span>
 <p>At least they've now made their intentions abundantly clear. </p>
 
 <p> It is our turn to make a move, hostilities are now confirmed! Through the choking smoke that covers the ship I order the plan of attack. 
-<div class="morale hidden">
+<div class="moralehigh hidden">
  The crew looks just as eager for some payback.</p>
 </div>
-<div class="moralefail hidden">
+<div class="moralelow hidden">
 </p>
 <p> The crew around me look very anxious and worried.</p>
 </div>
@@ -889,10 +938,10 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>At least they've now made their intentions abundantly clear. </p>
 
-<p> It is our turn to make a move, hostilities are now confirmed! I order the plan of attack, feeling tingle of excitement of oncomming battle.<div class="morale hidden">
+<p> It is our turn to make a move, hostilities are now confirmed! I order the plan of attack, feeling tingle of excitement of oncomming battle.<div class="moralehigh hidden">
  The crew looks just as eager for some payback.</p>
 </div>
-<div class="moralefail hidden">
+<div class="moralelow hidden">
 </p>
 <p> The crew around me look very anxious and worried.</p>
 </div>
@@ -922,10 +971,10 @@ Day: <span class="days"><script>displayDays()</script></span>
 <p>At least they've now made their intentions abundantly clear. </p>
 
 <p> It is our turn to make a move, hostilities are now confirmed! Through the choking smoke that covers the ship I order the plan of attack.</p>
-<div class="morale hidden">
+<div class="moralehigh hidden">
  The crew looks just as eager for some payback.</p>
 </div>
-<div class="moralefail hidden">
+<div class="moralelow hidden">
 </p>
 <p> The crew around me look very anxious and worried.</p>
 </div>
@@ -949,10 +998,10 @@ Day: <span class="days"><script>displayDays()</script></span>
 <p>Atleast they've now made their intentions abundantly clear. </p>
 
 <p> It is our turn to make a move, hostilities are now confirmed! I order the plan of attack, feeling tingle of excitement of oncomming battle. 
-<div class="morale hidden">
+<div class="moralehigh hidden">
 The crew looks just as eager for some action.</p>
 </div>
-<div class="moralefail hidden">
+<div class="moralelow hidden">
 </p>
 <p> The crew around me however do not quite give off the same vibe. I see several anxious and worried faces.</p>
 </div>
@@ -971,10 +1020,10 @@ The crew looks just as eager for some action.</p>
 <p>At least they've now made their intentions abundantly clear. </p>
 
 <p> It is our turn to make a move, hostilities are now confirmed! I order the plan of attack, feeling tingle of excitement of oncomming battle. 
-<div class="morale hidden">
+<div class="moralehigh hidden">
 The crew looks just as eager for some action.</p>
 </div>
-<div class="moralefail hidden">
+<div class="moralelow hidden">
 </p>
 <p> The crew around me however do not quite give off the same vibe. I see several anxious and worried faces.</p>
 </div>
@@ -999,17 +1048,24 @@ The crew looks just as eager for some action.</p>
 
 
 <div class="morale hidden">
-<p>I look around the crew and see fear on many of their faces and there is not one unbristled coat in sight. This was new and terrifying. But the crew still look to me for instructions.</p>
+<p>I look around the crew and see fear on many of their faces and there is not one unbristled coat in sight. This was new and terrifying, what manner of weapon is THAT! But the crew still look to me for instructions.</p>
 </div>
 <div class="moralefail hidden">
-<p>This was new and terrifying.</p>
+<p>This was new and terrifying, what manner of weapon is THAT!</p>
 
 <p>In fact, it IS too much for the crew, all over I see Awes abandoning their posts to hide or otherwise get in cover they imagine will protect them. </p>
 
-<p>I shout at them to get back in position, I can see Officer Garsch yanking hapless disobedient crew around to try to get them to do so but the general morale is too low, there is no spirit to fight! </p>
+<p>I shout at them to get back in position, I can see Officer Garsch yanking hapless disobedient crew around to try to get them to do so but the general morale is too low, they've forgotten their duties and  there is no spirit to fight! </p>
 
 <p>With growing dread I realize that if I pressed them further they will break and fail me utterly.<br />
 There is only one course of action.</p>
+</div>
+<div class="drills hidden">
+<p>This was new and terrifying, what manner of weapon is THAT!</p>
+
+<p>In fact, it IS almost too much for the crew, all over I see Awes wavering at their posts crouching or covering</p>
+
+<p>I shout at them to get back in position, I can see Officer Garsch yanking a few hapless crew around that are not at their posts. It has an effect, routine and training seems to set in, the many hours of ingrained practise takes over and almost with automatic movements the majority of the crew swallow their fear and keep on going.</p>
 </div>
 </div>
 
@@ -1030,17 +1086,24 @@ There is only one course of action.</p>
 <p>Another flash and 'THOOM' draws my attention back from the damage. Something whistles by in the air loudly, just above the main deck, narrowly missing a mast and tearing a circular hole through one of the sails before splashing into the sea on the far side. </p>
 
 <div class="morale hidden">
-<p>I look around the crew and see fear on many of their faces and there is not one unbristled coat in sight. This was new and terrifying. But the crew still look to me for instructions.</p>
+<p>I look around the crew and see fear on many of their faces and there is not one unbristled coat in sight. This was new and terrifying, what manner of weapon is THAT! But the crew still look to me for instructions.</p>
 </div>
 <div class="moralefail hidden">
-<p>This was new and terrifying.</p>
+<p>This was new and terrifying, what manner of weapon is THAT!</p>
 
 <p>In fact, it IS too much for the crew, all over I see Awes abandoning their posts to hide or otherwise get in cover they imagine will protect them. </p>
 
-<p>I shout at them to get back in position, I can see Officer Garsch yanking hapless disobedient crew around to try to get them to do so but the general morale is too low, there is no spirit to fight! </p>
+<p>I shout at them to get back in position, I can see Officer Garsch yanking hapless disobedient crew around to try to get them to do so but the general morale is too low, they've forgotten their duties and  there is no spirit to fight! </p>
 
 <p>With growing dread I realize that if I pressed them further they will break and fail me utterly.<br />
 There is only one course of action.</p>
+</div>
+<div class="drills hidden">
+<p>This was new and terrifying, what manner of weapon is THAT!</p>
+
+<p>In fact, it IS almost too much for the crew, all over I see Awes wavering at their posts crouching or covering</p>
+
+<p>I shout at them to get back in position, I can see Officer Garsch yanking a few hapless crew around that are not at their posts. It has an effect, routine and training seems to set in, the many hours of ingrained practise takes over and almost with automatic movements the majority of the crew swallow their fear and keep on going.</p>
 </div>
 </div>
 
@@ -1058,19 +1121,26 @@ There is only one course of action.</p>
 <p>Another flash and 'THOOM' draws my attention back from the damage. Something whistles by in the air loudly, just above the main deck, narrowly missing a mast and tearing a circular hole through one of the sails before splashing into the sea on the far side.  </p>
 
 <div class="morale hidden">
-<p>I look around the crew and see fear on many of their faces and there is not one unbristled coat in sight. This was new and terrifying. But the crew still look to me for instructions.</p>
+<p>I look around the crew and see fear on many of their faces and there is not one unbristled coat in sight. This was new and terrifying, what manner of weapon is THAT! But the crew still look to me for instructions.</p>
 </div>
 <div class="moralefail hidden">
-<p>This was new and terrifying.</p>
+<p>This was new and terrifying, what manner of weapon is THAT!</p>
 
 <p>In fact, it IS too much for the crew, all over I see Awes abandoning their posts to hide or otherwise get in cover they imagine will protect them. </p>
 
-<p>I shout at them to get back in position, I can see Officer Garsch yanking hapless disobedient crew around to try to get them to do so but the general morale is too low, there is no spirit to fight! </p>
+<p>I shout at them to get back in position, I can see Officer Garsch yanking hapless disobedient crew around to try to get them to do so but the general morale is too low, they've forgotten their duties and there is no spirit to fight! </p>
 
 <p>With growing dread I realize that if I pressed them further they will break and fail me utterly.<br />
 There is only one course of action.</p>
-</div>
 
+</div>
+<div class="drills hidden">
+<p>This was new and terrifying, what manner of weapon is THAT!</p>
+
+<p>In fact, it IS almost too much for the crew, all over I see Awes wavering at their posts crouching or covering</p>
+
+<p>I shout at them to get back in position, I can see Officer Garsch yanking a few hapless crew around that are not at their posts. It has an effect, routine and training seems to set in, the many hours of ingrained practise takes over and almost with automatic movements the majority of the crew swallow their fear and keep on going.</p>
+</div>
 </div>
 
 <div class="retreat hidden"><strong>Retreat</strong>
@@ -1347,6 +1417,8 @@ $('#FromRange').removeClass('hidden');
 
 </div>
 
+
+
 <div class="boardTung hidden"><strong>A clash of arms</strong>
 <p>“We are close enough!” I shout over the din of noise to be heard over the whole ship while I rushed over the deck, signaling my officers that it was time to attack, indeed now or never. </p>
 
@@ -1374,6 +1446,32 @@ $('#FromRange').removeClass('hidden');
 
 </div>
 
+<div class="boarddrill hidden"><strong>A clash of arms</strong>
+<p>“We are close enough!” I shout over the din of noise to be heard over the whole ship while I rushed over the deck, signaling my officers that it was time to attack, indeed now or never. </p>
+
+<p>“Silence those weapons! Hop too it! Attack! Fire boarding hooks!” I waved my sword in the direction of the ship, which was doing its best to try to maneuver and keep itself from being crashed into. But we were close enough for my crew to leap over. I could see the figures on the enemy ship clearer now, Gators. They were large reptiles, similar to Raptorians but far more bulky, armored and rotund. </p>
+
+<p>A mass of crew leap on over from the masts already, descending on the enemy ship with Officer Garsh in the lead, shouting orders. It would be a very hard fight, if they were anywhere as tough as a Raptorian but from what I could tell, despite being afraid, training and discipline seemed to steel the crew where they might normally had faltered. All those extra drills paid off in the end! 
+Raptorians waited eagerly for the command to charge as we locked ships. I could tell they were eager to be let loose, but right now they were of little use and stayed out of the way. </p>
+
+<p>BOOM! One of the weapons fired at close range. The shot crashed straight through the side of our ship and out the other. It knocked me off my feet hard, not only that, we were suddenly off course, loosing distance. Too far to further assault and back up those who already leapt over. I could see them fighting in a tight knot by the enemy weapons, they had landed right on top of them, preventing them from firing further. </p>
+
+<p>"Where were those boarding hooks!" I yell at the ballista crew who were working hard. They had missed their chance, only one had fired off their hook before we were out of range again, but had not managed to get a hold. </p>
+
+<p>“Permission to join the fight, captain.” I wheeled around to see my three grim-faced scouts, cloaks tossed aside and impressive wings on display. </p>
+
+<p>“Buy them time! I will close the gap.” I nodded in assent. They immediately leap and take flight, speeding above the water to join the fighting. Scouts were not meant for close melees, I'm sure they would do their best to provide what help they could however.</p>
+
+<p>Officer Nyxie at the helm was already compensating, getting us closer again. Our ballista kept firing with sharp Twangs, they were doing their best to cover the surrounded crew with long range darts. I order them to prepare shooting boarding hooks and not miss this time.</p>
+
+<p>We seem to arrive back in range just in time, our few attackers leap over the side and glide back in retreat before I can order reinforcements for them. The gator ship is full of armored and armed gators now, any further glide attacks would be sending our Awes to their doom. </p>
+
+<p>Some are already wounded and missing, not all manage to glide all the way and are tossed ropes and rescue floats to be hauled out of the sea. </p>
+
+<p> But it seems that whatever they managed to do over there was enough to drive them back. The gators are hoisting full sails, making a break for it while i order us to slow down to pick up our crew. I will not abandon anyone to the cold sea.</p>
+
+</div>
+
 <div class="boardLow hidden"><strong>A clash of arms</strong>
 <p>“We are close enough!” I shout over the din of noise to be heard over the whole ship while I rushed over the deck, signaling my officers that it was time to attack, indeed now or never. </p>
 
@@ -1393,7 +1491,7 @@ $('#FromRange').removeClass('hidden');
 
 <p>We seem to arrive back in range just in time, our few attackers leap over the side and glide back in retreat before I can order reinforcements for them. The gator ship is full of armored and armed gators now, any further glide attacks would be sending our Awes to their doom. </p>
 
-<p>Only a fraction make it back to the ship, Garsh is missing, most who escape the gators clutched do not manage to glide all the way and are tossed ropes and rescue floats to be hauled out of the sea. </p>
+<p>Only a fraction make it back to the ship, most who escape the gators clutched do not manage to glide all the way and are tossed ropes and rescue floats to be hauled out of the sea, officer Garsch one among them. </p>
 
 <p>Whatever damage they managed to do over there it doesent seem like enough. There is bustling around the weapon devices that have been responsible for the thunder and damage. We might only have bought ourself a moments respite at great cost. </p>
 

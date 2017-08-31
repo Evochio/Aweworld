@@ -29,7 +29,7 @@
 		 $("#side").removeClass("hidden")
 	   $("#investigate").addClass("hidden")
 	   $("#button-3").addClass("hidden")
-		state.crewMorale -= 2;
+		
 		state.raptorians += 1
         // end by using lib.goTo
         lib.dialogue(e, "investigate")
@@ -81,6 +81,7 @@
 	   $("#button-4").removeClass("hidden");
 	   $("#button-1").addClass("hidden")
 	   $("#button-2").addClass("hidden")
+	   $("#investigate").addClass("hidden")
 	   $("#ignore2").addClass("hidden")
 		state.raptorians -= 1;
         // end by using lib.goTo

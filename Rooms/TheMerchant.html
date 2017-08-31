@@ -67,6 +67,7 @@
 	  
 		$('#button-4').on('click', function(e) {
 		lib.dialogue(e, "request")
+		$("#russel").addClass("hidden");
         $("#button-4").addClass("hidden");
 		
 		$("#play2").removeClass("hidden");
@@ -75,6 +76,7 @@
 		$('#button-5').on('click', function(e) {
         // change state here
 		lib.dialogue(e, "decline")
+		$("#side").addClass("hidden");
 		$("#button-4").addClass("hidden");
 		$("#button-5").addClass("hidden");
 		$("#play2").addClass("hidden");
@@ -116,6 +118,8 @@
 	  	$('#button-8').on('click', function(e) {
         // change state here
 		lib.dialogue(e, "russelChoice")
+		$("#side").removeClass("hidden");
+		$("#russel").removeClass("hidden");
 		$("#button-6").addClass("hidden");
 		$("#button-7").addClass("hidden");
 		$("#button-8").addClass("hidden");
@@ -171,6 +175,9 @@ cadet[1].banter = [
 	   	$('#button-10').on('click', function(e) {
         // change state here
 		lib.dialogue(e, "goodbyes2")
+		$("#side").removeClass("hidden");
+		$("#russel").removeClass("hidden");
+		$("#melon").removeClass("hidden");
 		state.crewMorale += 1;
 		$("#button-10").addClass("hidden");
 		$("#button-12").removeClass("hidden");
@@ -179,6 +186,9 @@ cadet[1].banter = [
 	  	$('#button-11').on('click', function(e) {
         // change state here
 		lib.dialogue(e, "goodbyes")
+		$("#side").removeClass("hidden");
+		$("#russel").removeClass("hidden");
+		$("#melon").removeClass("hidden");
 		$("#button-9").addClass("hidden");
 		$("#button-12").removeClass("hidden");
 		$("#button-11").addClass("hidden");
@@ -188,6 +198,9 @@ cadet[1].banter = [
         // change state here
 		state.crewMorale += 1;
 		lib.dialogue(e, "goodbyes2")
+		$("#side").removeClass("hidden");
+		$("#russel").removeClass("hidden");
+		$("#melon").removeClass("hidden");
 		$("#button-9").addClass("hidden");
 		$("#button-12").removeClass("hidden");
 		$("#button-11a").addClass("hidden");
@@ -216,7 +229,14 @@ cadet[1].banter = [
 	img {
 	width: 60%;
 	}
-	
+	#side img {
+	width: 100%;
+	margin: auto;
+	}
+	#side {
+	width: 15%;
+	max-height: 75%;
+	}
   </style>
 
 </head>
@@ -229,6 +249,11 @@ Day: <span class="days"><script>displayDays()</script></span>
 </div>
 <h1>The merchant ship</h1>
 </div>
+<div id="side">
+ <img id="russel" src="Images/assets/Russel.png"/>
+  <img id="melon" src="Images/assets/Melon.png"/>
+</div>
+
 <div id="story-text">
 
 <p>Lookout reports ship on the horizon headed towards us at first light this morning. We are still a distance away from the Sea of fangs, but I had the ship and crew readied nevertheless for trouble.</p>
@@ -283,7 +308,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 cadet[0].banter = [
     { target: '#Ziggy', text: 'If they know anything about pirates in the area, we should get that information and pursue!', imageClass: "surprised"},
     { target: '#Ziggy', text: 'Its our job to catch these guys afterall!', imageClass: "suspicious"},
-    { target: '#Ziggy', text: 'And I'm itching for a fight!', imageClass: "angry"}
+    { target: '#Ziggy', text: 'And Im itching for a fight!', imageClass: "angry"}
 
 ];
 

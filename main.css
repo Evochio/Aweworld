@@ -55,7 +55,7 @@ float:right;
 }
 
 #Valnos {
-	background-image: url("Rooms/Images/Valnosface5.png");
+	background-image: url("Rooms/Images/Valnosface1.png");
 	height: 286px;
 	width: 200px;
 	cursor: pointer;
@@ -89,6 +89,7 @@ float:right;
 	border: 6px solid #996633;
 	border-radius: 10px;
 }
+
 
 img {
 	margin-left: 20px;
@@ -124,6 +125,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d5973c', end
 
 	
 }
+.btn-success {
+	
+	line-height: 2em;
+	font-size: 1em;
+	text-decoration: none;
+	 
+	color: white;
+
+}
+	
 .btn-info {
 	
 	
@@ -198,6 +209,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#331a00', end
 	
 }
 
+#side #image {
+ margin: auto;	
+	
+}
+
 #tail .btn {
 	top: 25px;
 	left: 40px;
@@ -234,7 +250,7 @@ position: absolute;
  background-color: #331a00;
  border-radius: 20px;
  
- position: fixed;
+ position: relative;
  padding: 5px;
 }
 

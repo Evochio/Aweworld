@@ -325,6 +325,7 @@
     })
 	 $('#leave').on('click', function(e) {
         lib.dialogue(e, "leave")
+		$("#side").addClass("hidden")
 		$("#leave").addClass("hidden")
 		$("#viska").addClass("hidden")
 		$("#west").removeClass("hidden")
@@ -363,6 +364,9 @@ Day: <span class="days"><script>displayDays()</script></span>
 <span class="schedule"><script>displayShedule()</script></span>
 </div>
 <h1>Wulfcaptain</h1>
+</div>
+<div id="side">
+ <img id="image" src="Images/assets/Viska.png"/>
 </div>
 <div id="story-text">
 <p>
@@ -416,7 +420,7 @@ As soon as a plank was lowered, a short figure marched over. Wearing a captains 
 <button class="btn btn-default hidden" id="button-13">Sacrifice crewmember</button>
 <button class="btn btn-warning hidden" id="button-14">Viskas belly</button>
 
-<button class="btn btn-danger hidden" id="viska">Propose again</button>
+<button class="btn btn-warning hidden" id="viska">Propose again</button>
 <button class="btn btn-success hidden" id="leave">Time to Leave</button>
 <button class="btn btn-default hidden" id="restart">Restart</button>
 <button class="btn btn-default hidden" id="west">Westward</button>
@@ -595,7 +599,7 @@ As soon as a plank was lowered, a short figure marched over. Wearing a captains 
 
 <p>Viska looked at my face and frowned. Annoyed perhaps at my change of subjects. She shrugged in the end, as if revealing this much wasent so bad.</p>
 
-<p>“Awe-ship slow, late. <i>Swift-sister </i>went find Awe. No find, no see?” Viska seemed interested in our answer. If indeed the Wulf ship had gone to wait for us by Sea of fangs its unlikely it would have missed us, the path through is only so wide. </p>
+<p>“Awe-ship slow, late. <i>Swift-sibling </i>went find Awe. No find, no see?” Viska seemed interested in our answer. If indeed the Wulf ship had gone to wait for us by Sea of fangs its unlikely it would have missed us, the path through is only so wide. </p>
 
 <p>“We found something in the fangs. It had been... attacked” I dug up the burned rope piece and put it down on the table. Viska was immediately up on her feet to inspect it, turning it in her paw. </p>
 
@@ -1049,7 +1053,7 @@ $('#noIntel').removeClass('hidden');
 
 
 
-<span class="hidden" id="declinetackle">“I charged Nipfang in a tackle. We fought hard a while, it seemed Nipfang had the advantage with his strong tail, but it was a trick!” I didnt mind embellishing the tale a little bit. It had been quite a desperate fight to take on a big Wulf in wrestle. “When sure of his victory, I turned it around, twisting and pinning Nipfang.” I demonstrated my leg-lock and twist maneuver on the air. </span>
+<span class="hidden" id="declinetackle">“I charged Nipfang in a tackle. We fought hard a while, it seemed Nipfang had the advantage with his strong tail, but it was a trick!” I didnt mind embellishing the tale a little bit. It had been quite a desperate fight to take on a big Wulf in wrestle. “When sure of his victory, I turned it around, twisting and pinning Nipfang.” I demonstrated my maneuver on the air. </span>
 
 
 

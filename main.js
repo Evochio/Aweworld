@@ -329,7 +329,7 @@ displayMoraleStatus = function () {
 		$(".Crew-morale-description").text("Terrible!").css('color', 'red');
 	  } 
 	   else if (state.crewMorale >= -5 && state.crewMorale < 1 ) {
-		$(".Crew-morale-description").text("Open rebellion").css('color', 'red');
+		$(".Crew-morale-description").text("Rebellious").css('color', 'red');
 	  } 
 	}
 displayShipStatus = function () {

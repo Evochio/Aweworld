@@ -28,19 +28,22 @@ position: absolute;
 </style>
   <script>
 state.Glint.status = 'available';
-
+localStorage.clear();
  	    $(document).ready(function() {
 		removeLore();
 		$("#Glint").addClass("hidden")
 	  $('#button-1').on('click', function() {
-	 
+	  
+		localStorage.clear();
         // change state here
         // end by using lib.goTo
         lib.goTo('Rooms/Intro.html')
 		
       })
 	    $('#button-2').on('click', function() {
-	 
+		
+		localStorage.clear();
+		
         // change state here
 
         // end by using lib.goTo
@@ -62,22 +65,23 @@ state.Glint.status = 'available';
 		$("#belly").attr('src',"Rooms/Images/assets/Avolcbelly_s.png");
 		
       })
-	  
-	  
-	  
-	  $('#test').on('click', function() {
-        // change state here
-        // end by using lib.goTo
-		    
-        	$("#test").addClass("hidden")
-			$("#Glint").removeClass("hidden")
-			cadetIndex = 1;
-			showNextDialogue();
+	 if (_.contains(state.preludeEvents, "rescue")) {
+	 location.reload(true);
 	
-      })
-	  
+	}
+	else if (_.contains(state.preludeEvents, "rigging")) {
+	location.reload(true);
+	
+	}
+	else if (_.contains(state.preludeEvents, "forecastle")) {
+	 location.reload(true);
+	
+	}
+	
+	
 	 })
   </script>
+
   
 </head>
 <body>
@@ -91,12 +95,15 @@ state.Glint.status = 'available';
 
 <p>Welcome to Aweworld. </br>
 A Vore text-adventure game.  </br>
-Contains Soft Vore and entires of implied to mild digestion. </br>
+Contains Soft Vore and entries of implied to mild digestion. </p>
+
+<p>If you find a broken link or have opinions and feedback, please send em on to aweworldgame@gmail.com </p>
 
 </p>
+<p>Big Thanks to Samael for contributing a lot of the art and friends for being support and inspiration. Big thanks also to Scott, who without his patiant coding help and assistance with the foundation on this project, I would never have gotten anywhere.</p>
 
- <img id="belly" src="Rooms/Images/assets/Avolcbelly_cut.png"/> 
-	
+<p> <img id="belly" src="Rooms/Images/assets/Avolcbelly_cut.png"/>  </p>
+
 	
 	</div>
 <div id="tail">
@@ -104,7 +111,7 @@ Contains Soft Vore and entires of implied to mild digestion. </br>
 <button class="btn btn-default" id="button-1">Introduction</button>
 <button class="btn btn-default" id="button-2">Skip Introduction & Prologue</button>
 
-<span id="cadetButtons"> </span>
+
 
 <script>
 cadet[1].banter = [
@@ -125,7 +132,26 @@ cadet[2].banter = [
 		  { target: '#Valnos', text: 'surprised', imageClass: "surprised"},
 		  { target: '#Valnos', text: 'neutral2', imageClass: "neutral"}
 ];
+
 </script>
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=11435836; 
+var sc_invisible=1; 
+var sc_security="c4e1a5a1"; 
+var scJsHost = (("https:" == document.location.protocol) ?
+"https://secure." : "http://www.");
+document.write("<sc"+"ript type='text/javascript' src='" +
+scJsHost+
+"statcounter.com/counter/counter.js'></"+"script>");
+</script>
+<noscript><div class="statcounter"><a title="web analytics"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="//c.statcounter.com/11435836/0/c4e1a5a1/1/" alt="web
+analytics"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
 </div>
 </body>
 </html>

@@ -73,6 +73,7 @@
 	   $('#quarters').on('click', function(e) {
        lib.dialogue(e, "quarters")
 	   $("#quarters").addClass("visited")
+	   $("#side").addClass("hidden")
       	 if (_.contains(state.events, "incognito")){
 			$("#yes").removeClass("hidden")
 			$("#no").removeClass("hidden")
@@ -147,6 +148,7 @@
 	    $('#galley').on('click', function(e) {
 		lib.dialogue(e, "galley")
 		$("#galley").addClass("visited")
+		$("#side").removeClass("hidden")
        if (_.contains(state.events, "incognito")){
 			$("#apologize").removeClass("hidden")
 			$("#noapologize").removeClass("hidden")
@@ -205,6 +207,7 @@
 	    $('#storage').on('click', function(e) {
 		lib.dialogue(e, "storage")
 		$("#storage").addClass("visited")
+		$("#side").addClass("hidden")
 		/*
 		if (_.contains(state.events, "dress")){
 			lib.dialogue(e, "storage")
@@ -236,6 +239,7 @@
 	   $("#stop").addClass("hidden")
 		}
 	   $("#pens").addClass("hidden")
+	    $("#side").addClass("hidden")
 	   	  
       })
 	  
@@ -271,7 +275,7 @@
 	  
 	  $('#stare2').on('click', function(e) {
        lib.dialogue(e, "stare2"),
-       
+		
 	    $("#ask").addClass("hidden")
 		$("#ask2").addClass("hidden")	
 		$("#push").addClass("hidden")
@@ -367,6 +371,10 @@ Day: <span class="days"><script>displayDays()</script></span>
 </div>
 <h1>Departure</h1>
 </div>
+<div class="hidden" id="side">
+ <img id="image" src="Images/assets/Zat.png"/>
+</div>
+
 <div id="story-text">
 <div class="eatTung hidden">
 <p> We've departed. It was done without pomp and ceremony as we were in some rush to catch up to schedule. I've been watching the crew in action and have so far been impressed by their speed and efficiency. </p>
@@ -585,7 +593,7 @@ A yellow striped tail suddenly wraps firmly around my paw.</p>
 
 <p>“Hey now thief! What have I kept telling you people! Those are for the Captain and the officers!” The chef stares me down angrily. I seem to have forgotten my 'disguise'. <br />
 </p>
-<img src="Images/assets/Zatchef.png" height="40%" width="40%"/> 
+
 </div>
 </div>
 
@@ -657,14 +665,15 @@ Had I survived 10 years in the East-Sea fighting off hungry Wulf pirates only to
 
 <p>“That might be even worse then! Say you really were the captain. Here I've gone and accidentally eaten the captain herself, no good would come out of that!” Zat explained. </p>
 
-<p>“Thats right!” </p>
+<p>“Thats right!” I kicked outwards and were rewarded with a low rumbling gurgle all around me.</p>
 
-<p>“Unless no one found out!” Zat chuckled and belched once more. </p>
+<p>“Unless no one found out!” Zat chuckled and belched loudly once more, tightening slick and hot chamber. </p>
 
-<p>I blink and feel suddenly very weary. There was an edge of finality to that tone and a paw patted me firmly from outside, as if to comfort me about the fate I was now to suffer. The Wulf cook was going to add me to his portly frame and none would be the wiser. I gave a hard shove, but already space was tightening and muscles slowly churning. </p>
-
-<p>Dinner was served on schedule for the Officers hours later. They were all offered delicious tarts. It looked like the Cook had recently binged on quite a few of his own. He moved sluggishly rubbed at his profound gut contently. <br />
+<p>I blink and feel suddenly very weary. There was an edge of finality to that tone and a paw patted me firmly from outside, as if to comfort me about the fate I was now to suffer. The Wulf cook was going to add me to his portly frame and none would be the wiser. I gave another hard shove, but already space was further tightening and muscles slowly churning. </p>
+<br />
+<p>Dinner was served on schedule for the Officers hours later. They were all offered delicious tarts. It looked like the Cook had recently binged on quite a few of his own. He moved sluggishly rubbed at his profound gut contently. But no one really questioned the reality of an unusually fat ships-chef.<br />
 No one did find out where the captain disappeared to. It was one of those mysteries of the sea and a well debated tale aboard 'The Attentive'.<br />
+<img src="Images/assets/Zatchef.png" height="40%" width="40%"/> 
 </p>
 </div>
 

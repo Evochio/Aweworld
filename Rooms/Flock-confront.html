@@ -132,6 +132,7 @@
 	  $('#EatArn').on('click', function(e) {
         // change state here
 		if (_.contains(state.events, "forbid")) {
+		
 		state.crewMorale -= 1;
 		}
 		else {

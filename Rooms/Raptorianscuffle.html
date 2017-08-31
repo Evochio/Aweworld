@@ -72,6 +72,9 @@
 		
       })
 	   $('#Elda').on('click', function(e) {
+	   	$("#image").attr('src','Images/assets/Eldaface.png');
+		$("#side").removeClass("hidden")
+	   
 	   $("#Judgement").removeClass("hidden")
 	   if (_.contains(state.events, "storminjury")) {
 	 $('#pouchChoice').removeClass('hidden');
@@ -86,7 +89,7 @@
 	   
        lib.dialogue(e, "elda")
 		$("#Elda").addClass("hidden")
-        $("#side").addClass("hidden")
+       
 		
       })
 	  	
@@ -118,6 +121,8 @@
 	  $('#Judgement').on('click', function(e) {
        lib.dialogue(e, "judgement"),
 	  	$("#Judgement").addClass("hidden")
+		$("#image").attr('src','Images/assets/Evok.png');
+
 		$("#side").removeClass("hidden")
 		if (_.contains(state.events, "order")) {
 			$("#Overboard").removeClass("hidden")

@@ -51,7 +51,8 @@
 	 $('#takeover').on('click', function(e) {
 		lib.dialogue(e, "takeover"),
 		state.events.push("storminjury");
-		$("#side").addClass("hidden")
+		$("#image").attr('src','Images/assets/Eldaface.png');
+		
 		state.injuries += 1;
 		state.shipHealth -= 1;
 		$("#trust").addClass("hidden")
@@ -87,7 +88,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 <h1>Storm</h1>
 </div>
 <div id="side">
- <img src="Images/assets/Nyxie.png"/>
+ <img id="image" src="Images/assets/Nyxie.png"/>
 </div>
 <div id="story-text">
 <em><p> I dreamt of green hills, fresh breezes, flowers and scents. The memories of home always seem to beckon unexpectedly. Of lonely carefree days, free of responsibility. </p>
