@@ -135,7 +135,7 @@
 	   state.crewMorale -= 1;
 	   state.raptorians += 1;
        lib.dialogue(e, "labor")
-	   if (_.contains(state.events, "break")) {
+	   if (_.contains(state.events, "pouched")) {
 			$("#pouched").removeClass("hidden")
 		}
 		else {
@@ -150,19 +150,15 @@
 	  $('#Eat').on('click', function(e) {
 	  if (_.contains(state.events, "pouched")) {
 		lib.dialogue(e, "eat2")
+		$("#pouched").removeClass("hidden")
 		}
 		else {
 		lib.dialogue(e, "eat")
 		state.vore += 1;
-		}
-       if (_.contains(state.events, "break")) {
-			$("#pouched").removeClass("hidden")
-		}
-		else {
 		$("#button-4").removeClass("hidden")
-		}
 		
-		state.crewLoss += 1;
+		}
+       	state.crewLoss += 1;
 		$("#Labor").addClass("hidden")
 		$("#Eat").addClass("hidden")
 		$("#Overboard").addClass("hidden")

@@ -235,6 +235,7 @@
 		$("#button-13").addClass("hidden")
 		$("#button-14").addClass("hidden")
 		$("#west").removeClass("hidden")
+		$("#accept").addClass("hidden")
     })
 	
 	   $('#Apin').on('click', function(e) {
@@ -247,6 +248,7 @@
 	
 	   $('#Athunk').on('click', function(e) {
         lib.dialogue(e, "thunk")
+		state.vore += 1;
 		$("#Apin").addClass("hidden")
 		$("#Athunk").addClass("hidden")
 		$("#ASword").addClass("hidden")
@@ -260,6 +262,7 @@
 	   }
 	   else { lib.dialogue(e, "sword")
 	   $("#leave").removeClass("hidden")
+	   state.vore += 1;
 	   }
 		$("#Apin").addClass("hidden")
 		$("#Athunk").addClass("hidden")
@@ -303,6 +306,7 @@
     })
 	 $('#viska').on('click', function(e) {
         lib.dialogue(e, "viska")
+		state.vore += 1;
 		state.wulfQuestions.push("viska");
 		$("#viska").addClass("hidden")
 		$("#leave").removeClass("hidden")
@@ -637,8 +641,8 @@ As soon as a plank was lowered, a short figure marched over. Wearing a captains 
 
 <div class="propose hidden">
 <div class="hidden" id="nipfang">
- We eyed eachother a long while. It struck me that this kind of brash young Wulf might be fought with equal attitude. Fire with fire so to speak. I smirked at her and adjusted my belt around my waist, the weight of previous meals haunting my figure. 
-<p> "You talk so boldly of me being the meal in this scenario. But why dont you simply hand me the documents and i'll honor you with my stomach afterwards"  </p>
+ <p> We eyed each other a long while. It struck me that this kind of brash young Wulf might be fought with equal attitude. Fire with fire so to speak. I smirked at her and adjusted my belt around my waist, the weight of previous meals haunting my figure. </p>
+<p> "You talk so boldly of me being the meal in this scenario. But why don't you simply hand me the documents and I'll honor you with my stomach afterwards"  </p>
 
 <p> She looked almost briefly dumbfounded before she emitted a bemused laugh. She seemed to strain to make an effort with her Awe-tongue, taking on the challenge. </p> 
 
@@ -656,13 +660,13 @@ As soon as a plank was lowered, a short figure marched over. Wearing a captains 
 
 <p> "Nipfang! Talk-false! Nipfang-tale hear-speak even in west. Raid, eat, win, No sailing-company, only own strength! Never loose!" </p>
 
-<p> "Well he's all here." I smirked and jiggled my belt. What luck, it seems Nipfang was popular with this young Wulf. I could not resist rubbing it in, wether she believed me or not. "Nipfang is my strength now. You can admire me instead, or join me." I chuckled. </p>
+<p> "Well he's all here." I smirked and jiggled my belt. What luck, it seems Nipfang was popular with this young Wulf. I could not resist rubbing it in, whether she believed me or not. "Nipfang is my strength now. You can admire me instead, or join me." I chuckled. </p>
 
-<p> Viska seemed to fume at this. I had no way to proove the deed so she might not believe me, or maybe she didnt want to believe me. In anycase, i seem to have taken the edge out of her confidence. </p>
+<p> Viska seemed to fume at this. I had no way to prove the deed so she might not believe me, or maybe she didn't want to believe me. In any case, i seem to have taken the edge out of her confidence. </p>
 </div>
 <div class="hidden" id="nonipfang"> 
- We eyed eachother a long while. It struck me that this kind of brash young Wulf might be fought with equal attitude. Fire with fire so to speak. I smirked at her and adjusted my belt around my waist. 
-<p> "You talk so boldly of me being the meal in this scenario. But why dont you simply hand me the documents and i'll honor you with my stomach afterwards"  </p>
+<p> We eyed each other a long while. It struck me that this kind of brash young Wulf might be fought with equal attitude. Fire with fire so to speak. I smirked at her and adjusted my belt around my waist. </p>
+<p> "You talk so boldly of me being the meal in this scenario. But why don't you simply hand me the documents and I'll honor you with my stomach afterwards"  </p>
 
 <p> She looked almost briefly dumbfounded before she emitted a bemused laugh. She seemed to strain to make an effort with her Awe-tongue, taking on the challenge. </p> 
 
@@ -670,22 +674,21 @@ As soon as a plank was lowered, a short figure marched over. Wearing a captains 
 
 <p> Some Wulfish idioms were peculiar, but i got the gist of it. Wulfs thought their souls were in or behind their eyes. </p>
 
-<p> "I might not have eaten as much as a Wulf-captain, but we could always change that couldnt we?" I grinned at her. </p>
+<p> "I might not have eaten as much as a Wulf-captain, but we could always change that couldn't we?" I grinned at her. </p>
 
-<p> Viska looked unimpressed, shaking her head, she seemed almost to have a condecending look of pity for me as she straightened slightly to lecture me. </p>
+<p> Viska looked unimpressed, shaking her head, she seemed almost to have a condescending look of pity for me as she straightened slightly to lecture me. </p>
 
 <p> "Awe-captain not understand! Viska-strength bigger then Awe-captain, why strong make weak little stronger, when weak can make strong stronger!" She aided her explanation with paw jestures to make it easier for me. </p>
 
-<p> I sighed as it seemed this way a pointless endevour and was getting me no closer to getting the documents. Viska diligently continued, looking like she was starting to loose patiance with our talks. </p>
+<p> I sighed as it seemed this way a pointless endeavor and was getting me no closer to getting the documents. Viska diligently continued, looking like she was starting to loose patience with our talks. </p>
 
 <p> "Awe-captain strength belongs in Viska. Agree Viska-deal, Awe get papers and Viska happy-digest, put Awe-captain behind eyes." </p>
-
  </div>
 
  <div class="hidden" id="altPropose"> 
-<p>  We eyed eachother a long while. It struck me that this kind of brash young Wulf might be fought with equal attitude. Fire with fire so to speak. I smirked at her and adjusted my belt around my waist. </p>
+<p>  We eyed each other a long while. It struck me that this kind of brash young Wulf might be fought with equal attitude. Fire with fire so to speak. I smirked at her and adjusted my belt around my waist. </p>
 
-<p> "You talk so boldly of me being the meal in this scenario. But why dont you simply hand me the documents and i'll honor you with my stomach afterwards"  </p>
+<p> "You talk so boldly of me being the meal in this scenario. But why dont you simply hand me the documents and I'll honor you with my stomach afterwards"  </p>
 
 <p> She looked almost briefly dumbfounded before she emitted a bemused laugh. She seemed to strain to make an effort with her Awe-tongue, taking on the challenge. </p> 
 
@@ -693,13 +696,13 @@ As soon as a plank was lowered, a short figure marched over. Wearing a captains 
 
 <p> Some Wulfish idioms were peculiar, but i got the gist of it. Wulfs thought their souls were in or behind their eyes. </p>
 
-<p> "We've both eaten of our crews, i might not have eaten a Wulf-captain, but we could always change that couldnt we?" I grinned at her. </p>
+<p> "We've both eaten of our crews, i might not have eaten a Wulf-captain, but we could always change that couldn't we?" I grinned at her. </p>
 
-<p> Viska looked unimpressed, shaking her head, she seemed almost to have a condecending look of pity for me as she straightened slightly to lecture me. </p>
+<p> Viska looked unimpressed, shaking her head, she seemed almost to have a condescending look of pity for me as she straightened slightly to lecture me. </p>
 
-<p> "Awe-captain not understand! Viska-strength bigger then Awe-captain, why strong make weak little stronger, when weak can make strong stronger!" She aided her explanation with paw jestures to make it easier for me. "Awe-crew not strong as Wulf-crew. Fluffies and Sleepy-Rawrs!" </p>
+<p> "Awe-captain not understand! Viska-strength bigger then Awe-captain, why strong make weak little stronger, when weak can make strong stronger!" She aided her explanation with paw gestures to make it easier for me. "Awe-crew not strong as Wulf-crew. Fluffies and Sleepy-Rawrs!" </p>
 
-<p> I sighed as it seemed this way a pointless endevour and was getting me no closer to getting the documents. Viska diligently continued, looking like she was starting to loose patiance with our talks. </p>
+<p> I sighed as it seemed this way a pointless endeavor and was getting me no closer to getting the documents. Viska diligently continued, looking like she was starting to loose patience with our talks. </p>
 
 <p> "Awe-captain strength belongs in Viska. Agree Viska-deal, Awe get papers and Viska happy-digest, put Awe-captain behind eyes." </p>
 
@@ -709,7 +712,7 @@ As soon as a plank was lowered, a short figure marched over. Wearing a captains 
 if (_.contains(state.preludeEvents, 'nipfang')) {
 $('#nipfang').removeClass('hidden');
 }
-else if (_.contains(state.preludeEvents, 'evokBelly')) {
+else if (state.vore >= 1) {
 $('#altPropose').removeClass('hidden');
 }
 else {

@@ -137,10 +137,12 @@ $('.viskaBelly').removeClass('hidden');
 else if (_.contains(state.wulfQuestions, "convinced")) {
 $('.convinced').removeClass('hidden');
 }
-
-if (_.contains(state.wulfQuestions, "attackViska"))
+else if (_.contains(state.wulfQuestions, "attackViska"))
 {
 $('.attackViska').removeClass('hidden');
+}
+else {
+
 }
 
 	

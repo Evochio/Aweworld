@@ -48,7 +48,7 @@
 	if (_.contains(state.battle, "explosion")) {
 		$('#explosion').removeClass('hidden')
 		}
-	else if (_.contains(state.battle, "board")) {
+	else if (_.contains(state.battle, "board") || _.contains(state.battle, "ram")) {
 		$('#board').removeClass('hidden')
 		}
 	else if (_.contains(state.battle, "ram")) {
@@ -141,7 +141,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 </div>
 <div class="hidden" id="board">
-<p> "It was a hard battle, we managed to board them, but we were driven off. But atleast we managed to disable their weapons." I spoke proudly, glancing at the crew around me. </p>
+<p> "It was a hard battle, we managed to board them, but were unable to capture them. But atleast we managed to disable their weapons." I spoke proudly, glancing at the crew around me. </p>
 
 <p> "Ah!" Kveest whistled approvingly. "The fabled prowess and courage of Awes proven true once more then! But they escaped your grasp?" </p>
 
