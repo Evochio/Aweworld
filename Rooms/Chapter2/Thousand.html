@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Aweworld</title>
+
+   <link rel="stylesheet" href="../../main.css"></link>
+
+  <script src="../../jquery-2.1.3.js"></script>
+  <script src="../../underscore.js"></script>
+	<script src="../../bootstrap.min.js"></script>
+ <link rel="stylesheet" href="../../bootstrap.min.css"></link>
+  <link rel="stylesheet" href="../../bootstrap-theme.min.css"></link>
+  <script src="../../main.js"></script>
+  <link rel="stylesheet" href="../../main.css"></link>
+  <script>
+
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "envoy"),
+        $("#button-1").addClass("hidden");
+		
+      })
+		
+		$('#button-2').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+		
+        lib.goTo('Navpoint2.html')
+	     })
+		 
+		 $('#button-3').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+		
+        lib.goTo('Navpoint3.html')
+      })
+		 
+    })
+	
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	img {
+	margin:auto;
+	}
+  </style>
+
+</head>
+<body>
+<div id="head">
+<div id="dayCounter">
+Day: <span class="days"><script>displayDays()</script></span>
+<br/>
+<span class="schedule"><script>displayShedule()</script></span>
+</div>
+<h1>Thousand Islands</h1>
+</div>
+<div class="hidden" id="side">
+ <img id="image" src="../Images/assets/Arnface.png"/>
+</div>
+
+<div id="story-text">
+
+<p>Our homeland of Aweland lays far behind us. Our journey has taken us past the perilous Sea of Fangs and the gap of open sea past Pale-Rock. </p>
+
+<p>We are now at Thousand islands. A name for an archipelago sea that really does not give it justice for the amount of islands this region has. </p>
+
+<p><br />
+</p>
+
+<p>This region of sea is vast, its a few weeks sailing in width but stretches far north and south in a band of shallow sea not unlike the Sea of fangs. Unlike the fangs, the islands here are larger and far more hospitable and home to many island-hopping Gryph Islanders. </p>
+
+
+<p>Our purpose here is to find our war-fleet, which have sailed here a few months earlier. A fleet thats here to root out the pirate infestation thats been responsible for harassing a large part of Awe trade shipping and behind a brazen raid upon Thunderhill, a peaceful sizable coastal-town back on our homeland. Citizen were kidnapped and large parts of the port set ablaze. </p>
+
+<p>The leadership back home fear this is part of a larger conspiracy toward Aweland. </p>
+
+<p>We are effectively in a state of war until the truth is uncovered and justice has been served! </p>
+
+<p><br />
+</p>
+
+<p>We are carrying supplies, reinforcements and information for our fleet. But first we must find them in this maze of islands.</p>
+
+<p>We have several preset navigational points of interest to help us. Rallying and convergence points where our fleet or signs of it could be found.</p>
+
+<p><br />
+</p>
+
+<p>Upon arriving at our first “Nav point”, a waiting scout of the fleet found us and brought dire news. </p>
+
+<p>The fleet is in trouble. The pirates are more dangerously armed with weapons never seen before. Our own perilous encounter with one by Pale-rock was a dangerous testament to that. </p>
+
+<p><br />
+</p>
+
+<p>The scouts report is sketchy at best. They were stationed here early upon arriving in this region after the fleet engaged a group of suspected pirates and were battered into withdrawing from the fight. </p>
+
+<p>If the Scouts report is to be believed, they have been hounded around the Thousand islands since.</p>
+
+<p>However, if they had been so outmatched and chosen to retreat, we should have encountered the fleet or elements of it returning to Aweland on our way here. </p>
+
+<p><br />
+</p>
+
+<p>We have to find them and the truth of the matter. </p>
+</div>
+<div id="tail">
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1"> Scout debriefing </button>
+<button class="btn btn-default" id="button-2"> Navpoint 2 </button>
+<button class="btn btn-default" id="button-3"> Navpoint 3 </button>
+<span id="cadetButtons"> </span>
+<script>
+
+</script>
+</div>
+<div class="envoy hidden"><p><strong>Envoy</strong></p>
+
+
+</div>
+</body>
+</html>

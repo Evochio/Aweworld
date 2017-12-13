@@ -27,7 +27,7 @@ position: absolute;
 }
 </style>
   <script>
-state.Glint.status = 'available';
+
 localStorage.clear();
  	    $(document).ready(function() {
 		removeLore();
@@ -60,6 +60,14 @@ localStorage.clear();
 		
       })
 	   
+	        $('#chapter2').on('click', function() {
+	 
+        // change state here
+
+        // end by using lib.goTo
+        lib.goTo('Rooms/Chapter2/Thousand.html')
+		
+      })
 	   
 	   $('#belly').on('click', function() {
 		$("#belly").attr('src',"Rooms/Images/assets/Avolcbelly_s.png");
@@ -110,7 +118,7 @@ Contains Soft Vore and entries of implied to mild digestion. </p>
 
 <button class="btn btn-default" id="button-1">Introduction</button>
 <button class="btn btn-default" id="button-2">Skip Introduction & Prologue</button>
-
+<button class="btn btn-default" id="chapter2">Chapter 2 (WIP)</button>
 
 
 <script>
