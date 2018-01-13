@@ -22,9 +22,26 @@
       $('#button-1').on('click', function(e) {
         // change state here
         // end by using lib.goTo
-		lib.dialogue(e, "envoy"),
+		lib.dialogue(e, "scout"),
         $("#button-1").addClass("hidden");
-		
+		$("#where").removeClass("hidden");
+      })
+	  
+	  $('#where').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "where"),
+        $("#destinations").removeClass("hidden");
+		$("#where").addClass("hidden");
+      })
+	  
+	    $('#destinations').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "destinations"),
+        $("#button-2").removeClass("hidden");
+		$("#button-3").removeClass("hidden");
+		$("#destinations").addClass("hidden");
       })
 		
 		$('#button-2').on('click', function() {
@@ -116,15 +133,81 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1"> Scout debriefing </button>
-<button class="btn btn-default" id="button-2"> Navpoint 2 </button>
-<button class="btn btn-default" id="button-3"> Navpoint 3 </button>
+<button class="btn btn-default hidden" id="where"> Where is the fleet?</button>
+<button class="btn btn-default hidden" id="destinations">Destinations</button>
+<button class="btn btn-default hidden" id="button-2"> Navpoint 2 </button>
+<button class="btn btn-default hidden" id="button-3"> Navpoint 3 </button>
 <span id="cadetButtons"> </span>
 <script>
 
 </script>
 </div>
-<div class="envoy hidden"><p><strong>Envoy</strong></p>
+<div class="scout hidden"><p><strong>Scout Debriefing</strong></p>
+<p>The scout still looked rather rough and disheveled from his long lonely stay on the island. </p>
 
+<p>Pouch-Matron Elda had reported he was only sleep deprived, somewhat malnourished and dirty, but otherwise in remarkably fit shape. At least physically. </p>
+
+
+<p>While Scouts are considered the elite of all Awe army corps, chosen at a young age and trained in survival, scouting and tracking, there is only so much years of training can prepare you for. The possibility of being left on a lonely island in the middle of the sea for the foreseeable future has to cause considerable stress. </p>
+
+
+<p>Scout Harbinger was a very brown patched and brown-furred Awe with a skittish nervous air about him. His eyes kept darting around, as if to make sure he was still on the ship and not in some dream.</p>
+
+<p>He explained as much in somewhat apologetic tone. </p>
+
+
+<p>“I'm sorry captain, if I seem to have some nerves. The first month on the island was fine, but then I kept dreaming that I missed a passing ship and my chance to get off the island. I found myself not asleep much.” He rubbed his paws together, visibly straining to calm his composure. </p>
+
+
+<p>“With nothing but the wet sea around and little shelter from storms, it would have been a miserable existence had no one come. I still half expected your ship to vanish in thin air, a mirage, as I flew out to meet you.” </p>
+
+<p>“You are among your own now Scout Harbinger. Try to relax. The Pouch-Matron has prescribed you plenty of rest, but first I require some information.” I reassured him in a calm but firm tone, to try to bring his mind back to the present. </p>
+
+<p>“Yes... you're right. Of-course, sorry Captain.”</p>
+
+
+</div>
+
+<div class="where hidden"><p><strong>Where is the Fleet?</strong></p>
+<p>“Where is the fleet?”</p>
+
+<p>“I do not know exactly where it is Captain. As I said before, shortly after we arrived, an unknown fleet flying no colors met us. It was as if they had been expecting us.” The scout recounted.</p>
+
+<p>“The Fleet-Admiral ordered us scouts to investigate them, but we were driven back by Gryph fliers before we got a good look. They were no warships though, they looked like common trade ships, some even hardly suitable for open seas. They were nearly twice our number however.” He shook his head and frowned. “Hostilities were brief. First they dropped firebombs with marginal effectiveness and then... their weapons, caught everyone by surprise. I think one of our ships were severely damaged before the Fleet-Admiral ordered withdrawal. It seemed to me they almost let us go. I think perhaps their flagship was badly damaged by ours in the skirmish.”</p>
+
+<p>“What happened next?” I drummed at the table.</p>
+
+<p>“They chased us for a few days until we lost them in a particularly foggy day. The captains all convened for a meeting with the Admiral. It was decided, I heard, to keep most of the fleet together rather then disperse as the originally planned. The fastest frigates parted way, I don't know on what mission.” Scout Harbinger cocked his head at me. “Did none of this information make it back home? I saw the messenger birds released myself.”</p>
+
+<p>I shook my head. </p>
+
+<p>“They are proving to be quite unreliable over these kinds of distances of open sea. High-Admiral only received scattered reports. Continue, what happened next?”</p>
+
+<p>“Not much, Captain. We sailed this way and that a while, I was not privy to the decision making behind our movements. Occasionally we'd spot sails of pursuing ships, but for the duration I was on the fleet, we had no more engagements. I was deployed here, on Navpoint 1, shortly afterwards, in anticipation for reinforcements.”</p>
+
+<p>“Well... We are all the reinforcements the fleet will get. I'm not sure how the Fleet-Admiral expected High-Admiral to release the home-fleet and leave our shores unguarded anyway, the council of Voice-Matrons would never have approved.“ I muttered sourly. But these thoughts were above the Scouts area of responsibility and he just stared at me uncertainly, not sure if he was to answer.</p>
+
+</div>
+<div class="destinations hidden"><p><strong>Destinations</strong></p>
+<p>Scout Harbinger has confirmed that our original charts fall-back plans are still in effect. </p>
+
+<p>We have several not too distant navigational points of interest to investigate. </p>
+
+<p>Upon deployment, into the sea, the standing order was to divide the fleet into appointed regions for scouting and investigation. To not entirely loose touch of each other, several points of rendezvous were marked for certain dates where elements of the fleet could converge and share findings.</p>
+
+<p>The dates of the nearby 'Navpoints' have long since passed, but so has the original plan of the fleet. Our only option if we are to find them is to investigate these points of interest and gather clues.</p>
+
+<p>We must find the fleet, or signs of where they have gone, the sooner the better. We probably cant investigate all our clues. For now Scout Harbinger has pointed out two points of interest worth investigating.</p>
+
+<b><p>Navpoint 2.</p></b>
+
+<p>A lush trio of connected islands called 'Three Sons' about a days sailing northward. A source of fresh water in the area and an appointed resupply point. This lays closest to our current position, its unlikely the fleet is here, but its sure to have stopped by here at some point. Scout Harbringer informs the fleet is likely to have headed this way after dropping him off. </p>
+
+<b><p>Navpoint 3.</p></b>
+
+<p>I have no notes on these groups of islands, its not part of any original Admiralty plans, but Scout Harbinger believes another scout might still be in this area. The Fleet Admiral was interested in gathering information from some native Islanders spotted in the area and dropped one off to asses their strength and possibly make contact.</p>
+
+<p>This destination lays further away to the west by about 2 days.</p>
 
 </div>
 </body>

@@ -22,8 +22,85 @@
       $('#button-1').on('click', function(e) {
         // change state here
         // end by using lib.goTo
-		lib.dialogue(e, "envoy"),
+		lib.dialogue(e, "clues"),
         $("#button-1").addClass("hidden");
+		$("#raptorians").removeClass("hidden");
+      })
+	  
+	    $('#raptorians').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "raptorians"),
+        $("#raptorians").addClass("hidden");
+		$("#raptorians2").removeClass("hidden");
+		$("#raptorians3").removeClass("hidden");
+		$("#raptorians4").removeClass("hidden");
+		
+      })
+	  
+	   $('#raptorians2').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "raptorians2"),
+        $("#raptorians2").addClass("hidden");
+		$("#raptorians3").addClass("hidden");
+		$("#raptorians4").addClass("hidden");
+		$("#destination").removeClass("hidden");
+      })
+	  
+	   $('#raptorians3').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "raptorians3"),
+        $("#raptorians2").addClass("hidden");
+		$("#raptorians3").addClass("hidden");
+		$("#raptorians4").addClass("hidden");
+		$("#destination").removeClass("hidden");
+      })
+	  $('#raptorians4').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "raptorians4"),
+        $("#raptorians2").addClass("hidden");
+		$("#raptorians3").addClass("hidden");
+		$("#raptorians4").addClass("hidden");
+		$("#missingScout").removeClass("hidden");
+		$("#missingRaptorian").removeClass("hidden");
+      })
+	  
+	  $('#missingScout').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "missingScout"),
+        $("#missingScout").addClass("hidden");
+		$("#missingRaptorian").addClass("hidden");
+		$("#destination").removeClass("hidden");
+		
+      })
+	  $('#missingRaptorian').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "missingRaptorian"),
+        $("#missingRaptorian").addClass("hidden");
+		$("#missingScout").addClass("hidden");
+		$("#destination").removeClass("hidden");
+		
+      })
+	  
+	  $('#destination').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "destination"),
+        $("#destination").addClass("hidden");
+		$("#button-2").removeClass("hidden");
+		$("#Navpoint3").removeClass("hidden");
+      })
+	  
+	   $('#scout').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "scout"),
+        $("#scout").addClass("hidden");
 		
       })
 		
@@ -32,6 +109,13 @@
         // end by using lib.goTo
 		
         lib.goTo('Navpoint4.html')
+      })
+	  
+	  	$('#navpoint3').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+		
+        lib.goTo('Navpoint3.html')
       })
     })
 	
@@ -58,19 +142,179 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <div id="story-text">
 
-<p>Fleet resupply area and clues.</p>
+<p>We sail by many smaller yet forested islands. We are still at the edges of Thousand islands but already I'm starting to understand where this sea got its name. </p>
+
+<p>They are craggy islands with the kind of tough vegetation that can survive being literally submerged by the harsh storms that can rage past these places. I'm none too impressed by the potential hospitality for anyone wishing to live out here, least of all build some kind of port. </p>
+
+<p>As we approach our destination however, the island trio of 'Three sons' come into view well in the distance. Cliffs jut up high on the three islands and lush and diverse plant-life cling to these peaks, making them look like three thick green finger-digits. The three islands are in a sense one big island, they're clearly connected and at low-tide it would be possible to easily cross between them on foot. But right now the high-tides separate the three.</p>
+
+<p>Its no doubt still a wet and windy place most times of the year, but life finds a way to cling to whatever stable place it can find.</p>
+
+<p>It does not take long while circling the islands to find the beach that had seen recent use.</p>
+
+<p>A bay with deep shallow let us sail in and anchor right close to he bay of the second most largest of the island trio. </p>
+
+<p>Signs of the fleet having been here is everywhere. Abandoned make-shift shelters has been built amongst the woods and sections of trees have been cleared away in places and harvested for their wood judging by the remains of wood-chips and pulp. </p>
+
+<p>Cut out trails of plenty of passage lead further into the island too, it looks almost as if the whole fleet had been trampling around on this beach. </p>
 </div>
 <div id="tail">
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default" id="button-1"> Investigate </button>
-<button class="btn btn-default" id="button-2"> Navpoint 4 </button>
+<button class="btn btn-default" id="button-1"> Search for Clues </button>
+<button class="btn btn-default hidden" id="raptorians"> Raptorians want ashore </button>
+<button class="btn btn-default hidden" id="raptorians2">Refuse request </button>
+<button class="btn btn-default hidden" id="raptorians3">Let them go ashore a while </button>
+<button class="btn btn-default hidden" id="raptorians4">Let them roam for a day </button>
+
+<button class="btn btn-default hidden" id="missing">A Raptorian has gone missing</button>
+<button class="btn btn-default hidden" id="missingScout">Use the Scouts</button>
+<button class="btn btn-default hidden" id="missingRaptorian">Use the Packmaster</button>
+
+<button class="btn btn-default hidden" id="destination">Destination</button>
+
+<button class="btn btn-default" id="scout"> Scout Report </button>
+<button class="btn btn-default hidden" id="button-2"> Navpoint 4 </button>
+<button class="btn btn-default hidden" id="navpoint3">Navpoint 3 </button>
 <span id="cadetButtons"> </span>
 <script>
 
 </script>
 </div>
-<div class="envoy hidden"><p><strong>Envoy</strong></p>
+<div class="scout hidden"><p><strong>Scout Report:</strong></p>
+
+<p>Scouts report that the largest trail lead to an inland pool. Its nearly been drained of usable fresh water. Other trails likewise lead to smaller wells and one to a small natural clearing.</p>
+
+<p>There are some signs of landing and passage on the closest smaller island too, but none to the extent of this island, its mostly been foraged for food.</p>
+
+<p>The large island seems mostly untouched, but it also has less choosable landing spots and seem to consist mostly of slick cliffs and difficult terrain.</p>
+
 </div>
+
+<div class="clues hidden"><p><strong> Search for Clues</strong></p>
+<p>A cursory glance through the hastily erected but surprisingly firmly built shacks do not reveal much.</p>
+
+<p>Little appear to have been left that couldn't be carried along. But perhaps someone with astute eyes and time can puzzle something together or find something. </p>
+
+<p>Assign a Officer.</p>
+
+<p> Poor investigation: </p>
+
+<p>The shacks appear to have been mostly used to keep objects rather then people dry from rain. There are signs and remains that reveal they have constructed severals barrels and containers and stocked up very well on water.</p>
+
+<p>One of the shacks were slightly better built then the others and appear to have housed someone in charge. Scratchings in the wood imply a lot of counting having been done. </p>
+
+<p>Awe lettering and fur found around the place make it no doubt that it was Awes who were here and not some others.</p>
+
+<p>Further investigation of the island show less sign of passage then expected. Whoever was here was not here long and focused on their tasks.</p>
+
+<p>It seems clear someone was not planning on resupplying any time soon again and made a big operation out of stocking up quick from the islands. Judging by how cleaned up and little was left around, I suspect that although it was done under efficient haste rather then under any duress. It is likely the fleet used their supplies to move deeper into Thousand Island without having to have to worry for stops. </p>
+
+
+<p> Good investigation </p>
+
+<p>The shacks appear to have been mostly used to keep objects rather then people dry from rain. There are signs and remains that reveal they have constructed severals barrels and containers and stocked up very well on water.</p>
+
+<p>One of the shacks were slightly better built then the others and appear to have housed someone in charge. Scratchings in the wood imply not only a lot of counting having been done, but also Admiralty code in what at first glance appeared to be random marks. </p>
+
+<p> The code is vague, but seems to refer to positional numbering used in latitudes on standard Admiralty charts. This gives us a pretty clear clue where they were headed next. </p>
+
+<p>Further investigation of the island show less sign of passage then expected. Whoever was here was not here long and focused on their tasks.</p>
+
+<p>It seems clear someone was not planning on resupplying any time soon again and made a big operation out of stocking up quick from the islands. Judging by how cleaned up and little was left around, I suspect that although it was done under efficient haste rather then under any duress. It is likely the fleet used their supplies to move deeper into Thousand Island without having to have to worry for stops. </p>
+
+
+</div>
+
+<div class="raptorians hidden"><p><strong>  Raptorians want ashore</strong></p>
+<p>The Raptorians have been sitting quietly down in the depths of the holds for most of the journey. Now they request permission to go ashore and stretch their limbs properly. Some have expressed the desire to be allowed a day to roam around and get proper exercise and loose their pent-up energy and tension. </p>
+</div>
+
+
+<div class="raptorians2 hidden"><p><strong>Refuse request </strong></p>
+<p> They've managed this far without much trouble, now is not the time for playing around on the beach. The Raptorians will have to contend with their daily on-deck excercises a while further. I'd rather not risk having trouble to herd them all back onto the ship. </p>
+</div>
+
+<div class="raptorians3 hidden"><p><strong>Let them go ashore </strong></p>
+<p>As it seems the fleet let most their crews up to stretch their legs, so I think its wise to do so for my own. </p>
+
+<p>The Raptorians do not even wait to mount any boats, as a troop, they jump overboard one by one and swim the short stretch from the ship to the island. </p>
+
+<p>Well on the shore they rowdily dash around with pent up energies, tackle and growl like a rowdy bunch. </p>
+
+<p>The crew who are ashore to refill out own water supply wisely keep well out of their way. </p>
+</div>
+
+
+<div class="raptorians4 hidden"><p><strong>Let them roam for a day</strong></p>
+<p>I figure its wise to keep the Raptorians happy. I agree to their request to let them roam the island.</p>
+
+<p>They do not even wait for boats to carry them ashore, as a troop they jump overboard one by one and swim the short stretch to the beach. </p>
+
+<p>Well ashore most scatter, running headlong into the woods with weeks of pent up energy while some remain and rowdily wrestle and growl at each-other on the beach. </p>
+
+<p>The crew who are ashore to refill out own water supply wisely keep well out of their way. </p>
+</div>
+
+<div class="missing hidden"><p><strong>A Raptorian has gone missing.</strong></p>
+<p>I should almost have foreseen this happening. But as night falls and its time gather everyone, one Raptorian is reported as missing by the attending squires. </p>
+
+<p>After a quick check and headcount of the crew, it was clear he had not been eaten by a crew-mate (not even Keeper could digest one of them that fast), but gone missing somewhere on the islands.</p>
+
+<p>The Packmaster volunteer to search with his Raptorians and so do the Scouts, but the scouts say they cant effectively search at the same time as the Raptorians.</p>
+
+<p><br />
+</p>
+
+<p>Who do you assign to search.</p>
+
+</div>
+
+<div class="missingScout hidden"><p><strong>Scouts</strong></p>
+<p>I don't want to risk Raptorians getting into further messes and decide to let my nimble scouts get the assignment. </p>
+
+<p>The scouts fan out and disappear like shadows into the gloom. Its not until well in the morning that they return with their report. </p>
+
+<p>They combed the island and found nothing, after expanding the search to the neighboring islands they came upon a particularly fat snake digesting a gargantuan meal.</p>
+
+<p>All signs point to this meal being our missing Raptorian. Rescue however, had come too late. </p>
+
+<p>I should have figured the Raptorians would be foolish and not stick to this one island. Next time i'll make sure they're under more supervision lest they explore the digestive tract of further fauna.</p>
+
+</div>
+
+<div class="missingRaptorian hidden"><p><strong>Packmaster</strong></p>
+<p>I'll give the Raptorians a chance to fix their mess. I figure they should know best how to find one of their own. </p>
+
+<p>The Packmaster and his Raptorians disappear into the darkening woods of the island once more. </p>
+
+<p>Hours pass and its well into the night as their hulking figures once again reemerge onto the beach, carrying with them their wounded comrade. </p>
+
+<p>This missing Raptorians had tried to scale the cliffs of the larger island and taken a fall into a crevasse. Apparently a large opportunistic serpent of some sort was trying to make a dinner out of him and had to be fought off.</p>
+
+<p>They've injured their leg but the Squires assure me its treatable. </p>
+
+<p>I should have figured the Raptorians would be foolish and not stick to this one island. Next time i'll make sure they're under more supervision. </p>
+
+</div>
+
+<div class="destination hidden"><p><strong>Destination</strong></p>
+<p>Poor investigation:</p>
+
+<p>Our clues here were scant, but it appears the fleet stocked themselves up fully on these islands. Its unlikely they headed for any other resupply points. </p>
+
+<p>We might have to head for Navpoint 3 where we might find another scout or perhaps some natives for more information.</p>
+
+<p><br />
+</p>
+
+<p>Good investigation:</p>
+
+<p>Its clear the Fleet stocked up well before heading in deeper into Thousand islands in a hurry. Coded clues in the abandoned shacks appear to point to one of the Fleets preset rendezvous-points deeper in Thousand islands.</p>
+
+<p>We can still backtrack slightly and head towards Navpoint 3 to investigate the possibility of another scout or natives with further information or head on deeper into Thousand Islands to the next rendezvous point marked as Navpoint 4. </p>
+
+</div>
+
 </body>
 </html>

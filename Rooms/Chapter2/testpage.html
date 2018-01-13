@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Aweworld</title>
+
+  <link rel="stylesheet" href="../../main.css"></link>
+
+  <script src="../../jquery-2.1.3.js"></script>
+  <script src="../../underscore.js"></script>
+	<script src="../../bootstrap.min.js"></script>
+ <link rel="stylesheet" href="../../bootstrap.min.css"></link>
+  <link rel="stylesheet" href="../../bootstrap-theme.min.css"></link>
+  <script src="../../main.js"></script>
+  <link rel="stylesheet" href="../../main.css"></link>
+  <script>
+
+ 
+  
+  var officer = {
+		arn: {
+		name: 'Arn',
+		title: 'First-Officer',
+		experience: 6,
+		strength: 6,
+		intelligence: 4,
+		charm: 4
+		}
+	}
+  
+  
+  function createOfficer() {
+ var text1 = $("<p></p>").text(officer);
+  
+  }
+  
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "envoy"),
+        $("#button-1").addClass("hidden");
+		
+      })
+		
+		$('#button-2').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+		
+        lib.goTo('.html')
+      })
+    })
+	
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	img {
+	margin:auto;
+	width: 30%;
+	}
+  </style>
+
+</head>
+<body>
+<div id="head">
+<div id="dayCounter">
+Day: <span class="days"><script>displayDays()</script></span>
+<br/>
+<span class="schedule"><script>displayShedule()</script></span>
+</div>
+<h1>Thousand Islands</h1>
+</div>
+
+
+<div id="story-text">
+
+<div class="officer">
+<p><img id="image" class="arn" src="../Images/assets/Arnface.png"/></p>
+<p><span class="officerName"> <script>$(".officerName").text(officer.arn.name);</script></span></p>
+<p>Title: <span class="occupation"> <script>$(".occupation").text(officer.arn.title);</script></span></p>
+<p>Experience: <span class="experience"> <script>$(".experience").text(officer.arn.experience);</script></span></p>
+<p>Strength: <span class="strength"> <script>$(".strength").text(officer.arn.strength);</script></span></p>
+<p>Intelligence: <span class="intelligence"> <script>$(".intelligence").text(officer.arn.intelligence);</script></span></p>
+<p>Charm: <span class="charm"> <script>$(".charm").text(officer.arn.charm);</script></span></p>
+
+</div>
+
+<p> Function test </p>
+
+<script> createOfficer() </script>
+
+</div>
+<div id="tail">
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1"> Test </button>
+<button class="btn btn-default" id="button-2"> Continue </button>
+<span id="cadetButtons"> </span>
+<script>
+
+</script>
+</div>
+<div class="envoy hidden"><p><strong>Envoy</strong></p>
+</div>
+</body>
+</html>
