@@ -15,42 +15,82 @@
   <link rel="stylesheet" href="../../main.css"></link>
   <script>
 
- 
+  
   
   var officer = {
 		arn: {
+		image: '../Images/assets/Arnface.png',
 		name: 'Arn',
 		title: 'First-Officer',
 		experience: 6,
 		strength: 6,
 		intelligence: 4,
 		charm: 4
+		},
+		melon: {
+		image: '../Images/assets/Melon.png',
+		name: 'Melon',
+		title: 'Child',
+		experience: 0,
+		strength: 2,
+		intelligence: 2,
+		charm: 7
 		}
+		
 	}
   
-  
-  function createOfficer() {
- var text1 = $("<p></p>").text(officer);
-  
+   var officer3 = [officer.arn, officer.melon];
+   
+   
+   
+  /*
+  //Version1
+  function createOfficer(x) {
+ $(".officer3").html( "<p class='test'></p><span>Name: </span><span class='name'></span><br/><span>Title: </span><span class='title'></span><br/><span>Experience: </span><span class='experience'></span><br/><span>Strength: </span><span class='strength'></span><br/><span>Intelligence: </span><span class='intelligence'></span><br/><span>Charm: </span><span class='charm'></span><br/>" );
+  var img = $('<img class="image">');
+  img.appendTo('.test')
+  img.attr('src', officer3[x].image)
+  $(".name").text(officer3[x].name).css('color', 'black');
+  $(".title").text(officer3[x].title)
+  $(".experience").text(officer3[x].experience)
+  $(".strength").text(officer3[x].strength)
+  $(".intelligence").text(officer3[x].intelligence)
+  $(".charm").text(officer3[x].charm)
   }
   
+  */
+  
+  //Version 2
+    function createOfficer2(y) {
+ $(".officer3").html( "<p class='testimage'></p><span>Name: </span><span class='name'></span><br/><span>Title: </span><span class='title'></span><br/><span>Experience: </span><span class='experience'></span><br/><span>Strength: </span><span class='strength'></span><br/><span>Intelligence: </span><span class='intelligence'></span><br/><span>Charm: </span><span class='charm'></span><br/>" );
+  var img = $('<img class="officerImage">');
+  img.appendTo('.testimage')
+  img.attr('src', y.image)
+  $(".name").text(y.name).css('color', 'black');
+  $(".title").text(y.title)
+  $(".experience").text(y.experience)
+  $(".strength").text(y.strength)
+  $(".intelligence").text(y.intelligence)
+  $(".charm").text(y.charm)
+  }
+  
+  
+  
     $(document).ready(function() {
-      // Put logic that is specific to this page here, mainly what happens when buttons to other
-      // rooms get clicked.
+
       
-      $('#button-1').on('click', function(e) {
-        // change state here
-        // end by using lib.goTo
-		lib.dialogue(e, "envoy"),
-        $("#button-1").addClass("hidden");
+      $('#choice1').on('click', function(e) {
+		createOfficer2(officer.arn)
+		
+		lib.dialogue(e, "envoy")
+        
 		
       })
 		
-		$('#button-2').on('click', function() {
-        // change state here
-        // end by using lib.goTo
-		
-        lib.goTo('.html')
+		$('#choice2').on('click', function(e) {
+		createOfficer2(officer.melon)
+		lib.dialogue(e, "child")
+        
       })
     })
 	
@@ -77,8 +117,8 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 
 <div id="story-text">
-
-<div class="officer">
+<!--
+<div class="officer2">
 <p><img id="image" class="arn" src="../Images/assets/Arnface.png"/></p>
 <p><span class="officerName"> <script>$(".officerName").text(officer.arn.name);</script></span></p>
 <p>Title: <span class="occupation"> <script>$(".occupation").text(officer.arn.title);</script></span></p>
@@ -87,24 +127,43 @@ Day: <span class="days"><script>displayDays()</script></span>
 <p>Intelligence: <span class="intelligence"> <script>$(".intelligence").text(officer.arn.intelligence);</script></span></p>
 <p>Charm: <span class="charm"> <script>$(".charm").text(officer.arn.charm);</script></span></p>
 
+
+//
+<p class="officer5"><script>createOfficer2(officer.arn)</script></p>
 </div>
+ -->
+<p> Pick an Officer, who shall be your successor?</p>
+<br/>
+<br/>
 
-<p> Function test </p>
 
-<script> createOfficer() </script>
 
 </div>
 <div id="tail">
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default" id="button-1"> Test </button>
+<button class="btn btn-default" id="choice1"> Arn </button>
+<button class="btn btn-default" id="choice2"> Melon </button>
 <button class="btn btn-default" id="button-2"> Continue </button>
 <span id="cadetButtons"> </span>
 <script>
 
 </script>
 </div>
-<div class="envoy hidden"><p><strong>Envoy</strong></p>
+<div class="envoy hidden"><p><strong>Arn</strong>
+</br>
+<p> Do you want to Assign Arn?
+<span class="officer3"></span>
+</p>
 </div>
+
+
+<div class="child hidden"><p><strong>Melon</strong>
+</br>
+<p> Do you want to Assign Melon?</p>
+<span class="officer3"></span>
+
+</div>
+
 </body>
 </html>
