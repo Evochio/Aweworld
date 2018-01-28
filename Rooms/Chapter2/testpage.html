@@ -92,24 +92,23 @@
 	
 	// -------------
     
-    //Version 3   Want these to print out all objects in array.  forEach testing. 
+    //Version 3   Want these to print out all objects in array.  forEach testing. Almost working
 	
      function createOfficer3(officers) { officers.forEach(function (officer) {
 	 
-	 $('.theOfficer2').empty(); officers.forEach(function(value, key) { $('.theOfficer2').append('<div id="myCake' + key + '"><p class="testimage"></p><span>Name: </span><span class="name"></span><br/><span>Title: </span><span class="title"></span><br/><span>Experience: </span><span class="experience"></span><br/><span>Strength: </span><span class="strength"></span><br/><span>Intelligence: </span><span class="intelligence"></span><br/><span>Charm: </span><span class="charm"></span></div>'); $('#myCake' + key).append(value); 
+	 $('.theOfficer2').empty(); officers.forEach(function(value, key) { $('.theOfficer2').append('<div id="myCake' + key + '"><p><img class="testimage"></img><span>Name: </span><span class="name"></span><br/><span>Title: </span><span class="title"></span><br/><span>Experience: </span><span class="experience"></span><br/><span>Strength: </span><span class="strength"></span><br/><span>Intelligence: </span><span class="intelligence"></span><br/><span>Charm: </span><span class="charm"></span></p></div>'); $('#myCake' + key).append(value); 
 	 console.log(value);
-	$(".title").text(value.title);
-	
+	$(".testimage").attr('src', value.image) 
+	$(".title").append(value.title);
+	$(".name").append(value.name)
+	$(".experience").append(value.experience)
+	$(".strength").append(value.strength)
+	$(".intelligence").append(value.intelligence)
+	$(".charm").append(value.charm)
 	 });
-	 
-	 
+	 	 
 	 } ); 
-	$(".testimage").attr('src')
-	$(".name").text('test')
-	$(".experience").text(officer.experience)
-	$(".strength").text()
-	$(".intelligence").text()
-	$(".charm").text()
+	
 	 } 
 	
 
