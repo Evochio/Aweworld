@@ -61,8 +61,9 @@
   */
   
   //Version 2
+    /*
     function createOfficer2(y) {
- $(".officer3").html( "<p class='testimage'></p><span>Name: </span><span class='name'></span><br/><span>Title: </span><span class='title'></span><br/><span>Experience: </span><span class='experience'></span><br/><span>Strength: </span><span class='strength'></span><br/><span>Intelligence: </span><span class='intelligence'></span><br/><span>Charm: </span><span class='charm'></span><br/>" );
+ $(".theOfficer").html( "<p class='testimage'></p><span>Name: </span><span class='name'></span><br/><span>Title: </span><span class='title'></span><br/><span>Experience: </span><span class='experience'></span><br/><span>Strength: </span><span class='strength'></span><br/><span>Intelligence: </span><span class='intelligence'></span><br/><span>Charm: </span><span class='charm'></span><br/>" );
   var img = $('<img class="officerImage">');
   img.appendTo('.testimage')
   img.attr('src', y.image)
@@ -72,13 +73,69 @@
   $(".strength").text(y.strength)
   $(".intelligence").text(y.intelligence)
   $(".charm").text(y.charm)
+  
   }
+    */
+    //Version 2.5  Prints out single Officer objects correctly. 
+	
+	    function createOfficer2(y) {
+ $(".theOfficer").html( "<img class='testimage'></img><span>Name: </span><span class='name'></span><br/><span>Title: </span><span class='title'></span><br/><span>Experience: </span><span class='experience'></span><br/><span>Strength: </span><span class='strength'></span><br/><span>Intelligence: </span><span class='intelligence'></span><br/><span>Charm: </span><span class='charm'></span><br/>" );
+  $(".testimage").attr('src', y.image)
+  $(".name").text(y.name).css('color', 'black');
+  $(".title").text(y.title)
+  $(".experience").text(y.experience)
+  $(".strength").text(y.strength)
+  $(".intelligence").text(y.intelligence)
+  $(".charm").text(y.charm)
+  
+  }
+	
+	// -------------
+    
+    //Version 3   Want these to print out all objects in array.
+	
+     function createOfficer3(y) {
+	 y.forEach(function(y) {
+ $(".theOfficer2").html( "<div><p class='testimage'></p><span>Name: </span><span class='name'></span><br/><span>Title: </span><span class='title'></span><br/><span>Experience: </span><span class='experience'></span><br/><span>Strength: </span><span class='strength'></span><br/><span>Intelligence: </span><span class='intelligence'></span><br/><span>Charm: </span><span class='charm'></span></div><br/>" );
+  })
+  $(".testimage").attr('src', y.image)
+  $(".name").text(y.name).css('color', 'black');
+  $(".title").text(y.title)
+  $(".experience").text(y.experience)
+  $(".strength").text(y.strength)
+  $(".intelligence").text(y.intelligence)
+  $(".charm").text(y.charm)
+  
+  }
+  
+	 //Version 3.5
+  
+     function createOfficer4(y) {
+	 for (var i = 0; i < y.length; ++i) 
+	 {
+	 $(".theOfficer2").html( "<div><p class='testimage'></p><span>Name: </span><span class='name'></span><br/><span>Title: </span><span class='title'></span><br/><span>Experience: </span><span class='experience'></span><br/><span>Strength: </span><span class='strength'></span><br/><span>Intelligence: </span><span class='intelligence'></span><br/><span>Charm: </span><span class='charm'></span></div><br/>" );
+  
+  $(".testimage").attr('src', y[i].image)
+  $(".name").text(y[i].name).css('color', 'black');
+  $(".title").text(y[i].title)
+  $(".experience").text(y[i].experience)
+  $(".strength").text(y[i].strength)
+  $(".intelligence").text(y[i].intelligence)
+  $(".charm").text(y[i].charm)
+  }
+  }
+  
   
   
   
     $(document).ready(function() {
 
-      
+      $('#choice2').on('click', function(e) {
+		createOfficer2(officer.melon)
+		lib.dialogue(e, "child")
+        
+      })
+	  
       $('#choice1').on('click', function(e) {
 		createOfficer2(officer.arn)
 		
@@ -87,11 +144,7 @@
 		
       })
 		
-		$('#choice2').on('click', function(e) {
-		createOfficer2(officer.melon)
-		lib.dialogue(e, "child")
-        
-      })
+	
     })
 	
   </script>
@@ -107,63 +160,44 @@
 </head>
 <body>
 <div id="head">
-<div id="dayCounter">
-Day: <span class="days"><script>displayDays()</script></span>
-<br/>
-<span class="schedule"><script>displayShedule()</script></span>
-</div>
-<h1>Thousand Islands</h1>
+
+<h1></h1>
 </div>
 
 
 <div id="story-text">
-<!--
-<div class="officer2">
-<p><img id="image" class="arn" src="../Images/assets/Arnface.png"/></p>
-<p><span class="officerName"> <script>$(".officerName").text(officer.arn.name);</script></span></p>
-<p>Title: <span class="occupation"> <script>$(".occupation").text(officer.arn.title);</script></span></p>
-<p>Experience: <span class="experience"> <script>$(".experience").text(officer.arn.experience);</script></span></p>
-<p>Strength: <span class="strength"> <script>$(".strength").text(officer.arn.strength);</script></span></p>
-<p>Intelligence: <span class="intelligence"> <script>$(".intelligence").text(officer.arn.intelligence);</script></span></p>
-<p>Charm: <span class="charm"> <script>$(".charm").text(officer.arn.charm);</script></span></p>
-
-
-//
-<p class="officer5"><script>createOfficer2(officer.arn)</script></p>
-</div>
- -->
+<!-- -->
 <p> Pick an Officer, who shall be your successor?</p>
 <br/>
+<span class="theOfficer2"></span>
+<script>createOfficer4(officer3)</script>
+
 <br/>
 
 
 
 </div>
-<div id="tail">
 
-<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+
+<div id="tail">
 <button class="btn btn-default" id="choice1"> Arn </button>
 <button class="btn btn-default" id="choice2"> Melon </button>
 <button class="btn btn-default" id="button-2"> Continue </button>
-<span id="cadetButtons"> </span>
-<script>
-
-</script>
-</div>
-<div class="envoy hidden"><p><strong>Arn</strong>
-</br>
-<p> Do you want to Assign Arn?
-<span class="officer3"></span>
-</p>
 </div>
 
 
 <div class="child hidden"><p><strong>Melon</strong>
 </br>
 <p> Do you want to Assign Melon?</p>
-<span class="officer3"></span>
-
+<span class="theOfficer"></span>
 </div>
+
+<div class="envoy hidden"><p><strong>Arn</strong>
+</br>
+<p> Do you want to Assign Arn?</p>
+<span class="theOfficer"></span>
+</div>
+
 
 </body>
 </html>
