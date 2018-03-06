@@ -12,19 +12,62 @@
  <link rel="stylesheet" href="../../bootstrap.min.css"></link>
   <link rel="stylesheet" href="../../bootstrap-theme.min.css"></link>
   <script src="../../main.js"></script>
+  <script src="../../officers.js"></script>
   <link rel="stylesheet" href="../../main.css"></link>
+  
   <script>
 
-    $(document).ready(function() {
-      // Put logic that is specific to this page here, mainly what happens when buttons to other
-      // rooms get clicked.
+
+
+
+   $(document).ready(function() {
+	
+	officerButtonNames();
+	
+      // officer3 = [officer.valnos, officer.mirr, officer.glint];   
+      //  officer3.push(officer.tick); officer3.push(officer.valnos);  
+	  
+	  $('#officer0').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "clues3"),
+        $("#officer0").addClass("hidden");
+		$("#officer1").addClass("hidden");
+		$("#officer2").addClass("hidden");
+		
+		$("#raptorians").removeClass("hidden");
+      })
+	  
+	  $('#officer1').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "clues2"),
+        $("#officer0").addClass("hidden");
+		$("#officer1").addClass("hidden");
+		$("#officer2").addClass("hidden");
+		$("#raptorians").removeClass("hidden");
+      })
+	  $('#officer2').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "clues3"),
+        $("#officer0").addClass("hidden");
+		$("#officer1").addClass("hidden");
+		$("#officer2").addClass("hidden");
+		$("#raptorians").removeClass("hidden");
+      })  
+	  
+	  
       
       $('#button-1').on('click', function(e) {
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "clues"),
         $("#button-1").addClass("hidden");
-		$("#raptorians").removeClass("hidden");
+		$("#officer0").removeClass("hidden");
+		$("#officer1").removeClass("hidden");
+		$("#officer2").removeClass("hidden");
+		
       })
 	  
 	    $('#raptorians').on('click', function(e) {
@@ -101,8 +144,9 @@
         // end by using lib.goTo
 		lib.dialogue(e, "scout"),
         $("#scout").addClass("hidden");
-		
+		$("#button-1").removeClass("hidden");
       })
+	 
 		
 		$('#button-2').on('click', function() {
         // change state here
@@ -154,14 +198,16 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>A bay with deep shallow let us sail in and anchor right close to he bay of the second most largest of the island trio. </p>
 
-<p>Signs of the fleet having been here is everywhere. Abandoned make-shift shelters has been built amongst the woods and sections of trees have been cleared away in places and harvested for their wood judging by the remains of wood-chips and pulp. </p>
-
-<p>Cut out trails of plenty of passage lead further into the island too, it looks almost as if the whole fleet had been trampling around on this beach. </p>
 </div>
 <div id="tail">
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default" id="button-1"> Search for Clues </button>
+<button class="btn btn-default hidden" id="button-1"> Search for Clues </button>
+
+<button class="btn btn-default hidden" id="officer0"> </button>
+<button class="btn btn-default hidden" id="officer1"> </button>
+<button class="btn btn-default hidden" id="officer2"> </button>
+
 <button class="btn btn-default hidden" id="raptorians"> Raptorians want ashore </button>
 <button class="btn btn-default hidden" id="raptorians2">Refuse request </button>
 <button class="btn btn-default hidden" id="raptorians3">Let them go ashore a while </button>
@@ -183,6 +229,10 @@ Day: <span class="days"><script>displayDays()</script></span>
 </div>
 <div class="scout hidden"><p><strong>Scout Report:</strong></p>
 
+<p>Signs of the fleet having been here is everywhere. Abandoned make-shift shelters has been built amongst the woods and sections of trees have been cleared away in places and harvested for their wood judging by the remains of wood-chips and pulp. </p>
+
+<p>Cut out trails of plenty of passage lead further into the island too, it looks almost as if the whole fleet had been trampling around on this beach. </p>
+
 <p>Scouts report that the largest trail lead to an inland pool. Its nearly been drained of usable fresh water. Other trails likewise lead to smaller wells and one to a small natural clearing.</p>
 
 <p>There are some signs of landing and passage on the closest smaller island too, but none to the extent of this island, its mostly been foraged for food.</p>
@@ -192,12 +242,21 @@ Day: <span class="days"><script>displayDays()</script></span>
 </div>
 
 <div class="clues hidden"><p><strong> Search for Clues</strong></p>
+
+
 <p>A cursory glance through the hastily erected but surprisingly firmly built shacks do not reveal much.</p>
 
 <p>Little appear to have been left that couldn't be carried along. But perhaps someone with astute eyes and time can puzzle something together or find something. </p>
 
-<p>Assign a Officer.</p>
+<p>Assign an Officer.</p>
 
+<span class="theOfficer officerObjects"></span>
+
+
+<br/>
+<script>createOfficer4(officer3)</script>
+</div>
+<div class="clues2 hidden"><p><strong> Search for Clues</strong></p>
 <p> Poor investigation: </p>
 
 <p>The shacks appear to have been mostly used to keep objects rather then people dry from rain. There are signs and remains that reveal they have constructed severals barrels and containers and stocked up very well on water.</p>
@@ -209,8 +268,8 @@ Day: <span class="days"><script>displayDays()</script></span>
 <p>Further investigation of the island show less sign of passage then expected. Whoever was here was not here long and focused on their tasks.</p>
 
 <p>It seems clear someone was not planning on resupplying any time soon again and made a big operation out of stocking up quick from the islands. Judging by how cleaned up and little was left around, I suspect that although it was done under efficient haste rather then under any duress. It is likely the fleet used their supplies to move deeper into Thousand Island without having to have to worry for stops. </p>
-
-
+</div>
+<div class="clues3 hidden"><p><strong> Search for Clues</strong></p>
 <p> Good investigation </p>
 
 <p>The shacks appear to have been mostly used to keep objects rather then people dry from rain. There are signs and remains that reveal they have constructed severals barrels and containers and stocked up very well on water.</p>

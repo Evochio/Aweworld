@@ -298,8 +298,33 @@ position: absolute;
 #cadetButtons {
 	
 }
-
-/*If you want text inside shit */
+/*
+.testimage {
+	width: 50%;
+}
+*/
+.officerObjects {
+	
+	padding-right: 10px;
+	width: 160px;
+	height: 450px;
+	
+	}
+#officerObject0 {
+	float: left;
+	
+	}	
+#officerObject1 {
+	float: left;
+	
+	}
+#officerObject2 {
+	float: left;
+	
+	}
+	
+	
+If you want text inside shit 
 
 
 .angry {
