@@ -47,7 +47,7 @@
 		keeper: {
 		image: '../Images/assets/Keeperface.png',
 		name: 'Keeper',
-		title: 'Logistics Officer',
+		title: 'Logistics-Officer',
 		experience: 3,
 		strength: 2,
 		intelligence: 6,
@@ -56,7 +56,7 @@
 		nyxie: {
 		image: '../Images/assets/Nyxie.png',
 		name: 'Nyxie',
-		title: 'Navigation Officer',
+		title: 'Navigation-Officer',
 		experience: 3,
 		strength: 4,
 		intelligence: 6,
@@ -139,8 +139,23 @@
     activeRoster = [officer.arn, officer.keeper, officer.mirr, officer.nyxie, officer.tick, officer.ulv, officer.garsch, officer.tung, officer.evok, officer.elda, officer.ljus,];
     fullRoster = [officer.valnos, officer.ziggy, officer.glint, officer.melon, officer.arn, officer.keeper, officer.mirr, officer.nyxie, officer.tick, officer.ulv, officer.garsch, officer.tung, officer.evok, officer.elda, officer.ljus,];
 	firstOfficer = [officer.arn];
-	officer3 = [firstOfficer[0], officer.mirr, officer.glint];
-   
+	officer3 = [firstOfficer[0], officer.mirr, officer.ulv];
+
+	
+	
+	/* Why is it always making it Nyxie? */
+	function officerDouble() { 
+	if ( firstOfficer[0].name && officer3[1].name == "Mirr" || firstOfficer[0].name && officer3[1].name == "Tung") {
+	officer3[1] = officer.nyxie
+	}
+	else {
+	officer3[1] = officer.mirr	
+	}
+	}
+	
+	
+	
+	
    /*
    Original 
     { officerDiv = $('<div class="officerObjects" id="officerObject'+key+'"><p><img class="testimage"></img><span>Name: </span><span class="name"></span><br/><span>Title: </span><span class="title"></span><br/><span>Experience: </span><span class="experience"></span><br/><span>Strength: </span><span class="strength"></span><br/><span>Intelligence: </span><span class="intelligence"></span><br/><span>Charm: </span><span class="charm"></span></p></div>'); $('#officerObject' + key).append(value); 
