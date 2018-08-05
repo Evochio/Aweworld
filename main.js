@@ -38,8 +38,35 @@ lib.dialogue = function(e, className) {
 var ziggy = {};
 var glint = {};
 var valnos = {};
+var notCadet = {};
 
-var cadet = [ziggy, glint, valnos];
+var checkHidden = function() {
+	if (state.Ziggy.status == 'available') {
+			$("#Ziggy").removeClass("hidden")
+			}
+	if (state.Glint.status == 'available') {
+			$("#Glint").removeClass("hidden")
+			}
+	if (state.Valnos.status == 'available') {
+			$("#Valnos").removeClass("hidden")
+			}
+}
+
+var checkHidden2 = function() {
+	if (state.Ziggy.status == 'available') {
+			$("#ZThumb").removeClass("hidden")
+			}
+	if (state.Glint.status == 'available') {
+			$("#GThumb").removeClass("hidden")
+			}
+	if (state.Valnos.status == 'available') {
+			$("#VThumb").removeClass("hidden")
+			}
+}
+
+
+//Test Noncadet
+var cadet = [ziggy, glint, valnos, notCadet];
 var createCadetButtons = function() {
 	
 	// Thumbnail system
@@ -51,8 +78,8 @@ var createCadetButtons = function() {
 			$('#Glint').siblings().attr('disabled', true);
 			$("#Gthumb").addClass("hidden")
         	$("#ZThumb, #GThumb, #VThumb").addClass("hidden")
-			$("#Ziggy, #Glint, #Valnos").removeClass("hidden")
-			
+			checkHidden();
+						
 			cadetIndex = 1;
 			showNextDialogue();
 	
@@ -67,7 +94,7 @@ var createCadetButtons = function() {
 			$('#Ziggy').siblings().attr('disabled', true);
 			$("#Zthumb").addClass("hidden")
         	$("#ZThumb, #GThumb, #VThumb").addClass("hidden")
-			$("#Ziggy, #Glint, #Valnos").removeClass("hidden")
+			checkHidden();
 			
 			cadetIndex = 0;
 			showNextDialogue();
@@ -84,7 +111,7 @@ var createCadetButtons = function() {
 			$('#Valnos').siblings().attr('disabled', true);
 			$("#Vthumb").addClass("hidden")
         	$("#ZThumb, #GThumb, #VThumb").addClass("hidden")
-			$("#Ziggy, #Glint, #Valnos").removeClass("hidden")
+			checkHidden();
 			
 			cadetIndex = 2;
 			showNextDialogue();
@@ -130,7 +157,21 @@ var createCadetButtons = function() {
 			});
 			button.popover(options)
 	}
+	
+	
+	
 }
+//test non-Cadet
+var testCadet = function() {
+if (state.Valnos.status == 'available') {
+		var button = $(' <img class=NotCadet src=""></img> ')
+		$('#testbutton').append(button)
+		
+			button.popover(options2)	
+			
+	}
+}
+
 var cadetIndex;
 var i = 0;
 
@@ -143,6 +184,18 @@ var options = {
 		}
 		else { 
         return cadet[cadetIndex].banter[i].text; }
+    }, 
+    trigger: 'manual'
+};
+
+
+//Test Noncadet
+var options2 = {
+    container: 'body',
+    placement: 'right',
+    content: function() {
+		 
+        return cadet[cadetIndex].banter[i].text; 
     }, 
     trigger: 'manual'
 };
@@ -174,8 +227,8 @@ var showNextDialogue = function () {
     if(i >= banter.length) {
         // reset i, stop the popover from being shown
         i = 0;
-		$('#ZThumb, #GThumb, #VThumb').removeClass("hidden");
 		
+		checkHidden2();
 		$('#ZThumb, #GThumb, #VThumb').attr('disabled', false);
 		$('#Ziggy, #Glint, #Valnos').addClass("hidden");
         $('#Ziggy, #Glint, #Valnos').attr('disabled', false);
@@ -240,6 +293,11 @@ var initialState = {
 	Ziggy: {
 		status: "Invisible", 
 		Loyalty: 5
+		
+	},
+	NonCadet: {
+		
+		
 		
 	},
   crewMorale: 6,

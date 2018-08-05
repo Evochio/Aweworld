@@ -22,8 +22,9 @@
 	state.Ziggy.status = 'available';
 	
     $(document).ready(function() {
-		
+		testCadet();
 	   officer3 = [firstOfficer[0], officer.ulv, officer.tung];
+	   $(".NotCadet").attr('src','../Images/assets/Tick.png');
 	   
 	   officerButtonNames();
       // Put logic that is specific to this page here, mainly what happens when buttons to other
@@ -166,6 +167,7 @@
 		
 		$("#cadetsD").addClass("hidden")
 		$("#side").addClass("hidden")
+		$(".face").addClass("hidden")
       })
 	  
 	  
@@ -176,6 +178,7 @@
 		$("#cadetsA").removeClass("hidden");
 		$("#cadetsB").removeClass("hidden");
 		$("#side").addClass("hidden")
+		$(".face").addClass("hidden")
       })
 	   
 	   $('#tickB').on('click', function(e) {
@@ -185,6 +188,7 @@
 		$("#cadetsA").removeClass("hidden");
 		$("#cadetsB").removeClass("hidden");
 		$("#side").addClass("hidden")
+		$(".face").addClass("hidden")
       })
 	  
 	  
@@ -303,16 +307,55 @@
 		$("#tickb").removeClass("hidden");
 		$("#tickc").removeClass("hidden");
 		$("#tickd").removeClass("hidden");
+		$("#testbutton").removeClass("hidden");
+		$("#side").removeClass("hidden");
+		state.Ziggy.status = "invisible";
 	
       })
 	  $('#ticka').on('click', function(e) {
 		lib.dialogue(e, "ticka"),
 		
-         $("#conclusionxxxxxxxxxxx").removeClass("hidden");
+        $("#conclusionxxxxxxxxxxx").removeClass("hidden");
 		$("#ticka").addClass("hidden");		
 		$("#tickb").addClass("hidden");
 		$("#tickc").addClass("hidden");
 		$("#tickd").addClass("hidden");
+		
+		state.Ziggy.status = "invisible";
+		$("#VThumb").addClass("new")
+		$("#GThumb").removeClass("hidden");
+		$("#VThumb").removeClass("hidden");
+		$("#side").removeClass("hidden");
+		$("#testbutton").removeClass("hidden");
+	
+	cadet[1].banter = [
+	{ target: '.NotCadet', text: 'You understand the fatal mistake Ziggy did now?'},
+	{ target: '#Glint', text: 'Yes, Officer', imageClass: "blushing"},
+		{ target: '.NotCadet', text: 'And what was that?', imageClass: "angry"},
+	{ target: '#Glint', text: 'She did not follow procedure tightening the cleats?', imageClass: "concerned"},
+	{ target: '.NotCadet', text: "That’s a given, but what effects would that have. Valnos?"},
+	{ target: '#Valnos', text: "Uhm… deep d-demotion?", imageClass: "surprised"},
+	{ target: '.NotCadet', text: "NO! By not following proper procedure, she again missed measuring the bore length for the screws!"},
+	{ target: '#Valnos', text: "B-but…The length was correct.", imageClass: "concerned"},
+	{ target: '.NotCadet', text: "She did not make sure! Such half-measures lead to inevitable mistakes. In this case, a possible loose cleat that tears loose during stress and throwing whatever or whoever relied upon it to the mercy of the winds. "},
+	{ target: '.NotCadet', text: "That’s two demerit marks now Valnos, I had hoped you aimed higher than my waist for your career."},
+	{ target: '#Valnos', text: "N-no, I mean, yes! I am!", imageClass: "concerned"},
+	{ target: '.NotCadet', text: "We will see. Next question, moving on to the bowsprit."}
+];
+	cadet[2].banter = [
+	{ target: '.NotCadet', text: 'You understand the fatal mistake Ziggy did now?'},
+	{ target: '#Glint', text: 'Yes, Officer', imageClass: "blushing"},
+		{ target: '.NotCadet', text: 'And what was that?', imageClass: "angry"},
+	{ target: '#Glint', text: 'She did not follow procedure tightening the cleats?', imageClass: "concerned"},
+	{ target: '.NotCadet', text: "That’s a given, but what effects would that have. Valnos?"},
+	{ target: '#Valnos', text: "Uhm… deep d-demotion?", imageClass: "surprised"},
+	{ target: '.NotCadet', text: "NO! By not following proper procedure, she again missed measuring the bore length for the screws!"},
+	{ target: '#Valnos', text: "B-but…The length was correct.", imageClass: "concerned"},
+	{ target: '.NotCadet', text: "She did not make sure! Such half-measures lead to inevitable mistakes. In this case, a possible loose cleat that tears loose during stress and throwing whatever or whoever relied upon it to the mercy of the winds. "},
+	{ target: '.NotCadet', text: "That’s two demerit marks now Valnos, I had hoped you aimed higher than my waist for your career."},
+	{ target: '#Valnos', text: "N-no, I mean, yes! I am!", imageClass: "concerned"},
+	{ target: '.NotCadet', text: "We will see. Next question, moving on to the bowsprit."}
+];
 	
       })
 	  
@@ -434,8 +477,7 @@
       })
 	  
 	})
-	
-	
+
   </script>
   
   <style>
@@ -455,15 +497,16 @@
 <body>
 <div id="head">
 <h1>Demo Level</h1>
+</div>
 <div id="side" class="hidden">
  <img class="face" id="image" src=""/>
  <img class="face tickface" src="../Images/assets/Tick.png"/>
-
-</div>
+<span id="testbutton" class="hidden"> </span>
 </div>
 
 
 <div id="story-text">
+
 <p>The seas are rough and overcast. Spray of seawater regularly splash onto the deck and pool around before getting funneled out the sides.</p>
 <p>We are spared the worst of the salt-spray upon the higher deck of the helm, but I can see several miserable Awes who's unlucky shift it is to assist with the sails from the bottom of the riggings and lower decks. But such is the life of a sailor. Having salt-frayed and disheveled fur is something of an inevitable mark of a long time sailor, some even display it with pride.</p>
 <p>The seas are mostly shallow around the Thousand islands, so the waves do not become quite as monstrous and lethal as they do upon the true open sea. But despite my years of experience I still find myself cringing silently whenever start to crest a particularly large wave that looms like a dark wall of water.</p>
@@ -785,19 +828,62 @@ Ulvs diligent defensive perimeter however spotted them.</p>
 </div>
 
 <div class="interrogate hidden"><p><strong>Interrogation</strong></p>
-<p>**write this </p>
+<p>The Islander Gryphs sat upon the floor, their arms and wings bound behind their back. Not that Islanders were known for being good fliers, they were heavier and bulkier in nature then their lithe Kingdom counterparts. One would think only the flying ones would survive better among these isles, but apparently, that was not the case. <br />
+“He refuses to speak, but it’s clear he understands Trade-speech, Captain” Officer Garsch announced. The wily old officer had been prying the Islander with questions for an hour before I arrived but with no luck. He was using trade-speech now so the prisoner would understand. <br />
+“Even refuses an offered meal.” The officer grunted. <br />
+“Well, he’ll talk now that I’m here, won’t you? You won’t refuse a captain.”<br />
+The islander looked up and quirked the edges of his beak up in a grin.<br />
+“Finally you offer me a proper meal. How could I refuse the ships captain herself!”<br />
+Officer Garsch’s eyes hardened and he glanced to me briefly for confirmation to meet out punishment. However, I held up a staying paw and moved to crouch before the Islander. <br />
+“That’s a start, you speak. Now, why don’t the brave Islander give his future meal his name?”<br />
+“Croon-Whistler.” The Gryph chuckled. <br />
+“That’s a generic placeholder name used in Trade-speech for unidentified people.” Officer Garsch muttered from behind me. <br />
+“Why did you try to kidnap a member of my crew?” I asked firmly.<br />
+“Tell you what; I’ll whatever questions that comes from my gut.” The Islander chirruped and opened his beak wide. They had a surprisingly wide and pink-fleshed gape on them.<br />
+I sighed. It was never easy. <br />
+“R-right away, Captain!”</p>
 
 </div>
 
 
 <div class="jail hidden"><p><strong>Lock them up</strong></p>
-<p>**write this </p>
-
+<p>“Put them in the brig. We shall sail for the Sand-Isles and ask more questions. Firm questions. Unless our guest becomes more forthcoming.” <br />
+“Aye, Captain.” Officer Garsch replied. <br />
+“Go ahead, deliver yourselves! But you will only find beak and claw there!”<br />
+I smirked smugly. Now we knew it’s where he came from. We had a possible destination to investigate. <br />
+Perhaps the prisoner would be a valuable bargaining chip later on. I believe their crude Island-law speaks of ransom for captured foes being a common tradition.</p>
 </div>
 
 
 <div class="eat hidden"><p><strong>Eat the prisoner</strong></p>
-<p>**write this </p>
+<p>“You know, that sounds like a fun type of game. Let’s try a variant of it!” I rose and paced around behind the Islander. “Help me with this Garsch.”<br />
+With the help of my Officer the prisoner is pinned onto his belly. I grabbed ‘Croon-Whistlers’ clawed feet firmly. <br />
+“You try to guess what questions I want answered and answer as many as you can.” I growled along with a soft purr. Then promptly chomped down on the feet and began to swallow the prisoner down. It was my first Gryph meal, it would prove interesting. <br />
+“Awk! Squah!” The Islander protested, bucking his whole body, but Officer Garsch had a firm knee down between the tied wings of his back.<br />
+“Our captain can be quite fast, I’d start talking.” He growled. <br />
+The unfeathered feet of the Gryph had an interesting texture, almost like the hide of a Raptorian in some way, but rougher. Soon the legs followed, sliding smoothly down my gullet. <br />
+“Cease, stop! You break Island-law!” The Gryph cried out in increasing desperation. Island-law was the unofficial code of ethics around Thousand Isles I supposed. I had skimmed them in my documents somewhere, but it mattered not. <br />
+“On Admiralty ships and operations, only Admiralty Law apply.” Officer Garsch reliably replied.<br />
+I reached the Gryphs tail feathers and rump. I had to confess I enjoyed how the feathers tickled going down, they were not like fur at all. <br />
+“Brutes! Worse than the pirates you are!” Croon-Whistler spat. I was taking it slow to make sure the situation had time to set in. But already I was savoring the Gryphs belly, dragging myself up toward their chest.<br />
+Garsch was gradually releasing the prisoner, their frustrated struggles now pinned by the grip of throat and belly. <br />
+It wasent until my lips closed around their neck, my tongue starting to lap up under their chin, that words started to fall out of them.<br />
+“Its not right what you do…! Before, there was balance. Travelers, hunters who preyed on them and those who lived, like us, the!” <br />
+I swallowed a low long swallow, pulling the Gryphs head deeper toward my maw. <br />
+“Fur-wings upset balance! Too much travel, too much hunters and now you come to our territories and steal our harvests! Compel us to deals!”<br />
+“Hunters? Pirates you mean? Are you allied with them? Where are they?” Garsch demanded.<br />
+“Hunters everywhere! They prey not upon <Islander Tribe> like you Fur-wings do!” The islander shrieked as his head sank deeper.<br />
+“Don’t jest, we don’t prey on natives!” Garsch scoffed.<br />
+ “You forage and harvest our isles, make deals and offer silver! We cant eat silver, we must trade it and hunters see us with silver!” He spoke hastily, my teeth lining his view. “If <Islander-tribe> must take sides, we shall do what will protect tribe longest. Once Fur-wings driven away, balance returns!”<br />
+“So you DO ally yourselves with pirates.” Garsch growled low.<br />
+“There be bounty upon Furwings. Safety and protection in return for capture!”<br />
+I clamped my mouth shut around their beak, closing them in, then tilted my head back and swallowed hard. <br />
+The islander slid past my neck with solid bulge and a muffled cry. I sat back briefly to let my stomach envelop the meal fully and tighten up around them. It didn’t take long for them to settle. They were good eating. <br />
+“We have the tribe-name, the records from Admiralty points their settlements to not far from nearby Sand-Isles.”<br />
+“Very good, Captain. I shall ask Nyxie to plan us a course there.”<br />
+I rose sluggishly and my stomach sagged heavily before me, but I could take the weight without assistance.<br />
+There was one final matter to be settled. <br />
+</p>
 
 </div>
 
@@ -892,6 +978,17 @@ Someone there among the Gryph Islander tribes of Sand-Isles had knowledge and in
 
 <div class="ticka hidden"><p><strong>Complaint from Tick</strong></p>
 <p>**Tick consumes one or several cadets. Briefly replacing their portrait with his belly. </p>
+
+<p>“Very well, Officer Tick.” I finally conceded after some thought. “Perhaps you’re seeing something I’ve missed. I give you permission to carry out what measures you think will help with discipline.”</p>
+
+<p>“Thank you, Captain.” Tick replied curtly. I watched him closely for any betraying emotions, but he was being hard to read. He took a step back toward the door, to tell he had nothing further on his mind. </p>
+
+<p>“Dismissed then.” I sighed and Tick turned and stepped out. Perhaps I had been playing favorites and coddled them too much. I knew they did not like Officer Tick much and thought he was rough on them. It made sense they would be mischievous enough to find subtle ways to get back at him. </p>
+
+<p>Well, he sure would get back at them now. Like or dislike, no doubt they would have to come to terms to accept him. Knowing Tick, he might omit to tell them their punitive dismissal to his gut is supposed to be temporary.</p>
+
+<img src="../Images/assets/Tickvore.png" height="40%" width="40%"/>
+
 </div>
 
 <div class="tickb hidden"><p><strong>Accept responsibility</strong></p>
@@ -966,7 +1063,43 @@ There was little rest to be had as his body and stomach increasingly constricted
 </div>
 
 <div class="tickc hidden"><p><strong>Complaint from Tick</strong></p>
-<p>**Eat Tick</p>
+<p>Officer Tick has stepped over the line. Right or not, as captain, I cannot let that go. </p>
+
+<p>“Officer Tick.” I thumped the ground with my tail for emphasis and hardened my glare. “If someone needs a lesson, it appears to me you have some attitude that needs to be put in check first!” </p>
+
+<p>Ticks ears drooped a little bit. The tone of my voice betrayed my discontent at our exchange. There were clear lines of authority and respect that had to be maintained, Tick had skirted beyond what was seemly. </p>
+
+<p>“Would you say you have a bad temper, Tick?” I place a paw to my hip eye him coolly. </p>
+
+<p>“Yes… “ Tick replies after a pause. “I can become hotheaded.” </p>
+
+<p>“Would you say storming into the Captains office and asking to devour Junior-Officers or the Captain in their stead a thought through cool-headed move?”</p>
+
+<p>Tick stood silent, averting his gaze downwards briefly before replying. “No.”</p>
+
+<p>“I agree. It is quite reckless, thoughtless and lacks respect toward your superiors’ position.” I cocked my head at Officer Tick, his wings and ears were drooping slightly, but he remained stiffly at attention. </p>
+
+<p>“Officer Tick, none of us are above critique, myself included, but as Officers we must stand above such behavior. I will converse with the Cadets about their conduct.” I stepped up to Tick and placed my paws on his shoulders. “You will be present. But as an example for what that kind of behavior will bring.”</p>
+
+<p>“Yes, Captain, I apologize Captain. “ Tick replied before I yanked him close and shoved his head into my mouth. <br />
+He tensed in my grip, but did not resist as I swallowed around him and pulled him up into my throat. </p>
+
+<p>Male Awes were as always smaller and lighter and were easy to get your jaws around, Tick wasn’t considered large even among male Awes, so it was with a somewhat pleased feeling of accomplishment that I managed to hoist him up over my head and down to his waist in a single motion.</p>
+
+<p>I closed my eyes and felt him slip down into my body, stomach filling out with his weight and mass. He did not kick or resist as his feet slipped into my gullet, but his longer than average tail did betray the emotions beneath his calm the way it flicked and whipped from my lips. <br />
+I let it dangle and flick about for a while and went to sit down to finish my paperwork while my stomach settled. </p>
+
+<p>I would have to have a serious talk with the Cadets. Unpleasant temper or not, Tick was still right. It would not do to appear to coddle or protect them too much. They had to respect their senior officers even if they did not agree with their decisions or demeanor. </p>
+
+<p>I rang the bell to call in the current attending Cadet standing ready outside my door. I just about remembered to swallow down the tail before Cadet Glint opened the door.</p>
+
+<p>“Yes, my captain?”</p>
+
+<p>“Summon your fellows once they are off their other shift-duties. We are going to have a talk.”</p>
+
+<p>Cadet Glint nodded firmly and then stared at my belly for a moment. She had let Officer Tick in but not out again. </p>
+
+<p>“R-right away, Captain!”</p>
 
 </div>
 
@@ -1033,6 +1166,7 @@ There was little rest to be had as his body and stomach increasingly constricted
 	{ target: '#Glint', text: 'Why did we have to assemble crates only to pull them apart again for half a day?!', imageClass: "angry"},
 	{ target: '#Valnos', text: 'I suppose its educational.', imageClass: "neutral"},
 	{ target: '#Glint', text: "We're Officer-Cadets, not shipwrights or laborers!", imageClass: "suspicious"},
+	{ target: '.NotCadet', text: "Ahem!"},
 	{ target: '#Valnos', text: "Not so loud! Last time you said that he doubled our workload!", imageClass: "blush"},
 	{ target: '#Ziggy', text: "Ye! Shut your squeaking gob Glint!", imageClass: "angry"}
 ];

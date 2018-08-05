@@ -1,5 +1,5 @@
 /* Put styling there that applies to more than one page. */
-#Valnos, #Ziggy, #Glint{
+#Valnos, #Ziggy, #Glint, #NonCadet{
 float:right;
 }
 
@@ -88,6 +88,13 @@ float:right;
 	bottom: 200px;
 	border: 6px solid #996633;
 	border-radius: 10px;
+}
+
+
+.NotCadet {
+	
+	margin: auto;
+
 }
 
 
@@ -326,7 +333,9 @@ position: absolute;
 	
 If you want text inside shit 
 
-
+.neutral {
+	background-position: 0px 0px; 
+}
 .angry {
 	background-position: 400px 0px; 
 }
@@ -347,9 +356,6 @@ If you want text inside shit
 }
 .surprised {
 	background-position: 400px 286px;  
-}
-.neutral {
-	background-position: 0px 0px; 
 }
 .disabled {
 	background-position: 200px 0px;
