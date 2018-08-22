@@ -184,7 +184,7 @@
       })
 	  	   
 	   $('#search').on('click', function(e) {
-		lib.dialogue(e, "officerResponse"),
+		lib.dialogue(e, "officerResponse5"),
 		demoLevel.push("search");
         $("#search").addClass("hidden");
 		$("#investigate").addClass("hidden");
@@ -206,7 +206,7 @@
       })
 	  
 	  $('#split').on('click', function(e) {
-		lib.dialogue(e, "officerResponse"),
+		lib.dialogue(e, "officerResponse4"),
 		demoLevel.push("split");
         $("#search").addClass("hidden");
 		$("#investigate").addClass("hidden");
@@ -304,7 +304,7 @@
 	  
 	  
 	    $('#encounter').on('click', function(e) {
-	   if (_.contains(demoLevel, "raptorians") {
+	   if (_.contains(demoLevel, "raptorians")) {
 		lib.dialogue(e, "conclusionB")
 		}
 		else {
@@ -358,6 +358,8 @@
 		lib.dialogue(e, "burn"),
         $("#burn").addClass("hidden");
 		$("#leave").addClass("hidden");
+		$("#lone").removeClass("hidden");
+		$("#sand").removeClass("hidden");
 		
       })	 
 
@@ -365,9 +367,23 @@
 		lib.dialogue(e, "leave"),
         $("#burn").addClass("hidden");
 		$("#leave").addClass("hidden");
+		$("#lone").removeClass("hidden");
+		$("#sand").removeClass("hidden");
 		
       })	
 	  
+	  $('#sand').on('click', function(e) {
+		lib.dialogue(e, "end"),
+        $("#lone").addClass("hidden");
+		$("#sand").addClass("hidden");
+		
+      })
+	   $('#lone').on('click', function(e) {
+		lib.dialogue(e, "end"),
+        $("#lone").addClass("hidden");
+		$("#sand").addClass("hidden");
+		
+      })
 	  
 	  $('#conclusion').on('click', function(e) {
 		lib.dialogue(e, "conclusion"),
@@ -473,7 +489,7 @@
 <button class="btn btn-default hidden" id="scouts">Versatile approach</button>
 <button class="btn btn-default hidden" id="raptorians">Heavy approach</button>
 
-
+<button class="btn btn-default hidden" id="tickPleased">Tick debriefing</button>
 
 <button class="btn btn-default hidden" id="conclusion">Conclusion</button>
 <button class="btn btn-default hidden" id="conclusion2">Conclusion</button>
@@ -486,6 +502,9 @@
 
 <button class="btn btn-default hidden" id="burn">Burn the ship</button>
 <button class="btn btn-default hidden" id="leave">Leave it</button>
+
+<button class="btn btn-default hidden" id="sand">Sand-Isles</button>
+<button class="btn btn-default hidden" id="lone">The Lone island</button>
 
 <button class="btn btn-default hidden" id="endDemo">Demo end</button>
 
@@ -706,14 +725,54 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Ship ain't goin
 </div>
 <div class="ulvtext hidden"><p><strong></strong></p>
 <p>“Understood, we'll hold our positions, stay on the lookout and help out. Them scouts are capable fellas, I'm sure our wayward one will find their way back!  </p>
-
-
+</div>
 </div>
 
+<div class="officerResponse4 hidden"><p><strong></strong></p>
 
+<div class="arntext hidden"><p><strong></strong></p>
+<p>&ldquo;Aye Captain, with the scout missing, perhaps the island isn't quite as secure as I might have first suspected. The scouts look out for us, so its our duty to look out for them.&rdquo; He plucked his ever-present toothpick from his mouth and flicked it overboard.</p>
+
+<p>&ldquo;I'll put high focus on tracing them down. We could take the Cadets along.&rdquo; Arn suddenly suggested. &ldquo;Ever pair of eyes help and I hear they have been driving Officer Tick into early shedding.&rdquo;<br />
+I considered this briefly. I had some assignments of my own I was planning to make them busy with.<br />
+&ldquo;Let me talk to them first, I will let you know if they join you in a bit.&rdquo;<br />
+&ldquo;Aye Captain.&rdquo;</p>
+</div>
+<div class="tungtext hidden"><p><strong></strong></p>
+<p>&ldquo;Hum... half the team at base and other half getting all the fun? Going to be harder to make a full sweep and I'm going to have a heck of a time making it seem like I'm not picking favorites in the team when they hear about this.&ldquo; Tung seemed to remember himself and saluted hastily and stiffly. </p>
+
+<p>&ldquo;I'll make the arrangements immediately captain!&rdquo;</p>
+</div>
+<div class="ulvtext hidden"><p><strong></strong></p>
+<p>&ldquo;You want us to traipse up and down the woods of the Island, aye? Well, I suppose thats fair, we hardly gave it a very good look over on the way in to the bay and we owe it to our runaway scout.&rdquo;<br />
+Ulv scratched at her prominent neck-tuft before shrugging.<br />
+&ldquo;I'll round up some of the girls and take a walk around the island Captain. But some of those pretty guard-posts we built will be empty!&rdquo;</p>
+</div>
 </div>
 
+<div class="officerResponse5 hidden"><p><strong></strong></p>
 
+<div class="arntext hidden"><p><strong></strong></p>
+<p>&ldquo;Aye Captain, with the scout missing, perhaps the island isn't quite as secure as I might have first suspected. The scouts look out for us, so its our duty to look out for them.&rdquo; He plucked his ever-present toothpick from his mouth and flicked it overboard.</p>
+
+<p>&ldquo;I'll put high focus on tracing them down. We could take the Cadets along.&rdquo; Arn suddenly suggested. &ldquo;Ever pair of eyes help and I hear they have been driving Officer Tick into early shedding.&rdquo;<br />
+I considered this briefly. I had some assignments of my own I was planning to make them busy with.<br />
+&ldquo;Let me talk to them first, I will let you know if they join you in a bit.&rdquo;<br />
+&ldquo;Aye Captain.&rdquo;</p>
+</div>
+<div class="tungtext hidden"><p><strong></strong></p>
+<p>“Good! I feel it in my pelt that there's someone out there watching us.”</p>
+
+<p>Tung smacked his paws together audibly and grinned savagely. As always he defied the timid male stereotype with more gusto then anyone.</p>
+
+<p>“We shall head out immediately.</p>
+</div>
+<div class="ulvtext hidden"><p><strong></strong></p>
+<p>&ldquo;You want us to traipse up and down the woods of the Island, aye? Well, I suppose thats fair, we hardly gave it a very good look over on the way in to the bay and we owe it to our runaway scout.&rdquo;<br />
+Ulv scratched at her prominent neck-tuft before shrugging.<br />
+&ldquo;I'll round up some of the girls and take a walk around the island Captain. But some of those pretty guard-posts we built will be empty!&rdquo;</p>
+</div>
+</div>
 
 <div class="cadetsC hidden"><p><strong>Busywork for Cadets</strong></p>
 <p>The cadets have been growing restless and getting underfoot. Tick has been responsible for their duties the past few days and it hasent been exactly problem free, they've been full of mischief. They need a mission of their own to occupy their time and give them some overdue experience as junior officers.</p>
@@ -965,6 +1024,28 @@ With these terrible new weapons turning up, it is and edge we have to guard clos
 Still, I cannot help but hesitate. There is much I do not know going on here.</p>
 </div>
 
+<div class="burn hidden"><p><strong>Duty or Caution</strong></p>
+<p>The plume of smoke and flames is clearly visible, like a lit beacon the hull the 'Herald' burns brightly for all to see within many miles. I can only hope that the growing bad weather and wind will obscure from greater distances.</p>
+
+<p>But duty had to be done and we followed the book. Better this then seeing pirates come sailing with capable ships one day. </p>
+
+<p>We make it out of the bay and nearby shallows without incident. <br />
+Either we head west for Sand-Isles or north to investigate another albeit outdated objective. A nameless lone island that was marked back home as a potentially good spot to set up a Admiralty naval base.</p>
+</div>
+
+<div class="leave hidden"><p><strong>Duty or Caution</strong></p>
+<p>We make it out of the bay and nearby shallows without incident. <br />
+Behind us the island with its hidden secret lays undisturbed. We did our best to cover our tracks, but there was nothing further we could do to hide a massive ship like that. <br />
+If anyone sails into the bay or scouts it from the air, they are likely to find it. <br />
+We'll have to hope the remoteness of the Island will protect it and that it serves whatever purpose it was meant to serve when its original crew abandoned it here. </p>
+
+<p>Our next destination awaits. Either we head west for Sand-Isles or north to investigate another albeit outdated objective. A nameless lone island that was marked back home as a potentially good spot to set up a Admiralty naval base.</p>
+</div>
+
+
+<div class="end hidden"><p><strong>End of Demo</strong></p>
+End of Demo
+</div>
 
 <script>
  cadet[2].banter = [
