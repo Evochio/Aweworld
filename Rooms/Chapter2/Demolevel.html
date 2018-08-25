@@ -42,6 +42,7 @@
 		$("#delay").removeClass("hidden");
 		$("#send").removeClass("hidden");
 		$("#side").removeClass("hidden");
+		$("#sideb").removeClass("hidden");
 		$("#testbutton").removeClass("hidden");
 		$(".NotCadet").attr('src','../Images/assets/ScoutM.png');
 	})
@@ -52,12 +53,14 @@
 		$("#send").addClass("hidden");
 		$("#expedition").removeClass("hidden");
 		demoLevel.push("delay");
+		$("#sideb").addClass("hidden");
       })
 	  $('#send').on('click', function(e) {
 		lib.dialogue(e, "send"),
         $("#send").addClass("hidden");
 		$("#delay").addClass("hidden");
 		$("#expedition").removeClass("hidden");
+		$("#sideb").addClass("hidden");
 		demoLevel.push("send");
       })
 	  
@@ -67,7 +70,7 @@
 		$("#officer0").removeClass("hidden");
 		$("#officer1").removeClass("hidden");
 		$("#officer2").removeClass("hidden");
-		$("#side").addClass("hidden");
+		$(".NotCadet").attr('src','../Images/assets/ActionAwes.png');
 		
       })
 	  
@@ -110,6 +113,8 @@
 		$("#search").removeClass("hidden");
 		$("#investigate").removeClass("hidden");
 		$("#split").removeClass("hidden");
+		$("#sideb").removeClass("hidden")
+		$(".face").attr('src','../Images/assets/ScoutM.png');
 		}
 		else {
 		lib.dialogue(e, "expedition3b")
@@ -191,6 +196,7 @@
 		$("#split").addClass("hidden");
 		$(".tickface").addClass("hidden")
 		$("#tickinv").removeClass("hidden");
+		$("#sideb").addClass("hidden");
 		
       })
 	   
@@ -202,6 +208,7 @@
 		$("#split").addClass("hidden");
 		$(".tickface").addClass("hidden")
 		$("#tickinv").removeClass("hidden");
+		$("#sideb").addClass("hidden");
 		
       })
 	  
@@ -213,6 +220,8 @@
 		$("#split").addClass("hidden");
 		$(".tickface").addClass("hidden")
 		$("#tickinv").removeClass("hidden");
+		$("#sideb").addClass("hidden");
+		
 		
       })
 	  
@@ -224,20 +233,122 @@
 		if (_.contains(demoLevel, "tung") && _.contains(demoLevel, "search")) {
 		$("#caught").removeClass("hidden");
 		lib.dialogue(e, "cadetScene2")
+		
+		//Forest
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'Thanks for coming to the rescue you two. ', imageClass: "blushing"},
+	{ target: '#Ziggy', text: "Sure! I would totally have had that guy if the other ones had not showed up.", imageClass: "blushing"},
+	{ target: '#Glint', text: 'You sure looked like you had it covered from the ground there.', imageClass: "smug" },
+	{ target: '#Ziggy', text: "I'd been fine if Valnos had not been caught!", imageClass: "suspicious"},
+	{ target: '#Valnos', text: 'S-sorry. He was just so fast and strong.', imageClass: "concerned"},
+	{ target: '#Ziggy', text: 'Yeah, well... just run away and yell for me next time.', imageClass: "blushing"},
+	{ target: '#Valnos', text: 'Y-yeah.', imageClass: "sad"}
+
+];
+
+ cadet[1].banter = [
+	{ target: '#Glint', text: 'By the way, why did you not call out to us right away Valnos?', imageClass: "concerned"},
+	{ target: '#Valnos', text: "I don't know... My mind just froze.", imageClass: "sad"},
+	{ target: '#Glint', text: 'You must have more courage and focus, what if we had not showed up in time! ', imageClass: "angry" },
+	{ target: '#Ziggy', text: 'Hey, lay off him Glint!', imageClass: "surprised"},
+	{ target: '#Ziggy', text: "He cant help being all light and tiny.", imageClass: "surprised"},
+	{ target: '#Valnos', text: "I'll try be louder.", imageClass: "sad"}
+	
+];
+
+ cadet[0].banter = [
+	{ target: '#Ziggy', text: "What was that spear throw anyway, you almost skewered me!", imageClass: "suspicious"},
+	{ target: '#Glint', text: "I was in a hurry, I didn't have time to aim!", imageClass: "blushing"},
+	{ target: '#Ziggy', text: "Yea, so you help out by making a kebab out of me and Valnos!", imageClass: "suspicious" },
+	{ target: '#Glint', text: "Alright, next time I'll just watch! Your head is probably dense enough to take a hit anyway.", imageClass: "suspicious"},
+	{ target: '#Ziggy', text: "Damn right it is!", imageClass: "angry"}
+	
+];
 		}
+		
 		else if (_.contains(demoLevel, "arn") && _.contains(demoLevel,"send") && (_.contains(demoLevel,"split") || _.contains(demoLevel,"search"))){
 		$("#caught").removeClass("hidden");
 		lib.dialogue(e, "cadetScene2")
+		
+		
+		//Forest
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'Thanks for coming to the rescue you two. ', imageClass: "blushing"},
+	{ target: '#Ziggy', text: "Sure! I would totally have had that guy if the other ones had not showed up.", imageClass: "blushing"},
+	{ target: '#Glint', text: 'You sure looked like you had it covered from the ground there.', imageClass: "smug" },
+	{ target: '#Ziggy', text: "I'd been fine if Valnos had not been caught!", imageClass: "suspicious"},
+	{ target: '#Valnos', text: 'S-sorry. He was just so fast and strong.', imageClass: "concerned"},
+	{ target: '#Ziggy', text: 'Yeah, well... just run away and yell for me next time.', imageClass: "blushing"},
+	{ target: '#Valnos', text: 'Y-yeah.', imageClass: "sad"}
+
+];
+
+ cadet[1].banter = [
+	{ target: '#Glint', text: 'By the way, why did you not call out to us right away Valnos?', imageClass: "concerned"},
+	{ target: '#Valnos', text: "I don't know... My mind just froze.", imageClass: "sad"},
+	{ target: '#Glint', text: 'You must have more courage and focus, what if we had not showed up in time! ', imageClass: "angry" },
+	{ target: '#Ziggy', text: 'Hey, lay off him Glint!', imageClass: "surprised"},
+	{ target: '#Ziggy', text: "He cant help being all light and tiny.", imageClass: "surprised"},
+	{ target: '#Valnos', text: "I'll try be louder.", imageClass: "sad"}
+	
+];
+
+ cadet[0].banter = [
+	{ target: '#Ziggy', text: "What was that spear throw anyway, you almost skewered me!", imageClass: "suspicious"},
+	{ target: '#Glint', text: "I was in a hurry, I didn't have time to aim!", imageClass: "blushing"},
+	{ target: '#Ziggy', text: "Yea, so you help out by making a kebab out of me and Valnos!", imageClass: "suspicious" },
+	{ target: '#Glint', text: "Alright, next time I'll just watch! Your head is probably dense enough to take a hit anyway.", imageClass: "suspicious"},
+	{ target: '#Ziggy', text: "Damn right it is!", imageClass: "angry"}
+	
+];
 		}
 		else if (_.contains(demoLevel, "ulv") && _.contains(demoLevel, "investigate")) {
 		$("#caught").removeClass("hidden");
 		lib.dialogue(e, "cadetScene3")
+		
+		//Beach
+
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'Were you not scared?', imageClass: "concerned"},
+	{ target: '#Ziggy', text: "There wasn't time to be scared.", imageClass: "surprised"},
+	{ target: '#Ziggy', text: 'You gotta move before you are.', imageClass: "angry" },
+	{ target: '#Ziggy', text: "We cant all be as scared as you Valnos.", imageClass: "blushing"},
+	{ target: '#Valnos', text: 'Sorry... I just, I just blanked.', imageClass: "sad"},
+	{ target: '#Ziggy', text: 'At least stay with your weapon or something next time.', imageClass: "suspicious"}
+
+];
+
+ cadet[1].banter = [
+	{ target: '#Glint', text: 'Why were you so reckless!?', imageClass: "angry"},
+	{ target: '#Ziggy', text: 'What? I just... reacted.', imageClass: "suspicious"},
+	{ target: '#Glint', text: 'If Ulv had not showed up...', imageClass: "concerned" },
+	{ target: '#Ziggy', text: 'She was badass!', imageClass: "happy"},
+	{ target: '#Glint', text: "I'm serious Ziggy!", imageClass: "angry"},
+	{ target: '#Ziggy', text: "Hey, Valnos needed more rescuing then me! And he arrived last!", imageClass: "smug"},
+	{ target: '#Valnos', text: "...!", imageClass: "sad"},
+	{ target: '#Glint', text: "Don't deflect, Ziggy. You know what you did. ", imageClass: "suspicious"},
+	{ target: '#Ziggy', text: "Stop. Lecturing. me.", imageClass: "suspicious"}
+];
+
+ cadet[0].banter = [
+	{ target: '#Ziggy', text: "Ulv always struck me as the passive-thinky type.", imageClass: "blushing"},
+	{ target: '#Ziggy', text: "But last night, she was totally 'Wooosh', 'Kapow!', 'Hi-ya!'", imageClass: "happy"},
+	{ target: '#Ziggy', text: "Then she just totally ate two of em. So awesome.", imageClass: "smug" },
+	{ target: '#Glint', text: 'Have you thanked her yet?', imageClass: "concerned"},
+	{ target: '#Ziggy', text: "Erh... I was gonna, while like.. asking for tips on how to swing swords like that. But she was sleeping still.", imageClass: "concerned"}
+	
+];
 		}
 		else {
 		
 		lib.dialogue(e, "raidA")
 		$("#raptorians").removeClass("hidden");
+		if (_.contains(demoLevel, "delay")) {
 		$("#scouts").removeClass("hidden");
+		}
+		else {
+		$("#scoutsb").removeClass("hidden");
+		}
 		}
 		
 		
@@ -264,7 +375,12 @@
 		
 		
 		$("#interrogate").removeClass("hidden");
-		
+		$("#GThumb").removeClass("hidden");
+		$("#VThumb").removeClass("hidden");
+		$("#ZThumb").removeClass("hidden");
+		$("#GThumb").addClass("new");
+		$("#VThumb").addClass("new");
+		$("#ZThumb").addClass("new");
 		
       })
 	  
@@ -276,15 +392,32 @@
          $("#raidA").addClass("hidden");
 		$("#raidB").addClass("hidden");
 		$("#raptorians").removeClass("hidden");
+		if (_.contains(demoLevel, "delay")) {
 		$("#scouts").removeClass("hidden");
-		
-      })
+		}
+		else {
+		$("#scoutsb").removeClass("hidden");
+		}
+		})
 	  
 	  
 	  $('#scouts').on('click', function(e) {
-		lib.dialogue(e, "cadetScene"),
+		lib.dialogue(e, "cadetSceneb"),
 		demoLevel.push("scouts");
          $("#scouts").addClass("hidden");
+		 $("#scoutsb").addClass("hidden");
+		$("#raptorians").addClass("hidden");
+		
+		$("#encounter").removeClass("hidden");
+		
+		
+      })
+	  
+	  	  $('#scoutsb').on('click', function(e) {
+		lib.dialogue(e, "cadetScenec"),
+		demoLevel.push("scouts");
+         $("#scouts").addClass("hidden");
+		 $("#scoutsb").addClass("hidden");
 		$("#raptorians").addClass("hidden");
 		
 		$("#encounter").removeClass("hidden");
@@ -296,6 +429,7 @@
 		lib.dialogue(e, "cadetScene"),
 		demoLevel.push("raptorians");
          $("#scouts").addClass("hidden");
+		 $("#scoutsb").addClass("hidden");
 		$("#raptorians").addClass("hidden");
 		
 		$("#encounter").removeClass("hidden");
@@ -306,21 +440,128 @@
 	    $('#encounter').on('click', function(e) {
 	   if (_.contains(demoLevel, "raptorians")) {
 		lib.dialogue(e, "conclusionB")
+		$("#tickPleased").removeClass("hidden");
+		//Raid   Raptorian
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'Raptorians are scary.', imageClass: "surprised"},
+	{ target: '#Ziggy', text: "Haha, a lot of things are scary to you though!", imageClass: "smug"},
+	{ target: '#Valnos', text: "I mean, when they showed up, I thought they'd eat me on the spot.", imageClass: "blushing" },
+	{ target: '#Valnos', text: "Their eyes were... wild! Hardly recognized me.!", imageClass: "blushing"},
+	{ target: '#Ziggy', text: 'Well yeah, they were on the hunt!', imageClass: "neutral"},
+	{ target: '#Ziggy', text: 'Whatcha think they were always all mellow and stuff?', imageClass: "surprised"},
+	{ target: '#Valnos', text: "I thought I'd seen them aggressive before, but I guess was wrong.", imageClass: "surprised"},
+	{ target: '#Glint', text: "I'm sure glad they're our vassals.", imageClass: "concerned"}
+
+];
+
+ cadet[1].banter = [
+	{ target: '#Glint', text: "You're too reckless Ziggy.", imageClass: "angry"},
+	{ target: '#Glint', text: "Chasing after those Islanders without backup! What were you thinking!?", imageClass: "angry"},
+	{ target: '#Ziggy', text: 'I dunno.. I just reacted.', imageClass: "surprised" },
+	{ target: '#Valnos', text: 'Werent you scared?', imageClass: "surprised"},
+	{ target: '#Ziggy', text: "There was no time to stop and be scared.", imageClass: "suspicious"},
+	{ target: '#Glint', text: "Big surprise. You were not thinking at all.", imageClass: "suspicious"},
+	{ target: '#Ziggy', text: "Yeah, exactly!", imageClass: "happy"}
+];
+
+ cadet[0].banter = [
+	{ target: '#Ziggy', text: "I don't get why we were yelled at for helping out.", imageClass: "sad"},
+	{ target: '#Ziggy', text: "Without us, they woulda totally run off with Officer Tick.", imageClass: "angry"},
+	{ target: '#Ziggy', text: "As annoying as he is, who would we then have to fix the ship?", imageClass: "suspicious"},
+	{ target: '#Glint', text: "Its about correct procedures.", imageClass: "concerned"},
+	{ target: '#Glint', text: "Just because things went well this time. It doesn't mean the next time we'll be as lucky!", imageClass: "sad"}
+	
+];
 		}
-		else {
+		else if (_.contains(demoLevel, "delay")) {
+		lib.dialogue(e, "conclusionAb")
+		$("#interrogate").removeClass("hidden");
+		//Raid   scouts
+
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'Those Scouts swooped in like shadows!', imageClass: "surprised"},
+	{ target: '#Valnos', text: "I didnt know you could fight like that, so quietly!", imageClass: "surprised"},
+	{ target: '#Ziggy', text: "I dunno, it was cool, but kind of weird!", imageClass: "concerned" },
+	{ target: '#Ziggy', text: "Didnt look like a fight at all.", imageClass: "surprised"},
+	{ target: '#Glint', text: 'A Scouts primary goal is to avoid injury. Theirs is not the job of direct confrontation.', imageClass: "neutral"},
+	{ target: '#Valnos', text: 'I wish I could move like that.', imageClass: "blushing"},
+	{ target: '#Ziggy', text: "Haha! You're a sneak Valnos, but you kinda need to be brave and fast to be a scout.", imageClass: "smug"}
+	
+
+];
+
+ cadet[1].banter = [
+	{ target: '#Glint', text: "You're too reckless Ziggy.", imageClass: "angry"},
+	{ target: '#Glint', text: "Chasing after those Islanders without backup! What were you thinking!?", imageClass: "angry"},
+	{ target: '#Ziggy', text: 'I dunno.. I just reacted.', imageClass: "surprised" },
+	{ target: '#Valnos', text: 'Werent you scared?', imageClass: "surprised"},
+	{ target: '#Ziggy', text: "There was no time to stop and be scared.", imageClass: "suspicious"},
+	{ target: '#Glint', text: "Big surprise. You were not thinking at all.", imageClass: "suspicious"},
+	{ target: '#Ziggy', text: "Yeah, exactly!", imageClass: "happy"}
+];
+
+ cadet[0].banter = [
+	{ target: '#Ziggy', text: "I don't get why we were yelled at for helping out.", imageClass: "sad"},
+	{ target: '#Ziggy', text: "Without us, they woulda totally run off with Officer Tick.", imageClass: "angry"},
+	{ target: '#Ziggy', text: "As annoying as he is, who would we then have to fix the ship?", imageClass: "suspicious"},
+	{ target: '#Glint', text: "Its about correct procedures.", imageClass: "concerned"},
+	{ target: '#Glint', text: "Just because things went well this time. It doesn't mean the next time we'll be as lucky!", imageClass: "sad"}
+	
+];
+		}
+		else 
+		{
 		lib.dialogue(e, "conclusionA")
+		$("#tickPleased").removeClass("hidden");
+		//Raid   scoutsb
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'That Scout. Scout Vessla. He was so brave.', imageClass: "sad"},
+	{ target: '#Ziggy', text: "Ye! We shoulda stayed and helped though!", imageClass: "angry"},
+	{ target: '#Glint', text: "Don't talk about him like he's dead!", imageClass: "surprised" },
+	{ target: '#Glint', text: "And if we'd stayed, we'd all been captured.", imageClass: "concerned"},
+	{ target: '#Valnos', text: "I'm kinda surprised you followed orders Ziggy.", imageClass: "suspicious"},
+	{ target: '#Ziggy', text: 'Someone had to carry Tick.', imageClass: "suspicious"}
+	
+];
+
+ cadet[1].banter = [
+	{ target: '#Glint', text: "You're too reckless Ziggy.", imageClass: "angry"},
+	{ target: '#Glint', text: "Chasing after those Islanders without backup! What were you thinking!?", imageClass: "angry"},
+	{ target: '#Ziggy', text: 'I dunno.. I just reacted.', imageClass: "surprised" },
+	{ target: '#Valnos', text: 'Werent you scared?', imageClass: "surprised"},
+	{ target: '#Ziggy', text: "There was no time to stop and be scared.", imageClass: "suspicious"},
+	{ target: '#Glint', text: "Big surprise. You were not thinking at all.", imageClass: "suspicious"},
+	{ target: '#Ziggy', text: "Yeah, exactly!", imageClass: "happy"}
+];
+
+ cadet[0].banter = [
+	{ target: '#Ziggy', text: "I don't get why we were yelled at for helping out.", imageClass: "sad"},
+	{ target: '#Ziggy', text: "Without us, they woulda totally run off with Officer Tick.", imageClass: "angry"},
+	{ target: '#Ziggy', text: "As annoying as he is, who would we then have to fix the ship?", imageClass: "suspicious"},
+	{ target: '#Glint', text: "Its about correct procedures.", imageClass: "concerned"},
+	{ target: '#Glint', text: "Just because things went well this time. It doesn't mean the next time we'll be as lucky!", imageClass: "sad"}
+	
+];
+		
 		}
-        $("#tickPleased").removeClass("hidden");
+        
 		$("#encounter").addClass("hidden");
-		
-		
+		$("#GThumb").removeClass("hidden");
+		$("#VThumb").removeClass("hidden");
+		$("#ZThumb").removeClass("hidden");
+		$("#GThumb").addClass("new");
+		$("#VThumb").addClass("new");
+		$("#ZThumb").addClass("new");
 		})
 		
 		$('#tickPleased').on('click', function(e) {
 		lib.dialogue(e, "tickPleased"),
+		$(".NotCadet").attr('src','../Images/assets/Tick.png');
+		$("#side").removeClass("hidden");
 		$("#tickPleased").addClass("hidden");
-		
 		$("#decision").removeClass("hidden");
+		
+		
 	
       })
 	  
@@ -328,15 +569,58 @@
 	   $('#interrogate').on('click', function(e) {
 		lib.dialogue(e, "interrogate"),
          $("#interrogate").addClass("hidden");
+		 $(".NotCadet").attr('src','../Images/assets/Garsch.png');
+		 $("#side").removeClass("hidden");
+		 $("#interrogate2").removeClass("hidden");
 		$("#jail").removeClass("hidden");
 		$("#eat").removeClass("hidden");
+	
       })
+	  
+	   $('#interrogate2').on('click', function(e) {
+		lib.dialogue(e, "interrogate2"),
+         $("#interrogate2").addClass("hidden");
+		 $("#prisoner").removeClass("hidden");
+		
+      })
+	  
+	   $('#prisoner').on('click', function(e) {
+		lib.dialogue(e, "prisoner"),
+         $("#prisoner").addClass("hidden");
+		 $("#jail").addClass("hidden");
+		$("#eat").addClass("hidden");
+		
+      })
+	  
+	   $('#prisoner2a').on('click', function(e) {
+		lib.dialogue(e, "prisoner2a"),
+         $("#prisoner2a").addClass("hidden");
+		   $("#prisoner2b").addClass("hidden");
+		$("#prisoner3").removeClass("hidden");
+      })
+	  
+	   $('#prisoner2b').on('click', function(e) {
+		lib.dialogue(e, "prisoner2b"),
+         $("#prisoner2a").addClass("hidden");
+		 $("#prisoner2b").addClass("hidden");
+		  $("#decision").removeClass("hidden");
+	
+      })
+	  
+	   $('#prisoner3').on('click', function(e) {
+		lib.dialogue(e, "prisoner3"),
+         $("#prisoner3").addClass("hidden");
+		$("#endDemo").removeClass("hidden");
+	
+      })
+	  
 	  
 	   $('#jail').on('click', function(e) {
 		lib.dialogue(e, "jail"),
          $("#jail").addClass("hidden");
 		$("#decision").removeClass("hidden");
 		$("#eat").addClass("hidden");
+		$("#side").addClass("hidden");
       })
 	  
 	  $('#eat').on('click', function(e) {
@@ -344,11 +628,13 @@
          $("#jail").addClass("hidden");
 		$("#decision").removeClass("hidden");
 		$("#eat").addClass("hidden");
+		$("#side").addClass("hidden");
       })
 	  
 	  $('#decision').on('click', function(e) {
 		lib.dialogue(e, "decision"),
          $("#decision").addClass("hidden");
+		 $("#side").addClass("hidden");
 		$("#burn").removeClass("hidden");
 		$("#leave").removeClass("hidden");
 		
@@ -421,9 +707,12 @@
 	#officerObject0 {
 	
 	}
-	.face {
-	width: 50%
+	.action {
+	width: 50%;
+	float:left;
 	}
+	
+	
   </style>
 
 </head>
@@ -432,12 +721,11 @@
 <h1>Demo Level</h1>
 </div>
 <div id="side" class="hidden">
- <img class="face hidden" id="image" src=""/>
- <img class="face tickface hidden" src="../Images/assets/Tick.png"/>
 <span id="testbutton" class="hidden"> </span>
 </div>
-
-
+<div id="sideb" class="hidden">
+ <img class="face" id="image" src="../Images/assets/Nyxie.png""/>
+</div>
 <div id="story-text">
 
 
@@ -451,6 +739,7 @@
 <p>It is unlikely they will be loitering around this area, we are still at the edges of Thousand Isles proper, but its on the way and might offer clues.</p>
 <p>A cry from high up in the masts rouses me from my thoughts. &ldquo;Haaa-hoooo&rdquo; the pitched cry of the lookout calls, land has been sighted. Nyxies navigation has been on-point once more it seems.</p>
 <p>She has no time to grin in triumph however as she now shouts orders for the sails to be lowered to turn down our speed. She still has to get us close without crashing us into any inevitably lurking reefs.</p>
+
 </div>
 <div id="tail">
 
@@ -487,6 +776,7 @@
 <button class="btn btn-default hidden" id="encounter">Encounter</button>
 
 <button class="btn btn-default hidden" id="scouts">Versatile approach</button>
+<button class="btn btn-default hidden" id="scoutsb">Versatile approach</button>
 <button class="btn btn-default hidden" id="raptorians">Heavy approach</button>
 
 <button class="btn btn-default hidden" id="tickPleased">Tick debriefing</button>
@@ -495,8 +785,17 @@
 <button class="btn btn-default hidden" id="conclusion2">Conclusion</button>
 
 <button class="btn btn-default hidden" id="interrogate">Interrogate prisoner.</button>
+<button class="btn btn-default hidden" id="interrogate2">Keep him talking.</button>
+
+<button class="btn btn-default hidden" id="prisoner">Agree deal</button>
+
+<button class="btn btn-default hidden" id="prisoner2a">Leave it to Garsch</button>
+<button class="btn btn-default hidden" id="prisoner2b">Cause discomfort!</button>
+
+<button class="btn btn-default hidden" id="prisoner3">Captured captors</button>
+
 <button class="btn btn-default hidden" id="eat">Consume Prisoner</button>
-<button class="btn btn-default hidden" id="jail">Keep Prisoner</button>
+<button class="btn btn-default hidden" id="jail">Throw in brig</button>
 
 <button class="btn btn-default hidden" id="decision">Continue</button>
 
@@ -698,7 +997,7 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Ship ain't goin
 <div class="arntext hidden"><p><strong></strong></p>
 "Very good, Captain. We shall help out where we can, though knowing Tick he'll probably prefer 'amateurs' to stay out of the way."
 
-
+</div>
 <div class="ulvtext hidden"><p><strong></strong></p>
 <p>“As you wish Captain, we'll ensure they work undisturbed. Ain't no critter getting through my 5-point field perimeter!”  </p>
 
@@ -719,6 +1018,9 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Ship ain't goin
 <div class="arntext hidden"><p><strong></strong></p>
 <p>“Very well, Captain. I'll send a few to look through the closest parts of the island, but put the majority of my team into watching Ticks investigation.” He tapped his chin thoughtfully. <br/>
 “We could take the Cadets along.” Arn suddenly suggested. “I hear they have been driving Officer Tick into early shedding and any extra pair of eyes is useful.” </p>
+I considered this briefly. I had some assignments of my own I had planned to make them busy with. This was a good oppertunity as any for them to gain some experience.<br />
+&ldquo;Let me talk to them first, I will let you know if they join you in a bit.&rdquo;<br />
+&ldquo;Aye Captain.&rdquo;</p>
 </div>
 <div class="tungtext hidden"><p><strong></strong></p>
 <p>““Hmph, as you command Captain, we'll watch his back. But I still think offense is best defense. Well no matter, hope they find something worthwhile on this wreck.”</p>
@@ -734,7 +1036,7 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Ship ain't goin
 <p>&ldquo;Aye Captain, with the scout missing, perhaps the island isn't quite as secure as I might have first suspected. The scouts look out for us, so its our duty to look out for them.&rdquo; He plucked his ever-present toothpick from his mouth and flicked it overboard.</p>
 
 <p>&ldquo;I'll put high focus on tracing them down. We could take the Cadets along.&rdquo; Arn suddenly suggested. &ldquo;Ever pair of eyes help and I hear they have been driving Officer Tick into early shedding.&rdquo;<br />
-I considered this briefly. I had some assignments of my own I was planning to make them busy with.<br />
+I considered this briefly. I had some assignments of my own I had planned to make them busy with. This was a good oppertunity as any for them to gain some experience.<br />
 &ldquo;Let me talk to them first, I will let you know if they join you in a bit.&rdquo;<br />
 &ldquo;Aye Captain.&rdquo;</p>
 </div>
@@ -796,11 +1098,23 @@ Ulv scratched at her prominent neck-tuft before shrugging.<br />
 <p>Something has happened over night at the stranded Frigate. A rushed and confused report woke me to inform me that there has been some form of attack upon Officer Tick and his crew during the night. There are injuries and the officer is missing, apperently he's been captured in the confusion. The identity of our attackers are not entirely clear either, but they were apperently Gryphs, half a dozen or so.</p>
 <p>The ship is already on high alert and I'm met by my First-Officer as I walk out of my chambers, still clasping my cloak.</p>
 <p>&ldquo;What are your orders Captain? The scouts took a quick tour into the air and report seeing no other ships then ours.&rdquo;</p>
+<div class="arntext hidden"><p><strong></strong></p>
+<p>"What are you doing on the ship, shouldnt you be down there?!" I reeled around to face him.</p>
+<p>"Happenstance Captain, things were quiet so I was just back here briefly to pick up some things." Arn replied, straightfaced. I glared at him, but there were currently more pressing issues at stake.</p>
+<p>
+</div>
 <p>&ldquo;Has anyone gone after them?&rdquo;</p>
 <p>&ldquo;Captain. The Cadets were on site during the attack. They were spotted rushing after the assailants into the woods.&rdquo;</p>
+
+<div class="tungtext hidden"><p><strong></strong></p>
+<p>"Isnt Officer Tung in charge of the camp down there, why has he not gone after them?" </p>
+<p>"Im not sure, Captain. As I understand it, the camp was in a bit of a dissaray and there was a fire. </p>
+</div>
 <p>I bite down a curse and consider my options briefly.</p>
 <p>I can unleash the Raptorians upon the islands and have them scour it. Its a bit of a heavy-handed move, they are not the most delicate tool for anyone hoping for non-violent outcomes, but they are fast.</p>
 <p>Or I could deploy the scouts to lead as pathfinders to fine-comb the island with a unit of Awes. A more versatile approach but not quite as fast.</p>
+<img class="action" src='../Images/assets/ActionScout.png' height="40%" width="40%"/>
+<img class="action" src='../Images/assets/ActionRaptorian.png' height="40%" width="40%"/>
 </div>
 
 <div class="raidB hidden"><p><strong>A raid in the night</strong></p>
@@ -808,9 +1122,6 @@ Ulv scratched at her prominent neck-tuft before shrugging.<br />
 </div>
 
 <div class="caught hidden"><p><strong>A raid in the night</strong></p>
-**Tung or Arn catches catches the hidden gryph islanders in the woods. 
-**Ulvs defensive perimeter succesfully repels their intrusion and achieves the same when they try to kidnapp Officer Tick. Ulv eats two of them. 
-
 <div class="ulvtext hidden">
 <p>There was a raid in the night. I woke as the faint sound of a warning horn echoed over the small bay we were anchored in.</p>
 
@@ -844,7 +1155,7 @@ Officer Garsch’s eyes hardened and he glanced to me briefly for confirmation t
 “Croon-Whistler.” The Gryph chuckled. <br />
 “That’s a generic placeholder name used in Trade-speech for unidentified people.” Officer Garsch muttered from behind me. <br />
 “Why did you try to kidnap a member of my crew?” I asked firmly.<br />
-“Tell you what; I’ll whatever questions that comes from my gut.” The Islander chirruped and opened his beak wide. They had a surprisingly wide and pink-fleshed gape on them.<br />
+“Tell you what; I’ll answer whatever questions that comes from my gut.” The Islander chirruped and opened his beak wide. They had a surprisingly wide and pink-fleshed gape on them.<br />
 I sighed. It was never easy.</p>
 
 </div>
@@ -876,7 +1187,7 @@ It wasent until my lips closed around their neck, my tongue starting to lap up u
 I swallowed a low long swallow, pulling the Gryphs head deeper toward my maw. <br />
 “Fur-wings upset balance! Too much travel, too much hunters and now you come to our territories and steal our harvests! Compel us to deals!”<br />
 “Hunters? Pirates you mean? Are you allied with them? Where are they?” Garsch demanded.<br />
-“Hunters everywhere! They prey not upon <Islander Tribe> like you Fur-wings do!” The islander shrieked as his head sank deeper.<br />
+“Hunters everywhere! They prey not upon us 'Kaelani' like you Fur-wings do!” The islander shrieked as his head sank deeper.<br />
 “Don’t jest, we don’t prey on natives!” Garsch scoffed.<br />
  “You forage and harvest our isles, make deals and offer silver! We cant eat silver, we must trade it and hunters see us with silver!” He spoke hastily, my teeth lining his view. “If <Islander-tribe> must take sides, we shall do what will protect tribe longest. Once Fur-wings driven away, balance returns!”<br />
 “So you DO ally yourselves with pirates.” Garsch growled low.<br />
@@ -888,7 +1199,129 @@ The islander slid past my neck with solid bulge and a muffled cry. I sat back br
 I rose sluggishly and my stomach sagged heavily before me, but I could take the weight without assistance.<br />
 There was one final matter to be settled. <br />
 </p>
+</div>
 
+<div class="interrogate2 hidden"><p><strong>Interrogation</strong></p>
+<p>“Thats the game you wish to play is it?”</p>
+
+<p>“Isn't it what all you Fur-wings play? So eager to feed yourselves to whoever first yawn widest? Don't think I do not notice you looking!”</p>
+
+<p>“Consider yourself and expert on Awes do you?” I quirked a brow at him.</p>
+
+<p>“Yes! It is well known Fur-wings eagerly let themselves be eaten up if they find their 'right one'. <br />
+So now you flock to the isles in your numerous vessels, because you hear of our prowess and wide-beaked yawns.” The gryph chirruped a deep laugh. “Do not worry, we Islanders will happily accept all of your people.”</p>
+
+<p>“You said he refused to speak?” I turn to Garsch briefly. “He seems quite the 'charming' talker to me.” The Arms-Officer merely shrugged his shoulders.</p>
+
+<p>“Sounds like he knows something about our fleet there.” Garsch muttered. </p>
+
+<p>“I do know! Plenty many ships of yours, scuffling with the trade-hunters. Come to our tribe with deals of silver.” The gryph smirked coyly. I exchange glances with my officer as the islander continues.</p>
+
+<p>“Now, shall we carry out this conversation in more intimate conditions? Consider it a generous trade. An experience! In my stomach, both of you. And I will answer all inquiries.”</p>
+
+<p>“Both of us now, is it? Quite the negotiator. Don't test your luck!” I shook my head bemused.</p>
+
+<p>“Have we humored this tribal-hoodlum enough, Captain? Perhaps a few days in a dark brig will teach him some respect.”</p>
+
+<p>“Very well. While the captain is in my belly, I answer questions, a generous deal.” The prisoner offered with a wink. “I know you want it!”</p>
+</div>
+
+<div class="prisoner hidden"><p><strong>Deep Interrogation</strong></p>
+<p>“No, lets humor him. This is a good opportunity for quick information as any.” </p>
+
+<p>“Are you agreeing to his deal?” The Islander smiled amicably. </p>
+
+<p>“Yes, we shall agree to his demands.” I decided. The Gryph thought he could play games. I could beat him at his own rules. </p>
+
+<p>“..But captain...!” Garsch protested. </p>
+
+<p>“You stay close and keep watch. Intervene if things seem amiss Officer.” I pushed my sword belt into Garsch's grasp. “Keep the door locked.”</p>
+
+<p>“Yes, Captain.” He acknowledged, ever disciplined and reliable. </p>
+
+<p>“This is a temporary arrangement, don't imagine any thing different 'Croon-Whistler.'”</p>
+
+<p>“Oh Fur-wing Captain, it will be consensual to the end.” The islander Gryph smirked and then yawned wide once more, more expectantly this time, corners of beak quirked into a grin. </p>
+
+<p>I pushed my paws into that open grin and over the tongue and toward the gullet, feeding myself to the prisoner. </p>
+
+<p>'Ulp-glup', the Islander swallowed, bobbing his head slightly as he did. Each flicking gulp pulled me deeper in jerks, reminding me of how birds swallow fish. </p>
+
+<p>The slimy gullet soon enveloped me, the prisoners cheeks and neck no doubt bulging slightly. He was larger then me but did not quite consume with the pace and ease of a equally sized Awe would. Perhaps it was due to the tied arms or perhaps Gryphs did not have the same capabilities. </p>
+
+<p>Nevertheless, I soon entered the Gryphs stomach, pushed hard by rhythmic muscles and squeeze of muscle from the prisoners digestive tract. I had to grunt and huff, this was by no means as spacious or elastic as an Awes belly, even a Wulfs. I kicked my hind-paws trying to adjust myself and felt them get wrapped up and enveloped by the hard beak and warm tongue. <br />
+'Gluk-Glllp', another crushing wave of muscles and I was fully squeezed into the belly of the Gryph, fully consumed by our prisoner. <br />
+It was tightly cramped and there was already a deep groaning 'gruurg' of his body around me. </p>
+
+<p>“Now, answer our questions. Have you or your tribe been in contact with the fleet?” I pushed outwards and huffed. This was more difficult then I had envisioned. I was not even sure I was heard. </p>
+
+<p>There was a muffled answer, from in here it was nearly impossible to make out. The Gryphs voice was more of a crooning vibrating sound from inside. I had to assume Officer Garsch was able to note the answers. </p>
+
+<p>“Where were they seen last and where were they headed? You said you had traded with them, what kind of deals were struck?” I answered after the voice stopped. </p>
+
+<p>The Gryph seemed to go into a lengthy answer, his muffled indiscernible words rising and falling in pitch. <br />
+This goes on for a while and I realize he's conversing with Officer Garsch. <br />
+Perhaps he can deal with the questioning, I don't even know if I'm heard. The stomach churns around me, this is starting to feel like a bad idea.</p>
+</div>
+
+<div class="prisoner2a hidden"><p><strong>Deep Interrogation</strong></p>
+<p>I shift against the movements of the stomach muscles for a moment, but then settle in to listen to them talk, trying to make out the words of the exchange. But Gryphs seem to talk from the bottom of their diaphragm, I'm merely jostled about in the belly under the sing-song hum and chirrup. Of the Prisoners words. </p>
+
+<p>It seems at least they are being quite forthcoming, speaking a long time with little interruptions. <br />
+It grows quiet a while and I think I feel a weight push against me. I push back at it, starting to loose my patience with this whole ordeal. The churns of the stomach was getting oppressive and loud. </p>
+
+<p>But before I can brace to make a protesting kick, I'm suddenly thrown around from sudden hard movement. Things spin around, compress tightly and bounce me around. I shout out in anger and met out a punch or two, but its like being held inside a closed paw. </p>
+
+<p>More noises soon echo around me, familiar. The chamber convulses, it seems I'm finally about to be released. It seems Garsch has finished the interrogation. </p>
+
+<p>Its to my great surprise then, when his heads pops up next to mine inside the stomach, quickly followed by the rest of him squashing up against me followed by a tirade of curses and jostling kicks. </p>
+
+<p>“What are you doing here Officer?!” I demand of him. </p>
+
+<p>“Curses Captain, he claimed you had submitted to his belly. He was... convincing, especially when you were not moving. I got too close to confirm and he grabbed me with his feet, cursed Gryphs feet have grip!”</p>
+
+<p>I didn't know how to respond to this. It was quite a predicament, the prisoner had consumed both his interrogators and now lay sprawled with us in his belly in a locked room. <br />
+The stomach of our captured captor, was too tight to struggle against now with the two of us inside it. I could barely move a limb. We had to hope someone heard the commotion. </p>
+
+<p>“S-sorry captain...” Garsch grunted with equal discomfort. Around us the stomach squeezed with an aggressive 'ggrrrrggl'.</p>
+</div>
+
+<div class="prisoner2b hidden"><p><strong>Deep Interrogation</strong></p>
+<p>I brace myself backwards and kick out with both my legs. The impact severely reduced in such tight chambers, but I still hear and feel the Gryph around me 'ooof' and groan in response. </p>
+
+<p>“Is he answering properly?!” I wait a second, I hear some murmured speech. I brace and kick out again for good measure, this time evoking another pained groan. Academy training taught well where to push and kick inside a body to cause the most distress, it was nice to put it into practice for once. </p>
+
+<p>“Answer about the fleet!” I pushed outwards at the sore spot I had caused. </p>
+
+<p>There was movement and noise. I was jostled about briefly. The prisoner squawked and spoke louder for a moment, I'm sure I heard Garsches raised voice too through it all. I braced against the stomach walls and stretched myself out, making the stomach guuuuurgle wetly as I did. No one had said I had to be a cooperative 'guest' during this deal. </p>
+
+<p>Suddenly the chamber convulsed tightly and I felt myself pushed upward, ejected. The light and fresh air of the outside met me as my head emerged from the beak of the Prisoner and he coughed me back up. </p>
+
+<p>My outer fur was wet and I was helped onto my feet by Officer Garsch. The Prisoner was panting and whining, slumped on the floor in a spent manner. </p>
+
+<p>“Well...? Did we get any information?” I ask my attending Officer. </p>
+
+<p>“Hrmph, not as much as hoped. He was trying to be coy about your choice to jump down his beak, but after that stomach ache you gave him, he changed his tune. <br />
+He claims the fleet did pass by their Sand-Isles en masse a long while ago, stripped them of supplies in exchange for Awe Silver. Silver that no trader will accept for fear of retribution from the “Hunter-fleets”, I assume he means pirates.”</p>
+
+<p>“Thats all?” I frown. It was decent information, but I had still hoped for more. <br />
+“Well.. he said that the occasional ship still forages their territory regularly.”</p>
+
+<p>“Fur-Wings steal! We Kaelani refuse further trade, so you take of harvest isles.” The Islander protested weakly. </p>
+
+<p>“Worth investigating, perhaps if we're lucky, we might run into one of these foraging ships even.” I nodded at Garsch, ignoring the prisoner.</p>
+
+<p>While Officer Garsch dragged the prisoner to the brig. It was time to consider the next move, but first there was one decision left to be done.</p>
+</div>
+
+<div class="prisoner3 hidden"><p><strong>Deep Integration</strong></p>
+<p>The Islander Gryph hiccuped and groaned, his burdened stomach taut and stretched around his two large Awe meals. A liquid long 'groooorrrg' escaped from the feathered dome and he grunted in slight discomfort. Already they were digesting deeply, making his stomach bubble and growl in all kinds of loud obscene ways. <br />
+With his arms tied he could not give his belly the easing rubs it was asking for. <br />
+This had been about all his stomach had been asking for since he entertained the notion of swallowing his captors. He had honestly been as surprised as his meals at how fast and effectively his stomach had begun to claim them. <br />
+It had been as he had boasted, Awes were meant for Islander bellies it would seem! </p>
+
+<p>'Grruuoorgghh'. Went the stomach and the Prisoner leaned back, belching softly. Prisoner or not, he felt very good about himself. He was tempted to remain and let his stomach work his meals off further, see what comes. But he fought the lethargy of it and shifted position. That discarded sword-belt of the captain was in reach of his feet. <br />
+With a little maneuvering his bindings would be undone. With a little cleverness he might yet escape.</p>
 </div>
 
 <div class="tickPleased hidden"><p><strong></strong></p>
@@ -896,7 +1329,7 @@ There was one final matter to be settled. <br />
 
 <p>“So they revealed nothing of their intentions. What were the things they took, did you see?” I inquired from my seat in the Captains cabin.</p>
 
-<p>“No Captain, they kept their beaks shut. They seemed to have taken metals mostly. A piece of the hull-metal and some of the light plating from supports and struts.” Tick replied unimpassionatly.</p>
+<p>“No Captain, they kept their beaks shut and knocked me out. They seemed to have taken metals mostly. A piece of the hull-metal and some of the light plating from supports and struts.” Tick replied unimpassionatly, rubbing a bump on his head.</p>
 
 <p>I mulled this over a while. Metal was very valuable in the west, it was certainly something worth stealing. But how had they known a ship was hidden here? And why kidnap an officer?<br />
 There was only one way to find those answers.<br />
@@ -904,7 +1337,7 @@ But first there was another matter.</p>
 
 <p>“And the Cadets. How do you review their conduct? Did they pass muster?” I grinned.</p>
 
-<p>“Not at all Captain. They were terrible help, constantly wasted breath on chatter, didn't know the difference between a Bow and a Mid-angle cut and generally dragged their feet. Do you wish for me to devour them?” Officer Tick snorted sullenly.</p>
+<p>“Not at all Captain. They were terrible help, constantly wasted breath on chatter, didn't know the difference between a Bow and a Mid-angle cut and generally dragged their feet. As for last night, I do not know, I was not awake. But it sounds like another example of reckless behavior. Do you wish for me to devour them?” Officer Tick snorted sullenly.</p>
 
 <p>“I don't know. They indeed are willful and foolish, but they did assist in recovering an officer of mine. They might not make good engineers but perhaps they are not terrible Officer-Cadets.” I chuckled as I leaned back.</p>
 
@@ -921,17 +1354,58 @@ But first there was another matter.</p>
 <p>&ldquo;Ziggy stop!&rdquo; Valnos cries out shrilly, struggling to catch up to his fellow cadet. Besides him the gold furred cadet Glint keeps apace.</p>
 <p>&ldquo;Quiet Valnos! She can hear you just fine, she just wont stop.&rdquo; She muttered angrilly.</p>
 <p>&ldquo;Why are we chasing them? We cant take them on alone!&rdquo; Valnos squeaked more quietly. The spear in his grip did not give him comfort. The Islander Gryphs that had appeared were robust and strong. They had quickly overwhelmed and captured Officer Tick before anyone knew what had happened.</p>
-<p>&ldquo;We're not going to fight them we have to see where they're going, we cant let them take him away.&rdquo; Glint replied, slowing her pace as Ziggy too seemed to have slowed down and was peering ahead intensely while holding up a paw. &ldquo;You hear that Ziggy?&rdquo; Glint whispered harshly.</p>
+<p>&ldquo;We're not going to fight them, but while we're here we can see where they're going, we cant let them take him away.&rdquo; Glint replied, slowing her pace as Ziggy too seemed to have slowed down and was peering ahead intensely while holding up a paw. &ldquo;You hear that Ziggy?&rdquo; Glint whispered harshly.</p>
 <p>&ldquo;Yeye, whatever! Shut up, they stopped moving I think.&ldquo; Ziggy replied, clutching her twin sabers.</p>
 <p>The trio listened intently, ears perked and flicking in various directions. The night and woods were silent and dark, it was hard to make out anything.</p>
-<p>A snap of wood. A disturbed piece of foliage. A shadow stepped forward. Valnos squeaked in fright.</p>
+<p>"We've lost them... or they're waiting in ambush! Im going to run back for help!" Valnos whispered</p>
+<p>"Wait...!" Glint hissed at Valnoses retreating form. </p>
+<p>The Cadet did not get far. A sudden snap of wood. A violent rustle of disturbed piece of foliage and a large shadow stepped forward with a menacing growl. Valnos squeaked in fright.</p>
 </div>
+<div class="cadetSceneb hidden"><p><strong></strong></p>
+<p>&ldquo;Ziggy stop!&rdquo; Valnos cries out shrilly, struggling to catch up to his fellow cadet. Besides him the gold furred cadet Glint keeps apace.</p>
+<p>&ldquo;Quiet Valnos! She can hear you just fine, she just wont stop.&rdquo; She muttered angrilly.</p>
+<p>&ldquo;Why are we chasing them? We cant take them on alone!&rdquo; Valnos squeaked more quietly. The spear in his grip did not give him comfort. The Islander Gryphs that had appeared were robust and strong. They had quickly overwhelmed and captured Officer Tick before anyone knew what had happened.</p>
+<p>&ldquo;We're not going to fight them, but while we're here we can see where they're going, we cant let them take him away.&rdquo; Glint replied, slowing her pace as Ziggy too seemed to have slowed down and was peering ahead intensely while holding up a paw. &ldquo;You hear that Ziggy?&rdquo; Glint whispered harshly.</p>
+<p>&ldquo;Yeye, whatever! Shut up, they stopped moving I think.&ldquo; Ziggy replied, clutching her twin sabers.</p>
+<p>The trio listened intently, ears perked and flicking in various directions. The night and woods were silent and dark, it was hard to make out anything.</p>
+<p>"We've lost them... or they're waiting in ambush! Im going to run back for help!" Valnos whispered</p>
+<p>A shadow suddenly swooped in from above to land in their midst with the slightest rustle of leaves. Valnos, yelping in fright, is suddenly muffled by a paw on his muzzle. </p>
+<p>"Ssccchhh...." </p>
+</div>
+<div class="cadetScenec hidden"><p><strong></strong></p>
+<p>&ldquo;Ziggy stop!&rdquo; Valnos cries out shrilly, struggling to catch up to his fellow cadet. Besides him the gold furred cadet Glint keeps apace.</p>
+<p>&ldquo;Quiet Valnos! She can hear you just fine, she just wont stop.&rdquo; She muttered angrilly.</p>
+<p>&ldquo;Why are we chasing them? We cant take them on alone!&rdquo; Valnos squeaked more quietly. The spear in his grip did not give him comfort. The Islander Gryphs that had appeared were robust and strong. They had quickly overwhelmed and captured Officer Tick before anyone knew what had happened.</p>
+<p>&ldquo;We're not going to fight them, but while we're here we can see where they're going, we cant let them take him away.&rdquo; Glint replied, slowing her pace as Ziggy too seemed to have slowed down and was peering ahead intensely while holding up a paw. &ldquo;You hear that Ziggy?&rdquo; Glint whispered harshly.</p>
+<p>&ldquo;Yeye, whatever! Shut up, they stopped moving I think.&ldquo; Ziggy replied, clutching her twin sabers.</p>
+<p>The trio listened intently, ears perked and flicking in various directions. The night and woods were silent and dark, it was hard to make out anything. Steadily they creeped closer.</p>
+<p>“There, up ahead, they're pulling something into the water. Looks like boats.” Glint whispered.</p>
+
+<p>“We should attack...! I take the big one, you two....” Ziggy murmured hoarsly before being interrupted.</p>
+
+<p>“Pssstt..! Younglings... untie me!” A quiet voice suddenly spoke. Perplexed the three cadets peer around before the voice hisses once more. “Up. Hurry.” </p>
+
+<p>Not far from them and above, the missing Scout dangles, tied up tight in a rope. From his elevated vantage he has been able to spot them. </p>
+
+<p>Glint and Ziggy both crawl forward to the anchoring bindings and start sawing with their blades. <br />
+Its not long before the scout drops to the ground, managing to land on his feet. Already his bindings looser, he slides one arm free. </p>
+
+<p>“Your blade.” He reaches for Ziggys extra and she eagerly obliges. Scouts report directly to the captain and so do they, there is no question however who out-ranks who. </p>
+
+<p>“I will distract them. You will take the other Officer over there and escape, he's unconcious.” The scout hissed. </p>
+
+<p>“But...” protested Ziggy.</p>
+
+<p>“Kiieee!” An Islander-Gryph squawked in alarm.</p>
+</div>
+
+
 
 <div class="cadetScene2 hidden"><p><strong></strong></p>
 <p>&ldquo;Who're you?&rdquo; Valnos squeaked in alarm as the figure emerged from the shadows of the brush.</p>
 <p>It was no Awe. Tall and beaked, they appeared to be a brown-feathered Gryph with painted black markings over their body and feathers. But is was no elegant lean Kingdom Gryph, this stocky well-built figure was an Islander.</p>
-<p>They did not reply to Valnoses prompting but advanced, holding a wicked spiked quarterstaff.</p>
-<p>&ldquo;Back off!&rdquo; Valnos cried out, hearing the stammer and fear of his own voice. He readies his spear in front of him, pointing it toward his foe just as in practise.</p>
+<p>They did not reply to Valnoses inquiry, but advanced, holding a wicked spiked quarterstaff.</p>
+<p>&ldquo;B-back off!&rdquo; Valnos cried out, hearing the stammer and fear of his own voice. He readies his spear in front of him, pointing it toward his foe just as in practise.</p>
 <p>WHACK! The spear is effortlessly smacked out of his paws with a wicked blow off the staff. One moment he was holding it the next there was just an stinging absence.</p>
 <p>With the spear goes the Cadets courage and he spins around to flee with a cry of alarm. &ldquo;H-help!&rdquo;</p>
 <p>But he falters after a mere step, the Gryph has lunged forward and grabbed him by the tail. They are larger, stronger and seemingly faster too.</p>
@@ -951,37 +1425,46 @@ But first there was another matter.</p>
 
 <div class="cadetScene3 hidden"><p><strong></strong></p>
 <p>&ldquo;Come on Ziggy, don't sulk!&rdquo; Valnos nudged the seated cadet in the dark gloom of night. &ldquo;Guard duty isn't so bad, and its kind of nice to have some solid ground under your feet.&rdquo;</p>
-<p>&nbsp;</p>
+
 <p>&ldquo;My head is swaying... I think I might have land-sickness.&rdquo; Ziggy complained, the strong wind ruffling her fur but otherwise not stirring.</p>
-<p>&nbsp;</p>
+
 <p>&ldquo;There's no such thing... maybe if you stood up then...!&rdquo; Valnos chuckled before being suddenly interrupted.</p>
-<p>&nbsp;</p>
+
 <p>&ldquo;Quiet!&rdquo; Glint hissed. &ldquo;Whats that moving over there?&rdquo; She pointed into the darker gloom of the forest edge.</p>
-<p>&nbsp;</p>
+
 <p>All three peered intently from their little hidden guard post. It was little more then a dug-out in the sand with a tied together wall of leaves and foliage as potential rain-protector, or in this case sideways wind protection.</p>
-<p>&nbsp;</p>
+
 <p>A dark figure was moving closer, moving to past the flickering line of torches Ulvs expedition team had set up as the boundary to beach camp.</p>
-<p>&nbsp;</p>
+
 <p>&ldquo;Looks like a Awe. S-search team? Should we call out?&rdquo; Valnos whispered.</p>
-<p>&nbsp;</p>
+
 <p>&ldquo;Wait! Look! There's more!&rdquo; Glint pointed. Indeed more dark figures were creeping out of the woods.</p>
-<p>&nbsp;</p>
+
 <p>They watched in stunned silence as the figures moved with speed across the sand toward the camp. They had wings, but they were much too big for Awes. A beaked face turned and looked right at them.</p>
 <p>At the very same time, the alarm sounded through the camp. The intruders had been spotted by other lookouts as well.</p>
-<p>&nbsp;</p>
+
 <p>&ldquo;They're I-intruders! Oh boy!&rdquo; Ziggy exclaimed and launched herself from the guard-post.</p>
-<p>&nbsp;</p>
+
 <p>&ldquo;Wait! Ziggy!&rdquo; Glint called after her before rising to follow her with a curse. &ldquo;By the white mane! I said wait!&rdquo;</p>
-<p>&nbsp;</p>
+
 <p>&ldquo;Oh.. oh boy... oh no... she's in trouble.&rdquo; The third cadet hesitantly followed after a pause, forgetting his spear.</p>
-<p>&nbsp;</p>
+
 </div>
 
 <div class="conclusionA hidden"><p><strong>A raid in the night</strong></p>
 <p>I stand atop the mast in the crows-nest with the look out as he points out the tiny sails racing away from the island to me. Two very small vessels, perhaps not even as big as our landing crafts, are escaping the island toward the west. The boats are small enough to easily maneuver over and past the reefs covering the area there.</p>
-<p>Its not long before the report from the response team reach me with the results. The enemy has fled, they failed to catch them. But Officer Tick has been rescued and recovered, with help from none less then the Cadets who apparently were instrumental in seeing him freed.</p>
-<p>They are shook up and bruised, but none worse for wear. I'm torn whether to chastise them right away or later for their recklessness. Things could have gone far worse.</p>
+<p>Its not long before the report from the response team reach me with the results. The enemy has fled, they failed to catch them in time. But Officer Tick has been rescued and recovered, with help from none less then the Cadets who apparently were instrumental in seeing him freed. Alas it was our missing scout who they managed to free who arranged their escape, but in doing so was recaptured.</p>
+<p>They are shook up and bruised but none worse for wear. I'm torn whether to chastise them right away or later for their recklessness. But I should have accounted for my scouts still being exhausted from the other days arduous mission.</p>
+<p>I'm told the assailants was a group of Gryph Islanders who had been laying low and hidden on the island all along. They were of a tribes we have yet to encounter, likely they belong to the numerous fertile 'Isles of sand' to our west. They had materials which they had been scavenging from our ship but its unclear what their intentions were with trying to kidnap Officer Tick or what they will do to our scout.</p>
+<p>We shall have to pursue and investigate. </p>
+</div>
+
+<div class="conclusionAb hidden"><p><strong>A raid in the night</strong></p>
+<p>I watched the scouts launch from the ship and fan out into the woods with the Awe expedition on their heels. It wouldnt be fast, but it would be precise. I knew the scouts were still tired from the previous days scouting, but there were no hint of complaint or lethargy from any of them.</p>
+<p>Its not long before the report from the response team reach me with the results. Officer Tick has been rescued and recovered, with help from none less then the Cadets who apparently were instrumental in seeing him found. Apperently their pursuit and subsequent tracks were easy to follow.</p>
+<p>I'm torn whether to chastise them right away or later for their recklessness. Things could have gone far worse.</p>
 <p>I'm told the assailants was a group of Gryph Islanders who had been laying low and hidden on the island all along. They were of a tribes we have yet to encounter, likely they belong to the numerous fertile 'Isles of sand' to our west. They had materials which they had been scavenging from our ship but its unclear what their intentions were with trying to kidnap Officer Tick.</p>
+<p>They managed to capture a prisoner, so I suppose we shall find out.</p>
 </div>
 
 <div class="conclusionB hidden"><p><strong>A raid in the night</strong></p>
@@ -991,6 +1474,8 @@ But first there was another matter.</p>
 <p>The captors have been found and dealt with. The missing Officer and cadets are recovered and mostly unharmed, if somewhat bruised. I'm told the cadets were even instrumental in guiding the Raptorians to the right place before they could leave the islands on very small sailing crafts that they had kept hidden and disassembled.</p>
 <p>The assailants were a group of Gryph Islanders who had been laying low and hidden on the island all along. They were of a tribes we have yet to encounter, likely they belong to the numerous fertile 'Isles of sand' to our west. They had materials which they had been scavenging from our ship but its unclear what their intentions were with trying to kidnap Officer Tick.</p>
 <p>Alas none remain to be questioned.</p>
+
+<img src='../Images/assets/Raptorianvore2.png' height="40%" width="40%"/>
 </div>
 
 
@@ -1071,7 +1556,6 @@ End of Demo
 	{ target: '#Glint', text: 'Why did we have to assemble crates only to pull them apart again for half a day?!', imageClass: "angry"},
 	{ target: '#Valnos', text: 'I suppose its educational.', imageClass: "neutral"},
 	{ target: '#Glint', text: "We're Officer-Cadets, not shipwrights or laborers!", imageClass: "suspicious"},
-	{ target: '.NotCadet', text: "Ahem!"},
 	{ target: '#Valnos', text: "Not so loud! Last time you said that he doubled our workload!", imageClass: "blush"},
 	{ target: '#Ziggy', text: "Ye! Shut your squeaking gob Glint!", imageClass: "angry"}
 ];
@@ -1090,6 +1574,9 @@ End of Demo
 	{ target: '#Glint', text: "We're dead!", imageClass: "sad"}
 
 ];
+
+
+
 </script>
 
 </body>
