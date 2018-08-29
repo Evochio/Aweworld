@@ -75,6 +75,8 @@ var createCadetButtons = function() {
 		$('#cadetButtons').append(button)
 		button.on('click', function() {
 			$(this).removeClass("new");
+			$('#Glint').removeClass("noBorder");
+			$('#Glint').addClass("border");
 			$('#Glint').siblings().attr('disabled', true);
 			$("#Gthumb").addClass("hidden")
         	$("#ZThumb, #GThumb, #VThumb").addClass("hidden")
@@ -91,6 +93,8 @@ var createCadetButtons = function() {
 		$('#cadetButtons').append(button)
 		button.on('click', function() {
 			$(this).removeClass("new");
+			$('#Ziggy').removeClass("noBorder");
+			$('#Ziggy').addClass("border");
 			$('#Ziggy').siblings().attr('disabled', true);
 			$("#Zthumb").addClass("hidden")
         	$("#ZThumb, #GThumb, #VThumb").addClass("hidden")
@@ -108,6 +112,8 @@ var createCadetButtons = function() {
 		button.on('click', function() {
 			
 			$(this).removeClass("new");
+			$('#Valnos').removeClass("noBorder");
+			$('#Valnos').addClass("border");
 			$('#Valnos').siblings().attr('disabled', true);
 			$("#Vthumb").addClass("hidden")
         	$("#ZThumb, #GThumb, #VThumb").addClass("hidden")
@@ -232,6 +238,8 @@ var showNextDialogue = function () {
 		$('#ZThumb, #GThumb, #VThumb').attr('disabled', false);
 		$('#Ziggy, #Glint, #Valnos').addClass("hidden");
         $('#Ziggy, #Glint, #Valnos').attr('disabled', false);
+		$('#Ziggy, #Glint, #Valnos').addClass("noBorder");
+		$('#Ziggy, #Glint, #Valnos').removeClass("border");
         return;
     }
     
@@ -476,5 +484,6 @@ $(document).ready(function() {
  newDialogue();
   console.log('Current state:', JSON.stringify(state, null, '\t'))
   $('#Ziggy, #Glint, #Valnos').addClass("hidden");
+  $('#Ziggy, #Glint, #Valnos').addClass("noBorder");
   ////////////////////////////
 });

@@ -1,5 +1,5 @@
 /* Put styling there that applies to more than one page. */
-#Valnos, #Ziggy, #Glint, #NonCadet{
+#Valnos, #Ziggy, #Glint{
 float:right;
 }
 
@@ -28,6 +28,7 @@ float:right;
 	
 	
 }
+
 #GThumb {
 	top: 25px;
 	right: 40px;
@@ -62,8 +63,20 @@ float:right;
 	position: relative;
 	text-align: center;
 	bottom: 200px;
+	
+	border-radius: 10px;
+}
+.noBorder {
+	
 	border: 6px solid #996633;
 	border-radius: 10px;
+	
+}
+.border {
+	
+	border: 6px solid gold;
+	border-radius: 10px;
+	
 }
 
 #Glint {
@@ -74,9 +87,10 @@ float:right;
 	position: relative;
 	text-align: center;
 	bottom: 200px;
-	border: 6px solid #996633;
+	
 	border-radius: 10px;
 }
+
 
 #Ziggy {
 	background-image: url("Rooms/Images/ZiggyFace1.png");
@@ -86,7 +100,7 @@ float:right;
 	position: relative;
 	text-align: center;
 	bottom: 200px;
-	border: 6px solid #996633;
+	
 	border-radius: 10px;
 }
 
@@ -215,8 +229,25 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#331a00', end
 	overflow-x: hidden;
 	
 }
+#sideb
+{
+	padding: 0.5em;
+	color: white;
+	position: fixed;
+	display: inline-block;
+	width: 20%;
+	margin-top: 8em;
+	max-height: 70%;
+	right: 0.5em;
+	background-color: #996633;
+	border: 6px solid #cb9969;
+	border-radius: 20px;
+	overflow: auto;
+	overflow-x: hidden;
+	
+}
 
-#side #image {
+#side #image #sideb {
  margin: auto;	
 	
 }
@@ -315,8 +346,8 @@ position: absolute;
 	padding-right: 10px;
 	width: 170px;
 	height: 450px;
-	
 	}
+
 #officerObject0 {
 	float: left;
 	
@@ -329,9 +360,24 @@ position: absolute;
 	float: left;
 	
 	}
+.testimage:hover {
 	
-	
-If you want text inside shit 
+	border: 6px solid yellow;
+	border-radius: 20px;
+}	
+
+/*
+Hover border for the whole officer object
+#officerObject1:hover {
+	border: 6px solid yellow;
+	border-radius: 20px;
+}
+#officerObject2:hover {
+	border: 6px solid yellow;
+	border-radius: 20px;
+}
+*/	
+
 
 .neutral {
 	background-position: 0px 0px; 

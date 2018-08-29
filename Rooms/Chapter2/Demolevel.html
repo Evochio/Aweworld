@@ -251,7 +251,7 @@
 	{ target: '#Valnos', text: "I don't know... My mind just froze.", imageClass: "sad"},
 	{ target: '#Glint', text: 'You must have more courage and focus, what if we had not showed up in time! ', imageClass: "angry" },
 	{ target: '#Ziggy', text: 'Hey, lay off him Glint!', imageClass: "surprised"},
-	{ target: '#Ziggy', text: "He cant help being all light and tiny.", imageClass: "surprised"},
+	{ target: '#Ziggy', text: "He can't help being all light and tiny.", imageClass: "surprised"},
 	{ target: '#Valnos', text: "I'll try be louder.", imageClass: "sad"}
 	
 ];
@@ -288,7 +288,7 @@
 	{ target: '#Valnos', text: "I don't know... My mind just froze.", imageClass: "sad"},
 	{ target: '#Glint', text: 'You must have more courage and focus, what if we had not showed up in time! ', imageClass: "angry" },
 	{ target: '#Ziggy', text: 'Hey, lay off him Glint!', imageClass: "surprised"},
-	{ target: '#Ziggy', text: "He cant help being all light and tiny.", imageClass: "surprised"},
+	{ target: '#Ziggy', text: "He can't help being all light and tiny.", imageClass: "surprised"},
 	{ target: '#Valnos', text: "I'll try be louder.", imageClass: "sad"}
 	
 ];
@@ -312,7 +312,7 @@
 	{ target: '#Valnos', text: 'Were you not scared?', imageClass: "concerned"},
 	{ target: '#Ziggy', text: "There wasn't time to be scared.", imageClass: "surprised"},
 	{ target: '#Ziggy', text: 'You gotta move before you are.', imageClass: "angry" },
-	{ target: '#Ziggy', text: "We cant all be as scared as you Valnos.", imageClass: "blushing"},
+	{ target: '#Ziggy', text: "We can't all be as scared as you Valnos.", imageClass: "blushing"},
 	{ target: '#Valnos', text: 'Sorry... I just, I just blanked.', imageClass: "sad"},
 	{ target: '#Ziggy', text: 'At least stay with your weapon or something next time.', imageClass: "suspicious"}
 
@@ -446,7 +446,7 @@
 	{ target: '#Valnos', text: 'Raptorians are scary.', imageClass: "surprised"},
 	{ target: '#Ziggy', text: "Haha, a lot of things are scary to you though!", imageClass: "smug"},
 	{ target: '#Valnos', text: "I mean, when they showed up, I thought they'd eat me on the spot.", imageClass: "blushing" },
-	{ target: '#Valnos', text: "Their eyes were... wild! Hardly recognized me.!", imageClass: "blushing"},
+	{ target: '#Valnos', text: "Their eyes were... wild! Hardly recognized me!", imageClass: "blushing"},
 	{ target: '#Ziggy', text: 'Well yeah, they were on the hunt!', imageClass: "neutral"},
 	{ target: '#Ziggy', text: 'Whatcha think they were always all mellow and stuff?', imageClass: "surprised"},
 	{ target: '#Valnos', text: "I thought I'd seen them aggressive before, but I guess was wrong.", imageClass: "surprised"},
@@ -468,7 +468,7 @@
 	{ target: '#Ziggy', text: "I don't get why we were yelled at for helping out.", imageClass: "sad"},
 	{ target: '#Ziggy', text: "Without us, they woulda totally run off with Officer Tick.", imageClass: "angry"},
 	{ target: '#Ziggy', text: "As annoying as he is, who would we then have to fix the ship?", imageClass: "suspicious"},
-	{ target: '#Glint', text: "Its about correct procedures.", imageClass: "concerned"},
+	{ target: '#Glint', text: "It's about correct procedures.", imageClass: "concerned"},
 	{ target: '#Glint', text: "Just because things went well this time. It doesn't mean the next time we'll be as lucky!", imageClass: "sad"}
 	
 ];
@@ -504,7 +504,7 @@
 	{ target: '#Ziggy', text: "I don't get why we were yelled at for helping out.", imageClass: "sad"},
 	{ target: '#Ziggy', text: "Without us, they woulda totally run off with Officer Tick.", imageClass: "angry"},
 	{ target: '#Ziggy', text: "As annoying as he is, who would we then have to fix the ship?", imageClass: "suspicious"},
-	{ target: '#Glint', text: "Its about correct procedures.", imageClass: "concerned"},
+	{ target: '#Glint', text: "It's about correct procedures.", imageClass: "concerned"},
 	{ target: '#Glint', text: "Just because things went well this time. It doesn't mean the next time we'll be as lucky!", imageClass: "sad"}
 	
 ];
@@ -538,7 +538,7 @@
 	{ target: '#Ziggy', text: "I don't get why we were yelled at for helping out.", imageClass: "sad"},
 	{ target: '#Ziggy', text: "Without us, they woulda totally run off with Officer Tick.", imageClass: "angry"},
 	{ target: '#Ziggy', text: "As annoying as he is, who would we then have to fix the ship?", imageClass: "suspicious"},
-	{ target: '#Glint', text: "Its about correct procedures.", imageClass: "concerned"},
+	{ target: '#Glint', text: "It's about correct procedures.", imageClass: "concerned"},
 	{ target: '#Glint', text: "Just because things went well this time. It doesn't mean the next time we'll be as lucky!", imageClass: "sad"}
 	
 ];
@@ -589,7 +589,9 @@
          $("#prisoner").addClass("hidden");
 		 $("#jail").addClass("hidden");
 		$("#eat").addClass("hidden");
-		
+		$("#side").addClass("hidden");
+		$("#prisoner2a").removeClass("hidden");
+		$("#prisoner2b").removeClass("hidden");
       })
 	  
 	   $('#prisoner2a').on('click', function(e) {
@@ -618,7 +620,9 @@
 	   $('#jail').on('click', function(e) {
 		lib.dialogue(e, "jail"),
          $("#jail").addClass("hidden");
+		  $("#prisoner").addClass("hidden");
 		$("#decision").removeClass("hidden");
+		 $("#interrogate2").addClass("hidden");
 		$("#eat").addClass("hidden");
 		$("#side").addClass("hidden");
       })
@@ -626,6 +630,8 @@
 	  $('#eat').on('click', function(e) {
 		lib.dialogue(e, "eat"),
          $("#jail").addClass("hidden");
+		  $("#prisoner").addClass("hidden");
+		   $("#interrogate2").addClass("hidden");
 		$("#decision").removeClass("hidden");
 		$("#eat").addClass("hidden");
 		$("#side").addClass("hidden");
@@ -704,9 +710,7 @@
 	img {
 	margin:auto;
 	}
-	#officerObject0 {
 	
-	}
 	.action {
 	width: 50%;
 	float:left;
@@ -735,7 +739,7 @@
 <p>But my ship, 'The Attentive' is handling the waves with stride. It is built for this and I marvel now at the craftsmanship that allows it to so smoothly climb one wave after another. Our bow seems to split the sea before it as we crest another wave smoothly and gently flow down the other side.</p>
 <p>The ship isn't doing all of this on its own of course, it would be nothing without the expert handling of our navigator Nyxie at the helm.</p>
 <p>I hover by her side, observing our progress, but I've found myself grow fully confident in her ability to skillfully and accurately guide us to our destinations. I can put my mind to other matters as we make our way forward.</p>
-<p>Our destination is a lone island away from the other clusters and chains of islands. Its remoteness should guarantee that its uninhabited. Thus its one of the preset rendezvous points of the Admiralty fleet that we are out here to find.</p>
+<p>Our destination is a lone island away from the other clusters and chains of islands. It's remoteness should guarantee that its uninhabited. Thus its one of the preset rendezvous points of the Admiralty fleet that we are out here to find.</p>
 <p>It is unlikely they will be loitering around this area, we are still at the edges of Thousand Isles proper, but its on the way and might offer clues.</p>
 <p>A cry from high up in the masts rouses me from my thoughts. &ldquo;Haaa-hoooo&rdquo; the pitched cry of the lookout calls, land has been sighted. Nyxies navigation has been on-point once more it seems.</p>
 <p>She has no time to grin in triumph however as she now shouts orders for the sails to be lowered to turn down our speed. She still has to get us close without crashing us into any inevitably lurking reefs.</p>
@@ -820,7 +824,7 @@
 <p>&ldquo;You wish to get closer before you depart?&rdquo; The Scout-master was a proud one. He would not outright ask for leniency in his duties, but at least he had sense to let me know when something would be difficult.</p>
 <p>&ldquo;At your discretion.&rdquo; The scout-master lowered his head again. He would follow out whatever orders I ordained, his small cadre of Scouts were highly disciplined and loyal, I knew as much and how invaluable they were.</p>
 <p>I turn to Nyxie and divert her focus for a minute. But she has been listening and knows he procedure.</p>
-<p>&ldquo;I'm not sure captain, with the seas like this I'd sure be more comfortable to have an approach route scouted out for us. I cant quite make out the shallows like this and I'd hate to run into one with these waters.&rdquo;</p>
+<p>&ldquo;I'm not sure captain, with the seas like this I'd sure be more comfortable to have an approach route scouted out for us. I can't quite make out the shallows like this and I'd hate to run into one with these waters.&rdquo;</p>
 <p>They look to me for a decision. Let the scouts fly into the difficult weather now but secure our approach or wait until we're closer and keep relying on Nyxies cunning navigation and sharp eyes of our lookouts.</p>
 
 </div>
@@ -847,7 +851,7 @@
 <p>The Scout-master approaches and with hard eyes of concern haste reports his findings.</p>
 <p>&ldquo;There is an Awe-ship on the far side of the island Captain. It looks like its been run aground onto the beach inside an inlet. We saw no encampment or signs of life. Island looks uninhabited too, no visible settlements. Dense foliage all around so hard to fully say if anyone is hiding however.</p>
 <p>One of my scouts had to land near the ship as we were taking a look, caught a downdraft but got lucky. They were unable to take off again and are waiting on site.&rdquo;</p>
-<p>Its only now that I indeed realize they are one short, but the startling news take precedent.</p>
+<p>It's only now that I indeed realize they are one short, but the startling news take precedent.</p>
 <p>&ldquo;The ship is intact?&rdquo;</p>
 <p>&ldquo;There was visible marks of battle-damage, but it looked mostly intact from our vantage.&rdquo; The Scout-Master replied.</p>
 <p>Seems we are on the right trail after all, but these news are more then a bit puzzling.</p>
@@ -857,7 +861,7 @@
 <div class="expedition hidden"><p><strong>Expedition</strong></p>
 <p>I'm informed we cannot simply sail around the shore of the island to the inlet. Due to reefs, the only safe approaches are on the north and south side and we are on the southern side. We'd have to sail back out and around to then return and with these hard waves, wind and encroaching dusk its best to leave that for tomorrow.</p>
 <p>For now I should send a crew ashore to go investigate the site and recover our missing scout.</p>
-<p>The chosen officer and their team will secure the island and the beach and set up a small camp. We don't have many small boats and we cant get the 'Attentive' that close without risking beaching ourselves as well.</p>
+<p>The chosen officer and their team will secure the island and the beach and set up a small camp. We don't have many small boats and we can't get the 'Attentive' that close without risking beaching ourselves as well.</p>
 <p>As much as I'd like to go personally, Admiralty doctrine states to send at the most the First-officer for initial excursions like this. The Captain should always to stay with the ship unless its safety absolutely secure.</p>
 <p>Below are the Officers on the current rotation to potentially handle the mission. They all have their own methods which I should consider carefully.</p>
 <span class="theOfficer officerObjects"></span>
@@ -876,7 +880,7 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Ship ain't goin
 <div class="expedition2 hidden"><p><strong>Expedition</strong></p>
 <p>The expedition sets out right away, rowing their boats toward shore. The sky is dimming but they should be able to make it to the site before nightfall.</p>
 <p>We loiter for a while to ensure they make their landing safely and then start our journey to backtrack out of the shoals that surround us and come back on the far side with the inlet by the light of morning.</p>
-<p>Its a mystery to as to why a Awe-ship has been seemingly abandoned here. Admiralty doctrine is very clear on the matter that our ships must never fall into foreign hands, lest they receive a way to construct and copy our strengths and learn of our ships weaknesses. A ship must always be scuttled and destroyed if its about to be lost or has been too severely damaged.</p>
+<p>It's a mystery to as to why a Awe-ship has been seemingly abandoned here. Admiralty doctrine is very clear on the matter that our ships must never fall into foreign hands, lest they receive a way to construct and copy our strengths and learn of our ships weaknesses. A ship must always be scuttled and destroyed if its about to be lost or has been too severely damaged.</p>
 <p>The ship appears to be somewhat well-hidden, but there is only so much you can do to truly hide a whole frigate.</p>
 <p>This breach in rules carry with it some unsettling possibilities. Did they not have time to sink it? Were they wary of the smoke of burning it? Has there been betrayal? Tomorrow will hopefully bring answers.</p>
 
@@ -885,17 +889,17 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Ship ain't goin
 <div class="expedition3a hidden"><p><strong>The Ship: A report</strong></p>
 <p>We arrive early at dawn, sailing carefully into the secluded north bay and location of the "wreck" to find our expedition waiting.</p>
 <p>The expedition team reports finding little but dense and difficult brush and woods upon the island. There are no trails or initial signs of inhabitance. The second piece of news is a lot more troubling. The scout is missing.</p>
-<p>Im upon the deck of our ship, taking in this report along with the Scout-Master with growing concern.</p>
+<p>I'm upon the deck of our ship, taking in this report along with the Scout-Master with growing concern.</p>
 <div class="tungtext hidden"><p>Tung continues to speak, there are twigs and brambles in his fur. “No one lives here, but there's been people on the island. Recently cut trees and some old dismantled canoes left behind to the west. I could be wrong and I don't believe there are many, but I have a feeling there might be a few someones hiding on the island.” </p>
 <p>"And the scout?" I fix Tung with a steady gaze. </p>
 <p>“Ah, beats me captain. They were not at the ship when we arrived. And if they did not fly back to the ship then...?“ Tung scowled deeply. The Scout-Master spoke up. </p>
-<p>“Standard procedure is to wait. He's the newest in my troop, but I cant think of a reason for why Scout Vessla would wander off.” The Scout-master rubbed his chin thoughtfully.</p>
+<p>“Standard procedure is to wait. He's the newest in my troop, but I can't think of a reason for why Scout Vessla would wander off.” The Scout-master rubbed his chin thoughtfully.</p>
 <p>“Well as I reported. There's signs of other visitors having been here, probably still are. Seems clear to me that if we find them we might find out scout too.”</p>
  </div>
 <div class="ulvtext hidden"><p>Ulv saunters up after having returned to the ship. She appears to have fortified the beach well. <br> “Its hard to tell and might be my imagination, but there are a lot of curious tracks around the inlet and the stranded ship. But we saw no one so probably wildlife. The ship is abandoned and a mess however, poor thing.”</p>
 <p>“No sign of the scout at all?” I fixed Ulv with a steady gaze. </p>
 <p>“No Captain. We beelined straight for the ship as planned, but they were not here. I set the lassies up to secure the ship first. Then we looked briefly around the woods surrounding the beach, but no signs. No answer to calls.” Ulv shifted weight around on her feet. </p>
-<p>“Standard procedure is to wait. He's the newest in my troop, but I cant think of a reason for why Scout Vessla would wander off.” The Scout-master rubbed his chin thoughtfully. </p>
+<p>“Standard procedure is to wait. He's the newest in my troop, but I can't think of a reason for why Scout Vessla would wander off.” The Scout-master rubbed his chin thoughtfully. </p>
 <p>“Well its likely he did, or something on the island took him. We don't know whats out there, but its not a big island. We can make an effort to search it.” Ulv rubbed her paws together.</p>
 
 </div>
@@ -904,15 +908,15 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Ship ain't goin
 <div class="arntext hidden"> <p>Arn looks relieved to be back on the ship, though he doesn't look much worse for wear.</br> “There appears to be no trace of any permanent inhabitants on this island. Though there were signs of cut down trees here and there, so its been visited, but there are no Awes on the island of that I'm sure, no response to our cries.”</p>
 <p>"And the scout?" I fix Arn with a steady gaze. </p>
 <p>“There is no sign of the scout, captain. We've looked through the ship and called for them but got no response. They might have wandered off, but I don't know, its strange. Scouts are a disciplined bunch.” Arn paced slowly, nodding to the Scout-Master that hovered nearby. </p>
-<p>“Thats right Captain. Standard procedure is to wait. He's the newest in my troop, but I cant think of a reason for why Scout Vessla would wander off.” The Scout-master rubbed his chin thoughtfully. </p>
-<p>“Something drove them off or snatched them. They cant be far, there's just not a lot of room on the island for one to hide. But I wouldn't classify the island as secure until we had a good proper sweep of it.” Arn muttered. </p>
+<p>“Thats right Captain. Standard procedure is to wait. He's the newest in my troop, but I can't think of a reason for why Scout Vessla would wander off.” The Scout-master rubbed his chin thoughtfully. </p>
+<p>“Something drove them off or snatched them. They can't be far, there's just not a lot of room on the island for one to hide. But I wouldn't classify the island as secure until we had a good proper sweep of it.” Arn muttered. </p>
 
 </div>
 
 <p>“Finding our scout is a high priority, but I need this ship investigated. It holds too many mysteries that we need answers to.” I glance over to the Scout-Master to hear what he has to say.</p>
-<p>"Captain, my troop are still recovering from the scouting mission, im afraid flying in those winds took their toll. We could deploy in a pinch, but we'll be of limmited help in an extensive search." </p>
+<p>"Captain, my troop are still recovering from the scouting mission, I'm afraid flying in those winds took their toll. We could deploy in a pinch, but we'll be of limited help in an extensive search." </p>
 
-<p>Missing scout or not, there is a limit of how much crew I'm willing to send ashore at one time without confirmed threats, we cant waste time getting the ships hackles up over nothing. These are obviously hostile waters, if we're caught anchored in this tight bay by an enemy ship we'd be in a real pinch. So for now, only enough Awes that can be quickly evacuated. Furthermore, the weather is slowly worsening, I do not want to become trapped here by a storm either, so time is proving to be frustratingly limited.</p>
+<p>Missing scout or not, there is a limit of how much crew I'm willing to send ashore at one time without confirmed threats, we can't waste time getting the ships hackles up over nothing. These are obviously hostile waters, if we're caught anchored in this tight bay by an enemy ship we'd be in a real pinch. So for now, only enough Awes that can be quickly evacuated. Furthermore, the weather is slowly worsening, I do not want to become trapped here by a storm either, so time is proving to be frustratingly limited.</p>
 <p>All this means I have to choose how to prioritize operations with what we have ashore with one exception.</p>
 <p>I glance over at Officer Tick who has found his way to the briefing room without needing to be summoned. The short officer seems to have a knack for knowing when he's needed. That or he's as keenly interested in the stranded ship and its mysteries as I am. </p>
 
@@ -922,22 +926,22 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Ship ain't goin
 
 <div class="expedition3b hidden"><p><strong>The Ship</strong></p>
 <p>We arrive early at dawn, sailing carefully into the secluded north bay and location of the "wreck" to find our expedition waiting.</p>
-<p>The expedition team reports finding little but dense and difficult brush and woods upon the island. They confirm seeing no signs of inhabitance and that the island has little but minor wildlife on it. As long as there's no lost mystery crews running arounds the woods im satisfied. I'd rather investigate the mystery of the stranded ship and why its here.</p>
-<p class="tungtext hidden">Tung returns to our ship with his report, there are twigs and brambles in his fur. </br> “No one lives here, but there's been people on the island. Cut down trees and some old dismantled canoes left behind to the west. I cant be fully certain, but if there's anyone here they are very few in numbers and hiding well.” </p>
+<p>The expedition team reports finding little but dense and difficult brush and woods upon the island. They confirm seeing no signs of inhabitance and that the island has little but minor wildlife on it. As long as there's no lost mystery crews running arounds the woods I'm satisfied. I'd rather investigate the mystery of the stranded ship and why its here.</p>
+<p class="tungtext hidden">Tung returns to our ship with his report, there are twigs and brambles in his fur. </br> “No one lives here, but there's been people on the island. Cut down trees and some old dismantled canoes left behind to the west. I can't be fully certain, but if there's anyone here they are very few in numbers and hiding well.” </p>
 <p class="ulvtext hidden">Ulv saunters up after having returned to the ship. She appears to have fortified the beach well.</br> “Its hard to tell and might be my imagination, but there are a lot of curious tracks around the inlet and the stranded ship. But we saw no one so probably wildlife. The ship is abandoned and a mess however, poor thing.”</p>
 <p class="arntext hidden">Arn looks relieved to be back on the ship, though he doesn't look much worse for wear.</br> “There appears to be no trace of any permanent inhabitants on this island. Though there were signs of cut down trees here and there so its been visited, but there are no Awes on the island of that I'm sure, no response to our cries.”</p>
 
 <p>The expedition has done a preliminary search of the ship for any left behind signs or messages but found nothing obvious.</p>
-<p>It appears the Awe-ship, a frigate of the same model of ours, is entirely abandoned. There has been nothing of use left behind. Its stripped clean and is little but a empty husk.</p>
+<p>It appears the Awe-ship, a frigate of the same model of ours, is entirely abandoned. There has been nothing of use left behind. It's stripped clean and is little but a empty husk.</p>
 <p>A more thorough investigation will have to be mounted, but first, the question of security. </p>
 
 <p class="arntext hidden">"Do you consider the island secure, First-mate Arn?" <br/>  
-"Relatively secure Captain. Ofcourse, the island could always be more thoroughly searched, but I'd say its safe to send in Tick and his team at least. The weather is worsening afterall, we dont have time to upturn every rock. Personaly I'd rather we stuck around camp and assisted them with the investigation." The First-officer muttered, picking a piece of dirt off his sleeve.<br/>
-"Im sure you would Arn." I huffed with a smirk.
+"Relatively secure Captain. Of course, the island could always be more thoroughly searched, but I'd say its safe to send in Tick and his team at least. The weather is worsening afterall, we dont have time to upturn every rock. Personaly I'd rather we stuck around camp and assisted them with the investigation." The First-officer muttered, picking a piece of dirt off his sleeve.<br/>
+"I'm sure you would Arn." I huffed with a smirk.
 </p>
 <p class="tungtext hidden">"Do you consider the island secure, Officer Tung?" <br/>
 "Nay, Captain! I've got no solid proof, but a gut feeling there's someone out there! Those old canoes, the signs of cutting. I would like to check it out again." The officer stared off toward the island impatiantly. <br/>
-"Well the weather is getting worse, we cant stay here long. Do you consider it safe enough for sending in Tick and his team?" <br/>
+"Well the weather is getting worse, we can't stay here long. Do you consider it safe enough for sending in Tick and his team?" <br/>
 "Sure Captain, its no army hiding out there or anything."
 </p>
 <p class="ulvtext hidden">"Do you consider the island secure, Officer Ulv?" <br/>
@@ -950,13 +954,13 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Ship ain't goin
 <div class="tickinv hidden"><p><strong>The Ship</strong></p>
 <p>Officer Tick is impatiantly awaiting permission to disembark and investigate the stranded Frigate further. But he offered his insights about the damage that we could see from our ship.</p>
 <p>"The damage the scouts initially reported is extensive. Part of the main mast is missing and the hull carries several punctures on the side that match the kind of damage we sustained in our own battle not long ago." The Maintenance-officer explained.<br/>
-"Its clear the frigate is unfit for open-sea, was slowed considerably and would not have made it back home to port." </p>
+"It's clear the frigate is unfit for open-sea, was slowed considerably and would not have made it back home to port." </p>
 
 <p>"Besides clues left by the fleet, what are you so eager to find out there?" I inquired. </p>
 
 <p>“While they have not left any usable supplies behind, the ship itself can prove useful to us in terms of spare-parts or simply as raw material. There's some remnants of outer and inner plating we could easily scavenge for ourselves that would save me and the maintenance crew a lot of time in repairs.”</p>
 <p>Tick knows these ships best, hopefully he can uncover some clues others might have missed. Besides investigating, he'd only need an extra day to perform his proposed scavenging operation.</p>
-<p>The weather is worsening and we do not have very long until we risk being trapped by a storm. An extra day might be pushing it, but im sure Tick knows that.</p>
+<p>The weather is worsening and we do not have very long until we risk being trapped by a storm. An extra day might be pushing it, but I'm sure Tick knows that.</p>
 </div>
 
 <div class="officerResponse hidden"><p><strong></strong></p>
@@ -1088,18 +1092,18 @@ Ulv scratched at her prominent neck-tuft before shrugging.<br />
 <p>&ldquo;Report to the beach and to the expedition leader. Dismissed.&rdquo;</p>
 <p>The three of them scampered off with haste. I felt my claws itching with the desire to join them. But a captains duty is with her ship foremost.</p>
 <br/>
-<p>Its not long before the trio arrive at the beach to bolster the expedition. I watch from the bow of the Attentive, they are but tiny figures from here. Hopefully they wont encounter anything too exciting out there.</p>
+<p>It's not long before the trio arrive at the beach to bolster the expedition. I watch from the bow of the Attentive, they are but tiny figures from here. Hopefully they won't encounter anything too exciting out there.</p>
 </div>
 
 
 
 
 <div class="raidA hidden"><p><strong>A raid in the night</strong></p>
-<p>Something has happened over night at the stranded Frigate. A rushed and confused report woke me to inform me that there has been some form of attack upon Officer Tick and his crew during the night. There are injuries and the officer is missing, apperently he's been captured in the confusion. The identity of our attackers are not entirely clear either, but they were apperently Gryphs, half a dozen or so.</p>
+<p>Something has happened over night at the stranded Frigate. A rushed and confused report woke me to inform me that there has been some form of attack upon Officer Tick and his crew during the night. There are injuries and the officer is missing, apparently he's been captured in the confusion. The identity of our attackers are not entirely clear either, but they were apparently Gryphs, half a dozen or so.</p>
 <p>The ship is already on high alert and I'm met by my First-Officer as I walk out of my chambers, still clasping my cloak.</p>
 <p>&ldquo;What are your orders Captain? The scouts took a quick tour into the air and report seeing no other ships then ours.&rdquo;</p>
 <div class="arntext hidden"><p><strong></strong></p>
-<p>"What are you doing on the ship, shouldnt you be down there?!" I reeled around to face him.</p>
+<p>"What are you doing on the ship, shouldn't you be down there?!" I reeled around to face him.</p>
 <p>"Happenstance Captain, things were quiet so I was just back here briefly to pick up some things." Arn replied, straightfaced. I glared at him, but there were currently more pressing issues at stake.</p>
 <p>
 </div>
@@ -1108,13 +1112,19 @@ Ulv scratched at her prominent neck-tuft before shrugging.<br />
 
 <div class="tungtext hidden"><p><strong></strong></p>
 <p>"Isnt Officer Tung in charge of the camp down there, why has he not gone after them?" </p>
-<p>"Im not sure, Captain. As I understand it, the camp was in a bit of a dissaray and there was a fire. </p>
+<p>"I'm not sure, Captain. As I understand it, the camp was in a bit of a dissaray and there was a fire. </p>
 </div>
 <p>I bite down a curse and consider my options briefly.</p>
-<p>I can unleash the Raptorians upon the islands and have them scour it. Its a bit of a heavy-handed move, they are not the most delicate tool for anyone hoping for non-violent outcomes, but they are fast.</p>
+<p>I can unleash the Raptorians upon the islands and have them scour it. It's a bit of a heavy-handed move, they are not the most delicate tool for anyone hoping for non-violent outcomes, but they are fast.</p>
 <p>Or I could deploy the scouts to lead as pathfinders to fine-comb the island with a unit of Awes. A more versatile approach but not quite as fast.</p>
-<img class="action" src='../Images/assets/ActionScout.png' height="40%" width="40%"/>
-<img class="action" src='../Images/assets/ActionRaptorian.png' height="40%" width="40%"/>
+<img id="actionScout" class="action" src='../Images/assets/ActionScout.png' height="40%" width="40%"/>
+<img id="actionRaptorian" class="action" src='../Images/assets/ActionRaptorian.png' height="40%" width="40%"/>
+
+<script>
+$('#actionScout').popover({title: "Scouts", content: "Scouts are support and recognizance. Like their namesake suggest, they provide tracking, pathfinding and investigation both alone and in supportive roles. But they are also effective at more clandestine tasks.", trigger: "hover", placement: "top", container: "body"}); 
+$('#actionRaptorian').popover({title: "Raptorians", content: "Raptorians are Shock-troops. Made for fast and heavy assault or pursuit situations they are often used for violent responses. In supportive non-combat roles they can offer muscle and intimidation.", trigger: "hover", placement: "top", container: "body"}); 
+
+</script>
 </div>
 
 <div class="raidB hidden"><p><strong>A raid in the night</strong></p>
@@ -1125,11 +1135,11 @@ Ulv scratched at her prominent neck-tuft before shrugging.<br />
 <div class="ulvtext hidden">
 <p>There was a raid in the night. I woke as the faint sound of a warning horn echoed over the small bay we were anchored in.</p>
 
-<p>Its not long until I receive the report while attaching my cloak, sword-belt and hurrying out on deck.<br />
+<p>It's not long until I receive the report while attaching my cloak, sword-belt and hurrying out on deck.<br />
 Some Islander gryphs had been trying to sneak into the camp surrounding the stranded Awe-ship.<br />
 Ulvs diligent defensive perimeter however spotted them.</p>
 
-<p>“They appear to have been few in number, up to 4 of them at most Captain. I'm not sure what they were trying to achieve or steal.” My First-Officer reported. “They were apprehended and dealt with by Ulvs team, apperently she rushed in and fought several of them off herself briefly without backup.”</p>
+<p>“They appear to have been few in number, up to 4 of them at most Captain. I'm not sure what they were trying to achieve or steal.” My First-Officer reported. “They were apprehended and dealt with by Ulvs team, apparently she rushed in and fought several of them off herself briefly without backup.”</p>
 
 <p>“Why would she do that?” I frowned surprised. I knew Ulv to be capable but not reckless.</p>
 
@@ -1182,14 +1192,14 @@ The unfeathered feet of the Gryph had an interesting texture, almost like the hi
 I reached the Gryphs tail feathers and rump. I had to confess I enjoyed how the feathers tickled going down, they were not like fur at all. <br />
 “Brutes! Worse than the pirates you are!” Croon-Whistler spat. I was taking it slow to make sure the situation had time to set in. But already I was savoring the Gryphs belly, dragging myself up toward their chest.<br />
 Garsch was gradually releasing the prisoner, their frustrated struggles now pinned by the grip of throat and belly. <br />
-It wasent until my lips closed around their neck, my tongue starting to lap up under their chin, that words started to fall out of them.<br />
+It wasn't until my lips closed around their neck, my tongue starting to lap up under their chin, that words started to fall out of them.<br />
 “Its not right what you do…! Before, there was balance. Travelers, hunters who preyed on them and those who lived, like us, the!” <br />
 I swallowed a low long swallow, pulling the Gryphs head deeper toward my maw. <br />
 “Fur-wings upset balance! Too much travel, too much hunters and now you come to our territories and steal our harvests! Compel us to deals!”<br />
 “Hunters? Pirates you mean? Are you allied with them? Where are they?” Garsch demanded.<br />
 “Hunters everywhere! They prey not upon us 'Kaelani' like you Fur-wings do!” The islander shrieked as his head sank deeper.<br />
 “Don’t jest, we don’t prey on natives!” Garsch scoffed.<br />
- “You forage and harvest our isles, make deals and offer silver! We cant eat silver, we must trade it and hunters see us with silver!” He spoke hastily, my teeth lining his view. “If <Islander-tribe> must take sides, we shall do what will protect tribe longest. Once Fur-wings driven away, balance returns!”<br />
+ “You forage and harvest our isles, make deals and offer silver! We can't eat silver, we must trade it and hunters see us with silver!” He spoke hastily, my teeth lining his view. “If <Islander-tribe> must take sides, we shall do what will protect tribe longest. Once Fur-wings driven away, balance returns!”<br />
 “So you DO ally yourselves with pirates.” Garsch growled low.<br />
 “There be bounty upon Furwings. Safety and protection in return for capture!”<br />
 I clamped my mouth shut around their beak, closing them in, then tilted my head back and swallowed hard. <br />
@@ -1274,7 +1284,7 @@ It grows quiet a while and I think I feel a weight push against me. I push back 
 
 <p>More noises soon echo around me, familiar. The chamber convulses, it seems I'm finally about to be released. It seems Garsch has finished the interrogation. </p>
 
-<p>Its to my great surprise then, when his heads pops up next to mine inside the stomach, quickly followed by the rest of him squashing up against me followed by a tirade of curses and jostling kicks. </p>
+<p>It's to my great surprise then, when his heads pops up next to mine inside the stomach, quickly followed by the rest of him squashing up against me followed by a tirade of curses and jostling kicks. </p>
 
 <p>“What are you doing here Officer?!” I demand of him. </p>
 
@@ -1352,31 +1362,31 @@ But first there was another matter.</p>
 
 <div class="cadetScene hidden"><p><strong></strong></p>
 <p>&ldquo;Ziggy stop!&rdquo; Valnos cries out shrilly, struggling to catch up to his fellow cadet. Besides him the gold furred cadet Glint keeps apace.</p>
-<p>&ldquo;Quiet Valnos! She can hear you just fine, she just wont stop.&rdquo; She muttered angrilly.</p>
-<p>&ldquo;Why are we chasing them? We cant take them on alone!&rdquo; Valnos squeaked more quietly. The spear in his grip did not give him comfort. The Islander Gryphs that had appeared were robust and strong. They had quickly overwhelmed and captured Officer Tick before anyone knew what had happened.</p>
-<p>&ldquo;We're not going to fight them, but while we're here we can see where they're going, we cant let them take him away.&rdquo; Glint replied, slowing her pace as Ziggy too seemed to have slowed down and was peering ahead intensely while holding up a paw. &ldquo;You hear that Ziggy?&rdquo; Glint whispered harshly.</p>
+<p>&ldquo;Quiet Valnos! She can hear you just fine, she just won't stop.&rdquo; She muttered angrily.</p>
+<p>&ldquo;Why are we chasing them? We can't take them on alone!&rdquo; Valnos squeaked more quietly. The spear in his grip did not give him comfort. The Islander Gryphs that had appeared were robust and strong. They had quickly overwhelmed and captured Officer Tick before anyone knew what had happened.</p>
+<p>&ldquo;We're not going to fight them, but while we're here we can see where they're going, we can't let them take him away.&rdquo; Glint replied, slowing her pace as Ziggy too seemed to have slowed down and was peering ahead intensely while holding up a paw. &ldquo;You hear that Ziggy?&rdquo; Glint whispered harshly.</p>
 <p>&ldquo;Yeye, whatever! Shut up, they stopped moving I think.&ldquo; Ziggy replied, clutching her twin sabers.</p>
 <p>The trio listened intently, ears perked and flicking in various directions. The night and woods were silent and dark, it was hard to make out anything.</p>
-<p>"We've lost them... or they're waiting in ambush! Im going to run back for help!" Valnos whispered</p>
+<p>"We've lost them... or they're waiting in ambush! I'm going to run back for help!" Valnos whispered</p>
 <p>"Wait...!" Glint hissed at Valnoses retreating form. </p>
 <p>The Cadet did not get far. A sudden snap of wood. A violent rustle of disturbed piece of foliage and a large shadow stepped forward with a menacing growl. Valnos squeaked in fright.</p>
 </div>
 <div class="cadetSceneb hidden"><p><strong></strong></p>
 <p>&ldquo;Ziggy stop!&rdquo; Valnos cries out shrilly, struggling to catch up to his fellow cadet. Besides him the gold furred cadet Glint keeps apace.</p>
-<p>&ldquo;Quiet Valnos! She can hear you just fine, she just wont stop.&rdquo; She muttered angrilly.</p>
-<p>&ldquo;Why are we chasing them? We cant take them on alone!&rdquo; Valnos squeaked more quietly. The spear in his grip did not give him comfort. The Islander Gryphs that had appeared were robust and strong. They had quickly overwhelmed and captured Officer Tick before anyone knew what had happened.</p>
-<p>&ldquo;We're not going to fight them, but while we're here we can see where they're going, we cant let them take him away.&rdquo; Glint replied, slowing her pace as Ziggy too seemed to have slowed down and was peering ahead intensely while holding up a paw. &ldquo;You hear that Ziggy?&rdquo; Glint whispered harshly.</p>
+<p>&ldquo;Quiet Valnos! She can hear you just fine, she just won't stop.&rdquo; She muttered angrily.</p>
+<p>&ldquo;Why are we chasing them? We can't take them on alone!&rdquo; Valnos squeaked more quietly. The spear in his grip did not give him comfort. The Islander Gryphs that had appeared were robust and strong. They had quickly overwhelmed and captured Officer Tick before anyone knew what had happened.</p>
+<p>&ldquo;We're not going to fight them, but while we're here we can see where they're going, we can't let them take him away.&rdquo; Glint replied, slowing her pace as Ziggy too seemed to have slowed down and was peering ahead intensely while holding up a paw. &ldquo;You hear that Ziggy?&rdquo; Glint whispered harshly.</p>
 <p>&ldquo;Yeye, whatever! Shut up, they stopped moving I think.&ldquo; Ziggy replied, clutching her twin sabers.</p>
 <p>The trio listened intently, ears perked and flicking in various directions. The night and woods were silent and dark, it was hard to make out anything.</p>
-<p>"We've lost them... or they're waiting in ambush! Im going to run back for help!" Valnos whispered</p>
+<p>"We've lost them... or they're waiting in ambush! I'm going to run back for help!" Valnos whispered</p>
 <p>A shadow suddenly swooped in from above to land in their midst with the slightest rustle of leaves. Valnos, yelping in fright, is suddenly muffled by a paw on his muzzle. </p>
 <p>"Ssccchhh...." </p>
 </div>
 <div class="cadetScenec hidden"><p><strong></strong></p>
 <p>&ldquo;Ziggy stop!&rdquo; Valnos cries out shrilly, struggling to catch up to his fellow cadet. Besides him the gold furred cadet Glint keeps apace.</p>
-<p>&ldquo;Quiet Valnos! She can hear you just fine, she just wont stop.&rdquo; She muttered angrilly.</p>
-<p>&ldquo;Why are we chasing them? We cant take them on alone!&rdquo; Valnos squeaked more quietly. The spear in his grip did not give him comfort. The Islander Gryphs that had appeared were robust and strong. They had quickly overwhelmed and captured Officer Tick before anyone knew what had happened.</p>
-<p>&ldquo;We're not going to fight them, but while we're here we can see where they're going, we cant let them take him away.&rdquo; Glint replied, slowing her pace as Ziggy too seemed to have slowed down and was peering ahead intensely while holding up a paw. &ldquo;You hear that Ziggy?&rdquo; Glint whispered harshly.</p>
+<p>&ldquo;Quiet Valnos! She can hear you just fine, she just won't stop.&rdquo; She muttered angrily.</p>
+<p>&ldquo;Why are we chasing them? We can't take them on alone!&rdquo; Valnos squeaked more quietly. The spear in his grip did not give him comfort. The Islander Gryphs that had appeared were robust and strong. They had quickly overwhelmed and captured Officer Tick before anyone knew what had happened.</p>
+<p>&ldquo;We're not going to fight them, but while we're here we can see where they're going, we can't let them take him away.&rdquo; Glint replied, slowing her pace as Ziggy too seemed to have slowed down and was peering ahead intensely while holding up a paw. &ldquo;You hear that Ziggy?&rdquo; Glint whispered harshly.</p>
 <p>&ldquo;Yeye, whatever! Shut up, they stopped moving I think.&ldquo; Ziggy replied, clutching her twin sabers.</p>
 <p>The trio listened intently, ears perked and flicking in various directions. The night and woods were silent and dark, it was hard to make out anything. Steadily they creeped closer.</p>
 <p>“There, up ahead, they're pulling something into the water. Looks like boats.” Glint whispered.</p>
@@ -1388,7 +1398,7 @@ But first there was another matter.</p>
 <p>Not far from them and above, the missing Scout dangles, tied up tight in a rope. From his elevated vantage he has been able to spot them. </p>
 
 <p>Glint and Ziggy both crawl forward to the anchoring bindings and start sawing with their blades. <br />
-Its not long before the scout drops to the ground, managing to land on his feet. Already his bindings looser, he slides one arm free. </p>
+It's not long before the scout drops to the ground, managing to land on his feet. Already his bindings looser, he slides one arm free. </p>
 
 <p>“Your blade.” He reaches for Ziggys extra and she eagerly obliges. Scouts report directly to the captain and so do they, there is no question however who out-ranks who. </p>
 
@@ -1448,12 +1458,12 @@ Its not long before the scout drops to the ground, managing to land on his feet.
 <p>&ldquo;Wait! Ziggy!&rdquo; Glint called after her before rising to follow her with a curse. &ldquo;By the white mane! I said wait!&rdquo;</p>
 
 <p>&ldquo;Oh.. oh boy... oh no... she's in trouble.&rdquo; The third cadet hesitantly followed after a pause, forgetting his spear.</p>
-
+<img src='../Images/assets/GuardPostTransparent.png' height="40%" width="40%"/>
 </div>
 
 <div class="conclusionA hidden"><p><strong>A raid in the night</strong></p>
 <p>I stand atop the mast in the crows-nest with the look out as he points out the tiny sails racing away from the island to me. Two very small vessels, perhaps not even as big as our landing crafts, are escaping the island toward the west. The boats are small enough to easily maneuver over and past the reefs covering the area there.</p>
-<p>Its not long before the report from the response team reach me with the results. The enemy has fled, they failed to catch them in time. But Officer Tick has been rescued and recovered, with help from none less then the Cadets who apparently were instrumental in seeing him freed. Alas it was our missing scout who they managed to free who arranged their escape, but in doing so was recaptured.</p>
+<p>It's not long before the report from the response team reach me with the results. The enemy has fled, they failed to catch them in time. But Officer Tick has been rescued and recovered, with help from none less then the Cadets who apparently were instrumental in seeing him freed. Alas it was our missing scout who they managed to free who arranged their escape, but in doing so was recaptured.</p>
 <p>They are shook up and bruised but none worse for wear. I'm torn whether to chastise them right away or later for their recklessness. But I should have accounted for my scouts still being exhausted from the other days arduous mission.</p>
 <p>I'm told the assailants was a group of Gryph Islanders who had been laying low and hidden on the island all along. They were of a tribes we have yet to encounter, likely they belong to the numerous fertile 'Isles of sand' to our west. They had materials which they had been scavenging from our ship but its unclear what their intentions were with trying to kidnap Officer Tick or what they will do to our scout.</p>
 <p>We shall have to pursue and investigate. </p>
@@ -1461,7 +1471,7 @@ Its not long before the scout drops to the ground, managing to land on his feet.
 
 <div class="conclusionAb hidden"><p><strong>A raid in the night</strong></p>
 <p>I watched the scouts launch from the ship and fan out into the woods with the Awe expedition on their heels. It wouldnt be fast, but it would be precise. I knew the scouts were still tired from the previous days scouting, but there were no hint of complaint or lethargy from any of them.</p>
-<p>Its not long before the report from the response team reach me with the results. Officer Tick has been rescued and recovered, with help from none less then the Cadets who apparently were instrumental in seeing him found. Apperently their pursuit and subsequent tracks were easy to follow.</p>
+<p>It's not long before the report from the response team reach me with the results. Officer Tick has been rescued and recovered, with help from none less then the Cadets who apparently were instrumental in seeing him found. Apparently their pursuit and subsequent tracks were easy to follow.</p>
 <p>I'm torn whether to chastise them right away or later for their recklessness. Things could have gone far worse.</p>
 <p>I'm told the assailants was a group of Gryph Islanders who had been laying low and hidden on the island all along. They were of a tribes we have yet to encounter, likely they belong to the numerous fertile 'Isles of sand' to our west. They had materials which they had been scavenging from our ship but its unclear what their intentions were with trying to kidnap Officer Tick.</p>
 <p>They managed to capture a prisoner, so I suppose we shall find out.</p>
@@ -1469,8 +1479,8 @@ Its not long before the scout drops to the ground, managing to land on his feet.
 
 <div class="conclusionB hidden"><p><strong>A raid in the night</strong></p>
 <p>I stand on the deck as the thundering noise of a full compliment of Raptorians crashing themselves through the tree-line and disappearing into the woods of the island slowly fade.</p>
-<p>Their eagerness for action and a hunt is comforting, but I cant help but nervously hope they have the restraint to leave people they are supposed to rescue intact in their enthusiasm.</p>
-<p>Its a time of tense waiting while I organize a second party to make landfall and follow up on the Raptorians word arrives sooner then I had expected.</p>
+<p>Their eagerness for action and a hunt is comforting, but I can't help but nervously hope they have the restraint to leave people they are supposed to rescue intact in their enthusiasm.</p>
+<p>It's a time of tense waiting while I organize a second party to make landfall and follow up on the Raptorians word arrives sooner then I had expected.</p>
 <p>The captors have been found and dealt with. The missing Officer and cadets are recovered and mostly unharmed, if somewhat bruised. I'm told the cadets were even instrumental in guiding the Raptorians to the right place before they could leave the islands on very small sailing crafts that they had kept hidden and disassembled.</p>
 <p>The assailants were a group of Gryph Islanders who had been laying low and hidden on the island all along. They were of a tribes we have yet to encounter, likely they belong to the numerous fertile 'Isles of sand' to our west. They had materials which they had been scavenging from our ship but its unclear what their intentions were with trying to kidnap Officer Tick.</p>
 <p>Alas none remain to be questioned.</p>
@@ -1484,7 +1494,7 @@ Its not long before the scout drops to the ground, managing to land on his feet.
 <p>I'm told the Cadets ended up in the heart of it and saw some action. But they're unharmed if only a little shaken up, some less then others I suppose.</p>
 <p>Scout Vessla, our formerly captured scout is also unhurt. He claims they came for him not long after he made his landing on the beach. They had been lurking around the ship, scavenging tidbits of materials in terms of metals. But they were quite interested in apprehending him.</p>
 <p>He did not quite glean the reason for his capture, but they seemed quite eager to get away and off the island with him. But the initial first sweep of our expedition kept them in hiding and prevented them from getting to their canoes before night fell. It seemed they were not keen on trying their luck over the reefs in darkness luckily, even with their fascinating light boats.</p>
-<p>The Captured Gryph has kept his beak shut and refused to cooperate. Its up to me what to do with him.</p>
+<p>The Captured Gryph has kept his beak shut and refused to cooperate. It's up to me what to do with him.</p>
 <p>I can keep him as a prisoner until he decides to speak or he comes to some other use. Or we can deal with him like we do with all who make themselves the enemies of the Admiralty.</p>
 </div>
 
@@ -1500,7 +1510,7 @@ Its not long before the scout drops to the ground, managing to land on his feet.
 
 <div class="decision hidden"><p><strong>Duty or Caution</strong></p>
 <p>We are getting ready to leave the island but one final decision remains to be made. <br />
-I stand upon the hull of the stranded Frigate. Its name is &lsquo;Herald&rsquo; and according to our documents it was Captained by Captain Klippa. <br />
+I stand upon the hull of the stranded Frigate. It's name is &lsquo;Herald&rsquo; and according to our documents it was Captained by Captain Klippa. <br />
 Ticks investigation confirms the ship left here by Awes. Enemies did not capture it. They left no possessions or clues of their whereabouts, seemingly purposely so. In a way I think the ship itself might be a message. <br />
 Standard procedure for Admiralty is to scuttle or destroy a ship rather than abandon it. They must have known this but omitted to do so on purpose. Was it sentiment? Or were they hoping to be able to return to repair and recover the hull? They could have sunk the ship but chose to beach it here on this lonely far away island that we have marked as an official rendezvous. <br />
 I have to decide whether to burn the ship or leave it intact. According to Admiralty law, I would be remiss in my duties if I left it as is. Officer Tick, who I believed would oppose this decision, surprisingly supports this line of action. <br />
@@ -1541,7 +1551,7 @@ End of Demo
 	{ target: '#Glint', text: 'Would love some solid ground under my paws.', imageClass: "concerned"},
 	{ target: '#Ziggy', text: 'Fight pirates!', imageClass: "happy"},
 	{ target: '#Valnos', text: 'Oh... maybe not that...!', imageClass: "blush"},
-	{ target: '#Ziggy', text: "You'd rather stay and swab the deck, eh? Then you wont need this!", imageClass: "smug"},
+	{ target: '#Ziggy', text: "You'd rather stay and swab the deck, eh? Then you won't need this!", imageClass: "smug"},
 	{ target: '#Valnos', text: 'Give that back! I just head it cleaned.', imageClass: "surprised"},
 	{ target: '#Ziggy', text: "Only officers get caps, you're a sailor now!", imageClass: "happy"},
 	{ target: '#Valnos', text: 'Come on Ziggy! Glint?', imageClass: "sad"},
