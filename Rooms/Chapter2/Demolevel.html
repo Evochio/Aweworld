@@ -144,7 +144,7 @@
 		demoLevel.push("search");
         $("#search2").addClass("hidden");
 		$("#investigate2").addClass("hidden");
-						
+		$(".search2").removeClass("hidden");				
 		$("#tickinv").removeClass("hidden");
 	
       })
@@ -154,7 +154,7 @@
 		demoLevel.push("investigate");
         $("#search2").addClass("hidden");
 		$("#investigate2").addClass("hidden");
-				
+		$(".investigate").removeClass("hidden");		
 		$("#tickinv").removeClass("hidden");
 		
       })
@@ -176,6 +176,7 @@
 		$("#cadetsC").removeClass("hidden");
 		$("#side").addClass("hidden")
 		$(".face").addClass("hidden")
+		$(".noscavenge").removeClass("hidden")
       })
 	   
 	   $('#tickB').on('click', function(e) {
@@ -186,6 +187,9 @@
 		$("#cadetsC").removeClass("hidden");
 		$("#side").addClass("hidden")
 		$(".face").addClass("hidden")
+		if (_.contains(demoLevel, "investigate")) {
+		$(".scavenge").removeClass("hidden")
+		}
       })
 	  	   
 	   $('#search').on('click', function(e) {
@@ -197,7 +201,7 @@
 		$(".tickface").addClass("hidden")
 		$("#tickinv").removeClass("hidden");
 		$("#sideb").addClass("hidden");
-		
+		$(".search").removeClass("hidden");	
       })
 	   
 	   $('#investigate').on('click', function(e) {
@@ -209,6 +213,7 @@
 		$(".tickface").addClass("hidden")
 		$("#tickinv").removeClass("hidden");
 		$("#sideb").addClass("hidden");
+		$(".investigate").removeClass("hidden");	
 		
       })
 	  
@@ -221,7 +226,7 @@
 		$(".tickface").addClass("hidden")
 		$("#tickinv").removeClass("hidden");
 		$("#sideb").addClass("hidden");
-		
+		$(".split").removeClass("hidden");
 		
       })
 	  
@@ -233,6 +238,7 @@
 		if (_.contains(demoLevel, "tung") && _.contains(demoLevel, "search")) {
 		$("#caught").removeClass("hidden");
 		lib.dialogue(e, "cadetScene2")
+		$(".cadetsearch").removeClass("hidden");
 		
 		//Forest
  cadet[2].banter = [
@@ -269,7 +275,7 @@
 		else if (_.contains(demoLevel, "arn") && _.contains(demoLevel,"send") && (_.contains(demoLevel,"split") || _.contains(demoLevel,"search"))){
 		$("#caught").removeClass("hidden");
 		lib.dialogue(e, "cadetScene2")
-		
+		$(".cadetsearch").removeClass("hidden");
 		
 		//Forest
  cadet[2].banter = [
@@ -305,7 +311,7 @@
 		else if (_.contains(demoLevel, "ulv") && _.contains(demoLevel, "investigate")) {
 		$("#caught").removeClass("hidden");
 		lib.dialogue(e, "cadetScene3")
-		
+		$(".cadetdefend").removeClass("hidden");
 		//Beach
 
  cadet[2].banter = [
@@ -385,7 +391,7 @@
       })
 	  
 	 
-	
+	/*
 	  //Delete?
 	   $('#raidA').on('click', function(e) {
 		lib.dialogue(e, "raidA"),
@@ -399,7 +405,7 @@
 		$("#scoutsb").removeClass("hidden");
 		}
 		})
-	  
+	  */
 	  
 	  $('#scouts').on('click', function(e) {
 		lib.dialogue(e, "cadetSceneb"),
@@ -431,7 +437,7 @@
          $("#scouts").addClass("hidden");
 		 $("#scoutsb").addClass("hidden");
 		$("#raptorians").addClass("hidden");
-		
+		$(".heavy").removeClass("hidden");
 		$("#encounter").removeClass("hidden");
 	
       })
@@ -441,6 +447,7 @@
 	   if (_.contains(demoLevel, "raptorians")) {
 		lib.dialogue(e, "conclusionB")
 		$("#tickPleased").removeClass("hidden");
+		$(".cadetraid").removeClass("hidden");
 		//Raid   Raptorian
  cadet[2].banter = [
 	{ target: '#Valnos', text: 'Raptorians are scary.', imageClass: "surprised"},
@@ -476,6 +483,7 @@
 		else if (_.contains(demoLevel, "delay")) {
 		lib.dialogue(e, "conclusionAb")
 		$("#interrogate").removeClass("hidden");
+		$(".cadetraid").removeClass("hidden");
 		//Raid   scouts
 
  cadet[2].banter = [
@@ -513,6 +521,8 @@
 		{
 		lib.dialogue(e, "conclusionA")
 		$("#tickPleased").removeClass("hidden");
+		$(".cadetraid").removeClass("hidden");
+		$(".escape").removeClass("hidden");
 		//Raid   scoutsb
  cadet[2].banter = [
 	{ target: '#Valnos', text: 'That Scout. Scout Vessla. He was so brave.', imageClass: "sad"},
@@ -606,6 +616,7 @@
          $("#prisoner2a").addClass("hidden");
 		 $("#prisoner2b").addClass("hidden");
 		  $("#decision").removeClass("hidden");
+		  $(".bellyintel").removeClass("hidden");
 	
       })
 	  
@@ -613,6 +624,8 @@
 		lib.dialogue(e, "prisoner3"),
          $("#prisoner3").addClass("hidden");
 		$("#endDemo").removeClass("hidden");
+		$(".alive").addClass("hidden");
+		$(".vored").removeClass("hidden");
 	
       })
 	  
@@ -625,6 +638,7 @@
 		 $("#interrogate2").addClass("hidden");
 		$("#eat").addClass("hidden");
 		$("#side").addClass("hidden");
+		$(".brig").removeClass("hidden");
       })
 	  
 	  $('#eat').on('click', function(e) {
@@ -635,6 +649,7 @@
 		$("#decision").removeClass("hidden");
 		$("#eat").addClass("hidden");
 		$("#side").addClass("hidden");
+		$(".vore").removeClass("hidden");
       })
 	  
 	  $('#decision').on('click', function(e) {
@@ -677,12 +692,22 @@
 		
       })
 	  
+	  $('#endDemo').on('click', function(e) {
+		lib.dialogue(e, "end"),
+        $("#endDemo").addClass("hidden");
+		$(".vored").removeClass("hidden");
+		
+      })
+	  
+	  /*
+	  //delete?
 	  $('#conclusion').on('click', function(e) {
 		lib.dialogue(e, "conclusion"),
          $("#conclusion").addClass("hidden");
 		$("#endDemo").removeClass("hidden");
 		
       })
+	  */
 	  
 	  $('#conclusion2').on('click', function(e) {
 		lib.dialogue(e, "conclusionC"),
@@ -1539,7 +1564,86 @@ We'll have to hope the remoteness of the Island will protect it and that it serv
 
 
 <div class="end hidden"><p><strong>End of Demo</strong></p>
-End of Demo
+<p>End of Demo </p>
+<br/>
+<div class="alive">
+<div class="info">
+<p>- We were able to uncover some information about the stranded ship. </p>
+</div>
+<div class="scavenge hidden">
+<p>- We managed to scavenge spare parts for our ship before there was time to leave. Our hull integrity has increased.</p>
+</div>
+<div class="noscavenge hidden">
+<p>- There was not enough time or help in scavenging materials.</p>
+</div>
+<div class="arntext hidden"> 
+<div class="search hidden">
+<p>- Arn succesfully led the expedition and captured hostile forces.</p>
+</div>
+<div class="split hidden">
+<p>- Even with his expedition divided into search and defense, Arn managed to track down the hidden assailants.</p>
+</div>
+<div class="investigate hidden">
+<p>- Arns defensive measures on the camp on the island were too relaxed and complacent and put crew in danger. </p>
+</div>
+<div class="search2 hidden">
+<p>- Since Arn did not suspect enemies, his sweep of the island was sloppy and the camp was attacked. </p>
+</div>
+</div>
+
+<div class="tungtext hidden"> 
+<p>
+<div class="search search2 hidden">
+- Tungs intuition turned out correct and he managed to capture the enemies hiding on the island. </p>
+</div>
+<div class="investigate hidden">
+<p>- Tungs defensive perimeter was poorly organized and constructed and failed to protect against an attack. </p>
+</div>
+<div class="split hidden">
+<p>- Tung was unable to delegate responsibility and the expedition was too divided to manage a proper sweep nor defense of the camp.</p>
+</div>
+</div>
+
+<div class="ulvtext hidden"> 
+<div class="search search2 hidden">
+<p>- Ulv was unable to organize an effective sweep of the island and failed to detect hidden hostiles. </p>
+</div>
+<div class="split hidden">
+<p>- In dividing her forces, Ulvs expedition achieved little in their sweep and her carefully planned defenses were made vurnable.</p>
+</div>
+<div class="investigate hidden">
+<p>- Ulvs defensive perimeter was impeccable and caught and captured attackers in the act. </p>
+</div>
+</div>
+
+<div class="cadetsearch hidden"> 
+<p>- The Cadets saw action while performing recognizance. Although the danger was high the attending officer reports they behaved correctly and aided in the capture of the enemy. They gained valuable experience. </p>
+</div>
+<div class="cadetdefend hidden"> 
+<p>- The Cadets saw action while defending the camp. The attending officer reports they aided in the defense and aided in the capture of the enemy. They gained valuable experience. </p>
+</div>
+<div class="cadetraid hidden"> 
+<p>- Without orders, the Cadets pursued the attackers after they raided the camp. Although they aided in the recovery of missing personnel and gain some experience, their actions were rash and irresponsible. </p>
+</div>
+<div class="brig hidden"> 
+<p>- You have one Gryph assailant in custody after questioning. </p>
+</div>
+<div class="vore hidden"> 
+<p>- The caught Islanders were all disposed of after questioning. You gain a modicum amount of paunch and a taste of Gryph.</p>
+</div>
+<div class="heavy hidden"> 
+<p>- The caught islanders were all consumed by Raptorians. None were questioned. </p>
+</div>
+<div class="bellyintel hidden"> 
+<p>- You have one Gryph assailant in custody after questioning. You managed to extract valuable information. </p>
+</div>
+<div class="escape hidden"> 
+<p>- The attackers escaped, their purpose and intent unknown. </p>
+</div>
+</div>
+<div class="vored hidden">
+<p>- You perished in the belly of your prisoner along with your officer and were digested. <br/> The prisoner managed to escape and return to his home isles, where your 'willing' demise and visible addition to his body lends his tales of prowess much status in the tribes.</p>
+</div>
 </div>
 
 <script>

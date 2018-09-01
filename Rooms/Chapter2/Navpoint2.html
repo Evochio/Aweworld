@@ -17,8 +17,7 @@
   
   <script>
 
-
-
+state.chapter.push("testobject2");
 
    $(document).ready(function() {
 	
@@ -153,14 +152,14 @@
 		$('#button-2').on('click', function() {
         // change state here
         // end by using lib.goTo
-		
+		state.chapter[0] = ("Navpoint4");
         lib.goTo('Navpoint4.html')
       })
 	  
 	  	$('#navpoint3').on('click', function() {
         // change state here
         // end by using lib.goTo
-		
+		state.chapter[0] = ("Navpoint3");
         lib.goTo('Navpoint3.html')
       })
     })

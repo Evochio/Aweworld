@@ -334,6 +334,7 @@ var initialState = {
   inventory: [],
   preludeEvents: [],
   events: [],
+  chapter: [],
   preludeScore: 0,
   wulfCaptain: 0,
   wulfQuestions: [],

@@ -15,7 +15,7 @@
    <script src="../../officers.js"></script>
   <link rel="stylesheet" href="../../main.css"></link>
   <script>
-
+state.chapter.push("testobject222223");
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
@@ -122,7 +122,7 @@
 		$('#button-2').on('click', function() {
         // change state here
         // end by using lib.goTo
-		
+		state.chapter[0] = ("Navpoint4");
         lib.goTo('Navpoint4.html')
       })
     })
