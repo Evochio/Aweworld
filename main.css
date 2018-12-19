@@ -25,8 +25,7 @@ float:right;
 #VThumb:hover, #GThumb:hover, #ZThumb:hover {
 	
 	border: 2px solid red;
-	
-	
+	-webkit-transform: translateZ(0);
 }
 
 #GThumb {

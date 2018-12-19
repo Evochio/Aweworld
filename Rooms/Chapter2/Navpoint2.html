@@ -18,15 +18,35 @@
   <script>
 
 state.chapter.push("testobject2");
+var navpoint2 = [];
 
    $(document).ready(function() {
 	
-	officerButtonNames();
-	
+/* if (firstOfficer[0].name !== 'Arn') {
+	officer3 = [firstOfficer[0], officer.tung, officer.tick];
+		}
+	else  {
+	officer3 = [firstOfficer[0], officer.mirr, officer.tick];
+		}
+	if (_.contains(activeRoster, "officer.tung"))
+		{
+		officer3[1]=officer.tung
+		}
+	else {
+	officer3[1]=officer.mirr
+	}
+
+*/	
        officer3 = [firstOfficer[0], officer.mirr, officer.tick];
 	   
 	   
-      //  officer3.push(officer.tick); officer3.push(officer.valnos);  
+   	   $(".NotCadet").attr('src','../Images/assets/Tick.png');
+	   
+	   //converts button names. Function in officers.js
+	   officerButtonNames();
+	   
+	  //Converts fofficer classes like <span class="fofficer"></span> to show First officer name. In this case = "Arn" if he's first officer. 
+	  $(".fofficer").text(firstOfficer[0].name)
 	  
 	  $('#officer0').on('click', function(e) {
         // change state here
@@ -255,7 +275,13 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 
 <br/>
-<script>createOfficer4(officer3)</script>
+<script>createOfficer4(officer3)
+$('#officerObject0').popover({title: officer3[0].name, content: "They could have been all over the islands so there is much to investigate and little time. But I can get the right crews in order for it.", trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject1').popover({title: officer3[1].name, content: "Im not personaly sure of the right action here, but with the right people in the right places we're sure to uncover something. I think I can assemble such a team!", trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject2').popover({title: officer3[2].name, content: "Huh, it's the abandoned camp we should investigate, not the island. That's where I'd focus my landing party", trigger: "hover", placement: "top", container: "body"}); 
+
+</script>
+</div>
 </div>
 <div class="clues2 hidden"><p><strong> Search for Clues</strong></p>
 <p> Poor investigation: </p>
@@ -267,8 +293,6 @@ Day: <span class="days"><script>displayDays()</script></span>
 <p>Awe lettering and fur found around the place make it no doubt that it was Awes who were here and not some others.</p>
 
 <p>Further investigation of the island show less sign of passage then expected. Whoever was here was not here long and focused on their tasks.</p>
-
-<p>It seems clear someone was not planning on resupplying any time soon again and made a big operation out of stocking up quick from the islands. Judging by how cleaned up and little was left around, I suspect that although it was done under efficient haste rather then under any duress. It is likely the fleet used their supplies to move deeper into Thousand Island without having to have to worry for stops. </p>
 </div>
 <div class="clues3 hidden"><p><strong> Search for Clues</strong></p>
 <p> Good investigation </p>
@@ -283,11 +307,42 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>It seems clear someone was not planning on resupplying any time soon again and made a big operation out of stocking up quick from the islands. Judging by how cleaned up and little was left around, I suspect that although it was done under efficient haste rather then under any duress. It is likely the fleet used their supplies to move deeper into Thousand Island without having to have to worry for stops. </p>
 
+</div>
+<div class="arn hidden"><p><strong> Search for clues</strong></p>
+<p> First-Officer Arn spreads the crew thin trying to examine as much of the island as possible at the time alloted to him. Soon Awes are coming and going with reports, but he seems to have everything under control. </p>
+<p>The shacks appear to have been mostly used to keep objects rather then people dry from rain. There are signs and remains that reveal they have constructed severals barrels and containers and stocked up very well on water.</p>
+
+<p>One of the shacks were slightly better built then the others and appear to have housed someone in charge. Scratchings in the wood imply a lot of counting having been done. </p>
+
+<p>Awe lettering and fur found around the place make it no doubt that it was Awes who were here and not some others.</p>
+
+<p>Further investigation of the island show less sign of passage then expected. Whoever was here was not here long and focused on their tasks.</p>
 
 </div>
 
+<div class="mirrO hidden"><p><strong> Search for clues</strong></p>
+<p> First-Officer Mirr, while new at command, sweeps onto the beach and seems to assemble the crew into an efficient unit. She consults and talks with her subordinates and even manages to tear Officer Tick away from his responsibilities on 'The Attentive', though he grumbles he obeys new first-officer.</p>
+<p>With her art of delegation, clues are sure to be found from the right pair of eyes looking in the right places just as she assured. </p>
+
+<p>The shacks appear to have been mostly used to keep objects rather then people dry from rain. There are signs and remains that reveal they have constructed severals barrels and containers and stocked up very well on water.</p>
+
+<p>Further investigation of the island show less sign of passage then expected. Whoever was here was not here long and focused on their tasks.</p>
+</div>
+
+<div class="tick hidden"><p><strong> Search for clues</strong></p>
+<p>Officer Tick reads the scouts report and is soon meticulously stalking the area of the assembled buildings, having his assisting crew mostly ignore the rest of the island outside erecting standard defensive perimeters. </p>
+
+<p>The shacks appear to have been mostly used to keep objects rather then people dry from rain. There are signs and remains that reveal they have constructed severals barrels and containers and stocked up very well on water.</p>
+<p>One of the shacks were slightly better built then the others and appear to have housed someone in charge. Scratchings in the wood imply a lot of counting having been done. </p>
+<p> At his instructive behest and knowledge in the kind of standard routines that were performed here, they closely go over the left markings in the shacks.</p>
+
+</div>
+
+
+
 <div class="raptorians hidden"><p><strong>  Raptorians want ashore</strong></p>
 <p>The Raptorians have been sitting quietly down in the depths of the holds for most of the journey. Now they request permission to go ashore and stretch their limbs properly. Some have expressed the desire to be allowed a day to roam around and get proper exercise and loose their pent-up energy and tension. </p>
+<p>My landing party has deemed the island as 'safe' from possible hostiles aside from wildlife. Not that there's much that could threaten a Raptorian. </p>
 </div>
 
 
@@ -300,7 +355,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>The Raptorians do not even wait to mount any boats, as a troop, they jump overboard one by one and swim the short stretch from the ship to the island. </p>
 
-<p>Well on the shore they rowdily dash around with pent up energies, tackle and growl like a rowdy bunch. </p>
+<p>Well on the shore they noisily dash around with pent up energies, tackle and growl like a rowdy bunch. </p>
 
 <p>The crew who are ashore to refill out own water supply wisely keep well out of their way. </p>
 </div>
@@ -327,7 +382,15 @@ Day: <span class="days"><script>displayDays()</script></span>
 </p>
 
 <p>Who do you assign to search.</p>
+<p>-Hover over for info-</p>
+<img id="actionScout" class="action" src='../Images/assets/ActionScout.png' height="40%" width="40%"/>
+<img id="actionRaptorian" class="action" src='../Images/assets/ActionRaptorian.png' height="40%" width="40%"/>
 
+<script>
+$('#actionScout').popover({title: "Scouts", content: "Scouts are support and recognizance. They will take their time and sweep the islands, but cant do so if Raptorians are stomping around.", trigger: "hover", placement: "top", container: "body"}); 
+$('#actionRaptorian').popover({title: "Raptorians", content: "Raptorians are offering to find their own and claiming they can do so fast. They're usually not ideal for delicate missions and might make a bigger mess of things. ", trigger: "hover", placement: "top", container: "body"}); 
+
+</script>
 </div>
 
 <div class="missingScout hidden"><p><strong>Scouts</strong></p>
@@ -361,7 +424,11 @@ Day: <span class="days"><script>displayDays()</script></span>
 <div class="destination hidden"><p><strong>Destination</strong></p>
 <p>Poor investigation:</p>
 
-<p>Our clues here were scant, but it appears the fleet stocked themselves up fully on these islands. Its unlikely they headed for any other resupply points. </p>
+<p>Our clues here were scant, but it seems clear someone was not planning on resupplying any time soon again and made a big operation out of stocking up quick from the islands. Judging by how cleaned up and little was left around, I suspect that although it was done under efficient haste rather then under any duress. It is likely the fleet used their supplies to move deeper into Thousand Island without having to have to worry for stops. </p>
+ 
+<div class="arntext hidden"><p><strong></strong></p>
+<p>Unfortunately, while the fleet was here and we found out much of what they were doing, Arns effort uncover little of worth as to where they were going. Its unlikely they headed for any other resupply points at least.</p>
+</div>
 
 <p>We might have to head for Navpoint 3 where we might find another scout or perhaps some natives for more information.</p>
 
@@ -370,11 +437,25 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>Good investigation:</p>
 
+<div class="ticktext hidden"><p><strong></strong></p>
+<p>The scratchings in the wood turned out to contain Admiralty code hidden in what appeared to be random marks. </p>
+
+<p> The code is vague, but seems to refer to positional numbering used in latitudes on standard Admiralty charts. This gives us a pretty clear clue where they were headed next. It is unclear why their destination was so hidden, perhaps they truly have pursuers they're cautious about.</p>
+</div>
+<div class="mirrtext hidden"><p><strong></strong></p>
+<p>The scratchings in the wood turned out to contain Admiralty code hidden in what appeared to be random marks. </p>
+
+<p> The code is vague, but seems to refer to positional numbering used in latitudes on standard Admiralty charts. This gives us a pretty clear clue where they were headed next. It is unclear why their destination was so hidden, perhaps they truly have pursuers they're cautious about.</p>
+</div>
+
+
 <p>Its clear the Fleet stocked up well before heading in deeper into Thousand islands in a hurry. Coded clues in the abandoned shacks appear to point to one of the Fleets preset rendezvous-points deeper in Thousand islands.</p>
 
 <p>We can still backtrack slightly and head towards Navpoint 3 to investigate the possibility of another scout or natives with further information or head on deeper into Thousand Islands to the next rendezvous point marked as Navpoint 4. </p>
 
-</div>
 
+
+
+</div>
 </body>
 </html>

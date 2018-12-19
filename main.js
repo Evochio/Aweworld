@@ -41,25 +41,25 @@ var valnos = {};
 var notCadet = {};
 
 var checkHidden = function() {
-	if (state.Ziggy.status == 'available') {
+	if (state.Ziggy.status == 'available' || 'disabled') {
 			$("#Ziggy").removeClass("hidden")
 			}
-	if (state.Glint.status == 'available') {
+	if (state.Glint.status == 'available' || 'disabled') {
 			$("#Glint").removeClass("hidden")
 			}
-	if (state.Valnos.status == 'available') {
+	if (state.Valnos.status == 'available' || 'disabled') {
 			$("#Valnos").removeClass("hidden")
 			}
 }
 
 var checkHidden2 = function() {
-	if (state.Ziggy.status == 'available') {
+	if (state.Ziggy.status == 'available' || 'disabled') {
 			$("#ZThumb").removeClass("hidden")
 			}
-	if (state.Glint.status == 'available') {
+	if (state.Glint.status == 'available' || 'disabled') {
 			$("#GThumb").removeClass("hidden")
 			}
-	if (state.Valnos.status == 'available') {
+	if (state.Valnos.status == 'available' || 'disabled') {
 			$("#VThumb").removeClass("hidden")
 			}
 }
@@ -233,6 +233,7 @@ var showNextDialogue = function () {
     if(i >= banter.length) {
         // reset i, stop the popover from being shown
         i = 0;
+		
 		
 		checkHidden2();
 		$('#ZThumb, #GThumb, #VThumb').attr('disabled', false);

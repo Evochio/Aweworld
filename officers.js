@@ -4,9 +4,9 @@
 		name: 'Arn',
 		title: 'First-Officer',
 		experience: 6,
-		strength: 5,
-		intelligence: 4,
-		charm: 5
+		strength: '(+++--)',
+		intelligence: '(+++--)',
+		charm: '(+++--)'
 		},
 		melon: {
 		image: '../Images/assets/Melon.png',
@@ -22,9 +22,9 @@
 		name: 'Ulv',
 		title: 'Ballistics Officer',
 		experience: 4,
-		strength: 5,
-		intelligence: 4,
-		charm: 5
+		strength: '(+++--)',
+		intelligence: '(+++--)',
+		charm: '(++---)'
 		},
 		tick: {
 		image: '../Images/assets/Tick.png',
@@ -76,9 +76,9 @@
 		name: 'Tung',
 		title: 'Arms-Officer',
 		experience: 5,
-		strength: 5,
-		intelligence: 4,
-		charm: 4
+		strength: '(++++-)',
+		intelligence: '(++---)',
+		charm: '(++---)'
 		},
 		evok: {
 		image: '../Images/assets/Evok.png',
@@ -136,11 +136,21 @@
 	}
   
  }
+ //Without prints out an array without a thing.  _.without(activeRoster, officer.tung)
+ // write a function that remove(officer) and takes it away from activeRoster and adds it to Roster of the vored. like: function remove(x) { activeRoster = _.without(activeRoster, x) && deadRoster.push("x"); }
+ 
     activeRoster = [officer.arn, officer.keeper, officer.mirr, officer.nyxie, officer.tick, officer.ulv, officer.garsch, officer.tung, officer.evok, officer.elda, officer.ljus,];
     fullRoster = [officer.valnos, officer.ziggy, officer.glint, officer.melon, officer.arn, officer.keeper, officer.mirr, officer.nyxie, officer.tick, officer.ulv, officer.garsch, officer.tung, officer.evok, officer.elda, officer.ljus,];
 	firstOfficer = [officer.arn];
 	officer3 = [firstOfficer[0], officer.mirr, officer.ulv];
 
+	
+	function removeOfficer(x) {
+		
+		activeRoster = _.without(activeRoster, x);
+		deadRoster.push(x);
+		
+	}
 	
 	
 	/* Why is it always making it Nyxie? */
@@ -158,7 +168,7 @@
 	
    /*
    Original 
-    { officerDiv = $('<div class="officerObjects" id="officerObject'+key+'"><p><img class="testimage"></img><span>Name: </span><span class="name"></span><br/><span>Title: </span><span class="title"></span><br/><span>Experience: </span><span class="experience"></span><br/><span>Strength: </span><span class="strength"></span><br/><span>Intelligence: </span><span class="intelligence"></span><br/><span>Charm: </span><span class="charm"></span></p></div>'); $('#officerObject' + key).append(value); 
+    { officerDiv = $('<div class="officerObjects" id="officerObject'+key+'"><p><img class="testimage"></img><span>Name: </span><span class="name"></span><br/><span>Title:</span><span class="title"></span><br/><span>Experience: </span><span class="experience"></span><br/><span>Strength: </span><span class="strength"></span><br/><span>Intelligence: </span><span class="intelligence"></span><br/><span>Charm: </span><span class="charm"></span></p></div>'); $('#officerObject' + key).append(value); 
 	 
    */
  
@@ -173,13 +183,12 @@ function officerButtonNames() {
 	 
 	 officers.forEach(function (officer) {
 	 
-	 $('.theOfficer').empty(); officers.forEach(function(value, key) { officerDiv = $('<div class="officerObjects" id="officerObject'+key+'"><p><img class="testimage"></img><span>Name: </span><span class="name"></span><br/><span>Title: </span><span class="title"></span><br/><span>Experience: </span><span class="experience"></span><br/><span>Strength: </span><span class="strength"></span><br/><span>Intelligence: </span><span class="intelligence"></span><br/><span>Charm: </span><span class="charm"></span></p></div>'); $('#officerObject' + key).append(value); 
+	 $('.theOfficer').empty(); officers.forEach(function(value, key) { officerDiv = $('<div class="officerObjects" id="officerObject'+key+'"><p><img class="testimage"></img><span>Name: </span><span class="name"></span><br/><span>Title:</span><br/><span class="title"></span><br/><span>Strength: </span><span class="strength"></span><br/><span>Intelligence: </span><span class="intelligence"></span><br/><span>Charm: </span><span class="charm"></span></p></div>'); $('#officerObject' + key).append(value); 
 	 
 	
 	officerDiv.find('.testimage').attr('src', value.image)	
 	officerDiv.find('.title').append(value.title)
 	officerDiv.find('.name').append(value.name)
-	officerDiv.find('.experience').append(value.experience)
 	officerDiv.find('.strength').append(value.strength)
 	officerDiv.find('.intelligence').append(value.intelligence)
 	officerDiv.find('.charm').append(value.charm)
@@ -190,11 +199,10 @@ function officerButtonNames() {
 							}
 	else {
 				 
-		$(".theOfficer").html( "<img class='testimage'></img><span>Name: </span><span class='name'></span><br/><span>Title: </span><span class='title'></span><br/><span>Experience: </span><span class='experience'></span><br/><span>Strength: </span><span class='strength'></span><br/><span>Intelligence: </span><span class='intelligence'></span><br/><span>Charm: </span><span class='charm'></span><br/>" );
+		$(".theOfficer").html( "<img class='testimage'></img><span>Name: </span><span class='name'></span><br/><span>Title:</span><br/><span class='title'></span><br/><span>Strength: </span><span class='strength'></span><br/><span>Intelligence: </span><span class='intelligence'></span><br/><span>Charm: </span><span class='charm'></span><br/>" );
 		$(".testimage").attr('src', officers.image)
 		$(".name").text(officers.name)
 		$(".title").text(officers.title)
-		$(".experience").text(officers.experience)
 		$(".strength").text(officers.strength)
 		$(".intelligence").text(officers.intelligence)
 		$(".charm").text(officers.charm)
