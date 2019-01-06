@@ -136,6 +136,15 @@
 	}
   
  }
+ 
+
+ 
+ //Function that unhides text related to the officer chosen
+ function revealText() {
+	 $('.' + choiceOfficer[0].name + 'text').removeClass("hidden");
+ }
+ 
+ 
  //Without prints out an array without a thing.  _.without(activeRoster, officer.tung)
  // write a function that remove(officer) and takes it away from activeRoster and adds it to Roster of the vored. like: function remove(x) { activeRoster = _.without(activeRoster, x) && deadRoster.push("x"); }
  
@@ -143,7 +152,8 @@
     fullRoster = [officer.valnos, officer.ziggy, officer.glint, officer.melon, officer.arn, officer.keeper, officer.mirr, officer.nyxie, officer.tick, officer.ulv, officer.garsch, officer.tung, officer.evok, officer.elda, officer.ljus,];
 	firstOfficer = [officer.arn];
 	officer3 = [firstOfficer[0], officer.mirr, officer.ulv];
-
+	deadRoster = [];
+	choiceOfficer = [];
 	
 	function removeOfficer(x) {
 		

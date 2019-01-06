@@ -22,20 +22,21 @@ var navpoint2 = [];
 
    $(document).ready(function() {
 	
-/* if (firstOfficer[0].name !== 'Arn') {
-	officer3 = [firstOfficer[0], officer.tung, officer.tick];
+/* Condition that checks if Officer is first officer so not officer3 array twice. 
+	
+	if (firstOfficer[0].name == 'Mirr') {
+	var index = officer3.indexOf(officer.mirr);
+		if (index !== -1) {
+				if (_.contains(activeRoster, "officer.tung")) {
+			officer3[index] = officer.tung;
+			}
+			else {
+				
+			officer3[index] = officer.garsch;
+			}
 		}
-	else  {
-	officer3 = [firstOfficer[0], officer.mirr, officer.tick];
-		}
-	if (_.contains(activeRoster, "officer.tung"))
-		{
-		officer3[1]=officer.tung
-		}
-	else {
-	officer3[1]=officer.mirr
 	}
-
+	
 */	
        officer3 = [firstOfficer[0], officer.mirr, officer.tick];
 	   
@@ -49,7 +50,8 @@ var navpoint2 = [];
 	  $(".fofficer").text(firstOfficer[0].name)
 	  
 	  $('#officer0').on('click', function(e) {
-        // change state here
+        // Choice of officer.
+		choiceOfficer.splice(0, 0, officer3[0])
         // end by using lib.goTo
 		lib.dialogue(e, "clues3"),
         $("#officer0").addClass("hidden");
@@ -60,7 +62,8 @@ var navpoint2 = [];
       })
 	  
 	  $('#officer1').on('click', function(e) {
-        // change state here
+        // Choice of officer.
+		choiceOfficer.splice(0, 0, officer3[1])
         // end by using lib.goTo
 		lib.dialogue(e, "clues2"),
         $("#officer0").addClass("hidden");
@@ -69,7 +72,8 @@ var navpoint2 = [];
 		$("#raptorians").removeClass("hidden");
       })
 	  $('#officer2').on('click', function(e) {
-        // change state here
+         // Choice of officer.
+		choiceOfficer.splice(0, 0, officer3[2])
         // end by using lib.goTo
 		lib.dialogue(e, "clues3"),
         $("#officer0").addClass("hidden");
@@ -93,6 +97,7 @@ var navpoint2 = [];
 	  
 	    $('#raptorians').on('click', function(e) {
         // change state here
+		revealText()
         // end by using lib.goTo
 		lib.dialogue(e, "raptorians"),
         $("#raptorians").addClass("hidden");
@@ -426,7 +431,7 @@ $('#actionRaptorian').popover({title: "Raptorians", content: "Raptorians are off
 
 <p>Our clues here were scant, but it seems clear someone was not planning on resupplying any time soon again and made a big operation out of stocking up quick from the islands. Judging by how cleaned up and little was left around, I suspect that although it was done under efficient haste rather then under any duress. It is likely the fleet used their supplies to move deeper into Thousand Island without having to have to worry for stops. </p>
  
-<div class="arntext hidden"><p><strong></strong></p>
+<div class="Arntext hidden"><p><strong></strong></p>
 <p>Unfortunately, while the fleet was here and we found out much of what they were doing, Arns effort uncover little of worth as to where they were going. Its unlikely they headed for any other resupply points at least.</p>
 </div>
 
@@ -437,12 +442,12 @@ $('#actionRaptorian').popover({title: "Raptorians", content: "Raptorians are off
 
 <p>Good investigation:</p>
 
-<div class="ticktext hidden"><p><strong></strong></p>
+<div class="Ticktext hidden"><p><strong></strong></p>
 <p>The scratchings in the wood turned out to contain Admiralty code hidden in what appeared to be random marks. </p>
 
 <p> The code is vague, but seems to refer to positional numbering used in latitudes on standard Admiralty charts. This gives us a pretty clear clue where they were headed next. It is unclear why their destination was so hidden, perhaps they truly have pursuers they're cautious about.</p>
 </div>
-<div class="mirrtext hidden"><p><strong></strong></p>
+<div class="Mirrtext hidden"><p><strong></strong></p>
 <p>The scratchings in the wood turned out to contain Admiralty code hidden in what appeared to be random marks. </p>
 
 <p> The code is vague, but seems to refer to positional numbering used in latitudes on standard Admiralty charts. This gives us a pretty clear clue where they were headed next. It is unclear why their destination was so hidden, perhaps they truly have pursuers they're cautious about.</p>
