@@ -210,7 +210,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#331a00', end
 	
 
 }
+
+	.action {
+	width: 50%;
+	float:left;
+	}
 	
+	.action:hover {
+	border: 6px solid yellow;
+	}
+
 #side
 {
 	padding: 0.5em;

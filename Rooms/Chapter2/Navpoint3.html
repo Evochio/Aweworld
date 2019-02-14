@@ -162,11 +162,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>The shores around the island are shallow all the way around and we have to settle further out then I'd like. The ship will be blown around by wind and wave. </p>
 
-<span class="theOfficer officerObjects"></span>
 
-
-<br/>
-<script>createOfficer4(officer3)</script>
 
 </div>
 <div id="tail">
@@ -194,9 +190,20 @@ Day: <span class="days"><script>displayDays()</script></span>
 <div class="investigate hidden"><p><strong>Investigate</strong></p>
 <p>So far no sign of the supposed scout. But if they are here they might just be on the wrong side of the island so I'm not ready to make any assumptions yet. The scouts have reported some fleeting signs of habitation, but I have a hard time seeing how any natives could live here.</p>
 
-<p>Due to the difficulty of landing boats in, I can only send out a limited shore party. I'll have to decide on who to send with the assignment to search.</p>
+<p>Due to the difficulty of landing boats in, I can only send out a limited shore party. I'll have to decide on what kind of approach to take and who to send give the assignment.</p>
 
-<p>Arn, Tung or Garsch </p>
+<p>Arn, Nyxie or Garsch </p>
+<span class="theOfficer officerObjects"></span>
+
+
+<br/>
+<script>createOfficer4(officer3)
+$('#officerObject0').popover({title: officer3[0].name, content: "", trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject1').popover({title: officer3[1].name, content: "There has to be a spot they use come and go, I'd try to find it and wait for them to come to us. I think they know we're here.", trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject2').popover({title: officer3[2].name, content: "My team will head straight for the source of that smoke and ask firmly about the whereabout of our Scout.", trigger: "hover", placement: "top", container: "body"}); 
+
+
+</script>
 </div>
 
 <div class="scout hidden"><p><strong>Scout Report</strong></p>

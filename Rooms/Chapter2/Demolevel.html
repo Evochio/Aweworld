@@ -124,7 +124,7 @@
 		
 		$("#side").removeClass("hidden")
 		if (_.contains(demoLevel, "arn")) {
-		$(".NotCadet").attr('src','../Images/assets/Arnface.png');
+		$(".NotCadet").attr('src','../Images/assets/Arn.png');
 		}
 		else if (_.contains(demoLevel, "ulv")) {
 		$(".NotCadet").attr('src','../Images/assets/Ulv.png');
@@ -741,6 +741,10 @@
 	float:left;
 	}
 	
+	.action:hover {
+	border: 6px solid yellow;
+	}
+	
 	
   </style>
 
@@ -799,9 +803,9 @@
 <button class="btn btn-default hidden" id="cadetsC">Assist Expedition</button>
 
 
-<button class="btn btn-default hidden" id="caught">Continue Caught Kidnappers</button>
-<button class="btn btn-default hidden" id="raidA">Continue Raid</button>
-<button class="btn btn-default hidden" id="raidB">Continue Raid</button>
+<button class="btn btn-default hidden" id="caught">Continue</button>
+<button class="btn btn-default hidden" id="raidA">Continue</button>
+<button class="btn btn-default hidden" id="raidB">Continue</button>
 <button class="btn btn-default hidden" id="encounter">Encounter</button>
 
 <button class="btn btn-default hidden" id="scouts">Versatile approach</button>
@@ -889,6 +893,7 @@
 <p>The chosen officer and their team will secure the island and the beach and set up a small camp. We don't have many small boats and we can't get the 'Attentive' that close without risking beaching ourselves as well.</p>
 <p>As much as I'd like to go personally, Admiralty doctrine states to send at the most the First-officer for initial excursions like this. The Captain should always to stay with the ship unless its safety absolutely secure.</p>
 <p>Below are the Officers on the current rotation to potentially handle the mission. They all have their own methods which I should consider carefully.</p>
+<p>-Hover over for info-</p>
 <span class="theOfficer officerObjects"></span>
 
 
@@ -1142,6 +1147,7 @@ Ulv scratched at her prominent neck-tuft before shrugging.<br />
 <p>I bite down a curse and consider my options briefly.</p>
 <p>I can unleash the Raptorians upon the islands and have them scour it. It's a bit of a heavy-handed move, they are not the most delicate tool for anyone hoping for non-violent outcomes, but they are fast.</p>
 <p>Or I could deploy the scouts to lead as pathfinders to fine-comb the island with a unit of Awes. A more versatile approach but not quite as fast.</p>
+<p>-Hover over for info-</p>
 <img id="actionScout" class="action" src='../Images/assets/ActionScout.png' height="40%" width="40%"/>
 <img id="actionRaptorian" class="action" src='../Images/assets/ActionRaptorian.png' height="40%" width="40%"/>
 
@@ -1297,6 +1303,7 @@ It was tightly cramped and there was already a deep groaning 'gruurg' of his bod
 <p>The Gryph seemed to go into a lengthy answer, his muffled indiscernible words rising and falling in pitch. <br />
 This goes on for a while and I realize he's conversing with Officer Garsch. <br />
 Perhaps he can deal with the questioning, I don't even know if I'm heard. The stomach churns around me, this is starting to feel like a bad idea.</p>
+<img src='../Images/assets/Gryphvore.png' height="40%" width="40%"/>
 </div>
 
 <div class="prisoner2a hidden"><p><strong>Deep Interrogation</strong></p>

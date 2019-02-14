@@ -1,6 +1,6 @@
  var officer = {
 		arn: {
-		image: '../Images/assets/Arnface.png',
+		image: '../Images/assets/Arn.png',
 		name: 'Arn',
 		title: 'First-Officer',
 		experience: 6,

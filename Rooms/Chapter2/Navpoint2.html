@@ -38,8 +38,8 @@ var navpoint2 = [];
 	}
 	
 */	
-       officer3 = [firstOfficer[0], officer.mirr, officer.tick];
-	   
+       officer3 = [officer.arn, officer.mirr, officer.tick];
+	   //  officer3 = [firstOfficer[0], officer.mirr, officer.tick];
 	   
    	   $(".NotCadet").attr('src','../Images/assets/Tick.png');
 	   
@@ -53,33 +53,36 @@ var navpoint2 = [];
         // Choice of officer.
 		choiceOfficer.splice(0, 0, officer3[0])
         // end by using lib.goTo
-		lib.dialogue(e, "clues3"),
+		lib.dialogue(e, "arn"),
         $("#officer0").addClass("hidden");
 		$("#officer1").addClass("hidden");
 		$("#officer2").addClass("hidden");
 		
 		$("#raptorians").removeClass("hidden");
+		$(".sideImage").attr('src','../Images/assets/Arn.png');
       })
 	  
 	  $('#officer1').on('click', function(e) {
         // Choice of officer.
 		choiceOfficer.splice(0, 0, officer3[1])
         // end by using lib.goTo
-		lib.dialogue(e, "clues2"),
+		lib.dialogue(e, "mirrO"),
         $("#officer0").addClass("hidden");
 		$("#officer1").addClass("hidden");
 		$("#officer2").addClass("hidden");
 		$("#raptorians").removeClass("hidden");
+		$(".sideImage").attr('src','../Images/assets/Mirr.png');
       })
 	  $('#officer2').on('click', function(e) {
          // Choice of officer.
 		choiceOfficer.splice(0, 0, officer3[2])
         // end by using lib.goTo
-		lib.dialogue(e, "clues3"),
+		lib.dialogue(e, "tick"),
         $("#officer0").addClass("hidden");
 		$("#officer1").addClass("hidden");
 		$("#officer2").addClass("hidden");
 		$("#raptorians").removeClass("hidden");
+		$(".sideImage").attr('src','../Images/assets/Tick.png');
       })  
 	  
 	  
@@ -93,17 +96,30 @@ var navpoint2 = [];
 		$("#officer1").removeClass("hidden");
 		$("#officer2").removeClass("hidden");
 		
+		$("#side").removeClass("hidden");
+		$(".sideImage").attr('src','../Images/assets/ActionAwes.png');
+		
       })
 	  
 	    $('#raptorians').on('click', function(e) {
-        // change state here
-		revealText()
-        // end by using lib.goTo
+        		
+		//revealText()
+        
+		if (_.contains(activeRoster, officer.evok)) {
+		$(".Evoktext").removeClass("hidden");
+		$(".sideImage").attr('src','../Images/assets/Evok.png');
+		}
+		else {
+		$(".noEvoktext").removeClass("hidden");
+		 $("#side").addClass("hidden");
+		}
 		lib.dialogue(e, "raptorians"),
         $("#raptorians").addClass("hidden");
 		$("#raptorians2").removeClass("hidden");
 		$("#raptorians3").removeClass("hidden");
 		$("#raptorians4").removeClass("hidden");
+		
+		
 		
       })
 	  
@@ -115,6 +131,7 @@ var navpoint2 = [];
 		$("#raptorians3").addClass("hidden");
 		$("#raptorians4").addClass("hidden");
 		$("#destination").removeClass("hidden");
+		$("#side").addClass("hidden");
       })
 	  
 	   $('#raptorians3').on('click', function(e) {
@@ -125,6 +142,7 @@ var navpoint2 = [];
 		$("#raptorians3").addClass("hidden");
 		$("#raptorians4").addClass("hidden");
 		$("#destination").removeClass("hidden");
+		$("#side").addClass("hidden");
       })
 	  $('#raptorians4').on('click', function(e) {
         // change state here
@@ -133,8 +151,19 @@ var navpoint2 = [];
         $("#raptorians2").addClass("hidden");
 		$("#raptorians3").addClass("hidden");
 		$("#raptorians4").addClass("hidden");
+		$("#missing").removeClass("hidden");
+		$("#side").addClass("hidden");
+      })
+	  
+	  $('#missing').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "missing"),
+        $("#missing").addClass("hidden");
+	
 		$("#missingScout").removeClass("hidden");
 		$("#missingRaptorian").removeClass("hidden");
+		
       })
 	  
 	  $('#missingScout').on('click', function(e) {
@@ -159,10 +188,26 @@ var navpoint2 = [];
 	  $('#destination').on('click', function(e) {
         // change state here
         // end by using lib.goTo
+		if (_.contains(choiceOfficer, officer.arn)) {
+		
+		$(".poorInvestigation").removeClass("hidden");
+		}
+		else if (_.contains(choiceOfficer, officer.tick)){
+		$(".Ticktext").removeClass("hidden");
+		$(".goodInvestigation").removeClass("hidden");
+		}
+		else if (_.contains(choiceOfficer, officer.mirr)){
+		$(".Mirrtext").removeClass("hidden");
+		$(".goodInvestigation").removeClass("hidden");
+		}
 		lib.dialogue(e, "destination"),
         $("#destination").addClass("hidden");
 		$("#button-2").removeClass("hidden");
 		$("#Navpoint3").removeClass("hidden");
+		$("#side").removeClass("hidden");
+		$(".sideImage").attr('src','../Images/assets/' + choiceOfficer[0].name + '.png');
+
+		
       })
 	  
 	   $('#scout').on('click', function(e) {
@@ -171,6 +216,9 @@ var navpoint2 = [];
 		lib.dialogue(e, "scout"),
         $("#scout").addClass("hidden");
 		$("#button-1").removeClass("hidden");
+		
+		$("#side").removeClass("hidden");
+		$(".sideImage").attr('src','../Images/assets/ScoutM.png');
       })
 	 
 		
@@ -179,6 +227,7 @@ var navpoint2 = [];
         // end by using lib.goTo
 		state.chapter[0] = ("Navpoint4");
         lib.goTo('Navpoint4.html')
+		$("#side").addClass("hidden");
       })
 	  
 	  	$('#navpoint3').on('click', function() {
@@ -208,7 +257,9 @@ Day: <span class="days"><script>displayDays()</script></span>
 </div>
 <h1>Three Sons</h1>
 </div>
-
+<div id="side" class="hidden">
+<img class="sideImage" src=""></img>
+</div>
 
 <div id="story-text">
 
@@ -285,6 +336,8 @@ $('#officerObject0').popover({title: officer3[0].name, content: "They could have
 $('#officerObject1').popover({title: officer3[1].name, content: "Im not personaly sure of the right action here, but with the right people in the right places we're sure to uncover something. I think I can assemble such a team!", trigger: "hover", placement: "top", container: "body"}); 
 $('#officerObject2').popover({title: officer3[2].name, content: "Huh, it's the abandoned camp we should investigate, not the island. That's where I'd focus my landing party", trigger: "hover", placement: "top", container: "body"}); 
 
+//$('#officer2').popover({trigger: "hover", html: true, content: $('#officerObject2').popover({title: officer3[2].name, content: "Huh, it's the abandoned camp we should investigate, not the island. That's where I'd focus my landing party", placement: "top", container: "body"})  }); 
+//Above code, instead showing popower on Ticks portrait when hovering ticks choice button, displays Ulvs full stats. Ulf is default officer3[2]
 </script>
 </div>
 </div>
@@ -346,8 +399,34 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Huh, it's the a
 
 
 <div class="raptorians hidden"><p><strong>  Raptorians want ashore</strong></p>
+
+<div class="noEvoktext hidden">
 <p>The Raptorians have been sitting quietly down in the depths of the holds for most of the journey. Now they request permission to go ashore and stretch their limbs properly. Some have expressed the desire to be allowed a day to roam around and get proper exercise and loose their pent-up energy and tension. </p>
 <p>My landing party has deemed the island as 'safe' from possible hostiles aside from wildlife. Not that there's much that could threaten a Raptorian. </p>
+</div>
+
+<div class="Evoktext hidden">
+<p>The Raptorians have been sitting quietly down in the depths of the holds for most of the journey. There is not terribly much heavy labor to go around for all of them. So when not goaded into loosing at cards they are slumbering, training (as far as space allows) or being fussed over by the squires.  The Pack-Master, who's steps can be heard coming from across the ship due to the creak of wood came to my cabin to deliver a request personally. </p>
+
+<p>&ldquo;Pack is bored, they dare nip and growl often.&rdquo; He rumbled.</p>
+
+<p>I had to cock my head at him and frown before he was prompted to continue. </p>
+
+<p>&ldquo;Few who was permitted to landing party smell of dirt and grass.&rdquo; The Pack-Master offered. </p>
+
+<p>&ldquo;Are you requesting Shore-leave for your Raptorians?&rdquo; I asked firmly, to get to the point. </p>
+
+<p>&ldquo;Squires bade me ask.&rdquo; The Pack-Master huffed a heavy snort of air. </p>
+
+<p>I suppressed a rueful grin. Pack-Master Evok did not like admitting to do favors for his pack. </p>
+
+<p>&ldquo;Do you expect trouble if I say no?&rdquo; I asked. </p>
+
+<p>The Pack-Master slowly shook his head. &ldquo;No, I control pack. Pack knows duty and I remind firmly, often and well.&rdquo; </p>
+
+<p>My landing party has deemed the island as 'safe' from possible hostiles aside from wildlife, not that there's much that could threaten a Raptorian. They are also already winding down their operation and preparing to leave, so whatever investigation they had must nearly concluded. We could be raising anchor and leaving sooner instead.</p>
+</div>
+
 </div>
 
 
@@ -362,7 +441,7 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Huh, it's the a
 
 <p>Well on the shore they noisily dash around with pent up energies, tackle and growl like a rowdy bunch. </p>
 
-<p>The crew who are ashore to refill out own water supply wisely keep well out of their way. </p>
+<p>The crew who are ashore to refill our water supply wisely keep well out of their way. </p>
 </div>
 
 
@@ -373,7 +452,7 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Huh, it's the a
 
 <p>Well ashore most scatter, running headlong into the woods with weeks of pent up energy while some remain and rowdily wrestle and growl at each-other on the beach. </p>
 
-<p>The crew who are ashore to refill out own water supply wisely keep well out of their way. </p>
+<p>The crew who are ashore to refill our water supply wisely keep well out of their way. </p>
 </div>
 
 <div class="missing hidden"><p><strong>A Raptorian has gone missing.</strong></p>
@@ -381,8 +460,20 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Huh, it's the a
 
 <p>After a quick check and headcount of the crew, it was clear he had not been eaten by a crew-mate (not even Keeper could digest one of them that fast), but gone missing somewhere on the islands.</p>
 
+<div class="noEvoktext hidden">
+<p>The Pack volunteers to search with his Raptorians and so do the Scouts, but the scouts say they cant effectively search at the same time as the Raptorians.</p>
+
+<p>&ldquo;They no doubt are quite capable of quickly turning the isles upside down in their search. But if you'd rather my troop do a sweep more subtly, just give us the word.&rdquo; Said the Scout-Master </p>
+</div>
+<div class="Evoktext hidden">
 <p>The Packmaster volunteer to search with his Raptorians and so do the Scouts, but the scouts say they cant effectively search at the same time as the Raptorians.</p>
 
+<p>Pack-Master Evok is looking most glum. He knows he's ultimately responsible for his Pack and this incident reflects poorly on his leadership as Pack-Master. </p>
+
+<p>&ldquo;Let the pack find its stray, Captain. Pack will be swift!&rdquo; He growls low in agitation. </p>
+
+<p>The Scout-Master has his own ideas.  &ldquo;They no doubt are quite capable of quickly turning the isles upside down in their search. But if you'd rather my troop do a sweep more subtly, just give us the word.&rdquo;</p>
+</div>
 <p><br />
 </p>
 
@@ -393,7 +484,7 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Huh, it's the a
 
 <script>
 $('#actionScout').popover({title: "Scouts", content: "Scouts are support and recognizance. They will take their time and sweep the islands, but cant do so if Raptorians are stomping around.", trigger: "hover", placement: "top", container: "body"}); 
-$('#actionRaptorian').popover({title: "Raptorians", content: "Raptorians are offering to find their own and claiming they can do so fast. They're usually not ideal for delicate missions and might make a bigger mess of things. ", trigger: "hover", placement: "top", container: "body"}); 
+$('#actionRaptorian').popover({title: "Raptorians", content: "Raptorians are offering to find their own and claiming they can do so fast. They're usually not ideal for delicate missions and might make a mess. ", trigger: "hover", placement: "top", container: "body"}); 
 
 </script>
 </div>
@@ -427,7 +518,7 @@ $('#actionRaptorian').popover({title: "Raptorians", content: "Raptorians are off
 </div>
 
 <div class="destination hidden"><p><strong>Destination</strong></p>
-<p>Poor investigation:</p>
+<div class="poorInvestigation hidden">
 
 <p>Our clues here were scant, but it seems clear someone was not planning on resupplying any time soon again and made a big operation out of stocking up quick from the islands. Judging by how cleaned up and little was left around, I suspect that although it was done under efficient haste rather then under any duress. It is likely the fleet used their supplies to move deeper into Thousand Island without having to have to worry for stops. </p>
  
@@ -439,26 +530,38 @@ $('#actionRaptorian').popover({title: "Raptorians", content: "Raptorians are off
 
 <p><br />
 </p>
+</div>
 
-<p>Good investigation:</p>
-
+<div class="goodInvestigation hidden">
 <div class="Ticktext hidden"><p><strong></strong></p>
-<p>The scratchings in the wood turned out to contain Admiralty code hidden in what appeared to be random marks. </p>
+<p>I find Ticks report on my desk. I cant help but shake my head ruefully, that Officer was not one for socializing.  </br>
+I could have interpret his unwillingness to deliver the report in person as a slight had his performance not been so exceptional.</p>
 
-<p> The code is vague, but seems to refer to positional numbering used in latitudes on standard Admiralty charts. This gives us a pretty clear clue where they were headed next. It is unclear why their destination was so hidden, perhaps they truly have pursuers they're cautious about.</p>
+<p>The marks and scratchings in the wood turned out to contain hidden Admiralty code. The report has them all written down and deciphered.</p>
+
+<p> The code is vague, but refer to positional numbering used in latitudes on standard Admiralty charts. This gives us a pretty clear clue where they were headed next. It is unclear why their destination was so hidden, perhaps they truly have pursuers they're cautious about.</p>
 </div>
 <div class="Mirrtext hidden"><p><strong></strong></p>
+<p>Mirr approaches casually and delivers her full report on her findings on the beach while casually puffing her tobacco, after a disapproving glance she smoothly stows it.</p>
+
+<p>"Seems they left some clues behind after all, what looked like counting scratches turned out to be code that we could decipher. Credit is where credit is due though, Tick did most of the figuring of that out." She crooned with a smile.</p>
+
+<p>“I'll make a note of it, regardless, good work. You got results and thats what counts. Though I'm not sure how you persuaded him to cooperate outside his core assignments.”</p>
+
+<p>Mirr chuckled at that with a coy smile. </p>
+
+<p>“Oh, Captain. Any Awe is pliable with the right encouragements! Tick is agreeable enough once you know how to navigate his tangles.”</p>
+
 <p>The scratchings in the wood turned out to contain Admiralty code hidden in what appeared to be random marks. </p>
 
-<p> The code is vague, but seems to refer to positional numbering used in latitudes on standard Admiralty charts. This gives us a pretty clear clue where they were headed next. It is unclear why their destination was so hidden, perhaps they truly have pursuers they're cautious about.</p>
+<p> The code is vague, but seems to refer to positional numbering used in latitudes on standard Admiralty charts. This gives us a pretty clear clue where they were headed next. It is unclear why their destination was so enigmatically hidden, perhaps they truly have pursuers they're cautious about.</p>
 </div>
 
-
-<p>Its clear the Fleet stocked up well before heading in deeper into Thousand islands in a hurry. Coded clues in the abandoned shacks appear to point to one of the Fleets preset rendezvous-points deeper in Thousand islands.</p>
+<p>Its clear the Fleet stocked up well before heading in deeper into Thousand islands in a hurry. The coded clues appear to point to one of the Fleets preset rendezvous-points deeper in Thousand islands.</p>
 
 <p>We can still backtrack slightly and head towards Navpoint 3 to investigate the possibility of another scout or natives with further information or head on deeper into Thousand Islands to the next rendezvous point marked as Navpoint 4. </p>
 
-
+</div>
 
 
 </div>
