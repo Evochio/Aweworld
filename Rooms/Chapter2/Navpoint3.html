@@ -116,12 +116,46 @@ state.chapter.push("testobject222223");
 	   $('#decline').on('click', function(e) {
         // change state here
         // end by using lib.goTo
-		lib.dialogue(e, "invitation"),
+		lib.dialogue(e, "decline"),
 		$("#invitation").addClass("hidden");
 		$("#decline").addClass("hidden");
-        
-		
+        $("#arrest").removeClass("hidden");	
+		 $("#kidnap").removeClass("hidden");	
+		  $("#leave").removeClass("hidden");	
       })
+	  
+	  $('#arrest').on('click', function(e) {
+        // change state here
+		Navpoint3.push("arrest");
+        // end by using lib.goTo
+		lib.dialogue(e, "arrest"),
+		$("#outcome").removeClass("hidden");
+        $("#leave").addClass("hidden");
+		$("#kidnap").addClass("hidden");
+		$("#arrest").addClass("hidden");
+      })
+	  
+	   $('#kidnap').on('click', function(e) {
+        // change state here
+		Navpoint3.push("kidnap");
+        // end by using lib.goTo
+		lib.dialogue(e, "kidnap"),
+		$("#outcome").removeClass("hidden");
+        $("#leave").addClass("hidden");
+		$("#kidnap").addClass("hidden");
+		$("#arrest").addClass("hidden");
+      })
+	  
+	   $('#leave').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "leave"),
+		$("#outcome").removeClass("hidden");
+        $("#leave").addClass("hidden");
+		$("#kidnap").addClass("hidden");
+		$("#arrest").addClass("hidden");
+      })
+	  
 	  
 	  $('#escort1').on('click', function(e) {
         // change state here
@@ -174,7 +208,7 @@ state.chapter.push("testobject222223");
 		lib.dialogue(e, "talksVillage2b"),
         $("#protection").addClass("hidden");
 		$("#trade").addClass("hidden");
-		$("#talksVillage3").removeClass("hidden");
+		$("#negotiate").removeClass("hidden");
       })
 	  
 	  $('#trade').on('click', function(e) {
@@ -184,7 +218,7 @@ state.chapter.push("testobject222223");
 		lib.dialogue(e, "talksVillage2b"),
         $("#protection").addClass("hidden");
 		$("#trade").addClass("hidden");
-		$("#talksVillage3").removeClass("hidden");
+		$("#negotiate").removeClass("hidden");
       })
 	  
 	  $('#talksVillage3').on('click', function(e) {
@@ -249,6 +283,7 @@ state.chapter.push("testobject222223");
 	    
 		$('#reassure').on('click', function(e) {
         // change state here
+		Navpoint3.push("reassure");
         // end by using lib.goTo
 		lib.dialogue(e, "reassure"),
         $("#reassure").addClass("hidden");
@@ -261,6 +296,7 @@ state.chapter.push("testobject222223");
 	  
 	   $('#shame').on('click', function(e) {
         // change state here
+		Navpoint3.push("shame");
         // end by using lib.goTo
 		lib.dialogue(e, "shame"),
         $("#shame").addClass("hidden");
@@ -298,6 +334,9 @@ state.chapter.push("testobject222223");
         // end by using lib.goTo
 		if (_.contains(Navpoint3, "UnArmed") && _.contains(Navpoint3, "threaten")) {
 		lib.dialogue(e, "failed2")
+		$("#leave").removeClass("hidden");	
+		$("#kidnap").removeClass("hidden");	
+		$("#arrest").removeClass("hidden");	
 		}
 		else if (_.contains(Navpoint3, "Armed") && _.contains(Navpoint3, "threaten")) {
 		lib.dialogue(e, "failed")
@@ -309,6 +348,15 @@ state.chapter.push("testobject222223");
 		$("#apperehend").removeClass("hidden");
 		$("#letgo").removeClass("hidden");
 		}
+		else if (_.contains(Navpoint3, "shame")) {
+		lib.dialogue(e, "success")
+		
+		}
+		else if (_.contains(Navpoint3, "UnArmed") && _.contains(Navpoint3, "reassure")) {
+		lib.dialogue(e, "success2")
+		
+		}
+		
         $("#outcome").addClass("hidden");
 		
       })
@@ -401,12 +449,16 @@ Day: <span class="days"><script>displayDays()</script></span>
 <button class="btn btn-default hidden" id="invitation">Take the invitation</button>
 <button class="btn btn-default hidden" id="decline">Decline</button>
 
+<button class="btn btn-default hidden" id="kidnap">Scout Operations</button>
+<button class="btn btn-default hidden" id="arrest">Armed Operation</button>
+<button class="btn btn-default hidden" id="leave">Leave</button>
+
 <button class="btn btn-default hidden" id="escort1">No Escort</button>
 <button class="btn btn-default hidden" id="escort2">Armed Escort</button>
 
 <button class="btn btn-default hidden" id="talksVillage">Village</button>
 <button class="btn btn-default hidden" id="talksVillage2">Accept the feast</button>
-<button class="btn btn-default hidden" id="talksVillage3">Decline and negotiate</button>
+<button class="btn btn-default hidden" id="talksVillage3">Decline Feast</button>
 
 <button class="btn btn-default hidden" id="protection">Protection</button>
 <button class="btn btn-default hidden" id="trade">Trade</button>
@@ -527,14 +579,81 @@ $('#officerObject2').popover({title: officer3[2].name, content: "No waste of tim
 </div>
 </div>
 
+<div class="decline hidden">
+<p>I decide to decline the invitation.  I do not like going to the village on their terms. Its not so much the safety aspect of it as it has to do with respect for orders.  The Scouts refusal to report to the ship are in line with desertion. Scouts are a disciplined bunch, trained from youth, so its quite perplexing.  I can decide he's not worth the effort and risks, or send a troop to arrest him. </p>
+<div class="garschText hidden">
+<p>Garsch made a path, albeit difficult one, through the dense vegetation to the village. He can make it again, but it will only fit a small force.</p>
+</div>
+<div class="nyxieText hidden">
+<p>Nyxie found a favorable landing spot, so sending in a sizable party to do so would not be difficult. </p>
+</div>
+<p>A third option I've considered is sending the scout-master and his team to retrieve him. It has risk, but they should be able to do it quickly and quietly. Its part of their modus operandi.</p>
+</div>
+
+<div class="leave hidden">
+<p>Its too much trouble then its worth for one scout, valuable as they are, to risking the health of my crew or aggravating conflict with natives.  I'm putting an official report on that Scout 'Vessla' has refused direct command to report to duty and is suspected of desertion.  Our only option is to return to our previous search pattern and likely route of the fleet with what clues we have.</p>
+</div>
+
+<div class="kidnap hidden">
+<p>The Scout-Master was briefed on the mission. He apparent had no reservations about my orders for his troop to infiltrate and capture one of their own, for he raised no comment about it and merely nodded and asked if I wanted it done immediately or later at night.  I left it to his discretion and he decided to wait until night.</p>
+
+<p>It was a tense wait through the night. I decided to stay up and wait.  Scouts are renowned for their skill at silence and subtlety, few appreciate or perhaps realize the depth of their training. Its with this in mind my concern lies in that their target is equally trained and might prove a challenge that is aware of their methods. </p>
+
+<p>Just as dusk is brightening the horizon a cadre of shadows swoop in low over the canopy and toward the ship however. Supported between them they carry a tied up bundle which reveal itself to be their captured quarry.  &ldquo;Scout Vessla has been retrieved successfully Captain.&rdquo; The Scout-Master announces briskly upon landing.  I nod approvingly and touch his shoulder with a pat. &ldquo;Well done Scout-Master, very well done.&rdquo;  Scout Vessla struggles, gagged and bound. He looks a mixed of frightened and frustrated.  He's in for some thorough questioning later.</p>
+</div>
+
+<div class="kidnap2 hidden">
+<p>Scouts fail the mission , get humuliated and eaten by Scout Vessla and possibly Darter. </p>
+</div>
+
+<div class="arrest hidden">
+<div class="garschText hidden">
+<p>I decide to send in a force to arrest him. His actions have been very unbecoming and require a stern response. </p>
+
+<p>The troop is small, any more of them and they'd be tripping over each other on the trail, but they're armed and armored more then the Islanders could ever be and led by a capable officer. <br />
+My paws itch with the desire to be out there with them, to face and see them through any danger my orders might put them in myself. But reluctantly, I understand the restrictive policy. Having the captain throw themselves into every situation would quickly lead to a shortage of captains. </p>
+
+<p>The first sign of trouble is a plume of smoke rising from the central island thats larger then what cooking fire should be. No messenger arrives, asking for reinforcements however, which is either promising or very foreboding. </p>
+
+<p>In the end, my troop emerges from the brush and return to the ship. Garsch, with a fresh cut, delivers the report. The other members of the troop look dirty and roughed up, some are sporting rather full bellies, especially a Raptorian. </p>
+
+<p>&ldquo;We met opposition Captain. They hounded us from the trees on the trail, they had expected us. They drew first blood and we took a casualty.&rdquo;<br />
+I saw them carrying the injured Awe below deck. It looks rough, if Pouch-Matron Elda deems them too injured, they will be taken on by their closest comrade. <br />
+&ldquo;I had us advance, double-pace, to the village in attack. Their resistance there was light, I believe merely delaying actions to allow their leadership and majority to escape. We found their hidden main-entrance, but they had already made off with their canoes Captain. The target, Scout Vessla, must be with them.&rdquo;<br />
+I found my fur bristling in irritation. The assault had failed, but not from any fault of my Awes. Scout Vessla had deserted and tribe Lanaga chosen to oppose themselves to our cause. <br />
+While we possibly could set a pursuit and catch up to their canoes, it was not our main goal and might set us on a long chase where our quarry has intimate familiarity with local territory and its chains of islands. <br />
+I dismiss Officer Garsch so he can get his cut treated while I mull over our next destination. <br />
+</p>
+</div>
+<div class="nyxieText hidden">
+<p>I decide to send in a force to arrest him. His actions have been very unbecoming and require a stern response. <br />
+Since we have knowledge of their main entrance and good landing, I feel confident the armed troop I send should be able to do the job. We'll have equal numbers but better arms, armor and training. <br />
+My paws itch with the desire to be out there with them, to face and see them through any danger my orders might put them in myself. But reluctantly, I understand the restrictive policy. Having the captain throw themselves into every situation would quickly lead to a shortage of captains. <br />
+The fighting turned out to be fierce. A messenger Awe comes flying, reporting high resistance, situation stable but asking for support and I have a second boatload of armed Awes sent out there to reinforce them. </p>
+
+<p>Soon a dark plume of smoke rises from the center of the island, it doesn't seem to spread too far across the foliage, but it seems clear the village has been set ablaze. <br />
+A victorious but tired troop soon return. It takes several trips with boats to retrieve them all due to the added weight of their bellies and occasional prisoner. <br />
+Officer Garsch, with a fresh cut and a sagging full belly-prize of his own, delivers his report. <br />
+&ldquo;We captured the Scout and neutralized the tribe, Captain.&rdquo; He started, stifling a belch expertly.<br />
+&ldquo;They were half-expecting us, but not the speed of our deployment. We were upon them as they were readying to leave and preparing their small craft. We secured their landing and all its canoes, stranding them on the island and they fought hard to dislodge us a while.&rdquo;<br />
+Officer Garsch turned to glance at a couple of wounded being carried below deck. They looked bad, if Pouch-Matron Elda deems them too injured, they will be taken on by their closest kin or comrade on the ship. <br />
+&ldquo;After we received reinforcement we managed to push them back. Their big elder leader fell, a Raptorian got him and the rest broke, many fled into the woods. We torched the village and the canoes, but there might have been other hidden ones deeper on the island.&rdquo;<br />
+Garsch paused in his debriefing to heft his heavily engorged belly up. Despite his age he carried it well, but it was clearly taxing. A tied up Scout-Vessla was led below deck, throwing a forlorn look at the both of us. <br />
+&ldquo;Scout Vessla, as far as I can tell, did not partake in the fighting and surrendered after I bested and consumed the younger Chief in single combat in the village. He refused to surrender.&rdquo; Officer Garsch finished explaining, looking eager for rest.<br />
+I pat my officer on the shoulder firmly and congratulate him on a job well done. He'd receive a commendation for this. I dismissed him to get some rest and digest his meal.</p>
+</div>
+</div>
+
 <div class="invitation hidden">
 <p>I choose to agree to the invitation and make preparations to visit the island.  Though standard doctrines demand the captains remain aboard the ship as much as possible, I'm more then happy to get my own paws dirty. Undoubtedly one of the downsides of becoming the captain was the sudden lack of adventurous assignments. </p>
 
 <p>The question remains what kind of escort to bring however. </p>
 
-<p>Garsch: Since the landing site is difficult and the trail through the rough brush to the village narrow, we can only bring a smaller team. </p>
-
 <p>I could bring an armed escort, a secure option that'll keep my officers happy and a show of power to the Islanders.</p>
+
+<div class="garschText hidden">
+"Since the landing site is difficult and the trail through the rough brush to the village that we forged narrow and rugged, we can only bring a smaller team." Garsch huffed when prompted about it.</p>
+</div>
 
 <p>There is also the option of a more diplomatic approach, by going mostly alone. I fear no Islanders and the Scout seemed to be in good health, that should be a positive indication.</p>
 </div>
@@ -549,9 +668,13 @@ $('#officerObject2').popover({title: officer3[2].name, content: "No waste of tim
 </div>
 
 <div class="escort2 hidden">
-<p>I decide bring an armed detail with me. Two armed and armored Raptorians and a trio of Awes under Garsches capable command should do. Any more and our landing boat would capsize. </p>
-
-<p>We arrive at the village and its a surprisingly pleasant place. The dense woods open up into an enclosed clearing of sorts. Huts are built into the oldest trees of the island here and its clear the place is well sheltered from outside weather. </p>
+<div class="nyxieText hidden">
+<p>I decide bring an armed detail with me. Two armed and armored Raptorians and a trio of experienced Awes under Garsches capable command should do. Any more and our landing boat would capsize. The hidden landing area is modest, but provides a sheltered area to tie up our boat and walk a cleared hidden path inland.</p>
+</div>
+<div class="garschText hidden">
+<p>I decide bring an armed detail with me. One armed and armored Raptorians and two experienced Awes under Garsches capable command is all we can bring. The trail through the woods is indeed difficult, there is even some climbing involved, no doubt the Gryphs come and go to the Island through some other means.</p>
+</div>
+<p>We<div class="garschText hidden">finally</div> arrive at the village and its a surprisingly pleasant place. The dense woods open up into an enclosed clearing of sorts. Huts are built into the oldest trees of the island here and its clear the place is well sheltered from outside weather. </p>
 
 <p>Numerous Islanders, all colorful in their garb, markings and feathers; Gawk at us from various huts or small groups. There are few if any young Gryphs here, I reckon this might be a form of minor foraging village for a larger tribe elsewhere. </p>
 
@@ -618,10 +741,13 @@ $('#officerObject2').popover({title: officer3[2].name, content: "No waste of tim
 <p>“The question of allegiance and trade, is not ours to make. It is for Chief and Elders of Lanaga to decide. Saw-fin season is soon to end and we will then make our way home there and bring your proposals for consideration.”</p>
 
 <p>“I have outlined the Admiraltys request and proposals and have them in written form.” Scout Vessla squeaked from his seat. “I could be of further help as a negotiator when they return to the main isles.”  </p>
+
+<p>Scout Vessla has broached the subject of my visit and the company around the dining table grew quiet in apprehension to how I would respond. I would ofcourse not let him go as easily as that.</p>
+
 </div>
 
 <div class="scoutV hidden"><p><strong></strong></p>
-<p>The group grew silent a while, before one of the Gryphs spoke up. </p>
+<p>The group remained silent a while, before one of the Gryphs spoke up. </p>
 
 <p>“The reason you have come to our village. Is to ask Scout Vessla to return to duty, correct?” Forager Holixer rumbled. </p>
 
@@ -751,6 +877,9 @@ I huff in slight contempt but cross my arms.</p>
 <div class="unarmed hidden">
 <p>I've come without an armed escort. Hopefully that sign of goodwill will lend itself well. </p>
 </div>
+<p>I can try to appeal to the Islanders, perhaps they can be appeased in some way to agree with me. Or I can put the squeeze on Scout Vessla. </p>
+
+<p>Lastly, I can stop being polite and let them know whats what.</p>
 </div>
 
 </body>
@@ -841,7 +970,9 @@ But thats not a good enough excuse. Perhaps I can press him further, or try to r
 
 <p>Vessla visibly gulps nervously, but Forager Holixer seems to straighten and clack his beak briefly, coming to the scouts defense. “Threats are not to be made lightly Awe-Captain!”</p>
 
-<p>“Scout Vessla abandoning his duty at this point would hurt our cause with more then just his absence. It sets a dangerous precedent that threaten the crews conviction and dedication.” I slammed a clenched paw on the table. “You are here for the defense of the homeland! Not to find a place of refuge! So I can only offer him the ONE way out everyone else gets. </p>
+<p>I would not let myself be intimidated however.</p>
+
+<p>“Scout Vessla abandoning his duty at this point would hurt our cause with more then just his absence. It sets a dangerous precedent that threaten the crews conviction and dedication.” I slammed a clenched paw on the table. “You are here for the defense of the homeland! Not to find a place of refuge! So I can only offer him the ONE way out everyone else gets." </p>
 <!--And I assure you there will be very little lightness about me if you interfere and force me to fit all three of you!”-->
 <div class="armed hidden">
 <p>They seemed to take my threat quite seriously, shifting uncertainly, but the Chief-son Darter looked noticeably agitated.</p>
@@ -894,6 +1025,20 @@ Scout Vessla seemed to sigh, deflate almost. Then he took a long breath and stra
 <p>&ldquo;You know not what forces you court conflict with.&rdquo; I warned firmly. I eyed Scout Vessla sharply once more, who shrunk away under my gaze. He seemed ashamed and fearful, as he should be. However, he backed away deeper into the tribe rather than making any moves to join me.</p>
 
 <p>I fumed all the way back to my ship, not speaking a word for the whole trip. My small accompanying delegation were wise to remain equally silent.</p>
+
+<p>Once back on the ship, my officers looked to me for orders. </p>
+
+<p>We could call it quite and leave, I know a few of my officers would like to advice it but are wary of my ire. </p>
+
+<p>I could also make truth of my threat and have a force ready to head into the village to arrest the Scout. </p>
+<div class="garschText hidden">
+<p> With the narrow and difficult passage through the woods however, it'd be a difficult task </p>
+</div>
+<div class="nyxieText hidden">
+<p> With their main entrance discovered, I could safely send a pretty sizable force to do it. </p>
+</div>
+<p> Lastly, there's the Scouts. I could ask them to try to grab our scout covertly. Thats a task well within their trained abilities. It's a fellow scout i'd be asking them to kidnap however.</p>
+
 </div>
 
 
