@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="../../main.css"></link>
   <script>
   	var Navpoint3 = [];
+	var favor = 0;
   
 state.chapter.push("testobject222223");
     $(document).ready(function() {
@@ -160,6 +161,7 @@ state.chapter.push("testobject222223");
 	  $('#escort1').on('click', function(e) {
         // change state here
 		Navpoint3.push("UnArmed");
+		favor +=1;
         // end by using lib.goTo
 		lib.dialogue(e, "escort1"),
 		$("#talksVillage").removeClass("hidden");
@@ -192,6 +194,7 @@ state.chapter.push("testobject222223");
 	  $('#talksVillage2').on('click', function(e) {
         // change state here
 		Navpoint3.push("feast");
+		favor +=1;
         // end by using lib.goTo
 		lib.dialogue(e, "talksVillage2"),
         $("#talksVillage2").addClass("hidden");
@@ -209,6 +212,7 @@ state.chapter.push("testobject222223");
         $("#protection").addClass("hidden");
 		$("#trade").addClass("hidden");
 		$("#negotiate").removeClass("hidden");
+		$("#questions").removeClass("hidden");
       })
 	  
 	  $('#trade').on('click', function(e) {
@@ -219,7 +223,66 @@ state.chapter.push("testobject222223");
         $("#protection").addClass("hidden");
 		$("#trade").addClass("hidden");
 		$("#negotiate").removeClass("hidden");
+		$("#questions").removeClass("hidden");
       })
+	  
+	  $('#questions').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		$("#questions").addClass("hidden");
+     	$("#negotiate").addClass("hidden");
+		$("#qlanaga").removeClass("hidden");
+		$("#qnowhere").removeClass("hidden");
+		
+	
+		$("#noquestions").removeClass("hidden");
+      })
+	  
+	  $('#qlanaga').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		$(e.target).removeClass("btn-default").addClass("btn-info")
+		lib.dialogue(e, "qlanaga"),
+		$("#qtribes").removeClass("hidden");
+      })
+	  
+	   $('#qnowhere').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		$(e.target).removeClass("btn-default").addClass("btn-info")
+		lib.dialogue(e, "qnowhere"),
+		$("#qtribes").removeClass("hidden");
+      })
+	   $('#qtribes').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		$(e.target).removeClass("btn-default").addClass("btn-info")
+		lib.dialogue(e, "qtribes"),
+		$("#qtribes2").removeClass("hidden");	
+      })
+	  
+	    $('#qtribes2').on('click', function(e) {
+        // change state here
+		favor +=1;
+        // end by using lib.goTo
+		$(e.target).removeClass("btn-default").addClass("btn-info")
+		lib.dialogue(e, "qtribes2")
+      })
+	  
+	  
+	   $('#noquestions').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+     	$("#negotiate").removeClass("hidden");
+		$("#questions").removeClass("hidden");
+		$("#qlanaga").addClass("hidden");
+		$("#qnowhere").addClass("hidden");
+		$("#qtribes").addClass("hidden");
+		$("#qtribes2").addClass("hidden");
+		$("#noquestions").addClass("hidden");
+      })
+	  
+	  
 	  
 	  $('#talksVillage3').on('click', function(e) {
         // change state here
@@ -263,6 +326,7 @@ state.chapter.push("testobject222223");
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "negotiate"),
+		$("#questions").addClass("hidden");
         $("#negotiate").addClass("hidden");
 		$("#question").removeClass("hidden");
 		$("#appeal").removeClass("hidden");
@@ -271,6 +335,7 @@ state.chapter.push("testobject222223");
 	  
 	   $('#question').on('click', function(e) {
         // change state here
+		Navpoint3.push("question");
         // end by using lib.goTo
 		lib.dialogue(e, "question"),
         $("#question").addClass("hidden");
@@ -307,14 +372,150 @@ state.chapter.push("testobject222223");
 	  
 	  $('#appeal').on('click', function(e) {
         // change state here
+		Navpoint3.push("appeal");
+		if ( favor > 1 ) {
+		$(".favor").removeClass("hidden");
+		$(".nofavor").addClass("hidden");
+		$("#flirty").removeClass("hidden");
+		}
+		else {
+		$(".nofavor").removeClass("hidden");
+		$(".favor").addClass("hidden");
+		
+		if (_.contains(Navpoint3, "question")) {
+		$("#outcome").removeClass("hidden");
+			}
+			else {
+					 $("#question").removeClass("hidden");
+					 $("#threaten").removeClass("hidden");
+					 }
+		}
         // end by using lib.goTo
 		lib.dialogue(e, "appeal"),
         $("#question").addClass("hidden");
 		$("#appeal").addClass("hidden");
 		$("#threaten").addClass("hidden");
+		
+		
+      })
+	  
+	   $('#flirty').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "flirty"),
+        $("#flirty").addClass("hidden");
+		$("#perhaps").removeClass("hidden");
+		$("#no").removeClass("hidden");
+		$("#stare").removeClass("hidden");
+		
+      })
+	  
+	  $('#perhaps').on('click', function(e) {
+        // change state here
+		favor +=1;
+		if ( favor > 2 ) {
+		$(".favor").removeClass("hidden");
+		$(".nofavor").addClass("hidden");
+		}
+		else {
+		$(".nofavor").removeClass("hidden");
+		$(".favor").addClass("hidden");
+		}
+        // end by using lib.goTo
+		lib.dialogue(e, "appeal2"),
+		$(".perhaps").removeClass("hidden");
+        $("#perhaps").addClass("hidden");
+		$("#no").addClass("hidden");
+		$("#stare").addClass("hidden");
+		$("#stay").removeClass("hidden");
+		$("#nostay").removeClass("hidden");
+      })
+	  
+	  $('#no').on('click', function(e) {
+        // change state here
+		$(".favor").addClass("hidden");
+		$(".nofavor").removeClass("hidden");
+        // end by using lib.goTo
+		lib.dialogue(e, "appeal2"),
+		$(".no").removeClass("hidden");
+        $("#perhaps").addClass("hidden");
+		$("#no").addClass("hidden");
+		$("#stare").addClass("hidden");
 		$("#outcome").removeClass("hidden");
 		
       })
+	  
+	  $('#stare').on('click', function(e) {
+        // change state here
+		if ( favor > 2 ) {
+		$(".favor").removeClass("hidden");
+		$(".nofavor").addClass("hidden");
+		}
+		else {
+		$(".nofavor").removeClass("hidden");
+		$(".favor").addClass("hidden");
+		}
+        // end by using lib.goTo
+		lib.dialogue(e, "appeal2"),
+		$(".stare").removeClass("hidden");
+        $("#perhaps").addClass("hidden");
+		$("#no").addClass("hidden");
+		$("#stare").addClass("hidden");
+		$("#outcome").removeClass("hidden");
+      })
+	  
+	   $('#stay').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "stay"),
+        $("#stay").addClass("hidden");
+		$("#nostay").addClass("hidden");
+		$("#firm").removeClass("hidden");
+		$("#amused").removeClass("hidden");
+		$("#formal").removeClass("hidden");
+      })
+	  
+	  $('#nostay').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "nostay"),
+        $("#stay").addClass("hidden");
+		$("#nostay").addClass("hidden");
+		$("#outcome").removeClass("hidden");
+		
+      })
+	  
+	  $('#firm').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "firm"),
+        $("#firm").addClass("hidden");
+		$("#amused").addClass("hidden");
+		$("#formal").addClass("hidden");
+		$("#outcome").removeClass("hidden");
+		
+      })
+	   $('#amused').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "amused"),
+        $("#firm").addClass("hidden");
+		$("#amused").addClass("hidden");
+		$("#formal").addClass("hidden");
+		$("#outcome").removeClass("hidden");
+		
+      })
+	   $('#formal').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "formal"),
+        $("#firm").addClass("hidden");
+		$("#amused").addClass("hidden");
+		$("#formal").addClass("hidden");
+		$("#outcome").removeClass("hidden");
+		
+      })
+	  
 	  
 	    $('#threaten').on('click', function(e) {
         // change state here
@@ -338,6 +539,11 @@ state.chapter.push("testobject222223");
 		$("#kidnap").removeClass("hidden");	
 		$("#arrest").removeClass("hidden");	
 		}
+		else if (_.contains(Navpoint3, "appeal") && _.contains(Navpoint3, "question")) {
+		lib.dialogue(e, "failed")
+		$("#apperehend").removeClass("hidden");
+		$("#letgo").removeClass("hidden");
+		}
 		else if (_.contains(Navpoint3, "Armed") && _.contains(Navpoint3, "threaten")) {
 		lib.dialogue(e, "failed")
 		$("#apperehend").removeClass("hidden");
@@ -354,7 +560,13 @@ state.chapter.push("testobject222223");
 		}
 		else if (_.contains(Navpoint3, "UnArmed") && _.contains(Navpoint3, "reassure")) {
 		lib.dialogue(e, "success2")
+		}
 		
+		else if (_.contains(Navpoint3, "Armed") && _.contains(Navpoint3, "reassure")) {
+		lib.dialogue(e, "negotiate2")
+		$("#letgo").removeClass("hidden");
+		$("#appeal").removeClass("hidden");	
+		$("#threaten").removeClass("hidden");
 		}
 		
         $("#outcome").addClass("hidden");
@@ -447,7 +659,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 <button class="btn btn-default hidden" id="mission2">Expedition results</button>
 
 <button class="btn btn-default hidden" id="invitation">Take the invitation</button>
-<button class="btn btn-default hidden" id="decline">Decline</button>
+<button class="btn btn-default hidden" id="decline">Decline invitation</button>
 
 <button class="btn btn-default hidden" id="kidnap">Scout Operations</button>
 <button class="btn btn-default hidden" id="arrest">Armed Operation</button>
@@ -463,6 +675,13 @@ Day: <span class="days"><script>displayDays()</script></span>
 <button class="btn btn-default hidden" id="protection">Protection</button>
 <button class="btn btn-default hidden" id="trade">Trade</button>
 
+<button class="btn btn-default hidden" id="questions">Questions</button>
+<button class="btn btn-default hidden" id="qlanaga">About Lanaga</button>
+<button class="btn btn-default hidden" id="qnowhere">Port Nowhere</button>
+<button class="btn btn-default hidden" id="qtribes">About Island Tribes</button>
+<button class="btn btn-default hidden" id="qtribes2">Adopted? Resident?</button>
+<button class="btn btn-default hidden" id="noquestions">Enough Questions</button>
+
 <button class="btn btn-default hidden" id="scoutV">Scout Vessla</button>
 
 <button class="btn btn-default hidden" id="talks">Visitors</button>
@@ -472,6 +691,20 @@ Day: <span class="days"><script>displayDays()</script></span>
 <button class="btn btn-default hidden" id="negotiate">Negotiate Vessla return to duty.</button>
 
 <button class="btn btn-default hidden" id="appeal">Appeal</button>
+<button class="btn btn-default hidden" id="flirty">Chief-Son Darter</button>
+<button class="btn btn-default hidden" id="holixer">Forager Holixer</button>
+
+<button class="btn btn-default hidden" id="perhaps">Perhaps</button>
+<button class="btn btn-default hidden" id="no">No</button>
+<button class="btn btn-default hidden" id="stare">No answer(Stare)</button>
+
+<button class="btn btn-default hidden" id="stay">Stay the night</button>
+<button class="btn btn-default hidden" id="nostay">Decline to stay</button>
+
+<button class="btn btn-default hidden" id="firm">Firmly teach him to respect Awes. </button>
+<button class="btn btn-default hidden" id="amused">Be amused to watch him try. </button>
+<button class="btn btn-default hidden" id="formal">Keep things polite and formal. </button>
+
 <button class="btn btn-default hidden" id="question">Question Fear</button>
 <button class="btn btn-default hidden" id="reassure">Reassure</button>
 <button class="btn btn-default hidden" id="shame">Shame (Responsibility)</button>
@@ -674,7 +907,7 @@ I pat my officer on the shoulder firmly and congratulate him on a job well done.
 <div class="garschText hidden">
 <p>I decide bring an armed detail with me. One armed and armored Raptorians and two experienced Awes under Garsches capable command is all we can bring. The trail through the woods is indeed difficult, there is even some climbing involved, no doubt the Gryphs come and go to the Island through some other means.</p>
 </div>
-<p>We<div class="garschText hidden">finally</div> arrive at the village and its a surprisingly pleasant place. The dense woods open up into an enclosed clearing of sorts. Huts are built into the oldest trees of the island here and its clear the place is well sheltered from outside weather. </p>
+<p>We<span class="garschText hidden">finally</span> arrive at the village and its a surprisingly pleasant place. The dense woods open up into an enclosed clearing of sorts. Huts are built into the oldest trees of the island here and its clear the place is well sheltered from outside weather. </p>
 
 <p>Numerous Islanders, all colorful in their garb, markings and feathers; Gawk at us from various huts or small groups. There are few if any young Gryphs here, I reckon this might be a form of minor foraging village for a larger tribe elsewhere. </p>
 
@@ -744,7 +977,75 @@ I pat my officer on the shoulder firmly and congratulate him on a job well done.
 
 <p>Scout Vessla has broached the subject of my visit and the company around the dining table grew quiet in apprehension to how I would respond. I would ofcourse not let him go as easily as that.</p>
 
+<p> I can begin the negotiations or ask some questions, keep things civil for a while longer. Once we begin negotiating, there will be little oppertunity left for pleasantries. </p> 
 </div>
+
+<div class="qlanaga hidden"><p><strong></strong></p>
+<p>“Im curious about your tribe, the Lanaga. What can you tell me about your people, have you always lived here?”</p>
+
+<p>Forager Holixer straightens and seems to eye me with a glimmer of approval and pride. He seems happy I've asked and equally happy to answer. </p>
+
+<p>“The Lanaga tribe, like all other adopted tribe, carry the ancient name of their lost home city or region from old Preenlon. We've existed on these isles for countless generations now since the fall. <br />
+We were always small in number, thus we had to be satisfied with the isles furthest out to sea.</p>
+
+<p>These are meager conditions, Captain. What grows here grows slowly, especially this far out. One can not harvest the isles recklessly or risk upsetting the frail balance.<br />
+Our ancestors learned this the hard way, it was only due to the generosity of the resident tribes that they endured long enough to learn. Learn that we do not adopt the isles, the isles adopt us. </p>
+
+<p>It made us strong and wise however, we are able to live comfortably now and not contend too much over territory with other tribes. <br />
+</p>
+</div>
+
+<div class="qnowhere hidden"><p><strong></strong></p>
+<p>“In our travels, one certain location has come to our interest. One we have unfortunatly scant information about. Have you heard about Port Nowhere and its current location?”</p>
+
+<p>It was Forager Holixer that leaned forward in response to this querry. The sizable gryph made a uncertain flexing of wings and furrowed his brow in a scowl. </p>
+
+<p>“The roaming Port Nowhere, yes. We have heard of it. In the past we have also had dealings with it when it has strayed close to our domains. But I was but a young wee down when that was last.”</p>
+
+<p>“So its true then, its a floating port of some kind?” I ask curiously. </p>
+
+<p>“Aye, a city of the sea that goes where the tides favor it. It has long history and has many legends. Im afraid im not familiar with all of them, the Thousand isles have too many legends and marvels for me to bother keep track of.” </p>
+
+<p>“Lanaga lays far from the current roaming parts of Port Nowhere, there lays many tribes between us that may have more answers. Though not all of them may be as hospitable as the Lanaga.”</p>
+</div>
+
+<div class="qtribes hidden"><p><strong></strong></p>
+<p>“You said there were many tribes out there. Are there any nearby you can tell me anything about, perhaps their whereabouts? If there are any we should be cautious about?” I ask. </p>
+
+<p>“Understand that the Tribes of the isles are both family and rivals in one. It would be poor conduct, nay, dishonorable according to Island law; For me to speak ill of our brethren, even if we are not at best of terms. <br />
+Hospitality and attitude will differ, I believe none of the Tribes are known to host ill will to travelers and visitors however, so I will not caution you from any of our brethren Tribes.” Holixer explained patiantly. I could by nod in acknowledgement. It was a scant and evasive answer at best. <br />
+I had planned to be cautious of all tribes we were to meet so this information did not really change any of that. </p>
+
+<p>“I can tell you that to our direct west, the larger Tribes you are likely to meet are the Kaelani and to the north of them, the Cold Claws. The Kaelani are like us, adopted Tribe, while the Cold Claws are resident Tribe.”</p>
+</div>
+
+<div class="qtribes2 hidden"><p><strong></strong></p>
+<p>“Adopted? Resident?” I ask curiously. </p>
+
+<p>“Ah, what is common lore for us must be very unfamiliar to outsiders. There exists many types of Tribes in the Isles. Adopted tribes, are the people who hold some heritage to old Preenlon. Have you heard of it?”</p>
+
+<p>I nod my head vaguely. Some old history was not all familiar, but I do know alot of the military structure of the Admiralty was adopted by ancient Preenlon teachings. Forager Holixer is all happy to fill me in however. </p>
+
+<p>“This was long ago, ages go. The Republic of Preenlon used to be the greatest nation in the world. But it fell to treachery and a Gator Warlord who razed it all and who's armies devoured all who remained. Our ancestors are those who fled, who chose the meagre isles as their home rather then live as serfs in the Kingdom, became the adopted. For it was the Isles that adopted us, not us that adopted the Isles.” </p>
+
+<p>“The Residents are those whom have always been here then?” I ask. </p>
+
+<p>“Indeed! It was them that taught our ancestors how to live and thrive here. They are the original authors of Island Law. They are few, but the most hospitable of Island tribes.<br />
+I warn you however that should you meet any, you might find their customs peculiar or strange.” Holixer smiled. </p>
+
+<p>“In what way?” I asked. Holixers smile turned to a laugh before he replied. <br />
+ <br />
+“They always mean well, but they have their own way of showing it or interpreting whats best for you. That might mean showering you in gifts, make a stew out of you, trying to marry you off sons and daughters or smoke mushrooms with you, all in one day.”</p>
+
+<p>“In that order?” That sounded like a strange idea of hospitality. “A stew?”</p>
+
+<p>“Some variation of it. Dont be alarmed, its more a pampered warm herb bath.” </p>
+
+<p>I nodded uncertainly. </p>
+
+<p>“There exists some nomad tribes too, not quite residents, its said they are even older to the isles, they claim they lived here when this was all land, not sea. A very small people, in population and stature. Smaller then you, Captain. You are unlikely to see them, but they exist. I have only seen them a few times myself.”</p>
+</div>
+
 
 <div class="scoutV hidden"><p><strong></strong></p>
 <p>The group remained silent a while, before one of the Gryphs spoke up. </p>
@@ -865,7 +1166,7 @@ I huff in slight contempt but cross my arms.</p>
 </div>
 
 <div class="negotiate hidden"><p><strong>Negotiate</strong></p>
-<p>“I must object.” I straighten firmly in my seat and eye each of them in turn. “You still have your duty to the Admiralty.”</p>
+<p>“I suppose there is no further delaying it. We need to talk about Scout-Vessla.” I straighten firmly in my seat and eye each of them in turn. “You still have your duty to the Admiralty.”</p>
 
 <p>“But Captain! This isn't just about me, its a great opportunity to further a relationship between the peoples of the Isles and Aweland. Whats... whats one Awe here and there, you can do without me!”</p>
 
@@ -880,6 +1181,9 @@ I huff in slight contempt but cross my arms.</p>
 <p>I can try to appeal to the Islanders, perhaps they can be appeased in some way to agree with me. Or I can put the squeeze on Scout Vessla. </p>
 
 <p>Lastly, I can stop being polite and let them know whats what.</p>
+</div>
+<div class="negotiate2 hidden"><p><strong>Negotiate</strong></p>
+<p> It seems I've reached a dead end with that line of approach. But they're still listening, so I might still have a shot at convincing them, one way or another.  </p>
 </div>
 
 </body>
@@ -959,10 +1263,181 @@ But thats not a good enough excuse. Perhaps I can press him further, or try to r
 </div>
 
 <div class="appeal hidden"><p><strong>Appeal</strong></p>
-<p>I appeal to the goodwill of the Lanaga. </p>
-<div class="armed hidden">
-<p>The strong pressence of my troops make my words seem duplicitous however</p>
+<p>The key to turning this around might lay in the natives. I calmly turn to Darter and Holixer and adress them directly. </p>
+
+<p>“Is there some service we can provide the Lanaga in exchange for the return of our Scout?”</p>
+
+<p>“Captain!“ Scout Vessla protested. But I had judged Darter correctly, there was a glimmer of interest in his eyes, not outrage. The “prince” was young, but he knew ambition.</p>
+
+<p>“Service? What are you proposing captain? Some form of trade for us to abandon our adopted tribes-mate?” Darter huffed. </p>
+
+<p>“You wish to protect those you and yours, but so do I. We should be more aligned in our interests. Surely there must be some way to trade favors so we both get what we want.”</p>
+
+<p>Scout Vessla looked back and forth between me and the Chief-son as a silence stretched. Darter shifted in his seat and then slowly grinned at me in a mischievous way. </p>
+
+<p>“We have offered Vessla sanctuary and protection. It would be dishonorable to recind that.”</p>
+
+<div class="favor hidden">
+<p>“But you have proven honorable and sensible to me so far. Enough so that I can be convinced Vessla needs not our protection from you.” The decorated Chief-son cooed. </p>
+
+<p>“That is quite wise of you, Chief-son Darter.” I nodded in agreement. </p>
+
+<p>“Perhaps there is something you can do for me, as a personal favor, to change my mind.” Darter crossed his arms, looking smug.</p>
+
+<p>I look to the senior Gryph, the unspoken leader and possible mentor to the Chief-son Darter. 
+Holixer returns my gaze steadily. Stoic and mostly silent, he's certainly playing it wise. </p>
+
+<p>I suppose I could approach either Gryph. However im not sure who'd be easier to convince to my cause and what conditions they might have. </p>
 </div>
+<div class="nofavor hidden">
+<p>“I am normally quite agreeable and might have considered trading such favors with you. Now after I've met you and come to understand more of what he fears, I however feel I must decline your offer.” Darter made a dismissive gesture. <br />
+ <br />
+“The Chief-son has spoken.” Forager Holixer announced, adding his agreement. </p>
+
+<p>It seemed this line of negotiation was blocked. The Islanders did not trust me.</p>
+</div>
+</div>
+
+<div class="flirty hidden">
+<p>“Humour me captain, with a few indulgent questions of mine.” Darter smirked and leaned himself closer to my person. <br />
+“Ofcourse.” I replied. <br />
+“I will be honest, you are most fascinating to me. I heard you Awes were a matriarchal society, but in my mind before I met you, I just imagined you'd be like particularly headstrong hens.” Chief-Son Darter chuckled but he was quick add words after seeing my brow furrow. <br />
+“Ah, hen is an affectionate term! I mean not to sound condecening of our female counterparts, but female Gryphs we keep protected in our main village, they are more delicate of build and often with egg. The rigours of foraging, hunting and fighting are left to us males.”<br />
+“What is your question?” I asked calmly and patiantly.<br />
+“How do you Awes pick mates for yourselves? Is it the females who have to show off their prowess to impress a male into choosing them?” <br />
+I sighed slightly but answered. “Females choose the male when they feel ready and willing to carry young. They pick whomever strikes their whim.”<br />
+“Interesting! And males have no say in the matter? No way to impress or sway a female to pick them?” <br />
+“Sure, a female can become enamoured with a particularly capable male. Whats the point of these questions?”<br />
+“Ah yes well then, do you find me at all attractive? Say, in a theoretical sense, would you possibly ever find yourself enamoured with me?” Darters eyes looked deep into mine, beak spread into a slow smile.<br />
+</p>
+</div>
+
+<div class="appeal2 hidden">
+
+<div class="perhaps hidden">
+<p>“It could happen.” I shrugged neutrally<br />
+“Interesting! Intruiging!” Darter exclaimed, grinning triumphantly. </p>
+</div>
+
+<div class="no hidden">
+<p>“No, dont flatter yourself!” I snorted. It was best to be firm. <br />
+“Hah, rough with your rejections. Hens are alike.” Darter chuckled, poorly trying to hide how his pride took a thorn. </p>
+</div>
+
+<div class="stare hidden">
+<p>I give Darter a long stare. He returns it in silence, but gives up first, holding up his hands in surrender. <br />
+“One must ask, or forever suffer in doubt. It seems I must suffer.”</p>
+</div>
+
+<div class="favor hidden">
+“I have asked a lot of questions of my friend Vessla about your culture and customs. But I feel like there is a unique opportunity and perspective to learn from with you Captain. Why dont you stay the night and we can talk more. I would consider this a great favor to me and my tribe. Surely there is no hurry that cant wait a night?“ Darter smiled and winked. </p>
+
+<p>I consider his offer a moment. The Chief-Son of Lanaga probably fancies himself quite a charmer. <br />
+I could stay the night and endure his questions and possible advances. </p>
+</div>
+
+<div class="nofavor hidden">
+“Well, you are an interesting people. It might had been interesting to talk more about your culture and customs, but night encroaches and I shall keep you no longer. You may leave now.”</p>
+</div>
+</div>
+
+<div class="stay hidden">
+<p>“Oh, Excellent!” The Islander Chief grinned. “I find your captain quite reasonable and agreeable Vessla.” The Chief-Son patted the scout on the back gently. “I've enjoyed your stay with us, you are welcome to return when able, but Im sure you will be safe among them and your worries unfounded. </p>
+
+<p>The Scout looked defeated, his wings drooping for a moment before he nodded, seeming to wisely accept the cirumstances. </p>
+
+<p>“Yes... I suppose... you are right. T-thank you for your hospitality. I hope I'll be able to return.” </p>
+
+<p>The scout returned to the ship shortly after with the rest of my reluctant delegation. <br />
+The invitation to stay in the village only stretched to me alone. </p>
+
+<p>I was not particularly worried. One night of indulging a young Islander prince with whatever fancied questions and coversations he wished to have was a small price to pay. <br />
+If he dared to overstep his bounds with me, I would just...</p>
+</div>
+
+<div class="nostay hidden">
+
+</div>
+
+
+<div class="firm hidden">
+<p>As my retinue reluctantly has left back to the ship for the night, the tribe prince swoops in to my side to show me around the quaint little village. It was amusing to watch him hover closely around me, dotting upon my needs while he chatted amicably for a while at first. <br />
+As darkness fell he resolutely invited me to the guest quarters in his own sizable (In comparison to the rest of the village) house. <br />
+Darter might think he's charmed me, for he seemed resolutely convinced by his own ego that I would welcome his advances once his straying paws started to become a little too friendly. I had to put my foot down.</p>
+
+<p>“If you are so interested in us Awes, me in particular, you must accept you will be playing by our rules.” I warned him while firmly pushing him to arms-length. He seemed not deterred, rather he seemed almost inflamed by it. </p>
+
+<p>“Delightful! Perhaps you can teach me more!” He begged of me while trying to envelop his wings around me. </p>
+
+<p>I knew I was not being entirely fair, but respect was best taught. <br />
+“Male Awes know to wait for a females interest first, for otherwise they risk being firmly overwhelmed.”</p>
+
+<p>Darter nodded enthusiastically, but in his ardour he did not see the warning. As he pressed himself close again I grasped him back in a much less passionate grip and yanked him to the ground. <br />
+Darter managed to let out a squawk of surprise before my weight pinned him and I shoved my jaws over his beak and head. </p>
+
+<p>He fluttered and kicked, but although his size matched mine, his strength was not on par. <br />
+I swallowed firmly around his chin and felt him start his slide down my gullet. </p>
+
+<p>It was the first time I ate a Gryph, I confess I had been quite curious about their taste. Their feathered bodies were not too unlike fur, Darters writhing body certainly had its own texture and exotic flavor. In the end, I confess, it was like swallowing down any other struggling body. Gryphs did not turn out to be as uniquely delicious as I'd hoped. </p>
+
+<p>My belly swelled pleasantly as the Lanaga prince was squeezed into it, his muffled protests and twisting doing naught but delay his descent into my body. I had a brief chuckle at the way he was trying to call for attention or help by tapping his clawed feet against the ground. </p>
+
+<p>In the end, said feet were slurped up, briefly licked over for lubricated and easy swallowing and then... Glck. Chief-Son Darter was all in my belly. </p>
+
+<p>I stood up and licked my chops, waiting for him to settle inside the sagging furred dome of my gut. I gave him a few reassuring pats as his complaints turned fearful and whiny. </p>
+
+<p>“Sorry Darter, I have to reject your advances. You were being much too pushy and needed this lesson in Awe courtship.”</p>
+
+<p>I slowly ambled over to my mattress, it proved soft and comfortable enough and I sprawled down on top of my belly on it. </p>
+
+<p>“We shall sleep together now, you and I. Just not the way you wanted. Come morning, perhaps you'll have gotten over yourself a little.”</p>
+
+<p>I belched and yawned. The temptation to digest this upstart was of course there. I don't think however, that I was in a position to get away with that much. You are also supposed to have a chance to learn from lessons.</p>
+</div>
+
+<div class="amused hidden">
+<p>As my retinue reluctantly has left back to the ship for the night, the tribe prince swoops in to my side to show me around the quaint little village. It was amusing to watch him hover closely around me, dotting upon my needs while he chatted amicably about the village and the challenges of maintaining it. </p>
+
+<p>He's very enthusiastic and proud and light boasts in attempts to impress me are endearing in a way. </p>
+
+<p>As darkness fell he invited me to the guest quarters in his own sizable (In comparison to the rest of the village) house. <br />
+As he shows off his room and the guest room, he has a confident attitude about him. He seems so sure in his ego that he has managed to charm me. I let him think that he has, bemused by his strutting about and subtle gentle touches of contact. </p>
+
+<p>“You know Avolc. I offered this to Scout Vessla, I'd really like to give you a special wing massage, but he was very protective of them. Would you let me try? They are so alike to ours but different, I'd love to feel them over.” Darter asked in earnest. </p>
+
+<p>It seemed like an innocent enough offer. Unlike the Scouts, I had no need to be as paranoid about my wings. <br />
+Soon enough I lay stretched out on my bedding while Darters expert paws gently pulled and kneaded the limbs of my wings. <br />
+It was luxuriously comfortable, he was very good at it. I found myself relaxing deeply soon enough and did not, could not, object when those rubbing paws strayed away from the wings and onto my back. </p>
+
+<p>Come morning, I awaken wrapped up in Darters arms, tucked in under his chin. I feel a moment of startled rush unrecognition to my whereabouts before memory returns. </p>
+
+<p>I gather my things, dress and head back toward the ship without waking the Gryph tribe prince.</p>
+</div>
+
+<div class="formal hidden">
+<p>As my retinue reluctantly has left back to the ship for the night, the tribe prince swoops in to my side to show me around the quaint little village.<br />
+He is obviously flirting, but I make a point early on not to respond to any of it or brush off any touch of his without being too brusque.</p>
+
+<p>As darkness fell he invited me to the guest quarters in his own sizable (In comparison to the rest of the village) house. <br />
+Darter is not blind to the standoffish behavior of mine, but not entirely put off. </p>
+
+<p>“So Captain Avolc. I've shown you all there is to show about the village here, its not as grand as our main village back on Lanaga isle, but im proud of it.” Darter beamed.</p>
+
+<p>“It's a very cozy place. Sheltered and comfortable despite being so far out at sea.” I reply. </p>
+
+<p>“I'm sorry the guest-room is so small. If you'd like, you're welcome to stay in my room with me.” The prince crooned. </p>
+
+<p>I had been expecting it and smiled slightly while holding up my paw. <br />
+“Thank you for the offer, but this room will suffice. Thank you for the tour and feast Darter. I'd like to retire for the night now. I will see you tomorrow before I leave.” </p>
+
+<p>Darter looked struck down and his wings and ears drooped slightly at my rejection. I was uncertain of Gryph body language, but his disappointment was obvious enough. I was less certain how the prince would handle not getting what he wanted. </p>
+
+<p>“Are you sure?” He asked, sounding baffled. </p>
+
+<p>“Yes Darter. Apologies, you're not my type.”</p>
+
+<p>“V-very well... Good night then, Captain.” He looked very deflated, unused perhaps to rejection and turned and left stoically and I let out a quiet sigh once he was gone.</p>
+
 </div>
 
 <div class="threaten hidden"><p><strong>Threaten</strong></p>
@@ -989,9 +1464,9 @@ Forager Holixer, the large Islander Gryph, puts a hand on Scout Vesslas shoulder
 The Scout seems to tense and turns on him, baffled. So did Chief-Son Darter. <br />
 Darter makes to speak a loud objection when Forager Holixer asserts his authority by spreading his wings wide and slamming a fist into the table. Whatever hierarchy they have seems to assert itself, but not without the Chief-Son visibly fuming. <br />
 Bafflement turns to defeat as Forager Holixers stern face remains resolute. <br />
-“I approved welcoming you because you seemed outcast. Captain Avolc here seems honorable in her cause however.” Holixer spoke.<br />
+“I approved welcoming you because you wished for refuge and your fear seemed genuine. Captain Avolc here seems honorable in her cause however.” Holixer spoke.<br />
 “You're kicking me out?” Scout Vessla squeaked. <br />
-“You are welcome to return once your duty to your people is served Vessla of Lanaga. As long as Captain Avolc promises to treat your fairly and not lay undue punishment upon you.” </p>
+“You are welcome to return once your duty to your people is served, Vessla of Lanaga. As long as Captain Avolc promises to treat your fairly and not lay undue punishment upon you.” </p>
 
 <p>I assure them with my word, that Scout Vesslas behavior would be overlooked as long as he served faithfully. That he'd be allowed to return too when his service was over. <br />
 This seemed to ease a lot of the worries in the Scouts face. But his wings and ears drooped as he accepted the outcome, he was visibly not a happy Awe.</p>
