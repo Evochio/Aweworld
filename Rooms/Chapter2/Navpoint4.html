@@ -42,12 +42,13 @@ state.chapter.push("finalobject");
         lib.goTo('FertileIsles.html')
       })
 	  
-	  $('#button-3').on('click', function() {
+	   $('#sandbanks').on('click', function() {
         // change state here
         // end by using lib.goTo
-		
+		state.chapter[0] = ("Sandbanks");
         lib.goTo('Sandbanks.html')
       })
+	  
 	  
     })
 	
@@ -77,7 +78,8 @@ state.chapter.push("finalobject");
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1"> Test </button>
 <button class="btn btn-default" id="button-2"> Fertile isles </button>
-<button class="btn btn-default" id="button-3"> Sandbanks </button>
+<button class="btn btn-default" id="sandbanks"> Sandbanks </button>
+
 <button class="btn btn-default" id="save"> save </button>
 <span id="cadetButtons"> </span>
 <script>

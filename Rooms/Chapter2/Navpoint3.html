@@ -389,6 +389,7 @@ state.chapter.push("testobject222223");
 		$("#threaten").addClass("hidden");
 		$("#shame").removeClass("hidden");
 		$("#reassure").removeClass("hidden");
+		$("#letgo").addClass("hidden");
 		
       })
 	    
@@ -443,6 +444,7 @@ state.chapter.push("testobject222223");
         $("#question").addClass("hidden");
 		$("#appeal").addClass("hidden");
 		$("#threaten").addClass("hidden");
+		$("#letgo").addClass("hidden");
 		$("#holixer").removeClass("hidden");
 		
 		
@@ -524,6 +526,7 @@ state.chapter.push("testobject222223");
 		$("#outcome").removeClass("hidden");
 			}
 			else {
+					 $("#letgo").removeClass("hidden");
 					 $("#question").removeClass("hidden");
 					 $("#threaten").removeClass("hidden");
 					 }
@@ -743,6 +746,12 @@ state.chapter.push("testobject222223");
 		$("#appeal").removeClass("hidden");	
 		$("#threaten").removeClass("hidden");
 		}
+		else if (_.contains(choiceOfficer, officer.keeper) && _.contains(Navpoint3, "reassure")) {
+		lib.dialogue(e, "negotiate2")
+		$("#letgo").removeClass("hidden");
+		$("#appeal").removeClass("hidden");	
+		$("#threaten").removeClass("hidden");
+		}
 		
         $("#outcome").addClass("hidden");
 		
@@ -792,6 +801,21 @@ state.chapter.push("testobject222223");
 		state.chapter[0] = ("Navpoint4");
         lib.goTo('Navpoint4.html')
       })
+	  
+	  $('navpoint3').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+		state.chapter[0] = ("Navpoint3");
+        lib.goTo('Navpoint3.html')
+      })
+	  
+	  $('#gatormine').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+		state.chapter[0] = ("Themine");
+        lib.goTo('Themine.html')
+      })
+	  
     })
 	
   </script>
@@ -881,8 +905,8 @@ Day: <span class="days"><script>displayDays()</script></span>
 <button class="btn btn-default hidden" id="negotiate">Negotiate Vessla return to duty.</button>
 
 <button class="btn btn-default hidden" id="appeal">Appeal</button>
-<button class="btn btn-default hidden" id="flirty">Chief-Son Darter</button>
-<button class="btn btn-default hidden" id="holixer">Forager Holixer</button>
+<button class="btn btn-default hidden" id="flirty">Chief-Son Darters offer</button>
+<button class="btn btn-default hidden" id="holixer">Forager Holixers offer</button>
 
 <button class="btn btn-default hidden" id="holixer2">Pick Forager Holixer</button>
 <button class="btn btn-default hidden" id="darter">Pick Chief-Son Darter</button>
@@ -914,7 +938,10 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <button class="btn btn-default hidden" id="outcome">Continue</button>
 
-<button class="btn btn-default hidden" id="button-2"> Navpoint 4 </button>
+<button class="btn btn-default" id="button-2"> Quicklink Navpoint 4 </button>
+<button class="btn btn-default" id="navpoint3"> Quicklink Navpoint 3 </button>
+<button class="btn btn-default" id="gatormine"> Quicklink Gator mine </button>
+
 <span id="cadetButtons"> </span>
 <script>
 
@@ -1523,7 +1550,12 @@ But thats not a good enough excuse. Perhaps I can press him further, or try to r
 <div class="armed hidden">
 <p>The Scout eyed me closely, as if trying to gage my character there and then. His eyes wandered to my armed escort who loomed not far from my flanks.</p>
 <p>"I would like to believe you Captain. But I fear you might just be more of the same." </p>
-<p>"Nothing is certain, but somtimes Awes must fight." I reply. </p>
+<p>"Nothing is certain, I could be, but sometimes Awes must fight." I reply, staying as truthful as i can. </p>
+</div>
+<div class="ship hidden">
+<p>The Scout eyed me closely, as if trying to gage my character there and then. Then his gaze wandered to the ship around him, eyes finding the armed Awes politely but subtly standing around on guard and he visibly recoiled. </p>
+<p>"I would like to believe you Captain. But I fear you might just be more of the same. There just is not enough trust." </p>
+<p>"Nothing is certain, I could be, but sometimes Awes must fight." I reply, staying as truthful as i can. </p>
 </div>
 </div>
 
@@ -1575,15 +1607,15 @@ Holixer returns my gaze steadily. Stoic and mostly silent, he's certainly playin
  <br />
 “The Chief-son has spoken.” Forager Holixer announced, adding his general agreement, before adding. "An oppertunity to redeem your trust by a demonstration of humbleness could be considered however." </p>
 
-<p>Besides Holixers ominous offer, it seemed this line of negotiation was blocked. The Islanders did not trust me or like me.</p>
+<p>Besides Holixers ominous offer, it seemed this line of negotiation was blocked. The Islanders did not trust me or like me. </p>
+
+<p> I might as well hear him out, though I suspect I might not like it. </p>
 </div>
 </div>
 
 <div class="holixer hidden">
 <p>I look to the senior Gryph, the unspoken leader and possible mentor to the Chief-son Darter. <br />
 Holixer returns my gaze steadily. Stoic and mostly silent, he's certainly playing it wise. </p>
-
-<p>I suppose I could approach either Gryph. However i'm not sure who'd be easier to convince to my cause and what conditions they might have. </p>
 
 <p>
 “Forager Holixer” I turned to the more burly Gryph. “I recognize your seniority here. You must see i'm trying to be reasonable and diplomatic about this. We have rules, Scout Vessla has to return.”</p>

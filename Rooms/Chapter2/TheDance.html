@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Aweworld</title>
+
+  <link rel="stylesheet" href="../../main.css"></link>
+
+  <script src="../../jquery-2.1.3.js"></script>
+  <script src="../../underscore.js"></script>
+	<script src="../../bootstrap.min.js"></script>
+ <link rel="stylesheet" href="../../bootstrap.min.css"></link>
+  <link rel="stylesheet" href="../../bootstrap-theme.min.css"></link>
+  <script src="../../main.js"></script>
+  <link rel="stylesheet" href="../../main.css"></link>
+  <script>
+
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#button-1').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "envoy"),
+        $("#button-1").addClass("hidden");
+		
+      })
+		
+		$('#button-2').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+		
+        lib.goTo('.html')
+      })
+    })
+	
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	img {
+	margin:auto;
+	}
+  </style>
+
+</head>
+<body>
+<div id="head">
+<div id="dayCounter">
+Day: <span class="days"><script>displayDays()</script></span>
+<br/>
+<span class="schedule"><script>displayShedule()</script></span>
+</div>
+<h1>Thousand Islands</h1>
+</div>
+
+
+<div id="story-text">
+
+<p>An event Priestess Ljus proposes to hold an annual short traditional courting festival to lighten the mood on the ship. She claims that even if you don't endorse it, it will most likely be celebrated and held in private by large part of the ship.</p>
+
+<p>You can choose to participate or not. She even offers to practice “the dance” with you so you can refresh your memory.</p>
+
+<p>The festivals main event involves a 'courting dance', where Awes dance in a long line in the shape of a circle then face each other and perhaps seek eye-contact with those who interest them. Finally, the music changes and the participants break the circle and mingle together in a blur spinning Awes until the music changes again. Those who made eye contact seek to find each-other but anyone may clasp paws and exchange a few ritual words to show appreciation for one another (Or more). Traditionally only females instigate the clasping of paws and males may only respond.</p>
+
+<p>If you clasp paws with someone, you spin around with them and the instigator speaks one out of three lines.</p>
+
+<p>The most common phrase is, “I admire your Spirit”. Which is a neutral phrase and one of friendly praise and appreciation.</p>
+
+<p>The other phrase is a more uncommon. There is also “I admire your Beauty”, which is a “dominant” courting phrase. Often used to express your romantic interest toward the other.</p>
+
+<p>The third and rarer phrase is. “I admire your Form”. Which is a submissive courting phrase, often implying you wish to submit, often to their appetite or if a female, pouch.</p>
+
+<p>The responder must respond with one of these three phrases. Often its an exchange of admiration of spirit. But the spirit phrase may be used to politely turn down the other two phrases.</p>
+
+<p> The third stage of locked paws is taken either by the instigator or the party with most “dominance” from the phrase exchange.</p>
+
+<p>They may suggest.</p>
+
+<p>“Shall we retire the dance?” or “The dance continues”</p>
+
+<p>And other other must respond with affirmative or “The night is still young.” to break apart.</p>
+
+<p>Often these dances and exchanges are noncommittal unless both parties agree to retire. They then go to the dominant or instigators partners chambers and spend the night together. Most of the time these dances are merely a time where everyone are equal and the shy, the bold or the curious may try to gage the interest of someone in they fancy to keep in mind. Dancers may ofcourse find eachother again, but if you've instigated clasped paws with someone its bad form to do so again, you must wait or hope they come to you.</p>
+
+<p></p>
+
+<p>I clasp the young Cadets paws, smirk at his happy expression of my attention and speak. "I admire your Form." The young cadet stammers, forgetting his words, before blurting out. "I admire your Sp...beauty!" he blushes fiercly and his eyes wide, disbelieving his own words. We spin in a circle a while and i chuckle a smile at him before remembers he has right to the last phrase. "S-s-shall we retire the dance?" <Respond: yes> <Respond: 'The night is still young'></p>
+</div>
+<div id="tail">
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="button-1"> Test </button>
+<button class="btn btn-default" id="button-2"> Continue </button>
+<span id="cadetButtons"> </span>
+<script>
+
+</script>
+</div>
+<div class="envoy hidden"><p><strong>Envoy</strong></p>
+</div>
+</body>
+</html>

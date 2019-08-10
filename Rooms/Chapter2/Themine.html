@@ -12,7 +12,6 @@
  <link rel="stylesheet" href="../../bootstrap.min.css"></link>
   <link rel="stylesheet" href="../../bootstrap-theme.min.css"></link>
   <script src="../../main.js"></script>
-  <script src="../../officers.js"></script>
   <link rel="stylesheet" href="../../main.css"></link>
   <script>
 
@@ -28,12 +27,34 @@
 		
       })
 		
-		$('#button-2').on('click', function() {
+		$('#obelisk').on('click', function() {
         // change state here
         // end by using lib.goTo
-		state.chapter[0] = ("PortNowhere");
-        lib.goTo('PortNowhere.html')
+		state.chapter[0] = ("Obelisk");
+        lib.goTo('Obelisk.html')
       })
+	  
+	  $('#habited').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+		state.chapter[0] = ("HabitedIsle");
+        lib.goTo('HabitedIsle.html')
+      })
+	  
+	  $('#button-2').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+		state.chapter[0] = ("Navpoint4");
+        lib.goTo('Navpoint4.html')
+      })
+	  
+	  $('#sandbanks').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+		state.chapter[0] = ("Sandbanks");
+        lib.goTo('Sandbanks.html')
+      })
+	  
     })
 	
   </script>
@@ -59,13 +80,19 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <div id="story-text">
 
-<p>Dramatic battle between battered Awe Fleet and numerically superior but ragtag Pirate fleet. The Fleet-Admirals tactical genius moves win the day. You may contribute positively or negatively.</p>
+<p>Arrival and introduction</p>
 </div>
 <div id="tail">
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1"> Test </button>
-<button class="btn btn-default" id="button-2"> Port Nowhere </button>
+
+<button class="btn btn-default" id="habited"> Quicklink HabitedIsle</button>
+<button class="btn btn-default" id="obelisk"> Quicklink The Obelisk</button>
+<button class="btn btn-default" id="button-2"> Quicklink Navpoint 4 </button>
+<button class="btn btn-default" id="sandbanks"> Quicklink Sandbanks </button>
+
+
 <span id="cadetButtons"> </span>
 <script>
 

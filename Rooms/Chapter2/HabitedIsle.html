@@ -27,11 +27,19 @@
         $("#button-1").addClass("hidden");
 		
       })
-		
-		$('#button-2').on('click', function() {
+	  
+	  
+		$('#fleet').on('click', function() {
         // change state here
         // end by using lib.goTo
-		
+		state.chapter[0] = ("Fleet");
+        lib.goTo('Fleet.html')
+      })
+	  
+		$('#battle').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+		state.chapter[0] = ("FleetBattle");
         lib.goTo('FleetBattle.html')
       })
     })
@@ -65,7 +73,8 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1"> Test </button>
-<button class="btn btn-default" id="button-2"> Fleet Battle </button>
+<button class="btn btn-default" id="fleet"> Fleet</button>
+<button class="btn btn-default" id="battle"> Fleet Battle </button>
 <span id="cadetButtons"> </span>
 <script>
 

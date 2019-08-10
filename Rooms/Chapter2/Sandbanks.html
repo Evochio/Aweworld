@@ -34,6 +34,14 @@
 		
         lib.goTo('.html')
       })
+	   
+	   $('#habited').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+		state.chapter[0] = ("HabitedIsle");
+        lib.goTo('HabitedIsle.html')
+      })
+	  
     })
 	
   </script>
@@ -65,8 +73,8 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1"> Test </button>
-<button class="btn btn-default" id="button-2"> Fleet </button>
-<button class="btn btn-default" id="button-3"> Habited Isles </button>
+<button class="btn btn-default hidden" id="button-2"> Fleet </button>
+<button class="btn btn-default" id="habited"> Habited Isle</button>
 <span id="cadetButtons"> </span>
 <script>
 
