@@ -28,11 +28,52 @@
         $("#button-1").addClass("hidden");
 		$("#where").removeClass("hidden");
       })
-	  
+	  /*
 	  $('#load').on('click', function(e) {
-		state.chapter = JSON.parse($.cookie('chaptersave'));
+		state.chapter = JSON.parse(Cookies.get('chaptersave'));
         console.log(state.chapter)
 		lib.goTo(state.chapter[0]+'.html')
+      })
+	  */
+	  
+	   /*
+	   $('#load3').on('click', function(e) {
+		state.chapter = JSON.parse(Cookies.get('autosave'));
+		lib.goTo(state.auto[0])
+     */
+	  
+	  $('#load2').on('click', function(e) {
+		state = JSON.parse(Cookies.get('chaptersave'));
+        console.log(state.chapter)
+     
+	 
+      })
+	  
+	   $('#load4').on('click', function(e) {
+		state = JSON.parse(Cookies.get('save'));
+		
+		offList.activeRoster = JSON.parse(Cookies.get('save2'));
+		offList.deadRoster = JSON.parse(Cookies.get('save3'));
+		offList.firstOfficer = JSON.parse(Cookies.get('save4'));
+		 
+		lib.goTo(state.chapter[0]+'.html')
+     
+      })
+	  
+	  
+	  $('#delete').on('click', function(e) {
+		Cookies.remove('chaptersave', { path: '/' });
+        
+      })
+	  
+	   $('#clear').on('click', function(e) {
+		lib.clear()
+        
+      })
+	  
+	  $('#save2').on('click', function(e) {
+       //JSON.stringify(state.chapter)
+		Cookies.set('chaptersave2', JSON.stringify(state.chapter), { expires: 365, path: '/' });
       })
 	  
 	  
@@ -65,6 +106,13 @@
         // end by using lib.goTo
 		state.chapter[0] = ("Navpoint3");
         lib.goTo('Navpoint3.html')
+      })
+	  
+	   $('#obelisk').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+		state.chapter[0] = ("Obelisk");
+        lib.goTo('Obelisk.html')
       })
 		 
     })
@@ -142,11 +190,18 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default" id="button-1"> Scout debriefing </button>
-<button class="btn btn-default" id="load"> load </button>
+
+<button class="btn btn-default" id="load2"> load2 </button>
+
+<button class="btn btn-default" id="load4"> full load </button>
+<button class="btn btn-default" id="save2"> save2 </button>
+<button class="btn btn-default" id="clear"> Clear library </button>
+<button class="btn btn-default" id="delete"> Delete cookie </button>
 <button class="btn btn-default hidden" id="where"> Where is the fleet?</button>
 <button class="btn btn-default hidden" id="destinations">Destinations</button>
 <button class="btn btn-default" id="button-2"> Navpoint 2 </button>
 <button class="btn btn-default" id="button-3"> Navpoint 3 </button>
+<button class="btn btn-default" id="obelisk"> Obelisk test </button>
 <span id="cadetButtons"> </span>
 <script>
 

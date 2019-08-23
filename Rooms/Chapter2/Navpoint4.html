@@ -16,11 +16,22 @@
   <link rel="stylesheet" href="../../main.css"></link>
   <script src="../../jquery.cookie.js"></script>
   <script>
-  $.cookie.json = false;
+ // $.cookie.json = false;
 state.chapter.push("finalobject");
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
+	if (_.contains(state.chapter, "eat")) {
+		 $(".eat").removeClass("hidden");
+	}
+	
+	if (_.contains(state.events, "noeat")) {
+		 $(".noeat").removeClass("hidden");
+	}
+	
+	if (_.contains(state.events, "pouched")) {
+		 $(".pouch").removeClass("hidden");
+	}
       
       $('#button-1').on('click', function(e) {
         // change state here
@@ -30,15 +41,35 @@ state.chapter.push("finalobject");
 		
       })
 	  
-	  $('#save').on('click', function(e) {
+
+	  
+	    $('#save2').on('click', function(e) {
        //JSON.stringify(state.chapter)
-		$.cookie('chaptersave', JSON.stringify(state.chapter), { expires: 365, path: '/' });
+		Cookies.set('chaptersave', JSON.stringify(state), { expires: 365, path: '/' });
+      })
+	  
+	    $('#save3').on('click', function(e) {
+      
+		Cookies.set('save', JSON.stringify(state), { expires: 365, path: '/' });
+		Cookies.set('save2', JSON.stringify(offList.activeRoster), { expires: 365, path: '/' });
+		Cookies.set('save3', JSON.stringify(offList.deadRoster), { expires: 365, path: '/' });
+		Cookies.set('save4', JSON.stringify(offList.firstOfficer), { expires: 365, path: '/' });
+		
+      })
+	  
+	  
+	  
+	  $('#reset').on('click', function() {
+        // change state here
+        
+		state.chapter = JSON.parse(Cookies.get('chaptersave2'));
+        lib.goTo('Thousand.html')
       })
 		
 		$('#button-2').on('click', function() {
         // change state here
         // end by using lib.goTo
-		
+		state.chapter[0] = ("FertileIsles");
         lib.goTo('FertileIsles.html')
       })
 	  
@@ -72,6 +103,11 @@ state.chapter.push("finalobject");
 <div id="story-text">
 
 <p>Broken ship and potential repairs. Gryph natives raid supplies. Capture for clues of Fertile isles Aweship or pursue toward Sandbanks</p>
+
+<p class="eat hidden">"You ate all the crew, gosh"</p>
+<p class="noeat hidden">You also ate nobody. Weird.</p>
+<p class="pouch hidden">You live in a pouch now</p>
+
 </div>
 <div id="tail">
 
@@ -80,7 +116,10 @@ state.chapter.push("finalobject");
 <button class="btn btn-default" id="button-2"> Fertile isles </button>
 <button class="btn btn-default" id="sandbanks"> Sandbanks </button>
 
-<button class="btn btn-default" id="save"> save </button>
+<button class="btn btn-default" id="reset"> Reset/return </button>
+<button class="btn btn-default" id="save2"> Big save2 </button>
+<button class="btn btn-default" id="save3"> TrueSave </button>
+
 <span id="cadetButtons"> </span>
 <script>
 

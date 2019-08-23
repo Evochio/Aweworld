@@ -47,7 +47,7 @@ var navpoint2 = [];
 	   officerButtonNames();
 	   
 	  //Converts fofficer classes like <span class="fofficer"></span> to show First officer name. In this case = "Arn" if he's first officer. 
-	  $(".fofficer").text(firstOfficer[0].name)
+	  $(".fofficer").text(offList.firstOfficer[0].name)
 	  
 	  $('#officer0').on('click', function(e) {
         // Choice of officer.
@@ -105,7 +105,7 @@ var navpoint2 = [];
         		
 		//revealText()
         
-		if (_.contains(activeRoster, officer.evok)) {
+		if (_.contains(offList.activeRoster, officer.evok)) {
 		$(".Evoktext").removeClass("hidden");
 		$(".sideImage").attr('src','../Images/assets/Evok.png');
 		}

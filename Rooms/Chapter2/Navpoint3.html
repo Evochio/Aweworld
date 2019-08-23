@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="../../bootstrap-theme.min.css"></link>
   <script src="../../main.js"></script>
    <script src="../../officers.js"></script>
+   <script src="../../jquery.cookie.js"></script>
   <link rel="stylesheet" href="../../main.css"></link>
   <script>
   	var Navpoint3 = [];
@@ -120,7 +121,7 @@ state.chapter.push("testobject222223");
 	   $('#feastno').on('click', function(e) {
         // change state here
         // end by using lib.goTo
-		lib.dialogue(e, "feastno"),
+		lib.dialogue(e, "nofeast"),
 		$("#feast2").addClass("hidden");
 		$("#feastno").addClass("hidden");
        	$("#mission2").removeClass("hidden");
@@ -156,6 +157,7 @@ state.chapter.push("testobject222223");
 		lib.dialogue(e, "arrest"),
 		$("#outcome").removeClass("hidden");
         $("#leave").addClass("hidden");
+		$(".assault").removeClass("hidden");
 		$("#kidnap").addClass("hidden");
 		$("#arrest").addClass("hidden");
       })
@@ -166,6 +168,7 @@ state.chapter.push("testobject222223");
         // end by using lib.goTo
 		lib.dialogue(e, "kidnap"),
 		$("#outcome").removeClass("hidden");
+		$(".kidnap2").removeClass("hidden");
         $("#leave").addClass("hidden");
 		$("#kidnap").addClass("hidden");
 		$("#arrest").addClass("hidden");
@@ -420,7 +423,7 @@ state.chapter.push("testobject222223");
 	  $('#appeal').on('click', function(e) {
         // change state here
 		Navpoint3.push("appeal");
-		if ( favor > 1 ) {
+		if ( favor >= 1 && _.contains(Navpoint3, "island")) {
 		$(".favor").removeClass("hidden");
 		$(".nofavor").addClass("hidden");
 		$("#flirty").removeClass("hidden");
@@ -429,15 +432,6 @@ state.chapter.push("testobject222223");
 		else {
 		$(".nofavor").removeClass("hidden");
 		$(".favor").addClass("hidden");
-		
-		if (_.contains(Navpoint3, "question")) {
-		
-		$("#outcome").removeClass("hidden");
-			}
-			else {
-					 $("#question").removeClass("hidden");
-					 $("#threaten").removeClass("hidden");
-					 }
 		}
         // end by using lib.goTo
 		lib.dialogue(e, "appeal"),
@@ -475,7 +469,7 @@ state.chapter.push("testobject222223");
 		$("#darter").addClass("hidden");
 		$("#vessla").addClass("hidden");
 		$("#nopick").addClass("hidden");
-		
+		$(".holixerVore").removeClass("hidden");
 		$("#vore").removeClass("hidden");
 		
 		
@@ -490,7 +484,7 @@ state.chapter.push("testobject222223");
 		$("#darter").addClass("hidden");
 		$("#vessla").addClass("hidden");
 		$("#nopick").addClass("hidden");
-		
+		$(".darterVore").removeClass("hidden");
 		$("#vore").removeClass("hidden");
 	
 		
@@ -505,7 +499,7 @@ state.chapter.push("testobject222223");
 		$("#darter").addClass("hidden");
 		$("#vessla").addClass("hidden");
 		$("#nopick").addClass("hidden");
-		
+		$(".vesslaVore").removeClass("hidden");
 		$("#vore").removeClass("hidden");
 	
 		
@@ -534,24 +528,27 @@ state.chapter.push("testobject222223");
 	  
 	   $('#vore').on('click', function(e) {
         // change state here
+		Navpoint3.push("vore");
 		if (_.contains(Navpoint3, "holixer")){
-			$(".holixervore").removeClass("hidden");
+		
+		$("#nodigested").removeClass("hidden");
+			
 		}	
 		else if (_.contains(Navpoint3, "darter")) {
-			$(".dartervore").removeClass("hidden");
+		$("#digested").removeClass("hidden");
+		$("#nodigested").removeClass("hidden");
+			
 		}
 		else if (_.contains(Navpoint3, "vessla")) {
-			$(".vesslavore").removeClass("hidden");
+			$("#digested").removeClass("hidden");
+		$("#nodigested").removeClass("hidden");
+			
 		}
         // end by using lib.goTo
 		lib.dialogue(e, "vore"),
-        $("#holixer2").addClass("hidden");
-		$("#darter").addClass("hidden");
-		$("#vessla").addClass("hidden");
-		$("#nopick").addClass("hidden");
+        
+		$("#vore").addClass("hidden");
 		
-		$("#digested").removeClass("hidden");
-		$("#nodigested").removeClass("hidden");
 		
       })
 	  
@@ -560,7 +557,7 @@ state.chapter.push("testobject222223");
 	    $('#digested').on('click', function(e) {
         // change state here
         // end by using lib.goTo
-		lib.dialogue(e, "digested"),
+		lib.dialogue(e, "digest"),
         $("#digested").addClass("hidden");
 		$("#nodigested").addClass("hidden");
 		
@@ -568,7 +565,7 @@ state.chapter.push("testobject222223");
 	    $('#nodigested').on('click', function(e) {
         // change state here
         // end by using lib.goTo
-		lib.dialogue(e, "nodigested"),
+		lib.dialogue(e, "nodigest"),
         $("#digested").addClass("hidden");
 		$("#nodigested").addClass("hidden");
 		$("#outcome").removeClass("hidden");
@@ -582,6 +579,7 @@ state.chapter.push("testobject222223");
         // end by using lib.goTo
 		lib.dialogue(e, "flirty"),
         $("#flirty").addClass("hidden");
+		 $("#holixer").addClass("hidden");
 		$("#perhaps").removeClass("hidden");
 		$("#no").removeClass("hidden");
 		$("#stare").removeClass("hidden");
@@ -591,7 +589,7 @@ state.chapter.push("testobject222223");
 	  $('#perhaps').on('click', function(e) {
         // change state here
 		favor +=1;
-		if ( favor > 2 ) {
+		if ( favor >= 2 ) {
 		$(".favor").removeClass("hidden");
 		$(".nofavor").addClass("hidden");
 		}
@@ -600,9 +598,9 @@ state.chapter.push("testobject222223");
 		$(".favor").addClass("hidden");
 		}
         // end by using lib.goTo
-		lib.dialogue(e, "appeal2"),
 		$(".perhaps").removeClass("hidden");
-        $("#perhaps").addClass("hidden");
+		lib.dialogue(e, "appeal2"),
+		$("#perhaps").addClass("hidden");
 		$("#no").addClass("hidden");
 		$("#stare").addClass("hidden");
 		$("#stay").removeClass("hidden");
@@ -614,37 +612,42 @@ state.chapter.push("testobject222223");
 		$(".favor").addClass("hidden");
 		$(".nofavor").removeClass("hidden");
         // end by using lib.goTo
-		lib.dialogue(e, "appeal2"),
 		$(".no").removeClass("hidden");
+		lib.dialogue(e, "appeal2"),
+		
         $("#perhaps").addClass("hidden");
 		$("#no").addClass("hidden");
 		$("#stare").addClass("hidden");
-		$("#outcome").removeClass("hidden");
+		$("#holixer").removeClass("hidden");
 		
       })
 	  
 	  $('#stare').on('click', function(e) {
         // change state here
-		if ( favor > 2 ) {
+		if ( favor >= 2 ) {
 		$(".favor").removeClass("hidden");
 		$(".nofavor").addClass("hidden");
+		$("#stay").removeClass("hidden");
+		$("#nostay").removeClass("hidden");
 		}
 		else {
 		$(".nofavor").removeClass("hidden");
 		$(".favor").addClass("hidden");
+		$("#outcome").removeClass("hidden");
 		}
         // end by using lib.goTo
-		lib.dialogue(e, "appeal2"),
 		$(".stare").removeClass("hidden");
-        $("#perhaps").addClass("hidden");
+		lib.dialogue(e, "appeal2"),
+		$("#perhaps").addClass("hidden");
 		$("#no").addClass("hidden");
 		$("#stare").addClass("hidden");
-		$("#outcome").removeClass("hidden");
+		
       })
 	  
 	   $('#stay').on('click', function(e) {
         // change state here
         // end by using lib.goTo
+		Navpoint3.push("stay");
 		lib.dialogue(e, "stay"),
         $("#stay").addClass("hidden");
 		$("#nostay").addClass("hidden");
@@ -659,7 +662,15 @@ state.chapter.push("testobject222223");
 		lib.dialogue(e, "nostay"),
         $("#stay").addClass("hidden");
 		$("#nostay").addClass("hidden");
+		if (_.contains(Navpoint3, "question")) {
+		
 		$("#outcome").removeClass("hidden");
+			}
+			else {
+					 $("#letgo").removeClass("hidden");
+					 $("#question").removeClass("hidden");
+					 $("#threaten").removeClass("hidden");
+					 }
 		
       })
 	  
@@ -711,6 +722,19 @@ state.chapter.push("testobject222223");
 	    $('#outcome').on('click', function(e) {
         // change state here
         // end by using lib.goTo
+		if (_.contains(Navpoint3, "stay")) {
+		lib.dialogue(e, "success3")
+		$("#button-2").removeClass("hidden");
+		$("#gatormine").removeClass("hidden");
+		$("#navpoint3").removeClass("hidden");
+		}
+		if (_.contains(Navpoint3, "vore")) {
+		lib.dialogue(e, "consider3")
+		$("#button-2").removeClass("hidden");
+		$("#gatormine").removeClass("hidden");
+		$("#navpoint3").removeClass("hidden");
+		}
+		
 		if (_.contains(Navpoint3, "UnArmed") && _.contains(Navpoint3, "threaten")) {
 		lib.dialogue(e, "failed2")
 		$("#leave").removeClass("hidden");	
@@ -732,10 +756,31 @@ state.chapter.push("testobject222223");
 		$("#apprehend").removeClass("hidden");
 		$("#letgo").removeClass("hidden");
 		}
-		else if (_.contains(Navpoint3, "shame")) {
+		else if (_.contains(Navpoint3, "shame") && favor >= 2) {
 		lib.dialogue(e, "success")
-		
+		$("#consider").removeClass("hidden");
 		}
+		
+		else if (_.contains(Navpoint3, "shame") && favor < 2) {
+		lib.dialogue(e, "negotiate2")
+		$("#letgo").removeClass("hidden");
+		$("#appeal").removeClass("hidden");	
+		$("#threaten").removeClass("hidden");
+		}
+		
+		else if (_.contains(Navpoint3, "kidnap") || _.contains(Navpoint3, "arrest")) {
+		lib.dialogue(e, "questionV")
+		
+		if (_.contains(Navpoint3, "kidnap"))
+			{
+		$("#eatVessla").removeClass("hidden");
+		$("#consider").removeClass("hidden");
+			}
+			else {
+			$("#eatVessla").removeClass("hidden");
+				}
+		}
+		
 		else if (_.contains(Navpoint3, "UnArmed") && _.contains(Navpoint3, "reassure")) {
 		lib.dialogue(e, "success2")
 		}
@@ -752,6 +797,7 @@ state.chapter.push("testobject222223");
 		$("#appeal").removeClass("hidden");	
 		$("#threaten").removeClass("hidden");
 		}
+				
 		
         $("#outcome").addClass("hidden");
 		
@@ -762,6 +808,7 @@ state.chapter.push("testobject222223");
 	     $('#letgo').on('click', function(e) {
         // change state here
         // end by using lib.goTo
+		Navpoint3.push("letgo");
 		lib.dialogue(e, "letgo"),
         $("#letgo").addClass("hidden");
 		$("#question").addClass("hidden");
@@ -769,7 +816,56 @@ state.chapter.push("testobject222223");
 		$("#questions").addClass("hidden");
 		$("#threaten").addClass("hidden");
 		$("#negotiate").addClass("hidden");
+		$("#apprehend").addClass("hidden");
+		$("#consider").removeClass("hidden");
+		
+      })
+	  
+	    $('#eatVessla').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "eatVessla"),
+        $("#eatVessla").addClass("hidden");
+		$("#consider").addClass("hidden");
+		
+		$("#gatormine").removeClass("hidden");
+		$("#navpoint3").removeClass("hidden");
+		
+      })
+	  
+	  $('#consider').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		
+		if (_.contains(Navpoint3, "shame") && favor >= 2) {
+		lib.dialogue(e, "consider2")
+		}
+		else if (_.contains(Navpoint3, "letgo")) {
+		lib.dialogue(e, "consider4")
+		}
+		else {
+		lib.dialogue(e, "consider")
+		}
+        $("#eatVessla").addClass("hidden");
+		$("#consider").addClass("hidden");
 		$("#button-2").removeClass("hidden");
+		$("#gatormine").removeClass("hidden");
+		$("#navpoint3").removeClass("hidden");
+		
+		
+      })
+	  
+	   
+	  $('#qVessla').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "questionV2"),
+        $("#eatVessla").removeClass("hidden");
+		$("#consider").removeClass("hidden");
+		
+		$("#qVessla").addClass("hidden");
+	
+		
 		
       })
 	  
@@ -778,9 +874,11 @@ state.chapter.push("testobject222223");
         // end by using lib.goTo
 		if (_.contains(choiceOfficer, officer.keeper)) {
 		lib.dialogue(e, "apprehend")
+		$("#qVessla").removeClass("hidden");
 		}
 		else if (_.contains(Navpoint3, "Armed")) {
 			lib.dialogue(e, "apprehend2")
+			$("#qVessla").removeClass("hidden");
 		}
 		else {
 			lib.dialogue(e, "apprehend3")
@@ -915,8 +1013,8 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <button class="btn btn-default hidden" id="vore">A choice made</button>
 
-<button class="btn btn-default hidden" id="digest">Digested</button>
-<button class="btn btn-default hidden" id="nodigest">Not Digested</button>
+<button class="btn btn-default hidden" id="digested">Digested</button>
+<button class="btn btn-default hidden" id="nodigested">Not Digested</button>
 
 <button class="btn btn-default hidden" id="perhaps">Perhaps</button>
 <button class="btn btn-default hidden" id="no">No</button>
@@ -936,11 +1034,15 @@ Day: <span class="days"><script>displayDays()</script></span>
 <button class="btn btn-warning hidden" id="threaten">Threaten</button>
 <button class="btn btn-warning hidden" id="apprehend">Apprehend Vessla</button>
 
+<button class="btn btn-default hidden" id="qVessla">Question Vessla</button>
+<button class="btn btn-default hidden" id="eatVessla">Eat the Scout</button>
+<button class="btn btn-default hidden" id="consider">Consider destinations</button>
+
 <button class="btn btn-default hidden" id="outcome">Continue</button>
 
-<button class="btn btn-default" id="button-2"> Quicklink Navpoint 4 </button>
-<button class="btn btn-default" id="navpoint3"> Quicklink Navpoint 3 </button>
-<button class="btn btn-default" id="gatormine"> Quicklink Gator mine </button>
+<button class="btn btn-default hidden" id="button-2"> Quicklink Navpoint 4 </button>
+<button class="btn btn-default hidden" id="navpoint3"> Quicklink Navpoint 3 </button>
+<button class="btn btn-default hidden" id="gatormine"> Quicklink Gator mine </button>
 
 <span id="cadetButtons"> </span>
 <script>
@@ -978,7 +1080,7 @@ $('#officerObject2').popover({title: officer3[2].name, content: "No waste of tim
 
 <div class="mission hidden"><p><strong>Expedition</strong></p>
 <div class="garschText hidden">
-<p>Garsches heavily armed expedition paddles away and beach their boats on the cliffs and disappear into the brush of island. Whatever they'll face I have no doubt the old grizzled Arms-Officer can handle, he even brought a Raptorian along, probably to help make a path through the woods. I can faintly hear them call out in Awe greeting-call even from here, but its soon drowned out as they move further into the island. We can do little back at the ship but wait. Hopefully they will be back before nightfall or we'll have to keep a signal flame alight.</p>
+<p>Garsches heavily armed expedition paddles away and beach their boats on the cliffs and disappear into the brush of island. Whatever they'll face I have no doubt the old grizzled Arms-Officer can handle, he even brought a Raptorian along, probably to help make a path through the woods. I can faintly hear them call out in Awe greeting-call even from here, but its soon muffled as they move further into the dense greenery of the island. We can do little back at the ship but wait. Hopefully they will be back before nightfall or we'll have to keep a signal flame alight.</p>
 
 <p>I have the Raptorian pack on standby should there be any alert. </p>
 </div>
@@ -1027,7 +1129,7 @@ Officer Keeper does not seem too bothered by my decision, he gave a non-committe
 
 <p>&ldquo;Well done for now Officer.&rdquo;</p>
 
-<p>Either way, it seemed we had to pay them a visit, on their terms unfortunately.</p>
+<p>Either way, it seemed we had to either pay them a visit, on their terms unfortunately. Or we can decline and consider some more hard-lined approaches.</p>
 </div>
 <div class="nyxieText hidden">
 <p>Nyxies boat comes paddling but a few hours later, just as things were starting to get dark. </p>
@@ -1066,7 +1168,7 @@ Officer Keeper does not seem too bothered by my decision, he gave a non-committe
 <div class="nyxieText hidden">
 <p>Nyxie found a favorable landing spot, so sending in a sizable party to do so would not be difficult. </p>
 </div>
-<p>A third option I've considered is sending the scout-master and his team to retrieve him. It has risk, but they should be able to do it quickly and quietly. Its part of their modus operandi.</p>
+<p>A third option I've considered is sending the scout-master and his team to retrieve him. It has risk, but they should be able to do it quickly and quietly. Its part of their training and field of operation.</p>
 </div>
 
 <div class="leave hidden">
@@ -1074,14 +1176,14 @@ Officer Keeper does not seem too bothered by my decision, he gave a non-committe
 </div>
 
 <div class="kidnap hidden">
-<p>The Scout-Master was briefed on the mission. He apparent had no reservations about my orders for his troop to infiltrate and capture one of their own, for he raised no comment about it and merely nodded and asked if I wanted it done immediately or later at night.  I left it to his discretion and he decided to wait until night.</p>
+<p>Scout-Master Krel was briefed on the mission. He apparently had no reservations about my orders for his troop to infiltrate and capture one of their own, for he raised no comment about it and merely nodded and asked if I wanted it done immediately or later at night.  I left it to his discretion and he decided to wait until night.</p>
 
-<p>It was a tense wait through the night. I decided to stay up and wait.  Scouts are renowned for their skill at silence and subtlety, few appreciate or perhaps realize the depth of their training. Its with this in mind my concern lies in that their target is equally trained and might prove a challenge that is aware of their methods. </p>
+<p>It was a tense wait through the night. I decided to stay up and watch for their return.  Scouts are renowned for their skill at silence and subtlety, few appreciate or perhaps realize the depth of their training. Its with this in mind my concern lies, as their target is equally trained and might prove a challenge that is aware of their methods. </p>
 
-<p>Just as dusk is brightening the horizon a cadre of shadows swoop in low over the canopy and toward the ship however. Supported between them they carry a tied up bundle which reveal itself to be their captured quarry.  &ldquo;Scout Vessla has been retrieved successfully Captain.&rdquo; The Scout-Master announces briskly upon landing.  I nod approvingly and touch his shoulder with a pat. &ldquo;Well done Scout-Master, very well done.&rdquo;  Scout Vessla struggles, gagged and bound. He looks a mixed of frightened and frustrated.  He's in for some thorough questioning later.</p>
+<p>Just as dusk is brightening the horizon a cadre of shadows swoop in low over the canopy and toward the ship. Supported between them they carry a tied up bundle which reveal itself to be their captured quarry.  &ldquo;Scout Vessla has been retrieved successfully Captain.&rdquo; The Scout-Master announces briskly upon landing.  I nod approvingly and touch his shoulder with a pat. &ldquo;Well done Scout-Master, very well done.&rdquo;  Scout Vessla struggles, gagged and bound. He looks a mixed of frightened and frustrated.  He's in for some thorough questioning later.</p>
 </div>
 
-<div class="kidnap2 hidden">
+<div class="kidnapFail hidden">
 <p>Scouts fail the mission , get humuliated and eaten by Scout Vessla and possibly Darter. </p>
 </div>
 
@@ -1291,6 +1393,8 @@ I warn you however that should you meet any, you might find their customs peculi
 <p>I nodded uncertainly. </p>
 
 <p>“There exists some nomad tribes too, not quite residents, its said they are even older to the isles, they claim they lived here when this was all land, not sea. A very small people, in population and stature. Smaller then you, Captain. You are unlikely to see them, but they exist. I have only seen them a few times myself.”</p>
+
+<p>"All the tribes are different and have their own customs you'll find. We of the Lanaga highly value our responsibility to our tribe and our sworn words. Other tribes might have other core principles they hold higher in regard. </p>
 </div>
 
 
@@ -1515,6 +1619,7 @@ I huff in slight contempt but cross my arms.</p>
 <p>“Surely you understand that this is not good enough a reason for me to accept.” </p>
 
 <p>“Accept it or not, this is the choice I have made and wish you'll respect Captain.” Vessla snaps in Trade-Tongue. The two Gryphs shift closer to him defensively. They had not understood most of the exchange but stand with their tribesman. Too much argument and they are likely to break off these talks and leave me with fewer harder choices. </p>
+<p> Perhaps I can press him further, or try to reassure him of his fears with safety under my command. </p>
 </div>
 <div class="island hidden">
 <p>“There's more to this then you are letting on Vessla. I'm not going to question your affection for these people, but it sounds to me like there is more keeping you away then to stay.” Vessla seems to hesitate, but my piercing gaze and words seems to hit home.<br />
@@ -1539,7 +1644,7 @@ But thats not a good enough excuse. Perhaps I can press him further, or try to r
 
 <p>“Its not so much that she's intense Captain, I'd expect no less from an Admiral. I just don't want part of the kind of... war, that she is driven at pursuing. It has swept up nearly all the other captains too.” </p>
 
-<p>I could not speak of changing the Fleet admiral on his behalf. However, I could reassure him of safety under my command. <br />
+<p>I could not speak of changing the Fleet-Admiral on his behalf. However, I could reassure him of safety under my command. <br />
 “So join my crew, I'm not part of the fleet. My mission is to find them, yes. But only to resupply them and assess their status and return once the tides permit passage.” </p>
 
 <div class="unarmed hidden">
@@ -1620,23 +1725,23 @@ Holixer returns my gaze steadily. Stoic and mostly silent, he's certainly playin
 <p>
 “Forager Holixer” I turned to the more burly Gryph. “I recognize your seniority here. You must see i'm trying to be reasonable and diplomatic about this. We have rules, Scout Vessla has to return.”</p>
 
-<p>Chief-Son Darter looked peeved at being ignored. Holixer however seemed slightly amused, his wing posture straightening. Still, he looked troubled as he replied. <br />
+<p>Chief-Son Darter looked peeved at being ignored. Holixer however seemed slightly amused, his wing posture straightening. His brow soon furrowed as he seemed to consider his next words carefully. <br />
  <br />
-“I appreciate your respect path of negotiation. However, our vow of protection has been extended to Scout Vessla. It is not something our tribe would withdraw without considerable dishonor to our name.” Holixer said before he paused briefly and tapped the table in visible consideration.</p>
+“I appreciate and respect your path of negotiation. However, our vow of protection has been extended to Scout Vessla. It is not something our tribe would withdraw without considerable dishonor to our name.” Holixer said before he paused briefly and tapped the table in visible consideration.</p>
 
-<p>“Perhaps, if you prove Scouts Vesslas fears unfounded by humbling yourself. There would be no doubt in anyone's mind that you have our adopted tribes-mates best intentions in mind and there would be no need for the protection.”</p>
+<p>“Perhaps, if you prove Scouts Vesslas fears unfounded by humbling yourself, there would be no doubt in anyone's mind that you have our adopted tribes-mates best intentions in mind and there would be no need for the protection.”</p>
 
 <p>I was not sure I liked the sound of that and scowled at Holixer questioningly. </p>
 
-<p>“The quality of a caring leader is displayed in what they'd be willing to do for a subordinate. Show that you can sacrifice your pride and put yourself in the mercy of another. Submit to one of the tribe and that would go a long way in convincing me.”</p>
+<p>“The quality of a caring leader is displayed in what they'd be willing to do for a subordinate. Show that you can sacrifice your pride and put yourself in the mercy of another. Submit to one of the tribe and that would go a long way in convincing me. Its a gesture of trust that should make us both earn the others.”</p>
 
 <p>I sighed and leaned back, eyeing the three of them on the opposite side of the table, I see what the older “Forager” was doing. <br />
 Not only would this act be a tremendous gesture of goodwill and trust, it would also symbolically humble not only me, but in a way the whole Admiralty to the Lanaga.<br />
 Holixer crossed his arms and stretched himself tall and looked determined, he was the epitome of an islander, thickly built and muscular. <br />
-Leaner and younger Darter, with his decorative garb and markings had lost some of his irritation now and looked bemused, rubbing the bottom of his beak thoughtfully and giving me a wink. <br />
+Leaner and younger Darter, with his decorative garb and markings had lost some of his irritation now and looked piqued, rubbing the bottom of his beak thoughtfully and giving me a wink. <br />
 Scout Vessla, our wayward scout and the cause of all this, he shifted his wings and seemed afraid to make eye-contact. He knew he had put me in this position and was possibly a little dismayed, but piqued enough not to object on my behalf. </p>
 
-<p>All three were options to choose from if I wanted to make the decision.</p>
+<p>All three were options to choose from if I wanted to make the decision. I reckon some of them are more trustworthy then the others.</p>
 </div>
 <div class="nopick hidden">
 <p>&quot;Your proposal is... not exactly generous, Forager Holixer. Though it is an opportunity of sorts, I must decline. There is more to such a gesture then simply just showing trust. I cannot undermine my position of authority by squirming around in either of your bellies, you must understand.&quot; I tried to keep my tone neutral, but honestly I was feeling a tad insulted by such bold proposals. </p>
@@ -1651,19 +1756,6 @@ Scout Vessla, our wayward scout and the cause of all this, he shifted his wings 
 <p>Holixer smiled and nodded once in approval. “No harm will ever come to a guest of the Lanaga. We shall build this trust between us.” He reassured while he absent mindedly rested a paw on his belly. </p>
 
 <p>The feast continued a while longer in idle conversation, Holixer seemed to be saving himself for the dessert for which I had signed myself up for. </p>
-
-<p>Pick Darter</p>
-
-<p>I turn my head toward the younger Gryph and cock my head at him briefly. Darter grins widely in return. <br />
-It seemed wise, if I was to go through with this, to be in the favor of the stoic mentor and young tribal prince both. </p>
-
-<p>“Very well...” I replied slowly with appropriate pause. “I accept your proposal, I'm willing to demonstrate what im willing to do for my crew.” </p>
-
-<p>“Very good Captain Avolc! You do honor to your name by such a demonstration of trust and humbleness.” Darter clasped his paws together eagerly, being unable unwittingly to lick his beak in anticipation.</p>
-
-<p>“No harm shall come to you Captain, you are a honored guest of the Lanaga.” Holixer assured, nodding with approval. </p>
-
-<p>The feast continued a while longer in idle conversation. Darter was eyeing me closely throughout, he was eager to have his way with me.</p>
 
 </div>
 
@@ -1688,9 +1780,9 @@ It seemed wise, if I was to go through with this, to be in the favor of the stoi
 
 <p>Both the Gryphs turned to Scout Vessla who sat there blinking and taken aback. He looked like he had not expected me to make this choice, much less involve him in any matter. </p>
 
-<p>“Ah, Vessla is indeed one of the tribe. That is acceptable to me, perhaps even symbolic for what we wish to achieve here.” Holixer nodded approvingly. </p>
+<p>“Vessla is indeed one of the tribe. That is acceptable to me, perhaps even symbolic for what we wish to achieve here.” Holixer nodded approvingly. </p>
 
-<p>“Ah.. Captain... “ Scout Vessla gulped, spreading his wings wide in nervousness. “If you're sure, I can do it. I'll eat you, I mean.”</p>
+<p>“Ah.. Captain... “ Scout Vessla gulped, spreading his wings wide in nervousness. “If you're sure, I can do it. I'll eat you, I mean.” He stumbled with his words.</p>
 
 <p>“As long as I'll be able to safely return to my crew with you with me.” I replied coolly.</p>
 
@@ -1701,42 +1793,243 @@ It seemed wise, if I was to go through with this, to be in the favor of the stoi
 
 <div class="vore hidden">
 <div class="holixerVore hidden">
-<p>Forager Holixer is certainly taller then me and of more weight too. I come quite aware of this as we retire somewhere more private, a kind courtesy by the senior Gryph.</p>
+<p>Forager Holixer is certainly taller then me and of more weight too.<div class="island hidden"> I come quite aware of this as we retire somewhere more private, a kind courtesy by the senior Gryph.</div> <div class="ship hidden"> I come quite aware of this as we move to my chambers for more privacy, a kind courtesy by the senior Gryph. </div></p>
 
-<p>“You Awes surprise me. You are willing to go to great lengths for your goals. I am not sure if its fearlessness or otherwise.” Holixer spoke as he watched me take off my cloak and gear. Wouldnt need those inside his stomach. </p>
+<p>&ldquo;You Awes surprise me. You are willing to go to great lengths for your goals. I am not sure if its fearlessness or otherwise.&rdquo; Holixer spoke as he watched me take off my cloak and gear. Wouldn't need those inside his stomach. </p>
 
-<p>“Not something you'd do if our positions were reversed?” I asked. </p>
+<p>&ldquo;Not something you'd do if our positions were reversed?&rdquo; I asked. </p>
 
-<p>“I am not so certain... Perhaps I am too attached to my pride.</p>
+<p>&ldquo;I am not so certain... Perhaps I am too attached to my pride, intangible as it is. &ldquo;</p>
 
-<p>-Vorescene- Holixer eats you, hoisting you up, arms pinned and headfirst.</p>
+<p>I had to give a grunt at that. I did have pride, I valued my reputation. The cost of being a good leader meant one had to weigh how much those mattered in the greater good. Letting Holixer temporarily consume me to gain their trust in not only me but the Admiralty seemed a small price to pay. It didn't hurt the matter that he wasn't bad looking. </p>
+
+<p>&ldquo;Well, for the moment, I surrender my pride to yours.&rdquo; I announced and stood ready. </p>
+
+<p>Holixer smiled genially and reached down grab a hold of me by the sides. He's a tall Gryph and bulky to boot, he lifts me up with ease.  &ldquo;While I promised to try return everything I take with this act, some small parts of things like that, might be added to mine.&rdquo;</p>
+
+<p>Holixer yawned wide, revealing the depth of his sizable beak and deposited me head first inside his mouth. My chin brushed briefly against the back of his tongue before with a 'ulp' my whole head squeezed on into his gullet. </p>
+
+<p>Holixer spared no time, he assertively pinned my arms and wings with his wide strong grip and pushed me down his throat with steady bobbing swallows. </p>
+
+<p>I had been swallowed before, most of all in training in the academy. Being swallowed whole by a Gryph was not much different. The hard beak occasionally pressing down on my belly and back between swallows was different from the light nip of teeth.The way a Gryph swallowed their meals was different too, slightly less use of tongue and more toss of head and pull of throat muscles. Otherwise the slick and pulsing hot insides were like any others.    I felt Holixer shift his grip to my legs around ankles and with a forcible grip and shove, shunted me the rest of the way down into his body.  His stomach was surprisingly spacious, his visible large paunch was not just for show and now it no doubt swelled further into plumper fullness as I was squeezed into it.  I managed to curl myself up without too much discomfort, managing to even wiggle around and adjust slightly. </p>
+
+<p>I sizable rumble and shake did push the chamber slightly tighter as Holixer belched contently with a loud 'Ouurrpphh!', I soon felt his paw drum and pat against the outside of the stomach as he seated himself to rest. The slight rumble of a contented crooning 'humm' vibrating around me along with the occasional wet 'glrp'.</p>
+
+<p>Holixer had eaten me and done so with efficiency and no fuss. Hopefully my impression of his character was not off and he'd soon release me as promised. Somehow I felt that I could relax and trust that he would.  It was dark and warm, the paunchy belly of the stocky Gryph I now occupied was soft and roomy.  I found myself closing my eyes and leaning back peacefully, waiting for my eater to be content with this bargain. However long that would be.</p>
 </div>
 
 <div class="vesslaVore hidden">
-<p> Vessla perhaps eats you awkwardly, possibly digests you accidentally due to vore-virgin inexperience </p>
+<p>I picked Vessla because he was the smallest unknown. A fellow Awe and a potential subordinate, he would be the easiest to handle with the least potential surprises. </p>
+
+<p>Though a Captain feeding herself to a subordinate is always a issue for appearance of authority, I still weighed the potential risks as lower. </p>
+
+<p>Vessla soon moves over to seat himself next to me, seeming lost to words in how to proceed. </p>
+
+<p>&ldquo;Can I... eat you somewhere more quiet?&rdquo; He finally asked, his fur bristling in nervousness. </p>
+
+<p>&ldquo;Of course, Vessla.&rdquo; I replied. It seemed the scout had a little performance anxiety. More privacy and less of a display suited me well however. </p>
+<div class="ship hidden">
+<p>I led him away from arrayed feast and over to my personal quarters. I order us not to be bothered and my cadets know better than to question it. </p>
+
+<p>Vessla looks around the room a while, it seems he's been living it quite rough as he treats my rather modest chambers like its the height of luxury. </p>
+</div>
+<div class="island hidden">
+<p>&ldquo;Okay..! We can go to the hut they gave me. Its small but... well...&rdquo; He rose and started walk of, looking back only to confirm I followed.  The group watched us depart but remained at their feast. </p>
+
+<p>Vesslas hut was indeed &ldquo;cozy&rdquo;, it was little more then a rudimentary shelter with enough space for a bedding on a pile of sand and a little place to sit beside it upon some dried reeds. I could not quite see the appeal of living here so roughly with these Islanders. </p>
+</div>
+<p>&ldquo;I'll be honest... I've never swallowed a female before. Much less someone of your... stature.&rdquo; Vessla gulped nervously. &ldquo;Why did you pick me?&rdquo; </p>
+
+<p>&ldquo;I always trust in a fellow Awe then anyone else. As should you.&rdquo; I replied calmly. </p>
+
+<p>&ldquo;I suppose... but they're not bad these Islanders. Kind and caring...&rdquo; Vessla faltered, perhaps sensing my impatience. &ldquo;...ah well, lets get this over with.&ldquo;</p>
+
+<p>Vessla awkwardly opened his mouth and closed it around my snout, he still looked nervous, like he expected me to lash out at any time and punish him. With my snout lodged in his muzzle, he began to swallow, dragging my head toward his tight gullet.  Its a few hesitant 'ulps' and 'glllps', but he manages to ingest me down to my shoulders before he picks up pace, swallowing reflexes kicking in gear and overriding his caution. </p>
+
+<p>&ldquo;Mmmhhfff&rdquo; He seems to moan as stretches his jaws around my chest and pushes and swallows his way down over me. Any Awe can swallow another and there are only very few rare exceptions which have difficulties or conditions preventing them from doing so. Vessla is capable, but I can tell he's having some kind of problem with the way he shudders and moans in discomfort between reflexive rippling swallows.</p>
+
+<p>My head pushes into his stomach eventually, its taken a while for him to work me down. But as the majority of my weight starts to rests in his gullet, the rest flows down with greater speed. I almost sense Vesslas relief as the rest of my body flows into his swollen belly, my body curling up in the dome of brown fur.</p>
+
+<p>Its with a few urgent 'glucks' and gulps he swallows my feet and tail and I end up fully inside the scout. I can hear him panting, seeming out of breath and letting out a few groans. </p>
+
+<p>&ldquo;Ah.. I... did it... &ldquo; He sighed in exhausted relief. I felt him shift and collapse backward to lay down, lungs still bellowing. &ldquo;Oh goodness....&rdquo; </p>
+
+<p>The inside of his stomach was moderately cramped, I had been in Awe stomachs before, a male Awes stomach was always tighter due to their thinner frames and hips. It seemed Vesslas difficulties were less about accommodating me down here and more about the journey between. </p>
+
+<p>&ldquo;Sorry Captain... I just... have problems with tightness of chest.&rdquo; Vessla explained tiredly, his breathing still hard but calming down. &ldquo;I just need to rest a bit.&rdquo; </p>
+
+<p>He sounded worn out. I couldn't imagine the process of getting me back up would be much easier.</p>
 </div>
 
 <div class="darterVore hidden">
-<p> Darter might make a display out of eating you, feet first. Tries to tempt you to consent into being digested </p>
+<p>Darter has been giving me the eyes all through the rest of the conversation and meeting.  With his blueish feathered plumage and many swirling painted markings, he stands out quite visibly from both Awe and fellow tribes-mates alike, who all carry a shared variety of earthen colored complexion. </p>
+
+<p>Its clear he is very eager about the prospect of eating me. I sense a fidgety impatience in him that is pushing against his obligation to remain polite and cordial.  He's a young and impatient Chief-son, not exactly spoiled but often pampered for the position his bloodline has granted him.  Now his eyes are on me, his curiosity is piqued and desires to know what its like to eat a Awe captain. Yet I chose this deal and him out of my options. </p>
+
+<p>Eventually he can hold back no longer and rises from his seat.  &ldquo;Alright captain, shall we perhaps proceed with our agreement?&rdquo; Both his paws are on his painted belly as he speaks. &ldquo;I confess I am delighted and honored by your choice. There is no need to delay the joining of our bodies!&rdquo; </p>
+
+<p>Holixer clears his throat in rebuke and Darter is quick to add. &ldquo;As a sign of unity and trust, this one evening I mean...&rdquo; </p>
+
+<p>I step up to him to face him. Gryphs are taller then Awes and he despite his youth is about a half a head more so then me. But I still reckon we are not far off each other in weight. </p>
+
+<p>&ldquo;I shall begin now...&rdquo; He grinned at me, seeming to size me up, then he motioned toward feast table by his seat. &ldquo;If you could please lie down on the table. I.. am sure I can manage you, but I hope you will cooperate.&rdquo;</p>
+
+<p>I huffed as he guided me down to lay down on the table, with my feet facing him. It seemed he intended to consume me like a part of the feast, right off the table. The main course for the royalty. </p>
+
+<p>A warm moist beaked mouth closed around both my feet-paws as Darter sat down behind me and began to swallow me. The hot rhythmic tightness of his throat soon swept up along my legs to my thighs as worked his way up, pulling on belt to help himself work me down. </p>
+
+<p>It occurred to me he did not seem terribly strained at all from fitting me down his gulping greedy beak. </p>
+
+<p>Upon reaching my wait and belt, he fidgeted with my clasp briefly before with a grunt motioning for help.  A pair of paws moved in to help unbuckle my belt and remove my cloak quickly, I did not see whom, for Darters paws held me pinned down firmly against the table as he shifted to stuff the rest of my upper body into his bulging cheeks.  With my arms soon pinned and swallowed up to my mane, he hoisted me upward, almost with what seemed like a triumphant flourish. His body was tight around mine, squeezing hard to press me down into his visibly bulging belly. Looking down I could see the shape my lower body was making under those painted stretched markings. </p>
+
+<p>His paw pushed at my nose as the gaping beak yawned its way around my head. For a moment he paused like this, with my ears and fur pressed forward along with my snout peering out of his yellow beak. He turned his body awkwardly to Vessla and judging by the Scouts brief flicker of amusement, he must have winked. </p>
+
+<p>There was little time to be disgruntled or amused myself at him making a show out of eating me. With a wet swallow and a face-full of tongue, his beak closed around my head and he gulped, shutting out the outside world and welcoming me fully into his cramped body.  It did seem he was at the edge of his limits, for my head seemed to lodge in his neck and the repeated rippling wet gulps received a slight urgency to them. Had I wanted to, I could have escaped this situation, I wanted him to know this. Then I relaxed my lower body and let the muscles around me guide me down into Darters stomach. </p>
+
+<p>The stomach of the Chief-Son was a cramped and tight space. The stomach-walls were taut unwilling to give much room to movement. I could hear the Gryph groan and shudder as he stifled a belch and sat back with his very prominently bloated belly.  He had managed me, enough to make a display as well, but his stomach was not used to portions my size. </p>
+
+<p>&ldquo;Captain Avolc is now within me, full and content has she made my belly.&rdquo; Darter announced contently. &ldquo;Lets continue the festivities, I need to rest a little.&rdquo; He chuckled, jostling my chambers slightly. </p>
+
+<p>The chamber churned idly and I felt Darters paws knead vigorously over my curled up shape. His voice was muffled, but I could make out his words as she spoke to others around the table.  The way his stomach seemed to respond to his paws, it was clear enough he was easing a slight stomach-ache that I was giving him. There was only a few reasons to do that, his proposal was not long in following. </p>
+
+<p>&ldquo;Ough... Captain. I must say I've enjoyed this more then I could have guessed. I feel you settling in to my belly now, like no meal has, like you always belonged.&rdquo; His paws pushed and kneaded, they were deceptively soothing. </p>
+
+<p>&ldquo;Join with my body, be the first to do so and you'll take a honored place upon my person.&rdquo; He seemed to trace a digit along the markings of his belly. Poking at a spot, perhaps where they'd inscribe a permanent symbol for me. &ldquo;Do this and I will strive to ensure Awes are forever welcomed not only with Lanaga, but all we have influence with. A unity of our peoples for all who wish to follow our example.&ldquo;</p>
+
+<p>They were loft words and high promises. Join a prince to secure a kingdom.  What a bold suggestion.</p>
 </div>
 
 </div>
 
 
 <div class="digest hidden">
-<p> You are digested by a rumbling stomach </p>
-
 <div class="vesslaVore hidden">
-<p>Vessla is quite embarassed about it </p>
+<p>I let Vessla rest and catch his breath, affording him some courtesy until he felt ready to let me go. </p>
+
+<p>A while passed and Vessla got quiet, his breathing was now shallow and more relaxed. It seemed he was at ease once more.  His stomach around me let out a ominous low 'grouurgh'. The muscles around me shifted and compressed with a steady churn. Being quite familiar with the sounds of an Awe stomach, I knew that was the sound mine made when gearing up to work off a a meal.</p>
+
+<p>&ldquo;Vessla?&rdquo; I queried, giving a jolt and a kick to the chamber to rouse him. </p>
+
+<p>The stomach 'gllrrnn'ed in an annoyed tone at my kick and tightened itself around me defensively. Struggling just became harder.  I dawns on me that Vessla has fallen into deep slumber. His efforts to swallow me wore him out and in his attempt to calm his breathing has totally knocked him out.  His filled stomach has of course responded accordingly to his lack of consciousness and is now starting to take care of me the only way it knows how. </p>
+
+<p>&ldquo;VESSLA!&rdquo; I shout angrily and jostle and kick outward. I put my training into it, but realize im in a slightly awkward positioning. Escape methods only work best after you've been immediately swallowed and you've not let your eaters stomach settle its grip around you.  Im upside down and sideways, my kicks wont jolt against sensitive organs and I cant shift position. </p>
+
+<p>&ldquo;Vessla! What kind of amateur are you!&rdquo; I growl at him, grunting at the churning stomach-walls and heavy digestive liquids being squelched into my fur. Every Awe knows to stay awake when you have someone guesting in your belly. Giving in to the lethargy, to fully relax to sleep, is to agree to your body to take care of your meal!</p>
+
+<p>Vesslas stomach was working on me now, it would be doing so capably and my time was limited as it would start to do so fast. I could but moan in muffled frustration and discomfort as I was completely in the mercy of my Scouts belly now.</p>
+
+<p>&ldquo;Vessla...! Scout! You're....ghhh...&rdquo;  Through the noisy loud glrrrn and gurgle of digestion, my voice was hardly audible enough to make a difference. Vessla was digesting me and I was starting to feel that instinctive foretold lethargy myself. Its not much different from the one Vessla gave in to, just much less negotiable. I feel like I'm sinking... sinking deep. Deep into Vessla.... </p>
+<div class="island hidden">
+<p>- &ldquo;Hello? Are you in there Vessla?&rdquo; A familiar voice with a hint of concern calls from outside the hut.  Its Darter.  Vesslas head feels lost, dazed and like he forgotten something, but at the same time he's feels physically very comfortable.  &ldquo;Uh....&rdquo; He replies, gathering his thoughts. What day was it? &ldquo;Is everything alright, you two are taking some time.&rdquo; His voice shifted into bemusement with a hint of jealousy. &ldquo;I figured you needed some, you're a cute couple! I can stall them a while longer.&rdquo; </p>
+
+<p>Vessla felt a rush of adrenaline as he pushed against his belly and felt only a squishy softness under his paws. A low gwuurrggll escaped him and he his eyed widened and his ears burned in a deeply embarrassed flush.</p>
+
+<p>&ldquo;I...I uh... we need... some more time.&rdquo; He replied urgently, fighting embarrassment and a little bit of panic. He is digesting her.... has digested her! Nothing solid left. He has digested a female, a captain! He has never digested anyone before, never thought he would, much less someone like that!</p>
+
+</div>
+<div class="ship hidden">
+<p>&ldquo;Hello? Are you in there Vessla?&rdquo; A familiar voice with a hint of concern calls from outside the chamber door.  Its Darter.  Vesslas feels lost, dazed and like he forgotten something, but at the same time he's feels physically very comfortable.  &ldquo;Uh....&rdquo; He replies, gathering his thoughts. What day was it? Where was he? &ldquo;Is everything alright, we thought about returning soon, you two are taking some time. &rdquo; His voice shifted into bemusement with a hint of jealousy. &ldquo;I figured you needed some, you're a cute couple! I can stall a while longer.&rdquo;</p>
+
+<p> Vessla felt a rush of adrenaline as he pushed against his belly and felt only a squishy softness under his paws. A low gwuurrggll escaped him and he his eyed widened and his ears burned in a deeply embarrassed flush.</p>
+
+<p>&ldquo;I...I uh... we need... some more time.&rdquo; He replied urgently, fighting embarrassment and a little bit of panic. He is digesting her.... has digested her! Nothing solid left. He has digested a female, a captain! He has never digested anyone before, never thought he would, much less someone like that!</p>
+</div>
+<p>&ldquo;Oookay...&rdquo; Darter hummed, he sounded a little tipsy and his footsteps soon departed. </p>
+
+<p>Vessla sat up and grunted. His head was clearing. He could not stop staring at his rounded soft belly.  He slapped himself on the forehead, he had let himself sleep, he shouldn't have done that! He forgot that lesson.  But its not easy to remember something you were taught decades ago! He hasn't eaten anyone in just as long...  He lay back down to think and knead at his noisy gut. What else could he do?</p>
+
+<p>A hour or two more, it would be morning. She'd be entirely gone then. Nothing but healthy paunch and added muscle and fat to his frame. Vessla had never felt so good in his life, never felt so strong!  With a sigh he stepped out of<div class="ship hidden">the former captains quarters</div><div class="island hidden"> the hut</div> and gave himself a stretch. He felt confident he could work things out, come what may.</p>
+
 </div>
 <div class="darterVore hidden">
-<p> You kind of wanted to be a gryph, or part of one. </p>
+<p>His flirtations and words, although slightly bombastic, had a pull I could not deny.  He'd eaten my so publicly, as if he'd knew he'd have me, now he wanted to just as publicly have me submit to him and become part of him in front of all to see. </p>
+
+<p>I could almost sense the eyes of everyone around waiting for my reply and reaction. Everyone staring at Darters rounded full stomach with suspense.  I could not have made the agreement to everyone face, hidden inside Darter it was easier to just say it. To submit control to him. </p>
+
+<p>&ldquo;Captain?&rdquo; The silence had made him hopeful, eager. &ldquo;Shall I add you to my tribe and person?&rdquo;</p>
+
+<p>&ldquo;Do it... &ldquo; I found myself saying, loud enough to be heard outside. Loud enough so that I didn't have to repeat myself. </p>
+
+<p>The chamber started to bounce and jostle as Darter let out a hearty laugh of delight.  &ldquo;She agrees! Hahah! She has agreed to my body!&rdquo; </p>
+
+<p>There is a murmur of noise and talk, but somehow, it all seems detached now. With those words, the hot squishy kneading darkness around me, the body of this Gryph, was all that concerned me. </p>
+
+<p>&ldquo;Bring out the casks and the paint. Let us do the marking now while my belly is so wide and big!&rdquo; Darter proclaimed jovially. </p>
+
+<p>As time passed inside the stomach, I was soon joined by many gallons of liquid with sweetness and tang of alcohol. Darter was the center of attention and festivity and I sloshed around in the center of him.  He bid me stay still as the painted their upon his feathers, marking the occasion and union of my person to his. But he found time to speak to me, boastfully and comfortingly. </p>
+<div class="magic">
+<p>(&ldquo;These markings is a symbol that mark you as bound to me now. A binding of royalty like mine are a little more sacred if the crones are to be believed.&rdquo; Darter chuckled. &ldquo;A way to unite true bloodlines and their peoples!&rdquo;) &ldquo;As the first Awe now part of me, we forge a bold new path together. Not only will you help me make me as big and strong as Holixer, you're a hopeful precedent further unity of our people.&rdquo; </p>
+</div>
+<p>Perhaps it was the drink and ego swelling his head, but Darter squawked on joyfully.  &ldquo;Awes seek out those strong and confident, no? We shall be a beacon for your people... we shall welcome you all. We shall never run out of paint for our bellies.&rdquo;   As his stomach squelched and worked up on me, slowly digesting me and the alcohol, I wondered idly what my symbol looked like. I was going to ask, but Darters soothing rubbing paws drove me relax and listen to his body and his lofty goals. </p>
+<div class="magic">
+<p>(As Darter watched the sunrise with sleepy eyes and a settled grumbling belly he felt a pleasant shudder go through him. The new paint on him was bright and itched slightly, but he knew better then to scratch it.  Somewhere far east, a similar shudder swept through as a calling wakes in numerous hearts.  Darter and The Lanaga would come to find themselves very busy in the coming years. There would at least be no need for foraging.)</p>
+</div>
 </div>
 
 </div>
 
 <div class="nodigest hidden">
-<p> One stomach later, you are humbled but trustworthy </p>
+<div class="darterVore hidden">
+<p>I give him my reply by kicking out with a foot, eliciting a loud pained 'ooof' from the young Gryph. I then arch my back and twist sideways, stretching the stomach chamber awkwardly further, making Darter groan and clutch at his belly. </p>
+
+<p>&ldquo;Don't get ahead of yourself!&rdquo; I grunt and grit my teeth as I push against the confines of his body and surrounding muscles. Its a fight I appear to be winning, as the chamber loosens and grruurrggs in a pained upset manner. </p>
+
+<p>&ldquo;Ah, stop! Please!&rdquo; whines the Chief-Son, as he holds on and winces.</p>
+
+<p>I use my training, the one everyone questions whether they'd ever need back in the academy. I bunch of my legs underneath me, shift around to get a feel of whats up and whats down and then straighten my body. </p>
+
+<p>Darters stomach has enough, it releases me quickly and I'm hastily expelled from the beak of a teary-eyed Darter who staggers back from me with a moan.</p>
+
+<p>I make sure to stand up quickly, despite having saliva slicked fur I make sure to project an air of steely displeasure. </p>
+
+<p>&ldquo;That was not part of any deal of ours! You think I'd fall for such juvenile temptations?&rdquo; I scold them all.  Forager Holixer seem to capability to look both remorseful and furious (at Darter) at the same time. </p>
+
+<p>&ldquo;Of course Captain! My ward overstepped his bounds. This was about proving trustworthiness and we failed our part. &ldquo; He bowed his head to me and the other attending Gryphs around, hesitantly followed suit. </p>
+<div class="island hidden">
+<p>&ldquo;I will return to my ship now. Scout Vessla will accompany me. Our deal is done.&rdquo; I announce curtly and turn to leave. </p>
+
+<p>With Holixer having bowed his head to my authority and Chief-Son Darter laying curled up with a severe stomach-ache, there was no question of obedience from anyone.  Scout Vessla fell in, though eyeing back at Darter with sympathetic sadness.  </p>
+</div>
+<div class="island hidden">
+<p>"I believe this concludes our business. Scout Vessla is staying with us now, our deal is done." I announce curtly, making it clear their welcome is over. </p>
+
+<p>With Holixer having bowed his head to my authority, helping along Chief-Son Darter who whined and clutched a severe stomach-ache, there was no question of obedience from anyone.  Scout Vessla stayed as the Gryphs made to leave, though looking to Darter with sadness. </p>
+</div>
+</div>
+
+<div class="holixerVore hidden">
+<p>I come to awake to a jostling movement. My head is fuzzy as it seems I have dozed off in my moment of being at ease inside Holixers belly. I'm not certain how long its been and I silently curse those Aweish instincts to peacefully submit to a body around you. </p>
+
+<p>It seems however that my trust was well-placed, the churn of muscles around me I feel are not those of a stomach at work, but the convulsions of one working to disgorge its contents. </p>
+
+<p>Im shunted back up the throat of Holixer, soon feeling the cold air around my feet as I appear in the same manner I went down.  Strong arms and steady paws catch me and I suddenly find myself held in Holixers embrace as I extract my head from his open beak and meet his smiling eyes. </p>
+
+<p>&ldquo;All of you intact and well, Captain? Looks like it.&rdquo; He rumbles jovially. </p>
+
+<p>&ldquo;Aye... I feel good.&rdquo; I reply and don't realize my admission until a brief pause passes. </p>
+
+<p>&ldquo;Glad to hear Captain.&rdquo; Holixer sets me down on my feet gently and straightens up, paws on his hips. My fur is slick with saliva and goop, but it seems Holixer has had foresight for this <div class="island hidden"> and there are some rudimentary cleaning tools and clean water ready.  We appear to be alone in some manner of small groomery of sorts, but its not the same hut that I climbed inside Holixer in.</div><div class="island hidden">there is a fresh bath cleaning tools ready nearby. He appears to have taken it upon himself to ask someone to draw a bath for me in my chambers. </p>
+
+<p>&quot;Your young little servants are quite diligent and efficient.&quot; The big Gryph grinned bemused.</p>
+</div>
+<p>&ldquo;With this I reckon you've proven your good intent and trustworthiness more then amply.&rdquo; Holixer spoke. &ldquo;Chief-Son Darter will chafe at letting Vessla go, he enjoys people and objects from outside our isles, but he will honor this deal too. &ldquo;</p>
+
+<p>Before long I join the rest of the group outside, some of my anxious crew visibly relieved at my return.  Scout Vessla too, seems less apprehensive. He is clearly not thrilled about leaving, <div class="ship hidden">but he watches the Gryph depart quietly. The Lanaga tribe depart our ship amicably. As they climb into their canoes I meet Holixers gaze briefly and he has nothing but a knowing warm smile to give as he pats his chest with a closed fist. </div><div class="island hidden"> but he comes along without further objection. The Gryphs escort us back and we part with Tribe Lanaga amicably.  As we row back to the ship I meet Holixers gaze briefly and he has nothing but a knowing warm smile to give as he pats his chest with a closed fist.</div> He's keeping a little part of something of mine.  Perhaps I can somewhat sympathize with what Scout Vessla saw in these people.</p>
+</div>
+
+<div class="vesslaVore hidden">
+<p>&ldquo;You should be better in shape, don't you Scouts need to be trained and ready for any eventuality.&rdquo; I berate the Scout from inside his belly, giving a little thump. </p>
+
+<p>&ldquo;Ah.. nhf... yes. Well... I can fly, climb, track and even swim as good as the best...! I've just... left eating to others....&rdquo; Vessla winced in reply. </p>
+
+<p>&ldquo;Well, its time to let me out Scout. I don't have patience for dallying.&rdquo; I command firmly. Even from inside him, I have to ensure there are no questions of who's in command. He's going to be working for me after this, so best not give him ideas. </p>
+
+<p>&ldquo;Yes Captain, okay... &ldquo; The Scout shifted and moved. I felt him push against me as he crawled out of<div class="island hidden"> his hut</div><div class="ship hidden">my bed</div> to get more space. Paws pushed against me and he heaved, but all in the wrong ways.  He seemed to lack the technique or know-how in how to get me back up and I was smooshed this way and that as the Scout tried to cough me up. </p>
+
+<p>It was not until I heard the burr of Holixers voice that things improved.  &ldquo;Here, let me aid you Vessla. You need to relax and then, open wide.&rdquo; </p>
+
+<p>The Gryph squeezed an arm down Vesslas gullet and then helped the scout activate the right reflex.  The journey back was quicker then down, perhaps aided thanks to Holixer who literally yanked me out of Vesslas jaws in one smooth swoop once he got a hold of me. It seemed not much easier on the Scout, who ended up coughing and gasping.  It seemed some Awes were not suited to take on others. I pitied him slightly.</p>
+</div>
 </div>
 
 <div class="flirty hidden">
@@ -1771,7 +2064,7 @@ I sighed slightly but answered. “Females choose the male when they feel ready 
 </div>
 
 <div class="favor hidden">
-“I have asked a lot of questions of my friend Vessla about your culture and customs. But I feel like there is a unique opportunity and perspective to learn from with you Captain. Why dont you stay the night and we can talk more. I would consider this a great favor to me and my tribe. Surely there is no hurry that cant wait a night?“ Darter smiled and winked. </p>
+“I have asked a lot of questions of my friend Vessla about your culture and customs. But I feel like there is a unique opportunity and perspective to learn from with you Captain. Why dont you stay the night and we can talk more in private. I would consider this a great favor to me and my tribe. Surely there is no hurry that cant wait a night?“ Darter smiled and winked. </p>
 
 <p>I consider his offer a moment. The Chief-Son of Lanaga probably fancies himself quite a charmer. <br />
 I could stay the night and endure his questions and possible advances. </p>
@@ -1797,7 +2090,11 @@ If he dared to overstep his bounds with me, I would just...</p>
 </div>
 
 <div class="nostay hidden">
+<p>&ldquo;I must decline the offer.&rdquo; I try to answer as kindly as I can. Though there really was no diplomatic easy way to turn down the Chief-Son without offending him. </p>
 
+<p>Darter leans back, looking disappointed. Royalty like him no doubt are rarely snubbed.  &ldquo;I'm saddened to hear that. It was an opportunity for our relations to bond and strengthen.&rdquo; </p>
+
+<p>I can only sigh quietly. It would not be appropriate for me to stay the night alone in this village, no matter how innocent I kept it.  Forager Holixer seems to shrug and fix us our group with a neutral gaze. The Chief Son has spoken, we reached the end of this approach to gain their favor.</p>
 </div>
 
 
@@ -1918,9 +2215,27 @@ Scout Vessla seemed to sigh, deflate almost. Then he took a long breath and stra
 “Very well Captain. I... understand. I apologize also, I have not acted in accordance of our ways. I will return with you and fulfill my duties.” He exchanged glances with Chief-Son Darter and there was a slight sorrow there between them it seemed. <br />
 “If that is your choice, Vessla. We shall await your return.” Forager Holixer spoke, but his eyes were on me. He had a stern face, but they seemed approving. <br />
 “Very good. I'm glad this settled amicably. Welcome to the crew of the 'Attentive' Scout Vessla.”</p>
-
 </div>
 
+<div class="success3 hidden"><p><strong></strong></p>
+<p>I return to the ship at dawn, escorted through the island and to a waiting boat by a small delegation of Gryphs that had attached themselves to me as a sort of honor guard. </p>
+
+<p>Activity on the ship is just about waking up, but I do find my First officer with a cadre of armed Awes and Raptorians anxiously waiting for me, ready to enter the island if my arrival was in any way delayed. </p>
+
+<p>I reassure them everything has gone well and wisely I'm not asked for details. No doubt it'll be a topic for gossip no matter what I said occurred. </p>
+
+<p>Scout Vessla has been debriefed in my absence and he has rejoined the Scouts under Scout-Master Krel leadership. </p>
+
+<p>I'm informed he has been quite forthcoming. He has said the likely direction to finding the fleet is further west. That was the fleets last heading and where they had previously operated. </p>
+
+<p>He also informed that Lanaga tribe had been worried about a outer island of theirs being occupied by a whole lot of Gators of unknown affiliation to the north.   If it was a nest of potential pirates, it could be the fleet have already been there and cleared them out. It was another potential source for answers.</p>
+
+<p>We can head further West and follow the clues of the Fleets trail. </p>
+
+<p>Or we can head north to investigate the island with a potential pirate encampment on it. </p>
+
+<p>( There is also the South-Eastern Navpoint and marked as a resupply point, but its a bit of a trip in the opposite direction. ) </p>
+</div>
 
 
 <div class="failed hidden"><p><strong>Failed Negotiation</strong></p>
@@ -2019,6 +2334,175 @@ There is movement around us. Islanders are bunching up, some wielding spears and
 </div>
 <p> Lastly, there's the Scouts. I could ask them to try to grab our scout covertly. Thats a task well within their trained abilities. It's a fellow scout i'd be asking them to kidnap however.</p>
 
+</div>
+
+
+<div class="questionV hidden"><p><strong>Question Vessla</strong></p>
+<p>Vessla has been captured, for whatever reasons he's chosen to side with the native inhabitants and abandon his duty to the Admiralty. I have a lot of questions for him, perhaps I can figure out his reasons before I decide upon his fate. </p>
+
+<div class="assault hidden">
+Awes were hurt in his retrieval and the village largely destroyed in their opposition, so its best we get as much information out of him as possible to make it worthwhile. </p>
+
+</div>
+<div class="kidnap2 hidden">
+<p>We managed to retrieve him covertly without anyone getting hurt. No doubt the natives will be angry with us, but they'd be wise to not interfere. </p>
+</div>
+<p> Its a defeated and forlorn looking Scout that sits curled up in his seat in the brig. <div class="assault hidden">He does not seem to acknowledge my arrival, he just stares blankly at an empty spot ahead of him. </div></p>
+
+ <div class="assault hidden">
+<p>&ldquo;Scout Vessla.&rdquo; His spoken name seems to rouse him and he meets my gaze. &ldquo;I need some answers out of you.&rdquo;</p>
+
+<p>The Scout remained sullen throughout my questions. It seemed some of his spirit had gone out of him. Perhaps it was resignation or guilt or a mix of both. Either way he answered with some useful information, though not as in depth as I would have liked, despite my urgings for leniency if he cooperated. </p>
+
+<p> Armed: The Tribe he had been living with were the Lanaga. This was one of their satellite foraging villages.  Though he would not fully divulge his reasoning for doing so, he said he had decided to stay here, feeling at home and welcome with the natives. </p>
+
+<p>It seemed to me the dangers and rigours of serving the Admiralty had perhaps become too much for him. How he had managed to graduate as a scout with such a cowardly attitude was beyond me. </p>
+
+<p>An interesting clue he did manage to divulge about local pirate activity was that the tribe was worried about one of their outer islands being occupied by a whole lot of Gators of unknown affiliation. </p>
+
+<p>That seems a promising source for more answers. A nest of potential pirates not too far north of here, could be the fleet have already been there and cleared them out. </p>
+</div>
+
+
+<div class="kidnap2 hidden">
+<p>Scout Vessla eyed me nervously as I approached. He seemed a skittish sort, I wondered idly how one such as he made it through Scout training. I thought squeezed all the fear out of their male recruits. </p>
+
+<p>&ldquo;Scout Vessla, I need some answers out of you, so you best be as forthcoming as possible.&rdquo; I sat down opposite of him and he seemed to nod briefly.</p>
+
+<p>&ldquo;Yes... Captain. I... apologize for my actions. I was foolish!&rdquo; Vessla squeaked repentantly. But it remained to be seen if he was just saying what he thought I wanted to hear. </p>
+
+<p>Scout Vessla seemed to do his best to answer my questions and divulged all that he could about the Tribe he had been living with and what he knew of the surrounding area and the fleet. </p>
+
+<p>The tribe was called the Lanaga. This was one of their satellite foraging villages, inhabited currently by a troop of foragers and a Chief-son and his guard.  He had been sent here to briefly make contact and make inroads in negotiating their future cooperation with the Admiralty.  During his time there he had grown attached and fond of their hospitable nature.  Scout Vessla expressed a sense of unease about the direction of the leadership of the fleet as his reluctance to return. His excuses were vague and seemed mostly based on cowardice to me. </p>
+
+<p>&ldquo;The Admiral, she's so ruthlessly driven in defeating the enemy. A scout knows when its best to back down from an impossible fight. With so many unknowns we're facing, with the new weapons and enemies numbers, she has no such inhibitions.&ldquo;</p>
+
+<p>He explained. It did not justify his attempted desertion of duties, though it did provide insight into whats been going on.  As for the fleets location, Scout Vessla informed the likely direction to find them is further west. That was the fleets last heading and where they had previously operated. </p>
+
+<p>He also informed that Lanaga tribe had been worried about an outer island of theirs being occupied by a whole lot of Gators of unknown affiliation to the north.   If it was a nest of potential pirates, it could be the fleet have already been there and cleared them out. It was another potential source for answers. </p>
+</div>
+
+<p>As for what to do with Scout Vessla. The punishment for desertion was clear. </p>
+<div class="kidnap2 hidden">
+<p>Vessla has however been forthcoming enough and seems repentant about his actions. He could also be reinstated as a Scout. They are valuable assets so I could overlook this incident once with a hard warning about no tolerance toward future disobedience. </p>
+</div>
+
+<div class="assault hidden">
+<p>Though he could be forcibly reinstated into the scouts, it's a hard question if he harbors any loyalty for the Admiralty and his fellow Awes anymore. </p>
+</div>
+
+
+<div class="questionV2 hidden"><p><strong>Question Vessla</strong></p>
+<p>Vessla has been apprehended successfully without major incident.  It seemed the Gryph Tribe was ready to defend him with arms, which was quite surprising.  So its a good thing, for them, that Scout Vessla gave up right away and defused the situation.</p>
+
+<p> They let their displeasure be known, especially that spoiled Chief-Son. It is unlikely we will be at slight disadvantage dealing with Lanaga in the future. </p>
+
+<p>Scout Vessla now sits in for some extra questioning before I decide his fate. I could easily charge the Scout with charges as heavy as desertion for refusing to fall in line right away. I've certainly threatened to eat Awes for less in the past.</p>
+
+<p>For now, he seems compliant and cooperative. Perhaps being back among his own kind and being firmly reminded of his duties has snapped him back from his folly. </p>
+
+<p>He claims to be unsure of the whereabouts of the fleet, but divulges about local pirate activity was that the tribe was worried about. One of their outer forage islands is being occupied by a whole lot of Gators of unknown affiliation. </p>
+
+<p>That seems a promising source for more answers. A nest of potential pirates not too far north of here, could be the fleet have already been there and cleared them out.</p>
+
+<p>Only issue that remains is to decide what to do with Vessla now. He appears compliant now and i could assign him to Scout-Master Krel to be put back into duty. Their training and abilities make them valuable assets one can never have enough of.</p>
+<p>Or on another hand, I can make an example out of him. His actions have not been that of a model sailor of the Admiralty and no one regardless of value and position are above their duties and Admiralty law. </p>
+</div>
+
+</div>
+<div class="eatVessla hidden"><p><strong>Eat Vessla</strong></p>
+<p>The Questions are over, there is no point in delaying things any further. </p>
+
+<p>Vessla listens anxiously as I announce his verdict. </p>
+
+<p>&ldquo;Scout Vessla, for your failure to report to duty as requested, you are charged with desertion.  Dire as circumstances are, I cannot permit such actions to go unpunished. You are hereby sentenced to be rations, carried out immediately.&rdquo; I give my belly a firm pat, letting him know of his destination, if it wasn't obvious enough.</p>
+
+<p>The scout gulps nervously, eyes locked on my stomach as I step up close. He makes no move to resist, instinctively stunned in place under the authority of a female. </p>
+
+<p>He's thin and light, he's easily enough hoisted up and shoved head first into my mouth. He takes hardly much effort to swallow down, letting out only a faint squeak and 'mmmph' as I swallow his shoulders and pull him down to his waist. His large prominent wings tickle my nose as they slide past, but they fold themselves close to his body without a hitch.</p>
+
+<p>My stomach swells and my belt strains as he fills my stomach out. Its a comforting feeling, the weight, the stretch and the tickle of moist fur. His legs and feet paws vanish down my gullet without so much as a kick. In this, it seemed Scout Vessla at least knew his place. </p>
+
+<p>A satisfied deep 'Grurrrgh' echoes from my belly as the meal settles in. A skinny scout is hardly much of a meal as far as devouring a person goes, but my belt does beg for some loosening and I comply. </p>
+
+<p>Before the lethargy of feeding settles in, I have to decide upon our next destination. </p>
+
+
+<p>We can head north to investigate the island with a potential pirate encampment on it. </p>
+
+<p>( There is also the South-Eastern Navpoint and marked as a resupply point, but its a bit of a trip in the opposite direction. ) </p>
+</div>
+
+<div class="consider hidden"><p><strong>Considerations</strong></p>
+<p>The Questions are over, there is no point in delaying things any further.  Vessla listens anxiously as I announce his verdict. </p>
+
+<p>&ldquo;Scout Vessla, your failure to report to duty is a severe infraction and would be considered desertion with its appropriate punishment.&rdquo;</p>
+
+<p>The brown furred scout gulps nervously but remains quiet, awaiting my judgement. </p>
+
+<p>&ldquo;However as you've been forthcoming and repentant, I may consider overlooking this particular incident for now. You are to report to Scout-Master Krel and his troop and resume your duties.&rdquo;</p>
+
+<p>Scout Vessla looked surprised. His ears seemed to perk and eyes widen with slight astonishment. His shrunken posture unravelling slightly. </p>
+
+<p>&ldquo;Keep in mind that we will have our eyes on you. Remember this favor as you remember your sworn duties.&rdquo; I locked eyes with him firmly. </p>
+
+<p>&ldquo;Y-yes captain! I shall remember! I shall... serve&rdquo; The scout bowed his head and kept it so until I left.     I have to decide upon our next destination. </p>
+
+<p>We can head further West and follow the clues of the Fleets trail. </p>
+
+<p>Or we can head north to investigate the island with a potential pirate encampment on it. </p>
+
+<p>( There is also the South-Eastern Navpoint and marked as a resupply point, but its a bit of a trip in the opposite direction. ) </p>
+</div>
+
+<div class="consider2 hidden"><p><strong>Considerations</strong></p>
+<p>The two Gryph Islanders soon depart. I swear Chief-Son Darter and Scout Vessla exchange a brief forlorn look. It seems perhaps they had become friends of sorts. </p>
+
+<p>Either way, my promise to the Islanders had to stand. Scout Vessla will avoid punishment for his behavior, though normally such actions would meet harsch judgement, my belly will have to wait and see for if he screws up again. </p>
+
+<p>Its a slightly sullen and defeated scout which answers questions about the Fleet later. But he is cooperative and remorseful enough in tone to not rouse any ire. He's smart enough to know he's come close being 'retired'.</p>
+
+<p>As for the fleets location, Scout Vessla informed the likely direction to find them is further west. That was the fleets last heading and where they had previously operated.</p>
+<p>He also informed that Lanaga tribe had been worried about an outer island of theirs being occupied by a whole lot of Gators of unknown affiliation to the north.   If it was a nest of potential pirates, it could be the fleet have already been there and cleared them out. It was another potential source for answers. </p>
+
+
+<p>We can head further West and follow the clues of the Fleets trail. </p>
+
+<p>Or we can head north to investigate the island with a potential pirate encampment on it. </p>
+
+<p>( There is also the South-Eastern Navpoint and marked as a resupply point, but its a bit of a trip in the opposite direction. ) </p>
+
+</div>
+<div class="consider3 hidden"><p><strong>Considerations</strong></p>
+<p>We part with the islander tribe of Lanaga, appropriately humbled, but on amicable terms. They even provide us a basket of foraged dried fruits and nuts as a parting gift.  My actions in submitting to their terms of visiting a belly seemed like a small price to pay for favorable relations and the peaceful return of our Scout.  I doubt all problems can be solved this way, but it worked out well this time. The crew will talk of course, it's just something I have to accept.  Some will approve of my willingness go out on a limb for a fellow Awe. Others might have preferred a sterner paw.</p>
+
+<p>Either way, my promise to the Islanders had to stand. Scout Vessla will avoid punishment for his behavior, though normally such actions would meet harsh judgement, my belly will have to wait and see for if he screws up again. </p>
+
+<p>As for the fleets location, Scout Vessla informed the likely direction to find them is further west. That was the fleets last heading and where they had previously operated. </p>
+
+<p>He also informed that Lanaga tribe had been worried about a outer island of theirs being occupied by a whole lot of Gators of unknown affiliation to the north.   If it was a nest of potential pirates, it could be the fleet have already been there and cleared them out. It was another potential source for answers. </p>
+
+<p> I have to decide upon our next destination. </p>
+
+<p>We can head further West and follow the clues of the Fleets trail. </p>
+
+<p>Or we can head north to investigate the island with a potential pirate encampment on it.</p>
+</div>
+
+<div class="consider4 hidden"><p><strong>Considerations</strong></p>
+<p>We part with the Islanders and our wayward Scout, they are pleased with the peaceful resolution and have provided us with all available information they know about the fleets heading and other points of interest.  Im sure the Admiralty would have a lot to say about my decision to leave the scout here, that's a discussion for another day however and I'm the one appointed to making decisions here right now. </p>
+
+<p>Scout Vessla guessed the likely direction to find them is further west. That was the fleets last heading and where they had previously operated. </p>
+
+<p>He also informed that Lanaga tribe had been worried about a outer island of theirs being occupied by a whole lot of Gators of unknown affiliation to the north.   If it was a nest of potential pirates, it could be the fleet have already been there and cleared them out. It was another potential source for answers. </p>
+
+<p>I have to decide upon our next destination. </p>
+
+<p>We can head further West and follow the clues of the Fleets trail. </p>
+
+<p>Or we can head north to investigate the island with a potential pirate encampment on it. </p>
+
+<p>( There is also the South-Eastern Navpoint and marked as a resupply point, but its a bit of a trip in the opposite direction. )</p>
 </div>
 
 </body>

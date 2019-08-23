@@ -12,9 +12,11 @@
  <link rel="stylesheet" href="../../bootstrap.min.css"></link>
   <link rel="stylesheet" href="../../bootstrap-theme.min.css"></link>
   <script src="../../main.js"></script>
+  <script src="../../jquery.cookie.js"></script>
   <link rel="stylesheet" href="../../main.css"></link>
   <script>
 
+  state.chapter.push("sawsaw");
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
@@ -22,8 +24,35 @@
       $('#button-1').on('click', function(e) {
         // change state here
         // end by using lib.goTo
-		lib.dialogue(e, "envoy"),
-        $("#button-1").addClass("hidden");
+		lib.dialogue(e, "eat"),
+       state.vore += 200;
+	   state.crewMorale -= 5;
+	   state.chapter.push("eat");
+		
+      })
+	  
+	   $('#button-2').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "noeat"),
+       state.crewMorale += 15;
+		state.events.push("noeat");
+      })
+	  
+	   $('#button-3').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "pouch"),
+       state.piety += 23;
+	   state.events.push("pouched");
+		
+      })
+	  
+	   $('#navpoint4').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		state.chapter[0] = ("Navpoint4");
+        lib.goTo('Navpoint4.html')
 		
       })
 		
@@ -34,8 +63,10 @@
         lib.goTo('HabitedIsle.html')
       })
 	  
+	  
+	  
       })
-    })
+   
 	
   </script>
   
@@ -77,14 +108,27 @@ Day: <span class="days"><script>displayDays()</script></span>
 <div id="tail">
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default" id="button-1"> Test </button>
+<button class="btn btn-default" id="button-1"> Test. Eat crew </button>
+<button class="btn btn-default" id="button-2"> Test2. dont eat crew </button>
+<button class="btn btn-default" id="button-3"> Test3. Live in pouch </button>
+
+<button class="btn btn-default" id="navpoint4"> test Navpoint4 </button>
+
 <button class="btn btn-default" id="habited"> Quicklink HabitedIsle</button>
 <span id="cadetButtons"> </span>
 <script>
 
 </script>
 </div>
-<div class="envoy hidden"><p><strong>Envoy</strong></p>
+<div class="eat hidden"><p><strong></strong></p>
+<p>You eat the whole crew. oof, full. </p>
 </div>
+<div class="noeat hidden"><p><strong></strong></p>
+<p>You eat nobody, nobody is worried. </p>
+</div>
+<div class="pouch hidden"><p><strong></strong></p>
+<p>You live here now, warm. </p>
+</div>
+
 </body>
 </html>
