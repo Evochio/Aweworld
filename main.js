@@ -1,3 +1,5 @@
+
+
 lib = {}
 
 lib.load = function (key) {
@@ -14,6 +16,12 @@ lib.load = function (key) {
 lib.save = function (key, value) {
   localStorage.setItem(key, JSON.stringify(value))
 };
+
+//Clear has been added as means to test clearing local storage better. Use with lib.clear()
+lib.clear = function() {
+    localStorage.clear();
+    state = initialState;
+}
 
 lib.goTo = function (href) {
   var parts = href.split('/');
@@ -339,8 +347,10 @@ var initialState = {
   preludeScore: 0,
   wulfCaptain: 0,
   wulfQuestions: [],
-  battle: []
+  battle: [],
+  auto: []
 }
+
 ///////////////////////////
 
 var parts = document.location.href.split('/');
@@ -459,6 +469,21 @@ displayShipStatus = function () {
       });
 }
 
+saveButton = function () {
+	var button = $(' <button class="btn btn-default" id=save>Save</button> ')
+		$('#head').append(button)
+		button.on('click', function() {
+		
+		Cookies.set('save', JSON.stringify(state), { expires: 365, path: '/' });
+		Cookies.set('save2', JSON.stringify(offList.activeRoster), { expires: 365, path: '/' });
+		Cookies.set('save3', JSON.stringify(offList.deadRoster), { expires: 365, path: '/' });
+		Cookies.set('save4', JSON.stringify(offList.firstOfficer), { expires: 365, path: '/' });
+		
+      });
+}
+
+
+
 /*
 moraleFailureCheck = function() {
 	if (state.crewMorale < -4) {
@@ -483,6 +508,7 @@ $(document).ready(function() {
 // lib.makeCadetButtons();
  createCadetButtons();
  loreButton();
+ saveButton();
  newDialogue();
   console.log('Current state:', JSON.stringify(state, null, '\t'))
   $('#Ziggy, #Glint, #Valnos').addClass("hidden");

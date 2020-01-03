@@ -12,6 +12,8 @@
  <link rel="stylesheet" href="bootstrap.min.css">
   <link rel="stylesheet" href="bootstrap-theme.min.css">
   <script src="main.js"></script>
+  <script src="jquery.cookie.js"></script>
+  <script src="officers.js"></script>
    <link rel="stylesheet" href="main.css">
   <style>
 img {
@@ -68,6 +70,17 @@ localStorage.clear();
         lib.goTo('Rooms/Chapter2/Thousand.html')
 		
       })
+	  
+	  $('#load').on('click', function(e) {
+		state = JSON.parse(Cookies.get('save'));
+		
+		offList.activeRoster = JSON.parse(Cookies.get('save2'));
+		offList.deadRoster = JSON.parse(Cookies.get('save3'));
+		offList.firstOfficer = JSON.parse(Cookies.get('save4'));
+		 
+		lib.goTo('Rooms/Chapter2/'+state.chapter[0]+'.html')
+     
+      })
 	   
 	   $('#belly').on('click', function() {
 		$("#belly").attr('src',"Rooms/Images/assets/Avolcbelly_s.png");
@@ -86,6 +99,7 @@ localStorage.clear();
 	
 	}
 	
+	 $("#save").addClass("hidden");
 	
 	 })
   </script>
@@ -119,7 +133,7 @@ Contains Soft Vore and entries of implied to mild digestion. </p>
 <button class="btn btn-default" id="button-1">Introduction</button>
 <button class="btn btn-default" id="button-2">Skip Introduction & Prologue</button>
 <button class="btn btn-default" id="chapter2">Chapter 2 (WIP)</button>
-
+<button class="btn btn-default" id="load">Test Load</button>
 
 <script>
 cadet[1].banter = [

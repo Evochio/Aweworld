@@ -15,7 +15,20 @@
   <script src="../../officers.js"></script>
   <link rel="stylesheet" href="../../main.css"></link>
   <script>
+  
+  //offList.deadRoster.push(officer.arn);
 
+  	function checkdeadRoster() {
+	if (_.contains(offList.deadRoster, officer3[0])) {
+		officer3[0] = officer.mirr
+		}
+	else if (_.contains(offList.deadRoster, officer3[1])) {
+		officer3[0] = officer.garsch
+		}
+	
+	}
+  
+  
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
@@ -26,6 +39,7 @@
 		lib.dialogue(e, "settlement"),
         $("#look").addClass("hidden");
 		$("#catch").addClass("hidden");
+		$("#report").removeClass("hidden");
 		
       })
 	  
@@ -33,8 +47,9 @@
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "report"),
-        $("#look").addClass("hidden");
-		$("#catch").addClass("hidden");
+        $("#report").addClass("hidden");
+		$("#choice").removeClass("hidden");
+		
 		
       })
 	  
@@ -43,6 +58,17 @@
         // end by using lib.goTo
 		lib.dialogue(e, "choice"),
         $("#choice").addClass("hidden");
+		
+		officer3 = [officer.arn, officer.tung, officer.ulv]
+		checkdeadRoster();
+		if (officer3[0] = officer.arn)
+		{
+		$('#officerObject0').popover({title: officer3[0].name, content: "Arn Dialogue", trigger: "hover", placement: "top", container: "body"}); 
+		}
+			else {
+				$('#officerObject0').popover({title: officer3[0].name, content: "Mirr Dialogue", trigger: "hover", placement: "top", container: "body"}); 
+					}
+		
 				
       })
 	  
@@ -206,6 +232,26 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>I will have to send out an officer to deal with the situation. They all have their own ideas in how move forward.</p>
 </div>
+
+<div class="choice hidden"><p><strong></strong>Settlement Report</p>
+<p>(Hover portrait for Officers proposal of action)</p>
+<span class="theOfficer officerObjects"></span>
+
+
+<br/>
+<script>createOfficer4(officer3)
+
+$('#officerObject0').popover({title: officer3[0].name, content: "Arn dialogue", trigger: "hover", placement: "top", container: "body"}); 
+
+$('#officerObject0').popover({title: officer3[0].name, content: "Mirr dialogue", trigger: "hover", placement: "top", container: "body"}); 
+
+$('#officerObject1').popover({title: officer3[1].name, content: "Lets be clever! There has to be a hidden spot they use come and go out of the island, I'd try to find it and knock on the front door so to speak.", trigger: "hover", placement: "top", container: "body"}); 
+//$('#officerObject2').popover({title: officer3[2].name, content: "Dialogue", trigger: "hover", placement: "top", container: "body"}); 
+
+
+</script>
+</div>
+
 
 </body>
 </html>

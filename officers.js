@@ -147,25 +147,39 @@
  
  //Without prints out an array without a thing.  _.without(activeRoster, officer.tung)
  // write a function that remove(officer) and takes it away from activeRoster and adds it to Roster of the vored. like: function remove(x) { activeRoster = _.without(activeRoster, x) && deadRoster.push("x"); }
- 
-    activeRoster = [officer.arn, officer.keeper, officer.mirr, officer.nyxie, officer.tick, officer.ulv, officer.garsch, officer.tung, officer.evok, officer.elda, officer.ljus,];
-    fullRoster = [officer.valnos, officer.ziggy, officer.glint, officer.melon, officer.arn, officer.keeper, officer.mirr, officer.nyxie, officer.tick, officer.ulv, officer.garsch, officer.tung, officer.evok, officer.elda, officer.ljus,];
-	firstOfficer = [officer.arn];
-	officer3 = [firstOfficer[0], officer.mirr, officer.ulv];
-	deadRoster = [];
+var offList = {
+    activeRoster: [officer.arn, officer.keeper, officer.mirr, officer.nyxie, officer.tick, officer.ulv, officer.garsch, officer.tung, officer.evok, officer.elda, officer.ljus,],
+    fullRoster: [officer.valnos, officer.ziggy, officer.glint, officer.melon, officer.arn, officer.keeper, officer.mirr, officer.nyxie, officer.tick, officer.ulv, officer.garsch, officer.tung, officer.evok, officer.elda, officer.ljus,],
+	firstOfficer: [officer.arn],
+	deadRoster: []
+	
+ }
 	choiceOfficer = [];
+ 	officer3 = [offList.firstOfficer[0], officer.mirr, officer.ulv]
+	
 	
 	function removeOfficer(x) {
 		
-		activeRoster = _.without(activeRoster, x);
-		deadRoster.push(x);
+		offList.activeRoster = _.without(offList.activeRoster, x);
+		offList.deadRoster.push(x);
 		
 	}
 	
 	
-	/* Why is it always making it Nyxie? */
+	//wip
+	/*
+	function checkdeadRoster() {
+	if (_.contains(offlist.deadRoster, officer3[1])) {
+		officer3[1] = officer.x
+		}
+	}
+	*/
+	
+	
+	
+	/* Why is it always making it Nyxie? Corrected?*/
 	function officerDouble() { 
-	if ( firstOfficer[0].name && officer3[1].name == "Mirr" || firstOfficer[0].name && officer3[1].name == "Tung") {
+	if ( (offList.firstOfficer[0].name && officer3[1].name == "Mirr") || (firstOfficer[0].name && officer3[1].name == "Tung")) {
 	officer3[1] = officer.nyxie
 	}
 	else {
