@@ -20,7 +20,25 @@
 	var favor = 0;
   
 state.chapter.push("testobject222223");
+
+state.visited.push("Navpoint3");
+
+ foundLocation = function () {
+if (_.contains(state.locations, "Navpoint4")) {
+			$(".confirmtext").removeClass("hidden");
+			}
+			else {
+				state.locations.push("Navpoint4");
+			}
+
     $(document).ready(function() {
+	
+	if (_.contains(state.visited, "Navpoint2")) {
+		$(".Visited").removeClass("hidden");
+	}
+	else {
+		$(".notVisited").removeClass("hidden");
+	}
 	
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
@@ -68,6 +86,7 @@ state.chapter.push("testobject222223");
         // end by using lib.goTo
 		$(".nyxieText").removeClass("hidden");
 		lib.dialogue(e, "mission"),
+		Navpoint3.push("island");
         $("#officer0").addClass("hidden");
 		$("#officer1").addClass("hidden");
 		$("#officer2").addClass("hidden");
@@ -81,6 +100,7 @@ state.chapter.push("testobject222223");
         // end by using lib.goTo
 		$(".garschText").removeClass("hidden");
 		lib.dialogue(e, "mission"),
+		Navpoint3.push("island");
         $("#officer0").addClass("hidden");
 		$("#officer1").addClass("hidden");
 		$("#officer2").addClass("hidden");
@@ -141,6 +161,7 @@ state.chapter.push("testobject222223");
 	  
 	   $('#decline').on('click', function(e) {
         // change state here
+		Navpoint3.push("decline");
         // end by using lib.goTo
 		lib.dialogue(e, "decline"),
 		$("#invitation").addClass("hidden");
@@ -155,7 +176,7 @@ state.chapter.push("testobject222223");
 		Navpoint3.push("arrest");
         // end by using lib.goTo
 		lib.dialogue(e, "arrest"),
-		$("#outcome").removeClass("hidden");
+		$("#outcome2").removeClass("hidden");
         $("#leave").addClass("hidden");
 		$(".assault").removeClass("hidden");
 		$("#kidnap").addClass("hidden");
@@ -166,9 +187,17 @@ state.chapter.push("testobject222223");
         // change state here
 		Navpoint3.push("kidnap");
         // end by using lib.goTo
+		if (_.contains(Navpoint3, "decline")) {
 		lib.dialogue(e, "kidnap"),
-		$("#outcome").removeClass("hidden");
+		$("#outcome2").removeClass("hidden");
 		$(".kidnap2").removeClass("hidden");
+		}
+		else {
+		lib.dialogue(e, "kidnapFail")
+		Navpoint3.push("kidnapFail");
+		$("#outcome2").removeClass("hidden");
+		}
+				
         $("#leave").addClass("hidden");
 		$("#kidnap").addClass("hidden");
 		$("#arrest").addClass("hidden");
@@ -177,8 +206,9 @@ state.chapter.push("testobject222223");
 	   $('#leave').on('click', function(e) {
         // change state here
         // end by using lib.goTo
+		Navpoint3.push("leave");
 		lib.dialogue(e, "leave"),
-		$("#outcome").removeClass("hidden");
+		$("#consider").removeClass("hidden");
         $("#leave").addClass("hidden");
 		$("#kidnap").addClass("hidden");
 		$("#arrest").addClass("hidden");
@@ -423,7 +453,7 @@ state.chapter.push("testobject222223");
 	  $('#appeal').on('click', function(e) {
         // change state here
 		Navpoint3.push("appeal");
-		if ( favor >= 1 && _.contains(Navpoint3, "island")) {
+		if ( favor >= 2 && _.contains(Navpoint3, "island")) {
 		$(".favor").removeClass("hidden");
 		$(".nofavor").addClass("hidden");
 		$("#flirty").removeClass("hidden");
@@ -719,6 +749,29 @@ state.chapter.push("testobject222223");
 		
       })
 	  
+	   $('#outcome2').on('click', function(e) {
+        // change state here
+		// end by using lib.goTo
+		//lib.dialogue(e, "threaten")
+		
+		if ((_.contains(Navpoint3, "arrest") && _.contains(choiceOfficer, officer.garsch)) || _.contains(Navpoint3, "kidnapFail")) {
+		lib.dialogue(e, "consider7")
+		$("#gatormine").removeClass("hidden");
+		$("#navpoint3").removeClass("hidden");
+		}
+		
+		else {
+		lib.dialogue(e, "questionV")
+		$("#eatVessla").removeClass("hidden");
+		$("#consider").removeClass("hidden");
+		}
+			
+						
+        $("#outcome2").addClass("hidden");
+				
+		
+      })
+	  
 	    $('#outcome').on('click', function(e) {
         // change state here
         // end by using lib.goTo
@@ -730,10 +783,12 @@ state.chapter.push("testobject222223");
 		}
 		if (_.contains(Navpoint3, "vore")) {
 		lib.dialogue(e, "consider3")
+		foundLocation();
 		$("#button-2").removeClass("hidden");
 		$("#gatormine").removeClass("hidden");
 		$("#navpoint3").removeClass("hidden");
 		}
+		
 		
 		if (_.contains(Navpoint3, "UnArmed") && _.contains(Navpoint3, "threaten")) {
 		lib.dialogue(e, "failed2")
@@ -741,7 +796,7 @@ state.chapter.push("testobject222223");
 		$("#kidnap").removeClass("hidden");	
 		$("#arrest").removeClass("hidden");	
 		}
-		else if (_.contains(Navpoint3, "appeal") && _.contains(Navpoint3, "question")) {
+		else if (_.contains(Navpoint3, "appeal") && _.contains(Navpoint3, "question") && favor < 2) {
 		lib.dialogue(e, "failed")
 		$("#apprehend").removeClass("hidden");
 		$("#letgo").removeClass("hidden");
@@ -768,21 +823,10 @@ state.chapter.push("testobject222223");
 		$("#threaten").removeClass("hidden");
 		}
 		
-		else if (_.contains(Navpoint3, "kidnap") || _.contains(Navpoint3, "arrest")) {
-		lib.dialogue(e, "questionV")
-		
-		if (_.contains(Navpoint3, "kidnap"))
-			{
-		$("#eatVessla").removeClass("hidden");
-		$("#consider").removeClass("hidden");
-			}
-			else {
-			$("#eatVessla").removeClass("hidden");
-				}
-		}
-		
-		else if (_.contains(Navpoint3, "UnArmed") && _.contains(Navpoint3, "reassure")) {
+		else if (_.contains(Navpoint3, "UnArmed") && _.contains(Navpoint3, "reassure") && favor >= 2) {
 		lib.dialogue(e, "success2")
+		Navpoint3.push("convinced");
+		$("#consider").removeClass("hidden");
 		}
 		
 		else if (_.contains(Navpoint3, "Armed") && _.contains(Navpoint3, "reassure")) {
@@ -796,6 +840,11 @@ state.chapter.push("testobject222223");
 		$("#letgo").removeClass("hidden");
 		$("#appeal").removeClass("hidden");	
 		$("#threaten").removeClass("hidden");
+		}
+		else {
+		lib.dialogue(e, "failed")
+		$("#apprehend").removeClass("hidden");
+		$("#letgo").removeClass("hidden");
 		}
 				
 		
@@ -836,12 +885,20 @@ state.chapter.push("testobject222223");
 	  $('#consider').on('click', function(e) {
         // change state here
         // end by using lib.goTo
-		
-		if (_.contains(Navpoint3, "shame") && favor >= 2) {
+		if (_.contains(Navpoint3, "convinced")) {
+		lib.dialogue(e, "consider5")
+		foundLocation();
+		}
+		else if (_.contains(Navpoint3, "leave")) {
+		lib.dialogue(e, "consider6")
+		}
+		else if (_.contains(Navpoint3, "shame") && favor >= 2) {
 		lib.dialogue(e, "consider2")
+		foundLocation();
 		}
 		else if (_.contains(Navpoint3, "letgo")) {
 		lib.dialogue(e, "consider4")
+		foundLocation();
 		}
 		else {
 		lib.dialogue(e, "consider")
@@ -896,8 +953,16 @@ state.chapter.push("testobject222223");
 		$('#button-2').on('click', function() {
         // change state here
         // end by using lib.goTo
+		if (_.contains(state.locations, "Navpoint4")) {
 		state.chapter[0] = ("Navpoint4");
         lib.goTo('Navpoint4.html')
+		$("#side").addClass("hidden");
+		}
+		else {
+		state.chapter[0] = ("Themine");
+        lib.goTo('Themine.html')
+		$("#side").addClass("hidden");
+		}
       })
 	  
 	  $('navpoint3').on('click', function() {
@@ -1017,8 +1082,8 @@ Day: <span class="days"><script>displayDays()</script></span>
 <button class="btn btn-default hidden" id="nodigested">Not Digested</button>
 
 <button class="btn btn-default hidden" id="perhaps">Perhaps</button>
-<button class="btn btn-default hidden" id="no">No</button>
-<button class="btn btn-default hidden" id="stare">No answer(Stare)</button>
+<button class="btn btn-default hidden" id="stare">No answer(Glare)</button>
+<button class="btn btn-default hidden" id="no">No (Reject firmly)</button>
 
 <button class="btn btn-default hidden" id="stay">Stay the night</button>
 <button class="btn btn-default hidden" id="nostay">Decline to stay</button>
@@ -1039,10 +1104,11 @@ Day: <span class="days"><script>displayDays()</script></span>
 <button class="btn btn-default hidden" id="consider">Consider destinations</button>
 
 <button class="btn btn-default hidden" id="outcome">Continue</button>
+<button class="btn btn-default hidden" id="outcome2">Continue</button>
 
-<button class="btn btn-default hidden" id="button-2"> Quicklink Navpoint 4 </button>
-<button class="btn btn-default hidden" id="navpoint3"> Quicklink Navpoint 3 </button>
-<button class="btn btn-default hidden" id="gatormine"> Quicklink Gator mine </button>
+<button class="btn btn-default hidden" id="button-2">Navpoint 4 </button>
+<button class="btn btn-default hidden" id="navpoint3">Navpoint 3 </button>
+<button class="btn btn-default hidden" id="gatormine">Gator mine </button>
 
 <span id="cadetButtons"> </span>
 <script>
@@ -1061,8 +1127,8 @@ Day: <span class="days"><script>displayDays()</script></span>
 <br/>
 <script>createOfficer4(officer3)
 $('#officerObject0').popover({title: officer3[0].name, content: "Why go at all? Lets just be patiant and with the proper coaxing and signals we let them make the first move and come to us.", trigger: "hover", placement: "top", container: "body"}); 
-$('#officerObject1').popover({title: officer3[1].name, content: "Lets be clever! There has to be a hidden spot they use come and go out of the island, I'd try to find it and knock on the front door so to speak.", trigger: "hover", placement: "top", container: "body"}); 
-$('#officerObject2').popover({title: officer3[2].name, content: "No waste of time or chances, my team will head straight for the source of that smoke, cut through the island and ask firmly about the whereabout of our Scout.", trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject1').popover({title: officer3[1].name, content: "Lets be clever! There has to be a hidden spot they use to come and go from the island, I'd try to find it and knock on the front door so to speak.", trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject2').popover({title: officer3[2].name, content: "Waste of time or chances, my team will head straight for the source of that smoke, cut through the island and ask firmly about the whereabout of our Scout.", trigger: "hover", placement: "top", container: "body"}); 
 
 
 </script>
@@ -1087,7 +1153,7 @@ $('#officerObject2').popover({title: officer3[2].name, content: "No waste of tim
 <div class="nyxieText hidden">
 <p>Nyxies team of specialists paddle away and then start to slowly circle the shallow coastline. I can hear them call out in Awe greeting-call now and then, but they seem focused on their task in finding some kind of break in the dense groves which grow well out into the waters. They soon round the bend of the island and we can do little back at the ship but wait. Hopefully they will be back before nightfall or we'll have to keep a signal flame alight.</p>
 
-<p>I have the Scouts and an extra crew on boat on standby should there be any alert. But Nyxie is a very alert Officer, there should be no cause for worry.</p>
+<p>I have the Scouts and an extra crew on boat on standby should there be any alert. But Nyxie is a very bright Officer, there should be no cause for worry.</p>
 </div>
 <div class="keeperText hidden">
 <p>Under Keepers instructions; torches, not lanterns, are lit along the deck of the ship, lighting us up for all to see clearly. He also has a brazier set to blaze on the foredeck, all this much to Officers Tick vehement dismay of so much overt use of open flame.</p>
@@ -1129,7 +1195,7 @@ Officer Keeper does not seem too bothered by my decision, he gave a non-committe
 
 <p>&ldquo;Well done for now Officer.&rdquo;</p>
 
-<p>Either way, it seemed we had to either pay them a visit, on their terms unfortunately. Or we can decline and consider some more hard-lined approaches.</p>
+<p>Either way, it seemed we had to either pay them a visit, on their terms unfortunately. Or we can decline and consider some more rougher hard-lined approaches, do things on our terms.</p>
 </div>
 <div class="nyxieText hidden">
 <p>Nyxies boat comes paddling but a few hours later, just as things were starting to get dark. </p>
@@ -1147,6 +1213,8 @@ Officer Keeper does not seem too bothered by my decision, he gave a non-committe
 <p>&ldquo;Well done Nyxie, thanks for the information.&rdquo; I dismissed her with a pat on her shoulder. </p>
 
 <p>What was the scout up to? Had he gone native? Either way, it seemed we had to pay them a visit, on their terms unfortunately.</p>
+
+<p>Or we can decline and consider some more hard-lined approaches and do things on our terms.</p>
 </div>
 <div class="keeperText hidden">
 <p>We wait aboard the ship with our eyes toward the island. As one hour passes into another I'm starting to have doubts about this plan. Keeper however urges patience with a smile and cheery manner while he flicks his striped prehensile tail about as he paces along the ship, making us look as welcoming as possible.  One can never be sure about Wulfs, but I'd almost bet he was nervous and having some doubts himself. </p>
@@ -1184,7 +1252,21 @@ Officer Keeper does not seem too bothered by my decision, he gave a non-committe
 </div>
 
 <div class="kidnapFail hidden">
-<p>Scouts fail the mission , get humuliated and eaten by Scout Vessla and possibly Darter. </p>
+<p>Scout-Master Krel was briefed on the mission. He apparently had no reservations about my orders for his troop to infiltrate and capture one of their own, but he seemed slightly concerned about not having full element of surprise, the village may be on some alert after we were turned away. So he insists on trying it at night.  It was a tense wait through the night. I decided to stay up and watch for their return. Scouts are renowned for their skill at silence and subtlety, few appreciate or perhaps realize the depth of their training. Its with this in mind my concern lies, as their target is equally trained and might prove a challenge that is aware of their methods. Just as dusk is brightening the horizon a cadre of shadows swoop in low over the canopy and toward the ship. The scouts return, empty handed and one scout short.  It is a slightly solemn looking Scout-Master that reports.</p>
+
+<p>&ldquo;Scout Vessla has escaped, our mission is a failure. He must have have anticipated our move, being a scout and helped the Islanders set an ambush for us. &ldquo;</p>
+
+<p>Scout Vesslas desertion and betrayal is complete then. I growl at hearing this, pounding the railing with my fist angrily. But then I nod toward the Scout-Master Krel to continue.</p>
+
+<p>&ldquo;We were all set upon and most of us captured as we moved in for the grab. Only Scout Flute escaped the snare but refused to retreat or surrender and kept fighting until she was overpowered. She wounded one of them, the painted young chief and was consumed by Scout Vessla. They were pretty angry about that, I thought they were going to force us all going to join her in his belly. Scout Vessla managed to talk them down, but he kept Scout Flute. Then they evacuated the village, packed everything hastily and left. They us go after they had mostly all left, I believe it will be hard to find them. &ldquo;</p>
+
+<p>I nodded. They will have scattered and be well on their way to the nearby islands by now.  This was a blow against our progress. I took a deep breath and exhaled, I had to accept the situation and move forward. I nodded to Scout-Master Krel who was waiting for my reply.</p>
+
+<p>&ldquo;Get some rest for you and the Scouts. This is a set-back, but decision and fault was mine. I am sorry about Scout Flute.&rdquo;</p>
+
+<p>&ldquo;She knew her duty.&rdquo; Scout-Master Krel only nodded and then moved below deck with his reduced scout cadre.</p>
+
+<p>It was unlikely we would run into Scout Vessla again. But if we did, there would be a reckoning.</p>
 </div>
 
 <div class="arrest hidden">
@@ -1243,7 +1325,7 @@ I pat my officer on the shoulder firmly and congratulate him on a job well done.
 <div class="escort1 hidden">
 <p>I decide to go alone and show the Islanders that we do not fear them and neither should they fear us.  My officers nearly throw a fit at my decision and Officer Garsches disapproval is so great I'm forced to relent and bring at least a small diplomatic delegation with me. </p>
 
-<p>We arrive at the village and its a surprisingly pleasant place. The dense woods open up into an enclosed clearing of sorts. Huts are built into the oldest trees of the island here and its clear the place is well sheltered from outside weather. </p>
+<p>We arrive at the village and its a surprisingly pleasant place. The dense woods open up into an enclosed clearing of sorts. Some of the huts are built into the oldest trees of the island while others are built by driftwood and branches, they all seem well built and cared for and its clear the place is well sheltered from outside weather. </p>
 
 <p>Numerous Islanders, all colorful in their garb, markings and feathers; gather closely around me and gawk curiously, no doubt they've never seen an Awe Captain before.  There are few if any young Gryphs here, I reckon this might be a form of minor foraging village for a larger tribe elsewhere.</p>
 </div>
@@ -1255,7 +1337,7 @@ I pat my officer on the shoulder firmly and congratulate him on a job well done.
 <div class="garschText hidden">
 <p>I decide bring an armed detail with me. One armed and armored Raptorians and two experienced Awes under Garsches capable command is all we can bring. The trail through the woods is indeed difficult, there is even some climbing involved, no doubt the Gryphs come and go to the Island through some other means.</p>
 </div>
-<p>We<span class="garschText hidden">finally</span> arrive at the village and its a surprisingly pleasant place. The dense woods open up into an enclosed clearing of sorts. Huts are built into the oldest trees of the island here and its clear the place is well sheltered from outside weather. </p>
+<p>We<span class="garschText hidden">finally</span> arrive at the village and its a surprisingly pleasant place. The dense woods open up into an enclosed clearing of sorts. Some of the huts are built into the oldest trees of the island while others are built by driftwood and branches, they all seem well built and cared for and its clear the place is well sheltered from outside weather. </p>
 
 <p>Numerous Islanders, all colorful in their garb, markings and feathers; Gawk at us from various huts or small groups. There are few if any young Gryphs here, I reckon this might be a form of minor foraging village for a larger tribe elsewhere. </p>
 
@@ -1361,7 +1443,7 @@ Our ancestors learned this the hard way, it was only due to the generosity of th
 <p>“You said there were many tribes out there. Are there any nearby you can tell me anything about, perhaps their whereabouts? If there are any we should be cautious about?” I ask. </p>
 
 <p>“Understand that the Tribes of the isles are both family and rivals in one. It would be poor conduct, nay, dishonorable according to Island law; For me to speak ill of our brethren, even if we are not at best of terms. <br />
-Hospitality and attitude will differ, I believe none of the Tribes are known to host ill will to travelers and visitors however, so I will not caution you from any of our brethren Tribes.” Holixer explained patiantly. <br />
+Hospitality and attitude will differ, I believe none of the Tribes are known to host ill will to travelers and visitors however, so I will not caution you from any of our brethren Tribes.” Holixer explained patiently. <br />
 I could by nod in acknowledgement. It was a scant and evasive answer at best. <br />
 I had planned to be cautious of all tribes we were to meet so this information did not really change any of that. </p>
 
@@ -1753,8 +1835,12 @@ Scout Vessla, our wayward scout and the cause of all this, he shifted his wings 
 
 <p>“Very well...” I replied slowly with appropriate pause. “I accept your proposal, I'm willing to demonstrate to you personally what I'll do for my crew. As long as I am able to return to them safely.” I said. </p>
 
+<div class="island hidden">
 <p>Holixer smiled and nodded once in approval. “No harm will ever come to a guest of the Lanaga. We shall build this trust between us.” He reassured while he absent mindedly rested a paw on his belly. </p>
-
+</div>
+<div class="ship hidden">
+<p>Holixer smiled and nodded once in approval. “As you have hosted us in peace and safety, so will my body host you. We shall build this trust between us.” He reassured while he absent mindedly rested a paw on his belly. </p>
+</div>
 <p>The feast continued a while longer in idle conversation, Holixer seemed to be saving himself for the dessert for which I had signed myself up for. </p>
 
 </div>
@@ -1766,9 +1852,12 @@ It seemed wise, if I was to go through with this, to be in the favor of the stoi
 <p>“Very well...” I replied slowly with appropriate pause. “I accept your proposal, Im willing to demonstrate what i'm willing to do for my crew.” </p>
 
 <p>“Very good Captain Avolc! You do honor to your name by such a demonstration of trust and humbleness.” Darter clasped his paws together eagerly, being unable unwittingly to lick his beak in anticipation.</p>
-
+<div class="island hidden">
 <p>“No harm shall come to you Captain, you are a honored guest of the Lanaga.” Holixer assured, nodding with approval. </p>
-
+</div>
+<div class="ship hidden">
+<p>“No harm shall come to you Captain, we are your humble guests here.” Holixer assured, nodding with approval. </p>
+</div>
 <p>The feast continued a while longer in idle conversation. Darter was eyeing me closely throughout, he was eager to have his way with me.</p>
 </div>
 
@@ -1783,11 +1872,18 @@ It seemed wise, if I was to go through with this, to be in the favor of the stoi
 <p>“Vessla is indeed one of the tribe. That is acceptable to me, perhaps even symbolic for what we wish to achieve here.” Holixer nodded approvingly. </p>
 
 <p>“Ah.. Captain... “ Scout Vessla gulped, spreading his wings wide in nervousness. “If you're sure, I can do it. I'll eat you, I mean.” He stumbled with his words.</p>
-
+<div class="island hidden">
 <p>“As long as I'll be able to safely return to my crew with you with me.” I replied coolly.</p>
-
+</div>
+<div class="ship hidden">
+<p>“As long as you dont decide to carry me off to the island with you.” I replied coolly.</p>
+</div>
+<div class="island hidden">
 <p>“Ofcourse, no harm shall come to a honored guest of the Lanaga.” Holixer said with a sweeping gesture. </p>
-
+</div>
+<div class="ship hidden">
+<p>“No harm shall come to you Captain, we are your humble guests here.” Holixer assured, nodding with approval. </p>
+</div>
 <p>The feast continued a while longer in idle conversation. Vessla merely nibbled on some fruit, avoiding eye contact but still looking my way plenty often. Perhaps this choice has started to dissuade much of what has spooked him.</p>
 </div>
 
@@ -1957,11 +2053,11 @@ It seemed wise, if I was to go through with this, to be in the favor of the stoi
 <p>&ldquo;Bring out the casks and the paint. Let us do the marking now while my belly is so wide and big!&rdquo; Darter proclaimed jovially. </p>
 
 <p>As time passed inside the stomach, I was soon joined by many gallons of liquid with sweetness and tang of alcohol. Darter was the center of attention and festivity and I sloshed around in the center of him.  He bid me stay still as the painted their upon his feathers, marking the occasion and union of my person to his. But he found time to speak to me, boastfully and comfortingly. </p>
-<div class="magic">
+<div class="magic hidden">
 <p>(&ldquo;These markings is a symbol that mark you as bound to me now. A binding of royalty like mine are a little more sacred if the crones are to be believed.&rdquo; Darter chuckled. &ldquo;A way to unite true bloodlines and their peoples!&rdquo;) &ldquo;As the first Awe now part of me, we forge a bold new path together. Not only will you help me make me as big and strong as Holixer, you're a hopeful precedent further unity of our people.&rdquo; </p>
 </div>
 <p>Perhaps it was the drink and ego swelling his head, but Darter squawked on joyfully.  &ldquo;Awes seek out those strong and confident, no? We shall be a beacon for your people... we shall welcome you all. We shall never run out of paint for our bellies.&rdquo;   As his stomach squelched and worked up on me, slowly digesting me and the alcohol, I wondered idly what my symbol looked like. I was going to ask, but Darters soothing rubbing paws drove me relax and listen to his body and his lofty goals. </p>
-<div class="magic">
+<div class="magic hidden">
 <p>(As Darter watched the sunrise with sleepy eyes and a settled grumbling belly he felt a pleasant shudder go through him. The new paint on him was bright and itched slightly, but he knew better then to scratch it.  Somewhere far east, a similar shudder swept through as a calling wakes in numerous hearts.  Darter and The Lanaga would come to find themselves very busy in the coming years. There would at least be no need for foraging.)</p>
 </div>
 </div>
@@ -1990,7 +2086,7 @@ It seemed wise, if I was to go through with this, to be in the favor of the stoi
 
 <p>With Holixer having bowed his head to my authority and Chief-Son Darter laying curled up with a severe stomach-ache, there was no question of obedience from anyone.  Scout Vessla fell in, though eyeing back at Darter with sympathetic sadness.  </p>
 </div>
-<div class="island hidden">
+<div class="ship hidden">
 <p>"I believe this concludes our business. Scout Vessla is staying with us now, our deal is done." I announce curtly, making it clear their welcome is over. </p>
 
 <p>With Holixer having bowed his head to my authority, helping along Chief-Son Darter who whined and clutched a severe stomach-ache, there was no question of obedience from anyone.  Scout Vessla stayed as the Gryphs made to leave, though looking to Darter with sadness. </p>
@@ -2037,7 +2133,7 @@ It seemed wise, if I was to go through with this, to be in the favor of the stoi
 “Ofcourse.” I replied. <br />
 “I will be honest, you are most fascinating to me. I heard you Awes were a matriarchal society, but in my mind before I met you, I just imagined you'd be like particularly headstrong hens.” Chief-Son Darter chuckled but he was quick add words after seeing my brow furrow. <br />
 “Ah, hen is an affectionate term! I mean not to sound condecening of our female counterparts, but female Gryphs we keep protected in our main village, they are more delicate of build and often with egg. The rigours of foraging, hunting and fighting are left to us males.”<br />
-“What is your question?” I asked calmly and patiantly.<br />
+“What is your question?” I asked calmly and patiently.<br />
 “How do you Awes pick mates for yourselves? Is it the females who have to show off their prowess to impress a male into choosing them?” <br />
 I sighed slightly but answered. “Females choose the male when they feel ready and willing to carry young. They pick whomever strikes their whim.”<br />
 “Interesting! And males have no say in the matter? No way to impress or sway a female to pick them?” <br />
@@ -2239,11 +2335,11 @@ Scout Vessla seemed to sigh, deflate almost. Then he took a long breath and stra
 
 
 <div class="failed hidden"><p><strong>Failed Negotiation</strong></p>
-<p>The Gryphs have had enough. Chief-son Darter rises from his seat, clacking at the floor with his claws. It seems he has lost patience with these discussions.</p>
+<p>The Gryphs have had enough. Chief-son Darter rises from his seat, clacking at the floor with his claws. It seems he has lost patience with these discussions. Either they do not trust us or we somehow offended them, its unclear.</p>
 
 <p>“Points of view have been exchanged. But now I have heard enough and ask you to depart and leave me and mine in peace.” The Gryph places an arm around Vessla firmly and possessively. “I was told you Awes are honorable and reasonable. I trust there will be no contention and conflict.”</p>
 
-<p>Forager Holixer rises along with the Chief-son. I've puzzled together that he is the protector of the Tribe-Prince and no doubt of some authority, he appears more torn but he offers no argument and stands with Darter. </p>
+<p>Forager Holixer rises along with the Chief-son. I've puzzled together that he is the protector of the Tribe-Prince and no doubt of some authority, he appears more torn but he offers no argument and stands with Darter. It seems that Scout Vessla bows to his authority as well and follows suite. </p>
 </div>
 
 <div class="failed2 hidden"><p><strong>Failed Negotiation</strong></p>
@@ -2268,7 +2364,7 @@ Scout Vessla seemed to sigh, deflate almost. Then he took a long breath and stra
 <div class="nyxieText hidden">
 <p> With their main entrance discovered, I could safely send a pretty sizable force to do it. </p>
 </div>
-<p> Lastly, there's the Scouts. I could ask them to try to grab our scout covertly. Thats a task well within their trained abilities. It's a fellow scout i'd be asking them to kidnap however.</p>
+<p> Lastly, there's the Scouts. I could ask them to try to grab our scout covertly. If they have the element of surprise thats a task well within their trained abilities. It's a fellow scout i'd be asking them to kidnap however.</p>
 
 </div>
 
@@ -2430,7 +2526,12 @@ Awes were hurt in his retrieval and the village largely destroyed in their oppos
 
 <p>We can head north to investigate the island with a potential pirate encampment on it. </p>
 
-<p>( There is also the South-Eastern Navpoint and marked as a resupply point, but its a bit of a trip in the opposite direction. ) </p>
+<div class="notVisited hidden">
+<p>There is also the South-Eastern Navpoint and marked as a resupply point, but its a bit of a trip in the opposite direction.</p>
+</div>
+<div class="Visited hidden">
+<p> We just need to keep heading deeper into the Thousand Isles. </p>
+</div>
 </div>
 
 <div class="consider hidden"><p><strong>Considerations</strong></p>
@@ -2446,13 +2547,18 @@ Awes were hurt in his retrieval and the village largely destroyed in their oppos
 
 <p>&ldquo;Keep in mind that we will have our eyes on you. Remember this favor as you remember your sworn duties.&rdquo; I locked eyes with him firmly. </p>
 
-<p>&ldquo;Y-yes captain! I shall remember! I shall... serve&rdquo; The scout bowed his head and kept it so until I left.     I have to decide upon our next destination. </p>
+<p>&ldquo;Y-yes captain! I shall remember! I shall... serve&rdquo; The scout bowed his head and kept it so until I left. <br/> I have to decide upon our next destination. </p>
 
 <p>We can head further West and follow the clues of the Fleets trail. </p>
 
 <p>Or we can head north to investigate the island with a potential pirate encampment on it. </p>
 
-<p>( There is also the South-Eastern Navpoint and marked as a resupply point, but its a bit of a trip in the opposite direction. ) </p>
+<div class="notVisited hidden">
+<p>There is also the South-Eastern Navpoint and marked as a resupply point, but its a bit of a trip in the opposite direction.</p>
+</div>
+<div class="Visited hidden">
+<p> We just need to keep heading deeper into the Thousand Isles. </p>
+</div>
 </div>
 
 <div class="consider2 hidden"><p><strong>Considerations</strong></p>
@@ -2462,7 +2568,7 @@ Awes were hurt in his retrieval and the village largely destroyed in their oppos
 
 <p>Its a slightly sullen and defeated scout which answers questions about the Fleet later. But he is cooperative and remorseful enough in tone to not rouse any ire. He's smart enough to know he's come close being 'retired'.</p>
 
-<p>As for the fleets location, Scout Vessla informed the likely direction to find them is further west. That was the fleets last heading and where they had previously operated.</p>
+<p>As for the fleets location, Scout Vessla informed the likely direction to find them is further west, marking one of the older rendezvous spots on the map. That was the fleets last heading and where they had previously operated. <div class="confirmtext hidden">This location seems to match and confirm the information we uncovered on the beach of Navpoint 2. </div></p>
 <p>He also informed that Lanaga tribe had been worried about an outer island of theirs being occupied by a whole lot of Gators of unknown affiliation to the north.   If it was a nest of potential pirates, it could be the fleet have already been there and cleared them out. It was another potential source for answers. </p>
 
 
@@ -2470,15 +2576,20 @@ Awes were hurt in his retrieval and the village largely destroyed in their oppos
 
 <p>Or we can head north to investigate the island with a potential pirate encampment on it. </p>
 
-<p>( There is also the South-Eastern Navpoint and marked as a resupply point, but its a bit of a trip in the opposite direction. ) </p>
-
+<div class="notVisited hidden">
+<p>There is also the South-Eastern Navpoint and marked as a resupply point, but its a bit of a trip in the opposite direction.</p>
 </div>
+<div class="Visited hidden">
+<p> We just need to keep heading deeper into the Thousand Isles. </p>
+</div>
+</div>
+
 <div class="consider3 hidden"><p><strong>Considerations</strong></p>
 <p>We part with the islander tribe of Lanaga, appropriately humbled, but on amicable terms. They even provide us a basket of foraged dried fruits and nuts as a parting gift.  My actions in submitting to their terms of visiting a belly seemed like a small price to pay for favorable relations and the peaceful return of our Scout.  I doubt all problems can be solved this way, but it worked out well this time. The crew will talk of course, it's just something I have to accept.  Some will approve of my willingness go out on a limb for a fellow Awe. Others might have preferred a sterner paw.</p>
 
 <p>Either way, my promise to the Islanders had to stand. Scout Vessla will avoid punishment for his behavior, though normally such actions would meet harsh judgement, my belly will have to wait and see for if he screws up again. </p>
 
-<p>As for the fleets location, Scout Vessla informed the likely direction to find them is further west. That was the fleets last heading and where they had previously operated. </p>
+<p>As for the fleets location, Scout Vessla informed the likely direction to find them is further west, marking one of the older rendezvous spots on the map. That was the fleets last heading and where they had previously operated.<div class="confirmtext hidden"> This location seems to match and confirm the information we uncovered on the beach of Navpoint 2. </div> </p>
 
 <p>He also informed that Lanaga tribe had been worried about a outer island of theirs being occupied by a whole lot of Gators of unknown affiliation to the north.   If it was a nest of potential pirates, it could be the fleet have already been there and cleared them out. It was another potential source for answers. </p>
 
@@ -2487,14 +2598,21 @@ Awes were hurt in his retrieval and the village largely destroyed in their oppos
 <p>We can head further West and follow the clues of the Fleets trail. </p>
 
 <p>Or we can head north to investigate the island with a potential pirate encampment on it.</p>
+
+<div class="notVisited hidden">
+<p>There is also the South-Eastern Navpoint and marked as a resupply point, but its a bit of a trip in the opposite direction.</p>
+</div>
+<div class="Visited hidden">
+<p> We just need to keep heading deeper into the Thousand Isles. </p>
+</div>
 </div>
 
 <div class="consider4 hidden"><p><strong>Considerations</strong></p>
 <p>We part with the Islanders and our wayward Scout, they are pleased with the peaceful resolution and have provided us with all available information they know about the fleets heading and other points of interest.  Im sure the Admiralty would have a lot to say about my decision to leave the scout here, that's a discussion for another day however and I'm the one appointed to making decisions here right now. </p>
 
-<p>Scout Vessla guessed the likely direction to find them is further west. That was the fleets last heading and where they had previously operated. </p>
+<p>Scout Vessla guessed the likely direction to find them is further west, marking one of the older rendezvous spots on the map. That was the fleets last heading and where they had previously operated. <div class="confirmtext hidden">This location seems to match and confirm the information we uncovered on the beach of Navpoint 2. </div></p>
 
-<p>He also informed that Lanaga tribe had been worried about a outer island of theirs being occupied by a whole lot of Gators of unknown affiliation to the north.   If it was a nest of potential pirates, it could be the fleet have already been there and cleared them out. It was another potential source for answers. </p>
+<p>He also informed that Lanaga tribe had been worried about a outer island of theirs being occupied by a whole lot of Gators of unknown affiliation to the north.   If it was a nest of potential pirates, it could be the fleet have already been there and cleared them out. It was another potential source for answers. Albeit a dangerous one. </p>
 
 <p>I have to decide upon our next destination. </p>
 
@@ -2502,8 +2620,65 @@ Awes were hurt in his retrieval and the village largely destroyed in their oppos
 
 <p>Or we can head north to investigate the island with a potential pirate encampment on it. </p>
 
-<p>( There is also the South-Eastern Navpoint and marked as a resupply point, but its a bit of a trip in the opposite direction. )</p>
+<div class="notVisited hidden">
+<p>There is also the South-Eastern Navpoint and marked as a resupply point, but its a bit of a trip in the opposite direction.</p>
 </div>
+<div class="Visited hidden">
+<p> We just need to keep heading deeper into the Thousand Isles. </p>
+</div>
+</div>
+
+<div class="consider5 hidden"><p><strong>Considerations</strong></p>
+<p>We part with the Islanders along with our wayward Scout, they are pleased with the peaceful resolution and have provided us with the information they know about the fleets heading and other points of interest, it was not much but perhaps it will come to use. Chief-Son Darter and Scout Vessla exchange words in private, from a distance neither look particularly happy.</p>
+
+<p>Scout Vessla was later much more forthcoming with valuable information. He guessed the likely direction to find the fleet is further west, marking one of the older rendezvous spots on the map. That was the fleets last heading and where they had previously operated. <div class="confirmtext hidden">This location seems to match and confirm the information we uncovered on the beach of Navpoint 2. </div></p>
+
+<p>He also informed that Lanaga tribe had been worried about a outer island of theirs being occupied by a whole lot of Gators of unknown affiliation to the north.   If it was a nest of potential pirates, it could be the fleet have already been there and cleared them out. It was another potential source for answers. Albeit a dangerous one.</p>
+
+<p>I have to decide upon our next destination. </p>
+
+<p>We can head further West and follow the clues of the Fleets trail. </p>
+
+<p>Or we can head north to investigate the island with a potential pirate encampment on it. </p>
+<div class="notVisited hidden">
+<p>There is also the South-Eastern Navpoint and marked as a resupply point, but its a bit of a trip in the opposite direction.</p>
+</div>
+<div class="Visited hidden">
+<p> We just need to keep heading deeper into the Thousand Isles. </p>
+</div>
+
+</div>
+
+<div class="consider6 hidden"><p><strong>Considerations</strong></p>
+<p>
+<p>We are none the wiser about whereabouts of our fleet, this run in with the second wayward scout of the fleet has not been more reassuring then the first. </p>
+
+<p>I have to decide upon our next destination. </p>
+
+<p>We can head further West and follow the clues of the Fleets trail. </p>
+
+
+<div class="notVisited hidden">
+<p>There is also the South-Eastern Navpoint and marked as a resupply point, but its a bit of a trip in the opposite direction.</p>
+</div>
+<div class="Visited hidden">
+<p> We just need to keep heading deeper into the Thousand Isles. </p>
+</div>
+</div>
+
+<div class="consider7 hidden"><p><strong>Deliberations</strong></p>
+<p>This encounter ended poorly, negotiations were unsuccessful and the Scout absconded with the Islanders. Whatever cooperation the Admiralty had hoped to achieve here will have to be attempted with another Tribe of Islanders.  I will make a note in my log of this region being potentially hostile in the future.</p>
+
+<p> I have to decide upon our next destination.</p>
+
+<p>We can head further West and follow the clues of the Fleets trail.<div class="Visited hidden"> We just need to keep heading deeper into the Thousand Isles. </p>
+</div>
+<div class="notVisited hidden">
+<p>There is also the South-Eastern Navpoint and marked as a resupply point, but its a bit of a trip in the opposite direction.</p>
+</div>
+
+</div>
+
 
 </body>
 </html>

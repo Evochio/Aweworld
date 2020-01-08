@@ -348,7 +348,9 @@ var initialState = {
   wulfCaptain: 0,
   wulfQuestions: [],
   battle: [],
-  auto: []
+  auto: [],
+  locations: [],
+  visited: []
 }
 
 ///////////////////////////

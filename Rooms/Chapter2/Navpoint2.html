@@ -18,9 +18,18 @@
   <script>
 
 state.chapter.push("testobject2");
+state.visited.push("Navpoint2");
 var navpoint2 = [];
 
    $(document).ready(function() {
+   
+   
+   	if (_.contains(state.visited, "Navpoint3")) {
+		$(".Visited").removeClass("hidden");
+	}
+	else {
+		$(".notVisited").removeClass("hidden");
+	}
 	
 /* Condition that checks if Officer is first officer so not officer3 array twice. 
 	
@@ -191,19 +200,44 @@ var navpoint2 = [];
 		if (_.contains(choiceOfficer, officer.arn)) {
 		
 		$(".poorInvestigation").removeClass("hidden");
+			if (_.contains(state.locations, "Navpoint4")) {
+			$(".confirmtext").removeClass("hidden");
+			}
+			
 		}
 		else if (_.contains(choiceOfficer, officer.tick)){
 		$(".Ticktext").removeClass("hidden");
 		$(".goodInvestigation").removeClass("hidden");
+		
+			if (_.contains(state.locations, "Navpoint4")) {
+			$(".confirmtext").removeClass("hidden");
+			}
+			else {
+				state.locations.push("Navpoint4");
+			}
 		}
 		else if (_.contains(choiceOfficer, officer.mirr)){
 		$(".Mirrtext").removeClass("hidden");
 		$(".goodInvestigation").removeClass("hidden");
-		}
-		lib.dialogue(e, "destination"),
+		
+			if (_.contains(state.locations, "Navpoint4")) {
+			$(".confirmtext").removeClass("hidden");
+			}
+			else {
+				state.locations.push("Navpoint4");
+			}
+		
+		
         $("#destination").addClass("hidden");
 		$("#button-2").removeClass("hidden");
-		$("#Navpoint3").removeClass("hidden");
+		}
+		if (_.contains(state.visited, "Navpoint3")) {
+		$("#navpoint3").addClass("hidden");
+		}
+		else {
+			$("#navpoint3").removeClass("hidden");
+		}
+		lib.dialogue(e, "destination")
 		$("#side").removeClass("hidden");
 		$(".sideImage").attr('src','../Images/assets/' + choiceOfficer[0].name + '.png');
 
@@ -225,9 +259,18 @@ var navpoint2 = [];
 		$('#button-2').on('click', function() {
         // change state here
         // end by using lib.goTo
+		
+		if (_.contains(state.locations, "Navpoint4")) {
 		state.chapter[0] = ("Navpoint4");
         lib.goTo('Navpoint4.html')
 		$("#side").addClass("hidden");
+		}
+		else {
+		state.chapter[0] = ("Themine");
+        lib.goTo('Themine.html')
+		$("#side").addClass("hidden");
+		}
+				
       })
 	  
 	  	$('#navpoint3').on('click', function() {
@@ -418,7 +461,7 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Huh, it's the a
 
 <p>&ldquo;Squires bade me ask.&rdquo; The Pack-Master huffed a heavy snort of air. </p>
 
-<p>I suppressed a rueful grin. Pack-Master Evok did not like admitting to do favors for his pack. </p>
+<p>I suppressed a rueful grin. Pack-Master Evok did not like admitting to asking for favors for his pack. </p>
 
 <p>&ldquo;Do you expect trouble if I say no?&rdquo; I asked. </p>
 
@@ -525,9 +568,14 @@ $('#actionRaptorian').popover({title: "Raptorians", content: "Raptorians are off
 <div class="Arntext hidden"><p><strong></strong></p>
 <p>Unfortunately, while the fleet was here and we found out much of what they were doing, Arns effort uncover little of worth as to where they were going. Its unlikely they headed for any other resupply points at least.</p>
 </div>
-
+<div class="notVisited hidden">
 <p>We might have to head for Navpoint 3 where we might find another scout or perhaps some natives for more information.</p>
-
+</div>
+<div class="Visited hidden">
+ We just need to keep heading deeper into the Thousand Isles.<div class="gpirates hidden">The island with pirates we heard about that seems to be our only clue.<div class="confirmtext hidden"> Luckily we have information from our visit with the Islanders to guide us.</p>
+</div>
+</div>
+</div>
 <p><br />
 </p>
 </div>
@@ -559,8 +607,18 @@ I could have interpret his unwillingness to deliver the report in person as a sl
 
 <p>Its clear the Fleet stocked up well before heading in deeper into Thousand islands in a hurry. The coded clues appear to point to one of the Fleets preset rendezvous-points deeper in Thousand islands.</p>
 
-<p>We can still backtrack slightly and head towards Navpoint 3 to investigate the possibility of another scout or natives with further information or head on deeper into Thousand Islands to the next rendezvous point marked as Navpoint 4. </p>
+<p>  </p>
 
+<div class="notVisited hidden">
+<p>We can still backtrack slightly and head towards Navpoint 3 to investigate the possibility of another scout or natives with further information or head on deeper into Thousand Islands to the next rendezvous point marked as Navpoint 4.</p>
+</div>
+<div class="Visited hidden">
+<p> We just need to keep heading deeper into the Thousand Isles to the next rendezvous point marked as Navpoint 4.<div class="confirmtext hidden"> This seems to match and confirm the information we recieved from the Islanders, We are on the right path.</p>
+</div>
+</div>
+<div class="gpirates hidden">
+<p>There is also the island with pirates we heard about as another possibility.</p>
+</div>
 </div>
 
 
