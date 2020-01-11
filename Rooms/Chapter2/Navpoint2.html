@@ -20,16 +20,49 @@
 state.chapter.push("testobject2");
 state.visited.push("Navpoint2");
 var navpoint2 = [];
-
+officer3 = [offList.firstOfficer[0], officer.tung, officer.tick];
+  backupOfficer = [officer.evok, officer.garsch]
+   
+   	function officerIntros(x) {
+		
+		if (officer3[x].name == 'Mirr') {
+			
+			return "Hmm... I'm not personally sure of the right action here, but finding the right people for the right places is sure to uncover something. I think I can assemble such a team!"
+			 
+		}
+		if (officer3[x].name == 'Arn') {
+		
+			return "They could have been all over the islands not to speak of the camp, there is much to investigate and little time. I can get the right crews in order for it." 
+		}
+		
+		if (officer3[x].name == 'Tick') {
+			return "Huh, it's the abandoned camp we should investigate, not the islands. That's where I'd focus my landing party of specialists."
+		}
+		
+		if (officer3[x].name == 'Tung') {
+			return "I say sweep the islands, check all trails and paths for anything they might have hid out of sight. I can organize this."
+		}
+		if (officer3[x].name == 'Garsch') {
+			return "I handle martial matters best. So if you think a thorough search of the islands is the correct choice, assign me the task."
+		}
+	}
+   
+   
    $(document).ready(function() {
-   
-   
+  
+ test2();
+ officerDouble();
+  // checkdeadRoster(officer3);
    	if (_.contains(state.visited, "Navpoint3")) {
 		$(".Visited").removeClass("hidden");
 	}
 	else {
 		$(".notVisited").removeClass("hidden");
 	}
+	
+	
+	
+
 	
 /* Condition that checks if Officer is first officer so not officer3 array twice. 
 	
@@ -47,9 +80,8 @@ var navpoint2 = [];
 	}
 	
 */	
-       officer3 = [officer.arn, officer.mirr, officer.tick];
-	   //  officer3 = [firstOfficer[0], officer.mirr, officer.tick];
-	   
+				
+   	    	   
    	   $(".NotCadet").attr('src','../Images/assets/Tick.png');
 	   
 	   //converts button names. Function in officers.js
@@ -227,10 +259,9 @@ var navpoint2 = [];
 				state.locations.push("Navpoint4");
 			}
 		
-		
-        $("#destination").addClass("hidden");
-		$("#button-2").removeClass("hidden");
 		}
+		$("#destination").addClass("hidden");
+		$("#button-2").removeClass("hidden");
 		if (_.contains(state.visited, "Navpoint3")) {
 		$("#navpoint3").addClass("hidden");
 		}
@@ -375,12 +406,14 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <br/>
 <script>createOfficer4(officer3)
-$('#officerObject0').popover({title: officer3[0].name, content: "They could have been all over the islands so there is much to investigate and little time. But I can get the right crews in order for it.", trigger: "hover", placement: "top", container: "body"}); 
-$('#officerObject1').popover({title: officer3[1].name, content: "Im not personaly sure of the right action here, but with the right people in the right places we're sure to uncover something. I think I can assemble such a team!", trigger: "hover", placement: "top", container: "body"}); 
-$('#officerObject2').popover({title: officer3[2].name, content: "Huh, it's the abandoned camp we should investigate, not the island. That's where I'd focus my landing party", trigger: "hover", placement: "top", container: "body"}); 
 
-//$('#officer2').popover({trigger: "hover", html: true, content: $('#officerObject2').popover({title: officer3[2].name, content: "Huh, it's the abandoned camp we should investigate, not the island. That's where I'd focus my landing party", placement: "top", container: "body"})  }); 
-//Above code, instead showing popower on Ticks portrait when hovering ticks choice button, displays Ulvs full stats. Ulf is default officer3[2]
+
+$('#officerObject0').popover({title: officer3[0].name, content: officerIntros(0), trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject1').popover({title: officer3[1].name, content: officerIntros(1), trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject2').popover({title: officer3[2].name, content: officerIntros(2), trigger: "hover", placement: "top", container: "body"}); 
+//$('#officerObject3').popover({title: officer3[3].name, content: "I am test", trigger: "hover", placement: "top", container: "body"}); 
+
+
 </script>
 </div>
 </div>
