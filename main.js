@@ -325,6 +325,7 @@ var initialState = {
   days: 0,
   piety: 0,
   raptorians: 3,
+  scoutNumber: 3,
   injuries: 0,
   delay: 0,
   game: 0,

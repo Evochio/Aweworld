@@ -16,11 +16,13 @@
    <script src="../../jquery.cookie.js"></script>
   <link rel="stylesheet" href="../../main.css"></link>
   <script>
-
+	
+  
+  
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
-      
+      state.scoutNumber += 1;
       $('#button-1').on('click', function(e) {
         // change state here
         // end by using lib.goTo

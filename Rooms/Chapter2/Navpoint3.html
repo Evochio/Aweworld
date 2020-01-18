@@ -15,6 +15,7 @@
    <script src="../../officers.js"></script>
    <script src="../../jquery.cookie.js"></script>
   <link rel="stylesheet" href="../../main.css"></link>
+  
   <script>
   	var Navpoint3 = [];
 	var favor = 0;
@@ -30,7 +31,7 @@ if (_.contains(state.locations, "Navpoint4")) {
 			else {
 				state.locations.push("Navpoint4");
 			}
-
+	}
     $(document).ready(function() {
 	
 	if (_.contains(state.visited, "Navpoint2")) {
@@ -196,6 +197,7 @@ if (_.contains(state.locations, "Navpoint4")) {
 		lib.dialogue(e, "kidnapFail")
 		Navpoint3.push("kidnapFail");
 		$("#outcome2").removeClass("hidden");
+		state.scoutNumber -= 1;
 		}
 				
         $("#leave").addClass("hidden");
@@ -756,14 +758,22 @@ if (_.contains(state.locations, "Navpoint4")) {
 		
 		if ((_.contains(Navpoint3, "arrest") && _.contains(choiceOfficer, officer.garsch)) || _.contains(Navpoint3, "kidnapFail")) {
 		lib.dialogue(e, "consider7")
-		$("#gatormine").removeClass("hidden");
-		$("#navpoint3").removeClass("hidden");
+		
+		if (_.contains(state.visited, "Navpoint2")) {
+		$("#navpoint2").addClass("hidden");
+		$("#button-2").removeClass("hidden");
+		}
+		else {
+			$("#navpoint2").removeClass("hidden");
+		}
+		
 		}
 		
 		else {
 		lib.dialogue(e, "questionV")
 		$("#eatVessla").removeClass("hidden");
 		$("#consider").removeClass("hidden");
+		state.locations.push("Gatormine");
 		}
 			
 						
@@ -778,19 +788,36 @@ if (_.contains(state.locations, "Navpoint4")) {
 		if (_.contains(Navpoint3, "stay")) {
 		lib.dialogue(e, "success3")
 		$("#button-2").removeClass("hidden");
+		foundLocation();
+		state.chapter.push("wVessla");
+		state.scoutNumber += 1;
+		state.locations.push("Gatormine");
 		$("#gatormine").removeClass("hidden");
-		$("#navpoint3").removeClass("hidden");
+			if (_.contains(state.visited, "Navpoint2")) {
+			$("#navpoint2").addClass("hidden");
+			}
+			else {
+			$("#navpoint2").removeClass("hidden");
+			}
 		}
-		if (_.contains(Navpoint3, "vore")) {
+		else if (_.contains(Navpoint3, "vore")) {
 		lib.dialogue(e, "consider3")
 		foundLocation();
 		$("#button-2").removeClass("hidden");
+		state.locations.push("Gatormine");
+		state.chapter.push("wVessla");
+		state.scoutNumber += 1;
+		foundLocation();
+		
 		$("#gatormine").removeClass("hidden");
-		$("#navpoint3").removeClass("hidden");
+			if (_.contains(state.visited, "Navpoint2")) {
+			$("#navpoint2").addClass("hidden");
+			}
+			else {
+			$("#navpoint2").removeClass("hidden");
+			}
 		}
-		
-		
-		if (_.contains(Navpoint3, "UnArmed") && _.contains(Navpoint3, "threaten")) {
+		else if (_.contains(Navpoint3, "UnArmed") && _.contains(Navpoint3, "threaten")) {
 		lib.dialogue(e, "failed2")
 		$("#leave").removeClass("hidden");	
 		$("#kidnap").removeClass("hidden");	
@@ -878,7 +905,12 @@ if (_.contains(state.locations, "Navpoint4")) {
 		$("#consider").addClass("hidden");
 		
 		$("#gatormine").removeClass("hidden");
-		$("#navpoint3").removeClass("hidden");
+		if (_.contains(state.visited, "Navpoint2")) {
+		$("#navpoint2").addClass("hidden");
+		}
+		else {
+			$("#navpoint2").removeClass("hidden");
+		}
 		
       })
 	  
@@ -888,26 +920,51 @@ if (_.contains(state.locations, "Navpoint4")) {
 		if (_.contains(Navpoint3, "convinced")) {
 		lib.dialogue(e, "consider5")
 		foundLocation();
+		state.locations.push("Gatormine");
+		state.chapter.push("wVessla");
+		state.scoutNumber += 1;
+		$("#button-2").removeClass("hidden");
+		$("#gatormine").removeClass("hidden");
 		}
 		else if (_.contains(Navpoint3, "leave")) {
 		lib.dialogue(e, "consider6")
+		
 		}
 		else if (_.contains(Navpoint3, "shame") && favor >= 2) {
 		lib.dialogue(e, "consider2")
 		foundLocation();
+		state.locations.push("Gatormine");
+		state.chapter.push("wVessla");
+		state.scoutNumber += 1;
+		$("#button-2").removeClass("hidden");
+		$("#gatormine").removeClass("hidden");
 		}
 		else if (_.contains(Navpoint3, "letgo")) {
 		lib.dialogue(e, "consider4")
 		foundLocation();
+		state.locations.push("Gatormine");
+		$("#button-2").removeClass("hidden");
+		$("#gatormine").removeClass("hidden");
 		}
 		else {
 		lib.dialogue(e, "consider")
+		state.chapter.push("uVessla");
+		state.scoutNumber += 1;
+		$("#button-2").removeClass("hidden");
 		}
         $("#eatVessla").addClass("hidden");
 		$("#consider").addClass("hidden");
+		
+		
+		
+		if (_.contains(state.visited, "Navpoint2")) {
+		$("#navpoint2").addClass("hidden");
 		$("#button-2").removeClass("hidden");
-		$("#gatormine").removeClass("hidden");
-		$("#navpoint3").removeClass("hidden");
+		}
+		else {
+			$("#navpoint2").removeClass("hidden");
+		}
+		
 		
 		
       })
@@ -919,7 +976,7 @@ if (_.contains(state.locations, "Navpoint4")) {
 		lib.dialogue(e, "questionV2"),
         $("#eatVessla").removeClass("hidden");
 		$("#consider").removeClass("hidden");
-		
+		state.locations.push("Gatormine");
 		$("#qVessla").addClass("hidden");
 	
 		
@@ -947,8 +1004,7 @@ if (_.contains(state.locations, "Navpoint4")) {
         $("#apprehend").addClass("hidden");
 		
       })
-	  
-	  
+	  	  
 		
 		$('#button-2').on('click', function() {
         // change state here
@@ -965,11 +1021,11 @@ if (_.contains(state.locations, "Navpoint4")) {
 		}
       })
 	  
-	  $('navpoint3').on('click', function() {
+	  $('#navpoint2').on('click', function() {
         // change state here
         // end by using lib.goTo
-		state.chapter[0] = ("Navpoint3");
-        lib.goTo('Navpoint3.html')
+		state.chapter[0] = ("Navpoint2");
+        lib.goTo('Navpoint2.html')
       })
 	  
 	  $('#gatormine').on('click', function() {
@@ -1107,7 +1163,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 <button class="btn btn-default hidden" id="outcome2">Continue</button>
 
 <button class="btn btn-default hidden" id="button-2">Navpoint 4 </button>
-<button class="btn btn-default hidden" id="navpoint3">Navpoint 3 </button>
+<button class="btn btn-default hidden" id="navpoint2">Navpoint 2 </button>
 <button class="btn btn-default hidden" id="gatormine">Gator mine </button>
 
 <span id="cadetButtons"> </span>
@@ -2330,7 +2386,12 @@ Scout Vessla seemed to sigh, deflate almost. Then he took a long breath and stra
 
 <p>Or we can head north to investigate the island with a potential pirate encampment on it. </p>
 
-<p>( There is also the South-Eastern Navpoint and marked as a resupply point, but its a bit of a trip in the opposite direction. ) </p>
+<div class="notVisited hidden">
+<p>There is also the South-Eastern Navpoint and marked as a resupply point, but its a bit of a trip in the opposite direction.</p>
+</div>
+<div class="Visited hidden">
+<p> We just need to keep heading deeper into the Thousand Isles. </p>
+</div>
 </div>
 
 
@@ -2587,7 +2648,7 @@ Awes were hurt in his retrieval and the village largely destroyed in their oppos
 <div class="consider3 hidden"><p><strong>Considerations</strong></p>
 <p>We part with the islander tribe of Lanaga, appropriately humbled, but on amicable terms. They even provide us a basket of foraged dried fruits and nuts as a parting gift.  My actions in submitting to their terms of visiting a belly seemed like a small price to pay for favorable relations and the peaceful return of our Scout.  I doubt all problems can be solved this way, but it worked out well this time. The crew will talk of course, it's just something I have to accept.  Some will approve of my willingness go out on a limb for a fellow Awe. Others might have preferred a sterner paw.</p>
 
-<p>Either way, my promise to the Islanders had to stand. Scout Vessla will avoid punishment for his behavior, though normally such actions would meet harsh judgement, my belly will have to wait and see for if he screws up again. </p>
+<p>Either way, my promise to the Islanders had to stand. Scout Vessla will avoid punishment for his behavior, though normally such actions would meet harsh judgement, my belly will have to wait and see for if he screws up again to return some favors. </p>
 
 <p>As for the fleets location, Scout Vessla informed the likely direction to find them is further west, marking one of the older rendezvous spots on the map. That was the fleets last heading and where they had previously operated.<div class="confirmtext hidden"> This location seems to match and confirm the information we uncovered on the beach of Navpoint 2. </div> </p>
 
@@ -2631,7 +2692,7 @@ Awes were hurt in his retrieval and the village largely destroyed in their oppos
 <div class="consider5 hidden"><p><strong>Considerations</strong></p>
 <p>We part with the Islanders along with our wayward Scout, they are pleased with the peaceful resolution and have provided us with the information they know about the fleets heading and other points of interest, it was not much but perhaps it will come to use. Chief-Son Darter and Scout Vessla exchange words in private, from a distance neither look particularly happy.</p>
 
-<p>Scout Vessla was later much more forthcoming with valuable information. He guessed the likely direction to find the fleet is further west, marking one of the older rendezvous spots on the map. That was the fleets last heading and where they had previously operated. <div class="confirmtext hidden">This location seems to match and confirm the information we uncovered on the beach of Navpoint 2. </div></p>
+<p>Scout Vessla was later much more forthcoming with valuable information. He guessed the likely direction to find the fleet is further west, marking one of the older rendezvous spots on the map. That was the fleets last heading and where they had previously operated. <div class="confirmtext hidden">This location seems to match and confirm the information we uncovered on the beach of 'Three sons' at Navpoint 2. </div></p>
 
 <p>He also informed that Lanaga tribe had been worried about a outer island of theirs being occupied by a whole lot of Gators of unknown affiliation to the north.   If it was a nest of potential pirates, it could be the fleet have already been there and cleared them out. It was another potential source for answers. Albeit a dangerous one.</p>
 
@@ -2655,14 +2716,12 @@ Awes were hurt in his retrieval and the village largely destroyed in their oppos
 
 <p>I have to decide upon our next destination. </p>
 
-<p>We can head further West and follow the clues of the Fleets trail. </p>
-
 
 <div class="notVisited hidden">
-<p>There is also the South-Eastern Navpoint and marked as a resupply point, but its a bit of a trip in the opposite direction.</p>
+<p>There is the South-Eastern Navpoint marked as a resupply point, its a bit of a trip in the opposite direction. But seeing as we have few other leads, perhaps its where we need to go.</p>
 </div>
 <div class="Visited hidden">
-<p> We just need to keep heading deeper into the Thousand Isles. </p>
+<p>We can head further West and try follow the clues of the Fleets trail <div class="confirmtext hidden">that we uncovered on Navpoint 2</div> and see where we end up. Either way we just need to keep heading deeper into the Thousand Isles. </p>
 </div>
 </div>
 
@@ -2671,10 +2730,10 @@ Awes were hurt in his retrieval and the village largely destroyed in their oppos
 
 <p> I have to decide upon our next destination.</p>
 
-<p>We can head further West and follow the clues of the Fleets trail.<div class="Visited hidden"> We just need to keep heading deeper into the Thousand Isles. </p>
+<p><div class="Visited hidden">We can head further West and follow the clues of the Fleets trail <div class="confirmtext hidden">that we uncovered on Navpoint 2</div> and see where we end up. Either way we just need to keep heading deeper into the Thousand Isles. </p>
 </div>
 <div class="notVisited hidden">
-<p>There is also the South-Eastern Navpoint and marked as a resupply point, but its a bit of a trip in the opposite direction.</p>
+<p>There is the South-Eastern Navpoint marked as a resupply point, its a bit of a trip in the opposite direction. But seeing as we have few other leads, perhaps its where we need to go.</p>
 </div>
 
 </div>

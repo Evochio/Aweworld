@@ -16,14 +16,49 @@
   <link rel="stylesheet" href="../../main.css"></link>
   
  <script>
+	state.visited.push("Navpoint4");
 	var Navpoint4 = [];
     state.Glint.status = 'available';
     state.Valnos.status = 'available';
 	state.Ziggy.status = 'available';
 	
+	officer3 = [offList.firstOfficer[0], officer.ulv, officer.garsch];
+	  backupOfficer = [officer.garsch, officer.mirr]
+   
+   
+   	function officerIntros(x) {
+		
+		if (officer3[x].name == 'Mirr') {
+			
+			return "This is quite a find, I would check on the ship promptly. If there's anyone to negotiate with, I can handle it. "
+			
+		}
+		if (officer3[x].name == 'Arn') {
+			
+			return "I would make a quick sweep of the center island for any hidden camps before setting up base at the inlet." 
+		}
+		
+		if (officer3[x].name == 'Ulv') {
+			return "I'd head straight for the ship first, cap! Thats where anyone would be if there really is anyone here."
+		}
+		
+		if (officer3[x].name == 'Tung') {
+			return "Ship ain't going anywhere! If someone's living on the island, my sweep should find them."
+		}
+		if (officer3[x].name == 'Garsch') {
+			return "We need to secure the area. With no other ships around, the only threat could be from inside the island itself."
+		}
+	}
+	
+	
+	
+	
     $(document).ready(function() {
 		testCadet();
-	   officer3 = [offList.firstOfficer[0], officer.ulv, officer.tung];
+		
+		 officerDouble();
+		checkdeadRoster();
+	   
 	   $(".NotCadet").attr('src','../Images/assets/Tick.png');
 	   
 	   //converts button names. Function in officers.js
@@ -32,8 +67,19 @@
 	  //Converts fofficer classes like <span class="fofficer"></span> to show First officer name. In this case = "Arn" if he's first officer. 
 	  $(".fofficer").text(offList.firstOfficer[0].name)
 	   
-	   
-      
+				
+		if (_.contains(state.chapter, "wVessla")) {
+		$(".vesslaText").removeClass("hidden");
+		$(".wVessla").removeClass("hidden");
+	   }
+	   else if (_.contains(state.chapter, "uVessla")) {
+		$(".uVessla").removeClass("hidden");
+		$(".vesslaText").removeClass("hidden");
+	   }
+	   else {
+		$(".plainScout").removeClass("hidden");
+	   }
+	  
       $('#scoutM').on('click', function(e) {
         // change state here
         // end by using lib.goTo
@@ -48,11 +94,19 @@
 	})
 		
 		$('#delay').on('click', function(e) {
-		lib.dialogue(e, "delay"),
-        $("#delay").addClass("hidden");
+		$("#delay").addClass("hidden");
 		$("#send").addClass("hidden");
 		$("#expedition").removeClass("hidden");
-		Navpoint4.push("delay");
+		  if (_.contains(state.chapter, "uVessla")) {
+			Navpoint4.push("send");
+			lib.dialogue(e, "delay2")
+			}
+			else {
+			Navpoint4.push("delay");
+			lib.dialogue(e, "delay")
+
+			}
+		
 		$("#sideb").addClass("hidden");
       })
 	  $('#send').on('click', function(e) {
@@ -79,9 +133,11 @@
         $("#officer0").addClass("hidden");
 		$("#officer1").addClass("hidden");
 		$("#officer2").addClass("hidden");
-		$(".arntext").removeClass("hidden");
+		
 		$("#expedition3").removeClass("hidden");
-		Navpoint4.push("arn");
+		choiceOfficer.splice(0, 0, officer3[0])
+		$('.' + choiceOfficer[0].name + 'text').removeClass("hidden");
+		
 		
       })
 	  $('#officer1').on('click', function(e) {
@@ -89,9 +145,11 @@
         $("#officer0").addClass("hidden");
 		$("#officer1").addClass("hidden");
 		$("#officer2").addClass("hidden");
-		$(".ulvtext").removeClass("hidden");
+		
 		$("#expedition3").removeClass("hidden");
-		Navpoint4.push("ulv");
+		choiceOfficer.splice(0, 0, officer3[1])
+		$('.' + choiceOfficer[0].name + 'text').removeClass("hidden");
+		
 		
       })
 	  $('#officer2').on('click', function(e) {
@@ -99,9 +157,11 @@
         $("#officer0").addClass("hidden");
 		$("#officer1").addClass("hidden");
 		$("#officer2").addClass("hidden");
-		$(".tungtext").removeClass("hidden");
+		
 		$("#expedition3").removeClass("hidden");
-		Navpoint4.push("tung");
+		choiceOfficer.splice(0, 0, officer3[2])
+		$('.' + choiceOfficer[0].name + 'text').removeClass("hidden");
+		
       })
 	  
 	  $('#expedition3').on('click', function(e) {
@@ -117,13 +177,28 @@
 		$(".face").attr('src','../Images/assets/ScoutM.png');
 		}
 		else {
-		lib.dialogue(e, "expedition3b")
-		$("#search2").removeClass("hidden");
-		$("#investigate2").removeClass("hidden");
+		
+		if (_.contains(state.chapter, "uVessla")) {
+			$(".uVessla").removeClass("hidden");
+			lib.dialogue(e, "expedition3a")
+			$("#search").removeClass("hidden");
+			$("#investigate").removeClass("hidden");
+			$("#split").removeClass("hidden");
+						
+		}
+		 else {
+			$(".wVessla").removeClass("hidden");
+			lib.dialogue(e, "expedition3b")
+			$("#search2").removeClass("hidden");
+			$("#investigate2").removeClass("hidden");
+		 }
+		
+		
 		}
 		
 		$("#side").removeClass("hidden")
-		if (_.contains(Navpoint4, "arn")) {
+		/*
+		if (_.contains(Navpoint4, "Arn")) {
 		$(".NotCadet").attr('src','../Images/assets/Arn.png');
 		}
 		else if (_.contains(Navpoint4, "ulv")) {
@@ -132,7 +207,8 @@
 		else if (_.contains(Navpoint4, "tung")) {
 		$(".NotCadet").attr('src','../Images/assets/Tung.png');
 		}
-		
+		*/
+		$(".NotCadet").attr('src','../Images/assets/' + choiceOfficer[0].name + '.png');
 		$("#GThumb").addClass("hidden");
 		$("#VThumb").addClass("hidden");
 		$("#ZThumb").addClass("hidden");
@@ -235,19 +311,19 @@
 	   $('#cadetsC').on('click', function(e) {
 		       
 		$("#cadetsC").addClass("hidden");
-		if (_.contains(Navpoint4, "tung") && _.contains(Navpoint4, "search")) {
+		if (_.contains(choiceOfficer, officer.tung) && _.contains(Navpoint4, "search")) {
 		$("#caught").removeClass("hidden");
 		lib.dialogue(e, "cadetScene2")
 		$(".cadetsearch").removeClass("hidden");
 		
 		//Forest
  cadet[2].banter = [
-	{ target: '#Valnos', text: 'Thanks for coming to the rescue you two. ', imageClass: "blushing"},
-	{ target: '#Ziggy', text: "Sure! I would totally have had that guy if the other ones had not showed up.", imageClass: "blushing"},
+	{ target: '#Valnos', text: 'Thanks for coming to the rescue you two. ', imageClass: "blush"},
+	{ target: '#Ziggy', text: "Sure! I would totally have had that guy if the other ones had not showed up.", imageClass: "blush"},
 	{ target: '#Glint', text: 'You sure looked like you had it covered from the ground there.', imageClass: "smug" },
 	{ target: '#Ziggy', text: "I'd been fine if Valnos had not been caught!", imageClass: "suspicious"},
 	{ target: '#Valnos', text: 'S-sorry. He was just so fast and strong.', imageClass: "concerned"},
-	{ target: '#Ziggy', text: 'Yeah, well... just run away and yell for me next time.', imageClass: "blushing"},
+	{ target: '#Ziggy', text: 'Yeah, well... just run away and yell for me next time.', imageClass: "blush"},
 	{ target: '#Valnos', text: 'Y-yeah.', imageClass: "sad"}
 
 ];
@@ -264,7 +340,7 @@
 
  cadet[0].banter = [
 	{ target: '#Ziggy', text: "What was that spear throw anyway, you almost skewered me!", imageClass: "suspicious"},
-	{ target: '#Glint', text: "I was in a hurry, I didn't have time to aim!", imageClass: "blushing"},
+	{ target: '#Glint', text: "I was in a hurry, I didn't have time to aim!", imageClass: "blush"},
 	{ target: '#Ziggy', text: "Yea, so you help out by making a kebab out of me and Valnos!", imageClass: "suspicious" },
 	{ target: '#Glint', text: "Alright, next time I'll just watch! Your head is probably dense enough to take a hit anyway.", imageClass: "suspicious"},
 	{ target: '#Ziggy', text: "Damn right it is!", imageClass: "angry"}
@@ -272,19 +348,19 @@
 ];
 		}
 		
-		else if (_.contains(Navpoint4, "arn") && _.contains(Navpoint4,"send") && (_.contains(Navpoint4,"split") || _.contains(Navpoint4,"search"))){
+		else if ((_.contains(choiceOfficer, officer.arn) || _.contains(choiceOfficer, officer.garsch)) && _.contains(Navpoint4,"send") && (_.contains(Navpoint4,"split") || _.contains(Navpoint4,"search"))){
 		$("#caught").removeClass("hidden");
 		lib.dialogue(e, "cadetScene2")
 		$(".cadetsearch").removeClass("hidden");
 		
 		//Forest
  cadet[2].banter = [
-	{ target: '#Valnos', text: 'Thanks for coming to the rescue you two. ', imageClass: "blushing"},
-	{ target: '#Ziggy', text: "Sure! I would totally have had that guy if the other ones had not showed up.", imageClass: "blushing"},
+	{ target: '#Valnos', text: 'Thanks for coming to the rescue you two. ', imageClass: "blush"},
+	{ target: '#Ziggy', text: "Sure! I would totally have had that guy if the other ones had not showed up.", imageClass: "blush"},
 	{ target: '#Glint', text: 'You sure looked like you had it covered from the ground there.', imageClass: "smug" },
 	{ target: '#Ziggy', text: "I'd been fine if Valnos had not been caught!", imageClass: "suspicious"},
 	{ target: '#Valnos', text: 'S-sorry. He was just so fast and strong.', imageClass: "concerned"},
-	{ target: '#Ziggy', text: 'Yeah, well... just run away and yell for me next time.', imageClass: "blushing"},
+	{ target: '#Ziggy', text: 'Yeah, well... just run away and yell for me next time.', imageClass: "blush"},
 	{ target: '#Valnos', text: 'Y-yeah.', imageClass: "sad"}
 
 ];
@@ -301,14 +377,16 @@
 
  cadet[0].banter = [
 	{ target: '#Ziggy', text: "What was that spear throw anyway, you almost skewered me!", imageClass: "suspicious"},
-	{ target: '#Glint', text: "I was in a hurry, I didn't have time to aim!", imageClass: "blushing"},
+	{ target: '#Glint', text: "I was in a hurry, I didn't have time to aim!", imageClass: "blush"},
 	{ target: '#Ziggy', text: "Yea, so you help out by making a kebab out of me and Valnos!", imageClass: "suspicious" },
 	{ target: '#Glint', text: "Alright, next time I'll just watch! Your head is probably dense enough to take a hit anyway.", imageClass: "suspicious"},
 	{ target: '#Ziggy', text: "Damn right it is!", imageClass: "angry"}
 	
 ];
 		}
-		else if (_.contains(Navpoint4, "ulv") && _.contains(Navpoint4, "investigate")) {
+		
+
+		else if (_.contains(choiceOfficer, officer.ulv) && _.contains(Navpoint4, "investigate")) {
 		$("#caught").removeClass("hidden");
 		lib.dialogue(e, "cadetScene3")
 		$(".cadetdefend").removeClass("hidden");
@@ -318,7 +396,7 @@
 	{ target: '#Valnos', text: 'Were you not scared?', imageClass: "concerned"},
 	{ target: '#Ziggy', text: "There wasn't time to be scared.", imageClass: "surprised"},
 	{ target: '#Ziggy', text: 'You gotta move before you are.', imageClass: "angry" },
-	{ target: '#Ziggy', text: "We can't all be as scared as you Valnos.", imageClass: "blushing"},
+	{ target: '#Ziggy', text: "We can't all be as scared as you Valnos.", imageClass: "blush"},
 	{ target: '#Valnos', text: 'Sorry... I just, I just blanked.', imageClass: "sad"},
 	{ target: '#Ziggy', text: 'At least stay with your weapon or something next time.', imageClass: "suspicious"}
 
@@ -337,7 +415,7 @@
 ];
 
  cadet[0].banter = [
-	{ target: '#Ziggy', text: "Ulv always struck me as the passive-thinky type.", imageClass: "blushing"},
+	{ target: '#Ziggy', text: "Ulv always struck me as the passive-thinky type.", imageClass: "blush"},
 	{ target: '#Ziggy', text: "But last night, she was totally 'Wooosh', 'Kapow!', 'Hi-ya!'", imageClass: "happy"},
 	{ target: '#Ziggy', text: "Then she just totally ate two of em. So awesome.", imageClass: "smug" },
 	{ target: '#Glint', text: 'Have you thanked her yet?', imageClass: "concerned"},
@@ -345,6 +423,49 @@
 	
 ];
 		}
+		
+		else if (_.contains(choiceOfficer, officer.garsch) && (_.contains(Navpoint4, "delay") || _.contains(Navpoint4, "send")) && _.contains(Navpoint4, "investigate")) {
+		$("#caught").removeClass("hidden");
+		lib.dialogue(e, "cadetScene3")
+		$(".cadetdefend").removeClass("hidden");
+		//Beach
+		
+		 cadet[2].banter = [
+	{ target: '#Valnos', text: 'Were you not scared?', imageClass: "concerned"},
+	{ target: '#Ziggy', text: "There wasn't time to be scared.", imageClass: "surprised"},
+	{ target: '#Ziggy', text: 'You gotta move before you are.', imageClass: "angry" },
+	{ target: '#Ziggy', text: "We can't all be as scared as you Valnos.", imageClass: "blush"},
+	{ target: '#Valnos', text: 'Sorry... I just, I just blanked.', imageClass: "sad"},
+	{ target: '#Ziggy', text: 'At least stay with your weapon or something next time.', imageClass: "suspicious"}
+
+];
+
+ cadet[1].banter = [
+	{ target: '#Glint', text: 'Why were you so reckless!?', imageClass: "angry"},
+	{ target: '#Ziggy', text: 'What? I just... reacted.', imageClass: "suspicious"},
+	{ target: '#Glint', text: 'We should have waited for orders!', imageClass: "concerned" },
+	{ target: '#Ziggy', text: 'Then what if they had gotten away!', imageClass: "angry"},
+	{ target: '#Glint', text: "I'm serious Ziggy! Did you see the look Garsch gave us?", imageClass: "angry"},
+	{ target: '#Ziggy', text: "Hey, it all worked out in the end. At least I had my weapons.", imageClass: "smug"},
+	{ target: '#Valnos', text: "...!", imageClass: "sad"},
+	{ target: '#Glint', text: "Don't deflect, Ziggy. You know what you did. ", imageClass: "suspicious"},
+	{ target: '#Ziggy', text: "Stop. Lecturing. me.", imageClass: "suspicious"}
+];
+
+ cadet[0].banter = [
+	{ target: '#Ziggy', text: "Those islanders sure were tough!", imageClass: "surprised"},
+	{ target: '#Ziggy', text: "I totally thought I had one and then they like, did some swirl thing...", imageClass: "happy"},
+	{ target: '#Ziggy', text: "Like swoossh! Lucky I was quick too!", imageClass: "smug" },
+	{ target: '#Glint', text: 'Was that before or after you went flying across the beach and got stuck upside down?', imageClass: "concerned"},
+	{ target: '#Ziggy', text: "I meant to do that!", imageClass: "blush"}
+	
+];
+		
+		
+		
+		}
+		
+		
 		else {
 		
 		lib.dialogue(e, "raidA")
@@ -366,19 +487,22 @@
          $("#raidA").addClass("hidden");
 		$("#caught").addClass("hidden");
 		
-		if (_.contains(Navpoint4, "tung") && _.contains(Navpoint4, "search")) {
+		if (_.contains(choiceOfficer, officer.tung) && _.contains(Navpoint4, "search")) {
 		
 		lib.dialogue(e, "conclusionC")
 		}
-		else if (_.contains(Navpoint4, "arn") && _.contains(Navpoint4,"send") && (_.contains(Navpoint4,"split") || _.contains(Navpoint4,"search"))){
+		else if ((_.contains(choiceOfficer, officer.arn) || _.contains(choiceOfficer, officer.garsch)) && _.contains(Navpoint4,"send") && (_.contains(Navpoint4,"split") || _.contains(Navpoint4,"search"))){
 		
 		lib.dialogue(e, "conclusionC")
 		}
-		else if (_.contains(Navpoint4, "ulv") && _.contains(Navpoint4, "investigate")) {
+		else if (_.contains(choiceOfficer, officer.ulv) && _.contains(Navpoint4, "investigate")) {
 		
 		lib.dialogue(e, "caught")
 		}
+		else if (_.contains(choiceOfficer, officer.garsch) && (_.contains(Navpoint4, "delay") || _.contains(Navpoint4, "send")) && _.contains(Navpoint4, "investigate")) {
 		
+		lib.dialogue(e, "caught")
+		}
 		
 		$("#interrogate").removeClass("hidden");
 		$("#GThumb").removeClass("hidden");
@@ -452,8 +576,8 @@
  cadet[2].banter = [
 	{ target: '#Valnos', text: 'Raptorians are scary.', imageClass: "surprised"},
 	{ target: '#Ziggy', text: "Haha, a lot of things are scary to you though!", imageClass: "smug"},
-	{ target: '#Valnos', text: "I mean, when they showed up, I thought they'd eat me on the spot.", imageClass: "blushing" },
-	{ target: '#Valnos', text: "Their eyes were... wild! Hardly recognized me!", imageClass: "blushing"},
+	{ target: '#Valnos', text: "I mean, when they showed up, I thought they'd eat me on the spot.", imageClass: "blush" },
+	{ target: '#Valnos', text: "Their eyes were... wild! Hardly recognized me!", imageClass: "blush"},
 	{ target: '#Ziggy', text: 'Well yeah, they were on the hunt!', imageClass: "neutral"},
 	{ target: '#Ziggy', text: 'Whatcha think they were always all mellow and stuff?', imageClass: "surprised"},
 	{ target: '#Valnos', text: "I thought I'd seen them aggressive before, but I guess was wrong.", imageClass: "surprised"},
@@ -492,7 +616,7 @@
 	{ target: '#Ziggy', text: "I dunno, it was cool, but kind of weird!", imageClass: "concerned" },
 	{ target: '#Ziggy', text: "Didnt look like a fight at all.", imageClass: "surprised"},
 	{ target: '#Glint', text: 'A Scouts primary goal is to avoid injury. Theirs is not the job of direct confrontation.', imageClass: "neutral"},
-	{ target: '#Valnos', text: 'I wish I could move like that.', imageClass: "blushing"},
+	{ target: '#Valnos', text: 'I wish I could move like that.', imageClass: "blush"},
 	{ target: '#Ziggy', text: "Haha! You're a sneak Valnos, but you kinda need to be brave and fast to be a scout.", imageClass: "smug"}
 	
 
@@ -524,6 +648,7 @@
 		$(".cadetraid").removeClass("hidden");
 		$(".escape").removeClass("hidden");
 		//Raid   scoutsb
+		 if (state.scoutNumber < 3) {
  cadet[2].banter = [
 	{ target: '#Valnos', text: 'That Scout. Scout Vessla. He was so brave.', imageClass: "sad"},
 	{ target: '#Ziggy', text: "Ye! We shoulda stayed and helped though!", imageClass: "angry"},
@@ -532,7 +657,20 @@
 	{ target: '#Valnos', text: "I'm kinda surprised you followed orders Ziggy.", imageClass: "suspicious"},
 	{ target: '#Ziggy', text: 'Someone had to carry Tick.', imageClass: "suspicious"}
 	
-];
+];		
+		}
+		else {
+		cadet[2].banter = [
+	{ target: '#Valnos', text: 'That Scout. He was so brave.', imageClass: "sad"},
+	{ target: '#Ziggy', text: "Ye! We shoulda stayed and helped though!", imageClass: "angry"},
+	{ target: '#Glint', text: "Don't talk about him like he's dead!", imageClass: "surprised" },
+	{ target: '#Glint', text: "And if we'd stayed, we'd all been captured.", imageClass: "concerned"},
+	{ target: '#Valnos', text: "I'm kinda surprised you followed orders Ziggy.", imageClass: "suspicious"},
+	{ target: '#Ziggy', text: 'Someone had to carry Tick.', imageClass: "suspicious"}
+	
+];	
+		
+		}
 
  cadet[1].banter = [
 	{ target: '#Glint', text: "You're too reckless Ziggy.", imageClass: "angry"},
@@ -820,7 +958,7 @@
 <button class="btn btn-default hidden" id="interrogate">Interrogate prisoner.</button>
 <button class="btn btn-default hidden" id="interrogate2">Keep him talking.</button>
 
-<button class="btn btn-default hidden" id="prisoner">Agree deal</button>
+<button class="btn btn-warning hidden" id="prisoner">Agree deal</button>
 
 <button class="btn btn-default hidden" id="prisoner2a">Leave it to Garsch</button>
 <button class="btn btn-default hidden" id="prisoner2b">Cause discomfort!</button>
@@ -871,6 +1009,23 @@
 
 </div>
 
+<div class="delay2 hidden"><p><strong>Delay the Scouts</strong></p>
+<p></p>
+<p>We delay the scouts flight to the isles. The seas continue to be rough and the wind even picks up slightly, making us lower further more sails.</p>
+<p>I can tell Nyxie is tired from being on edge and at the helm for so long by the time the scouts finally discard their protective cloaks, unfurl their precious wings and climb the masts to take off.</p>
+<p>But she relaxes visibly as the winged figures speed ahead and show no signals of any course changes needing to be made.</p>
+<p>By the time we are close enough to anchor the scouts return from their trip around the island. They are exhausted, flying takes a lot out of an Awe, even a highly skilled one.</p>
+<p>The Scout-master approaches and with some surprisingly animated haste reports his findings.</p>
+<p>&ldquo;There is an Awe-ship on the far side of the island Captain! It looks like its been run aground onto the beach inside an inlet. We saw no encampment or signs of life. The Island looks uninhabited too, no visible settlements from the air. Dense foliage all around so hard to fully say if anyone is hiding however.&rdquo;</p>
+<p>One of my scouts had to land near the ship as we were taking a look, caught a downdraft I think, but got lucky and landed well. They were unable to take off again and are waiting on site.&rdquo;</p>
+<p>It's only now that I indeed realize they are one short,<span class="vesslaText hidden"> Scout Vessla I think,</span><span class="plainScout hidden"> Scout Harbinger I think,</span> but the startling news take precedent.</p>
+
+
+<p>&ldquo;The ship is intact?&rdquo; I blink at the startling news. </p>
+<p>&ldquo;There was visible marks of battle-damage, but it looked mostly intact from our vantage.&rdquo; The Scout-Master replied. Seems we are on the right trail after all, but these news are more then a bit puzzling.</p>
+
+</div>
+
 
 <div class="send hidden"><p><strong>Send the Scouts</strong></p>
 <p>I send the scouts ahead despite the weather and wind. The safety of the ship is paramount and they'll will have to endure a little difficulty now and then.</p>
@@ -879,8 +1034,9 @@
 <p>By the time we are close enough to anchor the scouts return from their trip around the island. They are very exhausted, flying takes a lot out of an Awe, even a highly skilled one.</p>
 <p>The Scout-master approaches and with hard eyes of concern haste reports his findings.</p>
 <p>&ldquo;There is an Awe-ship on the far side of the island Captain. It looks like its been run aground onto the beach inside an inlet. We saw no encampment or signs of life. Island looks uninhabited too, no visible settlements. Dense foliage all around so hard to fully say if anyone is hiding however.</p>
-<p>One of my scouts had to land near the ship as we were taking a look, caught a downdraft but got lucky. They were unable to take off again and are waiting on site.&rdquo;</p>
-<p>It's only now that I indeed realize they are one short, but the startling news take precedent.</p>
+<p>One of my scouts had to land near the ship as we were taking a look, caught a downdraft I think, but got lucky and landed well. They were unable to take off again and are waiting on site.&rdquo;</p>
+<p>It's only now that I indeed realize they are one short,<span class="vesslaText hidden"> Scout Vessla I think,</span><span class="plainScout hidden"> Scout Harbinger I think,</span> but the startling news take precedent.</p>
+
 <p>&ldquo;The ship is intact?&rdquo;</p>
 <p>&ldquo;There was visible marks of battle-damage, but it looked mostly intact from our vantage.&rdquo; The Scout-Master replied.</p>
 <p>Seems we are on the right trail after all, but these news are more then a bit puzzling.</p>
@@ -899,9 +1055,9 @@
 
 <br/>
 <script>createOfficer4(officer3)
-$('#officerObject0').popover({title: officer3[0].name, content: "I would make a quick sweep of the center island for any hidden camps before setting up base at the inlet.", trigger: "hover", placement: "top", container: "body"}); 
-$('#officerObject1').popover({title: officer3[1].name, content: "I'd head straight for the ship first, cap! Thats where anyone would be if there really is anyone here.", trigger: "hover", placement: "top", container: "body"}); 
-$('#officerObject2').popover({title: officer3[2].name, content: "Ship ain't going anywhere! If someone's living on the island, my sweep should find them.", trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject0').popover({title: officer3[0].name, content: officerIntros(0), trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject1').popover({title: officer3[1].name, content: officerIntros(1), trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject2').popover({title: officer3[2].name, content: officerIntros(2), trigger: "hover", placement: "top", container: "body"}); 
 
 </script>
 </div>
@@ -920,65 +1076,113 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Ship ain't goin
 <p>We arrive early at dawn, sailing carefully into the secluded north bay and location of the "wreck" to find our expedition waiting.</p>
 <p>The expedition team reports finding little but dense and difficult brush and woods upon the island. There are no trails or initial signs of inhabitance. The second piece of news is a lot more troubling. The scout is missing.</p>
 <p>I'm upon the deck of our ship, taking in this report along with the Scout-Master with growing concern.</p>
-<div class="tungtext hidden"><p>Tung continues to speak, there are twigs and brambles in his fur. “No one lives here, but there's been people on the island. Recently cut trees and some old dismantled canoes left behind to the west. I could be wrong and I don't believe there are many, but I have a feeling there might be a few someones hiding on the island.” </p>
+<div class="Tungtext hidden"><p>Tung continues to speak, there are twigs and brambles in his fur, he seems to attract the things. “No one lives here, but there's been people on the island. Recently cut trees and some old dismantled canoes left behind to the west. I could be wrong and I don't believe there are many, but I have a feeling there might be a few someones hiding on the island.” </p>
 <p>"And the scout?" I fix Tung with a steady gaze. </p>
 <p>“Ah, beats me captain. They were not at the ship when we arrived. And if they did not fly back to the ship then...?“ Tung scowled deeply. The Scout-Master spoke up. </p>
-<p>“Standard procedure is to wait. He's the newest in my troop, but I can't think of a reason for why Scout Vessla would wander off.” The Scout-master rubbed his chin thoughtfully.</p>
+<p>“Standard procedure is to wait. He's the newest in my troop, but I can't think of a reason for why <span class="vesslaText hidden"> Scout Vessla</span><span class="plainScout hidden"> our scout</span> would wander off.” The Scout-master rubbed his chin thoughtfully.</p>
 <p>“Well as I reported. There's signs of other visitors having been here, probably still are. Seems clear to me that if we find them we might find out scout too.”</p>
  </div>
-<div class="ulvtext hidden"><p>Ulv saunters up after having returned to the ship. She appears to have fortified the beach well. <br> “Its hard to tell and might be my imagination, but there are a lot of curious tracks around the inlet and the stranded ship. But we saw no one so probably wildlife. The ship is abandoned and a mess however, poor thing.”</p>
+<div class="Ulvtext hidden"><p>Ulv saunters up after having returned to the ship. She appears to have fortified the beach well. <br> “Its hard to tell and might be my imagination, but there are a lot of curious tracks around the inlet and the stranded ship. But we saw no one so probably wildlife. The ship is abandoned and a mess however, poor thing.”</p>
 <p>“No sign of the scout at all?” I fixed Ulv with a steady gaze. </p>
 <p>“No Captain. We beelined straight for the ship as planned, but they were not here. I set the lassies up to secure the ship first. Then we looked briefly around the woods surrounding the beach, but no signs. No answer to calls.” Ulv shifted weight around on her feet. </p>
-<p>“Standard procedure is to wait. He's the newest in my troop, but I can't think of a reason for why Scout Vessla would wander off.” The Scout-master rubbed his chin thoughtfully. </p>
+<p>“Standard procedure is to wait. He's the newest in my troop, but I can't think of a reason for why <span class="vesslaText hidden"> Scout Vessla</span><span class="plainScout hidden"> our scout</span>  would wander off.” The Scout-master rubbed his chin thoughtfully. </p>
 <p>“Well its likely he did, or something on the island took him. We don't know whats out there, but its not a big island. We can make an effort to search it.” Ulv rubbed her paws together.</p>
 
 </div>
 
 
-<div class="arntext hidden"> <p>Arn looks relieved to be back on the ship, though he doesn't look much worse for wear.</br> “There appears to be no trace of any permanent inhabitants on this island. Though there were signs of cut down trees here and there, so its been visited, but there are no Awes on the island of that I'm sure, no response to our cries.”</p>
+<div class="Arntext hidden"> <p>Arn looks relieved to be back on the ship, though he doesn't look much worse for wear.</br> “There appears to be no trace of any permanent inhabitants on this island. Though there were signs of cut down trees here and there, so its been visited, but there are no Awes on the island of that I'm sure, no response to our cries.”</p>
 <p>"And the scout?" I fix Arn with a steady gaze. </p>
 <p>“There is no sign of the scout, captain. We've looked through the ship and called for them but got no response. They might have wandered off, but I don't know, its strange. Scouts are a disciplined bunch.” Arn paced slowly, nodding to the Scout-Master that hovered nearby. </p>
-<p>“Thats right Captain. Standard procedure is to wait. He's the newest in my troop, but I can't think of a reason for why Scout Vessla would wander off.” The Scout-master rubbed his chin thoughtfully. </p>
+<p>“Thats right Captain. Standard procedure is to wait. He's the newest in my troop, but I can't think of a reason for why <span class="vesslaText hidden"> Scout Vessla</span><span class="plainScout hidden"> our scout</span> would wander off.” The Scout-master rubbed his chin thoughtfully. </p>
 <p>“Something drove them off or snatched them. They can't be far, there's just not a lot of room on the island for one to hide. But I wouldn't classify the island as secure until we had a good proper sweep of it.” Arn muttered. </p>
 
 </div>
 
-<p>“Finding our scout is a high priority, but I need this ship investigated. It holds too many mysteries that we need answers to.” I glance over to the Scout-Master to hear what he has to say.</p>
-<p>"Captain, my troop are still recovering from the scouting mission, I'm afraid flying in those winds took their toll. We could deploy in a pinch, but we'll be of limited help in an extensive search." </p>
+<div class="Garschtext hidden">
+<p>"We have not yet been able to perform a full sweep, the island is large and much of it is covered difficult terrain. I can conclude however that there are no hidden Islander settlements or camps on the island and no Awes." He pointed toward the island with a sweeping motion, toward the areas they have searched.  "That does not mean the island is empty. Something is amiss around here and I'm not just speaking of the abandoned Frigate. "</p>
 
+<p>"And the scout?" I fix Garsch with a steady gaze.</p>
+
+<p>"Missing, which is main reason for my apprehension. Scouts do not wander off. Something happened." Officer Garsch exchanged a glance with Scout-Master Krel. <br>
+  "Indeed they do not. Standard procedure is to wait. He's the newest in my troop, but I can't think of a reason for why <span class="vesslaText hidden"> Scout Vessla</span><span class="plainScout hidden"> our scout</span> would wander off."  <br>
+  "Desertion, while not unlikely, seems foolish at this stage. I need to investigate the Island further and keep searching." Officer Garsch concluded.</p>
+</div>
+
+<div class="Mirrtext hidden">
+<p>"We hiked straight to the beach through the forest near the center of the isle. We couldn't find anyone who lived here however. There are no evident well-used trails in this place either, it's all wilderness." Officer Mirr huffed, pulling some dirt off her fur with visibly sour look. "There was no one on the beach around the wreck either. It's all empty!"</p>
+
+<p>"And the scout?" I fix Mirr with a steady gaze</p>
+
+<p>"I thought they were with you? Nobody was at the beach when we came, we looked." Officer Mirr frowned.</p>
+
+<p>“Standard procedure is to wait. He's the newest in my troop, but I can't think of a reason for why <span class="vesslaText hidden"> Scout Vessla</span><span class="plainScout hidden"> our scout</span> would wander off.” The Scout-master rubbed his chin thoughtfully.</p>
+
+<p>"That is concerning." Officer Mirr crossed her arms. "Perhaps they did not like it on our ship and company afterall? Want us to search for him? A scout that doesn't want to be found is very hard to find, mind."</p>
+</div>
+
+<p>“Finding our scout is a high priority, but I need this ship investigated. It holds too many mysteries that we need answers to.” I glance over to the Scout-Master to hear what he has to say.</p>
+<div class="wVessla hidden">
+<p>"Captain, my troop are still recovering from the scouting mission, I'm afraid flying in those winds took their toll. We could deploy in a pinch, but we'll be of limited help, especially in an extensive search." </p>
+</div>
+<div class="uVessla hidden">
+<p>"Captain, my scouts are a little worn, but you spared us from the worst of the winds so we are ready to deploy if need would arise. Searching the island at this point is all about numbers of eyes rather then keenness."</p>
+</div>
 <p>Missing scout or not, there is a limit of how much crew I'm willing to send ashore at one time without confirmed threats, we can't waste time getting the ships hackles up over nothing. These are obviously hostile waters, if we're caught anchored in this tight bay by an enemy ship we'd be in a real pinch. So for now, only enough Awes that can be quickly evacuated. Furthermore, the weather is slowly worsening, I do not want to become trapped here by a storm either, so time is proving to be frustratingly limited.</p>
 <p>All this means I have to choose how to prioritize operations with what we have ashore with one exception.</p>
 <p>I glance over at Officer Tick who has found his way to the briefing room without needing to be summoned. The short officer seems to have a knack for knowing when he's needed. That or he's as keenly interested in the stranded ship and its mysteries as I am. </p>
 
 <p>Either prioritize searching for the scout by sweeping the island or give Tick all the paws he need to make a proper investigation of this ship. Of course I could try splitting the crew equally, but that might mean half-measuring both. </p>
-
 </div>
 
 <div class="expedition3b hidden"><p><strong>The Ship</strong></p>
 <p>We arrive early at dawn, sailing carefully into the secluded north bay and location of the "wreck" to find our expedition waiting.</p>
 <p>The expedition team reports finding little but dense and difficult brush and woods upon the island. They confirm seeing no signs of inhabitance and that the island has little but minor wildlife on it. As long as there's no lost mystery crews running arounds the woods I'm satisfied. I'd rather investigate the mystery of the stranded ship and why its here.</p>
-<p class="tungtext hidden">Tung returns to our ship with his report, there are twigs and brambles in his fur. </br> “No one lives here, but there's been people on the island. Cut down trees and some old dismantled canoes left behind to the west. I can't be fully certain, but if there's anyone here they are very few in numbers and hiding well.” </p>
-<p class="ulvtext hidden">Ulv saunters up after having returned to the ship. She appears to have fortified the beach well.</br> “Its hard to tell and might be my imagination, but there are a lot of curious tracks around the inlet and the stranded ship. But we saw no one so probably wildlife. The ship is abandoned and a mess however, poor thing.”</p>
-<p class="arntext hidden">Arn looks relieved to be back on the ship, though he doesn't look much worse for wear.</br> “There appears to be no trace of any permanent inhabitants on this island. Though there were signs of cut down trees here and there so its been visited, but there are no Awes on the island of that I'm sure, no response to our cries.”</p>
+<p class="Tungtext hidden">Tung returns to our ship with his report, there are twigs and brambles in his fur, he seems to attract the things. </br> “No one lives here, but there's been people on the island. Cut down trees and some old dismantled canoes left behind to the west. I can't be fully certain, but if there's anyone here they are very few in numbers and hiding well.” </p>
+<p class="Ulvtext hidden">Ulv saunters up after having returned to the ship. She appears to have fortified the beach well.</br> “Its hard to tell and might be my imagination, but there are a lot of curious tracks around the inlet and the stranded ship. But we saw no one so probably wildlife. The ship is abandoned and a mess however, poor thing.”</p>
+<p class="Arntext hidden">Arn looks relieved to be back on the ship, though he doesn't look much worse for wear.</br> “There appears to be no trace of any permanent inhabitants on this island. Though there were signs of cut down trees here and there so its been visited, but there are no Awes on the island of that I'm sure, no response to our cries.”</p>
+<p class="Garschtext hidden">"We have not yet been able to perform a full sweep, the island is large and much of it is covered difficult terrain. I can conclude however that there are no hidden Islander settlements or camps on the island and no Awes." He pointed toward the island with a sweeping motion, toward the areas they have searched. "That does not exclude the island being empty however."</p>
+<p class="Mirrtext hidden">"We hiked straight to the beach through the forest near the center of the isle. We couldn't find anyone who lived here however. There are no evident well-used trails in this place either, it's all wilderness." Officer Mirr huffed, pulling some dirt off her fur with visibly sour look. "There was no one on the beach around the wreck either. It's all empty!"</p> 
 
 <p>The expedition has done a preliminary search of the ship for any left behind signs or messages but found nothing obvious.</p>
 <p>It appears the Awe-ship, a frigate of the same model of ours, is entirely abandoned. There has been nothing of use left behind. It's stripped clean and is little but a empty husk.</p>
 <p>A more thorough investigation will have to be mounted, but first, the question of security. </p>
 
-<p class="arntext hidden">"Do you consider the island secure, First-mate Arn?" <br/>  
+<p class="Arntext hidden">"Do you consider the island secure, First-mate Arn?" <br/>  
 "Relatively secure Captain. Of course, the island could always be more thoroughly searched, but I'd say its safe to send in Tick and his team at least. The weather is worsening afterall, we dont have time to upturn every rock. Personaly I'd rather we stuck around camp and assisted them with the investigation." The First-officer muttered, picking a piece of dirt off his sleeve.<br/>
 "I'm sure you would Arn." I huffed with a smirk.
 </p>
-<p class="tungtext hidden">"Do you consider the island secure, Officer Tung?" <br/>
+<p class="Tungtext hidden">"Do you consider the island secure, Officer Tung?" <br/>
 "Nay, Captain! I've got no solid proof, but a gut feeling there's someone out there! Those old canoes, the signs of cutting. I would like to check it out again." The officer stared off toward the island impatiantly. <br/>
 "Well the weather is getting worse, we can't stay here long. Do you consider it safe enough for sending in Tick and his team?" <br/>
 "Sure Captain, its no army hiding out there or anything."
 </p>
-<p class="ulvtext hidden">"Do you consider the island secure, Officer Ulv?" <br/>
+<p class="Ulvtext hidden">"Do you consider the island secure, Officer Ulv?" <br/>
 "Oh, sure captain! I mean, we didnt really sweep the island or anything, but if there was anyone out there, us or the scouts should have seen 'em by now."  <br/>
-"Good, i'll send in Officer Tick and his team then. Weather is worsening and we dont have much time."  <br/>
+"Good, i'll send in Officer Tick and his team then. Weather is worsening and we don't have much time."  <br/>
 "Alright Captain! Want us to take a look around the island before its time to leave or shall we stay and watch their backs?"
 </p>
+
+<div class="Garschtext hidden">
+<p> "Do you consider the island secure, Officer Garsch?"</p>
+
+<p>"No. I can not safely conclude that it is. We could sweep the last of the areas to be sure, but I rather would recommend erecting a thorough perimeter around the objective." </p>
+
+<p> "I intend to send out Officer Tick and his team to investigate the wreck. Weather is worsening and we don't have much time." I commented, eyeing the way our banners fluttered in harscher winds.  </p>
+<p> "Understood. What are your orders?" Officer Garsch saluted, with a note of impatience. Seems this sign of misfortune for the fleet has rattled even him. </p>
+</div>
+
+<div class="Mirrtext hidden">"Do you consider the island secure, Officer Mirr?" <br/>
+<p>"I'm not sure, but I'd say yes. It's a big island, but if someone was living here we should have seen or heard something, no?"</p>
+
+<p>"Good, i'll send in Officer Tick and his team then. Weather is worsening and we don't have much time." I commented, eyeing the way our banners fluttered in harscher winds.</p>
+
+<p>"Fair enough Captain, that'll make us less lonely out there and he's decent enough company." Officer Mirr smiled.</p>
+
+<p>"He has an important job to do down there, I expect you'll be busy and not talking his ear off." I huffed.</p>
+
+<p>"Of Course Captain, of course. We need to find what happened to our fellow ship, don't we? What would you have us do?"</p>
+</div>
 </div>
 
 <div class="tickinv hidden"><p><strong>The Ship</strong></p>
@@ -993,8 +1197,10 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Ship ain't goin
 <p>The weather is worsening and we do not have very long until we risk being trapped by a storm. An extra day might be pushing it, but I'm sure Tick knows that.</p>
 </div>
 
+
+
 <div class="officerResponse hidden"><p><strong></strong></p>
-<div class="arntext hidden"><p><strong></strong></p>
+<div class="Arntext hidden"><p><strong></strong></p>
 <p>“Aye Captain, if thats your wish. I don't believe there is much to find out there but twigs and burrs but if thats your order, we'll make sure.” The First-Officer gruffed glumly. He was not happy about the assignment and orders, but at least he was not straining against them like he used to.</p>
 
 <p>“We could take the Cadets along.” Arn suddenly suggested. “I hear they have been driving Officer Tick into early shedding.”</p>
@@ -1006,7 +1212,7 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Ship ain't goin
 <p>“Aye Captain.”</p>
 </div>
 
-<div class="ulvtext hidden"><p><strong></strong></p>
+<div class="Ulvtext hidden"><p><strong></strong></p>
 <p>“You want us to traipse up and down the woods of the Island, aye? Well, I suppose thats fair, we hardly gave it a very good look over on the way in to the bay.”</p>
 
 <p>Ulv scratched at her prominent neck-tuft before shrugging.</p>
@@ -1017,56 +1223,105 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Ship ain't goin
 
 </div>
 
-<div class="tungtext hidden"><p><strong></strong></p>
+<div class="Tungtext hidden"><p><strong></strong></p>
 <p>“Good! I feel it in my pelt that there's someone out there watching us.”</p>
 
 <p>Tung smacked his paws together audibly and grinned savagely. As always he defied the timid male stereotype with more gusto then anyone.</p>
 
 <p>“We shall head out immediately.</p>
 </div>
+
+<div class="Garschtext hidden"><p><strong></strong></p>
+<p>Officer Garsch gave a brief salute at the command. "Aye Captain. As you order, we'll set out to investigate the last parts of the island." His eyes seemed to wander to the chatter of a certain trio loitering nearby.</p>
+
+<p>"Seeing as this is a low-risk assignment, perhaps we could take on some extra personnel for training. There has been requests to put them out of sight for a while." <br/>
+ I turned my head toward the Cadets and felt a rueful smirk spread across my snout.  "Aye, let me give them a brief and then send them your way."</p>
+</div>
+
+<div class="Mirrtext hidden"><p><strong></strong></p>
+<p>"You want us out there in the sticks again?" There was no hiding the look of consternation on Officer Mirrs face.</p>
+
+<p>"It needs to be more thoroughly searched. Im counting on you." I nodded and added firmly.</p>
+
+<p>"As you order Captain. I guess we'll try make a pass around the island, look for anyone willing to have a chat."</p>
+
+<p>My ears were drawn to a burst of chatter from my trio of cadets and I grinned.  "I'll send some help with you."</p>
+
+<p>Mirr figured out who I meant quickly. "Oh good..."</p>
+</div>
+
+
+
 </div>
 
 
 <div class="officerResponse2 hidden"><p><strong></strong></p>
-<div class="arntext hidden"><p><strong></strong></p>
+<div class="Arntext hidden"><p><strong></strong></p>
 "Very good, Captain. We shall help out where we can, though knowing Tick he'll probably prefer 'amateurs' to stay out of the way."
 
 </div>
-<div class="ulvtext hidden"><p><strong></strong></p>
+<div class="Ulvtext hidden"><p><strong></strong></p>
 <p>“As you wish Captain, we'll ensure they work undisturbed. Ain't no critter getting through my 5-point field perimeter!”  </p>
 
 <p>I nodded and returned Ulvs confident smirk. She took defensive operations seriously like none other.</p>
 
 </div>
 
-<div class="tungtext hidden"><p><strong></strong></p>
+<div class="Tungtext hidden"><p><strong></strong></p>
 <p>“Alright Captain, your call. My team shall watch the beach instead, oh... and help out I guess. Wait, you said you're sending Tick? Uh... Beach it is. ”</p>
 
 <p>I quirked my brow at this, but Officer Tung didn't offer anything more. Hard to think the large officer had anyone he was wary of.</p>
 
 </div>
+<div class="Garschtext hidden"><p><strong></strong></p>
+<p>Officer Garsch gave a brief salute at the command. "Aye Captain, very good. We'll focus our efforts on securing the beach and make sure to assist the salvage if need be." His eyes seemed to wander to the chatter of a certain trio loitering nearby.</p>
+
+<p>"Seeing as this is a low-risk assignment, perhaps we could take on some extra personnel for training. There has been requests to put them out of sight for a while." <br/>
+ I turned my head toward the Cadets and felt a rueful smirk spread across my snout.  "Aye, let me give them a brief and then send them your way."</p>
+</div>
+<div class="Mirrtext hidden"><p><strong></strong></p>
+<p>"Very well Captain. We'll set up camp and make ourselves comfortable. I'm sure Officer Tick will appreciate the extra paws of help."</p>
+
+<p>My ears were drawn to a burst of chatter from my trio of cadets and I grinned.  "I'll send some extra help with you."</p>
+
+<p>Mirr figured out who I meant quickly. "Oh good..."</p>
+</div>
+
 </div>
 
 <div class="officerResponse3 hidden"><p><strong></strong></p>
 
-<div class="arntext hidden"><p><strong></strong></p>
+<div class="Arntext hidden"><p><strong></strong></p>
 <p>“Very well, Captain. I'll send a few to look through the closest parts of the island, but put the majority of my team into watching Ticks investigation.” He tapped his chin thoughtfully. <br/>
 “We could take the Cadets along.” Arn suddenly suggested. “I hear they have been driving Officer Tick into early shedding and any extra pair of eyes is useful.” </p>
 I considered this briefly. I had some assignments of my own I had planned to make them busy with. This was a good oppertunity as any for them to gain some experience.<br />
 &ldquo;Let me talk to them first, I will let you know if they join you in a bit.&rdquo;<br />
 &ldquo;Aye Captain.&rdquo;</p>
 </div>
-<div class="tungtext hidden"><p><strong></strong></p>
-<p>““Hmph, as you command Captain, we'll watch his back. But I still think offense is best defense. Well no matter, hope they find something worthwhile on this wreck.”</p>
+<div class="Tungtext hidden"><p><strong></strong></p>
+<p>“Hmph, as you command Captain, we'll watch his back. But I still think offense is best defense. Well no matter, hope they find something worthwhile on this wreck.”</p>
 </div>
-<div class="ulvtext hidden"><p><strong></strong></p>
+<div class="Ulvtext hidden"><p><strong></strong></p>
 <p>“Understood, we'll hold our positions, stay on the lookout and help out. Them scouts are capable fellas, I'm sure our wayward one will find their way back!  </p>
+</div>
+
+<div class="Garschtext hidden"><p><strong></strong></p>
+<p>Officer Garsch saluted a bit stiffly and nodded. "Very well, as you order. We shall focus on shoring up our defenses around the wreck." He glanced toward the dark forest. "I will send a small team to keep looking for tracks however. We could use some more bodies on the beach to free up some paws for that."</p>
+
+<p>I follow his gaze to the chattering cadets and give a small nod.</p>
+</div>
+<div class="Mirrtext hidden"><p><strong></strong></p>
+<p>"Very well Captain. We'll set up camp and make ourselves comfortable. I'm sure if the Scout wants to return, he'll come wandering back and Officer Tick will appreciate the extra paws of help."</p>
+
+<p>My ears were drawn to a burst of chatter from my trio of cadets and I grinned.  "I'll send some extra help with you."</p>
+
+<p>Mirr figured out who I meant quickly. "Oh good..."</p>
 </div>
 </div>
 
 <div class="officerResponse4 hidden"><p><strong></strong></p>
 
-<div class="arntext hidden"><p><strong></strong></p>
+<div class="Arntext hidden"><p><strong></strong></p>
 <p>&ldquo;Aye Captain, with the scout missing, perhaps the island isn't quite as secure as I might have first suspected. The scouts look out for us, so its our duty to look out for them.&rdquo; He plucked his ever-present toothpick from his mouth and flicked it overboard.</p>
 
 <p>&ldquo;I'll put high focus on tracing them down. We could take the Cadets along.&rdquo; Arn suddenly suggested. &ldquo;Ever pair of eyes help and I hear they have been driving Officer Tick into early shedding.&rdquo;<br />
@@ -1074,21 +1329,34 @@ I considered this briefly. I had some assignments of my own I had planned to mak
 &ldquo;Let me talk to them first, I will let you know if they join you in a bit.&rdquo;<br />
 &ldquo;Aye Captain.&rdquo;</p>
 </div>
-<div class="tungtext hidden"><p><strong></strong></p>
+<div class="Tungtext hidden"><p><strong></strong></p>
 <p>&ldquo;Hum... half the team at base and other half getting all the fun? Going to be harder to make a full sweep and I'm going to have a heck of a time making it seem like I'm not picking favorites in the team when they hear about this.&ldquo; Tung seemed to remember himself and saluted hastily and stiffly. </p>
 
 <p>&ldquo;I'll make the arrangements immediately captain!&rdquo;</p>
 </div>
-<div class="ulvtext hidden"><p><strong></strong></p>
+<div class="Ulvtext hidden"><p><strong></strong></p>
 <p>&ldquo;You want us to traipse up and down the woods of the Island, aye? Well, I suppose thats fair, we hardly gave it a very good look over on the way in to the bay and we owe it to our runaway scout.&rdquo;<br />
 Ulv scratched at her prominent neck-tuft before shrugging.<br />
 &ldquo;I'll round up some of the girls and take a walk around the island Captain. But some of those pretty guard-posts we built will be empty!&rdquo;</p>
 </div>
+<div class="Garschtext hidden"><p><strong></strong></p>
+<p>Officer Garsch saluted a bit stiffly and nodded. "Very well, as you order. We shall shore up our defenses around the wreck, keeps the salvagers safe." He glanced toward the dark forest. "I will send a team to keep looking for tracks however, we could use some more bodies on the beach to help broaden the search."</p>
+
+<p>I follow his gaze to the chattering cadets and give a small nod. Perhaps it was time to nod coddle them so much.</p>
+</div>
+<div class="Mirrtext hidden"><p><strong></strong></p>
+<p>"Very well Captain. We'll set up camp and make ourselves comfortable. I'll send a team with torches out into the nearby woods to search and call for our wayward fly-boy too.</p>
+
+<p>My ears were drawn to a burst of chatter from my trio of cadets and I grinned.  "I'll send some extra help with you."</p>
+
+<p>Mirr figured out who I meant quickly. "Oh good..."</p>
+</div>
+
 </div>
 
 <div class="officerResponse5 hidden"><p><strong></strong></p>
 
-<div class="arntext hidden"><p><strong></strong></p>
+<div class="Arntext hidden"><p><strong></strong></p>
 <p>&ldquo;Aye Captain, with the scout missing, perhaps the island isn't quite as secure as I might have first suspected. The scouts look out for us, so its our duty to look out for them.&rdquo; He plucked his ever-present toothpick from his mouth and flicked it overboard.</p>
 
 <p>&ldquo;I'll put high focus on tracing them down. We could take the Cadets along.&rdquo; Arn suddenly suggested. &ldquo;Ever pair of eyes help and I hear they have been driving Officer Tick into early shedding.&rdquo;<br />
@@ -1096,17 +1364,36 @@ I considered this briefly. I had some assignments of my own I was planning to ma
 &ldquo;Let me talk to them first, I will let you know if they join you in a bit.&rdquo;<br />
 &ldquo;Aye Captain.&rdquo;</p>
 </div>
-<div class="tungtext hidden"><p><strong></strong></p>
+<div class="Tungtext hidden"><p><strong></strong></p>
 <p>“Good! I feel it in my pelt that there's someone out there watching us.”</p>
 
 <p>Tung smacked his paws together audibly and grinned savagely. As always he defied the timid male stereotype with more gusto then anyone.</p>
 
 <p>“We shall head out immediately.</p>
 </div>
-<div class="ulvtext hidden"><p><strong></strong></p>
+<div class="Ulvtext hidden"><p><strong></strong></p>
 <p>&ldquo;You want us to traipse up and down the woods of the Island, aye? Well, I suppose thats fair, we hardly gave it a very good look over on the way in to the bay and we owe it to our runaway scout.&rdquo;<br />
 Ulv scratched at her prominent neck-tuft before shrugging.<br />
 &ldquo;I'll round up some of the girls and take a walk around the island Captain. But some of those pretty guard-posts we built will be empty!&rdquo;</p>
+</div>
+<div class="Garschtext hidden"><p><strong></strong></p>
+<p>"Aye Captain, very good. I'll make sure to recover our scout or at least find out what happened." His eyes seemed to wander to the chatter of a certain trio loitering nearby.</p>
+
+<p>"Perhaps we could take on some extra personnel for training. The center of our search formation is safe enough and it would free up a few hands to watch the beach." </p>
+<p>I follow his gaze to the chattering cadets and give a small nod. Perhaps it was time to nod coddle them so much.</p>
+
+</div>
+<div class="Mirrtext hidden"><p><strong></strong></p>
+<p>"You want us out there in the sticks again?" There was no hiding the look of consternation on Officer Mirrs face.</p>
+
+<p>"It needs to be more thoroughly searched. Something might have happened to the Scout, Im counting on you." I nodded and added firmly.</p>
+
+<p>"Alright Captain, I see your point. We shall look for him and bring him back to the fold. Whether he wants to or not."</p>
+
+<p>My ears were drawn to a burst of chatter from my trio of cadets and I grinned.  "I'll send some help with you."</p>
+
+<p>Mirr figured out who I meant quickly. "Oh good..."</p>
+
 </div>
 </div>
 
@@ -1129,21 +1416,42 @@ Ulv scratched at her prominent neck-tuft before shrugging.<br />
 
 
 <div class="raidA hidden"><p><strong>A raid in the night</strong></p>
-<p>Something has happened over night at the stranded Frigate. A rushed and confused report woke me to inform me that there has been some form of attack upon Officer Tick and his crew during the night. There are injuries and the officer is missing, apparently he's been captured in the confusion. The identity of our attackers are not entirely clear either, but they were apparently Gryphs, half a dozen or so.</p>
-<p>The ship is already on high alert and I'm met by my First-Officer as I walk out of my chambers, still clasping my cloak.</p>
-<p>&ldquo;What are your orders Captain? The scouts took a quick tour into the air and report seeing no other ships then ours.&rdquo;</p>
-<div class="arntext hidden"><p><strong></strong></p>
+<p>Something has happened over night at the stranded Frigate. A rushed and confused report woke me to inform me that there has been some form of attack upon Officer Tick and his crew during the night. There are injuries and the maintenance-officer is missing, apparently he's been captured in the confusion. The identity of our attackers are not entirely clear either, but they were apparently Gryphs, half a dozen or so.</p>
+<p>The ship is already on high alert and I'm met by Officer Nyxie, currently on night-duty as I walk out of my chambers, still clasping my cloak.</p>
+<p>&ldquo;What are your orders Captain? The scouts took a quick tour into the air and report seeing no other ships then ours, the attack is from inside the island.&rdquo;</p>
+<div class="Arntext hidden"><p><strong></strong></p>
+<p>Officer Arn suddenly appears from below deck with a look of consternation on his face.</p>
 <p>"What are you doing on the ship, shouldn't you be down there?!" I reeled around to face him.</p>
 <p>"Happenstance Captain, things were quiet so I was just back here briefly to pick up some things." Arn replied, straight-faced. I glared at him, but there were currently more pressing issues at stake.</p>
 <p>
-</div>
 <p>&ldquo;Has anyone gone after them?&rdquo;</p>
-<p>&ldquo;Captain. The Cadets were on site during the attack. They were spotted rushing after the assailants into the woods.&rdquo;</p>
+<p>&ldquo;Captain. The Cadets were on site during the attack. They were spotted rushing after the assailants into the woods.&rdquo; Officer Nyxie replied.</p>
 
-<div class="tungtext hidden"><p><strong></strong></p>
-<p>"Isnt Officer Tung in charge of the camp down there, why has he not gone after them?" </p>
-<p>"I'm not sure, Captain. As I understand it, the camp was in a bit of a dissaray and there was a fire. </p>
 </div>
+
+<div class="Tungtext hidden"><p><strong></strong></p>
+<p>"Isnt Officer Tung in charge of the camp down there, why has he not gone after them?" </p>
+<p>"I'm not sure, Captain. As I understand it, the camp was in a bit of a dissaray and there was a fire." </p>
+<p>&ldquo;Has anyone gone after them?&rdquo;</p>
+<p>&ldquo;Captain. The Cadets were on site during the attack. They were spotted rushing after the assailants into the woods.&rdquo; Officer Nyxie replied.</p>
+</div>
+
+<div class="Garschtext hidden"><p><strong></strong></p>
+<p>"What is happening down there? Where is Officer Garsch?"</p>
+
+<p>"We believe he's still out with his squad, searching the island as you ordered Captain. The camp was lightly defended."</p>
+<p>&ldquo;Has anyone gone after them?&rdquo;</p>
+<p>&ldquo;Captain. The Cadets were on site during the attack. They were spotted rushing after the assailants into the woods.&rdquo; Officer Nyxie replied.</p>
+</div>
+<div class="Mirrtext hidden"><p><strong></strong></p>
+<p>"Where is Officer Mirr in all this?" I ask firmly.</p>
+
+<p>"The report came from her. It seems her camp was caught completely by surprise. Right now they are fighting to contain a fire that was started." Officer Nyxie explained further. </p>
+
+<p>&ldquo;Has anyone gone after them?&rdquo;</p>
+<p>&ldquo;Captain. The Cadets were on site during the attack. They were spotted rushing after the assailants into the woods.&rdquo; Officer Nyxie replied.</p>
+</div>
+
 <p>I bite down a curse and consider my options briefly.</p>
 <p>I can unleash the Raptorians upon the islands and have them scour it. It's a bit of a heavy-handed move, they are not the most delicate tool for anyone hoping for non-violent outcomes, but they are fast.</p>
 <p>Or I could deploy the scouts to lead as pathfinders to fine-comb the island with a unit of Awes. A more versatile approach but not quite as fast.</p>
@@ -1163,7 +1471,7 @@ $('#actionRaptorian').popover({title: "Raptorians", content: "Raptorians are Sho
 </div>
 
 <div class="caught hidden"><p><strong>A raid in the night</strong></p>
-<div class="ulvtext hidden">
+<div class="Ulvtext hidden">
 <p>There was a raid in the night. I woke as the faint sound of a warning horn echoed over the small bay we were anchored in.</p>
 
 <p>It's not long until I receive the report while attaching my cloak, sword-belt and hurrying out on deck.<br />
@@ -1181,6 +1489,19 @@ Ulvs diligent defensive perimeter however spotted them.</p>
 <p>"Orders were a bit hazy on prisoners, I suppose you wanted one to interrogate?” <span class="fofficer"></span> shrugged.</p>
 
 <p>I bite down a curse and dearly hope they were smart enough to leave one.</p>
+</div>
+<div class="Garschtext hidden">
+<p>There was a raid in the night. I woke as the faint sound of a warning horn echoed over the small bay we were anchored in.</p>
+
+<p>It's not long until I receive the report while attaching my cloak, sword-belt and hurrying out on deck.<br />
+Some Islander gryphs had been trying to sneak into the camp surrounding the stranded Awe-ship.<br />
+
+<p>But they couldn't had known they were of trying to sneak into a base of operations coordinated by Officer Garsch.</p>
+
+<p>“They appear to have been few in number, up to 4 of them at most Captain. I'm not sure what they were trying to achieve or steal.” Officer Nyxie, who'd had the night watch onboard, reported. <br/> “They walked straight into an ambush and were surrounded. Still they fought furiously refusing to surrender. I'm not sure how many of them survived.”</p>
+
+<p>I bit down a curse and hope they managed to capture one at least, Officer Garsches efficiency might actually have been a slight detriment otherwise in this case. What would possess the Islanders to fight so furiously?</p>
+
 </div>
 </div>
 
@@ -1362,7 +1683,7 @@ With his arms tied he could not give his belly the easing rubs it was asking for
 This had been about all his stomach had been asking for since he entertained the notion of swallowing his captors. He had honestly been as surprised as his meals at how fast and effectively his stomach had begun to claim them. <br />
 It had been as he had boasted, Awes were meant for Islander bellies it would seem! </p>
 
-<p>'Grruuoorgghh'. Went the stomach and the Prisoner leaned back, belching softly. Prisoner or not, he felt very good about himself. He was tempted to remain and let his stomach work his meals off further, see what comes. But he fought the lethargy of it and shifted position. That discarded sword-belt of the captain was in reach of his feet. <br />
+<p>'Grruuoorgghh'. Went the stomach and the Prisoner leaned back, belching softly. Prisoner or not, he felt very good about himself. He was tempted to remain and let his stomach work his meals off further, see what comes. But he fought against the lethargy and shifted position. That discarded sword-belt of the captain was in reach of his feet. <br />
 With a little maneuvering his bindings would be undone. With a little cleverness he might yet escape.</p>
 </div>
 
@@ -1524,7 +1845,7 @@ It's not long before the scout drops to the ground, managing to land on his feet
 <div class="conclusionC hidden"><p><strong>Search party</strong></p>
 <p>A report from the expedition arrives. They have finished their sweep of the island an managed to successfully recover our scout and defeat the assailants. It was apparently a hard fight and they would not surrender. Still, we managed to capture one of them.</p>
 <p>I'm told the Cadets ended up in the heart of it and saw some action. But they're unharmed if only a little shaken up, some less then others I suppose.</p>
-<p>Scout Vessla, our formerly captured scout is also unhurt. He claims they came for him not long after he made his landing on the beach. They had been lurking around the ship, scavenging tidbits of materials in terms of metals. But they were quite interested in apprehending him.</p>
+<p><span class="vesslaText hidden"> Scout Vessla</span><span class="plainScout hidden">Scout Harbinger</span>, our formerly captured scout is also unhurt. He claims they came for him not long after he made his landing on the beach. They had been lurking around the ship, scavenging tidbits of materials in terms of metals. But they were quite interested in apprehending him.</p>
 <p>He did not quite glean the reason for his capture, but they seemed quite eager to get away and off the island with him. But the initial first sweep of our expedition kept them in hiding and prevented them from getting to their canoes before night fell. It seemed they were not keen on trying their luck over the reefs in darkness luckily, even with their fascinating light boats.</p>
 <p>The Captured Gryph has kept his beak shut and refused to cooperate. It's up to me what to do with him.</p>
 <p>I can keep him as a prisoner until he decides to speak or he comes to some other use. Or we can deal with him like we do with all who make themselves the enemies of the Admiralty.</p>
@@ -1583,7 +1904,7 @@ We'll have to hope the remoteness of the Island will protect it and that it serv
 <div class="noscavenge hidden">
 <p>- There was not enough time or help in scavenging materials.</p>
 </div>
-<div class="arntext hidden"> 
+<div class="Arntext hidden"> 
 <div class="search hidden">
 <p>- Arn succesfully led the expedition and captured hostile forces.</p>
 </div>
@@ -1598,7 +1919,7 @@ We'll have to hope the remoteness of the Island will protect it and that it serv
 </div>
 </div>
 
-<div class="tungtext hidden"> 
+<div class="Tungtext hidden"> 
 <p>
 <div class="search search2 hidden">
 - Tungs intuition turned out correct and he managed to capture the enemies hiding on the island. </p>
@@ -1611,7 +1932,7 @@ We'll have to hope the remoteness of the Island will protect it and that it serv
 </div>
 </div>
 
-<div class="ulvtext hidden"> 
+<div class="Ulvtext hidden"> 
 <div class="search search2 hidden">
 <p>- Ulv was unable to organize an effective sweep of the island and failed to detect hidden hostiles. </p>
 </div>
