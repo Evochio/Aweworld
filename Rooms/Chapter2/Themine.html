@@ -16,18 +16,504 @@
    <script src="../../officers.js"></script>
   <link rel="stylesheet" href="../../main.css"></link>
   <script>
+  
+  	state.visited.push("Themine");
+	var Themine = [];
+    state.Glint.status = 'available';
+    state.Valnos.status = 'available';
+	state.Ziggy.status = 'available';
+	
+	officer3 = [officer.evok, officer.keeper, officer.tick];
+	  backupOfficer = [officer.tung, officer.garsch]
+   
+   
+   	function officerIntros(x) {
+		
+		if (officer3[x].name == 'Evok') {
+			
+			return ""
+			
+		}
+		if (officer3[x].name == 'Keeper') {
+			
+			return "" 
+		}
+		
+		if (officer3[x].name == 'Tick') {
+			return ""
+		}
+		
+		if (officer3[x].name == 'Tung') {
+			return ""
+		}
+		if (officer3[x].name == 'Garsch') {
+			return ""
+		}
+	}
 
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
-      
-      $('#button-1').on('click', function(e) {
+       officerDouble();
+		checkdeadRoster();
+      $('#scoutreport').on('click', function(e) {
         // change state here
         // end by using lib.goTo
-		lib.dialogue(e, "envoy"),
-        $("#button-1").addClass("hidden");
+		lib.dialogue(e, "scoutreport"),
+        $("#scoutreport").addClass("hidden");
+		 $("#decision").removeClass("hidden");
 		
       })
+		
+		 $('#decision').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "decision"),
+        $("#decision").addClass("hidden");
+		 $("#assault").removeClass("hidden");
+		 $("#ram").removeClass("hidden");
+		 $("#careful").removeClass("hidden");
+		
+      })
+		
+		 $('#assault').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "assault"),
+        $("#assault").addClass("hidden");
+		$("#ram").addClass("hidden");
+		$("#careful").addClass("hidden");
+		 $("#mine").removeClass("hidden");
+		
+      })
+	  
+	   $('#ram').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "ram"),
+        $("#assault").addClass("hidden");
+		$("#ram").addClass("hidden");
+		$("#careful").addClass("hidden");
+		 $("#mine").removeClass("hidden");
+		
+      })
+	  
+	  
+	   $('#careful').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "careful"),
+        $("#assault").addClass("hidden");
+		$("#ram").addClass("hidden");
+		$("#careful").addClass("hidden");
+		 $("#mine").removeClass("hidden");
+		
+      })
+		
+		 $('#mine').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "mine"),
+        $("#mine").addClass("hidden");
+		
+		$("#cadetChoice").removeClass("hidden");
+		
+      })
+		
+		 $('#cadetChoice').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "cadetChoice"),
+        $("#cadetChoice").addClass("hidden");
+		
+		$("#cadetExplore").removeClass("hidden");
+		$("#cadetExplore").removeClass("hidden");
+		$("#cadetExplore").removeClass("hidden");
+		
+      })
+		
+		 $('#cadetExplore').on('click', function(e) {
+        // change state here
+		Themine.push("cadetExplore");
+        // end by using lib.goTo
+		lib.dialogue(e, "cadetExplore"),
+        $("#cadetExplore").addClass("hidden");
+		$("#cadetStay").addClass("hidden");
+		$("#cadetAssist").addClass("hidden");
+		
+		$("#options").removeClass("hidden");
+		
+      })
+	  
+	  
+		 $('#cadetStay').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "cadetStay"),
+        $("#cadetExplore").addClass("hidden");
+		$("#cadetStay").addClass("hidden");
+		$("#cadetAssist").addClass("hidden");
+		
+		$("#options").removeClass("hidden");
+		
+      })
+	  
+	  
+	   $('#cadetAssist').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "cadetAssist"),
+       $("#cadetExplore").addClass("hidden");
+		$("#cadetStay").addClass("hidden");
+		$("#cadetAssist").addClass("hidden");
+		
+		$("#options").removeClass("hidden");
+		
+      })
+	  
+	   $('#cadetDiscovery').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "cadetDiscovery"),
+       $("#cadetExplore").addClass("hidden");
+		
+		$("#options").removeClass("hidden");
+		
+		
+      })
+		
+		 $('#options').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "options"),
+        $("#options").addClass("hidden");
+		
+		$("#officer0").removeClass("hidden");
+		$("#officer1").removeClass("hidden");
+		$("#officer2").removeClass("hidden");
+		$("#depart").removeClass("hidden");
+		
+      })
+	  
+	  
+	   $('#officer0').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "officer0"),
+		if (_.contains(Themine, "assault2")) {
+			$("#assault3").removeClass("hidden");
+		}
+		else {
+			$("#assault2").removeClass("hidden");
+		}
+        $("#assault2").removeClass("hidden");
+		$("#decline").removeClass("hidden");
+		
+		$("#officer0").addClass("hidden");
+		$("#officer1").addClass("hidden");
+		$("#officer2").addClass("hidden");
+		
+      })
+	  
+	   $('#officer1').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "officer1"),
+        $("#negotiate").removeClass("hidden");
+		$("#negotiateOff").removeClass("hidden");
+		$("#decline").removeClass("hidden");
+		
+		$("#officer0").addClass("hidden");
+		$("#officer1").addClass("hidden");
+		$("#officer2").addClass("hidden");
+		
+      })
+	  
+	   $('#officer2').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "officer2"),
+        $("#special").removeClass("hidden");
+		$("#decline").removeClass("hidden");
+		
+		$("#officer0").addClass("hidden");
+		$("#officer1").addClass("hidden");
+		$("#officer2").addClass("hidden");
+		
+      })
+	  
+	   $('#decline').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "options"),
+        
+		$("#decline").addClass("hidden");
+		
+		if (_.contains(Themine, "assault4")) {
+		$("#officer0").addClass("disabled");
+		}
+		$("#officer0").removeClass("hidden");
+		$("#officer1").removeClass("hidden");
+		$("#officer2").removeClass("hidden");
+		$("#depart").removeClass("hidden");
+		
+      })
+	  
+	  
+	   $('#assault2').on('click', function(e) {
+        // change state here
+		Themine.push("assault2");
+        // end by using lib.goTo
+		lib.dialogue(e, "assault2"),
+        
+		if (_.contains(Themine, "cadetExplore") && Themine.indexOf("cadetDiscovery") == -1)) {
+			$("#cadetDiscovery").removeClass("hidden");
+			$("#assault3").addClass("hidden");
+			$("#decline").addClass("hidden");
+			$(".cadetDiscovery").removeClass("hidden");	
+		}
+		else {
+				$("#assault3").removeClass("hidden");
+				$("#decline").removeClass("hidden");
+				$(".cadetDiscovery").addClass("hidden");	
+		}
+		$("#assault2").addClass("hidden");
+		
+	
+		
+		
+      })
+	  
+	   $('#assault3').on('click', function(e) {
+        // change state here
+		Themine.push("assault3");
+        // end by using lib.goTo
+		lib.dialogue(e, "assault3"),
+        
+		$("#assault3").addClass("hidden");
+		
+		$("#assault4").removeClass("hidden");
+		$("#decline").removeClass("hidden");
+			
+      })
+	  
+	    $('#assault4').on('click', function(e) {
+        // change state here
+		
+        // end by using lib.goTo
+		lib.dialogue(e, "assault4"),
+        
+		$("#assault4").addClass("hidden");
+		$("#decline").removeClass("hidden");
+					
+      })
+	  
+		
+		
+		 $('#negotiate').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "negotiate"),
+        $("#negotiateDom").removeClass("hidden");
+		$("#negotiateBarg").removeClass("hidden");
+		$("#negotiateBluff").removeClass("hidden");
+		$("#negotiatePeace").removeClass("hidden");
+		
+		$("#negotiate").addClass("hidden");
+		$("#negotiateOff").addClass("hidden");
+				
+      })
+		
+		 $('#negotiateOff').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "negotiateOff"),
+        $("#decline").removeClass("hidden");
+				
+		$("#negotiate").addClass("hidden");
+		$("#negotiateOff").addClass("hidden");
+		
+		
+      })
+	  
+	  
+	  
+		 $('#negotiateDom').on('click', function(e) {
+        // change state here
+		
+        // end by using lib.goTo
+		lib.dialogue(e, "negotiateDom"),
+        
+		$("#decline").removeClass("hidden");
+		
+		$("#negotiateDom").addClass("hidden");
+		
+				
+      })
+	  
+	   $('#negotiateBarg').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "negotiateBarg"),
+        
+		$("#decline").removeClass("hidden");
+		
+		$("#negotiateBarg").addClass("hidden");
+		
+				
+      })
+	  
+	  
+	   $('#negotiateBluff').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "negotiateBluff"),
+        
+		$("#decline").removeClass("hidden");
+		
+		$("#negotiateBluff").addClass("hidden");
+		
+				
+      })
+	  
+	   $('#negotiatePeace').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "negotiatePeace"),
+        
+		$("#negotiateAgree").removeClass("hidden");
+		$("#decline").removeClass("hidden");
+		
+		$("#negotiatePeace").addClass("hidden");
+		
+				
+      })
+	  
+	  
+	   $('#negotiateAgree').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "negotiateAgree"),
+        //You're digested
+		
+		$("#decline").addClass("hidden");
+		$("#negotiateAgree").addClass("hidden");
+		$("#negotiateDom").addClass("hidden");
+		$("#negotiateBarg").addClass("hidden");
+		$("#negotiateBluff").addClass("hidden");
+		$("#negotiatePeace").addClass("hidden");
+				
+      })
+	  
+	   $('#negotiateSurrender').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "negotiateSurrender"),
+        //You're digested
+		
+		$("#decline").addClass("hidden");
+		$("#negotiateSurrender").addClass("hidden");
+		$("#negotiateDom").addClass("hidden");
+		$("#negotiateBarg").addClass("hidden");
+		$("#negotiateBluff").addClass("hidden");
+		$("#negotiatePeace").addClass("hidden");
+		
+		$("#prisoners").removeClass("hidden");
+				
+      })
+	  
+	   $('#special').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "special")
+		
+				
+		$("#special2").removeClass("hidden");
+		if (_.contains(Themine, "ram")) {
+			$("#special3").removeClass("hidden");
+		}
+		$("#decline").removeClass("hidden");
+		
+		
+		if (_.contains(Themine, "cadetExplore") && Themine.indexOf("cadetDiscovery") == -1)) {
+			$("#cadetDiscovery").removeClass("hidden");
+			$(".cadetDiscovery").removeClass("hidden");
+			$("#special2").addClass("hidden");
+			$("#special3").addClass("hidden");
+			$("#decline").addClass("hidden");
+		}
+		else {
+			$(".cadetDiscovery").addClass("hidden");
+		}
+		
+		$("#special").addClass("hidden");
+				
+      })
+	  
+	   $('#special2').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "special2"),
+		
+		$("#decline").removeClass("hidden");
+		
+		$("#special2").addClass("hidden");
+		$("#special3").addClass("hidden");
+				
+      })
+	  
+	   $('#special3').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "special3"),
+		
+		$("#decline").removeClass("hidden");
+		
+		$("#special2").addClass("hidden");
+		$("#special3").addClass("hidden");
+				
+      })
+	  
+	  
+	   $('#late').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "late"),
+		
+		$("#depart").removeClass("hidden");
+		
+		$("#late").addClass("hidden");
+		
+				
+      })
+	  
+	  
+	  $('#depart').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "depart"),
+		
+		$("#obelisk").removeClass("hidden");
+		if (_.contains(state.locations, "Navpoint4") && state.visited.indexOf("Navpoint4") == -1)) {
+		$("#navpoint4").removeClass("hidden")
+		}
+		if (_.contains(state.locations, "habitetIsle")) {
+		$("#habited").removeClass("hidden")
+		}
+		
+		if (_.contains(state.locations, "Sandbanks")) {
+		$("#sandbanks").removeClass("hidden")
+		}
+		
+				
+		$("#depart").addClass("hidden");
+		
+				
+      })
+	  
+	  
+		
+		
 		
 		$('#obelisk').on('click', function() {
         // change state here
@@ -43,7 +529,7 @@
         lib.goTo('HabitedIsle.html')
       })
 	  
-	  $('#button-2').on('click', function() {
+	  $('#navpoint4').on('click', function() {
         // change state here
         // end by using lib.goTo
 		state.chapter[0] = ("Navpoint4");
@@ -83,15 +569,72 @@ Day: <span class="days"><script>displayDays()</script></span>
 <div id="story-text">
 
 <p>Arrival and introduction</p>
+<p>
+Arrival. 
+
+Flurry of activity on the island. Cannon shot. 
+Shoot at scouts. (Intel level depends on amount of scouts. Report seeing single canon. )
+ Ship at dock that starts to prepare to leave?
+</p>
 </div>
 <div id="tail">
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default" id="button-1"> Test </button>
+<button class="btn btn-default hidden" id="button-1"> Test </button>
+
+<button class="btn btn-default" id="scoutreport">Scout Report</button>
+<button class="btn btn-default hidden" id="decision">Continue</button>
+
+<button class="btn btn-default hidden" id="assault">Assault the Island</button>
+<button class="btn btn-default hidden" id="ram">Ram the ship.</button>
+<button class="btn btn-default hidden" id="careful">Careful approach</button>
+
+<button class="btn btn-default hidden" id="mine">The Mine</button>
+
+<button class="btn btn-default hidden" id="cadetChoice">Cadet duties</button>
+
+<button class="btn btn-default warning" id="cadetExplore">Explore the island</button>
+<button class="btn btn-default hidden" id="cadetStay">Stay on ship</button>
+<button class="btn btn-default warning" id="cadetAssist">Assist in Siege</button>
+
+<button class="btn btn-default warning" id="cadetDiscovery">Cadet Trouble</button>
+
+<button class="btn btn-default hidden" id="options">Assault Options</button>
+
+<button class="btn btn-default hidden" id="officer0"> </button>
+<button class="btn btn-default hidden" id="officer1"> </button>
+<button class="btn btn-default hidden" id="officer2"> </button>
+
+<button class="btn btn-default hidden" id="assault2">Order the Assault</button>
+<button class="btn btn-default hidden" id="negotiate">Negotiate personally</button>
+<button class="btn btn-default hidden" id="special">Set the fires</button>
+
+<button class="btn btn-default hidden" id="decline">Decline and consider other options.</button>
+
+<button class="btn btn-default hidden" id="assault3">Press the attack, assault again!</button>
+<button class="btn btn-default hidden" id="assault4">Push through, assault once more!</button>
+
+
+<button class="btn btn-default hidden" id="negotiateOff">Let Officer handle it.</button>
+<button class="btn btn-default hidden" id="negotiateDom">(Dominant) Demand surrender!</button>
+<button class="btn btn-default hidden" id="negotiateBluff">(Bluff) Fleet is here.</button>
+<button class="btn btn-default hidden" id="negotiateBarg">(Bargain) What do you want for the Thundershot?</button>
+<button class="btn btn-default hidden" id="negotiatePeace">(Peaceful) No one needs to get hurt.</button>
+
+<button class="btn btn-default warning" id="negotiateAgree">Accept conditions</button>
+<button class="btn btn-default success" id="negotiateSurrender">Accept Surrender</button>
+
+<button class="btn btn-default hidden" id="special2">Dig it out.</button>
+<button class="btn btn-default hidden" id="special3">Blast it.</button>
+
+<button class="btn btn-default hidden" id="prisoners">Prisoners</button>
+
+<button class="btn btn-default hidden" id="late">Ships spotted.</button>
+<button class="btn btn-default hidden" id="depart">Depart</button>
 
 <button class="btn btn-default" id="habited"> Quicklink HabitedIsle</button>
 <button class="btn btn-default" id="obelisk"> Quicklink The Obelisk</button>
-<button class="btn btn-default" id="button-2"> Quicklink Navpoint 4 </button>
+<button class="btn btn-default" id="navpoint4"> Quicklink Navpoint 4 </button>
 <button class="btn btn-default" id="sandbanks"> Quicklink Sandbanks </button>
 
 
@@ -100,7 +643,188 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 </script>
 </div>
-<div class="envoy hidden"><p><strong>Envoy</strong></p>
+<div class="scoutreport hidden"><p><strong>Scout Report</strong></p>
+
+
 </div>
+
+<div class="decision hidden"><p><strong>Decision</strong></p>
+
+
+</div>
+
+
+<div class="assault hidden"><p><strong>Assault the Island</strong></p>
+
+
+</div>
+
+<div class="ram hidden"><p><strong>Ram the ship</strong></p>
+
+
+</div>
+
+<div class="careful hidden"><p><strong>Careful Approach</strong></p>
+
+
+</div>
+
+
+<div class="mine hidden"><p><strong>The Mine</strong></p>
+
+
+</div>
+
+
+<div class="cadetChoice hidden"><p><strong>Cadet Duties</strong></p>
+
+
+</div>
+
+
+<div class="cadetExplore hidden"><p><strong>Explore the Island</strong></p>
+
+
+</div>
+
+<div class="cadetStay hidden"><p><strong>Stay on Ship</strong></p>
+
+
+</div>
+
+<div class="cadetAssist hidden"><p><strong>Assist the Siege</strong></p>
+
+
+</div>
+
+<div class="cadetDiscovery hidden"><p><strong>Cadet Trouble</strong></p>
+
+
+</div>
+
+<div class="options hidden"><p><strong>Assault Options</strong></p>
+
+
+
+<span class="theOfficer officerObjects"></span>
+<br/>
+<script>createOfficer4(officer3)
+$('#officerObject0').popover({title: officer3[0].name, content: officerIntros(0), trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject1').popover({title: officer3[1].name, content: officerIntros(1), trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject2').popover({title: officer3[2].name, content: officerIntros(2), trigger: "hover", placement: "top", container: "body"}); 
+
+</script>
+</div>
+
+<div class="officer0 hidden"><p><strong></strong></p>
+
+
+</div>
+
+<div class="officer1 hidden"><p><strong></strong></p>
+
+
+</div>
+
+
+<div class="officer2 hidden"><p><strong></strong></p>
+
+
+</div>
+
+
+
+
+
+
+<div class="special hidden"><p><strong>Ram the ship</strong></p>
+
+
+<div class="cadetDiscovery hidden"><p></p>
+</div>
+</div>
+
+<div class="special2 hidden"><p><strong>Dig</strong></p>
+
+
+</div>
+
+<div class="special3 hidden"><p><strong>Blast</strong></p>
+
+
+</div>
+
+<div class="assault2 hidden"><p><strong></strong></p>
+
+
+</div>
+
+<div class="assault3 hidden"><p><strong></strong></p>
+
+
+</div>
+
+
+<div class="assault4 hidden"><p><strong></strong></p>
+
+
+</div>
+
+
+<div class="negotiate hidden"><p><strong></strong></p>
+
+
+</div>
+
+<div class="negotiateBarg hidden"><p><strong>Bargain</strong></p>
+
+
+</div>
+
+
+<div class="negotiateBluff hidden"><p><strong>Bluff</strong></p>
+
+
+</div>
+
+<div class="negotiateDom hidden"><p><strong>Dominant</strong></p>
+
+
+</div>
+
+<div class="negotiatePeace hidden"><p><strong>Peaceful</strong></p>
+
+
+</div>
+
+<div class="negotiateAgree hidden"><p><strong>Agree to disagree</strong></p>
+
+
+</div>
+
+<div class="negotiateSurrender hidden"><p><strong>A Consumate surrender</strong></p>
+
+
+</div>
+
+
+
+
+<div class="prisoners hidden"><p><strong>Unexpected find</strong></p>
+
+
+</div>
+
+<div class="late hidden"><p><strong>Ships spotted</strong></p>
+
+
+</div>
+
+<div class="depart hidden"><p><strong>Depart</strong></p>
+
+
+</div>
+
+
 </body>
 </html>
