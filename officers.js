@@ -148,10 +148,10 @@
  //Without prints out an array without a thing.  _.without(activeRoster, officer.tung)
  // write a function that remove(officer) and takes it away from activeRoster and adds it to Roster of the vored. like: function remove(x) { activeRoster = _.without(activeRoster, x) && deadRoster.push("x"); }
 var offList = {
-    activeRoster: [officer.arn, officer.keeper, officer.mirr, officer.nyxie, officer.ulv, officer.garsch, officer.elda, officer.ljus, officer.tung],
+    activeRoster: [officer.arn, officer.keeper, officer.mirr, officer.nyxie, officer.ulv, officer.garsch, officer.elda, officer.ljus, officer.tung, officer.tick, officer.evok],
     fullRoster: [officer.valnos, officer.ziggy, officer.glint, officer.melon, officer.arn, officer.keeper, officer.mirr, officer.nyxie, officer.tick, officer.ulv, officer.garsch, officer.tung, officer.evok, officer.elda, officer.ljus,],
 	firstOfficer: [officer.mirr],
-	deadRoster: [officer.tick, officer.evok]
+	deadRoster: []
 	
  }
 	choiceOfficer = [];
@@ -166,60 +166,8 @@ var offList = {
 	}
 	
 	
-	//wip
-	/*
-	function checkdeadRoster() {
-	if (_.contains(offlist.deadRoster, officer3[1])) {
-		officer3[1] = officer.x
-		}
-	}
-	*/
-	function checkdeadRoster2() {
-	if ($.inArray(officer3[2], [offList.deadRoster])) {
-		console.log('dead');
-		}
-	else {
-		console.log('not dead');
-	}
-	}
-	
-	
-		function checkdeadRoster3() {
-	if (offList.deadRoster.indexOf(officer3) !== -1) 
-	{
-	console.log('match')
-		if (offList.deadRoster.indexOf(backupOfficer[0]) !== -1) 
-		{
-			
-			backupOfficer[1] = officer3[1]
-		}
-		else {
-			backupOfficer[0] = officer3[1]
-			}
-	
-	}
-	else {
-		console.log('nomatch');
-		}
-	}
-	
-	function test() {
-	var a = officer3.indexOf(offList.deadRoster[0])
-	 console.log(a)
-	 
-	 
-	  if (offList.deadRoster.indexOf(backupOfficer[0]) !== -1) 
-		{
-			console.log('match2')
-			officer3[a] = backupOfficer[1]
-		}
-		else {
-			console.log('match3')
-			officer3[a] = backupOfficer[0] 
-			}
-	 
-	}
-	
+		
+		
 	
 	
 	function checkdeadRoster() {
@@ -233,62 +181,20 @@ var offList = {
 		
 	 if (offList.deadRoster.indexOf(backupOfficer[0]) !== -1) 
 		{
-			console.log('match2')
+			
 			officer3[a] = backupOfficer[1]
 		}
 		else {
-			console.log('match3')
+			
 			officer3[a] = backupOfficer[0] 
 			}
 	 
 	}
 	
-	/*	
-	function checkdeadRoster() {
-	if (offList.deadRoster.indexOf(officer3[1]) !== -1) 
-	{
-	console.log('match')
-		if (offList.deadRoster.indexOf(backupOfficer[0]) !== -1) 
-		{
-			console.log('match2')
-			officer3[1] = backupOfficer[1]
-		}
-		else {
-			console.log('match3')
-			officer3[1] = backupOfficer[0] 
-			}
 	
-	}
-	else {
-		console.log('nomatch');
-		}
-	}
-
-	
-	
-	 Condition that checks if Officer is first officer so not officer3 array twice.
-	function officerDouble() {
-	if (offList.firstOfficer[0].name == 'Mirr') {
-	var index = officer3.indexOf(officer.mirr);
-		if (index !== -1) {
-				if (_.contains(offList.activeRoster, backupOfficer[0])) {
-			officer3[index+1] = officer.tung;
-			console.log(backupOfficer[0].name)
-			}
-			else {
-				
-			officer3[index+1] = backupOfficer[1];
-			console.log(backupOfficer[1].name)
-				}
-				
-			}
-		}
-	}
-	
-	 */
 	function officerDouble() {
 
-		if (offList.firstOfficer[0].name == officer3[1].name)  {
+		if (offList.firstOfficer[0].name == officer3[1].name && officer3[1].name == officer3[0].name)  {
 		
 			if (_.contains(offList.activeRoster, backupOfficer[0])) {
 			officer3[1] = backupOfficer[0];
@@ -300,7 +206,7 @@ var offList = {
 			
 		}	
 			
-		if (offList.firstOfficer[0].name == officer3[2].name) {
+		if (offList.firstOfficer[0].name == officer3[2].name && officer3[2].name == officer3[0].name) {
 				
 			if (_.contains(offList.activeRoster, backupOfficer[0])) {
 			officer3[2] = backupOfficer[0];
@@ -314,18 +220,6 @@ var offList = {
 	}
 		
 	
-	
-	/* Why is it always making it Nyxie? Corrected?
-	function officerDouble() { 
-	if ( (offList.firstOfficer[0].name && officer3[1].name == "Mirr") || (offList.firstOfficer[0].name && officer3[1].name == "Tung")) {
-	officer3[1] = officer.nyxie
-	}
-	else {
-	officer3[1] = officer.mirr	
-	}
-	}
-	*/
-
 	
    /*
    Original 

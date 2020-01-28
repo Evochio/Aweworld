@@ -19,44 +19,122 @@
   
   	state.visited.push("Themine");
 	var Themine = [];
+	var talks = 0;
     state.Glint.status = 'available';
     state.Valnos.status = 'available';
 	state.Ziggy.status = 'available';
 	
-	officer3 = [officer.evok, officer.keeper, officer.tick];
+	officer3 = [officer.evok, officer.mirr, officer.tick];
 	  backupOfficer = [officer.tung, officer.garsch]
    
    
    	function officerIntros(x) {
 		
 		if (officer3[x].name == 'Evok') {
-			
-			return ""
+		
+			if (_.contains(Themine, "special2") || _.contains(Themine, "special3")) {
+		
+			return "Big hole now, easier attack approach."
+		}
+			else if (_.contains(Themine, "special") && Themine.indexOf("cadetDiscovery") == -1) {
+			return "No way in now, cannot attack. Pack is resting."
+		}	
+			else if (_.contains(Themine, "cadetDiscovery") && _.contains(Themine, "special") &&   (Themine.indexOf("special2") == -1 || Themine.indexOf("special3") == -1)) {
+			return "Main entrance blocked. But we can attack other hole. Not easier, not harder."
+		}	
+			else if (_.contains(Themine, "cadetDiscovery")) {
+			return "Pack can attack from two sides now."
+		}	
+		
+			else {
+			return "Want to attack? Speak with Evok. I show plan."
+			}
 			
 		}
 		if (officer3[x].name == 'Keeper') {
+		
+			if (_.contains(Themine, "negotiateOff") && _.contains(Themine, "assault3")) {
 			
-			return "" 
+			return "Captain, the time is right! Let me force a delicious surrender!" 
+			}
+			else if (_.contains(Themine, "negotiateOff") && $("#negotiateOff").hasClass("disabled")) {
+			
+						
+			return "I reccomend pressuring them with an attack! Their resolve needs a little... softening up." 
+			}
+			
+			else {
+			
+			return "Brutes like the Gatorkind often lack mental sophistication. Let me handle negotiations instead! I’ll deceive them!" 
+			}
 		}
 		
 		if (officer3[x].name == 'Tick') {
-			return ""
+		
+		if (_.contains(Themine, "special2") || _.contains(Themine, "special3")) {
+		
+		 return "We have done all we can. It is up to the others."
+		}
+		else if (_.contains(Themine, "special")) {
+			return "We need to clear this Cave-in. Have some thoughts about that."
+		}		
+		else {
+			return "Why waste time and hides. Force them out with a little ingenuity."
+			}
 		}
 		
-		if (officer3[x].name == 'Tung') {
-			return ""
-		}
-		if (officer3[x].name == 'Garsch') {
-			return ""
+		if (officer3[x].name == 'Mirr') {
+		
+			if (_.contains(Themine, "negotiate1"))  {
+		
+			return "We offered them surrender once. If you think we have gained more leverage, the diplomatic options remain."
+			}	
+			else {
+			return "Negotiation is my expertise. I speak Core and can get a dialogue going. If anything, at least give them a chance to surrender."
+			}
+			if (officer3[x].name == 'Garsch') {
+			return "I do not reccomend further assaults. Morale is low and even if we might succeed, it will be too costly."
+		
+			}
 		}
 	}
+	
+	
 
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
+	  officerButtonNames();
        officerDouble();
 		checkdeadRoster();
+		
+		function checkneg() {
+			if ( talks >= 2 ) {
+			
+			$("#negotiateAgree").addClass("hidden");
+			$("#negotiateDom").addClass("hidden");
+			$("#negotiateBarg").addClass("hidden");
+			$("#negotiateBluff").addClass("hidden");
+			$("#negotiatePeace").addClass("hidden");
+			$("#decline").addClass("hidden");
+			$("#negotiateEnd").removeClass("hidden");
+			
+			}
+		}
+		
+		
+				
+	
+		
+		
       $('#scoutreport').on('click', function(e) {
+		if (state.scoutNumber >= 4) {
+			 $(".scout4").removeClass("hidden");
+		}
+		
+		if (state.scoutNumber >= 5) {
+			 $(".scout5").removeClass("hidden");
+		}
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "scoutreport"),
@@ -78,35 +156,41 @@
 		
 		 $('#assault').on('click', function(e) {
         // change state here
+		Themine.push("assault");
         // end by using lib.goTo
 		lib.dialogue(e, "assault"),
         $("#assault").addClass("hidden");
 		$("#ram").addClass("hidden");
 		$("#careful").addClass("hidden");
 		 $("#mine").removeClass("hidden");
+		  $(".assaultText").removeClass("hidden");
 		
       })
 	  
 	   $('#ram').on('click', function(e) {
         // change state here
+		Themine.push("ram");
         // end by using lib.goTo
 		lib.dialogue(e, "ram"),
         $("#assault").addClass("hidden");
 		$("#ram").addClass("hidden");
 		$("#careful").addClass("hidden");
 		 $("#mine").removeClass("hidden");
+		  $(".ramText").removeClass("hidden");
 		
       })
 	  
 	  
 	   $('#careful').on('click', function(e) {
         // change state here
+		Themine.push("careful");
         // end by using lib.goTo
 		lib.dialogue(e, "careful"),
         $("#assault").addClass("hidden");
 		$("#ram").addClass("hidden");
 		$("#careful").addClass("hidden");
 		 $("#mine").removeClass("hidden");
+		 $(".carefulText").removeClass("hidden");
 		
       })
 		
@@ -127,8 +211,8 @@
         $("#cadetChoice").addClass("hidden");
 		
 		$("#cadetExplore").removeClass("hidden");
-		$("#cadetExplore").removeClass("hidden");
-		$("#cadetExplore").removeClass("hidden");
+		$("#cadetStay").removeClass("hidden");
+		$("#cadetAssist").removeClass("hidden");
 		
       })
 		
@@ -173,10 +257,12 @@
 	  
 	   $('#cadetDiscovery').on('click', function(e) {
         // change state here
+		Themine.push("cadetDiscovery");
         // end by using lib.goTo
 		lib.dialogue(e, "cadetDiscovery"),
-       $("#cadetExplore").addClass("hidden");
-		
+       $("#cadetDiscovery").addClass("hidden");
+		$(".cadetDiscovery3").removeClass("hidden");
+		$(".cadetDiscovery2").removeClass("hidden");
 		$("#options").removeClass("hidden");
 		
 		
@@ -185,8 +271,19 @@
 		 $('#options').on('click', function(e) {
         // change state here
         // end by using lib.goTo
+		officerButtonNames();
 		lib.dialogue(e, "options"),
         $("#options").addClass("hidden");
+		 $("#decline").addClass("hidden");
+		
+		if (_.contains(Themine, "assault4")) {
+		$("#officer0").addClass("disabled");
+		}
+		if (_.contains(Themine, "special2") || _.contains(Themine, "special3")) {
+		
+		$("#officer2").addClass("disabled");
+		}
+		
 		
 		$("#officer0").removeClass("hidden");
 		$("#officer1").removeClass("hidden");
@@ -199,59 +296,169 @@
 	   $('#officer0').on('click', function(e) {
         // change state here
         // end by using lib.goTo
-		lib.dialogue(e, "officer0"),
-		if (_.contains(Themine, "assault2")) {
+		
+		$(".assaultb").addClass("hidden");
+		$(".assault2b").addClass("hidden");
+		$(".assault3b").addClass("hidden");
+		
+		if  (_.contains(Themine, "assault3")) {
+			$("#assault4").removeClass("hidden");
+			$(".assault3b").removeClass("hidden");
+		}
+		else if (_.contains(Themine, "assault2")) {
+			$(".assault2b").removeClass("hidden");
 			$("#assault3").removeClass("hidden");
 		}
 		else {
+			$(".assaultb").removeClass("hidden");
 			$("#assault2").removeClass("hidden");
 		}
-        $("#assault2").removeClass("hidden");
+		if (Themine.indexOf("special2") == -1 || Themine.indexOf("special3") == -1) {
+		$(".cadetDiscovery3").addClass("hidden");
+		}
+		
+        lib.dialogue(e, "officer0")
 		$("#decline").removeClass("hidden");
 		
 		$("#officer0").addClass("hidden");
 		$("#officer1").addClass("hidden");
 		$("#officer2").addClass("hidden");
+		$("#depart").addClass("hidden");
 		
       })
 	  
 	   $('#officer1').on('click', function(e) {
         // change state here
         // end by using lib.goTo
-		lib.dialogue(e, "officer1"),
-        $("#negotiate").removeClass("hidden");
-		$("#negotiateOff").removeClass("hidden");
+		if (_.contains(Themine, "negotiate1") && (Themine.indexOf("choiceKeeper") == -1 && Themine.indexOf("choiceMirr") == -1)) {
+		lib.dialogue(e, "negotiateOption")
+		$("#mirr").removeClass("hidden");
+		$("#keeper").removeClass("hidden");
+		}
+		else if ( _.contains(Themine, "choiceKeeper") || _.contains(Themine, "choiceMirr")) {
+		
+			if ($("#negotiateOff").hasClass("disabled")) {
+				$(".before").removeClass("hidden");
+				$(".notalk").addClass("hidden");
+			}
+			else if (Themine.indexOf("negotiateOffb") == -1) {
+				$(".before").addClass("hidden");
+				$(".notalk").removeClass("hidden");
+				$(".after").addClass("hidden");
+			}
+			else {
+				$(".before").addClass("hidden");
+				$(".after").removeClass("hidden");
+				$(".notalk").addClass("hidden");
+			
+			}
+			
+		
+			lib.dialogue(e, "officer1b")
+			$("#negotiate").removeClass("hidden");
+			$("#negotiateOff").removeClass("hidden");
+			$("#decline").removeClass("hidden");
+		}
+		else {
+		lib.dialogue(e, "officer1")
+        $("#negotiate1").removeClass("hidden");
 		$("#decline").removeClass("hidden");
+		}
+			
+		
 		
 		$("#officer0").addClass("hidden");
 		$("#officer1").addClass("hidden");
 		$("#officer2").addClass("hidden");
+		$("#depart").addClass("hidden");
 		
       })
 	  
 	   $('#officer2').on('click', function(e) {
         // change state here
         // end by using lib.goTo
-		lib.dialogue(e, "officer2"),
-        $("#special").removeClass("hidden");
+		if (_.contains(Themine, "special")) {
+		lib.dialogue(e, "specialb")
+		 $("#special2").removeClass("hidden");
+			if (_.contains(Themine, "ram")) {
+			$("#special3").removeClass("hidden");
+			}
+		}
+		else {
+		lib.dialogue(e, "officer2")
+		 $("#special").removeClass("hidden");
+		}
+       
 		$("#decline").removeClass("hidden");
 		
 		$("#officer0").addClass("hidden");
 		$("#officer1").addClass("hidden");
 		$("#officer2").addClass("hidden");
+		$("#depart").addClass("hidden");
 		
       })
+	  
+	   $('#mirr').on('click', function(e) {
+        // change state here
+		Themine.push("choiceMirr");
+		$(".mirrText").removeClass("hidden");
+        // end by using lib.goTo
+		lib.dialogue(e, "mirr")
+       
+		$("#negotiate").removeClass("hidden");
+		$("#negotiateOff").removeClass("hidden");
+		$("#decline").removeClass("hidden");
+		$("#mirr").addClass("hidden");
+		$("#keeper").addClass("hidden");
+				
+      })
+	  
+	  $('#keeper').on('click', function(e) {
+        // change state here
+		Themine.push("choiceKeeper");
+		$(".keeperText").removeClass("hidden");
+		$(".mirrText").addClass("hidden");
+        // end by using lib.goTo
+		lib.dialogue(e, "keeper")
+		officer3[1] = officer.keeper;
+       
+		$("#negotiate").removeClass("hidden");
+		$("#negotiateOff").removeClass("hidden");
+		$("#decline").removeClass("hidden");
+		$("#mirr").addClass("hidden");
+		$("#keeper").addClass("hidden");
+				
+      })
+	  
+	  
 	  
 	   $('#decline').on('click', function(e) {
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "options"),
-        
+        officerButtonNames();
+		/*
 		$("#decline").addClass("hidden");
+		$("#options").addClass("hidden");
+		$("#special").addClass("hidden");
+		$("#special2").addClass("hidden");
+		$("#special3").addClass("hidden");
+		$("#negotiate").addClass("hidden");
+		$("#negotiateOff").addClass("hidden");
+		$("#assault2").addClass("hidden");
+		$("#assault3").addClass("hidden");
+		$("#assault4").addClass("hidden");
+		*/
+		$(".btn").addClass("hidden");
 		
 		if (_.contains(Themine, "assault4")) {
 		$("#officer0").addClass("disabled");
 		}
+		if (_.contains(Themine, "special2") || _.contains(Themine, "special3")) {
+		
+		$("#officer2").addClass("disabled");
+		}
+		
 		$("#officer0").removeClass("hidden");
 		$("#officer1").removeClass("hidden");
 		$("#officer2").removeClass("hidden");
@@ -264,9 +471,9 @@
         // change state here
 		Themine.push("assault2");
         // end by using lib.goTo
-		lib.dialogue(e, "assault2"),
+		lib.dialogue(e, "assault2")
         
-		if (_.contains(Themine, "cadetExplore") && Themine.indexOf("cadetDiscovery") == -1)) {
+		if (_.contains(Themine, "cadetExplore") && Themine.indexOf("cadetDiscovery") == -1) {
 			$("#cadetDiscovery").removeClass("hidden");
 			$("#assault3").addClass("hidden");
 			$("#decline").addClass("hidden");
@@ -277,35 +484,67 @@
 				$("#decline").removeClass("hidden");
 				$(".cadetDiscovery").addClass("hidden");	
 		}
+		
+		if ($("#negotiateOff").hasClass("disabled")) {
+			$("#negotiateOff").removeClass("disabled");
+		}
+		$(".assault2Text").removeClass("hidden");
 		$("#assault2").addClass("hidden");
-		
-	
-		
-		
-      })
+		$("#negotiate").removeClass("disabled");
+	    })
 	  
 	   $('#assault3').on('click', function(e) {
         // change state here
 		Themine.push("assault3");
         // end by using lib.goTo
-		lib.dialogue(e, "assault3"),
-        
+		if (_.contains(Themine, "cadetDiscovery") && (_.contains(Themine, "special2") || _.contains(Themine, "special3")) && _.contains(Themine, "assault")){
+		
+		lib.dialogue(e, "assault5")
+		//Very few losses
+		$("#depart").removeClass("hidden");
+		$("#decline").addClass("hidden");
 		$("#assault3").addClass("hidden");
 		
+		}
+		else {
+		
+		lib.dialogue(e, "assault3")
+		$("#assault3").addClass("hidden");
+		$(".assault3Text").removeClass("hidden");
+		$(".assault2Text").addClass("hidden");
 		$("#assault4").removeClass("hidden");
 		$("#decline").removeClass("hidden");
+		}
+		
+		if ($("#negotiateOff").hasClass("disabled")) {
+			$("#negotiateOff").removeClass("disabled");
+		}
+        $("#negotiate").removeClass("disabled");
+	
 			
       })
 	  
 	    $('#assault4').on('click', function(e) {
         // change state here
+		Themine.push("assault4");
+		if (_.contains(Themine, "cadetDiscovery") || _.contains(Themine, "special2") || _.contains(Themine, "special3") || _.contains(Themine, "assault")){
 		
+		$(".assaultGood").removeClass("hidden");
+		$("#depart").removeClass("hidden");
+		
+		}
+		else {
+			$(".assaultBad").removeClass("hidden");
+			$("#options").removeClass("hidden");
+			officer3[0] = officer.garsch;
+			removeOfficer(officer.evok)
+		}
         // end by using lib.goTo
-		lib.dialogue(e, "assault4"),
+		lib.dialogue(e, "assault4")
         
 		$("#assault4").addClass("hidden");
-		$("#decline").removeClass("hidden");
-					
+		$("#decline").addClass("hidden");
+		$("#negotiate").addClass("disabled");			
       })
 	  
 		
@@ -320,16 +559,64 @@
 		$("#negotiatePeace").removeClass("hidden");
 		
 		$("#negotiate").addClass("hidden");
+		$("#negotiate").addClass("disabled");
 		$("#negotiateOff").addClass("hidden");
 				
       })
+	  
+	  
+	   $('#negotiate1').on('click', function(e) {
+        // change state here
+		Themine.push("negotiate1");
+        // end by using lib.goTo
+		lib.dialogue(e, "negotiate1"),
+        $("#negotiate").removeClass("hidden");
+		$("#negotiateOff").removeClass("hidden");
+		$("#decline").removeClass("hidden");
+		$("#negotiate1").addClass("hidden");
+		
+				
+      })
+	  
+	  
 		
 		 $('#negotiateOff').on('click', function(e) {
         // change state here
+		
         // end by using lib.goTo
-		lib.dialogue(e, "negotiateOff"),
-        $("#decline").removeClass("hidden");
-				
+		if (_.contains(Themine, "negotiateOff") && _.contains(Themine, "assault3") && _.contains(Themine, "choiceMirr")) {
+				 $("#prisoners").removeClass("hidden");
+				lib.dialogue(e, "negotiateOff3")
+			}
+			
+		else if (_.contains(Themine, "negotiateOff") && _.contains(Themine, "assault2")) {
+			lib.dialogue(e, "negotiateOff2")
+			
+				if (_.contains(Themine, "choiceMirr")) {
+			 $("#options").removeClass("hidden");
+			 }
+			 else {
+			 
+			 $("#prisoners").removeClass("hidden");
+			 }
+			
+		}
+		
+		else if (_.contains(Themine, "choiceKeeper")) {
+			lib.dialogue(e, "negotiateOffb")
+			Themine.push("negotiateOffb");
+			$("#negotiateOff").addClass("disabled");	
+			$("#options").removeClass("hidden");
+		}
+		else {
+		$(".mirrText").removeClass("hidden");
+		lib.dialogue(e, "negotiateOff")
+		$("#options").removeClass("hidden");
+		
+		}
+		Themine.push("negotiateOff");
+		
+       	$("#decline").addClass("hidden");	
 		$("#negotiate").addClass("hidden");
 		$("#negotiateOff").addClass("hidden");
 		
@@ -337,10 +624,46 @@
       })
 	  
 	  
+	   $('#negotiateEnd').on('click', function(e) {
+        // change state here
+		
+		
+       
+			if (_.contains(Themine, "negotiatePeace") || _.contains(Themine, "negotiateBarg")) {
+				$(".negotiatebad").removeClass("hidden");
+				$("#negotiateAgree").removeClass("hidden");
+				$("#decline").removeClass("hidden");
+				 lib.dialogue(e, "negotiateEnd")
+			}
+			else if (_.contains(Themine, "negotiateDom") &&  (_.contains(Themine, "assault3") || (_.contains(Themine, "assault2") || _.contains(Themine, "special3")) )) {
+				lib.dialogue(e, "negotiateSurrender")
+				$("#negotiateSurrenderA").removeClass("hidden");
+				$("#negotiateSurrenderB").removeClass("hidden");
+				$("#decline").addClass("hidden");
+			}
+			else if (_.contains(Themine, "negotiateDom") &&  _.contains(Themine, "negotiateBluff") && _.contains(state.inventory, "intel") ) {
+				lib.dialogue(e, "negotiateSurrender")
+				$("#negotiateSurrenderA").removeClass("hidden");
+				$("#negotiateSurrenderB").removeClass("hidden");
+				$("#decline").addClass("hidden");
+			}
+			else {
+				$(".negotiatefail").removeClass("hidden");
+				$("#options").removeClass("hidden");
+				
+				 lib.dialogue(e, "negotiateEnd")
+			}
+			
+				
+				$("#negotiateEnd").addClass("hidden");	
+			
+      })
+	  
 	  
 		 $('#negotiateDom').on('click', function(e) {
         // change state here
-		
+		talks += 1; 
+		Themine.push("negotiateDom");
         // end by using lib.goTo
 		lib.dialogue(e, "negotiateDom"),
         
@@ -348,11 +671,13 @@
 		
 		$("#negotiateDom").addClass("hidden");
 		
-				
+		checkneg();		
       })
 	  
 	   $('#negotiateBarg').on('click', function(e) {
         // change state here
+		talks += 1;
+		Themine.push("negotiateBarg");
         // end by using lib.goTo
 		lib.dialogue(e, "negotiateBarg"),
         
@@ -360,33 +685,40 @@
 		
 		$("#negotiateBarg").addClass("hidden");
 		
-				
+		checkneg();		
       })
 	  
 	  
 	   $('#negotiateBluff').on('click', function(e) {
         // change state here
+		talks += 1; 
+		Themine.push("negotiateBluff");
         // end by using lib.goTo
-		lib.dialogue(e, "negotiateBluff"),
+		if (_.contains(state.inventory, "intel") ) {
+		$(".intelText").removeClass("hidden");
+		}
+		lib.dialogue(e, "negotiateBluff")
         
 		$("#decline").removeClass("hidden");
-		
 		$("#negotiateBluff").addClass("hidden");
-		
+		checkneg();
 				
       })
 	  
 	   $('#negotiatePeace').on('click', function(e) {
         // change state here
+		
+				
+		talks += 1; 
+		Themine.push("negotiatePeace");
         // end by using lib.goTo
-		lib.dialogue(e, "negotiatePeace"),
+		lib.dialogue(e, "negotiatePeace")
         
 		$("#negotiateAgree").removeClass("hidden");
 		$("#decline").removeClass("hidden");
-		
 		$("#negotiatePeace").addClass("hidden");
-		
-				
+		checkneg();
+			
       })
 	  
 	  
@@ -402,6 +734,7 @@
 		$("#negotiateBarg").addClass("hidden");
 		$("#negotiateBluff").addClass("hidden");
 		$("#negotiatePeace").addClass("hidden");
+		$("#negotiateEnd").addClass("hidden");	
 				
       })
 	  
@@ -409,7 +742,7 @@
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "negotiateSurrender"),
-        //You're digested
+        
 		
 		$("#decline").addClass("hidden");
 		$("#negotiateSurrender").addClass("hidden");
@@ -424,54 +757,62 @@
 	  
 	   $('#special').on('click', function(e) {
         // change state here
+		Themine.push("special");
         // end by using lib.goTo
 		lib.dialogue(e, "special")
 		
 				
-		$("#special2").removeClass("hidden");
-		if (_.contains(Themine, "ram")) {
-			$("#special3").removeClass("hidden");
-		}
-		$("#decline").removeClass("hidden");
-		
-		
-		if (_.contains(Themine, "cadetExplore") && Themine.indexOf("cadetDiscovery") == -1)) {
+		$("#options").removeClass("hidden");
+				
+		if (_.contains(Themine, "cadetExplore") && Themine.indexOf("cadetDiscovery") == -1) {
 			$("#cadetDiscovery").removeClass("hidden");
-			$(".cadetDiscovery").removeClass("hidden");
+			$(".cadetDiscovery2").removeClass("hidden");
 			$("#special2").addClass("hidden");
 			$("#special3").addClass("hidden");
 			$("#decline").addClass("hidden");
+			$("#options").addClass("hidden");
+			
 		}
 		else {
 			$(".cadetDiscovery").addClass("hidden");
 		}
-		
+		$(".specialText").removeClass("hidden");
 		$("#special").addClass("hidden");
+		$("#negotiate").addClass("disabled");
 				
       })
 	  
 	   $('#special2').on('click', function(e) {
         // change state here
+		Themine.push("special2");
         // end by using lib.goTo
 		lib.dialogue(e, "special2"),
 		
-		$("#decline").removeClass("hidden");
-		
+		$("#options").removeClass("hidden");
+		$(".cadetDiscovery3").removeClass("hidden");
+		$("#decline").addClass("hidden");
 		$("#special2").addClass("hidden");
 		$("#special3").addClass("hidden");
+		$(".specialText").addClass("hidden");
+		$(".special2Text").removeClass("hidden");
+		$("#negotiate").removeClass("disabled");
 				
       })
 	  
 	   $('#special3').on('click', function(e) {
         // change state here
+		Themine.push("special3");
         // end by using lib.goTo
 		lib.dialogue(e, "special3"),
 		
-		$("#decline").removeClass("hidden");
-		
+		$("#options").removeClass("hidden");
+		$(".cadetDiscovery3").removeClass("hidden");
+		$("#decline").addClass("hidden");
 		$("#special2").addClass("hidden");
 		$("#special3").addClass("hidden");
-				
+		$(".specialText").addClass("hidden");
+		$(".special2Text").removeClass("hidden");
+		$("#negotiate").removeClass("disabled");
       })
 	  
 	  
@@ -488,13 +829,27 @@
       })
 	  
 	  
+	    $('#prisoners').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "prisoners"),
+		
+		$("#depart").removeClass("hidden");
+		
+		$("#prisoners").addClass("hidden");
+		
+				
+      })
+	  
+	  
+	  
 	  $('#depart').on('click', function(e) {
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "depart"),
 		
 		$("#obelisk").removeClass("hidden");
-		if (_.contains(state.locations, "Navpoint4") && state.visited.indexOf("Navpoint4") == -1)) {
+		if (_.contains(state.locations, "Navpoint4") && state.visited.indexOf("Navpoint4") == -1) {
 		$("#navpoint4").removeClass("hidden")
 		}
 		if (_.contains(state.locations, "habitetIsle")) {
@@ -557,25 +912,21 @@
 </head>
 <body>
 <div id="head">
-<div id="dayCounter">
-Day: <span class="days"><script>displayDays()</script></span>
-<br/>
-<span class="schedule"><script>displayShedule()</script></span>
-</div>
-<h1>Thousand Islands</h1>
+
+
+<h1>The Mine</h1>
 </div>
 
 
 <div id="story-text">
 
-<p>Arrival and introduction</p>
-<p>
-Arrival. 
+<p>Weather has been tempramental for the past days, sudden squalls during the day which have kept the sailing crew on edge and regularly adjusting our sails. During the nights the wanderers in the sky have been obscured by thick overcast while the boat has been rocking heavily from waves.</p>
 
-Flurry of activity on the island. Cannon shot. 
-Shoot at scouts. (Intel level depends on amount of scouts. Report seeing single canon. )
- Ship at dock that starts to prepare to leave?
-</p>
+<p>At the open sea, nights in darkness are less fretful, but here among such myriad of isles and shoals there is always the niggling worry of being roused awake by an ominous scrape and shudder of the ship. It is slow going at times like these, some nights it’s better to find anchor and remain in place.</p>
+
+<p>Our navigator keeps sailing us true however, shortly after dawn the Isles we seek come into sight. A larger isle then one we have encountered before, but all grey and black with barren rock and scant life clinging to it. On this side, the island looks like a tall mound, but not too steep for climbing. <br>
+Anchored to the base of the island at what looks like a crude dock is a ship. None of our make. Broad and stunty, it appears more of a tradeship for cargo. <br>
+The Scouts are ready to depart for a closer look.</p>
 </div>
 <div id="tail">
 
@@ -593,11 +944,11 @@ Shoot at scouts. (Intel level depends on amount of scouts. Report seeing single 
 
 <button class="btn btn-default hidden" id="cadetChoice">Cadet duties</button>
 
-<button class="btn btn-default warning" id="cadetExplore">Explore the island</button>
+<button class="btn btn-warning hidden" id="cadetExplore">Explore the island</button>
 <button class="btn btn-default hidden" id="cadetStay">Stay on ship</button>
-<button class="btn btn-default warning" id="cadetAssist">Assist in Siege</button>
+<button class="btn btn-warning hidden" id="cadetAssist">Assist in Siege</button>
 
-<button class="btn btn-default warning" id="cadetDiscovery">Cadet Trouble</button>
+<button class="btn btn-warning hidden" id="cadetDiscovery">Cadet Trouble</button>
 
 <button class="btn btn-default hidden" id="options">Assault Options</button>
 
@@ -609,33 +960,40 @@ Shoot at scouts. (Intel level depends on amount of scouts. Report seeing single 
 <button class="btn btn-default hidden" id="negotiate">Negotiate personally</button>
 <button class="btn btn-default hidden" id="special">Set the fires</button>
 
-<button class="btn btn-default hidden" id="decline">Decline and consider other options.</button>
-
 <button class="btn btn-default hidden" id="assault3">Press the attack, assault again!</button>
 <button class="btn btn-default hidden" id="assault4">Push through, assault once more!</button>
 
+<button class="btn btn-default hidden" id="mirr">Keep Mirr in charge.</button>
+<button class="btn btn-default hidden" id="keeper">Let Keeper take over.</button>
 
+<button class="btn btn-default hidden" id="negotiate1">Ask them to surrender.</button>
 <button class="btn btn-default hidden" id="negotiateOff">Let Officer handle it.</button>
 <button class="btn btn-default hidden" id="negotiateDom">(Dominant) Demand surrender!</button>
 <button class="btn btn-default hidden" id="negotiateBluff">(Bluff) Fleet is here.</button>
 <button class="btn btn-default hidden" id="negotiateBarg">(Bargain) What do you want for the Thundershot?</button>
 <button class="btn btn-default hidden" id="negotiatePeace">(Peaceful) No one needs to get hurt.</button>
 
-<button class="btn btn-default warning" id="negotiateAgree">Accept conditions</button>
-<button class="btn btn-default success" id="negotiateSurrender">Accept Surrender</button>
+<button class="btn btn-warning hidden" id="negotiateAgree">Accept conditions</button>
+<button class="btn btn-success hidden" id="negotiateSurrender">Accept Surrender</button>
+<button class="btn btn-default hidden" id="negotiateEnd">Negotiations end</button>
+
+<button class="btn btn-success hidden" id="negotiateSurrenderA">Eat him</button>
+<button class="btn btn-success hidden" id="negotiateSurrenderB">Take Prisoner</button>
 
 <button class="btn btn-default hidden" id="special2">Dig it out.</button>
-<button class="btn btn-default hidden" id="special3">Blast it.</button>
+<button class="btn btn-warning hidden" id="special3">Blast it.</button>
 
 <button class="btn btn-default hidden" id="prisoners">Prisoners</button>
 
 <button class="btn btn-default hidden" id="late">Ships spotted.</button>
 <button class="btn btn-default hidden" id="depart">Depart</button>
 
-<button class="btn btn-default" id="habited"> Quicklink HabitedIsle</button>
-<button class="btn btn-default" id="obelisk"> Quicklink The Obelisk</button>
-<button class="btn btn-default" id="navpoint4"> Quicklink Navpoint 4 </button>
-<button class="btn btn-default" id="sandbanks"> Quicklink Sandbanks </button>
+<button class="btn btn-default hidden" id="decline">Decline and consider other options.</button>
+
+<button class="btn btn-default hidden" id="habited"> Quicklink HabitedIsle</button>
+<button class="btn btn-default hidden" id="obelisk"> Quicklink The Obelisk</button>
+<button class="btn btn-defaul hidden" id="navpoint4"> Quicklink Navpoint 4 </button>
+<button class="btn btn-defaul hidden" id="sandbanks"> Quicklink Sandbanks </button>
 
 
 <span id="cadetButtons"> </span>
@@ -644,66 +1002,280 @@ Shoot at scouts. (Intel level depends on amount of scouts. Report seeing single 
 </script>
 </div>
 <div class="scoutreport hidden"><p><strong>Scout Report</strong></p>
+<p>The winds are favorable and the Scouts rise high into the air and soar away to circle the isle. <br>
+Soon they are too small to make out, at least for my eyes.</p>
 
+<p>Keen-eyed Navigator Nyxie however drops a comment now and then of what she gleans of their progress. <br>
+“Seem they are reluctant to dip too close to the isle, they keep circling, dipping and then rising again.” She suddenly blinks and with a order shouts for more sails to be unfurled, to pick up speed. “Captain, the ship at anchor is preparing to leave. They are deploying their sails.”</p>
 
+<p>“Well spotted Officer Nyxie.” I nod in approval of her anticipating my orders.</p>
+
+<p>The scouts return and deliver their report.</p>
+
+<p>“Captain, the Island is crawling with Gators. Hostile, they took a few shots at us. They have clearly spotted us and appear to be scrambling with activity. It seemed a bit chaotic and unorganized but it looked like they were preparing defenses and moving things into a cavern. ”</p>
+<div class="scout4 hidden"
+<p> 4 Scouts:</p>
+
+<p>“The ship appears largely unarmed. But it is crewed enough to prepare to leave. They were pulling up the anchor.”</p>
+</div>
+<div class="scout5 hidden"
+<p>5 Scouts:</p>
+
+<p>“Captain, Scout Vessla report discovered they are have a Thunder-Shot weapon. I confirmed sighting it myself after he pointed it out. So far we’ve only seen one. It appeared to be on some manner of carriage and mobile, they were setting it up in our direction.”</p>
+</div>
 </div>
 
 <div class="decision hidden"><p><strong>Decision</strong></p>
+<p>The Isle is getting closer and judging by the reports, its current inhabitants are none too friendly. We are approaching at speed, but will soon have to slow down so not to crash into the island or sudden shallows.</p>
 
+<p>The ship won’t remain docked for long. We can either try to take it out first, ram into it and board it to guarantee it won't escape. It looks like a soft target that should prove no issue for our armored bow.</p>
 
+<p>Or we could… <br>
+A sudden low *thoom* echoes across the water, very shortly after being followed by a familiar splash of something landing in the sea, far ahead of our ship. <br>
+They have fired a Thunder-shot at us from the top of the island. The low rumble dissipates and is not followed immediately by another. Appears perhaps there is just one. <br>
+Our other options at this point is to either assault the island quickly. Capture the docks and deploy our ground forces, Raptorians and Awes, to take the island and anything that remains docked quickly before they can organize further.</p>
+
+<p>Or we change our approach to come in more cautiously, out of line of sight of their weapon emplacements and whatever other potential surprises they might have.</p>
 </div>
 
 
 <div class="assault hidden"><p><strong>Assault the Island</strong></p>
+<p>We race for the docks and the islands while the crew prepares for combat. <br>
+The Raptorians are mustering just below deck, ready to emerge in order and spill onto the island when ordered while armed Awes do the same while being shouted at by our Arms officers.</p>
 
+<p>The Thunder-shot has fired twice more, but we appear to only have come in range with the last shot as it punches a rent through our sails before narrowly splashing into the sea. <br>
+We will be a much easier target as we slow down and dock. So taking the island with speed will be a high priority.</p>
 
+<p>One more rumble of thunder and a shot finds it mark. Crashing into the deck just below the lip of the rear command deck with a shuddering crack under our feet and an explosion of splintered debris. With a quick mental note, I calculate no one should be where it crashed through, because its my chambers.</p>
+
+<p>Soon I’m watching Raptorians and Awes charge their way in orderly lines from below deck onto the island. <br>
+There is no resistance at the docks. The enemy ship is close, but out of reach to be boarded and putting distance between us with their sails at full. A few Ballistae shots chase after them and find their marks, but nothing that manages to prevent their departure.</p>
+
+<p>The Raptorians charge ahead, racing each other up the slope of the island toward the camps and defenses out of sight above. Followed by the yellow units of awes trying woefully to keep up. <br>
+But it’s all in order. The heavy shock troops should hit them hard and fast and cause confusion and disarray, in time for the more organized Awe troops to sweep in and mop up. In theory anyway.</p>
 </div>
 
 <div class="ram hidden"><p><strong>Ram the ship</strong></p>
+<p>We change our approach and race toward the enemy ship while the crew prepares for combat. <br>
+Boarding crew are mustering below deck, getting armed and ready to emerge when given the orders.</p>
 
+<p>The Thunder-shot has fired twice more, but we appear to only have come in range with the last shot as it punches a rent through our sails before narrowly splashing into the sea.</p>
 
+<p>Officer Nyxie is trying to ensure the hostile ship ends up between us and the isle, that should provide some cover. But they will have a easier time to hit us when we become stationary.</p>
+
+<p>One more rumble of thunder and a shot finds it mark. Crashing into the deck just below the lip of the rear command deck with a shuddering crack under our feet and an explosion of splintered debris. With a quick mental note, I calculate no one should be where it crashed through, because its my chambers.</p>
+
+<p>Then we are upon them.</p>
+
+<p>“BRACE” I call out a moment before our ship shudders into the side of the cargo-ship. We impact at an angle, but still cleave into the other ship like its butter with an almighty crash of splintering and breaking wood.</p>
+
+<p>It’s a good hit, while the ship jolts hard enough to send several sailors not sufficiently braced staggering, it should not have damaged us much at all.</p>
+
+<p>Hooks, ropes and boarders swarm the beleaguered ship and its overwhelmed and in our control in but mere moments. It seems it was light on crew and will to fight, especially against such an impact and odds.</p>
+
+<p>The splash and crack of impact followed by thunder tells us we are not yet done. Nyxies maneuvering has ensured our captured prize took this hit for us thankfully. The following shot was less lucky on our part and it sends many of our boarders reeling as it impacts somewhere between the two ships.</p>
+
+<p>“Release the ship! Push off! Get us to the island, prepare to assault!” I call out and crew hurry to obey, unhooking us from the ship. Some remain aboard it, watching its crew and cutting down its sails to ensure it stays in our possession.</p>
+
+<p>The docks are close, but we are vulnerable on our slower approach to it. Luckily, no more thunder-shot echoes as they do not fire upon us further.</p>
+
+<p>“They are retreating into the cave.” A scout lands to report, short of breath and shoulders shuddering from his extended flight.</p>
+
+<p>The following assault on the island is quick and uneventful, meeting no defenders.</p>
 </div>
 
 <div class="careful hidden"><p><strong>Careful Approach</strong></p>
+<p>We are approaching on the east side of the large island. The Cargoship is fleeing northward inside the range of their weapons through a narrow pass between the large isle and a smaller barren sub island.</p>
 
+<p>Pursuing it puts us under the mercy of their weapon fire so I order us to swing to the left and come at the island from the south where the peak of the isle is higher and should obscure our approach nearly all the way in.</p>
 
+<p>We swing around and make our approach. This means we will be letting the cargo-ship go, already it is starting to pick up speed, but the real prize is on the island.</p>
+
+<p>Indeed, no more Thunder hounds the rest of our approach. We even find a suitable alternate landing spot for the troops that remains in cover.</p>
+
+<p>“They are retreating into the cave.” A scout lands to report, short of breath and shoulders shuddering from his extended flight.</p>
+
+<p>The following assault on the island is quick and uneventful, meeting no defenders.</p>
 </div>
 
 
 <div class="mine hidden"><p><strong>The Mine</strong></p>
 
+<div class="assaultText hidden">
+
+<p>“Captain. The island has been captured.” With a firm salute the regular low-officer Calma makes the report. “Officer Garsch reports that the defenses were poorly manned. We caught them while they were pulling back into the big mine entrance. It turned into a bit of a rout for them! Very minimal losses on our part! We caught many but most appear to have made it and barricaded themselves in there though.”</p>
+
+</div>
+
+
+<div class="ramText hidden">
+
+<p>The ship is secure, though we hit it a bit hard and it’s taking on a lot of water. The crew occupying it have had to steer it up against the shore by the docks where it now rests in an angle against the island.</p>
+
+<p>The assault on the island was surprisingly less eventful. It did not take long for a report to return from the top of the island.</p>
+
+<p>“Captain. The island has been captured.” With a firm salute the regular low-officer Calma makes the report. “Officer Garsch reports there was no resistance, they have indeed all pulled back into the Mine and barricaded themselves in.</p>
+</div>
+
+<div class="carefulText hidden">
+
+<p>“Captain. The island has been captured.” With a firm salute the regular low-officer Calma makes the report. “Officer Garsch reports there was no resistance, they have indeed all pulled back into the Mine and barricaded themselves in.</p>
+
+</div>
+
+<p>
+“I see. It will be hard to get them out of there.” I grumbled. But I could not fault my troops for this one. They did very well.</p>
+
+<p>“Officer Garsch is setting up perimeter around the entrance. In case they sally forth. We are also searching the island for more ways in and out, so far no signs, but it’s a big island.” <br>
+There was no sign of the Thunder-shot weapon either, its believed it made it into the mine as well.</p>
+
+<div class="assaultText hidden">
+<p>
+The prisoners in the end provend to be woefully hard to interrogate for information. Most of them only speak broken dialects of Core, the main language of the Empire. <br>
+They also seem quite dim, or pretending to be, even at the threat of hungry jaws. <br>
+My briefings did warn me that the intelligence of gators tended to vary a great deal. They are likely only expendable low level laborers or warriors and are likely not even told much. We need to capture someone of more authority. <br>
+</p>
+</div>
+
+<div class="ramText hidden">
+<p>
+At the docks, some of my crew are scavenging through the captured cargo vessel. They have not found much more of interest other than raw Ore, except for one thing. <br>
+What has piqued my interest as well as that of Officer Ulv and Officer Tick, are 2 barrels of black powder. No doubt the kind they use for their Thunder-weapons. <br>
+Tick has adamantly insisted the Powder is to be analyzed before we risk stowing it on our ship. I concur. <br>
+Officer Ulv mostly just seems to want to play with it. Which I am more apprehensive about. She has been given very small amounts. <br>
+</p>
+</div>
+
+<p>There is much to do and options to consider, but we remain firmly in control of the island for now.</p>
+
+<p>The Cadets suddenly make themselves known, arraying up to stand at attention. Seems they have something on their mind.</p>
 
 </div>
 
 
 <div class="cadetChoice hidden"><p><strong>Cadet Duties</strong></p>
+<p>It is Cadet Glint that speaks up first, eloquent speech purring what sounds a well rehearsed sentence.</p>
 
+<p>“Captain, we beg to be given duties of importance on this isle. We feel our duties on this ship have been educational, but meagre in terms of experience in what being a real officer is like.”</p>
+
+<p>I gaze down at the three of them. Able to guess where this is all coming from.</p>
+
+<p>“You want to fight the pirates.” I say, keeping my voice level.</p>
+
+<p>“Yeah!” Ziggy exclaims. “It’s what we signed up for! First time didn't really count, we never got a chance to get very close then. Now they’re… right there!” She pointed to the island.</p>
+
+<p>Looking perturbed at Ziggys interruption, Glint raises her voice, bumping a elbow into her side.</p>
+
+<p>“It would be a valuable experience to see how pirates operate and how to deal with them from close at hand.” Glint held up a digit while Ziggy nodded enthusiastically. It is the first time I see them on the same side about something. Even Valnos is smiling, putting on a brave face.</p>
+
+<p>I suppose I could find some task for them to do on the island, get them more involved. I understand some of their frustration. They want to feel like they are taking part, that they are more than mere passengers on this journey. <br>
+I was impatient too when I was a cadet, I did not realize the worth of experience from merely observing.</p>
+
+<p>
+Perhaps I could send them up to assist in the camp besieging the mine. That way they are close to the action enough to excite them, but still among many armed Awes and Raptorians that will keep them out of harm's way.</p>
+
+<p>I could give them an assignment of exploring the island and aiding the search for other ways into the mine. It’s mostly all rock with nearly no vegetation, low chance of running into a surprise. Still, it is riskiest thing I can think of. Especially how prone they are to attract trouble.</p>
+
+<p>Or I could order them to remain on the ship. There are many duties, albeit menial, for them to perform here that needs doing. They may not like it, but they are still junior officers, they don't have right to complain about being bored. This is not an adventure. Perhaps they should learn that.</p>
 
 </div>
 
 
 <div class="cadetExplore hidden"><p><strong>Explore the Island</strong></p>
+<p>I give in and order them to join the search parties prowling the island. <br>
+The Cadets get credit for managing not to break into a ‘yahoo’ until they were marginally dismissed and a fair distance away.<br>
+Just to be safe I order Low-Officer Calma who’s still hanging around to accompany them. <br>
+The Cadets do technically outrank a Low-officer, but Calma is not the type who will let herself be bossed around by “upstarts”.</p>
 
-
+<p>It’s a cheerful trio that eventually set out. Armed and armored in their prospective gear that I dearly hope they won’t need to use. <br>
+Low-Officer Calma trails after them, looking surprisingly serene about her task.</p>
 </div>
 
 <div class="cadetStay hidden"><p><strong>Stay on Ship</strong></p>
+<p>While I appreciate they being upfront with their desires and making an effort to want to be useful. I let them firmly know of their junior position and how they’re here to learn, not getting underfoot playing heroics.</p>
 
-
+<p>The three of them deflate noticeably at my lecture. Ziggy going as far as pushing it with blowing out her cheeks and letting her eyes wander. <br>
+I assign them to Pouch-Matron Elda, who will be needing help with any potential injuries that might be coming down from potential action at the mine. Perhaps that will be a stark reminder and lesson to them what harsh realities really face them in the heart of the action.</p>
 </div>
 
 <div class="cadetAssist hidden"><p><strong>Assist the Siege</strong></p>
+<p>The three of them seem genuine enough in wishing to learn. They are brave enough to confront me and ask me of this. So I decide to send them up to the island a bit closer to the action.</p>
 
-
+<p>Considerably cheered by this, the trio beam as they are dismissed and eventually march away up the slope to join the camp.<br>
+Chances are they will find the camp just as boring as having stayed on the ship will have been. It is atleast a change of scenery and now they wont pout as much.</p>
 </div>
 
 <div class="cadetDiscovery hidden"><p><strong>Cadet Trouble</strong></p>
+<p>Ziggy kicked another rock, sending it bouncing and clattering down the rocky slope. The three cadets and Low-Officer Calma are the only figures in sight on this whole side of the island.</p>
 
+<p>“Nothing but rock.” She huffed. The excitement of their assignment having diminished considerably. Dressed up in armor, wing-guards and all, she was a little overdressed for the long day of climbing up and down the rocky isle.</p>
+
+<p>“Listen ya little tufts, don’t complain when ya get a cush assignment. Enjoy it.” Calma chided, being in no rush to go anywhere.</p>
+
+<p>“Not just Rock, there are some interesting minerals here.” Glint mused, turning one particular stone around in her paw before cracking it in half with a hard blow against the ground, revealing gleaming black rock. “I can see why they would go through the effort to dig it up.”</p>
+
+<p>“They make those Thunder-things go boom with it or something?” Encouraged, Ziggy hoists a boulder of similar appearance above her head with similar intent.</p>
+
+<p>“No… this is just.“</p>
+
+<p>‘CRACK’. The Boulder splits, revealing gleaming latticework of black onyx rock. <br>
+Then the rocks under their feet shifts and shudders.</p>
+
+<p>“Huh…” Ziggy exclaims. Then she suddenly drops out of view as the ground beneath her vanishes along with Glint and Calma. Only Cadet Valnos remains, as he jump and flaps his wings in reflex, getting just out of reach of the sudden cave-in.</p>
+
+<p>“Oh no! Oh tangle!” The dark furred Cadet whines. He carefully peers down the hole into the dusty gloom. “You guys okay?” But no response.</p>
+
+<p>His first instinct is to run for help. It’s the smart and sound thing to do! But… He always runs away. <br>
+He can’t listen to those feelings any longer.</p>
+
+<p>He has rope in his pack, if he ties it around that huge boulder and then...<br>
+</p>
 
 </div>
 
 <div class="options hidden"><p><strong>Assault Options</strong></p>
 
+<p>The Gators are well entrenched inside the mine and any attempt to approach is met by thrown or fired projectiles. <br>
+The entrance to the mine is firmly fortified from both sides now however, so neither side is able to mount an attack on the other without facing a deadly choke point.</p>
+
+<p>Though my place is on the ship, I make a brief trip up the slope of the island to have a look at it and meet my officers present for a meeting on how to proceed. The view up there stretches far, short of a fog, we will have early warning if any other ships approaches. <br>
+The clear prize here is capturing a Thunder-shot weapon from the enemy. On this we are in agreement, with it we could uncover many of its secrets and it would be of great benefit to the Admiralty.</p>
+<i>
+<div class="assaultText hidden">
+<p>In our initial assault we did cull their numbers and even manage to capture a few of the fleeing gators who surrendered. So they’re not as many in the mine as there could have been.</p>
+<p>It is wise to consider that the ship that escaped might call for aid.</p>
+</div>
+<div class="carefulText hidden">
+<p>It is wise to consider that the ship that escaped might call for aid.</p>
+</div>
+<div class="ramText hidden">
+<p>Since we have captured their ship, they are unlikely to get reinforcements. We can take our time.</p>
+</div>
+
+
+<div class="assault2Text hidden">
+<p>We have attacked the Mine once in a prodding assault. Their defenses are stiff, but not unassailable.</p>
+</div>
+
+<div class="assault3Text hidden">
+<p>Our Raptorians are bloodied from their hard fighting in the mine. Wounded are scattered about the siege camp, some being carried back down to the ship to be seen to in the groomery.</p>
+<div class="assaultText hidden">
+<p>The defenders are likely faring much worse however. Things must seem dire for them.</p>
+</div>
+</div>
+
+<div class="specialText hidden">
+<p>The entrance is covered by a huge cave in. There will be no attacking done from either side this way until it is cleared.</p>
+</div>
+<div class="specialText2 hidden">
+<p>The Mine entrance stands open once more, the opening is now much wider than it was initially. The tight choke point is gone.</p>
+</div>
+<div class="cadetDiscovery2 hidden">
+<p>The secondary entrance that the Cadets have discovered is open on the far side of the peak. A secondary camp guards that entrance now.</p>
+</div>
+</i>
+
+<p>I listen to my officers proposals. Making sure, as always to give voice to a varied collection to approaches in how to proceed.</p>
 
 
 <span class="theOfficer officerObjects"></span>
@@ -717,19 +1289,81 @@ $('#officerObject2').popover({title: officer3[2].name, content: officerIntros(2)
 </div>
 
 <div class="officer0 hidden"><p><strong></strong></p>
+<div class="assaultb hidden">
+<p>I listen to Evoks plan. Though he by no means delivers as detailed plans as some of my other Officers, not to speak of his lack of written documentation. His kind are excellent at breaking defenses so he seems like the right tool for the job.</p>
 
+<p>“The pack can attack. Break through barricade, force inside, Awe assist gaps. Will take few attempts, some will be hurt. Win in the end.”</p>
 
+<p>“Explain your plan in detail Pack-Master.”</p>
+
+<p>His plan was not as simple as I thought it to be. He had put quite a bit of thought into formation and composition of his attack force as well as specific armor and armament. <br>
+The attack seems in good hands.</p>
+</div>
+
+<div class="assault2b hidden">
+<p>“We attack again? Still have strength.“ Evok rumbled in inquiry as I approached him.</p>
+
+<p>Several of his Raptorians rouse from their rest. Looking my way with interest.</p>
+</div>
+<p></p>
+<div class="assault3b hidden">
+<p>It is a beaten up troop of attackers that meet my approach, Raptorian and Awe both. But they seem like they still have some fight left in them.</p>
+
+<p>Evok nods at me, waiting for the order to attack again. <br>
+“We finish it, last push. No more places for Gator to hide, no more traps, Evok ready.”</p>
+</div>
+
+<div class="cadetDiscovery3 hidden"><p>
+With the alternative entrance to the mine, we can push from two directions at once. <br>
+Evok has divided up the attack force accordingly. <br>
+“Before, Cave tunnel tight, hard to fight and trade places. Not so big problem problem.”</p>
+</div>
 </div>
 
 <div class="officer1 hidden"><p><strong></strong></p>
+<p>“We should offer them a chance to surrender. Just straight terms, no bargains.“ Mirr puffed her tobacco, eyeing me appraisingly. <br>
+“Who knows, perhaps there is no need for further fighting at all.”</p>
 
+<p>I consider this. The art of negotiation has its own rules. If they other side feels they have leverage, they will not budge on their issues. If you try too hard with talks, then they might think you hiding weakness.</p>
 
 </div>
 
+<div class="officer1b hidden"><p><strong></strong></p>
+
+<div class="keeperText hidden">
+<div class="notalk hidden">
+<p>“Ahoy Captain. Shall I go ahead and go talk to them now? If you let me assess their demeanour and prod them a bit I am certain I can set a little ploy moving. The sooner the better!”</p>
+
+<p>He waved his tail in the Mine entrance general direction.</p>
+
+<p>“Naturally, if you want to try it yourself instead, go ahead. Just mind their crude attempts at tricks.”</p>
+</div>
+<div class="before hidden">
+<p>“You here to talk to the enemy Commander? Hope you have some good ploy in mind. I can’t move forward with mine until we perform an assault.</p>
+</div>
+<div class="after hidden">
+<p>“Nice work captain! This should be just enough! At your leave, I’ll head on over and eat.. er… meat the commander!” Keeper is brimming with glee, his tail twirling like on a crank.</p>
+</div>
+
+</div>
+
+<div class="mirrText hidden">
+<p>“Well Captain, do you you want to talk to them yourself or do you want me to handle it? As before, I don’t intend to try anything fancy but persuade them to surrender.”</p>
+</div>
+
+</div>
 
 <div class="officer2 hidden"><p><strong></strong></p>
+<p>“I’ve had a look at the structure of the mine and what resources we have available.” Tick pointed at a couple of papers. <br>
+“The simplest solution seems to be simply to start a fire and smoke them out.”</p>
 
+<p>“So your ingenious plan is to start a fire?” I cock my head at him.</p>
 
+<p>“Quite so. All other options my troop can think of seem convoluted and complicated.” Tick nodded before continuing. “It is not a 100% chance of success, the smoke might not get pulled into the mine, or not as deep as we want it, but we have detected no outward draft, quite the opposite in fact.“</p>
+
+<p>It’s not the worst plan out there. Though it seems a little dirty.</p>
+
+<p>“They’ll have every chance to surrender and if it becomes too unbearable and they charge out, we will have quite an upper hand.”</p>
 </div>
 
 
@@ -737,94 +1371,585 @@ $('#officerObject2').popover({title: officer3[2].name, content: officerIntros(2)
 
 
 
-<div class="special hidden"><p><strong>Ram the ship</strong></p>
+<div class="special hidden"><p><strong></strong></p>
+<p>Officer Ticks proposal is sound. They may control the terrain in the mine, but we control the rest of the space on the island.</p>
 
+<p>I agree to his proposal and soon spare burnable debris is brought up to the camp and amassed. <br>
+The Island does not have much in terms of things to burn, it’s all rocks and gravel. It might have once, before this mine was dug, but it’s all been cleared or burried.</p>
 
-<div class="cadetDiscovery hidden"><p></p>
+<p>Enough is eventually collected to start filling up the Mine entrance with. The pirates make a few attempt to clear the entrance of all the wood, but they’re easily forced back and as soon as the fire is going they are unable to do much about it. We seem to have more fresh kindling then they have water.</p>
+
+<p>Officer Tick and his crew do their best to keep the pile from turning into an outright bonfire. They keep it smoking quite adequately and no doubt things are getting stuffy down in the mine. <br>
+The smoke and flame is no doubt visible for quite some distance however.</p>
+
+<p>Something unexpected occurs a hour or so in when the burning. A sudden crack of thunder and an explosion shudders from the mine. <br>
+Shortly afterwards, stone seems to crack and with a loud rumble the mine entrance crumbles in on itself, forcing anyone nearby to run for cover.</p>
+
+<p>As the dust settles, the entrance to the mine is gone, the passage has collapsed in on itself.</p>
+
+<p>“Well that was unexpected.” Says Officer Tick. “The heat of the fire must have weakened the passage, then they fired the Thunder shot at the roof and the whole thing collapsed.”</p>
+
+<p>“You don’t say.” I frown at all the rubble.</p>
+
+<div class="cadetDiscovery2 hidden"><p></p>
 </div>
 </div>
+
+<div class="specialb hidden"><p><strong></strong></p>
+<p>“Captain. I have examined the cave-in and I dont think its as severe as it looks.” Officer Keeper later provides his analysis. <br>
+“I believe we can spend a day of labor to dig our way through into the mine. We have enough Raptorians present to get through to the other end if they take turns and work through the night.”</p>
+
+<p>“That might leave most of our main fighting forces exhausted for the fighting.” I comment.</p>
+
+<p>“Oh that should be no problem, I’ve utilized Raptorian labor aplenty. They can handle it, just have to pace them right. But we could just leave it as it is and leave. It will be a lot harder for them to dig their way out rather than in, so we can come back some other time and retrieve the weapon when all the pirates have perished.”<br>
+That was quite a cold way of thinking! But still a valid option.</p>
+
+<div class="ramText hidden">
+“Captain, I may have an alternative for you.” Officer Ulv piped up, having been listening in.</p>
+
+<p>“Speak then Officer, let’s hear it.” Officer Ulv is seldomly has bad ideas, even if they are often sometimes a bit rash.</p>
+
+<p>“The Powder we recovered from the enemy ship. I’ve done a few experiments with it. Its highly flammable, explosively so. More than any equivalent substance we have at home. In high enough concentrated quantities, a little flame and it will explode. (As you might be quite familiar with.)”</p>
+
+<p>Officer Tick immediately shook his head in disagreement. <br>
+“If you’re proposing we blast the entrance open then that sounds like folly and a waste.”</p>
+
+<p>“It would be quicker and it’d help me figure out more about what this substance can do!” Ulv pressed.</p>
+
+<p>“How much of the powder would you use?” I ask dubiously.</p>
+
+<p>“Oh, to be certain it has the correct effect, half of it. One barrel. I know its a lot but who knows, they might have more in the mine. They just used some for the weapon after all.” She beams while Officer Tick looks on disapprovingly.</p>
+</div>
+</div>
+
 
 <div class="special2 hidden"><p><strong>Dig</strong></p>
+<p>I order Officer Tick to set the crew to work. If it will only take a day or two to get through, then that seems like a worthy investment of time to me.</p>
 
+<p>The Maintenance officer soon has the siege camp converted into a work camp, with pulleys and hastily built carriages and all.</p>
 
+<p>I watch in some marvel as, good to his word, the collapsed entrance starts to clear with surprising haste. Mostly thanks to the labor of the glum Raptorians.</p>
+
+<p>It’s not long before we break through, surprising a few Pirates working on the other side with a similar goal in mind. <br>
+Its a brief skirmish with no gains or losses. A few more rocks are cleared and then the entrance to the mine is once more uncovered. The Pirates have erected a new hasty barricade, but this one is not as easy to defend as the previous one that was in the collapse.</p>
 </div>
 
 <div class="special3 hidden"><p><strong>Blast</strong></p>
+<p>I go along with Officer Ulvs idea, much to Officer Ticks consternation. I am aware of how valuable the powder is, but it is likely she is right that we could get our paws on more in the mine.</p>
 
+<p>For safety, we pull everyone at the siege camp back beyond the rim of the islands peak.</p>
 
+<p>Officer Ulv has been thinking a lot about this powder since our first encounter with the pirate ship back at Pale rock. I trust her cleverness when it comes to this.</p>
+
+<p>It takes some time to prepare. The powder they have shifted to another tighter container, where she insists it’ll do more then just burn fiercely. Some digging also had to be made, as she again insisted on burying the cache of powder into the cave-in.</p>
+
+<p>They then light a treated wick from a candle and run for cover. <br>
+It takes a long time for the wick to burn down and we wait with anticipation.</p>
+
+<p>The blast is sudden and very violent. It sends a plume of dust and fair-sized debris into the air and raining down on some onlookers who thought they were at a safe enough distance. Luckily without serious injuries. <br>
+The echo of the explosion sounds over the surrounding isles for a long while.</p>
+
+<p>But it has left quite a satisfactory hole in the cave in. A quick inspection and it seems we have blasted our way through. <br>
+Some unlucky pirates who had been digging were not as lucky and the ones who were deeper in are no doubt quite unnerved by our manner of entry.</p>
 </div>
 
 <div class="assault2 hidden"><p><strong></strong></p>
+<p>I let Evok take charge. They take their time getting ready, putting on their heaviest armor with the help of their diligent attendant squires who run back and forth between the armory of the ship and the camp.</p>
 
+<p>The attack in the end is sudden and violent. They charge the barricades as one, growling and snarling, bodily smashing through the sharpened stakes, mounds of rocks and wall of spears and projectiles.</p>
+
+<p>It seems at first as if they have taken the Mine pirates by surprise, they seem to break through quite a distance, most of them disappearing down into the gloom of the mine, Evok himself at the front. <br>
+A troop of armored Awe soon charge in after them as soon as there is space.</p>
+
+<p>But the Awes suddenly dash out again as soon as they went inside, dodging aside as the Raptorians come hurrying back. I see one limping heavily while another is being dragged, looking lifeless, by his compatriots. The last ones out holding back counter attack of some sorts with snarling swipes of their weaponized tails. The Pirates withdraw before getting too close to the entrance however, I do hear the bellowing of someone in charge of them.</p>
+
+<p>The first assault did not succeed. But Evok said it would go as such. <br>
+He reports stoically, his armor sporting quite a few dents and rends.</p>
+
+<p>“Mine gets narrow, they have second chokepoint. Can only push forward 3 packmates abreast. Difficult. Will need Awes to assist in next assault. Much of barricades cleared.”</p>
+
+<p>“How many wounded?” I ask.</p>
+
+<p>“Pack is dent and bruise. 2 hurt that need rest. One fallen, might recover, might be meat.”</p>
+
+<p>That leaves X amount for the next assault. Plus the Awe troopers he thinks he needs.</p>
 
 </div>
 
 <div class="assault3 hidden"><p><strong></strong></p>
+<p>The Raptorians are gearing up to attack again. This time several squads of armed and armored Awe among them. My Arms officer is coordinating them and will be participating as backup. But overall command lays with Evok for this operation. <br>
+It’s unusual for a non-Awe to command Awes, but in this case, he’s the expert breaker of defenses. I trust his expertise.</p>
 
+<p>At a signal they rush inside once more, same ferocity and speed as before. Echoes of snarls and clanks and clangs of weapons hitting armor grow fainter as the fighting proceed deeper into the cave. <br>
+This time the accompanying Awes hurry in sooner and faster, a clear goal in mind. I wish them fortune as they disappear into the gloom.</p>
+
+<p>It’s a nervous wait. Occasionally a injured Raptorian staggers out of the cave, no longer able to contribute in the tight tunnels and having been ordered back. There are Awes being carried out too.</p>
+
+<p>Then there’s a tremendous shaking ‘THOOM’ from within the cave, followed by a cloud of dust.</p>
+
+<p>Raptorians and Awe emerge, covered in dust, dragging with them wounded and incapacitated compatriots. It’s a similar retreat from before. This time the amount of casualties were rougher than last time. Several of the fighters collapse from exhaustion at the sides of the mine entrance.</p>
+
+<p>A dust covered Evok delivers the report from the fighting. His armor didn't protect him as well this time judging by the wet crimson stains. Still, he seems to ignore it in a nonplussed manner, though the low positioning of his ears betray a sense of regret and discontent. He seems to not be hearing that well either.</p>
+
+<p>“Gator fight well. We break through anyway. Tunnels are long, dark. Side passages with ambush and traps. They be hiding in final chambers. Have… ‘Thunder weapon’ there. Hard defense. Lose many. So did they, Not many Gator left.”</p>
+
+<p>While many injured Awes are being carried down to the ship, the Raptorians took the brunt of the casualties. They are hardy and while many of them will survive, it will be a long time until some of them can fight again, if at all. But by the sound of it the Pirates took it worse down there. <br>
+The prize of getting our paws on one if their weapons is near.</p>
 
 </div>
 
 
 <div class="assault4 hidden"><p><strong></strong></p>
+<p>It is unusual to see Raptorians look weary of further fighting. I suspect however that most of them are starting to have had their fill it. Still, they arrange themselves and start to prepare for a third and final assault down the mine.</p>
 
+<p>The number of Raptorians are reduced from the original strength. Though many of the injured insist on joining the fight, Pack-Master Evok has firmly put them on the sidelines to heal and recuperate.</p>
 
+<p>Awes are filling the ranks of the attackers instead. Some of them have changed their tactics and are wearing less armor then before, opting out blades for Spears as well.</p>
+
+<p>The third assault down into the mines is less of a charge and more like a steady marsch. The defenders are deep down in the mines now.</p>
+
+<div class="assaultGood hidden">
+
+<p>There are no more sudden quaking thunders of the Thunder shot being fired. There are no steady trickle of injured attackers staggering out of the mine entrance either. <br>
+It seems whatever is happening down there they are staying committed or taking their time with it.</p>
+
+<p>It is a considerable time later, with occasional messengers rushing back and forth to relay news, that the majority of the Assault troop returns together. Many of them appear quite well-fed, bellies sagging with conquered foes. Even the occasional Awe is helped along with similar prize in their belly. <br>
+ Behind them they are dragging the grand prize however, a tube of metal. The thunder weapon.</p>
+
+<p>A well-fed Evok emerges, looking smug and sporting a new fresh wound along his snout.</p>
+
+<p>“Victory, Captain. Mine is clear, pirates are our strength now.”</p>
+
+<p>I do not bother asking about high-ranking prisoners.</p>
+</div>
+<div class="assaultBad hidden">
+
+<p>Time passes slowly. The fighting in the mines seem to proceed just as slow. Again a few injured emerge, clutching wounds. They’re hastily seen to by those waiting in readiness.<br>
+ <br>
+There is another quaking thunder from the cave. It seems the fighting is proceeding in earnest down there. I hope Evok was more prepared for this one.</p>
+
+<p>However, things do not look promising as pretty soon Raptorians and Awes return in haste in what can’t be anything but another retreat. Harrying them up the tunnels are gators with their long halberds, they fight them all the way to the mine entrance where they come into view.</p>
+
+<p>A gator who can’t be anyone but their commander walks up and bellows a triumphant cry. His belly-scales are taut around a sizable gut that seems to jostle and bounce with movement from a large shape that’s obviously a Raptorian. <br>
+He’s not the only one with such a prize gut. If the severely reduced numbers of our attackers was not enough of an indication.</p>
+
+<p>They do not sally forth however, merely gloat and then retreat back toward their defenses in the mine. <br>
+I fruitlessly seek Evok for a report. It seems however, the gator commanders squirming gut was going to be the last I saw of him.</p>
+</div>
+
+<div class="assault5 hidden">
+<p>The Raptorians are gearing up to attack again. This time several squads of armed and armored Awe among them. My Arms officer is coordinating them and will be participating as backup. But overall command lays with Evok for this operation. <br>
+It’s unusual for a non-Awe to command Awes, but in this case, he’s the expert breaker of defenses. I trust his expertise.</p>
+
+<p>The broadened cave entrance provides more tactical options and it looks like Evok is able to put more Raptorians into the front of the charge.</p>
+
+<p>Meanwhile on the far side of the peak, a second force is gearing up to push in at the weakened Pirates. Considering our first island assault there can't be many left in the mines able to defend against such a heavy two pronged attack.</p>
+
+<p>At a signal they rush inside once more, same ferocity and speed as before. Echoes of snarls and clanks and clangs of weapons hitting armor grow fainter as the fighting proceed deeper into the cave. <br>
+This time the accompanying Awes hurry in sooner and faster, a clear goal in mind. I wish them fortune as they disappear into the gloom.</p>
+
+<p>It’s a nervous wait. Occasionally a injured Raptorian staggers out of the cave, no longer able to contribute in the tight tunnels and having been ordered back. But the flow of wounded seem light.</p>
+
+<p>It is a considerable time later, with occasional messengers rushing back and forth to relay news, that the majority of the Assault troop returns together. Many of them appear quite well-fed, bellies sagging with conquered foes. Even the occasional Awe is helped along with similar prize in their belly. <br>
+ Behind them they are dragging the grand prize however, a tube of metal. The thunder weapon.</p>
+
+<p>A well-fed Evok emerges, looking smug and sporting a new fresh wound along his snout.</p>
+
+<p>“Victory, Captain. Mine is clear, pirates are our strength now.”</p>
+
+<p>I do not bother asking about high-ranking prisoners.</p>
+</div>
+
+<div class="negotiate1 hidden"><p><strong></strong></p>
+<p>Officer Mirr, a few bodyguards and a few of her closest underlings make a cautious approach to the mine entrance and call out in the Gators native tongue, ‘Core’.</p>
+
+<p>It takes a while, but eventually it seems some kind of dialogue is started and she moves closer to the Mine, though not into it.</p>
+
+<p>The words are guttural and harsch, it looks quite odd coming from Officer Mirr’s dainty form.</p>
+
+<p>Eventually she backs away and returns to the camp with a report.</p>
+
+<p>“They are pretty confident in their defenses and refuse any notions of surrender. Their commander claims they will not be swayed, but invites us into his jaws. I think he meant that literally as well as figuratively.“ Mirr puffed at her tobacco, which she lit the moment she sat down.</p>
+
+<p>“He has offered to speak to you directly, Captain. From one leader to another. He seems to be fluent in Trade-tongue. But at this moment he wont be swayed easily. You can try your hand at it or have me try later after we found some way of pressuring them.”</p>
+
+<p>I consider this. I could take him up on this offer, leave it to the expert to keep trying or consider other approaches.</p>
+</div>
+
+<div class="negotiateOption hidden"><p><strong></strong></p>
+<p>Officer Keeper has been present, keeping track of supplies, arms and personnel being ferried back and forth between the ship and the camp, performing his official duties. <br>
+Now he stands by Officer Mirr and at seeing me he hurries over and gives me a Wulfish grin which tends to mean mischievous trouble.</p>
+
+<p>“Captain! I’ve heard you’ve had some trouble with the Gators. Stubborn bunch, I know!”</p>
+
+<p>“What’s on your mind Keeper?” I wonder what the Wulf Officer and inoffical ‘Sailing company’ spy might have in mind.</p>
+
+<p>“Well see, Gators are a bit of one-track mind. Let me deal with the negotiations instead! I have some ways with them that might just work.”</p>
+
+<p>Officer Mirr huffs in open disdain and shakes her head. <br>
+“Captain, don’t trust this rogue with a delicate job like this. Besides, it’s my responsibility.”</p>
+
+<p>Officer Keeper merely grins, seeming to take the comment as a compliment. <br>
+“I am merely providing you with a broader range of options, Captain. Up to you.”</p>
 </div>
 
 
+<div class="mirr hidden"><p><strong></strong></p>
+<p>“It’s nice to see you still have faith in me Captain. These Gators may not really be the easiest to deal with, but I won’t let you down.“</p>
+
+<p>I nodded to her and we got back to business.</p>
+
+<p>“Well Captain, do you you want to talk to them yourself or do you want me to handle it? As before, I don’t intend to try anything fancy but persuade them to surrender.”</p>
+</div>
+
+<div class="keeper hidden"><p><strong></strong></p>
+<p>“Excellent.” Keeper grinned wider and his tail flitted about excitedly. Officer Mirr bowed graciously and departed to assist with the personnel tasks instead. Keeper is quick to occupy her empty chair.<br>
+“I have quite a few ideas in how to wrangle a capitulation out of them. But first I need to talk to them myself to ‘test the waters’, as they say back home.“</p>
+
+<p>“But if you’d rather handle it yourself and have some kind of idea, then go ahead. Let me just leave you with this advice if you do. Don’t trust them.” Keeper added a wink.</p>
+</div>
+
 <div class="negotiate hidden"><p><strong></strong></p>
+<p>“Very well. I’ll handle it.” I rise to my feet and gaze down toward the mine. It’s a break against protocol, but it wouldn’t be the first time at this point that a Captain has to skirt the rules.</p>
+
+<p>I approach the mine with a small escort that hangs back as I give them a glance. <br>
+The Gator commander meets me. Green scales, belly plates with a hefty rear-heavy physique and a maw of crooked teeth. Gators are as related to Raptorians as Wulfs are to Awes. There are faint similarities, but mostly they are different.</p>
+
+<p>The eyes on this Gator are sharper than his compatriots. As we speak I get the impression he’s more on the cunning side then very intelligent.</p>
+
+<p>“Small for a Captain.” The gator rumbles in broken Trade speech.</p>
+
+<p>“Big enough to handle you.” I return and give him my best glare.</p>
+
+<p>“Bah! Speak then or begone. I listen.”</p>
+
+<p>I consider how to best approach this negotiation. I’ll only have two chances to sway them.</p>
+</div>
+
+<div class="negotiateOff hidden"><p><strong></strong></p>
+<p>“No.” I make a firm dismissive gesture. “If you can’t sway him, there is little I can say to change things.”</p>
+
+<div class="mirrText hidden"><p><strong></strong></p>
+<p>“Naturally, Captain.” Mirr nods. “Just thought i’d forward the offer. I shall try to smooth things offer, perhaps offer safety to those who surrender peacefully. Add a few threats of retribution. As it looks right now, they are unlikely to budge.”</p>
+
+<p>Mirrs prediction was correct. Though she returned and spoke with the commander from behind his barricade. It seems they indeed would not be swayed further at this moment.</p>
+</div>
+</div>
+
+<div class="negotiateOffb hidden"><p><strong></strong></p>
+<div class="keeperText hidden"><p><strong></strong></p>
+<p>Officer Keeper slinks off toward the Mine entrance, he chooses to bring with him 2 Raptorian escorts to stay at his back and look intimidating. I’m somewhat surprised at how easily he recruits their aid. No doubt he still had quite a bit of leverage to throw around from the gambling days. It might also help that he still carries the paunch of a few of digested Raptorians on his person.</p>
+
+<p>He’s away for quite a while, visible chatting in quite an animated manner in what sounds like fluent ‘Core’ of the Gator Empire language.</p>
+
+<p>Eventually he returns, looking as playfully ‘Wulfish’ as before. <br>
+“Well Captain, I think I almost got him. His command over his subordinates is possibly not as strong as he thinks. We need to show our strength some more. One push and that should tip the scales if you let me talk to him again.”</p>
+</div>
+</div>
+
+<div class="negotiateOff2 hidden"><p><strong></strong></p>
+
+<div class="keeperText hidden"><p><strong></strong></p>
+<p>Keeper visibly licks his chops as I give him the go-ahead to try to get the Gators to surrender once more. <br>
+“Very good, very good! Now just watch. Things should fall into play!”</p>
+
+<p>The Wulf approaches the mine entrance again, this time entirely alone. His cocksure gait raises a few brows, no doubt on both sides of the defenses.</p>
+
+<p>Soon he’s chatting with the Gator commander again. His body language is different however, it seems quite jovial and provocative. At one point it appears almost as if he’s pointing inside his mouth and giving his gut a few slaps.</p>
+
+<p>I can’t help but sigh and shake my head. It is such a Wulf thing to do, go all out with 100% confidence, do or die.</p>
+
+<p>To my stark surprise though, there is suddenly a bit of a commotion from the Gators assembled. The Gator commander is assaulted by his own subordinates and wrestled down. <br>
+Keeper steps forward and plants a foot on the Gators snout and seems to have a few words, gloating would be my guess, for soon after he’s hard at work swallowing the large gator whole. <br>
+He makes short work of the enemy commander.</p>
+
+<p>It seems negotiations are a success.</p>
+</div>
+<div class="mirrText hidden"><p><strong></strong></p>
+<p>Officer Mirr returns, trying to negotiating. <br>
+She is not immediately dismissed and seem to have a dialogue going for a little while. <br>
+But then negotiations seem to break down as the Gator commander barks a few guttural words in anger. Officer Mirr returns, with a huffy exterior.</p>
+
+<p>“He’s being obstinate and threatening, saying that if I come bother him again, he’ll eat me. <br>
+Though he’s not as confident as before and I think he’s worried, he seems to prefer fighting it out rather than the shame of surrender. He also seems pretty sure we’ll eat him either way.”</p>
+
+<p>I sighed a this. He was perhaps not entirely wrong about that.</p>
+</div>
+</div>
 
 
+<div class="negotiateOff3 hidden"><p><strong></strong></p>
+<p>Officer Mirr and a delegation of armed bodyguards take the discussions to the Gator commander. <br>
+There seems to be a bit of shouting and threats back and forth. <br>
+At one point it looks as if it might come to blows, Mirrs escort leveling their spears.</p>
+
+<p>In the end however, with surprise, the Gator commander is suddenly overwhelmed from behind by his supposed allies. Wrestled to the ground and overpowered there is a flurry of shouting and fighting as the Gators have a bit of mutiny amongst themselves.</p>
+
+<p>A new leader emerges, sporting a bellyful of former commander and seems to be more accomodating with terms. <br>
+The Gators have surrendered.</p>
 </div>
 
 <div class="negotiateBarg hidden"><p><strong>Bargain</strong></p>
+<p>“Perhaps we don’t need to fight to a bloody conclusion.” I venture, crossing my arms.</p>
 
+<p>The Gator commander inclines his head, listening quietly. So I continue.</p>
 
+<p>“We want the weapon. We call it the Thundershot. Give it to us and we may leave you to your mine.”</p>
+
+<p>The Gator seems to deliberate this, letting out a long sounds that might have been a ‘hmm.’.</p>
+
+<p>“Weapon is not ours. To give in exchange for lives is to cast lives away for when owners return!” He hissed.</p>
+
+<p>“I don’t care about any of that, that is my offer. But in the spirit of bargaining, we could leave you with something to make it seem you fought over it or we stole it.” I shrugged.</p>
+
+<p>“Gurrrh… I consider this.” The Gator commander finally said after mulling it over.</p>
 </div>
 
 
 <div class="negotiateBluff hidden"><p><strong>Bluff</strong></p>
+<p>“You have already lost, you just don’t know it yet. Awe fleets roam these seas now, your pirate friends have been smashed.”</p>
 
+<p>“You tell tales! Lone ship you are. We saw no fleets with you!”</p>
 
+<p>“We don’t need the fleet to deal with you. They are elsewhere, hunting down little nests like this, eliminating you one by one.”</p>
+
+<p>“No proof! Awe ships are few!” The commander croaked, shuffling his feet.</p>
+
+<div class="intelText">
+<p>(Intel) “After we captured Port Nowhere and filled our bellies with all pirates within, the rest are easy to find!”</p>
+
+<p>“No! Untrue! You not have strength!” He bellowed. But he seemed most uncertain to me.</p>
+</div>
 </div>
 
 <div class="negotiateDom hidden"><p><strong>Dominant</strong></p>
+<p>“You should all surrender immediately. Your position is hopeless and you have no chance against us.”</p>
 
+<p>The gator scoffs and barks a laugh at that.</p>
+
+<p>“So you say! But here I remain. We can hold.”</p>
+
+<div class="ramText hidden">
+<p>“Help is not coming, we captured your ship. Nobody knows you are under attack here. Before anyone starts to wonder, you will all have have long since nourished me and my crew.”</p>
+</div>
+
+<div class="assaultText hidden">
+<p>“Many of you have already fallen. Keep resisting and the rest of you will join them.”</p>
+</div>
+
+<div class="carefulText hidden">
+<p>“You have no chance against us. Resisting fruitlessly will only wet our appetites.”</p>
+</div>
+
+<p>The Commander glowers at this and emits a guttural growl. <br>
+“If surrender or defeat is all the same! Why not fight!”</p>
+
+<p>“Why struggle and suffer. But, perhaps I’ll only be content with you!” I give him my best predatory grin.</p>
 
 </div>
 
 <div class="negotiatePeace hidden"><p><strong>Peaceful</strong></p>
+<p>“I think there has been enough fighting. We are ready to lay down our arms and leave you be if you pack up your things and leave this island peacefully.”</p>
+
+<p>“This mine is ours!” The Gator growled.</p>
+
+<p>“Then tell us what your terms are to leave or surrender. We can handle this in a civilized manner.” I put on my best friendly face.</p>
+
+<p>
+The Gator commander seemed to think about this again. Slowly. <br>
+“Our terms is you lot leave Island. We move out when mine is empty.”</p>
+
+<p>“Are a bunch of rocks really worth more than all your lives?” I huffed. “Will you even get to use them?”</p>
+
+<p>This seemed to put the Gator into another spell of ‘thinking’ and he paused a while. Then he turned his baleful eyes toward me.<br>
+“No… Rocks are not even for us.”</p>
+</div>
 
 
+<div class="negotiateEnd hidden"><p><strong>Agree to disagree</strong></p>
+<div class="negotiatefail hidden">
+<p>“Captain talk hard. But us not scared. You try come fight us, we will snap you up, one after other!”</p>
+
+<p>The large Gator commander growled, putting distance between us as he shrank back behind his defenses, never taking his eyes off me. It seemed he did fear me, but not enough for my arguments to take root. At least not yet.</p>
+
+<p>I return to the camp, time to consider other options that might help my arguments to be more persuasive next time.</p>
+</div>
+
+<div class="negotiatebad hidden">
+<p>“Captain wishes to make deals, not fight any longer with me and mine. I listen. I consider. I agree.”</p>
+
+<p>“That is quite good to hear. Then perhaps we can come to some kind of understanding or deal then?” I nodded approvingly.</p>
+
+<p>“Yes… We make a understanding. Come with us and we shall talk. I will show you something.” He beckons deeper into the mine while stepping back to make room for me to approach. The walls of halberds and weapons that had been menacingly been at ready behind him raise and make room.</p>
+
+<p>“Show me what?” I furrow my brow suspiciously. The gator just laughs, or something equivalent of.</p>
+
+<p>“Horrh horrh! Show you why we fight.” He beckoned once more and walked into the torchlit gloom.</p>
+</div>
 </div>
 
 <div class="negotiateAgree hidden"><p><strong>Agree to disagree</strong></p>
+<p>I exchange a glance with my escort and then step forward to follow the Commander into the mine. <br>
+I step fearlessly past the haphazard barricades and defenses they have hastily managed to erect and follow where that big fat gator tail went.</p>
 
+<p>The air is cooler in the mine and the path winds erratically but steadily downwards. <br>
+Its when im out of sight of the entrance that they strike. <br>
+Suddenly the Gator commander swings around and bellows an order. The Gators all around us swarm us. I manage to draw my sword and dodge beneath one swing for my head, but the confined of the passage leave me no room to maneuver without running into another gator or a corner.</p>
+
+<p>A blow lands hard, making me stagger, then another. I drop my weapon and grubby gator paws grab me and hoist me off my feet.</p>
+
+<p>The Gator commander laughs in my face, looking quite pleased with himself. I shouldn’t have trusted him.</p>
+
+<p>“Foolish Captain. This is why we fight! You are weak! You see now?”</p>
+
+<p>“Release me! My crew will crush you for this treachery!” I hiss, fighting against the numerous paws holding my limbs.</p>
+
+<p>“They will try! To save captain they will try hard! But they will only follow you into jaws, see.” The commander chortled and then opened his wide toothy maw before me.</p>
+
+<p>With a rough push, I’m shunted into the gape jaws and they snap down shut around me, locking me in place like a vice.</p>
+
+<p>I can but grunt, unable to move but wiggle between the teeth that entrap me. Before I can muster strength of a plan to save myself from this predicament the Gator tosses his jaws back, shunting me deeper, engulfing more of my body into his snout.</p>
+
+<p>The world tilts slightly and the looming gullet ahead yawns open and im sent plummeting down into its confining darkness. <br>
+A tongue shoves against my belly, muscles grip and pull and i’m being swallowed. <br>
+I struggle and try to brace, try to find grip. But the slick interior and steady squelch of swallows have me, I’m squeezed down the gators throat, just a rolling large bulge in his neck.</p>
+
+<p>There is another muffled chortle from all around me and then I slide down deeper, I feel my legs and tail follow the rest of me into the hungry gullet and soon that scaled Gator belly swells amply with my added weight.</p>
+
+<p>Try as I might, to claw and bite, the oppressive churning chamber just undulates and squashes me about, tiring me out and showing me no respite. Infact, my only reward is a quaking belch that tightens the chamber with a squeeze.</p>
+
+<p>He would use me as bait. Rile up my officer and crew. Make them throw themselves at my defenses hastily. <br>
+Before the groaning chamber has laid its final claim on me, I am no longer alone in it.</p>
 
 </div>
 
 <div class="negotiateSurrender hidden"><p><strong>A Consumate surrender</strong></p>
+<p>They seem uncertain, there is muttering and discord in the Gator ranks. <br>
+We have proven ourselves to be more than just a threat to them. They fear us and now my hard words seem to have struck a further cord with them.</p>
 
+<p>The Gator commander huffs and barks with his fellow subordinates, but they do not seem to be able to agree. He does not have as much control over them as he likes to think.</p>
+
+<p>“Turn the commander over to me and I will spare the rest of you!” I shout loudly over the din.</p>
+
+<p>That seems to tip the scales and suddenly they are fighting one another. It’s a brief struggle however, the Gator commander had very few loyal to him. It’s no longer him they fear the most.</p>
+
+<p>Brought to his knees and forced forward before me, I can’t help but smirk at him triumphantly.</p>
+
+<p>“You have wise underlings.”</p>
+</div>
+
+<div class="negotiateSurrenderA hidden"><p><strong>A Consumate surrender</strong></p>
+<p>“I think I’m beginning to understand how you Gators operate. I’ll be adding your former authority to mine.”</p>
+
+<p>I grip the gators snout, holding his jaws shut, then I close my mouth around them and begin to eat him. <br>
+The Gator commander is of sizable heft and girth, it’s going to leave my waist strained to fit him all, but he’s smaller than a Raptorian so he should not be a problem.</p>
+
+<p>He struggles and snarls, becoming a bit of a handful as his underlings surprisingly release him into my care. <br>
+As I yawn wider and my cheeks bulge around his entire head, I relish in the rare opportunity for such a lively meal to wrestle down into my stomach.</p>
+
+<p>After a few attempts to grab me, which i rebuff with a kick or pinning paw, I soon wrangle him down past his shoulders, steadily gulping around his arms and chest.</p>
+
+<p>The big Gator seems to see the writing on the wall then, the worst of his feistiness ebbing down to more of a petulance, as he tries to make things more difficult for me by discomforting me as much as possible.</p>
+
+<p>It’s no use. Already my furred stomach is swelling with his head and chest. I am vaguely aware of my escort helping peel off his arms and armor before i swallow it all. The gators watch in silence from behind their barricades. Any doubts they had about my threats now no doubt erased.</p>
+
+<p>Hind-legs and a chubby Gator-tail slurp down pleasantly past my lips as I grunt and huff at my body forcing itself to accommodate the huge meal. <br>
+With a final gulp, I seal the former pirate commander away in my gut. I feel him shift and move as my stomach grinds him into a curled foetal position.</p>
+
+<p>‘BOOOAAAAUURRP’ I belch and give the gut a firm pat.</p>
+
+<p>“Alright, lets get his mine cleared.” I point to my escort. “Have the Raptorians move in and make sure everyone disarms and are rounded up.”</p>
+</div>
+
+<div class="negotiateSurrenderB hidden"><p><strong>A Consumate surrender</strong></p>
+<p>I draw my sword and pull back and ‘thunk’ the struggling Commander hard on the brow with the pommel of my sword. He ceases his kicking and hissing, slumping in a groggy manner. <br>
+Gators may be tough, but I still remember my training.</p>
+
+<p>“Drag him out of here. We’ll have some questions for him later.” I tell my escort, who hasten to obey after waving for more Awes from the camp to join us and help.</p>
+
+<p>I turn to the other Gators who now look on with uncertainty on their faces.</p>
+
+<p>“You’re smarter than I thought.” I tell them and walk back to the camp. I order the Raptorians to move in and disarm and round everyone up from the mine. It seems that without leadership, there is hardly much resistance or coordination in the rest of the gators.</p>
 
 </div>
 
-
-
-
 <div class="prisoners hidden"><p><strong>Unexpected find</strong></p>
+<p>From the depths of the cave we uncover a bit of a surprise. The pirates had prisoners of their own, Gryph Islanders that they had forced into labor in the mine.</p>
 
+<p>The islanders are Lanagan and look haggard and starved. But hope is flaring in their eyes as we free them from their shackles.</p>
 
+<p>If they were not so weakened, I suspected they would have attacked our other Gator prisoners. <br>
+I see no reason to keep them around. They do not have much information to provide, except they do speak of an Island to the south-west where they had overheard the Awe fleet was supposed to been roaming. (Ofcourse, we have already been there.) (A brief comparison on charts confirm it is the island we have found clues about from other locations)</p>
 </div>
 
 <div class="late hidden"><p><strong>Ships spotted</strong></p>
+<p>I’m interrupted by a urgent message. Lookouts have spotted 2 sails approaching from the northwest. <br>
+They are too faint for me to make out, but after a brief discussion and a brief scouting forray from higher up by a keen-eyed Scout. They confirm that two mid-sized vessels are making their way straight toward us with haste and they are not Awe ships.</p>
 
+<p>They should be here before the day is over and it is likely they are pirates. I consult with my officers briefly, but the decision seems clear and they concur. I conclude our discussions with a summary.</p>
 
+<p>“We might win a confrontation, but not without great risk. We would have to abandon the island so not to be attacked in the back from the pirates in the mine. Also, if they both have Thunder-weapons like the other pirate we encountered, we won’t stand much of a chance of coming out of it without a crippled ship.”</p>
+
+<p>The officers reluctantly nod.</p>
+
+<p>“Very well. Pull back to the ship, we have no choice, we must leave immediately.”</p>
+
+<p>The siege camp is hastily abandoned. Anything useful on the island brought along to our ship.</p>
 </div>
 
 <div class="depart hidden"><p><strong>Depart</strong></p>
+<p>I order our departure and our ship raises anchor and start to ease its way out from the docks.</p>
 
+<p>This island would potentially make a suitable Naval base, that much is clear. It’s only downsides is its barrenness, wood and food would have to grown or imported from surrounding islands or from home. <br>
+It also lays in Lanaga claimed territory, although they do not currently have much in terms of control over the island. It is still somewhat of a diplomatic problem.</p>
 
+<p>As we put distance between us and the Island, our next destination awaits. We are ever deeper in the Thousand Isle sea. While there may be many places around to potentially explore, we have to stay focused on our goals and our leads.</p>
 </div>
+<script>
+ cadet[2].banter = [
+	{ target: '#Valnos', text: 'Finally, an island!', imageClass: "neutral"},
+	{ target: '#Glint', text: 'The ship will be busy.', imageClass: "smug"},
+	{ target: '#Ziggy', text: 'Too busy to push us around!?', imageClass: "smug" },
+	{ target: '#Valnos', text: "Maybe they'll let us ashore?", imageClass: "happy"},
+	{ target: '#Glint', text: 'Would love some solid ground under my paws.', imageClass: "concerned"},
+	{ target: '#Ziggy', text: 'Fight pirates!', imageClass: "happy"},
+	{ target: '#Valnos', text: 'Oh... maybe not that...!', imageClass: "blush"},
+	{ target: '#Ziggy', text: "You'd rather stay and swab the deck, eh? Then you won't need this!", imageClass: "smug"},
+	{ target: '#Valnos', text: 'Give that back! I just head it cleaned.', imageClass: "surprised"},
+	{ target: '#Ziggy', text: "Only officers get caps, you're a sailor now!", imageClass: "happy"},
+	{ target: '#Valnos', text: 'Come on Ziggy! Glint?', imageClass: "sad"},
+	{ target: '#Ziggy', text: 'Ooop, its in Glints pouch now!', imageClass: "happy"},
+	{ target: '#Glint', text: 'HEY!! Ah! Paws off!', imageClass: "blush"}
+];
 
+ cadet[1].banter = [
+	{ target: '#Glint', text: 'My shoulders are killing me!', imageClass: "sad"},
+	{ target: '#Ziggy', text: 'Tick-shifts reeking stinks!', imageClass: "suspicious"},
+	{ target: '#Valnos', text: 'He does push us further then the other Officers do.', imageClass: "sad" },
+	{ target: '#Glint', text: 'Why did we have to assemble crates only to pull them apart again for half a day?!', imageClass: "angry"},
+	{ target: '#Valnos', text: 'I suppose its educational.', imageClass: "neutral"},
+	{ target: '#Glint', text: "We're Officer-Cadets, not shipwrights or laborers!", imageClass: "suspicious"},
+	{ target: '#Valnos', text: "Not so loud! Last time you said that he doubled our workload!", imageClass: "blush"},
+	{ target: '#Ziggy', text: "Ye! Shut your squeaking gob Glint!", imageClass: "angry"}
+];
+
+ cadet[0].banter = [
+	{ target: '#Glint', text: "Who's is this broken hammer and why was is it on my bunk?", imageClass: "suspicious"},
+	{ target: '#Ziggy', text: 'Uh....', imageClass: "surprised"},
+	{ target: '#Valnos', text: "A carpenters hammer? Looks pretty ornate.", imageClass: "neutral" },
+	{ target: '#Ziggy', text: 'Ah...', imageClass: "concerned"},
+	{ target: '#Glint', text: "Whats the point of an elaborately ornate tool? It'll just break. Seems foolish and expensive.", imageClass: "angry"},
+	{ target: '#Valnos', text: "Perhaps it was not meant to be used?", imageClass: "suspicious" },
+	{ target: '#Ziggy', text: 'Its Officer Ticks hammer. I might have accidentally borrowed it.', imageClass: "concerned"},
+	{ target: '#Glint', text: "You...", imageClass: "surprised"},
+	{ target: '#Valnos', text: "...broke Ticks hammer?!", imageClass: "surprised" },
+	{ target: '#Ziggy', text:  "I didn't know it was important! You got my back, right?!", imageClass: "sad"},
+	{ target: '#Glint', text: "We're dead!", imageClass: "sad"}
+
+];
+
+
+</script>
 
 </body>
 </html>
