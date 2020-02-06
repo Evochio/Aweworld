@@ -20,6 +20,7 @@
   	state.visited.push("Themine");
 	var Themine = [];
 	var talks = 0;
+	var time = 0;
     state.Glint.status = 'available';
     state.Valnos.status = 'available';
 	state.Ziggy.status = 'available';
@@ -39,7 +40,7 @@
 			else if (_.contains(Themine, "special") && Themine.indexOf("cadetDiscovery") == -1) {
 			return "No way in now, cannot attack. Pack is resting."
 		}	
-			else if (_.contains(Themine, "cadetDiscovery") && _.contains(Themine, "special") &&   (Themine.indexOf("special2") == -1 || Themine.indexOf("special3") == -1)) {
+			else if (_.contains(Themine, "cadetDiscovery") && _.contains(Themine, "special") &&  (Themine.indexOf("special2") == -1 && Themine.indexOf("special3") == -1)) {
 			return "Main entrance blocked. But we can attack other hole. Not easier, not harder."
 		}	
 			else if (_.contains(Themine, "cadetDiscovery")) {
@@ -77,6 +78,9 @@
 		}
 		else if (_.contains(Themine, "special")) {
 			return "We need to clear this Cave-in. Have some thoughts about that."
+		}
+		else if (_.contains(Themine, "special") && Themine.indexOf("cadetDiscovery") == -1) {
+			return "We could try shouting through the rubble, but I dont think we'd achieve much"
 		}		
 		else {
 			return "Why waste time and hides. Force them out with a little ingenuity."
@@ -84,19 +88,25 @@
 		}
 		
 		if (officer3[x].name == 'Mirr') {
-		
-			if (_.contains(Themine, "negotiate1"))  {
+			
+			
+			if (_.contains(Themine, "special") && Themine.indexOf("cadetDiscovery") == -1  &&  (Themine.indexOf("special2") == -1 && Themine.indexOf("special3") == -1)) {
+			return "We have no line of communication. Shame, Ticks plans usually work out pretty well."
+			}
+			else if (_.contains(Themine, "negotiate1"))  {
 		
 			return "We offered them surrender once. If you think we have gained more leverage, the diplomatic options remain."
-			}	
+			}
+				
 			else {
 			return "Negotiation is my expertise. I speak Core and can get a dialogue going. If anything, at least give them a chance to surrender."
 			}
-			if (officer3[x].name == 'Garsch') {
+			
+		}
+		if (officer3[x].name == 'Garsch') {
 			return "I do not reccomend further assaults. Morale is low and even if we might succeed, it will be too costly."
 		
 			}
-		}
 	}
 	
 	
@@ -107,6 +117,10 @@
 	  officerButtonNames();
        officerDouble();
 		checkdeadRoster();
+		
+		if (_.contains(state.chapter, "uVessla") {
+		
+		}
 		
 		function checkneg() {
 			if ( talks >= 2 ) {
@@ -170,6 +184,7 @@
 	   $('#ram').on('click', function(e) {
         // change state here
 		Themine.push("ram");
+		 time -= 2;
         // end by using lib.goTo
 		lib.dialogue(e, "ram"),
         $("#assault").addClass("hidden");
@@ -177,6 +192,7 @@
 		$("#careful").addClass("hidden");
 		 $("#mine").removeClass("hidden");
 		  $(".ramText").removeClass("hidden");
+		  state.inventory.push("thunderpowder");
 		
       })
 	  
@@ -272,7 +288,14 @@
         // change state here
         // end by using lib.goTo
 		officerButtonNames();
-		lib.dialogue(e, "options"),
+		lib.dialogue(e, "options")
+		
+		if ( time >= 5 ) {
+		$(".btn").addClass("hidden");
+		$("#late").removeClass("hidden");
+		}
+		else {
+		
         $("#options").addClass("hidden");
 		 $("#decline").addClass("hidden");
 		
@@ -289,7 +312,7 @@
 		$("#officer1").removeClass("hidden");
 		$("#officer2").removeClass("hidden");
 		$("#depart").removeClass("hidden");
-		
+		}
       })
 	  
 	  
@@ -313,7 +336,7 @@
 			$(".assaultb").removeClass("hidden");
 			$("#assault2").removeClass("hidden");
 		}
-		if (Themine.indexOf("special2") == -1 || Themine.indexOf("special3") == -1) {
+		if (Themine.indexOf("special2") == -1 && Themine.indexOf("special3") == -1) {
 		$(".cadetDiscovery3").addClass("hidden");
 		}
 		
@@ -449,6 +472,12 @@
 		$("#assault3").addClass("hidden");
 		$("#assault4").addClass("hidden");
 		*/
+		if ( time >= 5 ) {
+		$(".btn").addClass("hidden");
+		$("#late").removeClass("hidden");
+		}
+		else {
+		
 		$(".btn").addClass("hidden");
 		
 		if (_.contains(Themine, "assault4")) {
@@ -464,6 +493,8 @@
 		$("#officer2").removeClass("hidden");
 		$("#depart").removeClass("hidden");
 		
+		}
+		
       })
 	  
 	  
@@ -472,16 +503,15 @@
 		Themine.push("assault2");
         // end by using lib.goTo
 		lib.dialogue(e, "assault2")
-        
+        time += 1;
 		if (_.contains(Themine, "cadetExplore") && Themine.indexOf("cadetDiscovery") == -1) {
 			$("#cadetDiscovery").removeClass("hidden");
 			$("#assault3").addClass("hidden");
 			$("#decline").addClass("hidden");
-			$(".cadetDiscovery").removeClass("hidden");	
 		}
 		else {
-				$("#assault3").removeClass("hidden");
-				$("#decline").removeClass("hidden");
+				//$("#assault3").removeClass("hidden");
+				$("#options").removeClass("hidden");
 				$(".cadetDiscovery").addClass("hidden");	
 		}
 		
@@ -496,6 +526,7 @@
 	   $('#assault3').on('click', function(e) {
         // change state here
 		Themine.push("assault3");
+		 time += 1;
         // end by using lib.goTo
 		if (_.contains(Themine, "cadetDiscovery") && (_.contains(Themine, "special2") || _.contains(Themine, "special3")) && _.contains(Themine, "assault")){
 		
@@ -504,7 +535,8 @@
 		$("#depart").removeClass("hidden");
 		$("#decline").addClass("hidden");
 		$("#assault3").addClass("hidden");
-		
+		 $(".weapon").removeClass("hidden");
+		 state.inventory.push("thunderweapon");
 		}
 		else {
 		
@@ -512,8 +544,9 @@
 		$("#assault3").addClass("hidden");
 		$(".assault3Text").removeClass("hidden");
 		$(".assault2Text").addClass("hidden");
-		$("#assault4").removeClass("hidden");
-		$("#decline").removeClass("hidden");
+		//$("#assault4").removeClass("hidden");
+		$("#options").removeClass("hidden");
+		$("#decline").addClass("hidden");
 		}
 		
 		if ($("#negotiateOff").hasClass("disabled")) {
@@ -526,18 +559,21 @@
 	  
 	    $('#assault4').on('click', function(e) {
         // change state here
+		 time += 1;
 		Themine.push("assault4");
 		if (_.contains(Themine, "cadetDiscovery") || _.contains(Themine, "special2") || _.contains(Themine, "special3") || _.contains(Themine, "assault")){
 		
 		$(".assaultGood").removeClass("hidden");
 		$("#depart").removeClass("hidden");
-		
+		 $(".weapon").removeClass("hidden");
+		 state.inventory.push("thunderweapon");
 		}
 		else {
 			$(".assaultBad").removeClass("hidden");
 			$("#options").removeClass("hidden");
 			officer3[0] = officer.garsch;
 			removeOfficer(officer.evok)
+			
 		}
         // end by using lib.goTo
 		lib.dialogue(e, "assault4")
@@ -551,6 +587,7 @@
 		
 		 $('#negotiate').on('click', function(e) {
         // change state here
+		 time += 1;
         // end by using lib.goTo
 		lib.dialogue(e, "negotiate"),
         $("#negotiateDom").removeClass("hidden");
@@ -582,11 +619,17 @@
 		
 		 $('#negotiateOff').on('click', function(e) {
         // change state here
-		
+		 time += 1;
         // end by using lib.goTo
 		if (_.contains(Themine, "negotiateOff") && _.contains(Themine, "assault3") && _.contains(Themine, "choiceMirr")) {
 				 $("#prisoners").removeClass("hidden");
 				lib.dialogue(e, "negotiateOff3")
+				 $("#prisoners").removeClass("hidden");
+				 $(".weapon").removeClass("hidden");
+				 state.inventory.push("thunderweapon");
+				 if (state.inventory.indexOf("powder") == -1) {
+					state.inventory.push("powder");
+				}
 			}
 			
 		else if (_.contains(Themine, "negotiateOff") && _.contains(Themine, "assault2")) {
@@ -596,8 +639,12 @@
 			 $("#options").removeClass("hidden");
 			 }
 			 else {
-			 
+			 $(".weapon").removeClass("hidden");
+			 state.inventory.push("thunderweapon");
 			 $("#prisoners").removeClass("hidden");
+				if (state.inventory.indexOf("powder") == -1) {
+					state.inventory.push("powder");
+				}
 			 }
 			
 		}
@@ -750,14 +797,49 @@
 		$("#negotiateBarg").addClass("hidden");
 		$("#negotiateBluff").addClass("hidden");
 		$("#negotiatePeace").addClass("hidden");
+		$(".weapon").removeClass("hidden");
+		state.inventory.push("thunderweapon");
+		if (state.inventory.indexOf("powder") == -1) {
+					state.inventory.push("powder");
+				}
+		$("#negotiateSurrenderA").removeClass("hidden");
+		$("#negotiateSurrenderB").removeClass("hidden");
+				
+      })
+	  
+	  $('#negotiateSurrenderA').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "negotiateSurrenderA")
+        state.vore +=1; 
+			
 		
+		$("#negotiateSurrenderA").addClass("hidden");
+		$("#negotiateSurrenderB").addClass("hidden");
 		$("#prisoners").removeClass("hidden");
 				
       })
 	  
+	    $('#negotiateSurrenderB').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "negotiateSurrenderB")
+        $(".gprisoners").removeClass("hidden");
+			
+		
+		$("#negotiateSurrenderA").addClass("hidden");
+		$("#negotiateSurrenderB").addClass("hidden");
+		$("#prisoners").removeClass("hidden");
+				
+      })
+	  
+	  
+	  
+	  
 	   $('#special').on('click', function(e) {
         // change state here
 		Themine.push("special");
+		 time += 1;
         // end by using lib.goTo
 		lib.dialogue(e, "special")
 		
@@ -775,16 +857,23 @@
 		}
 		else {
 			$(".cadetDiscovery").addClass("hidden");
+			$("#officer0").addClass("disabled");
+			$("#officer1").addClass("disabled");
+			
 		}
 		$(".specialText").removeClass("hidden");
 		$("#special").addClass("hidden");
-		$("#negotiate").addClass("disabled");
+		
+		$("#decline").addClass("hidden");
+		
+		
 				
       })
 	  
 	   $('#special2').on('click', function(e) {
         // change state here
 		Themine.push("special2");
+		 time += 2;
         // end by using lib.goTo
 		lib.dialogue(e, "special2"),
 		
@@ -796,12 +885,15 @@
 		$(".specialText").addClass("hidden");
 		$(".special2Text").removeClass("hidden");
 		$("#negotiate").removeClass("disabled");
+		$("#officer0").removeClass("disabled");
+		$("#officer1").removeClass("disabled");
 				
       })
 	  
 	   $('#special3').on('click', function(e) {
         // change state here
 		Themine.push("special3");
+		 time += 1;
         // end by using lib.goTo
 		lib.dialogue(e, "special3"),
 		
@@ -813,6 +905,8 @@
 		$(".specialText").addClass("hidden");
 		$(".special2Text").removeClass("hidden");
 		$("#negotiate").removeClass("disabled");
+		$("#officer0").removeClass("disabled");
+		$("#officer1").removeClass("disabled");
       })
 	  
 	  
@@ -824,7 +918,7 @@
 		$("#depart").removeClass("hidden");
 		
 		$("#late").addClass("hidden");
-		
+		$(".late2").removeClass("hidden");
 				
       })
 	  
@@ -837,7 +931,26 @@
 		$("#depart").removeClass("hidden");
 		
 		$("#prisoners").addClass("hidden");
+		$(".iprisoners").removeClass("hidden");
+		if (Themine.indexOf("ram") == -1) {
+			$(".negText").removeClass("hidden");
+		}
 		
+		
+		if (_.contains(state.locations, "Navpoint4")) {
+			$(".confirmtext").removeClass("hidden");
+			}
+			else {
+				state.locations.push("Navpoint4");
+			}
+			
+		if (_.contains(state.locations, "Sandbanks")) {
+			$(".confirmtext").removeClass("hidden");
+			}
+			else {
+				state.locations.push("Sandbanks");
+			}
+	
 				
       })
 	  
@@ -846,6 +959,10 @@
 	  $('#depart').on('click', function(e) {
         // change state here
         // end by using lib.goTo
+		if (_.contains(state.inventory, "powder")) {
+			$(".powder").removeClass("hidden")
+		}
+		
 		lib.dialogue(e, "depart"),
 		
 		$("#obelisk").removeClass("hidden");
@@ -992,8 +1109,8 @@ The Scouts are ready to depart for a closer look.</p>
 
 <button class="btn btn-default hidden" id="habited"> Quicklink HabitedIsle</button>
 <button class="btn btn-default hidden" id="obelisk"> Quicklink The Obelisk</button>
-<button class="btn btn-defaul hidden" id="navpoint4"> Quicklink Navpoint 4 </button>
-<button class="btn btn-defaul hidden" id="sandbanks"> Quicklink Sandbanks </button>
+<button class="btn btn-default hidden" id="navpoint4"> Quicklink Navpoint 4 </button>
+<button class="btn btn-default hidden" id="sandbanks"> Quicklink Sandbanks </button>
 
 
 <span id="cadetButtons"> </span>
@@ -1013,13 +1130,13 @@ Soon they are too small to make out, at least for my eyes.</p>
 <p>The scouts return and deliver their report.</p>
 
 <p>“Captain, the Island is crawling with Gators. Hostile, they took a few shots at us. They have clearly spotted us and appear to be scrambling with activity. It seemed a bit chaotic and unorganized but it looked like they were preparing defenses and moving things into a cavern. ”</p>
-<div class="scout4 hidden"
-<p> 4 Scouts:</p>
+<div class="scout4 hidden">
+<p>Scout Bonus:</p>
 
 <p>“The ship appears largely unarmed. But it is crewed enough to prepare to leave. They were pulling up the anchor.”</p>
 </div>
-<div class="scout5 hidden"
-<p>5 Scouts:</p>
+<div class="scout5 hidden">
+<p>Major Scout bonus:</p>
 
 <p>“Captain, Scout Vessla report discovered they are have a Thunder-Shot weapon. I confirmed sighting it myself after he pointed it out. So far we’ve only seen one. It appeared to be on some manner of carriage and mobile, they were setting it up in our direction.”</p>
 </div>
@@ -1900,7 +2017,38 @@ They are too faint for me to make out, but after a brief discussion and a brief 
 <div class="depart hidden"><p><strong>Depart</strong></p>
 <p>I order our departure and our ship raises anchor and start to ease its way out from the docks.</p>
 
-<p>This island would potentially make a suitable Naval base, that much is clear. It’s only downsides is its barrenness, wood and food would have to grown or imported from surrounding islands or from home. <br>
+<div class="weapon hidden">
+<p>The Thunder Weapon is captured. Officer Tick and Officer Ulv are inspecting it, but I highly doubt we’ll be able to put it to use ourselves. Officer Tick is very adamant about the potential danger of mishandling such volatile forces and even Officer Ulv, though eager, is in agreement.</p>
+<div class="gprisoners hidden">
+<p>Only one of out prisoners still alive who had an inkling about how to use it is the Commander and I couldn’t quite trust his ‘help’ with it. </p>
+</div>
+</div>
+<div class="powder hidden">
+<p><span class="negText hidden">Thanks to peaceful negotiations,</span> <span class="ramText hidden">On the ship we rammed and disabled,</span>  we have been lucky to procure some powder used by the Thunder weapon. It will no doubt come of use.</p>
+</div>
+
+<div class="gprisoners hidden">
+<p>We’ve taken the Gator pirate leader prisoner. He’s refusing to talk ofcourse, but we’ll keep him around incase he changes his mind or we might find use for him.</p>
+
+<p>I suspect he was not of particularly high rank, but he’s quite clearly smarter than most of the other prisoners we’ve captured. They have more forthright but had little of interest to say. <br>
+Most of them speak of bases around Thousand Isle, but have no clear idea of where those bases are.</p>
+</div>
+
+<div class="iprisoners hidden">
+<p>The Islander prisoners we freed have assured us they can take care of themselves and have not requested transport. Around the supplies of the mining camp there are numerous smaller boats which they intend to use to travel back to their tribe.</p>
+
+<p>They have helpfully marked some points of interest on our maps, some we already knew of. Old rendezvous point marked as Navpoint 4 and then a group of  islands called the“Sand Isles” beyond them inhabited by the Kaelani tribe</p>
+</div>
+<div class="late2 hidden">
+<p>Unfortunately we were unable to recover the Thunder weapon or any useful information from this island. It is likely they will reinforce it thoroughly now.<br>
+We should be able to escape the ships without a problem, our frigate is impressively fast on full sails.</p>
+</div>
+
+<div class="assaultBad hidden">
+<p>We lost Pack-Master Evok to the belly of a Gator in the assaults on the mines. This is going to be a blow to the effectiveness of my remaining Raptorians. Without a Pack-Master they are a little more uncoordinated.</p>
+</div>
+<p>Lastly, I've taken some notes about this island and its potential for a suitable Naval base. It has the right depth around the isle, there is already some infrastructure in place. The minerals on the island are also of interest, though the Ore they have been mining here are of appalingly low grade. <br>
+It’s only downsides is its barrenness, wood and food would have to grown or imported from surrounding islands or from home. <br>
 It also lays in Lanaga claimed territory, although they do not currently have much in terms of control over the island. It is still somewhat of a diplomatic problem.</p>
 
 <p>As we put distance between us and the Island, our next destination awaits. We are ever deeper in the Thousand Isle sea. While there may be many places around to potentially explore, we have to stay focused on our goals and our leads.</p>
