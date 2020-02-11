@@ -6,7 +6,7 @@
 
   <link rel="stylesheet" href="../../main.css"></link>
 
-  <script src="../../jquery-2.1.3.js"></script>
+  <script src="../../jquery-3.2.1.js"></script>
   <script src="../../underscore.js"></script>
 	<script src="../../bootstrap.min.js"></script>
  <link rel="stylesheet" href="../../bootstrap.min.css"></link>
@@ -15,16 +15,17 @@
     <script src="../../officers.js"></script>
   <link rel="stylesheet" href="../../main.css"></link>
   
-  <script>
-
+ <script>
+	var demoLevel = [];
     state.Glint.status = 'available';
     state.Valnos.status = 'available';
 	state.Ziggy.status = 'available';
 	
     $(document).ready(function() {
-		
+		testCadet();
 	   officer3 = [firstOfficer[0], officer.ulv, officer.tung];
-	   var demoLevel = [];
+	   $(".NotCadet").attr('src','../Images/assets/Tick.png');
+	   
 	   officerButtonNames();
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
@@ -36,6 +37,9 @@
         $("#scoutM").addClass("hidden");
 		$("#delay").removeClass("hidden");
 		$("#send").removeClass("hidden");
+		$("#side").removeClass("hidden");
+		$("#testbutton").removeClass("hidden");
+		$(".NotCadet").attr('src','../Images/assets/ScoutM.png');
 	})
 		
 		$('#delay').on('click', function(e) {
@@ -59,6 +63,7 @@
 		$("#officer0").removeClass("hidden");
 		$("#officer1").removeClass("hidden");
 		$("#officer2").removeClass("hidden");
+		$("#side").addClass("hidden");
 		
       })
 	  
@@ -67,7 +72,7 @@
         $("#officer0").addClass("hidden");
 		$("#officer1").addClass("hidden");
 		$("#officer2").addClass("hidden");
-		$(".ulvtext").removeClass("hidden");
+		$(".arntext").removeClass("hidden");
 		$("#expedition3").removeClass("hidden");
 		demoLevel.push("arn");
 		
@@ -77,7 +82,7 @@
         $("#officer0").addClass("hidden");
 		$("#officer1").addClass("hidden");
 		$("#officer2").addClass("hidden");
-		$(".arntext").removeClass("hidden");
+		$(".ulvtext").removeClass("hidden");
 		$("#expedition3").removeClass("hidden");
 		demoLevel.push("ulv");
 		
@@ -104,19 +109,19 @@
 		}
 		else {
 		lib.dialogue(e, "expedition3b")
-		$("#tickA").removeClass("hidden");
-		$("#tickB").removeClass("hidden");
+		$("#search2").removeClass("hidden");
+		$("#investigate2").removeClass("hidden");
 		}
 		
 		$("#side").removeClass("hidden")
 		if (_.contains(demoLevel, "arn")) {
-		$("#image").attr('src','../Images/assets/Arnface.png');
+		$(".NotCadet").attr('src','../Images/assets/Arnface.png');
 		}
 		else if (_.contains(demoLevel, "ulv")) {
-		$("#image").attr('src','../Images/assets/Ulv.png');
+		$(".NotCadet").attr('src','../Images/assets/Ulv.png');
 		}
 		else if (_.contains(demoLevel, "tung")) {
-		$("#image").attr('src','../Images/assets/Tung.png');
+		$(".NotCadet").attr('src','../Images/assets/Tung.png');
 		}
 		
 		$("#GThumb").addClass("hidden");
@@ -124,57 +129,101 @@
 		$("#ZThumb").addClass("hidden");
 		
       })
-	   
+	  
+	  $('#search2').on('click', function(e) {
+		lib.dialogue(e, "officerResponse"),
+		demoLevel.push("search2");
+        $("#search2").addClass("hidden");
+		$("#investigate2").addClass("hidden");
+						
+		$("#tickinv").removeClass("hidden");
+	
+      })
+	  
+	  $('#investigate2').on('click', function(e) {
+		lib.dialogue(e, "officerResponse2"),
+		demoLevel.push("investigate2");
+        $("#search2").addClass("hidden");
+		$("#investigate2").addClass("hidden");
+				
+		$("#tickinv").removeClass("hidden");
+		
+      })
+	  
+	  $('#tickinv').on('click', function(e) {
+		lib.dialogue(e, "tickinv"),
+		$(".NotCadet").attr('src','../Images/assets/Tick.png');
+        $("#tickinv").addClass("hidden");
+				
+		$("#tickA").removeClass("hidden");
+		$("#tickB").removeClass("hidden");
+      })
+	  
+	  
+	  	   
 	   $('#search').on('click', function(e) {
-		lib.dialogue(e, "cadets2"),
+		lib.dialogue(e, "officerResponse"),
+		demoLevel.push("search");
         $("#search").addClass("hidden");
 		$("#investigate").addClass("hidden");
 		$("#split").addClass("hidden");
-		$("#cadetsA").removeClass("hidden");
+		$(".tickface").addClass("hidden")
+		$("#cadetsD").removeClass("hidden");
 		
-		$("#cadetsC").removeClass("hidden");
-		$("#side").addClass("hidden")
       })
 	   
 	   $('#investigate').on('click', function(e) {
-		lib.dialogue(e, "cadets2"),
+		lib.dialogue(e, "officerResponse"),
+		demoLevel.push("investigate");
         $("#search").addClass("hidden");
 		$("#investigate").addClass("hidden");
 		$("#split").addClass("hidden");
-		$("#cadetsA").removeClass("hidden");
+		$(".tickface").addClass("hidden")
+		$("#cadetsD").removeClass("hidden");
 		
-		$("#cadetsC").removeClass("hidden");
-		$("#side").addClass("hidden")
       })
 	  
 	  $('#split').on('click', function(e) {
-		lib.dialogue(e, "cadets2"),
+		lib.dialogue(e, "officerResponse"),
+		demoLevel.push("split");
         $("#search").addClass("hidden");
 		$("#investigate").addClass("hidden");
 		$("#split").addClass("hidden");
+		$(".tickface").addClass("hidden")
+		$("#cadetsD").removeClass("hidden");
+		
+      })
+	  
+	   $('#cadetsD').on('click', function(e) {
+		lib.dialogue(e, "cadets2"),
 		$("#cadetsA").removeClass("hidden");
 		
 		$("#cadetsC").removeClass("hidden");
+		
+		$("#cadetsD").addClass("hidden")
 		$("#side").addClass("hidden")
+		$(".face").addClass("hidden")
       })
 	  
 	  
 	   $('#tickA').on('click', function(e) {
-		lib.dialogue(e, "cadets"),
+		lib.dialogue(e, "cadetsC"),
         $("#tickB").addClass("hidden");
 		$("#tickA").addClass("hidden");
-		$("#cadetsA").removeClass("hidden");
-		$("#cadetsB").removeClass("hidden");
+		
+		$("#encounter").removeClass("hidden");
 		$("#side").addClass("hidden")
+		$(".face").addClass("hidden")
       })
 	   
 	   $('#tickB').on('click', function(e) {
-		lib.dialogue(e, "cadets"),
+		lib.dialogue(e, "cadetsC"),
         $("#tickB").addClass("hidden");
 		$("#tickA").addClass("hidden");
-		$("#cadetsA").removeClass("hidden");
-		$("#cadetsB").removeClass("hidden");
+		
+		$("#encounter").removeClass("hidden");
 		$("#side").addClass("hidden")
+		$(".face").addClass("hidden")
       })
 	  
 	  
@@ -184,7 +233,21 @@
 		$("#cadetsB").addClass("hidden");
 		$("#cadetsC").addClass("hidden");
 		
+		if (_.contains(demoLevel, ("arn" || "tung") && "search")) {
+		$("#caught").removeClass("hidden");
+		}
+		else if (_.contains(demoLevel, "arn" && "split")) {
+		$("#caught").removeClass("hidden");
+		}
+		else if (_.contains(demoLevel, "ulv" && "investigate")) {
+		$("#caught").removeClass("hidden");
+		}
+		else if (_.contains(demoLevel, "ulv" && "delay")) {
+		$("#caught").removeClass("hidden");
+		}
+		else {
 		$("#raidA").removeClass("hidden");
+		}
 		
       })
 	  
@@ -209,6 +272,19 @@
       })
 	  
 	
+	$('#caught').on('click', function(e) {
+		lib.dialogue(e, "caught"),
+         $("#raidA").addClass("hidden");
+		$("#caught").addClass("hidden");
+		
+		
+		if (_.contains(demoLevel, "ulv")) {
+		$("#interrogate").removeClass("hidden");
+		}
+		else {
+		$("#tick").removeClass("hidden");
+		}
+      })
 	  
 	  $('#encounter').on('click', function(e) {
 		lib.dialogue(e, "cadetScene2"),
@@ -246,8 +322,168 @@
          $("#scouts").addClass("hidden");
 		$("#raptorians").addClass("hidden");
 		
-		$("#conclusion").removeClass("hidden");
+		$("#tickPleased").removeClass("hidden");
 	
+      })
+	  
+	  $('#tickPleased').on('click', function(e) {
+		lib.dialogue(e, "tickPleased"),
+		$("#tickPleased").addClass("hidden");
+		
+		$("#endDemo").removeClass("hidden");
+	
+      })
+	  
+	   $('#tick').on('click', function(e) {
+		lib.dialogue(e, "tick"),
+		
+         $("#tick").addClass("hidden");
+		$("#ticka").removeClass("hidden");		
+		$("#tickb").removeClass("hidden");
+		$("#tickc").removeClass("hidden");
+		$("#tickd").removeClass("hidden");
+		$("#testbutton").removeClass("hidden");
+		$("#side").removeClass("hidden");
+		state.Ziggy.status = "invisible";
+		$(".NotCadet").attr('src','../Images/assets/Tick.png');
+	
+      })
+	  $('#ticka').on('click', function(e) {
+		lib.dialogue(e, "ticka"),
+		
+        $("#conclusionxxxxxxxxxxx").removeClass("hidden");
+		$("#ticka").addClass("hidden");		
+		$("#tickb").addClass("hidden");
+		$("#tickc").addClass("hidden");
+		$("#tickd").addClass("hidden");
+		
+		state.Ziggy.status = "invisible";
+		$("#VThumb").addClass("new")
+		$("#GThumb").removeClass("hidden");
+		$("#VThumb").removeClass("hidden");
+		$("#side").removeClass("hidden");
+		$("#testbutton").removeClass("hidden");
+	
+	cadet[1].banter = [
+	{ target: '.NotCadet', text: 'You understand the fatal mistake Ziggy did now?'},
+	{ target: '#Glint', text: 'Yes, Officer', imageClass: "blushing"},
+		{ target: '.NotCadet', text: 'And what was that?', imageClass: "angry"},
+	{ target: '#Glint', text: 'She did not follow procedure tightening the cleats?', imageClass: "concerned"},
+	{ target: '.NotCadet', text: "That’s a given, but what effects would that have. Valnos?"},
+	{ target: '#Valnos', text: "Uhm… deep d-demotion?", imageClass: "surprised"},
+	{ target: '.NotCadet', text: "NO! By not following proper procedure, she again missed measuring the bore length for the screws!"},
+	{ target: '#Valnos', text: "B-but…The length was correct.", imageClass: "concerned"},
+	{ target: '.NotCadet', text: "She did not make sure! Such half-measures lead to inevitable mistakes. In this case, a possible loose cleat that tears loose during stress and throwing whatever or whoever relied upon it to the mercy of the winds. "},
+	{ target: '.NotCadet', text: "That’s two demerit marks now Valnos, I had hoped you aimed higher than my waist for your career."},
+	{ target: '#Valnos', text: "N-no, I mean, yes! I am!", imageClass: "concerned"},
+	{ target: '.NotCadet', text: "We will see. Next question, moving on to the bowsprit."}
+];
+	cadet[2].banter = [
+	{ target: '.NotCadet', text: 'You understand the fatal mistake Ziggy did now?'},
+	{ target: '#Glint', text: 'Yes, Officer', imageClass: "blushing"},
+		{ target: '.NotCadet', text: 'And what was that?', imageClass: "angry"},
+	{ target: '#Glint', text: 'She did not follow procedure tightening the cleats?', imageClass: "concerned"},
+	{ target: '.NotCadet', text: "That’s a given, but what effects would that have. Valnos?"},
+	{ target: '#Valnos', text: "Uhm… deep d-demotion?", imageClass: "surprised"},
+	{ target: '.NotCadet', text: "NO! By not following proper procedure, she again missed measuring the bore length for the screws!"},
+	{ target: '#Valnos', text: "B-but…The length was correct.", imageClass: "concerned"},
+	{ target: '.NotCadet', text: "She did not make sure! Such half-measures lead to inevitable mistakes. In this case, a possible loose cleat that tears loose during stress and throwing whatever or whoever relied upon it to the mercy of the winds. "},
+	{ target: '.NotCadet', text: "That’s two demerit marks now Valnos, I had hoped you aimed higher than my waist for your career."},
+	{ target: '#Valnos', text: "N-no, I mean, yes! I am!", imageClass: "concerned"},
+	{ target: '.NotCadet', text: "We will see. Next question, moving on to the bowsprit."}
+];
+	
+      })
+	  
+	  $('#tickb').on('click', function(e) {
+		lib.dialogue(e, "tickb"),
+		
+         $("#tickb1").removeClass("hidden");
+		 $("#tickb2").removeClass("hidden");
+		$("#ticka").addClass("hidden");		
+		$("#tickb").addClass("hidden");
+		$("#tickc").addClass("hidden");
+		$("#tickd").addClass("hidden");
+	
+      })
+	  
+	  $('#tickb1').on('click', function(e) {
+		lib.dialogue(e, "tickb1"),
+		
+         $("#tickb1").addClass("hidden");
+		 $("#tickb3").removeClass("hidden");
+			
+      })
+	  
+	  $('#tickb2').on('click', function(e) {
+		lib.dialogue(e, "tickb1"),
+		
+         $("#tickb2").addClass("hidden");
+		 $("#tickb1").addClass("hidden");
+		 $("#conclusionxxxxxxxxxxx").removeClass("hidden");
+			
+      })
+	  
+	  $('#tickb3').on('click', function(e) {
+		lib.dialogue(e, "tickb3"),
+		
+        
+		 $("#tickb3").addClass("hidden");
+		 $("#tickb4").removeClass("hidden");
+			
+      })
+	  
+	  $('#tickb4').on('click', function(e) {
+		lib.dialogue(e, "tickb3"),
+		/*digested?*/
+         $("#tickb2").addClass("hidden");
+		 $("#tickb3").addClass("hidden");
+		 $("#digested???").removeClass("hidden");
+			
+      })
+	  
+	  $('#tickc').on('click', function(e) {
+		lib.dialogue(e, "tickc"),
+		
+         $("#conclusionxxxxxxxxxxx").removeClass("hidden");
+		 
+		$("#ticka").addClass("hidden");		
+		$("#tickb").addClass("hidden");
+		$("#tickc").addClass("hidden");
+		$("#tickd").addClass("hidden");
+	
+      })
+	  $('#tickd').on('click', function(e) {
+		lib.dialogue(e, "tickd"),
+		
+         $("#conclusionxxxxxxxxxxx").removeClass("hidden");
+		 
+		$("#ticka").addClass("hidden");		
+		$("#tickb").addClass("hidden");
+		$("#tickc").addClass("hidden");
+		$("#tickd").addClass("hidden");
+	
+      })
+	  
+	   $('#interrogate').on('click', function(e) {
+		lib.dialogue(e, "interrogate"),
+         $("#interrogate").addClass("hidden");
+		$("#jail").removeClass("hidden");
+		$("#eat").removeClass("hidden");
+      })
+	  
+	   $('#jail').on('click', function(e) {
+		lib.dialogue(e, "jail"),
+         $("#jail").addClass("hidden");
+		$("#conclusionxxxxxx").removeClass("hidden");
+		$("#eat").addClass("hidden");
+      })
+	  
+	  $('#eat').on('click', function(e) {
+		lib.dialogue(e, "eat"),
+         $("#jail").addClass("hidden");
+		$("#conclusionxxxxxx").removeClass("hidden");
+		$("#eat").addClass("hidden");
       })
 	  
 	  
@@ -262,8 +498,7 @@
 	  $('#conclusion2').on('click', function(e) {
 		lib.dialogue(e, "conclusionC"),
          $("#conclusion2").addClass("hidden");
-		$("#eat").removeClass("hidden");
-		$("#jail").removeClass("hidden");
+		$("#interrogate").removeClass("hidden");
 		
       })
 	  
@@ -278,8 +513,7 @@
       })
 	  
 	})
-	
-	
+
   </script>
   
   <style>
@@ -299,22 +533,23 @@
 <body>
 <div id="head">
 <h1>Demo Level</h1>
-<div id="side" class="hidden">
- <img class="face" id="image" src=""/>
- <img class="face" src="../Images/assets/Tick.png"/>
-
 </div>
+<div id="side" class="hidden">
+ <img class="face hidden" id="image" src=""/>
+ <img class="face tickface hidden" src="../Images/assets/Tick.png"/>
+<span id="testbutton" class="hidden"> </span>
 </div>
 
 
 <div id="story-text">
+
 <p>The seas are rough and overcast. Spray of seawater regularly splash onto the deck and pool around before getting funneled out the sides.</p>
 <p>We are spared the worst of the salt-spray upon the higher deck of the helm, but I can see several miserable Awes who's unlucky shift it is to assist with the sails from the bottom of the riggings and lower decks. But such is the life of a sailor. Having salt-frayed and disheveled fur is something of an inevitable mark of a long time sailor, some even display it with pride.</p>
 <p>The seas are mostly shallow around the Thousand islands, so the waves do not become quite as monstrous and lethal as they do upon the true open sea. But despite my years of experience I still find myself cringing silently whenever start to crest a particularly large wave that looms like a dark wall of water.</p>
 <p>But my ship, 'The Attentive' is handling the waves with stride. It is built for this and I marvel now at the craftsmanship that allows it to so smoothly climb one wave after another. Our bow seems to split the sea before it as we crest another wave smoothly and gently flow down the other side.</p>
 <p>The ship isn't doing all of this on its own of course, it would be nothing without the expert handling of our navigator Nyxie at the helm.</p>
 <p>I hover by her side, observing our progress, but I've found myself grow fully confident in her ability to skillfully and accurately guide us to our destinations. I can put my mind to other matters as we make our way forward.</p>
-<p>Our destination is a lone island away from the other clusters and chains of islands. Its remoteness should guarantee that its uninhabited. Thus its one of the preset rendezvous points of the fleet that we are out here to find.</p>
+<p>Our destination is a lone island away from the other clusters and chains of islands. Its remoteness should guarantee that its uninhabited. Thus its one of the preset rendezvous points of the Admiralty fleet that we are out here to find.</p>
 <p>It is unlikely they will be loitering around this area, we are still at the edges of Thousand Isles proper, but its on the way and might offer clues.</p>
 <p>A cry from high up in the masts rouses me from my thoughts. &ldquo;Haaa-hoooo&rdquo; the pitched cry of the lookout calls, land has been sighted. Nyxies navigation has been on-point once more it seems.</p>
 <p>She has no time to grin in triumph however as she now shouts orders for the sails to be lowered to turn down our speed. She still has to get us close without crashing us into any inevitably lurking reefs.</p>
@@ -340,27 +575,34 @@
 <button class="btn btn-default hidden" id="investigate">Prioritize: Investigation</button>
 <button class="btn btn-default hidden" id="split">Split the effort</button>
 
+<button class="btn btn-default hidden" id="search2">Search Island</button>
+<button class="btn btn-default hidden" id="investigate2">Stay and assist</button>
+
+<button class="btn btn-default hidden" id="tickinv">Continue</button>
+
 <button class="btn btn-default hidden" id="cadetsA">Assist Tick</button>
 <button class="btn btn-default hidden" id="cadetsB">Forage</button>
-<button class="btn btn-default hidden" id="cadetsC">Assist Search</button>
+<button class="btn btn-default hidden" id="cadetsC">Assist Expedition</button>
 
-<button class="btn btn-default hidden" id="cadetsC">Continue</button>
+<button class="btn btn-default hidden" id="cadetsD">Continue</button>
 
-
-<button class="btn btn-default hidden" id="raidA">Raid</button>
-<button class="btn btn-default hidden" id="raidB">Raid</button>
-<button class="btn btn-default hidden" id="encounter">Encounter</button>
+<button class="btn btn-default hidden" id="caught">Continue Caught Kidnappers</button>
+<button class="btn btn-default hidden" id="raidA">Continue Raid</button>
+<button class="btn btn-default hidden" id="raidB">Continue Raid</button>
+<button class="btn btn-default hidden" id="encounter">Continue Encounter</button>
 
 <button class="btn btn-default hidden" id="scouts">Versatile approach</button>
 <button class="btn btn-default hidden" id="raptorians">Heavy approach</button>
 
+<button class="btn btn-default hidden" id="tickPleased">Tick debriefing</button>
 <button class="btn btn-default hidden" id="tick">Ticks Complaint</button>
 <button class="btn btn-default hidden" id="ticka">Allow Cadets disciplined</button>
 
-<button class="btn btn-default hidden" id="tickb">Accept Responsibility</button>
-<button class="btn btn-default hidden" id="tickb1">Full shift</button>
+<button class="btn btn-warning hidden" id="tickb">Accept Responsibility</button>
+<button class="btn btn-default hidden" id="tickb1">Half-Shift</button>
 <button class="btn btn-default hidden" id="tickb2">Back out.</button>
-<button class="btn btn-default hidden" id="tickb3">Full shift and Half</button>
+<button class="btn btn-default hidden" id="tickb3">Full shift</button>
+<button class="btn btn-default hidden" id="tickb4">Full shift and Half</button>
 <button class="btn btn-default hidden" id="tickc">Discipline Tick</button>
 <button class="btn btn-default hidden" id="tickd">Rebuke and Reject</button>
 
@@ -368,6 +610,7 @@
 <button class="btn btn-default hidden" id="conclusion">Conclusion</button>
 <button class="btn btn-default hidden" id="conclusion2">Conclusion</button>
 
+<button class="btn btn-default hidden" id="interrogate">Interrogate prisoner.</button>
 <button class="btn btn-default hidden" id="eat">Consume Prisoner</button>
 <button class="btn btn-default hidden" id="jail">Keep Prisoner</button>
 
@@ -421,11 +664,11 @@
 
 
 <div class="expedition hidden"><p><strong>Expedition</strong></p>
-<p>I'm informed we cannot simply sail around the island to the inlet. The only safe approaches are on the north and south side and we are on the southern side. We'd have to sail out and around and then return and with these hard waves and wind and sun low in the sky its best to leave that for tomorrow.</p>
-<p>For now I should send a crew ashore to go investigate the site (and recover our scout).</p>
+<p>I'm informed we cannot simply sail around the shore of the island to the inlet. Due to reefs, the only safe approaches are on the north and south side and we are on the southern side. We'd have to sail back out and around to then return and with these hard waves, wind and encroaching dusk its best to leave that for tomorrow.</p>
+<p>For now I should send a crew ashore to go investigate the site and recover our missing scout.</p>
 <p>The chosen officer and their team will secure the island and the beach and set up a small camp. We don't have many small boats and we cant get the 'Attentive' that close without risking beaching ourselves as well.</p>
 <p>As much as I'd like to go personally, Admiralty doctrine states to send at the most the First-officer for initial excursions like this. The Captain should always to stay with the ship unless its safety absolutely secure.</p>
-<p>Below are the Officers on the current rotation to handle the mission.</p>
+<p>Below are the Officers on the current rotation to potentially handle the mission. They all have their own methods which I should consider carefully.</p>
 <span class="theOfficer officerObjects"></span>
 
 
@@ -448,22 +691,21 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Ship ain't goin
 
 </div>
 
-<div class="expedition3a hidden"><p><strong>The Ship</strong></p>
-<p>We arrive on the north side to find our expedition waiting.</p>
+<div class="expedition3a hidden"><p><strong>The Ship: A report</strong></p>
+<p>We arrive early at dawn, sailing carefully into the secluded north bay and location of the "wreck" to find our expedition waiting.</p>
 <p>The expedition team reports finding little but dense and difficult brush and woods upon the island. There are no trails or initial signs of inhabitance. The second piece of news is a lot more troubling. The scout is missing.</p>
-
-<div class="tungtext hidden"><p>Tung returns to our ship with his report, there are twigs and brambles in his fur. “No one lives here, but there's been people on the island. Cut down trees and some old dismantled canoes left behind to the west. I don't believe there is but if there's anyone here they are very few and hiding well.” </p>
+<p>Im upon the deck of our ship, taking in this report along with the Scout-Master with growing concern.</p>
+<div class="tungtext hidden"><p>Tung continues to speak, there are twigs and brambles in his fur. “No one lives here, but there's been people on the island. Recently cut trees and some old dismantled canoes left behind to the west. I could be wrong and I don't believe there are many, but I have a feeling there might be a few someones hiding on the island.” </p>
 <p>"And the scout?" I fix Tung with a steady gaze. </p>
-<p>“Ah, beats me captain. They were not at the ship when we arrived. And if they did not fly back to the ship then... “ Tung made an elaborate shrugging motion. The Scout-Master spoke up. </p>
+<p>“Ah, beats me captain. They were not at the ship when we arrived. And if they did not fly back to the ship then...?“ Tung scowled deeply. The Scout-Master spoke up. </p>
 <p>“Standard procedure is to wait. He's the newest in my troop, but I cant think of a reason for why Scout Vessla would wander off.” The Scout-master rubbed his chin thoughtfully.</p>
-<p>“Well as I reported. There's signs of other visitors having been here. Seems clear to me that if we find them we might find out scout too.”</p>
+<p>“Well as I reported. There's signs of other visitors having been here, probably still are. Seems clear to me that if we find them we might find out scout too.”</p>
 <p>“Finding our scout is a high priority. But I also need this ship investigated. It holds too many mysteries that I need answers to.” I glance over at Officer Tick who has found his way to the briefing room without needing to be summoned. The short officer seems to have a knack for knowing when he's needed. That or he's as keenly interested in the stranded ship and its mysteries as I am. </p>
 <p>"Guess I'll prepare the fellows to head out for round 2." Tung smirked. </p> 
 </div>
-<div class="ulvtext hidden"><p>Ulv saunters up after having returned to the ship. She appears to have fortified the beach well. “We've set up a perimeter and cleared some vegetation to have better line of sight on the beach. There are a lot of curious tracks around the inlet and the stranded ship. But we saw no one, no scout or anyone. The ship is a mess too, poor thing.”</p>
-
+<div class="ulvtext hidden"><p>Ulv saunters up after having returned to the ship. She appears to have fortified the beach well. <br> “Its hard to tell and might be my imagination, but there are a lot of curious tracks around the inlet and the stranded ship. But we saw no one so probably wildlife. The ship is abandoned and a mess however, poor thing.”</p>
 <p>“No sign of the scout at all?” I fixed Ulv with a steady gaze. </p>
-<p>“No Captain. We beelined straight for the ship as planned, but they were not here. I set the lassies up to secure the ship first. Then we looked briefly around the woods surrounding the beach, but no signs. No answer to calls.” Ulv shifted weight around on her paws. </p>
+<p>“No Captain. We beelined straight for the ship as planned, but they were not here. I set the lassies up to secure the ship first. Then we looked briefly around the woods surrounding the beach, but no signs. No answer to calls.” Ulv shifted weight around on her feet. </p>
 <p>“Standard procedure is to wait. He's the newest in my troop, but I cant think of a reason for why Scout Vessla would wander off.” The Scout-master rubbed his chin thoughtfully. </p>
 <p>“Well its likely he did, or something on the island took him. We don't know whats out there, but its not a big island. We can make an effort to search it.” Ulv rubbed her paws together.</p>
 
@@ -471,7 +713,7 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Ship ain't goin
 
 
 
-<div class="arntext hidden"> <p>Arn looks relieved to be back on the ship, though he doesent look much worse for wear. “There appears to be no trace of any permanent inhabitants on this island. Though there were signs of cut down trees here and there, there are no Awes on the island of that I'm sure, no response to our cries.”</p>
+<div class="arntext hidden"> <p>Arn looks relieved to be back on the ship, though he doesn't look much worse for wear.</br> “There appears to be no trace of any permanent inhabitants on this island. Though there were signs of cut down trees here and there, so its been visited, but there are no Awes on the island of that I'm sure, no response to our cries.”</p>
 <p>"And the scout?" I fix Arn with a steady gaze. </p>
 <p>“There is no sign of the scout, captain. We've looked through the ship and called for them but got no response. They might have wandered off, but I don't know, its strange. Scouts are a disciplined bunch.” Arn paced slowly, nodding to the Scout-Master that hovered nearby. </p>
 <p>“Thats right Captain. Standard procedure is to wait. He's the newest in my troop, but I cant think of a reason for why Scout Vessla would wander off.” The Scout-master rubbed his chin thoughtfully. </p>
@@ -479,47 +721,126 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Ship ain't goin
 
 </div>
 
-<p>“Finding our scout is a high priority. But I also need this ship investigated. It holds too many mysteries that I need answers to.” I glance over at Officer Tick who has found his way to the briefing room without needing to be summoned. The short officer seems to have a knack for knowing when he's needed. That or he's as keenly interested in the stranded ship and its mysteries as I am. </p>
-<p>It appears the Awe-ship, a frigate of the same model of ours, is entirely abandoned. There appears to be nothing of use left behind, its stripped clean and is little but a empty husk.</p>
+<p>“Finding our scout is a high priority, but I need this ship investigated. It holds too many mysteries that I need answers to.” I glance over to the Scout-Master to hear what he has to say.</p>
+<p>"Captain, my troop are still recovering from the scouting mission, im afraid flying in those winds took their toll. We could deploy in a pinch, but we'll be of limmited help in an extensive search." </p>
+
+I glance over at Officer Tick who has found his way to the briefing room without needing to be summoned. The short officer seems to have a knack for knowing when he's needed. That or he's as keenly interested in the stranded ship and its mysteries as I am. </p>
+<p>It appears the Awe-ship, a frigate of the same model of ours, is entirely abandoned. There appears to be nothing of use left behind, its stripped clean and is little but a empty husk of wood and metal.</p>
 <p>The damage the scouts initially reported is extensive. Part of the main mast is missing and the hull carries several punctures on the side that match the kind of damage we sustained in our own battle not long ago.</p>
-<p>Its clear the frigate is unfit for open seas, was slowed considerably and would not have made it back home to port. The expedition have spent much of the night searching the ship for any messages or further clues but found nothing.</p>
+<p>Its clear the frigate was unfit for open seas, was slowed considerably and would not have made it back home to port. The expedition have spent much of the night searching the ship for any messages or further clues but found nothing.</p>
 <p>Tick knows these ships best, so perhaps he can uncover some clues others might have missed.</p>
 
-<p>There is a limit of how much crew I'm willing to send ashore at one time however. These are obviously hostile waters, if we're caught anchored in this tight bay by an enemy ship we're done for. So only enough Awes that can be quickly evacuated. </p>
+<p>There is a limit of how much crew I'm willing to send ashore at one time without confirmed threats however, we cant waste time getting the ships hackles up over nothing. These are obviously hostile waters, if we're caught anchored in this tight bay by an enemy ship we'd be in a real pinch. So for now, only enough Awes that can be quickly evacuated. That means I have to choose how to prioritize operations with what we have.</p>
 
-<p>That means I have to choose how to prioritize operations. Furthermore, the weather is slowly worsening, I do not want to become trapped here by a storm either so time is frustratingly limited.</p>
+<p>Furthermore, the weather is slowly worsening, I do not want to become trapped here by a storm either, so time is proving to be frustratingly limited.</p>
 
-<p>Prioritize searching for the scout by sweeping the island or give Tick all the paws he need to make a proper investigation of this ship. Of course I could try splitting the crew equally, but that might mean half-measuring both. </p>
+<p>Either prioritize searching for the scout by sweeping the island or give Tick all the paws he need to make a proper investigation of this ship. Of course I could try splitting the crew equally, but that might mean half-measuring both. </p>
 
 </div>
 
 <div class="expedition3b hidden"><p><strong>The Ship</strong></p>
 <p>We arrive on the north side to find our expedition waiting.</p>
 <p>The expedition team reports finding little but dense and difficult brush and woods upon the island. They confirm seeing no signs of inhabitance and that the island has little but minor wildlife on it. As long as there's no lost mystery crews running arounds the woods im satisfied. I'd rather investigate the mystery of the stranded ship and why its here.</p>
-<p class="tungtext hidden">Tung returns to our ship with his report, there are twigs and brambles in his fur. </br> “No one lives here, but there's been people on the island. Cut down trees and some old dismantled canoes left behind to the west. I don't believe there is but if there's anyone here they are very few and hiding well.” </p>
-<p class="ulvtext hidden">Ulv saunters up after having returned to the ship. She appears to have fortified the beach well.</br> “Its hard to tell and might be my imagination, but there are a lot of curious tracks around the inlet and the stranded ship. But we saw no one. The ship is a mess however, poor thing.”</p>
-<p class="arntext hidden">Arn looks relieved to be back on the ship, though he doesent look much worse for wear.</br> “There appears to be no trace of any permanent inhabitants on this island. Though there were signs of cut down trees here and there, there are no Awes on the island of that I'm sure, no response to our cries.”</p>
+<p class="tungtext hidden">Tung returns to our ship with his report, there are twigs and brambles in his fur. </br> “No one lives here, but there's been people on the island. Cut down trees and some old dismantled canoes left behind to the west. I cant be fully certain, but if there's anyone here they are very few in numbers and hiding well.” </p>
+<p class="ulvtext hidden">Ulv saunters up after having returned to the ship. She appears to have fortified the beach well.</br> “Its hard to tell and might be my imagination, but there are a lot of curious tracks around the inlet and the stranded ship. But we saw no one so probably wildlife. The ship is abandoned and a mess however, poor thing.”</p>
+<p class="arntext hidden">Arn looks relieved to be back on the ship, though he doesn't look much worse for wear.</br> “There appears to be no trace of any permanent inhabitants on this island. Though there were signs of cut down trees here and there so its been visited, but there are no Awes on the island of that I'm sure, no response to our cries.”</p>
 
 <p>It appears the Awe-ship, a frigate of the same model of ours, is entirely abandoned. There has been nothing of use left behind. Its stripped clean and is little but a empty husk.</p>
 <p>The damage the scouts initially reported is extensive. Part of the main mast is missing and the hull carries several punctures on the side that match the kind of damage we sustained in our own battle not long ago.</p>
-<p>Its clear the frigate is unfit for open-sea, was slowed considerably and would not have made it back home to port. The expedition have spent much of the night searching the ship for any messages or further clues but found nothing.</p>
-<p>Officer Tick is insistently requesting to disembark and investigate the stranded Frigate further. He also reports that despite the ship being thoroughly stripped of supplies he might be able to use the ship itself to gain some useful replacement parts for our own ship.</p>
+<p>Its clear the frigate is unfit for open-sea, was slowed considerably and would not have made it back home to port. The expedition has done a preliminary search of the ship for any left behind signs or messages but found nothing obvious.</p>
+<p>A more thorough investigation will have to be mounted, but first, the question of security. </p>
+
+<p class="arntext hidden">"Do you consider the island secure, First-mate Arn?" <br/>  
+"Relatively secure Captain. Ofcourse, the island could always be more thoroughly searched, but I'd say its safe to send in Tick and his team at least. The weather is worsening afterall, we dont have time to upturn every rock. Personaly I'd rather we stuck around camp and assisted them with the investigation." The First-officer muttered, picking a piece of dirt off his sleeve.<br/>
+"Im sure you would Arn." I huffed with a smirk.
+</p>
+<p class="tungtext hidden">"Do you consider the island secure, Officer Tung?" <br/>
+"Nay, Captain! I've got no solid proof, but a gut feeling there's someone out there! Those old canoes, the signs of cutting. I would like to check it out again." The officer stared off toward the island impatiantly. <br/>
+"Well the weather is getting worse, we cant stay here long. Do you consider it safe enough for sending in Tick and his team?" <br/>
+"Sure Captain, its no army hiding out there or anything."
+</p>
+<p class="ulvtext hidden">"Do you consider the island secure, Officer Ulv?" <br/>
+"Oh, sure captain! I mean, we didnt really sweep the island or anything, but if there was anyone out there, us or the scouts should have seen 'em by now."  <br/>
+"Good, i'll send in Officer Tick and his team then. Weather is worsening and we dont have much time."  <br/>
+"Alright Captain! Want us to take a look around the island before its time to leave or shall we stay and watch their backs?"
+</p>
+</div>
+
+<div class="tickinv hidden"><p><strong>The Ship</strong></p>
+<p>Officer Tick is impatiantly awaiting permission to disembark and investigate the stranded Frigate further. He also reports that despite the preliminary report stating the ship being thoroughly stripped of supplies, he might be able to use the ship itself to gain some useful replacement parts for our own ship through some light dismantling.</p>
 <p>He knows these ships best, so perhaps he can uncover some clues others might have missed too.</p>
-<p>But he'd need an extra day to perform his scavenging operation.</p>
+<p>But besides investigating, he'd only need an extra day to perform his scavenging operation.</p>
 <p>The weather is worsening and we do not have very long until we risk being trapped by a storm. An extra day might be pushing it, but im sure Tick knows that.</p>
+</div>
+
+<div class="officerResponse hidden"><p><strong></strong></p>
+<div class="arntext hidden"><p><strong></strong></p>
+<p>“Aye Captain, if thats your wish. I don't believe there is much to find out there but twigs and burrs but if thats your order, we'll make sure.” The First-Officer gruffed glumly. He was not happy about the assignment and orders, but at least he was not straining against them like he used to.</p>
+
+<p>“We could take the Cadets along.” Arn suddenly suggested. “I hear they have been driving Officer Tick into early shedding.”</p>
+
+<p>I considered this briefly. I had some assignments of my own I was planning to make them busy with.</p>
+
+<p>“Let me talk to them first, I will let you know if they join you in a bit.”</p>
+
+<p>“Aye Captain.”</p>
+</div>
+
+<div class="ulvtext hidden"><p><strong></strong></p>
+<p>“You want us to traipse up and down the woods of the Island, aye? Well, I suppose thats fair, we hardly gave it a very good look over on the way in to the bay.”</p>
+
+<p>Ulv scratched at her prominent neck-tuft before shrugging.</p>
+
+<p>“I'll round up the girls and take a walk around the island Captain. If there's anyone out there we'll give 'em a smack and gulp!”</p>
+
+<p>I blinked once but decided not to question what that meant, I think I got the gist of it.</p>
 
 </div>
 
+<div class="tungtext hidden"><p><strong></strong></p>
+<p>“Good! I feel it in my pelt that there's someone out there watching us.”</p>
+
+<p>Tung smacked his paws together audibly and grinned savagely. As always he defied the timid male stereotype with more gusto then anyone.</p>
+
+<p>“We shall head out immediately.</p>
+</div>
+</div>
+
+
+<div class="officerResponse2 hidden"><p><strong></strong></p>
+<div class="arntext hidden"><p><strong></strong></p>
+"Very good, Captain. We shall help out where we can, though knowing Tick he'll probably prefer 'amateurs' to stay out of the way."
+</div>
+
+<div class="ulvtext hidden"><p><strong></strong></p>
+<p>“As you wish Captain, we'll ensure they work undisturbed. Ain't no critter getting through my 5-point field perimeter!”  </p>
+
+<p>I nodded and returned Ulvs confident smirk. She took defensive operations seriously like none other.</p>
+
+</div>
+
+<div class="tungtext hidden"><p><strong></strong></p>
+<p>“Alright Captain, your call. My team shall watch the beach instead, oh... and help out I guess. Wait, you said you're sending Tick? Uh... Beach it is. ”</p>
+
+<p>I quirked my brow at this, but Officer Tung didn't offer anything more. Hard to think the large officer had anyone he was wary of.</p>
+
+</div>
+</div>
+
+<div class="officerResponse3 hidden"><p><strong></strong></p>
+
+
+</div>
 
 <div class="cadets hidden"><p><strong>Busywork for Cadets</strong></p>
 <p>The cadets have been growing restless and getting underfoot. Tick has been responsible for their duties the past few days and it hasent been exactly problem free, they've been full of mischief. They need a mission of their own to occupy their time and give them some overdue experience as junior officers. There are a number of things they could be put in charge of that I can think of.</p>
-<p>Since they have been Officer Ticks charges for the past week, they could be ordered to continue assist Ticks operation with the stranded ship. Unless they greatly rouse his ire, that would be the "safest" option. There's a chance they might be more of a hindrance then help, but Tick rarely tolerates any nonsense and im sure he can handle them.</p>
+<p>Since they have been Officer Ticks charges, they could be ordered to continue assist Ticks operation with the stranded ship. Unless they greatly rouse his ire, that would be the "safest" option. There's a chance they might be more of a hindrance then help, but Tick rarely tolerates any nonsense and im sure he can handle them.</p>
 <p>They could also be set to work to find useful supplies on the island and give Officer Tick some respite. We are not really in any kind of short supply, but it will be useful and arduous experience. The island is small enough that it would be quite a feat for them to get lost and they need a lesson in working together.</p>
 </div>
 
 <div class="cadets2 hidden"><p><strong>Busywork for Cadets</strong></p>
 <p>The cadets have been growing restless and getting underfoot. Tick has been responsible for their duties the past few days and it hasent been exactly problem free, they've been full of mischief. They need a mission of their own to occupy their time and give them some overdue experience as junior officers. There are a number of things they could be put in charge of that I can think of.</p>
-<p>Since they have been Officer Ticks charges for the past week, they could be ordered to continue assist Ticks operation with the stranded ship. Unless they greatly rouse his ire, that would be the "safest" option. There's a chance they might be more of a hindrance then help, but Tick rarely tolerates any nonsense and im sure he can handle them.</p>
+<p>Since they have been Officer Ticks charges, they could be ordered to continue assist Ticks operation with the stranded ship. Unless they greatly rouse his ire, that would be the "safest" option. There's a chance they might be more of a hindrance then help, but Tick rarely tolerates any nonsense and im sure he can handle them.</p>
 <p>They could also be set to help searching the island for our wayward scout. Marching up and down the brambled forest in rain with the rest of the search-party might be a sufficiently arduous and educational experience for them. Ofcourse, it goes without saying its more dangerous, but i cant coddle them forever.</p>
 </div>
 
@@ -545,8 +866,11 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Ship ain't goin
 <p>They would have to arrange transport to and fro on their own too of course.</p>
 </div>
 
+
 <div class="cadetsC hidden"><p><strong>Busywork for Cadets</strong></p>
-<p>&ldquo;You lot are joining the search party.&ldquo; I announced to the 3 arrayed cadets standing at attention.</p>
+<p>The cadets have been growing restless and getting underfoot. Tick has been responsible for their duties the past few days and it hasent been exactly problem free, they've been full of mischief. They need a mission of their own to occupy their time and give them some overdue experience as junior officers.</p>
+<br/>
+<p>&ldquo;You lot are joining the expedition party.&ldquo; I announced to the 3 arrayed cadets standing at attention.</p>
 <p>&ldquo;Yeah!&rdquo; Ziggy gleefully proclaimed, before withering under my gaze and returning to silence with a straightened back.</p>
 <p>&ldquo;This is no fun and games. There is potential danger involved and if you spot something you are to take no actions on your own. Is that understood?&rdquo;</p>
 <p>&ldquo;Yes captain!&rdquo; All three replied briskly. There was a varying level of excitement in them. This was in a way one of their first real expedition missions outside training.</p>
@@ -554,7 +878,12 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Ship ain't goin
 <p>&ldquo;Yes captain.&rdquo; The three replied more uncertainly.</p>
 <p>&ldquo;Report to the beach and to the expedition leader. Dismissed.&rdquo;</p>
 <p>The three of them scampered off with haste. I felt my claws itching with the desire to join them. But a captains duty is with her ship foremost.</p>
+<br/>
+<p>Its not long before the trio arrive at the beach to bolster the expedition. I watch from the bow of the Attentive, they are but tiny figures from here. Hopefully they wont encounter anything too exciting out there.</p>
 </div>
+
+
+
 
 <div class="raidA hidden"><p><strong>A raid in the night</strong></p>
 <p>Something has happened over night at the stranded Frigate. A rushed and confused report woke me to inform me that there has been some form of attack upon Officer Tick and his crew during the night. There are injuries and the officer is missing, apperently he's been captured in the confusion. The identity of our attackers are not entirely clear either, but they were apperently Gryphs, half a dozen or so.</p>
@@ -570,6 +899,87 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Ship ain't goin
 <div class="raidB hidden"><p><strong>A raid in the night</strong></p>
 
 </div>
+
+<div class="caught hidden"><p><strong>A raid in the night</strong></p>
+**Tung or Arn catches catches the hidden gryph islanders in the woods. 
+**Ulvs defensive perimeter succesfully repels their intrusion and achieves the same when they try to kidnapp Officer Tick. Ulv eats two of them. 
+
+<div class="ulvtext hidden">
+<p>There was a raid in the night. I woke as the faint sound of a warning horn echoed over the small bay we were anchored in.</p>
+
+<p>Its not long until I receive the report while attaching my cloak, sword-belt and hurrying out on deck.<br />
+Some Islander gryphs had been trying to sneak into the camp surrounding the stranded Awe-ship.<br />
+Ulvs diligent defensive perimeter however spotted them.</p>
+
+<p>“They appear to have been few in number, up to 4 of them at most Captain. I'm not sure what they were trying to achieve or steal.” My First-Officer reported. “They were apprehended and dealt with by Ulvs team. She ate two of them herself.”</p>
+
+<p>“On who's orders?” I frown surprised.</p>
+
+<p>“Their own I suppose. Orders were a bit hazy on prisoners. I suppose you wanted one to interrogate? ”</p>
+
+<p>I bite down a curse and dearly hope they were smart enough to leave one.</p>
+</div>
+</div>
+
+<div class="interrogate hidden"><p><strong>Interrogation</strong></p>
+<p>The Islander Gryphs sat upon the floor, their arms and wings bound behind their back. Not that Islanders were known for being good fliers, they were heavier and bulkier in nature then their lithe Kingdom counterparts. One would think only the flying ones would survive better among these isles, but apparently, that was not the case. <br />
+“He refuses to speak, but it’s clear he understands Trade-speech, Captain” Officer Garsch announced. The wily old officer had been prying the Islander with questions for an hour before I arrived but with no luck. He was using trade-speech now so the prisoner would understand. <br />
+“Even refuses an offered meal.” The officer grunted. <br />
+“Well, he’ll talk now that I’m here, won’t you? You won’t refuse a captain.”<br />
+The islander looked up and quirked the edges of his beak up in a grin.<br />
+“Finally you offer me a proper meal. How could I refuse the ships captain herself!”<br />
+Officer Garsch’s eyes hardened and he glanced to me briefly for confirmation to meet out punishment. However, I held up a staying paw and moved to crouch before the Islander. <br />
+“That’s a start, you speak. Now, why don’t the brave Islander give his future meal his name?”<br />
+“Croon-Whistler.” The Gryph chuckled. <br />
+“That’s a generic placeholder name used in Trade-speech for unidentified people.” Officer Garsch muttered from behind me. <br />
+“Why did you try to kidnap a member of my crew?” I asked firmly.<br />
+“Tell you what; I’ll whatever questions that comes from my gut.” The Islander chirruped and opened his beak wide. They had a surprisingly wide and pink-fleshed gape on them.<br />
+I sighed. It was never easy.</p>
+
+</div>
+
+
+<div class="jail hidden"><p><strong>Lock them up</strong></p>
+<p>“Put them in the brig. We shall sail for the Sand-Isles and ask more questions. Firm questions. Unless our guest becomes more forthcoming.” <br />
+“Aye, Captain.” Officer Garsch replied. <br />
+“Go ahead, deliver yourselves! But you will only find beak and claw there!”<br />
+I smirked smugly. Now we knew it’s where he came from. We had a possible destination to investigate. <br />
+Perhaps the prisoner would be a valuable bargaining chip later on. I believe their crude Island-law speaks of ransom for captured foes being a common tradition.</p>
+</div>
+
+
+<div class="eat hidden"><p><strong>Eat the prisoner</strong></p>
+<p>“You know, that sounds like a fun type of game. Let’s try a variant of it!” I rose and paced around behind the Islander. “Help me with this Garsch.”<br />
+With the help of my Officer the prisoner is pinned onto his belly. I grabbed ‘Croon-Whistlers’ clawed feet firmly. <br />
+“You try to guess what questions I want answered and answer as many as you can.” I growled along with a soft purr. Then promptly chomped down on the feet and began to swallow the prisoner down. It was my first Gryph meal, it would prove interesting. <br />
+“Awk! Squah!” The Islander protested, bucking his whole body, but Officer Garsch had a firm knee down between the tied wings of his back.<br />
+“Our captain can be quite fast, I’d start talking.” He growled. <br />
+The unfeathered feet of the Gryph had an interesting texture, almost like the hide of a Raptorian in some way, but rougher. Soon the legs followed, sliding smoothly down my gullet. <br />
+“Cease, stop! You break Island-law!” The Gryph cried out in increasing desperation. Island-law was the unofficial code of ethics around Thousand Isles I supposed. I had skimmed them in my documents somewhere, but it mattered not. <br />
+“On Admiralty ships and operations, only Admiralty Law apply.” Officer Garsch reliably replied.<br />
+I reached the Gryphs tail feathers and rump. I had to confess I enjoyed how the feathers tickled going down, they were not like fur at all. <br />
+“Brutes! Worse than the pirates you are!” Croon-Whistler spat. I was taking it slow to make sure the situation had time to set in. But already I was savoring the Gryphs belly, dragging myself up toward their chest.<br />
+Garsch was gradually releasing the prisoner, their frustrated struggles now pinned by the grip of throat and belly. <br />
+It wasent until my lips closed around their neck, my tongue starting to lap up under their chin, that words started to fall out of them.<br />
+“Its not right what you do…! Before, there was balance. Travelers, hunters who preyed on them and those who lived, like us, the!” <br />
+I swallowed a low long swallow, pulling the Gryphs head deeper toward my maw. <br />
+“Fur-wings upset balance! Too much travel, too much hunters and now you come to our territories and steal our harvests! Compel us to deals!”<br />
+“Hunters? Pirates you mean? Are you allied with them? Where are they?” Garsch demanded.<br />
+“Hunters everywhere! They prey not upon <Islander Tribe> like you Fur-wings do!” The islander shrieked as his head sank deeper.<br />
+“Don’t jest, we don’t prey on natives!” Garsch scoffed.<br />
+ “You forage and harvest our isles, make deals and offer silver! We cant eat silver, we must trade it and hunters see us with silver!” He spoke hastily, my teeth lining his view. “If <Islander-tribe> must take sides, we shall do what will protect tribe longest. Once Fur-wings driven away, balance returns!”<br />
+“So you DO ally yourselves with pirates.” Garsch growled low.<br />
+“There be bounty upon Furwings. Safety and protection in return for capture!”<br />
+I clamped my mouth shut around their beak, closing them in, then tilted my head back and swallowed hard. <br />
+The islander slid past my neck with solid bulge and a muffled cry. I sat back briefly to let my stomach envelop the meal fully and tighten up around them. It didn’t take long for them to settle. They were good eating. <br />
+“We have the tribe-name, the records from Admiralty points their settlements to not far from nearby Sand-Isles.”<br />
+“Very good, Captain. I shall ask Nyxie to plan us a course there.”<br />
+I rose sluggishly and my stomach sagged heavily before me, but I could take the weight without assistance.<br />
+There was one final matter to be settled. <br />
+</p>
+
+</div>
+
 
 <div class="cadetScene hidden"><p><strong></strong></p>
 <p>&ldquo;Ziggy stop!&rdquo; Valnos cries out shrilly, struggling to catch up to his fellow cadet. Besides him the gold furred cadet Glint keeps apace.</p>
@@ -603,6 +1013,194 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Ship ain't goin
 <p>The Islanders exchange glances and then pull back and dash off, leaving the three cadets breathless and stunned.</p>
 </div>
 
+<div class="tickPleased hidden"><p><strong></strong></p>
+<p>Officer Tick stood before me once more. For having been through an ordeal of being captured and nearly taken away to some unknown end, he seems like the same old bored Tick I'm familiar with. While this Officer was not a great combatant, he sure seemed unflappable.</p>
+
+<p>“So they revealed nothing of their intentions. What were the things they took, did you see?” I inquired from my seat in the Captains cabin.</p>
+
+<p>“No Captain, they kept their beaks shut. They seemed to have taken metals mostly. A piece of the hull-metal and some of the light plating from supports and struts.” Tick replied unimpassionatly.</p>
+
+<p>I mulled this over a while. Metal was very valuable in the west, it was certainly something worth stealing. But how had they known a ship was hidden here? And why kidnap an officer?<br />
+There was only one way to find those answers.<br />
+But first there was another matter.</p>
+
+<p>“And the Cadets. How do you review their conduct? Did they pass muster?” I grinned.</p>
+
+<p>“Not at all Captain. They were terrible help, constantly wasted breath on chatter, didn't know the difference between a Bow and a Mid-angle cut and generally dragged their feet. Do you wish for me to devour them?” Officer Tick snorted sullenly.</p>
+
+<p>“I don't know. They indeed are willful and foolish, but they did assist in recovering an officer of mine. They might not make good engineers but perhaps they are not terrible Officer-Cadets.” I chuckled as I leaned back.</p>
+
+<p>“Perhaps...” Tick agreed in a rare admission of what might be praise. He looked like he had more to say, but kept silent. I chose not to press.</p>
+
+<p>“Well, stow your gear Officer Tick. We are setting sail west.”</p>
+
+<p>Someone there among the Gryph Islander tribes of Sand-Isles had knowledge and interest in Awe ships and officers. Perhaps that would be our next destination.</p>
+
+<p>But first one last matter had to be dealt with. </p>
+</div>
+
+<div class="tick hidden"><p><strong>Complaint from Tick</strong></p>
+<p>“Permission to devour the cadets captain.” Tick suddenly announced himself and simultaneously requested at my door.</p>
+
+<p>“Excuse me, permission to do what?”</p>
+
+<p>Tick sighs, clearly frustrated with having to repeat himself. “I'm asking permission to consume the cadets.”</p>
+
+<p>I snap at him irritatedly for being so curt. “I heard what you said, but I need a bit of context and explanation here!”</p>
+
+<p>“They are rowdy, they are insubordinate and they chatter amongst themselves constantly about everything. They have caused the ship damage and need to be made an example of for the good of discipline and order.” Tick explained calmly with a steady tenor, arms behind his back.</p>
+
+<p>“Is this about your hammer? I found myself asking, holding back a grin rather successfully. To Ticks credit, he held his expression perfectly in his standard bored neutral.</p>
+
+<p>“No. But but it is one of many examples reckless thoughtlessness.” Tick replied.</p>
+
+<p>“Are they truly such menaces to warrant this...? I have not heard similar complaints of other officers. And I cannot punish someone to be forcibly deepened for excessive chatter.” I queried curiously.</p>
+
+<p>
+“During the week they have been under my tutelage, they have broken several tools. They perform tasks with no expedience and complain of orders.<br />
+They have grown complacent and lazy from lack of consequence and proper discipline. They are your direct subordinates and I cannot perform potentially impairing disciplinary actions to parties responsible without your permission. I do not mean to end anyone, only exert discipline.” Tick seemed to puff himself up. But he was the smallest of the Officers on board in stature, perhaps even one of the smaller Awes. It looked a little bit comical.</p>
+
+<p>But none of his words were fully as amusing. Though Tick was renowned on the ship for being being the toughest and most fastidiously hard to please Officer to work under he rarely raised a fuss up the rank unless something truly rankled him or somehow threatened the ship.</p>
+
+<p>“I sense some rebuke toward me there, do you imply to say that I am part responsible?” I fix the Officer with a cool gaze, deciding to test his resolve in this matter. Perhaps he's let out enough steam to have cooled his head.</p>
+
+<p>“... Yes Captain.” Tick replied after but a moments pause. “If you wish to take responsibility I'd be satisfied by consuming you in their stead.” He sensed the trap and doubled down. I'm momentarily utterly baffled by his boldness and impertinence. But he remains standing there in his 'at ease' posture, committed to his words.</p>
+
+<p>“Officer Tick, You have some guts!”<br />
+Someone there among the Gryph Islander tribes of Sand-Isles had knowledge and interest in Awe ships and officers.</p>
+
+</div>
+
+<div class="ticka hidden"><p><strong>Complaint from Tick</strong></p>
+<p>**Tick consumes one or several cadets. Briefly replacing their portrait with his belly. </p>
+
+<p>“Very well, Officer Tick.” I finally conceded after some thought. “Perhaps you’re seeing something I’ve missed. I give you permission to carry out what measures you think will help with discipline.”</p>
+
+<p>“Thank you, Captain.” Tick replied curtly. I watched him closely for any betraying emotions, but he was being hard to read. He took a step back toward the door, to tell he had nothing further on his mind. </p>
+
+<p>“Dismissed then.” I sighed and Tick turned and stepped out. Perhaps I had been playing favorites and coddled them too much. I knew they did not like Officer Tick much and thought he was rough on them. It made sense they would be mischievous enough to find subtle ways to get back at him. </p>
+
+<p>Well, he sure would get back at them now. Like or dislike, no doubt they would have to come to terms to accept him. Knowing Tick, he might omit to tell them their punitive dismissal to his gut is supposed to be temporary.</p>
+
+<img src="../Images/assets/Tickvore.png" height="40%" width="40%"/>
+
+</div>
+
+<div class="tickb hidden"><p><strong>Accept responsibility</strong></p>
+<p>Tick was riled up enough to confront me about this, even going so far as maneuvering this situation into<br />
+“Well, Officer Tick.” I turned and plucked my cap off my head and started to disrobe my heavy cloak and epaulets. “I'll take responsibility for my underlings, you are right to demand disciplinary action.”</p>
+
+<p>The usually stoic officer seemed to gulp visibly and shift his weight uncertainly. Perhaps he had not quite expected this outcome, neither was I. But this was the track we were going on.</p>
+
+<p>“I believe standard disciplinary stomach-time equals half a shift. For the three cadets thats a total of one and half shift-time, no?” I raised a brow at Tick, curious to hear his response. The Officer had stepped forward and started to loosen his necktie and vest. His movements were clipped, mechanical, nervous.</p>
+
+<p>“A full shift would be at the limit to where our career choices risk drastic change. There is no warrant for your permanent demotion.” Tick responded with all formality.</p>
+
+<p>“Very well, we will start with half-shift and then take it from there.”</p>
+
+<p>I walked across the room and opened my door briefly. Glint, the current attending Cadet on duty perked to attention.</p>
+
+<p>“Tell the First-Officer I will be indisposed for a shift or so and that they are in-charge for the time being.”</p>
+
+<p>Cadet Glint blinked, saluted, glanced once past me into the chambers at Officer Tick and then hurried off without a word.</p>
+
+<p>I then climbed into Officer Ticks mouth and proceeded to let myself get eaten.</p>
+<p>**Write more vore**</p>
+</div>
+
+<div class="tickb1 hidden"><p><strong>Half-Shift</strong></p>
+<p>Officer Ticks stomach was cramped and uncomfortable, he was not a very large Awe to find yourself crammed into. But I could tell it might had been much worse had he not had ample practice with stomaching Awe-kin, most High-Officers of his rank do.</p>
+
+<p>The Officer knew better however to try amble out of the room. Seeing their captain in the belly of the ships maintenance officer would only unnecessarily shake up their faith the strength and stability of their leadership. I felt him transport us to more comfortable seating, where he leaned back with a heavy sigh.</p>
+
+<p>We exchanged no words and let only the occasional hiccup, gurgle and stray belch sound in the room. This was informal, just plain protocol. An act that needed to be carried out.</p>
+
+<p>After four hours I admit I found myself having relaxed enough to almost doze off when Officer Tick spoke up, paw knead/shaking at me through the belly.</p>
+
+<p>“Half a shift as passed, Captain. Do you wish to space out this sentence or carry on?”</p>
+
+<p>His stomach was tighter around me. It had begun to churn and undulate faintly as his bodys gastric tract had begun to carefully probe at me. One can only mentally hold such at bay for so long.</p>
+</div>
+
+<div class="tickb2 hidden"><p><strong>Back-out</strong></p>
+<p>**Back out on the deal. Loose face the shorter you stayed in. 
+</div>
+
+<div class="tickb3 hidden"><p><strong>Full-shift</strong></p>
+<p>“We carry on Officer Tick” I replied curtly, trying to sound as formal and unbothered as possible. Though my voice was no doubt a little strained as his stomach-walls churned in response to my movement.</p>
+
+<p>“Humf... Very well Captain.” Tick replied as curtly as always. I felt him shift and jostle his body back. Something rested against my back on the outside of his belly. It took a while to realize he was reading a tome.</p>
+
+<p>The second half of the full shift was less pleasant. The Officers stomach grew increasingly slick and animated. Low grumbling groans and long drawn out grumbles echoed loudly around me and no doubt through the room.<br />
+There was little rest to be had as his body and stomach increasingly constricted itself firmer around mine, pulling me deeper against his body. Only the mental willpower of my Officer kept the true onslaught of digestion at bay.</p>
+
+<p>By the time I felt another firm shake and rub from his paws kneading against my form, almost in a possessive way. I was being kneaded and churned around in the midst of a chorus of wet sloppy eager burbles.</p>
+
+<p>“Thats a full shift, Captain.” Was all the Officer announced before waiting for my reply.</p>
+</div>
+
+<div class="tickb4 hidden"><p><strong>One and half-shift</strong></p>
+<p>“We shall... carry on, Officer Tick.” I grunted from within his distended noisy gut.</p>
+
+<p>I felt him shift once more, jostling me around as he moved with unknown purpose. It was hard to tell from within the dark roiling depths of my Officers stomach. But from the shift of angle, I think he was now laying down.</p>
+
+<p>“Very well Captain. As you choose.”</p>
+
+<p>Moments passed slowly, the undulating stomach shifted gear, each pulse and squeeze of muscle seemed stronger then the last. Sticky fluids was all in my fur and getting squelched and rubbed in everywhere. The stomach gourgled and glrrrnnned aggressively about me as it worked.</p>
+
+<p>It was hard to maintain concentration, I felt I was going in and out of focus. It was hard to discern elapsed time. I was about to ask the Officer, but I remembered he was a diligent one that would make sure to announce with this third and last half-shift ended.</p>
+
+<p>But even now I knew better. He was actively digesting me by now. An Awe can only hold back the workings of their belly for so long. He warned me too before going in. He had accepted my choice and now let his body deal with me.</p>
+
+<p>Glug, glurrnn, blurble. My world was a hot roiling stewing churning cauldron. Ticks small body would have no problems breaking mine down. He'd become a plump little Officer after he was through with me.</p>
+
+<p>“One and half-shift, Captain.” A faint voice announced somewhere far away. I added myself onto that voice.</p>
+</div>
+
+<div class="tickc hidden"><p><strong>Complaint from Tick</strong></p>
+<p>Officer Tick has stepped over the line. Right or not, as captain, I cannot let that go. </p>
+
+<p>“Officer Tick.” I thumped the ground with my tail for emphasis and hardened my glare. “If someone needs a lesson, it appears to me you have some attitude that needs to be put in check first!” </p>
+
+<p>Ticks ears drooped a little bit. The tone of my voice betrayed my discontent at our exchange. There were clear lines of authority and respect that had to be maintained, Tick had skirted beyond what was seemly. </p>
+
+<p>“Would you say you have a bad temper, Tick?” I place a paw to my hip eye him coolly. </p>
+
+<p>“Yes… “ Tick replies after a pause. “I can become hotheaded.” </p>
+
+<p>“Would you say storming into the Captains office and asking to devour Junior-Officers or the Captain in their stead a thought through cool-headed move?”</p>
+
+<p>Tick stood silent, averting his gaze downwards briefly before replying. “No.”</p>
+
+<p>“I agree. It is quite reckless, thoughtless and lacks respect toward your superiors’ position.” I cocked my head at Officer Tick, his wings and ears were drooping slightly, but he remained stiffly at attention. </p>
+
+<p>“Officer Tick, none of us are above critique, myself included, but as Officers we must stand above such behavior. I will converse with the Cadets about their conduct.” I stepped up to Tick and placed my paws on his shoulders. “You will be present. But as an example for what that kind of behavior will bring.”</p>
+
+<p>“Yes, Captain, I apologize Captain. “ Tick replied before I yanked him close and shoved his head into my mouth. <br />
+He tensed in my grip, but did not resist as I swallowed around him and pulled him up into my throat. </p>
+
+<p>Male Awes were as always smaller and lighter and were easy to get your jaws around, Tick wasn’t considered large even among male Awes, so it was with a somewhat pleased feeling of accomplishment that I managed to hoist him up over my head and down to his waist in a single motion.</p>
+
+<p>I closed my eyes and felt him slip down into my body, stomach filling out with his weight and mass. He did not kick or resist as his feet slipped into my gullet, but his longer than average tail did betray the emotions beneath his calm the way it flicked and whipped from my lips. <br />
+I let it dangle and flick about for a while and went to sit down to finish my paperwork while my stomach settled. </p>
+
+<p>I would have to have a serious talk with the Cadets. Unpleasant temper or not, Tick was still right. It would not do to appear to coddle or protect them too much. They had to respect their senior officers even if they did not agree with their decisions or demeanor. </p>
+
+<p>I rang the bell to call in the current attending Cadet standing ready outside my door. I just about remembered to swallow down the tail before Cadet Glint opened the door.</p>
+
+<p>“Yes, my captain?”</p>
+
+<p>“Summon your fellows once they are off their other shift-duties. We are going to have a talk.”</p>
+
+<p>Cadet Glint nodded firmly and then stared at my belly for a moment. She had let Officer Tick in but not out again. </p>
+
+<p>“R-right away, Captain!”</p>
+
+</div>
+
+<div class="tickd hidden"><p><strong>Complaint from Tick</strong></p>
+<p>**A stern lecture or other. Possibly scrap this.  </p>
+</div>
 
 <div class="conclusionA hidden"><p><strong>A raid in the night</strong></p>
 <p>I stand atop the mast in the crows-nest with the look out as he points out the tiny sails racing away from the island to me. Two very small vessels, perhaps not even as big as our landing crafts, are escaping the island toward the west. The boats are small enough to easily maneuver over and past the reefs covering the area there.</p>
@@ -663,6 +1261,7 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Ship ain't goin
 	{ target: '#Glint', text: 'Why did we have to assemble crates only to pull them apart again for half a day?!', imageClass: "angry"},
 	{ target: '#Valnos', text: 'I suppose its educational.', imageClass: "neutral"},
 	{ target: '#Glint', text: "We're Officer-Cadets, not shipwrights or laborers!", imageClass: "suspicious"},
+	{ target: '.NotCadet', text: "Ahem!"},
 	{ target: '#Valnos', text: "Not so loud! Last time you said that he doubled our workload!", imageClass: "blush"},
 	{ target: '#Ziggy', text: "Ye! Shut your squeaking gob Glint!", imageClass: "angry"}
 ];

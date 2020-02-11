@@ -6,7 +6,7 @@
 
   <link rel="stylesheet" href="../../main.css"></link>
 
-  <script src="../../jquery-2.1.3.js"></script>
+  <script src="../../jquery-3.2.1.js"></script>
   <script src="../../underscore.js"></script>
 	<script src="../../bootstrap.min.js"></script>
  <link rel="stylesheet" href="../../bootstrap.min.css"></link>
@@ -16,10 +16,332 @@
   <link rel="stylesheet" href="../../main.css"></link>
   <script>
 
+  
+  
+    var sandbanks = [];
+  
+  
+  
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
       
+	  $('#slow').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "slow")
+     
+		$(".btn").addClass("hidden");
+		$("#chase").removeClass("hidden");
+		$("#letgo").removeClass("hidden");
+						
+      })
+	  
+	  $('#letgo').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "letgo")
+     
+		$(".btn").addClass("hidden");
+		$("#leave").removeClass("hidden");
+		
+						
+      })
+	  
+	  
+	  $('#chase').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "chase")
+     
+		$(".btn").addClass("hidden");
+		$("#chase2").removeClass("hidden");
+		
+						
+      })
+	  
+	  
+	   $('#chase2').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "chase2")
+     
+		$(".btn").addClass("hidden");
+		$("#salvage").removeClass("hidden");
+		$("#noSalvage").removeClass("hidden");
+						
+      })
+	  
+	  
+	    $('#noSalvage').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "noSalvage")
+		sandbanks.push("noSalvage");
+		//Morale Check. Lead to complaint or delays?
+		/*
+		if ( state.crewMorale <= 8 ) {
+		
+		}
+		else {
+		}
+		*/
+		$(".btn").addClass("hidden");
+		$("#results").removeClass("hidden");
+						
+      })
+	  
+	  
+	  $('#salvage').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "salvage")
+     
+		$(".btn").addClass("hidden");
+		$("#watch").removeClass("hidden");
+		$("#help").removeClass("hidden");
+						
+      })
+	  
+	   $('#watch').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "watch")
+     
+		$(".btn").addClass("hidden");
+		$("#sword2").removeClass("hidden");
+		$("#direct2").removeClass("hidden");
+						
+      })
+	  
+	  
+	    $('#help').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "help")
+     
+		$(".btn").addClass("hidden");
+		$("#sword").removeClass("hidden");
+		$("#direct").removeClass("hidden");
+						
+      })
+	  
+	  
+	   $('#sword').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		
+		//Incase you're injured, lead to vore? 
+		if ( state.injuries >= 2) {
+		lib.dialogue(e, "swordb")
+		sandbanks.push("swordb");
+		$(".btn").addClass("hidden");
+		$("#vore").removeClass("hidden");
+		
+		}
+		else {
+		lib.dialogue(e, "sword")
+     
+		$(".btn").addClass("hidden");
+		$("#results").removeClass("hidden");
+		
+		
+		}
+				
+						
+      })
+	  
+	   $('#direct').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		
+		/* Experience check? 
+		if ( state.cadetExperience >= 2) {
+		
+		}
+		else {
+		}
+		*/
+		lib.dialogue(e, "direct")
+     
+		$(".btn").addClass("hidden");
+		$("#results").removeClass("hidden");
+		
+						
+      })
+	  
+	   $('#sword2').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "sword2")
+     
+		$(".btn").addClass("hidden");
+		$("#vore").removeClass("hidden");
+								
+      })
+	  
+	   $('#direct2').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		
+		/* Experience check? 
+		if ( state.cadetExperience <= 2) {
+		
+		}
+		else {
+		}
+		*/
+		lib.dialogue(e, "direct2")
+     
+		$(".btn").addClass("hidden");
+		$("#vore").removeClass("hidden");
+								
+      })
+	  
+	  
+	   $('#vore').on('click', function(e) {
+        // change state here
+		sandbanks.push("vore");
+        // end by using lib.goTo
+		if (_.contains(sandbanks, "swordb")) {
+			lib.dialogue(e, "vore2")
+		}
+		else {
+			lib.dialogue(e, "vore")
+		}
+		    
+		$(".btn").addClass("hidden");
+		$("#calm").removeClass("hidden");
+		$("#fuss").removeClass("hidden");
+		// Preyishness check? 
+		$("#submit").removeClass("hidden");
+						
+      })
+	  
+	  
+	   $('#calm').on('click', function(e) {
+        // change state here
+		sandbanks.push("calm");
+        // end by using lib.goTo
+		lib.dialogue(e, "calm")
+     
+		$(".btn").addClass("hidden");
+		$("#grrgl").removeClass("hidden");
+		$("#restart").removeClass("hidden");
+	
+						
+      })
+	  
+	   $('#fuss').on('click', function(e) {
+        // change state here
+		sandbanks.push("fuss");
+        // end by using lib.goTo
+		lib.dialogue(e, "fuss")
+     
+		$(".btn").addClass("hidden");
+		$("#grrgl").removeClass("hidden");
+		$("#restart").removeClass("hidden");
+	
+						
+      })
+	  
+	   $('#submit').on('click', function(e) {
+        // change state here
+		
+        // end by using lib.goTo
+		lib.dialogue(e, "submit")
+     
+		$(".btn").addClass("hidden");
+		$("#grrgl2").removeClass("hidden");
+		$("#restart").removeClass("hidden");
+	
+						
+      })
+	  
+	  
+	   $('#grrgl').on('click', function(e) {
+        // change state here
+		sandbanks.push("grrgl");
+        // end by using lib.goTo
+		
+     
+		$(".btn").addClass("hidden");
+		
+		if (_.contains(sandbanks, "calm")) {
+			$(".calm2").removeClass("hidden");
+			$("#restart").removeClass("hidden");
+		}
+		else {
+			$("#results").removeClass("hidden");
+			$(".fuss2").removeClass("hidden");
+		}
+		
+		lib.dialogue(e, "grrgl")
+	
+						
+      })
+	  
+	  
+	   $('#grrgl2').on('click', function(e) {
+        // change state here
+		
+        // end by using lib.goTo
+		lib.dialogue(e, "grrgl2")
+     
+		$(".btn").addClass("hidden");
+		
+		$("#restart").removeClass("hidden");
+	
+						
+      })
+	  
+	  
+	   $('#results').on('click', function(e) {
+        // change state here
+		
+        // end by using lib.goTo
+		if (_.contains(sandbanks, "noSalvage")) {
+		lib.dialogue(e, "results")
+		}
+		else if (_.contains(sandbanks, "vore")) {
+		lib.dialogue(e, "results3")
+		}
+		else {
+		lib.dialogue(e, "results2")
+		}
+		
+     
+		$(".btn").addClass("hidden");
+		
+		$("#leave").removeClass("hidden");
+	
+						
+      })
+	  
+	  
+	  
+	  $('#restart').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		location.reload(true)
+						
+      })
+	  
+	  
+	  
+	   $('#enoughGame').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "enoughGame")
+     
+		$(".btn").addClass("hidden");
+		$("#options").removeClass("hidden");
+		
+						
+      })
+	  
+	  
+	  
       $('#button-1').on('click', function(e) {
         // change state here
         // end by using lib.goTo
@@ -28,11 +350,12 @@
 		
       })
 		
-		$('#button-2').on('click', function() {
+		$('#leave').on('click', function() {
         // change state here
         // end by using lib.goTo
 		
-        lib.goTo('.html')
+        lib.goTo(state.chapter[0])
+        
       })
 	   
 	   $('#habited').on('click', function() {
@@ -66,21 +389,352 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 
 <div id="story-text">
-
-<p>Pursue Gryphs. Failure gets you stuck on Sandbanks and pirates find and attack you, but Awe-fleet rescues you. Evade sandbanks and find Tribe B homeislands.</p>
+<p>A ship has been spotted in the distance, moving slowly. It’s a smaller model, a single masted ship with a sail and headsail. There is some disagreement around whether to call it a sloop or a cutter, it seems to of a model we’ve not seen before. In a way it's reminiscent of a Wulf-ship, but it seems bulkier. <br>
+It’s much too far out to see properly, I am relying on reports from keener eyes then mine. It’s also too far out for the scouts to have a look at it still, the choppy tempramental winds not making anyone any favors. <br>
+It certainly fits the type of ship that could well be used by pirating. Too small to haul cargo or make too far away from the shallower coasts and isles. At the very least the crew could have some pertinent information. <br>
+We are still heavy with cargo, but we should be able to intercept it with full sails. Nyxie has a warning however. <br>
+“Captain. The charts are vague about this area, there are no overt warnings but it’s marked as shallow. I’d rather sail it slowly. If you want to have a chance to catch this ship, we have to go at speed however. It’s your call.” <br>
+This area of sea does not have as many isles around. Only a few very small tufts of greenery in an otherwise open sea. Nyxies warning isn’t without cause, in some areas the waves are breaking with clear signs of shallows. They look rather easy to spot and avoid however, especially for an experienced crew. I chafe at the idea of being too cautious and missing our quarry.</p>
 </div>
 <div id="tail">
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default" id="button-1"> Test </button>
-<button class="btn btn-default hidden" id="button-2"> Fleet </button>
-<button class="btn btn-default" id="habited"> Habited Isle</button>
+
+
+<button class="btn btn-default hidden" id="button-1"> Test </button>
+<button class="btn btn-default hidden" id="leave"> Continue journey </button>
+<button class="btn btn-default hidden" id="habited"> Habited Isle</button>
+
+<button class="btn btn-default" id="slow">Slow Approach </button>
+<button class="btn btn-default" id="letgo">Let it go </button>
+<button class="btn btn-warning" id="chase">Give chase</button>
+
+<button class="btn btn-default hidden" id="chase2">Continue</button>
+
+<button class="btn btn-default hidden" id="options">Problems and Solutions</button>
+
+<button class="btn btn-default hidden" id="noSalvage">Use Tools and Supplies at hand</button>
+<button class="btn btn-default hidden" id="salvage">Salvage the Wreck</button>
+
+<button class="btn btn-default hidden" id="help">Help them</button>
+<button class="btn btn-default hidden" id="watch">Watch how they handle it</button>
+
+<button class="btn btn-default hidden" id="sword">Do it yourself - Use your sword. </button>
+<button class="btn btn-default hidden" id="direct">Direct the Cadets.</button>
+
+<button class="btn btn-default hidden" id="sword2">Do it yourself - Use your sword. </button>
+<button class="btn btn-default hidden" id="direct2">Direct the Cadets.</button>
+
+<button class="btn btn-warning hidden" id="vore">Swallowed</button>
+
+<button class="btn btn-warning hidden" id="calm">Calm down</button>
+
+<button class="btn btn-warning hidden" id="fuss">Make a fuss</button>
+
+<button class="btn btn-danger hidden" id="submit">Learn to submit</button>
+
+<button class="btn btn-danger hidden" id="grrgl">Grrgl</button>
+
+<button class="btn btn-danger hidden" id="grrgl2">Grrgl</button>
+
+<button class="btn btn-default hidden" id="results">Results</button>
+
+<button class="btn btn-default hidden" id="restart">Restart</button>
+
+
 <span id="cadetButtons"> </span>
 <script>
 
 </script>
 </div>
-<div class="envoy hidden"><p><strong>Envoy</strong></p>
+<div class="slow hidden"><p><strong>Slow Approach</strong></p>
+<p>I take Nyxies advice and let her be in charge of the speed. There is a little surge of activity around the ship as the excitement of a chase or confrontation bristles the furs of the crew. <br>
+It’s not long before the distant vessel has made turned away from us and is picking up sails to try to escape. Whatever their intentions, they are not eager to fall into our grasp. <br>
+For a while it seems like we are catching up to them, but then Nyxie maneuvers us away from a direct approach due to some worrying signs of shallower waters between us and them, some of these small islands have shallow sandbars around them. It’s clear we will not catch up to them at this rate. <br>
+“I am sorry Captain.” Officer Nyxie explains. “There is no way to catch them at this rate. Shall we let them go?” <br>
+I mulled this over. Over the time we’ve been chasing them, some details of the ship have become clearer. They are not flying any banner at all and they do not look like a sailing ship. It’s leaning more and more toward some kind of unsavory types. <br>
+We could still catch them if I ordered us to forgo caution and go into full pursuit. The crew looks at me expectantly.</p>
 </div>
+
+<div class="letgo hidden"><p><strong></strong></p>
+<p>I shake my head slowly, it’s not easy to give up the chase, especially as we are in such desperate need for information. <br>
+The safety of the ship is paramount however. I order us to return to our original course. <br>
+The crew is disappointed, I can tell. They too are anxious to see us do more than just meander around the Thousand isles. But they obey and soon the excitement from earlier slowly dies down to normalcy. <br>
+Nyxie naviates us through some wide troughs and holes of the shallows to get us out of this region of sea without a problem. She at least seems to have enjoyed herself as always with the challenges.</p>
+</div>
+
+
+<div class="chase hidden"><p><strong></strong></p>
+<p>“I want them caught!” I announce. And that’s that. The officers and crew hasten to obey to make it happen. <br>
+Sails unfurl and the ships almost shudders as our speed increases steadily, cutting throw the waves with occasional sprays of saltwater. <br>
+Sailing crew shout to one another up in the masts and rigging, down at the deck, ropes are fastened, tightened or adjusted. <br>
+I can’t help but grin. This is not even the full speed this ship can go at, if only we were lighter. <br>
+The distant ship goes from being a blurry speck to more of a clear visible ship in flight. We’ll catch them now. <br>
+“Captain!” Nyxie called out, turning the ship sharply. “Sandbars! I must slow us down!” <br>
+I joined some of the crew motioning at the railings. Beneath us the sandy sea-floor was visible. Even now we passed right barely over a sandbar that must have been but arms lengths from our hull. <br>
+“Do it.” I acknowledge to the Navigator. But it takes time to slow the momentum of a big ship like this down. <br>
+Another sharp maneuver cuts much of the speed and sends several sails into a fritz as they flutter with the wrong adjustment to wind direction. Crew up in the masts looking just as animated and fussy as the sails they tend to. <br>
+“Captain, I think we’re a little trapped.” Nyxie gritted her teeth between exchanging shouts with sailing crew and lookouts, occasionally leaving the wheel very briefly to her lower officers to peer ahead or over the sides. Suddenly there’s a slight jolt as the whole ship shudders. Not the hard crack of running around, but scraping against the top of a sandbar all the same. <br>
+Nyxie is quickly in control of it and the ship turns sharply, tilting us all in an angle before we slow almost to a stop. Our sails mostly all lowered. We appear to have crashed into something.</p>
+</div>
+
+
+<div class="chase2 hidden"><p><strong></strong></p>
+Like a vengeful apparition, Officer Tick seems to have materialized on the command deck to find out what’s going on.  
+“Are you trying to beach us!? What is going on?” He demands. I give him a cold side-eye and it seems to quiet him down for the moment.
+“I can’t see a clear way out. We’re stuck in a ‘Trough’, I can’t turn us.” Nyxie announced. 
+I look for myself and so it seems. We’re in a trench between two shallow sandbars. It had happened quite quickly. 
+“How did you not catch the signs of running into this?” Tick muttered angrily, nearly hanging off the side of he ship in an attempt to inspect the hull. Nyxie ignored him. 
+“There has to be a hole or a cut through the Sandbar somewhere. But this is unlike any formation of sandbars I ever seen. We have to go very slowly.” The Navigator said, focused on her task.
+The ship we were pursuing was already making speed to escape and would likely do so. Perhaps this had been their plan all along, to lure us in here. They were on the other side of a island, little more than a sandy beach with some foliage on it. We had been skirting around it as close as we dared to get when the seafloor suddenly rose up to meet us. I had seen little signs of breaking waves either. 
+For now, we appear to be stuck.  
+</div>
+
+
+<div class="options hidden"><p><strong></strong></p>
+<p>We meet on deck briefly, the officers and I to confer about the situation and possible solutions. <br>
+We are trapped in a trench of deep water between two shallow underwater sandbars after having broken through over one. At the moment the trench is too narrow for us to turn around and forwards is just shallower. <br>
+Worst case scenario right now is that the tides will lower and leave us beached here for a long time. The tides being in slight flux due to the very recent and still abating “Three moon tide”, we cannot accurately predict how they will shift in these unfamiliar seas. While the overall sea level should be trending toward lowering over time (Weeks), come night, we believe the tides will rise slightly as the two wanderers pass below the horizon, giving us a better chance to turn the ship around safely break through over the Sandbar hemming us in. If we try too early, we are likely to get stuck. <br>
+Officer Tick has suggested putting the crew to work in digging a hole in the sandbar deep enough for us to sail through or turn around rather then chancing it with the tides. This is arduous and wet work however. <br>
+The small nearby island has a large beached old wreckage upon it. Tick has observed that materials from this could be used to build rafts and other contraptions that would speed up and assist our work without needlessly draining our own supplies. He has suggested a plan to build a kind of pump that will require a large platform to be hastily built together. Only the raw materials from the wreck will make that work without tearing the ship apart. <br>
+Between the option of waiting and doing something, I’ve decided to agree to Ticks plan. <br>
+Question remains how much to invest into it. Salvaging the wreck to assist us will put every crew member at work on this project with little rest, stretching us thin. But it might pay off in the end. Using our own supplies is more convenient, but it will use up a fair portion of it.</p>
+</div>
+
+
+<div class="noSalvage hidden"><p><strong></strong></p>
+<p>Officer Tick grumbles about it, but he’s soon biting at peoples tails to hurry it up and get his equipment deployed.<br>
+It is always impressive how he can coordinate and whip a workforce into gear in a short time-span. He’s shorter than all other Awes but no one would dare dream of trodding on his tail. <br>
+Getting the ship turned around will involve measurement and getting a lot of the crew into the sea to dig away and the sandbar. It will be hard work and no one likes to be wet.<br>
+ Elda has already raised some health concerns about potential length of duration in the water for Awe workers, she’s worried about ‘rotfur’ and other undercoat complications. Luckily the Raptorians do not suffer from these kinds of health concerns, not that they like laboring in the water much more, they are clumsy and seem to prone to getting saltwater into their noses which they seem to hate.<br>
+With our landing boats arrayed out in the water, crew diving, digging and working. It’s quite a noisy bustle of activity. <br>
+It attracts several curious very large seabirds that bob around and watch the proceedings. After a few nip at and harass the workcrews they’re promptly driven off with volleys of bolts from crossbows, many from Tick himself.</p>
+</div>
+
+
+<div class="salvage hidden"><p><strong></strong></p>
+<p>Work is divided. Everyone has to contribute. While the Raptorians reluctantly splash about in the water under the impatient directions of our maintenance officers, several boats row out toward the small sandy isle with the old washed up wreck on it. <br>
+I am on a boat myself with the Cadets. To help coordinate and potentially protect the work crews. Apparently several very large sea birds use the wreck and island as their nesting site and they are quite ornery about our presence. <br>
+As always there’s a babbling excitement from the Cadets about our assignment, especially as they get to do one with me personally for once. <br>
+Soon enough they’re running up and down the beach, waving swords or trying to take poorly aimed potshots at the peskiest and most aggressive of the pecking birds while work crews dismantle the wreck and row pieces back to our ship.<br>
+My presence is slightly superfluous, but it's nice to stretch your legs on land now and then, to remind yourself how unmoving ground feels like. <br>
+Soon another flurry of excited shouting reaches my ears from around the bend of the island. Unsurprisingly Ziggy has found trouble and decided to try to chase away the biggest bird i’ve seen. Whether it had been bothering anyone before she started agitating it I’m not sure about. <br>
+It appears to be some kind of variant of a pouch-billed bird, but it’s larger than the placid Peli’s we have in the east sea, it’s about my size, if not taller and it’s certainly bigger than the cadets. <br>
+With its waddling clumsy gait it charges at Ziggy who bravely stands her ground, she tries to parry its beak like it were a sword, trying to pull off a reversal, instead she gets her arms caught and is soon tossed about in the beak of the large bird with a loud ‘Yaaaaah!’. The other cadets rush to help, but not before half a cadet is about to make Awe-shaped outline in the beak pouch of the bird. <br>
+I can’t help but sigh.</p>
+</div>
+
+
+<div class="results hidden"><p><strong></strong></p>
+<p>It’s late into the night, the crew is exhausted and much of the work is done by lantern lights. But we’re at the highest point of night tide, there is no time for rest now.<br>
+I watch with interest now as our ship is slowly turned around. The bow scrapes softly against the Sandbar and a dozen Raptorians in the water strain, dig and push while space has been made on the ship to allow for our seldomly used oars to both help rotate the ship and push down against the sand.<br>
+Slowly, we squeeze past and around until we are suddenly loose and turning the whole way around. The crew erupts into a relieved cheer, for a brief moment, exhaustion forgotten. <br>
+A hoarse sounding Tick allows them a moment of respite, but before anyone can relax, he’s snapping at them again to hurry up and return all the equipment and boats back onto the ship. We still have to navigate out of here while we still can. <br>
+‘The Companion’ is up and will provide light in the sky for a while longer before darkness of deep night sets in and we have to find anchor to stop. <br>
+We used up a lot of supplies and energy of the crew, but we managed to break free. I will ensure they all get extra rations a while, perhaps we can open a barrel of prunes too.</p>
+</div>
+
+
+<div class="results2 hidden"><p><strong></strong></p>
+<p>Tick manages to tinker together a ingenious pump. For a while i’m worried that he’s gotten carried away with this project and that he’s building something a little too advanced. The floatation raft his work crew cobbled together is crude and ugly, however as the pump he built on it along with the small winch and scoop start getting to work, I realize we’re quickly going to catch up to any point potential manual labor would have reached before nightfall. <br>
+It’s still a tired a tired crew working hard well past dusk until we slowly start to turn the ship around. The bow scrapes softly against the Sandbar and a dozen Raptorians in the water and on the raft, push against a large leverage between ship and seafloor, while space has been made on the ship to allow for our seldomly used oars to both help rotate the ship.<br>
+Slowly, we squeeze past and around until we are suddenly loose and turning the whole way around. The crew erupts into a relieved cheer. Tick looks mighty proud and with good reason. <br>
+Before anyone can relax, he’s snapping at them again to hurry up and return all the equipment and boats back onto the ship. We still have to navigate out of here while we still can. <br>
+The clever construction on the raft is smashed and dismantled. Nothing ever goes wasted. <br>
+The crew is tired, but we are slowly on our way again. I’m sure they’ll appreciate the extra helping of birdmeat tonight.</p>
+</div>
+
+<div class="results3 hidden"><p><strong></strong></p>
+<p>After a quick dip in the sea to clean off the worst of the muck with the Cadets, even saltwater is preferable. I turn to the cadets and point at them firmly. <br>
+“We do not talk about this mess! We remember the hard lessons learned, but we do not talk about it with others!”<br>
+They all needed no further encouraging. I did not have much faith in these blabbermouths being unable to talk amongst themselves about it. But at least it was best if the crew know as little as possible about how we had spent the afternoon stewing in a large bird-belly. <br>
+The Salvage crew are still working hard, they hardly noticed we were gone and merely give us sidelong glances at our soaked through coats. We take the first boat back to the ship in silence and I inspect Ticks progress. <br>
+Tick manages to tinker together a ingenious pump. For a while i’m worried that he’s gotten carried away with this project and that he’s built something a little too overly complicated. The floatation raft his work crew cobbled together is crude and ugly, however as the pump he built on it along with the small winch and scoop are working away, I realize we’re quickly going to catch up to any point potential manual labor would have reached before nightfall. <br>
+Indeed, come dusk, the ship is turning and we squeeze our bow past and around the sandbar until we are suddenly loose and turning the whole way around. The crew erupts into a relieved cheer. Tick looks mighty proud and with good reason. <br>
+I retire to the groomery and Pouch-Matron Elda just tut-tuts at the state of my coat. At least the crew thinks I got stuck in somewhere. They’re mostly right.</p>
+</div>
+
+<div class="watch hidden"><p><strong></strong></p>
+<p>It’s a mix of incoordination and inexperience. Glint quickly tries to take charge, but she is clearly unsure of what to do. <br>
+Controversially Valnos seems to briefly have a better grasp of how to handle the beast, harrying it from another direction. <br>
+They manage to anger the avian by ineffectively clubbing at it with their swords, managing but to nick it at best. Glint appears to be afraid of being hurt backing away too far, making the large bird turn on Valnos suddenly, it buffets him hard with its wings, knocking him over and stepping on him to pin him. <br>
+Then the Peli raises its beak in the air and the squirming bulge of Ziggy makes a round descending lump in its neck as she’s swallowed. Her frustrated curses muffled but audible enough. <br>
+Even before the heavy lump of the Cadet has squeezed all the way down the neck into the bird body, its reaching down and snagging a squirming Valnos into its bill, giving him a little shake. <br>
+“Glint! Heeeelp! Captain!” Valnos cries out before he’s engulfed entirely as a morsel. <br>
+Glint hesitates for too long, wasting seconds to look at me for direction before spurred by Valnoses cries rushes in furiously. But the large bird is wisened up to their sloppy harrying, with Valnos still in its beak it snaps its beak down greedily on Glint who squeaks and growls.<br>
+At this rate, all three of my cadets are going to be bird food. That won’t look good on their officer applications. Now how to intervene. <br>
+Get involved directly or try to help them salvage the disaster.</p>
+</div>
+
+
+<div class="help hidden"><p><strong></strong></p>
+<p>The Cadets are being indecisive and the large Peli has nabbed Ziggy more firmly across the chest and waist in its large beak and gives her a worrying shake.<br>
+I frown at them, feeling more annoyance then concern. The peli has neither sharp beak or claws to be of any major danger.<br>
+“Quit playing with the wildlife sailor and drive it off.” I snap at them in annoyance.<br>
+“Aye, aye Captain...! But... it's got quite a... Yaaah!” Ziggy is interrupted as the Pelican seems to engulf half her body into his beak-pouch and starts to shove and toss her down into it. It's clearly trying to make a meal out of my cadet. The stupid bird has probably never seen Awes or a sword. Its oblivious to the slicing threat armed Awe possesses.<br>
+Ziggy is not doing a good showing of herself however, blinding swinging her sword against a rock and the other cadets trying to get close to help her and until losing her grip of it.<br>
+“Are you TRYING to get eaten, Cadet? Because I've been feeling rather peckish all morning. You could just have asked me instead!” I approach the bird angrily to save my clumsy subordinate. By now only her tail stuck out from the pelicans beak, the pouch underneath it squirming and bucking with movement.<br>
+The pelican eyes me with leery suspicion and spreads its wings to make itself look larger and caution me away. I imagine it can give a pretty heft blow with those wings. I have half a mind to just let it have its meal, but I have a responsibility to the crew.</p>
+</div>
+
+<div class="sword hidden"><p><strong></strong></p>
+<p>Decisiveness and speed, that’s how a good commander acts. I grip my handle, take a lunging step and draw directly into a quick slice. The bird likely never knew what hit it, it soon drops limp to the ground. Ziggy does not have to worry about sliding anywhere through that neck now. <br>
+She emerges with a angry flustered spat and growl from the large birds limp beak. She looks up at me, ears lowered in embarrassment and shame. <br>
+“I expect this bird to be plucked, cleaned, cooked and on my table by nightfall. Return with the next boat and help Chef Zat get it ready.” <br>
+Slowly the Cadets gathered themselves, looking disappointed, Ziggy recovering her sword from Cadet Valnos before I interrupted them. <br>
+“Just you Cadet Ziggy. The rest of you carry on.” <br>
+For a moment Ziggy looked furious, but she bit back whatever she was about to say and marched angrily down the beach to the landing area.</p>
+</div>
+<div class="swordb hidden"><p><strong></strong></p>
+<p>Decisiveness and speed, that’s how a good commander acts. I grip my handle, take a lunging step and draw directly into a quick slice. There is a sharp stabbing jolt of pain all along my shoulder down my spine and I falter mid-swing and fall to my knee. <br>
+The move would have been a flashy one, one i’ve practised many times. But I have forgotten about my recent injuries and Eldas warning about not putting such a strain on them. <br>
+I curse and hiss, recovering slowly, too slowly. I’ve only managed a superficial cut on the bird and now its enraged. I look up just in time as a wide open beak plunges down to envelop me. <br>
+I learn pretty quick that Pelis beaks are remarkably strong, no wonder the Cadets had such a hard time. The world tilts and a gullet encompasses my view.</p>
+</div>
+<div class="sword2 hidden"><p><strong></strong></p>
+<p>Cadet Ziggy is in the belly of the large Peli and Valnos and Glint are both struggling in the distended pouch of its bill. While Glint at least still has her sword in hand they’re both starting to panic at the prospect of being eaten by a large sea fowl. <br>
+It was quite simple to say that they really quite had the situation well out of paw. <br>
+“It’s going to eat us!” Valnos squeaked from the depth of the bill-pouch, while Glint was panicking at being forced into the beak more and more. <br>
+“Help, Captain!” She yelped as she slipped and the beak clamped shut around her two, pinching her hard enough to wince and drop her sword. <br>
+I drew my own and advanced, slowly shaking my head. <br>
+The Peli however was quite eager to instinctively protect its meal. It turns away from me while flapping its large wings. The buffet of wind is quite something, not something to advance at easily. <br>
+I look around for other Awes to order to my aid, but we’re a little ways away from the wreck where the main work is proceeding. <br>
+As I look back the Peli is much closer than before. It has suddenly decided to rush me and i’m knocked flat over as it bodily crashes into me. <br>
+It was a slight mistake, bad luck even, but enough to suddenly find myself dangling by my tail in the beak of the Pelican. It really was quite strong!<br>
+ From my upside down view I could see the large bulge of Glint and Valnos sliding past down its neck to join Ziggy in its gut. I’m about to give the large avian a much shorter neck with the blade in my paws when it suddenly shakes me around, sending the world into a confused jumble. <br>
+While ragged about, somehow somewhere my sword strikes against a rock with a hard clank and I lose my grip on it. <br>
+‘Urf’ Is all I’m able to muster, the world spinning. Then a beak closes itself around me too.</p>
+</div>
+
+
+<div class="direct hidden"><p><strong></strong></p>
+<p>“Valnos, get behind it. Stay on its tail feathers, pull at them if you have to, jump it if it tries to fly away. Glint, get its attention in the front, keep yourself at two steps. ” I calmly order the Cadets<br>
+“Aye Captain!” They respond in unison and hasten to obey. The Peli buffets its wings at Cadet Glint who flinches away, but two steps was just out of reach. <br>
+“Two steps, Cadet Glint! Don’t give it room to consider flight or I’ll have you chase it down alone!” I snap at her.<br>
+“Y-yes Captain!” She obeys hesitantly, staggering a bit as it charges at her, but she backpedals and keeps her correct distance while Valnos pulls at its tail feathers, making the large bird stop angrily and swipe around. <br>
+Ziggy meanwhile wriggles around in the large birds bill, grunting and huffing. She’s a strong lass, I am surprised she cant break herself free. That means the birds strength is not to be underestimated. Luckily it’s too harried to to swallow her… yet. <br>
+“Good. Now… as soon as it raises its beak to swallow Ziggy. Slice it right through the neck.” I point. “Both of you.”<br>
+They both nodded and looked quite nervous. The large Peli soon tires of trying to chase them away, seeing as it’s not been attacked it seems to no longer perceive the cadets as direct threats. It raises its head and Ziggy helps inside its bill as it tries to force her down its gullet. <br>
+Glint and Valnos both strike. It’s far from clean. The bird squawks in surprise but quickly collapses to the ground and expires from a second blow. <br>
+The two soon help pull Ziggy out by her feet and then look considerably cheered at their achievement. Ziggy looked appropriately embarrassed. <br>
+“I expect this bird to be plucked, cleaned, cooked and on my table by nightfall. Return with the next boat and help Chef Zat get it ready.” <br>
+Slowly the Cadets gathered themselves, Ziggy recovering her sword from Cadet Valnos before I interrupted them. <br>
+“Cadet Ziggy. You owe them for this one, ensure its a treat.” <br>
+Ziggy nodded and huffed a breath, eyeing the other two grudgingly.<br>
+“Aye, of course Cap.”</p>
+</div>
+
+
+<div class="direct2 hidden"><p><strong></strong></p>
+<p>Cadet Ziggy is in the belly of the large Peli and Valnos and Glint are both struggling in the distended pouch of its bill. While Glint at least still has her sword in hand they’re both starting to panic at the prospect of being eaten by a large sea fowl. <br>
+It will be tricky, but I try to raise my voice and shout at them to get to their senses. <br>
+“Glint! Stop flailing and stop kicking Valnos down underneath you. Look at this critically, you must work together!” I shout at them. “Stop it from closing its beak around you, jam yourself into the corners of its mouth, that way Valnos can crawl up.”<br>
+Glint hears me and looks my way, but her eyes are wide and she clearly wants me to do her work for her and save her. She looks reluctant at following my advice and getting anywhere closer to the back of the large birds mouth.<br>
+“It’s going to eat us!” Valnos mewls from within the beak.<br>
+“Valnos, listen!” I snap at him. “Only if you let it. Squirm your limbs out of there, you’re the smallest, wriggle out while Glint interferes.” <br>
+To his credit, he did try, managing to wriggle his legs out of the depth of the bill, starting to emerge while the Peli angrilly gummed and tries to close its beak around the two of them. <br>
+“Ow! Agh! It’s too strong Captain…!” Glint whined, then she lost her grip and the Peli gained the upper hand again, clamping its beak shut on them and clearly frustrated starting to swallow the two of them at once a sloppy manner. <br>
+“Nooooo!” The cadets whined in unison before they were choked down into a huge squirming lump in the neck of the Peli, both their tail and feet kicking from the corners of the beak. <br>
+I drew my sword. Perhaps it had been a long shot to hope for a different outcome. They were still fresh and inexperienced in face of real dangers. As the undulating bulge of the pair settled at the base of the neck of the bird, gulped around to squeeze them down, I advanced to finish the bird. <br>
+It would be a easy thing to sever the neck of the Peli, but the Cadets were in the way now. <br>
+It seemed that moment of hesitation was all the Pelican needed. It spread its wings, gulped them down and started to waddle flap down the beach away from me to try to fly off, even with such a huge bellyfull. <br>
+“Oh tangles.” I set off after it.
+
+<br>
+I learn pretty quick that Pelis do not like to be chased and react quite aggressively. Also that their beaks are remarkably strong, no wonder the Cadets had such a hard time. <br>
+</p>
+</div>
+
+
+<div class="vore hidden"><p><strong></strong></p>
+<p>Before I know it, I am sliding down the tight and taut gullet of the Pelis throat, a solid large round lump down its neck and then crammed down into its already full stomach. The squeaks and squirms of my fellow Awe cadets push against me as we're both mushed up together tightly in the birds distended belly. I groan with frustration, anger and disbelief. How did this happen!<br>
+But no amount of incredulity will help me escape this predicament and what’s worse, I can clearly feel the bird waddle back to its nest and make itself comfortable, likely nestling its beak under its folded wings and settle down to digest its huge prize catches of the day.<br>
+“I can’t move! Get off me!” A voice whined. “C-captain, what do we do!” Another of the cadets winced nearby, still looking to me for direction. <br>
+Its dark, my fur is increasingly slimy and the stomach muscles around constrict with rhythmic regularity. It is quite likely going to try digest us. The work crews might eventually look for us, but I am unsure they will be kicking over large sleeping birds to check how full their bellies appear to be. <br>
+I feel I must marvel at the efficiency and ease of how this large Peli made meals out of us. It is likely an old natural predator of Awes. Luckily separated by time and geography. <br>
+The Awe instinct to settle down without a fuss is strong, to accept your role in the food chain once tucked into a belly. Even if it’s the belly of a large feral clumsy looking bird.</p>
+</div>
+
+<div class="vore2 hidden"><p><strong></strong></p>
+<p>Before I know it, I am sliding down the tight and taut gullet of the Pelis throat, a solid large round lump down its neck and then crammed down its stomach. I bump into Ziggys fur and she grunts and pushes against me. <br>
+“What..! You’re supposed to rescue me, not join me! er… Captain!?<br>
+No amount of incredulity will help me escape this predicament and what’s worse, I can clearly feel the bird suddenly jostle and shift and to my chagrin, I am soon joined by the other two cadets, who had thought it a good idea to try to rescue me then get help. Now we were all caught in the mercy of this big bird, who’s likely nestling its beak under its folded wings and settle down to digest its huge prize catches of the day.<br>
+“I can’t move! Get off me!” A voice whined. “C-captain, what do we do!” Another of the cadets winced nearby, still looking to me for direction. <br>
+Its dark, my fur is increasingly slimy and the stomach muscles around constrict with rhythmic regularity. It is quite likely going to try digest us. The work crews might eventually look for us, but I am unsure they will be kicking over large sleeping birds to check how full their bellies appear to be. <br>
+I feel I must marvel at the efficiency and ease of how this large Peli made meals out of us. It is likely an old natural predator of Awes. Luckily separated by time and geography. <br>
+The Awe instinct to settle down without a fuss is strong, to accept your role in the food chain once tucked into a belly. Even if it’s the belly of a large feral clumsy looking bird.</p>
+</div>
+
+<div class="fuss hidden"><p><strong></strong></p>
+<p>“Don’t give up cadets! Even if things seem dire and humiliating, keep your spirits up.” I encourage them. <br>
+“But Captain… we’re..” I think it’s Glint mumbling. I cut her off. Still in a place like this, I have some small measure of authority. <br>
+“Talk if you need to talk, chatter away, but no defeatist attitudes here! We are not bested until we’re digested!” <br>
+That seems to work, the Cadets shift and huff and bicker. I too push and shove against the stomach. Our activity should, in the very least, make it regret dining on Awes.</p>
+</div>
+
+
+<div class="calm hidden"><p><strong></strong></p>
+<p>I murmur words of reassurance to my fellow cadets. <br>
+“Don’t fuss cadets, settle down! These things happen.” I grunt as a stomach-walls push in firmly. <br>
+“But Captain… we’re…” I think it’s Glint that mumbles something, kicking around beneath me. <br>
+“Cadets, if you can think of a way to escape, that’s fine! No need to make this more uncomfortable than it already is!” I huff in a growl. Still in a place like this, I have some small measure of authority. <br>
+It’s increasingly obvious who’s in charge of us however. The tight chamber keep churning and giving little ‘grrggls’ of noise along with other noises of the Pelis body around us. <br>
+No bright ideas to escape our role as prey seem to arise and slowly we settle in to just wait. <br>
+With the wait comes the acceptance of being a meal and I come to appreciate the meaning of these instincts. There is no stress about being food for another. They were stronger, better or smarter than you. You were meant to become part of them and it’s a comfortable feeling to sink into, just as you settle down in the stomach of your predator.</p>
+</div>
+
+
+
+<div class="submit hidden"><p><strong></strong></p>
+<p>“This is the way it goes sometimes. It is the hardest lesson of all, learning to accept defeat.” I murmur to the cadets who pause and listen. “There is no use being angry or upset, just listen to your instincts and let them guide you.” <br>
+“But Captain... our spirits… this beast will... “ Glint squeaked. <br>
+“Don’t worry about them. It could yet be we’re rescued, but if not, it is what it is. Just listen to your instincts.” <br>
+Things go quiet, except the tight chamber keeps churning and giving little ‘grrggls’ of noise along with other noises of the Pelis body around us. <br>
+With the lul comes a calm and I come quickly to appreciate the meaning of these instincts. There is no stress about being food for another. They were stronger, better or smarter than you. You were meant to become part of them and it’s a comfortable feeling to sink into, just as you settle down in the stomach of your predator. <br>
+It is almost as if the Pelis body responds in kind, digestion settling in in earnest. The large greedy bird must feel its prey settling in, ready to be absorbed. It keeps us for itself now, we belong to it.</p>
+</div>
+
+<div class="grrgl hidden"><p><strong></strong></p>
+<p>It’s a steady hard churn of digestion that sets in as the stomach comes more and more to terms with the size and mass of the meals within it. <br>
+The Pelis body, used to digesting fish will have a little to figure out with this unusual type of furry meat. But as deducted, this is a type of Avian that evolved to eat this type of meals in the past, the body has not forgotten how to do so now. <br>
+But the Pelis body is only working on preparing them, easing them up in the slick juices to be easier to process.</p>
+
+<p>
+<div class="calm2 hidden">
+Quiet and obedient, the Awes in the Pelis stomach churn and ggllrn, accepting of their role as nourishment. Even as the large distended Pelis gut seem to take its time about it. <br>
+</div>
+<div class="fuss2 hidden">
+I’ve kept the spirits of the Cadets up best I can. Telling them to fight their instincts and keep moving and not give in. But it's been a losing battle, I know this well. Lethargy sets in, the mind grows tired. I have almost settled down myself. <br>
+</div>
+Then the Peli horks and its stomach undulates and shifts. Back up the gullet I go, smoother up and down now. A smaller but by now means less wide and open beak waits for me. The squawk of a Peli chick eagerly awaiting its meal, jostling for space with its siblings.<br>
+
+<div class="fuss2 hidden">
+This is the chance I’ve been waiting for. I spring into action as the second beak tries to gulp me down its gullet, gripping the sides of it and wrestling it aside, squirming out of the way of the angered hungry baby Peli.<br>
+“Now Cadets, this is the moment!” I cry out, as I observe several bulges slide up the large Pelis neck, directed at the other hungry chicks in the nest. <br>
+ Satisfyingly they too spring into action, not letting themselves be swallowed again. <br>
+The large Peli parent squawks perplexed in an upset and angry way, but moves to defend its young. Around us are other nests and other similarly large Pelis. We make a hasty escape, running away down the beach, our coats slick and clinging to our bodies. <br>
+</div>
+<div class="calm2 hidden">
+It’s another tight gullet that I slide down into and tighter stomach too as I am gorged down by the small young Peli chick with ravenous gulps. I can’t help but grunt in these constricting new confines, curled up tight in what seems almost like a body smaller than mine. <br>
+I’ve gone from Captain, to baby bird food. This new stomach is a lot more eager to deal with me. Already digestion is going strong, churning and gwrrrrbling as the now lethargic chick settles down with me inside of it. No doubt my former cadets receive the same treatment to its siblings. <br>
+This will be a strong healthy clutch, no doubt about that. <br>
+</div>
+</p>
+</div>
+
+<div class="grrgl2 hidden"><p><strong></strong></p>
+<p>It’s a steady hard churn of digestion that sets in as the stomach comes more and more to terms with the size and mass of the meals within it. <br>
+The Pelis body, used to digesting fish will have a little to figure out with this unusual type of furry meat. But as deducted, this is a type of Avian that evolved to eat this type of meals in the past, the body has not forgotten how to do so now. <br>
+A quartet of Awes proves to be no big challenge, the heavy bloated gut of the bird steadily burbling and gworbling as it over time shrinks in size as the meals within digest and absorb away, adding on to the Pelis body liberally. <br>
+It’s quite a satisfied Peli that sits in the warm light of the setting sun. The thoughts of a bird are not overly complex, but as Awes pleasantly become part of its rudimentary ‘self’, eyes that before never considered things like a sunset and its gold reflection upon the water now shine a little brighter in waters reflection. The bird comes to terms that it is indeed pleased, well-fed and pleased indeed. It’s a new kind of momentary moment of reflection, brief in the dim mind of a bird, but likely not its last.</p>
+</div>
+
+
+
+<div class="envoy hidden"><p><strong></strong></p>
+</div>
+
+
+
 </body>
 </html>
