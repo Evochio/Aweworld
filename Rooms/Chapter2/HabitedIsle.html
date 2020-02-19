@@ -16,10 +16,507 @@
   <link rel="stylesheet" href="../../main.css"></link>
   <script>
 
+  var habited = [];
+  
+  
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
-      
+        
+	  if (_.contains(offList.activeRoster, officer.arn)) {
+		
+		 $(".MirrAlt").addClass("hidden");
+	  
+	  }
+	  else {
+		$("#Arntext").addClass("hidden");
+		}
+		
+	 if (_.contains(offList.deadRoster, officer.tung)) {
+		
+		 $(".Tungtext").addClass("hidden");
+	  
+	  }
+	   if (_.contains(offList.deadRoster, officer.keeper)) {
+		
+		 $(".Keepertext").addClass("hidden");
+	  
+	  }
+	  
+	  if (_.contains(state.chapter, "sickness")) {
+		
+		  if (_.contains(state.chapter, "rotfur")) {
+			 $(".birdLice").addClass("hidden");
+	  
+			}
+		else {
+			 $(".rotFur").addClass("hidden");
+			}
+	  }
+	  
+	  $('#tribe').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "tribe")
+		
+		$(".btn").addClass("hidden");
+	
+	if (_.contains(state.chapter, "sickness")) {
+		
+		 $("#elda1").removeClass("hidden");
+	  
+	  }
+	  else {
+		$("#welcome").removeClass("hidden");
+		}
+		
+		
+      })
+	   
+	  
+	  
+	  $('#elda1').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "elda1")
+		
+		$(".btn").addClass("hidden");
+		$("#welcome").removeClass("hidden");
+		
+		
+		
+      })
+	  
+	  
+	  
+	   $('#welcome').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "welcome"),
+		
+		$(".btn").addClass("hidden");
+		$("#hospitality").removeClass("hidden")
+		
+      })
+	  
+	   
+	  $('#hospitality').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "hospitality")
+		
+		$(".btn").addClass("hidden");
+		$("#contact").removeClass("hidden");
+		$("#cClaws").removeClass("hidden");
+		$("#cost").removeClass("hidden");
+		
+		
+		 if (_.contains(state.chapter, "sickness")) {
+		
+		 $("#elda2").removeClass("hidden");
+	  
+		}
+		
+		
+		
+      })
+	  
+	  
+	  
+	  $('#contact').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "contact"),
+		
+		
+		
+		$("#contact").removeClass("btn-default");
+		$("#contact").addClass("btn-info");
+		
+		
+      })
+	  
+	   $('#cClaws').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "cClaws"),
+		
+		
+		$("#resident").removeClass("hidden");
+		$("#cClaws").removeClass("btn-default");
+		$("#cClaws").addClass("btn-info");
+		
+		
+      })
+	  
+	   $('#cost').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "cost"),
+		
+		
+		
+		$("#cost").removeClass("btn-default");
+		$("#cost").addClass("btn-info");
+		$("#deliberations").removeClass("hidden");
+		
+		
+      })
+	  
+	  $('#resident').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "resident"),
+		
+		
+		
+		$("#resident").removeClass("btn-default");
+		$("#resident").addClass("btn-info");
+		
+		
+      })
+	  
+	   $('#elda2').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "elda2"),
+		
+		
+		
+		$("#elda2").removeClass("btn-default");
+		$("#elda2").addClass("btn-info");
+		$("#deliberations").removeClass("hidden");
+		
+		
+      })
+	  
+	   $('#deliberations').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "deliberations")
+		
+		$(".btn").addClass("hidden");
+		$("#permit").removeClass("hidden");
+		$("#denyLeave").removeClass("hidden");
+		
+		
+      })
+	  
+	  	 
+	  
+	    $('#permit').on('click', function(e) {
+        // change state here
+		habited.push("permit");
+        // end by using lib.goTo
+		lib.dialogue(e, "permit")
+		
+		$(".btn").addClass("hidden");
+		
+		if (_.contains(state.chapter, "sickness")) {
+		
+		 $("#treatment").removeClass("hidden");
+	  
+		}
+		else {
+			$("#permit2").removeClass("hidden");
+		
+		}
+				
+      })
+	  
+	  
+	   $('#denyLeave').on('click', function(e) {
+        // change state here
+		habited.push("denyLeave");
+        // end by using lib.goTo
+		lib.dialogue(e, "denyLeave")
+		
+		$(".btn").addClass("hidden");
+		
+		if (_.contains(state.chapter, "sickness")) {
+		
+		 $("#treatment").removeClass("hidden");
+	  
+		}
+		else {
+			$("#denyLeave2").removeClass("hidden");
+		
+		}
+				
+      })
+	  
+	  $('#reward').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "reward")
+		
+		$(".btn").addClass("hidden");
+		$("#ship3").removeClass("hidden");
+		
+		
+      })
+	  
+	   $('#punishment').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "punishment")
+		
+		$(".btn").addClass("hidden");
+		$("#ship3").removeClass("hidden");
+		
+		
+      })
+	  
+	  
+	  	  
+	   $('#treatment').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "treatment")
+		
+		$(".btn").addClass("hidden");
+		$("#volunteer").removeClass("hidden");
+		$("#denyTreat").removeClass("hidden");
+		
+		
+      })
+	  
+	   $('#volunteer').on('click', function(e) {
+        // change state here
+		habited.push("volunteer");
+        // end by using lib.goTo
+		lib.dialogue(e, "volunteer")
+		
+		$(".btn").addClass("hidden");
+		$(".volunteers").removeClass("hidden");
+		$("#approveTreat").removeClass("hidden");
+		$("#denyTreat").removeClass("hidden");
+		
+		
+      })
+	  
+	   $('#approveTreat').on('click', function(e) {
+        // change state here
+		state.chapter.push("cookbaths");
+        // end by using lib.goTo
+		lib.dialogue(e, "approveTreat")
+		
+		$(".btn").addClass("hidden");
+		$(".baths").removeClass("hidden");
+				
+		if (_.contains(habited, "permit")) {	
+			$("#permit2").removeClass("hidden");
+		}
+		else {
+			$("#denyLeave2").removeClass("hidden");
+		}
+      })
+	  
+	  
+	   $('#denyTreat').on('click', function(e) {
+        // change state here
+		state.chapter.push("shears");
+        // end by using lib.goTo
+		lib.dialogue(e, "denyTreat")
+		$(".shears").removeClass("hidden");
+		$(".btn").addClass("hidden");
+		
+		if (_.contains(habited, "permit")) {	
+			$("#permit2").removeClass("hidden");
+		}
+		else {
+			$("#denyLeave2").removeClass("hidden");
+		}		
+		
+      })
+	  
+	  
+	  $('#permit2').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "permit2")
+		
+		$(".btn").addClass("hidden");
+		$("#stopLeave1").removeClass("hidden");
+		$("#limitLeave1").removeClass("hidden");
+		$("#nolimitLeave1").removeClass("hidden");
+		
+		
+      })
+	  
+	  
+	   $('#denyLeave2').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "denyLeave2")
+		
+		$(".btn").addClass("hidden");
+		$("#punishment").removeClass("hidden");
+		$("#reward").removeClass("hidden");
+		
+		
+      })
+	  
+	   $('#stopLeave1').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "stopLeave1")
+		
+		$(".btn").addClass("hidden");
+		
+		$("#ship2").removeClass("hidden");
+		
+      })
+	  
+	  $('#limitLeave1').on('click', function(e) {
+        // change state here
+		habited.push("limitLeave1");
+        // end by using lib.goTo
+		lib.dialogue(e, "limitLeave1")
+		
+		$(".btn").addClass("hidden");
+		$("#tick").removeClass("hidden");
+		
+		
+		
+		
+      })
+	  
+	    $('#nolimitLeave1').on('click', function(e) {
+        // change state here
+		habited.push("nolimitLeave1");
+        // end by using lib.goTo
+		lib.dialogue(e, "nolimitLeave1")
+		
+		$(".btn").addClass("hidden");
+		$("#tick").removeClass("hidden");
+		
+		
+      })
+	  
+	  $('#tick').on('click', function(e) {
+        // change state here
+		
+        // end by using lib.goTo
+		lib.dialogue(e, "tick")
+		
+		$(".btn").addClass("hidden");
+		$("#nolimitLeave2").removeClass("hidden");
+		$("#stopLeave2").removeClass("hidden");
+		
+      })
+	  
+	  
+	  
+	     $('#nolimitLeave2').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		if (_.contains(habited, "nolimitLeave1")) {	
+			lib.dialogue(e, "nolimitLeave3")
+		}
+		else {
+			lib.dialogue(e, "limitLeave3")
+		}
+		
+				
+		$(".btn").addClass("hidden");
+		$("#corsair").removeClass("hidden");
+		
+		
+      })
+	  
+	  $('#stopLeave2').on('click', function(e) {
+        // change state here
+		
+        // end by using lib.goTo
+		lib.dialogue(e, "stopLeave2")
+		
+		$(".btn").addClass("hidden");
+		
+		$("#corsair").removeClass("hidden");
+		
+      })
+	  
+	  
+	
+	  
+	    $('#ship2').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "ship2")
+		
+		$(".btn").addClass("hidden");
+		$("#corsair").removeClass("hidden");
+		
+      })
+	  
+	  
+	    $('#ship3').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "ship3")
+		
+		$(".btn").addClass("hidden");
+		$("#corsair").removeClass("hidden");
+		
+      })
+	  
+	    $('#limitLeave3').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "limitLeave3")
+		
+		$(".btn").addClass("hidden");
+		$("#corsair").removeClass("hidden");
+		
+      })
+	  
+	  
+	   $('#nolimitLeave3').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "nolimitLeave3")
+		
+		$(".btn").addClass("hidden");
+		$("#corsair").removeClass("hidden");
+		
+      })
+	  
+	    
+	   $('#corsair').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "corsair")
+		
+		$(".btn").addClass("hidden");
+		$("#corsair2").removeClass("hidden");
+		
+      })
+	  
+	  $('#corsair2').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "corsair2")
+		
+		$(".btn").addClass("hidden");
+		$("#corsair3").removeClass("hidden");
+		
+      })
+	  
+	  
+	    $('#corsair3').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "corsair3")
+		
+		$(".btn").addClass("hidden");
+		$("#fleet").removeClass("hidden");
+		
+      })
+	  
+	  
+	  
+	  
       $('#button-1').on('click', function(e) {
         // change state here
         // end by using lib.goTo
@@ -27,8 +524,7 @@
         $("#button-1").addClass("hidden");
 		
       })
-	  
-	  
+	  	  
 		$('#fleet').on('click', function() {
         // change state here
         // end by using lib.goTo
@@ -42,6 +538,8 @@
 		state.chapter[0] = ("FleetBattle");
         lib.goTo('FleetBattle.html')
       })
+	  
+	  
     })
 	
   </script>
@@ -66,21 +564,544 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 
 <div id="story-text">
+<p>We sail into the island territory of the Cold-Claws tribe. The islands here are slightly different from the ones further south. There is a different kind of white rock here, reminiscent of Pale-rock and it seems to attract a different kind of vegetation to grow on it. The Islands here are almost like jungles, so dense with strange looking brush and flowers. <br>
+It is almost as if we sailed into another kind of region altogether, even though we are only a few days of sailing away.<br>
+It does not take very long for us to run into inhabitants of the isles. They do not seem to be afraid of us, one small fishing-canoe even sails close to have a look at us, its occupants waving at us in a friendly way, marveling at our ship and pointing us North-westward before casually resuming their fish catching. <br>
+We sail North-west, occasionally receiving a repeat run-in with curious Islanders and updated directions.<br>
 
-<p>Another Gryph Tribes home island who's had contact with fleet. You may be charmed into staying or pointed the right way to their latest movements and arrive just in time for battle.</p>
 </div>
 <div id="tail">
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default" id="button-1"> Test </button>
-<button class="btn btn-default" id="fleet"> Fleet</button>
-<button class="btn btn-default" id="battle"> Fleet Battle </button>
+<button class="btn btn-default hidden" id="button-1"> Test </button>
+<button class="btn btn-default hidden" id="fleet"> Fleet</button>
+<button class="btn btn-default hidden" id="battle"> Fleet Battle </button>
+
+<button class="btn btn-default hidden" id="elda1">Request from the Pouch-Matron</button>
+
+<button class="btn btn-default" id="tribe">The Cold-Claws Tribe</button>
+<button class="btn btn-default hidden" id="welcome">A warm welcome</button>
+
+<button class="btn btn-default hidden" id="hospitality">Islander Hospitality</button>
+
+<button class="btn btn-default hidden" id="contact">About Contact</button>
+<button class="btn btn-default hidden" id="cClaws">About Cold-Claws</button>
+<button class="btn btn-default hidden" id="cost">Cost of Services?</button>
+<button class="btn btn-default hidden" id="resident">About Resident and Native tribes.</button>
+<button class="btn btn-default hidden" id="elda2">Trade for Cure.</button>
+
+<button class="btn btn-default hidden" id="deliberations">Deliberate options</button>
+
+<button class="btn btn-default hidden" id="permit">Permit Shore-Leave</button>
+<button class="btn btn-default hidden" id="denyLeave">Deny Shore-Leave</button>
+
+<button class="btn btn-default hidden" id="treatment">Consider treatment</button>
+
+
+<button class="btn btn-default hidden" id="volunteer">Volunteer tryouts </button>
+<button class="btn btn-default hidden" id="approveTreat">Approve Treatment </button>
+<button class="btn btn-default hidden" id="denyTreat">Deny Treatment(Shears)</button>
+
+<button class="btn btn-default hidden" id="permit2">Cold-Claws Tribe: Day 1</button>
+<button class="btn btn-default hidden" id="denyLeave2">Cold-Claws Tribe: Day 1</button>
+
+<button class="btn btn-default hidden" id="punishment">Harder punishment: Day2</button>
+<button class="btn btn-default hidden" id="reward">Reward visits to hard workers: Day2</button>
+
+<button class="btn btn-default hidden" id="stopLeave1">Stop Shore-Leave</button>
+<button class="btn btn-default hidden" id="limitLeave1">(Limit) Night Curfew</button>
+<button class="btn btn-default hidden" id="nolimitLeave1">Urge Restraint</button>
+
+<button class="btn btn-default hidden" id="tick">Request from Officer Tick</button>
+
+<button class="btn btn-default hidden" id="stopLeave2">Time for Work</button>
+<button class="btn btn-default hidden" id="nolimitLeave2">Let the crew be</button>
+
+<button class="btn btn-default hidden" id="nolimitLeave3">Cold-Claws Tribe Day 3</button>
+<button class="btn btn-default hidden" id="limitLeave3">Cold-Claws Tribe Day 3</button>
+<button class="btn btn-default hidden" id="ship3">Cold-Claws Tribe Day 3</button>
+<button class="btn btn-default hidden" id="ship2">Cold-Claws Tribe Day 3</button>
+
+<button class="btn btn-default hidden" id="corsair">Gryph Corsairs</button>
+<button class="btn btn-default hidden" id="corsair2">Meeting pirates</button>
+<button class="btn btn-default hidden" id="corsair3">continue</button>
+
+
 <span id="cadetButtons"> </span>
 <script>
 
 </script>
 </div>
+
+<div class="tribe hidden"><p><strong>The Cold-Claw tribe</strong></p>
+The Home Isle of the Cold claws is impressive and sizable. It’s the first time we see a real sign of a real sizable habitation around the place. <br>
+The island is very large and winding, with plenty of lush satellites around it. Our scouts report it would take several days of travel and scouting to gather a comprehensive report. <br>
+For now they inform me that there are numerous small knots of settlements scattered about inland, but there is a largeish beach settlement with docks built out of wood that seem like the likely place to visit. <br>
+As we sail in toward the beach and dock, we are soon flocked with small sailing vessels that sail in alongside us. At the docks, a small crowd has gathered. <br>
+They seem a very welcoming people. I get the feeling they have not seen an Aweship before however. <br>
+The village is quaint looking, well maintained but a little empty. There seems to be quite a bit less people moving around then there are huts and houses. Perhaps they only live here seasonally.</p>
+<p>Along the breach are great giant cauldrons, made from what looks like some kind of metal. A rare material around these parts. One of the cauldrons appear to be in use, a roaring fire underneath it and ingredients being stirred and monitored.</p>
+</div>
+
+
+<div class="welcome hidden"><p><strong>Welcome</strong></p>
+<p>“Be Welcome! Cold claws joyed to be greeting you! I am Trade-speaker Lumin.” It is an unusual looking Gryph that stands at the head of the procession that meet us at the docks, speaking to me in broken ‘Trade-speech’. He and his fellow Cold-Claws are shorter than other Islanders, more at our height. He and most of his kin are nearly all white feathered with natural black tips and markings. His orange beak does not have the sharp tip of other islanders i’ve seen, it’s longer and flatter, making him altogether look like a very large Sea-bird. As I understand, these are “Resident” Islanders do not have the same background related to the old lost Preenlon Republic as ‘Adopted’ Islanders. <br>
+“Thank you for the welcome.” I reply. “I am Captain Avolc, of the Awe Admiralty. We are searching for others of our kind, a fleet of our ships in these seas.” I explain, making sure to talk slow. <br>
+The Trade-speaker nodded at this and seemed to smile wider. <br>
+“We tales hear about Awe fleet. But not see, until arrival of Captain Avolc, we glad to see!”<br>
+“That is unfortunate, we need to find them soon and resume our search then.” I huffed in slight disappointment. Did we sail this far to reach a dead-end? But Trade-Speaker Lumin holds up his paws in a halting gesture. <br>
+“Cold-Claws will aid you! We know one who see Awe fleet, who give us tales of them. Not far they are, we call them here. You stay, wait, be welcome! Be feasted!” <br>
+There was not really much more to say about that. If they knew someone who could lead us to the fleet, then that was a reason to stay and wait.</p>
+</div>
+
+
+<div class="hospitality hidden"><p><strong></strong></p>
+<p>The Cold-Claws welcome me and my attending officers for a tour of their village. It confirms that it is indeed not as populated as it could be. The Trade-Speaker explains that these are temporary housings, the tribe only gather here on great occasions or special stormy seasons. <br>
+“They are for anyone who visit. I invite your crew to visit our shores, stay, feast and enjoy. New friends of Cold-Claws are to be celebrated, enjoyed and shared!” Lumin cheered enthusiastically. <br>
+“I will consider it” I replied neutrally. <br>
+“Captain. If these Islanders are as friendly as they seem, the crew could use some rest and relaxation. It would boost the mood of the crew.” Officer Mirr leaned in to whisper to me. <br>
+The Trade-Speaker stood and waited eagerly for any questions I might have.</p>
+</div>
+
+<div class="contact hidden"><p><strong>About Contacts</strong></p>
+<p>“This contact of yours that knows about or fleet, how long until they arrive?” I ask. <br>
+“Three days, yes. We send messenger by fleet-wing, ask for summons. Word came recent they dock in Lower Isles. They likely to speed their way here.”<br>
+“Who is this contact?” I furrow my brow. <br>
+“Trader-Fighter. Known to Cold-Claws. Generous and amusing. Hired many times.” Lumin replies.</p>
+</div>
+
+<div class="cClaws hidden"><p><strong>About Cold-Claws</strong></p>
+<p>“Tell me about your tribe Lumin.” I query the Islanders. They are always happy of outsiders being curious about them. <br>
+“We resident Tribe. Live here always, since Islands were not Islands and there was no sea, the songs say. Long time.” Lumin nods sagely. <br>
+“Who are your leaders, is it you?” I ask. <br>
+“Leaders no. Speakers yes. Lumin is speaker of Trade-shore. The part that speak to guests. We have speaker of different needs. Speaker of food, speaker of houses.” Lumin explains. <br>
+“No Speaker of speakers then?” I smile and Lumin laughs in reply.<br>
+“If speaker of speaker spoke for speakers, who would he speak to?” He riddled before explaining. “Speakers meet often, speak of needs, all decide.” <br>
+Seems they ruled by some kind of council of experts then.</p>
+</div>
+
+<div class="cost hidden"><p><strong>Cost of services?</strong></p>
+<p>“You’ve been very generous with your offers so far. To get us a contact, offering our crew a temporary stay and more. What are you expecting in exchange?” I ask firmly, its best to put these things bluntly. <br>
+Trade-Speaker Lumin just smiles and gives me a nod. <br>
+“It is wise of you to ask. Sea of Isles is harsch sometimes. We ask only you share your food as we share ours, we of Cold-claws find the enjoying of new things and people a fair exchange. The using of empty home, with no breaking, has no cost.”<br>
+“So free as long as the crew behaves and we exchange food for food.” This sounded almost too good to be true.</p>
+</div>
+
+
+<div class="resident hidden"><p><strong>Resident and Native tribes</strong></p>
+<p>“If resident tribes are the tribes who have lived here that long, then who are the native tribes? How are they different and where are they?” <br>
+“The natives, yes, you hear of them? Peculiar folk. Small and shy. Live not in one place, move, always moving. Do so at night. They live on isles before there were these isles, see? Songs say they teach the first residents how to survive when land become sea.” The Trade-Speaker explained. <br>
+“They have no home-isles? What do they look like?”<br>
+“They do and they do not. Some isles, far from places, they visit often. If disturb, they give you curse. Make sick. Leave be, or leave food, gift. They bless you. Let you meet.” Lumin nodded and then held a paw to waist height. “Very small, often black feathers. Swim good, hide good.”</p>
+</div>
+
+
+<div class="deliberations hidden"><p><strong>Deliberations</strong></p>
+<p>I return to the ship to meet with my officers and make a decision. Points are discussed and opinions given. Most seemed agreed on staying here for 3 days to meet this contact, but trusting the Islanders had them quite split. Even the whitefurred Soft-spoken been invited to this discussion. <br>
+<br>
+“I think waiting here for three days is a small price to pay for a potential lead to finding the fleet. There are some places we’ve yet to explore, but those alternative is likely to take longer.” Spoke Officer <span class="Arntext">Arn.</span> <span class="MirrAlt">Mirr.</span><br>
+<br>
+“It could still be a trap. They could be calling down a pirate armada on us, preparing to surround us. We must be vigilant.” Officer Garsch commented. <br>
+<br>
+“I agree, but my Scouts and I can keep a regular enough watch on the horizon. If any strange ships are sighted we should be able to raise anchor and depart in time.” Said Scout-Master Krel<br>
+<br>
+“Unless we are sabotaged or crew is overpowered or poisoned.” Officer Garsch again. <br>
+<br>
+“While some level of paranoia is good, I don’t think these people are a threat. They seem to have a good reputation about them and they are intensely hospitable. Besides, I saw no signs of any armament whatsoever.” Officer Mirr commented. <br>
+
+<div class="Tungtext">
+“The lack of them worries me more! How do they get by without weapons!? Wouldn't they have been overrun by pirates long ago?” Officer Tung replied. <br>
+</div>
+<br>
+“I have a good feeling about them. If they’ve found a way to live in peace without soldiers and armies, that should be commended.” Nyxie smiled. <br>
+<br>
+<div class="Keepertext">
+“The resident tribes appear to be very respected by all other tribes. Perhaps they get by with respect and goodwill, there are ways of surviving without force of arms, that is not too strange to consider.” Officer Keeper spoke up.<br>
+</div>
+<br>
+“They seem like a decent bunch to me! I know for a fact that several of my gals have been hankering real bad for some change of scenery. Complain every other night in fact. I think we should let the crew loose.” Officer Ulv added. <br>
+<br>
+“It’s a chance to make some much needed maintenance, so I am for staying. But if everyone's ashore playing around, there’ll be no one to do it.” Muttered Officer Tick. <br>
+<br>
+“The crew has been a bit stressed, crowded and overworked. Our ship is so packed with crates and extra personnel that some nerves are starting to fray. I think permitting a shore-leave is essential.” Pouch-Matron Elda spoke softly but firmly. Everyone around the table lowered their head an inch at the word of a Matron. Only Soft-Spoken Ljus dared speak up afterwards. <br>
+<br>
+“Be that as it may, we should be wary of the influence of these Islanders. They seem friendly, yes, but they may tempt with foreign vices and strange ideas that will cloud an Awes spirit and judgement. While if we waited here on the ship, we could perhaps offer some more extensive sermons and ceremonies of our own, to honor the Light and strengthen our hearts.”<br>
+<br>
+The discussion seemed to have reached an end after this. It was time to make a decision. Either we trust the Islanders and  give our crew some Shore-Leave or we confine everyone to the ship and focus on maintinance and vigilance.</p>
+</div>
+
+
+<div class="permit hidden"><p><strong>Shore Leave</strong></p>
+<p>
+In the end I decide to relent on the issue. The crew really do deserve a chance to stretch their legs and get out of the tight crowded confines of the ship. Anyone who misbehaves will be promptly sent back and put to work, it is a good chance to see the ship more thoroughly cleaned while its emptier afterall.</p>
+
+<p>There is excitement on both sides to this decision. The Islanders immediately seem to break out the equipment for festivity. The large Cauldrons on the beach are scrubbed, food brought out, musical instruments strummed, decorations prepared and newcomers from nearby villages gather all to greet the horde of eager Awes who nearly stampede out of the ship to sample the sights, tastes and people. <br>
+There is little chance to hold full control over it all, no matter how its drilled into the Sailors before they leave to behave, not stray beyond ‘Trade-shore’, the name of this village and report anything suspicious. <br>
+</p>
+</div>
+
+
+
+<div class="treatment hidden"><p><strong>Shore Leave</strong></p>
+<p>Finally we arrive at the point of what to do about treatment for Awes afflicted with fur troubles. <br>
+The Islanders have offered their odd Cook-bath treatment. Awe undercoats don't do well for long periods of time underwater, but Elda has assured me hot water should not be damaging if they dry properly. <br>
+Soft-Spoken Ljus is highly sceptical of the idea. <br>
+“They might mean well, but we do not know what kind of herbs or rituals they’ll mixing into the furs of crew who participate in this. It could have worse effects down the line.” <br>
+Elda however is more confident. <br>
+“I’ve looked at some of the plants they have on offer. It all seems harmless, nothing acidic, starchy or sticky. I’d say most of it could be used as spices in cooking.”<br>
+I have to keep in mind that asking the crew to all trim their fur with shears will be a very unpopular decision. <br>
+
+</p>
+
+</div>
+
+
+<div class="permit2 hidden"><p><strong>Cold-Claws Tribe Day 1</strong></p>
+<p>The crew has been relaxing on the island, making themselves at home. Few returned to the ship for the night as many took the offer of staying in the village. <br>
+There were a few inevitable reports of trouble, but no serious infractions on the first day on the island. <br>
+Officer Keeper does report that the crew has been eating a copious amount of food and as per our agreement, we have to trade the equivalent to the islanders. <br>
+“They’re having fun and some are eating several rations worth. But perhaps it’s just for the first nights celebration.”</p>
+<p>Soft-Spoken Ljus also has her own concerns. <br>
+“Captain, the vices I’ve warned about are bad for the crew. Who knows what temptations the Islanders might be offering them. Strange foods, strange herbs and I hear rumours of several having sought companionship with Islanders. If we dont step in, they might be corrupted.” <br>
+Soft-Spoken Ljus could perhaps be heeded, though far from everyone subscribes to her sense of morals.<br>
+</p>
+</div>
+
+
+<div class="tick hidden"><p><strong>Shore Leave</strong></p>
+<p>“Captain. I am for keeping the crew from dragging their feet from exhaustion and all, but have they not rested enough!? <br>
+The ship is in a sorry state and we have an opportunity here for some much needed maintenance. The docks here are crude but serviceable, we could get at least a little work done on some of the scrapes on the hull!”</p>
+</div>
+
+
+<div class="stopLeave1 hidden"><p><strong>Stop Shore Leave. Day 2</strong></p>
+<p>I can only see this escalating. We can't allow ourselves to lose control of the crew to the point where we are helpless if something happens or arrives because we can’t find anyone sober.<br>
+The crew are henceforth recalled to the ship and to attend regular duties and maintenance work. <br>
+This is far from a popular command, it takes many hours of the day to round everyone up and recall them. I had half a mind to make a battle-call to make sure they come running. But it seemed like wasting it for non-emergencies might just slow reaction times for when things truly are dire. <br>
+The crew are talking about their shared experiences and their one night off with longing and grumbling. Officer Tick manages to assemble them into workcrews for maintinance and repair, but he spends much time through the day chasing his seemingly errant workers around. Many of them are slacking off and not much work on the ship get done.  <br>
+It is not without progress however, the sound of hammers and tools permeate the evening. Hopefully tomorrow will be a more productive day. <br>
+</p>
+
+<div class="shears hidden">
+<p>The crew have taken turns to report to the groomery to get their fur inspected and cut. The groomery nurses are opting for the side of caution and few escape the trimming of their coats. This has further soured the mood of many of the crew. I understand them, no one likes their coats trimmed short and manes reduced, it leaves you feeling exposed and emasculated. <br>
+Even I have to to get myself checked, luckily, and likely due to having my own quarters and private space, there are no signs of me being afflicted, neither do any of my high-Officers. I do ask them to take a little bit off around the wings and mane, to show solidarity with the crew. <br>
+The afflicted will be more easily managed and cured now. As are the rest of the crew less likely to be infected or at least quickly spotted if they are.</p>
+</div>
+
+<div class="baths hidden">
+<p>The crew are progressing quite well on the herbal baths in the Islanders giant pots. Though there was quite a bit of scepticism about it, after a few round of crew returning pretty relaxed and healthier it’s soon a sought after distraction. <br>
+It is the one extra chance to leave the ship that the crew is receiving and they seem to be quite eager to savour it. While it does further exacerbate the hospitable reputations of the Islanders, it seems to overall be a general positive on the crews mood. <br>
+</div>
+
+</div>
+
+<div class="stopLeave2 hidden"><p><strong>Stop Shore Leave. Day 3</strong></p>
+<p>It’s a reluctant but obedient crew that return to the ship and their duties. Perhaps they knew that any extra day off was a blessing and had been enjoying themselves fully, expecting to be recalled at any time. The Islanders likewise seem sorry to see them go, but they helpfully return any errant Awes, seeming to respect my orders.<br>
+No one is really pleased about coming back to being bossed around by Officer Tick. <br>
+But at least enough tension seems to have gone out of them. Everyone knows that obeying Tick means ensuring their own safety, there is no ego in his hardness only a great concern to the ships health. <br>
+Chatty Awes make for slow work, but at least there is progress, the ship gets a little patched up and Officer Tick is a little mollified.</p>
+
+<div class="baths hidden">
+<p>Nearly all of the crew have made a pass at the Herbal baths off the islanders and it seems to have had no major ill effects. Elda has declared it a great success and has eagerly been communicating with the Islanders Medicine-Speaker about what roots and herbs they’ve been using. <br>
+It was not all perfect, some of the Awes have been forced to be sheared regardless. Either due to their affliction being set in too deep, or failing to dry their undercoats properly after the prolonged dip and getting the ‘stink-fur’. <br>
+The ship is now also permeated by a peculiar herbal scent. Not too unpleasant.</p>
+</div>
+</div>
+
+
+<div class="limitLeave1 hidden"><p><strong>No overnight stays. Day 2</strong></p>
+<p>I confine the crew to quarters for the rest of the nights. No more overnight stay in the village. <br>
+There is some mild muttering about this, but the crew does not make a big fuss about it and most of them obey and return to the ship after sundown the next day. <br>
+A few are caught lingering, cavorting with the Islanders and dragged back. <br>
+I hear reports of many sneaking back out in the cover of night too. It seems once the lid had been opened it was hard to close it again. Those breaking curfew are also punished with extra duties and less shore-leave overall. <br>
+The officers run themselves a little ragged trying to keep track and control of everyone. <br>
+By the end of the second day, things seem to have calmed down a little. The Awe crew are playing games of sport on the beach in various mixed teams. Sports from back home as well as some local variants.</p>
+
+<div class="shears hidden">
+<p>The crew have taken turns to report to the groomery to get their fur inspected and cut. The groomery nurses are opting for the side of caution and few escape the trimming of their coats. This has soured the mood of many of the crew. I understand them, no one likes their coats trimmed short and manes reduced, it leaves you feeling exposed and emasculated. <br>
+Even I have to to get myself checked, luckily, and likely due to having my own quarters and private space, there are no signs of me being afflicted, neither do any of my high-Officers. I do ask them to take a little bit off around the wings and mane, to show solidarity with the crew. <br>
+The afflicted will be more easily managed and cured now. As are the rest of the crew less likely to be infected or at least quickly spotted if they are.</p>
+</div>
+
+<div class="baths hidden ">
+<p>The crew are progressing quite well on the herbal baths in the Islanders giant pots. Though there was quite a bit of scepticism about it, after a few round of crew returning pretty relaxed and healthier it’s soon a sought after distraction. <br>
+The infected have priority and they are practically climbing over themselves to get into the pots. They are all eager to join the festivities in the village. <br>
+</p>
+</div>
+
+</div>
+
+
+<div class="nolimitLeave1 hidden"><p><strong>Urge Restraint. Day 2</strong></p>
+<p>We gather the crew and urge them to consider safety and try to exercise restraint. I even ask the Soft-Spoken herself to present a short sermon on morals and the Awe spirit. <br>
+Many appear hungover and distracted. As the day progresses it becomes clear the speech is forgotten. <br>
+The cavorting and festivities continue unabated. It seems like the Islanders too are enjoying themselves a great deal. There are more of them now then the first day. And although there is a clear language barrier as many of both the Resident tribe and crew do not speak the commonly used Trade-Speech, it does not seem to stop them from spending time together. <br>
+By the end of the second day, there’s been reports of fights, Awes having wandered off to visit other villages and even a few unexpected Deepenings. Luckily only between Awes so far.</p>
+
+<div class="shears hidden">
+<p>The crew have taken turns to report to the groomery to get their fur inspected and cut. The groomery nurses are opting for the side of caution and few escape the trimming of their coats. This has put a damper on the crews otherwise festive mood. I understand them, no one likes their coats trimmed short and manes reduced, it leaves you feeling exposed and emasculated. <br>
+Even I have to to get myself checked, luckily, and likely due to having my own quarters and private space, there are no signs of me being afflicted, neither do any of my high-Officers. I do ask them to take a little bit off around the wings and mane, to show solidarity with the crew. <br>
+The afflicted will be more easily managed and cured now. As are the rest of the crew less likely to be infected or at least quickly spotted if they are.</p>
+</div>
+
+<div class="baths hidden ">
+<p>The crew are progressing quite well on the herbal baths in the Islanders giant pots. Though there was quite a bit of scepticism about it, after a few round of crew returning pretty relaxed and healthier it’s soon a sought after distraction. <br>
+The infected have priority and they are practically climbing over themselves to get into the pots. They are all eager to join the festivities in the village. <br>
+</p>
+</div>
+
+</div>
+
+
+<div class="denyLeave hidden"><p><strong>Leave Denied</strong></p>
+<p>I deny general shore leave. We can’t trust the Islanders enough yet, maybe someday, but not so soon. There is also a lot of work to do on the ship. Repairs and patching up that have been waiting for some days like this to be looked at. <br>
+I do not envy the officers who have to enforce this decision. It seems it was not a popular one. <br>
+The rumour of the invitation of generosity and hospitality of the Cold-Claws seems to have spread among the crew. To now hear they have to stay cooped up on the ship when solid ground, rest and exotic foods and people are nearby makes the whole ship descend into a kind of sullen sulk. <br>
+There will be efforts made, like more like more lenient and shorter duties over the next three days, some expanded services held personally by Soft-Spoken Ljus as well as well as some local traded fruits being on offer as extra rations. <br>
+Hopefully it will keep the crew satisfied.</p>
+</div>
+
+<div class="denyLeave2 hidden"><p><strong>Cold-Claws Tribe Day 1</strong></p>
+<p>Rumours about the island and its potential relaxations seem to have grown among the crew until its almost depicted as some kind of mythical paradise resort. <br>
+It’s not helped by that the first night several of the crew seem to have managed to escape off the ship to spend the night in the village. <br>
+Most of them were caught returning, but those that weren’t further spread rumours that entice the crew. A sullen kind of dark mood has descended upon the crew. Officers report willful tardiness and disobedience all over the ship. Repairs and maintenance are progressing below expectations. <br>
+Something needs to be done.</p>
+</div>
+
+
+<div class="punishment hidden"><p><strong>Harder Punishment</strong></p>
+
+<p>I order my Officers to tighten the watch on the crew. Anyone caught trying to sneak off are to be given hard punishment duties, repeat offenders are to be threatened with desertion charges. <br>
+These threats seem to work. The next night we have only a pair of Awes who are caught wandering the beach. They are made examples off and given hard extra duties and labor. I consider briefly of having them demoted to rations, but some of my Officers talk me out of it. <br>
+“Punishment is well and good, but push too hard and you risk going from hard commanding officer to being an opponent. That’s kind of how we lost our last captain.” <br>
+The two Awes are given extra duties, forced to do tasks no one relishes doing for some time to come.<br>
+The dark mood on the ship will take a while clear up, I hope we can leave this island soon.</p>
+
+<div class="baths hidden ">
+<p>The crew are progressing quite well on the herbal baths in the Islanders giant pots. Though there was quite a bit of scepticism about it, after a few round of crew returning pretty relaxed and healthier it’s soon a sought after distraction. <br>
+It is the one chance to leave the ship that the crew is receiving and they seem to be quite eager to savour it. While it does further exacerbate the hospitable reputations of the Islanders, it seems to overall be a general positive on the crews mood. <br>
+</p>
+</div>
+<div class="shears hidden">
+<p>The crew have taken turns to report to the groomery to get their fur inspected and cut. The groomery nurses are opting for the side of caution and few escape the trimming of their coats.This has further soured the mood of many of the crew. I understand them, no one likes their coats trimmed short and manes reduced, it leaves you feeling exposed and emasculated. <br>
+Even I have to to get myself checked, luckily, and likely due to having my own quarters and private space, there are no signs of me being afflicted, neither do any of my high-Officers. I do ask them to take a little bit off around the wings and mane, to show solidarity with the crew. <br>
+The afflicted will be more easily managed and cured now. As are the rest of the crew less likely to be infected or at least quickly spotted if they are.</p>
+</div>
+
+
+</div>
+
+<div class="reward hidden"><p><strong>Reward Visits</strong></p>
+
+<p>If the crew works hard and perform their extra tasks, like helping Officer Tick with our repairs, I’ve decided to reward them with a short evening on the island. But only those to perform best are allowed to go in small supervised teams. <br>
+This has the effect of spurring quite an amount of competition among the crew, all looking to outperform each other in getting to go to the Island. <br>
+Tick is awfully pleased with this and the ship is soon in better condition than before as well as possessing a new shining sheen to it. <br>
+However, while the happy few who get selected to go are quite happy. It has had the effect of creating a bit of animosity in the crew. Both toward the officers making the selection as well as toward the ones who were selected. <br>
+The energy to work hard isn't quite there the next day and some fights break out,</p>
+
+<div class="baths hidden ">
+<p>The crew are progressing quite well on the herbal baths in the Islanders giant pots. Though there was quite a bit of scepticism about it, after a few round of crew returning pretty relaxed and healthier it’s soon a sought after distraction. <br>
+It is the one chance to leave the ship that the crew is receiving and they seem to be quite eager to savour it. While it does further exacerbate the hospitable reputations of the Islanders, it seems to overall be a general positive on the crews mood. <br>
+</p>
+</div>
+
+<div class="shears hidden">
+<p>The crew have taken turns to report to the groomery to get their fur inspected and cut. The groomery nurses are opting for the side of caution and few escape the trimming of their coats. This has further soured the mood of many of the crew. I understand them, no one likes their coats trimmed short and manes reduced, it leaves you feeling exposed and emasculated. <br>
+Even I have to to get myself checked, luckily, and likely due to having my own quarters and private space, there are no signs of me being afflicted, neither do any of my high-Officers. I do ask them to take a little bit off around the wings and mane, to show solidarity with the crew. <br>
+The afflicted will be more easily managed and cured now. As are the rest of the crew less likely to be infected or at least quickly spotted if they are.</p>
+</div>
+</div>
+
+<div class="elda1 hidden"><p><strong>Request from Pouch-Matron</strong></p>
+
+<p>Pouch-Matron requests a brief meeting. She has a worried look on her face. <br>
+“Dear Captain. As you may know, the crew is suffering from a slight affliction of <span class="birdLice">Bird-Lice</span> <span class="rotFur">Rot-fur.</span>”<br>
+“I am aware of your concerns, how is the treatment progress going?” <br>
+“Poorly, Captain. In fact it’s slightly worsening, to the point where I am worried we may not be able to stay on top of it, we are running low on our supplies of medicinal herbs. We may have to bring out the shears and that means for the whole crew. We cannot permit it to incubate and spread anywhere.” <br>
+I sigh. Trimming the coats of the crew would not be very popular, it would also be a bit of a mark of shame for the whole ship if we are to run into the fleet soon. Though, far less worse then arriving with the whole crew infected, shedding and balding from scratches. <br>
+Thinking about this brings an itch to my attention that i’ve been having in my wing. Could I be afflicted too? <br>
+“What do you suggest? Bring out the shears now while we’re docked?” I can’t help but grimace. <br>
+“No, perhaps not yet at least. I was considering if you could approach the Islanders for trade. They seem the foraging kind, I am not sure if the kind we use grow on these isles, but there’s certain herbs which I believe will help if we acquire ample amounts of them.” Elda holds up a book she’s been holding, with illustrations of plants and text. <br>
+“I don’t see the harm in asking.” I reply.</p>
+
+</div>
+
+<div class="elda2 hidden"><p><strong>Trade for Cure</strong></p>
+<p>Trade-Speaker Lumin listens attentively and then looks over the illustrations of herbs thoughtfully. He calls for another Islander, a female Medicine-Speaker of sorts I guessed, with long flowing robes to join him and they both leaf through the pages that Pouch-Matron Elda indicates. They confer with each other a while in a tongue that sounds quite exotic. <br>
+“This healing-plant that is needed for curing we do not know about.” He looks quite regretful saying this, but then he lights up. “But affliction you suffer we do know about. A cure we have and offer to you freely.” <br>
+“This is splendid news.” Pouch-Matron Elda smiles. “A different kind of herb? Ointment?” <br>
+“You take hot Cook-bath, our healer mix with spice, roots and oil, yes? Simmer in water, quarter day, maybe half day, much stirring. Cure-all. Very good. Smell good.” Trade-Speaker Lumin explains, he points toward one of the huge cauldrons resting on the beach.<br>
+Both me and Elda exchange dubious glances. <br>
+“That sounds more like a recipe for Awe Stew.” <br>
+Trade-Speaker Lumin seemed to find this most amusing and laughed heartily. <br>
+“Yes! It is Awe-stew!”<br>
+Pouch-Matron Elda huffed and shrugged as she discussed it with me in Aweish. <br>
+“I don’t know. It sounds utterly outlandish, but then again, that’s where we are. Perhaps under supervision we could try it on some volunteers?” <br>
+“Won’t being immersed in water that long make our undercoats worse?” I inquire the health-expert. <br>
+“Less so with hot water, as long a you dry yourself properly and thoroughly afterwards.” She explained. “At this point, its this or the shears.”</p>
+</div>
+
+
+<div class="volunteer hidden"><p><strong>Volunteers</strong></p>
+<p>A couple of Awe sailors pretty badly afflicted with itching furs and restrictive quarantine quickly volunteer to try the Cook-bath treatment. <br>
+I deploy some “observers” to monitor their health and the Islanders treating them. Though trying to keep the later part more subtle.<br>
+The huge cauldrons on the beach are quickly scrubbed and cleaned and filled with fresh water. They seem large enough to comfortably hold a dozen Awes in them. <br>
+Soon enough a fire is burning under the pot and Islanders run to and fro, mixing in leaves, roots and weeds. As the water warms, the slightly dubious looking Awes climb in to bob in the water. The bottom seems to be padded with rocks for them to stand or sit on. <br>
+Soon enough, they are simmering in the water. The heat kept at manageable enough levels as to not boil the occupants. An Islander looking much like a chef with a large wooden sieve occasionally stirs the ‘Awe broth’ around, scooping up loose fur and occasional greens before replacing it with new ones. Occasionally they splash the broth on top of the Awes heads. <br>
+The Awes in the broth never complain of being too hot, in fact they seem very relaxed, some of them even dozing and letting themselves bob and be stirred about. <br>
+There is indeed a very unmistakable scent of cooking coming from it all. It smells strongly of herbs, spices and a little bit of Awe. <br>
+Just as I figure that anytime now, the village residents will ring a dinnerbell and come rushing out with bibs on, the Islander with the big spoon announces that the Awes can climb out now. <br>
+They do so with great lethargy and slowness, even reluctance. A team of nurses from the groomery is there to help them dry. <br>
+Elda delivers her report not long after. <br>
+“Captain dear. The Awes are none worse for wear, only tired from the heat. Their condition seem… improved. I can find almost no trace of <span class="birdLice">Bird-Lice</span> <span class="rotFur">Rot-fur.</span>. I’d almost say that their coats are much softer than before after they’ve dried. Though they do smell very strongly of broth.” <br>
+“Well, that’s good news.” I reply with a nod. “What did the Islanders want in return for this… treatment?”<br>
+“As far as I know... nothing. Well, they are not exactly pouring the broth away, they seem to be filtering it and saving it in urns.” Elda shrugs. <br>
+“Peculiar…” It’s strange, but I can’t find a reason to be worried. <br>
+“With your permission, I shall approve all known afflicted plus anyone suspected to… take a bath.” Elda made to leave, just waiting for the captains approval.</p>
+
+</div>
+
+
+<div class="approveTreat hidden"><p><strong>Approve Treatment</strong></p>
+<p>“Very well, approve the treatment. I want guards and a groomery nurse monitoring the treatments at all times however!”<br>
+“Of course my dear Captain. We’ll keep a watchful eye on them.” <br>
+Before long Awes are going out in teams to be ‘cooked’ as the crews started to affectionately call it. <br>
+It would take a few days to get everyone treated. At least attendance didn't turn out to be an issue. The treatment was apparently quite comfortable and soon sought after, even by those not afflicted.</p>
+</div>
+
+
+<div class="denyTreat hidden"><p><strong>Deny Treatment</strong></p>
+<p>“No. I can’t approve of this. It just seems too strange and unknown to fully trust. At least not so soon. “ I shook my head, making up my mind. <span class="volunteers hidden">“Have the volunteers monitored for ill effects. If there are none after our days of waiting, then we will at least know and confirm the treatment was genuine.” </span><br>
+“Very well, I understand your caution captain. But that means it’s the shears for everyone showing any sign of affliction and thorough examination for the whole crew!” <br>
+I nodded at this and Elda trudged her way back to the Groomery to get things started. <br>
+The crew would not like it, but it had to be done. Hopefully we’d be cured by the time we find the fleet, which hopefully is soon. <br>
+</p>
+</div>
+
+
+<div class="nolimitLeave3 hidden"><p><strong>Cold-Claws Tribe Day 3</strong></p>
+<p>The final day of shore leave seems to finally see the crew start to calm down a little, they have drinked and feasted their fills, much to the detriment of our supplies. Some have even chosen to return to the ship of their own free will, having had their fill of cavorting. They seem rested, relaxed and cheerful. <br>
+The loose restraints on the crew has not been without complications however. <br>
+Despite our urging of restraint, there has been accidents where several huts have been damaged. The Islanders, though sanguine about it, of course expect compensation for damages in terms of additional supplies. <br>
+Surprisingly, the Raptorians have been the most behaved through it all. Merely occupying a portion of the beast to lay in the sands and sleep and occasionally roughhouse.<br>
+Another more serious problem that Soft-Spoken Ljus has been audibly made her disapproval known about is that we are definitely going to be short on the headcount of Awes.<br>
+There is no mistaking the portly figures of several sailors, who have feasted on a little more than just fish and fruit. Over a dozen or so Awes are missing, having added themselves to the frames of fellow Awes, without the Soft-Spokens blessing or what she’s the most troubled about, deepened with Islanders. <br>
+One Islander in particular seems to have been quite popular, Trade-Speaker Lumin has openly been sleeping off several Awes on the beach beside the docks, having partaken quite liberally in the festivities and charmed a number of my crew. <br>
+As far as I can tell, it’s all been consensual. So in the end, the fault is mine for being lax. <br>
+For what it’s worth, it seems the reverse has been occurring as well, as there are quite a few Islanders ‘joining’ the Awe fleet aboard the thickened paunch of many sailors.</p>
+
+<div class="baths hidden">
+<p>Nearly all of the crew have made a pass at the Herbal baths off the islanders and it seems to have had no major ill effects. Elda has declared it a great success and has eagerly been communicating with the Islanders Medicine-Speaker about what roots and herbs they’ve been using. <br>
+It was not all perfect, some of the Awes have been forced to be sheared regardless. Either due to their affliction being set in too deep, or failing to dry their undercoats properly after the prolonged dip and getting the ‘stink-fur’. <br>
+The ship is now also permeated by a peculiar herbal scent. Not too unpleasant.</p>
+</div>
+</div>
+
+
+<div class="limitLeave3 hidden"><p><strong>Cold-Claws Tribe Day 3</strong></p>
+<p>The final day of shore leave sees the crew eagerly depart the ship at morning to partake in some final celebration and relaxation upon the isle. Many seem to have found their niché of enjoyment. <br>
+Limiting the crew to the ship for the night on curfew seems to have curbed some of the trouble. We’ve still have quite a few Awes attempting to sneak out during the night, many successfully so that have been forced to meet punishment. <br>
+Officer Tick has been glad for the labor, but he has gotten woefully little done with so few around to volunteer for work. <br>
+Overall the crew's morale seem improved. They haven't been allowed to let loose completely, but they’ve still had a few days off worth remembering, so most of them are pleased.<br>
+Surprisingly, the Raptorians have been the most behaved through it all. Merely occupying a portion of the beast to lay in the sands and sleep and occasionally roughhouse.<br>
+One more serious problem that Soft-Spoken Ljus has been audibly made her disapproval known about is that we are definitely going to be slightly short on the headcount of Awes.<br>
+There is no mistaking the portly figures of several sailors, who have feasted on a little more than just fish and fruit. A couple or two Awes are missing, having added themselves to the frames of fellow Awes, without the Soft-Spokens blessing or what she’s the most troubled about, deepened with Islanders. <br>
+As far as I can tell, it’s all been consensual. I am not sure if meting out some kind punishment at this point is worth it. One has to always expect a degree of deepening attrition and the numbers have been few the past weeks.<br>
+For what it’s worth, it seems the reverse has been occurring as well, as there are quite a few Islanders ‘joining’ the Awe fleet aboard the thickened paunch of many sailors. Luckily, the Islanders seem quite sanguine about it all.</p>
+
+
+<div class="baths hidden">
+<p>Nearly all of the crew have made a pass at the Herbal baths off the islanders and it seems to have had no major ill effects. Elda has declared it a great success and has eagerly been communicating with the Islanders Medicine-Speaker about what roots and herbs they’ve been using. <br>
+It was not all perfect, some of the Awes have been forced to be sheared regardless. Either due to their affliction being set in too deep, or failing to dry their undercoats properly after the prolonged dip and getting the ‘stink-fur’. <br>
+The ship is now also permeated by a peculiar herbal scent. Not too unpleasant.</p>
+</div>
+</div>
+
+<div class="ship2 hidden"><p><strong>Cold-Claws Tribe Day 3</strong></p>
+<p>The brief stint and experience of the Cold-Claws hospitality seems to have set itself in on the crews minds. They continue to drag their feet even this day, minds distracted. Tick has even gotten some rare backlash at trying to drive the crew to more solid repairs. While no one has wisely dared to challenge him or me directly, there has been insidious pranks or mild sabotage done that delay work and cause many crew to stand around doing nothing. <br>
+Misplaced tools, repair materials accidentally ending up at the bottom of the sea, several of our landing-boats ending up adrift, ropes and riggings improperly tied. All quite harmless but time-consuming. <br>
+In a way it is a way for the crew to harmlessly rebel and unload their frustrations. I have chosen not to pursue the issue with undue punishments. We did get a modicum of repairs done regardless, no crew want to be sailing on a damaged ship.</p>
+<div class="baths hidden">
+<p>Nearly all of the crew have made a pass at the Herbal baths off the islanders and it seems to have had no major ill effects. Elda has declared it a great success and has eagerly been communicating with the Islanders Medicine-Speaker about what roots and herbs they’ve been using. <br>
+It was not all perfect, some of the Awes have been forced to be sheared regardless. Either due to their affliction being set in too deep, or failing to dry their undercoats properly after the prolonged dip and getting the ‘stink-fur’. <br>
+The ship is now also permeated by a peculiar herbal scent. Not too unpleasant.</p>
+</div>
+
+<div class="ship3 hidden"><p><strong>Cold-Claws Tribe Day 3</strong></p>
+<p>The final day of our stay on the Island has come. The crew have been busy fixing up the ship and polishing it to a shine. <br>
+It has been some time for rest for most of them, as many have been allowed to go down on half-duties or less, as long as they performed their work. <br>
+While the crew are rested, they are not necessarily happier. Many are resentful of the strict way we’ve chosen to keep them aboard. The many temptations of a good time on shore have been calling to them and although attempts at distractions have been made onboard, many have been giving long longing looks to the Island and its friendly people. <br>
+A few Awes have been forced to be made examples of, repeat offenders who have tried to elope onto the island have in the end been eaten by the First-Officer after repeated warnings. <br>
+Officer Tick reports the ship has been patched up well over the days in the docks. It seems the Islanders have been quite helpful too, assisting in the work of patching the hull from the water after instructions. Most of them just seemed eager to help and learn and the crew are just as cheered at their friendly company.</p>
+
+<div class="baths hidden">
+<p>Nearly all of the crew have made a pass at the Herbal baths off the islanders and it seems to have had no major ill effects. Elda has declared it a great success and has eagerly been communicating with the Islanders Medicine-Speaker about what roots and herbs they’ve been using. <br>
+It was not all perfect, some of the Awes have been forced to be sheared regardless. Either due to their affliction being set in too deep, or failing to dry their undercoats properly after the prolonged dip and getting the ‘stink-fur’. <br>
+The ship is now also permeated by a peculiar herbal scent. Not too unpleasant.</p>
+</div>
+
+</div>
+
+
+<div class="corsair hidden"><p><strong>Gryph Corsairs</strong></p>
+<p>After midday, a ship is spotted sailing toward the island at full speed. <br>
+The crew goes on high alert and I prepare us to lift anchor to meet them rather than stay here as a target. Trade-Speaker Lumin ensures us that this ship is our awaited contact and is slightly saddened by our sudden departure, but he makes no comment about our distrust toward this ship. <br>
+As we slowly pull away from the docks and the village, many of the Islanders gather to wave us farewell. Many of the crew wave back, having made friends here.</p>
+
+<p>The oncoming ship is sleek and fast looking. It has two sails and definitely looks like the kind of ship you’d use to hunt someone down with rather then trade or transport. <br>
+Our ship is made into battle readiness, the Ballistae are prepared, the crew are armed. <br>
+As we close in on one another, the other ships flags and banners are visible. They seem to belong to no particular nation, they are more like personal crests. But then another banner is hoisted that I have to bid my look-outs confirm and repeat. <br>
+It is an Admiralty banner. <br>
+The ship is lowering its sails, slowing down as it approaches. I maintain battle readiness, but it seems we are in for some other kind of interesting.</p>
+</div>
+
+
+
+<div class="corsair2 hidden"><p><strong>Gryph Corsairs</strong></p>
+<p>Our ships slowly easy up alongside one another. A mostly Gryph crew throws over ropes for our crew to catch and soon we are docked together. Though some of them carry swords at their belts, most of them are unarmed and seem relaxed, like they are not expecting trouble. <br>
+A very tall and well-built Gryph is the first to meet me. He isn't exactly dressed in anything to signify him as captain, but there is an unmistakable deference toward him from his crew and he carries with him a swaggering sort of confidence. There was also little mistaking that this was no vessel belonging to any official navy. I’ve seen a lot of pirates in my career and these ones were not exactly hiding it. <br>
+“Ahoy, Captain. Permission to come aboard?” He called out with a gravelly voice. <br>
+“Granted. I am Captain Avolc, Awe Admiralty. You fly our banner stranger. Who might you be?” I stand to meet him, paw resting on my belt, not far from my sword-hilt. <br>
+The Gryph Captain jumps aboard with ease, spreading a pair of large wings as he does and walks up to meet me, he ends up towering over me somewhat, but he keeps a respectful distance, eyes taking in both my, my officers and my ship. <br>
+“I am Captain Koen and it’s a long story. But to summarize, you could say I am under the employ of Fleet Admiral Kaunis of 3rd Fleet. So we’re on the same side.” His smile is wide and he adds a wink to that last statement. <br>
+“Is that so? I take it you have proof to back that claim.” I crossed my arms and eyed him and his crew suspiciously.<br>
+Captain Koen just smiled affably and dug up some documents from a satchel on his side. <br>
+“Why, hah, I’ve got a contract of employment with a seal and everything right here my good Captain.” He handed the papers over and I skimmed through them. It all looked very legitimate and recognizable. I glance upward at the large rogue of a Captain and he stands there, arms crossed and looks quite smuggly bemused, a glint in his eye. <br>
+“Do you know where they are? We’ve been looking for them.” I tilt my head at the Gryph Captain, I won’t let myself be drawn in my his attempts at charm. <br>
+“I know where they are going to be, which is more valuable I think. I’d be happy to lead you there, as no doubt the Admiral will reward me for finding you.” He barked a short laugh. <br>
+“As would I if you what you’re saying is true.” I smirked back, starting to feel a sense of relief. <br>
+“Oh, I’ll hold you to that Captain, one can never be owed too many favors in these seas, ha!” <br>
+There was no guarantee he was telling the truth. But I couldn’t help but be put at ease by his gregarious nature. <br>
+“We best set sail at good speed however, time is growing short for our intended meeting. The Fleet-Admiral, I think, is planning something big. Wouldn’t want to be late for that!” Captain Koen said. “Why don’t you let my ‘Swift bastard’, my ship, lead the way and I’ll tell you all about it in private, eh?”</p>
+</div>
+
+
+
+<div class="corsair3 hidden"><p><strong>Gryph Corsairs</strong></p>
+<p>We are on our way. ‘Swift Bastard’ is leading ‘The Attentive’. Their ship is actually a little faster than ours, but then again it’s not only little smaller but no doubt much lighter than ours. Still, we are going at quite a speed in a South westerly direction. <br>
+Captain Koen has chosen to stay aboard our ship while he fills me in on the latest news. Happy to answer any questions that he’s able to answer. <br>
+It seems he came into the Fleet-Admirals employ not long after the 3rd Fleet arrived at Thousand Isles, shortly after their first battle with the Pirate fleet. A fleet he swears he holds no love for and is only glad to lend his aid to see brought down. <br>
+“I’ll tell you what I told the old gran’ Kaunis.” Captain Koen said. I dearly hoped he did not call the Fleet-Admiral that to her face. “ I am a Corsair, true. We’ve relieved a few Traders of part of their goods quite a few times. Never everything and mostly never had to eat anyone either!” He laughed and slapped his bulky gut. “But we’ve also escorted said Traders rest of their way to their destination, made sure they are not bothered by competitors. You could say we are... aggressively for hire!” <br>
+“Still sounds like piracy to me.” I huffed. <br>
+“Well, because it is. But that’s just between jobs and how we acquire new contractors. I’ve had many such traders hire us again, this time on mutual terms, to see them through the Thousand Isles. That’s how it always worked around here.” Captain Koen explained. <br>
+“If the merchants wanted go sail the safer coast-lines they’d pay the tolls, the tax and the mandatory escort costs of Kingdom Navy or Empire extortion. I reckon they figure its cheaper!” <br>
+“You ‘Corsairs’ have free reign of these seas?” I narrow my eyes. <br>
+“Well for a good long while we did, with the growing trade to you guys in the east there was plenty for all, there was no need to be greedy. <br>
+But not many of us honest ones left of late. New breed of pirates started taking over quite a few years ago, no honor in them at all. They’d take the goods, ship, crew and all, not seeming to care about how they were digging out the roots of a honest business. <br>
+First we fought them, for who else did the traders hire! But then they just kept growing in numbers. They mobbed the Corsairs who aided traders, even when they were no longer under contract. Jumped the crews after they took over the free ports and then... they got themselves those weapons from somewhere.”</p>
+
+<p>“The Thunder-Shot? No clue from where?” I asked. <br>
+“An apt name! Plenty of clues, yes. No solid proof of anything. Rumours among rumours. But your Fleet-Admiral is one clever granny. After I convinced her not to eat me and my crew, she took me on and has had me running errands ever since.” Captain Koen leaned back and rested his hands behind his head. The small seat creaked under him. <br>
+“What kind of errands?” I asked. <br>
+“Mmh, asking pertinent questions in the right places. These pirates, with not even a name to their gang, have little love for them around the Isles, but people fear them a great deal. Not easy for an outsider to get answers. So I’ve hired out my aid with narrowing down where they’re operating from, maybe who’s paying them, arming them. ” He rubbed his beak slowly. “Not too certain on the last part, it’s all so strange. But I’m sure the old gran will enjoy my report regardless.”</p>
+
+<p>Our meeting concluded and our journey progressed at good speed. “Attentive” and “Swift bastard” racing at full speed toward our final goal at last. We would soon be done with our mission, successfully so.</p>
+</div>
+
+
+
 <div class="envoy hidden"><p><strong>Envoy</strong></p>
 </div>
+
 </body>
 </html>

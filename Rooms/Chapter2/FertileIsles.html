@@ -370,11 +370,18 @@
 	   $('#settlement').on('click', function(e) {
         // change state here
         // end by using lib.goTo
+		
+		if (_.contains(state.chapter, "time")) {
+			 lib.goTo('Aweship.html')
+		}
+		else {
+		
 		lib.dialogue(e, "settlement2")
      
 		$(".btn").addClass("hidden");
 		$("#elder").removeClass("hidden");	
-						
+		}
+		
       })
 	  
 	   $('#elder').on('click', function(e) {
@@ -1774,7 +1781,7 @@ I am troubled that we failed to capture our deserted scout. The rumour of his su
 
 </div>
 
-<div class="enoughGame hidden"><p><strong>Enough Games!</strong>
+<div class="enoughGame hidden"><p><strong>Enough Games!</strong></p>
 <p>I stand up and slam a paw onto the table with a loud thunk. I’ve had enough playing around, I won’t be abide with these made up rules and promises. I played along long enough to see where it goes. <br>
 “Enough of this. You’ve had your fun with your word games and quizzing. I am not abiding to any of these rules, no matter how you try to guilt me about the “power” of words and promises.” <br>
 The three Gryphs at the back of the Elder tenses visibly and drew closer to their great grandsire. <br>
@@ -1783,10 +1790,146 @@ The three Gryphs at the back of the Elder tenses visibly and drew closer to thei
 “So you say, but we’ve proven your word is not strong, haven't we?” The old Elder rose to his feet, leaning on his cane. He took turned his tail feathers to me and walked off to leave.</p>
 </div>
 
+<!--
+
+<div class="Aweship hidden"><p><strong>Awe Ship</strong></p>
+<p>A ship is sighted docked at the Kaelani Village.<br>
+It does not long to confirm that it is a Awe-ship like ours, the profile and structure is quite distinct.<br>
+A brief whoop of celebration goes through the crew and I allow it with a grin. Many of my worries of roaming these isles indefinitely are lifted.<br>
+The ship has spotted us too, they seem to be alert and they quickly adjusted their sails and anchor to be read to leave.<br>
+Once we are within flight distance, I send out scouts in the air to have a closer look, just an extra step of caution that seems prudent.<br>
+They are met halfway by other flying figures launched from the Aweship and they circle each other a while before our scouts return.<br>
+They were other Awe scouts, the ship is of the fleet and very much safe.<br>
+“It’s “The Defiance” of 3rd Fleet captain. They are surprised to see us and want to have a chat.” Scout-Master Krel reports.<br>
+As we come up alongside, many Awes are watching us curiously from the decks and sails.<br>
+It’s a great relief to see so many other Awes somehow, It’s a reminder of that there is more of us out here and a comfort to be among more of your kind.<br>
+“Their captain stands upon deck and awaits us. There is brief hesitation of who should come aboard to whom, but I take the step to be the first to hop on over, with my First-Officer remaining behind.<br>
+“Captain Avolc of ‘the Attentive’ reporting. We have been looking for you.” I saluted the fellow captain. She was no one I recognized.<br>
+She is quite a prominent figure, I thought she was a Matron at a distance but it turns out she was just of extensive girth. Though she wears a captains hat, she also wearing an officer's jacket and red sash of crew officer. Which makes me think she has been recently promoted to the post. She returns the salute slowly, seeming to eye me just as closely, but with an impassive face.<br>
+“Captain Morlo, ‘The Defiant’. We were not expecting to see anyone out here, what brings you out here Captain Avolc?”<br>
+“We’ve been sent to locate the fleet and receive a report and provide potential resupply and crew.”<br>
+“I see… Well the fleet certainly has need for more of both.” Captain Morlo rubbed her chin thoughtfully. “Well, let’s discuss this in my cabin. We are on a tight schedule, so why don’t you have your ship follow ours, we are about two or more days sailing away from the fleets meet-up location.”<br>
+I nod at this and motion to my First officer to take charge and follow, then follow Morlo deeper into The Defiant.</p>
+</div>
+
+<div class="Aweship2 hidden"><p><strong>Awe Ship</strong></p>
+<p>Morlo seats herself heavily and with a relieved sigh and I sit down opposite of her. Our seating arrangement isn't exactly equal, she's behind her desk on a more prominent chair, making it almost seem like i'm being interviewed, even though we are of equal footing. I know some who'd be very ruffled by this, but I leave my judgement for later.</p>
+
+<p>“Well Captain, here we are. Let me just say straight away that there won't be really much I can tell you. It'll be up for the Fleet-Admiral once you meet her.” Morlo pulled at her cheek-tufts idly while she spoke flatly. “I don't reckon there are more of you coming? They just sent you did they.”</p>
+
+<p>I nodded briefly. “The Admiralty has not received any solid reports in a while. They are blind to what's going on out here.”</p>
+
+<p>Morlo huffed, as if her thoughts were confirmed. “Well.. it's not for the lack of trying. Those messenger birds aint good for anything they promised but emergency rations, I always said. Can't handle the open sea I think.” <br>
+“I've heard some scattered news of what's been going on from errant scouts. Something about the fleet being attacked and falling back?” I frowned. From what I had seen of The Defiant, it looked in significantly bad shape. <br>
+“Oh you've found some of those, that's good. Yes, there has been some changes of plans. But, again, I can't really tell you much about it. The Admiral is very careful about who she trusts with her information, your curiosity will have to wait.” Captain Morlo waved her paw calmly.</p>
+
+<p>“There must be something you can tell me, one Captain to another. All I have is ominous news and scattered clues. I am relieved to have found you at all!” I spoke urgingly, leaning forward.</p>
+
+<p>“Listen Captain... A lot of things have happened. I understand you're curious, but you'll have to wait. That whole Captain to Captain schtick wont work with me either, as you may have guessed, I was promoted only recently.” Morlo refused to budge, her tone was almost bored. As if she'd had to repeat this before.</p>
+
+<p>I leaned back, it was all a peculiar amount of secrecy. I had to say as much, pressing her further. <br>
+“This is a most unusual act of suspicion to a fellow Awe. We're all on the same side here, I'm here to help the fleet to the best of my capacity. There must be something you can tell me!”</p>
+
+<p>“Well Captain Avolc. I had to eat the previous captain of this ship and majority of the Officer staff for attempted desertion and acts of treason paramount to rebellion. <br>
+That you're an Awe, means little, I might have to eat you and your officers too if the Admiral dont like you and doesn't do it herself. <br>
+So I apologize if i'm not being overly trusting or your friend, I'd rather be digesting you lot without guilt, if it comes to it, and at least enjoy it a little.”</p>
+
+<p>I was stunned to silence, but not overly surprised. These kinds of Awes existed in the Admiralty too. <br>
+I had even more questions, but I was unsure whether I should ask at this point.</p>
+</div>
+
+<div class="treason hidden"><p><strong>Treason</strong></p>
+<p>“Treason?! You ate them?” <br>
+“Well all of the mid to high officers except myself were in agreement with captains treasonous idea of abandoning the fleet and heading toward home against the Admiral's orders. <br>
+I could not allow that, that is highly against Admiralty law. So I had them arrested.”</p>
+
+<p>“Just like that?” I frowned dubiously.</p>
+
+<p>“Well no... there was some bothersome scuffle and a little swordplay, but after I bested the captain the crew fell in with me and that was that for the lot of them. Good thing I practised more then her.” Morlo huffed. Her blade was resting on the wall behind her, it looked finely kept and maintained. Her prominently overweight figure also made more sense now.</p>
+
+<p>“Things must be quite serious indeed for such a thing to occur.” I wonder aloud.</p>
+
+<p>“Ech... Cowards the lot of them. I wont say I enjoy being promoted to Captain and all the extra bother that has brought, but third Fleet is better off with the lot of them as my bulk.” Morlo slapped her gut for emphasis, making it wobble.</p>
+</div>
+
+<div class="commend hidden"><p><strong>Commend deed</strong></p>
+<p>“That is an impressive deed of you. Handling a rebellious captain and officer core both like that. Such capability deserve the Captains cap” I decide to try praise Captain Morlo. “How many did you have to sentence?”</p>
+
+<p>Morlo sighed, her eyes affixed mine but her face remained neutral. “I didn't do it alone, I had some loyal crew backing me up. I sentenced 14 of them in total. Took me a while.”</p>
+
+<p>“That is... impressive.” I had to blink.</p>
+
+<p>“Don't look at me like I did em all at once!” Morlo scoffed before crossing her arms. “Captain, you're obviously trying to stroke my ego and be friendly. Unless you're thinking of deepening with me, stop it, what I said stands! Until the Fleet-Admiral decides what to do with you, its best we're not friends.”</p>
+</div>
+
+<div class="theadmiral hidden"><p><strong>The Admiral</strong></p>
+
+
+<p>“What's the Admiral like? Why would a Captain abandon her?” I try to squeeze Morlo for information.</p>
+
+<p>The rotund Captain just snorts and rolls her eyes. <br>
+“I've said I can't answer much of why's and hows, so don't try it.”</p>
+
+<p>“Are these direct orders from the Admiral? To not share information with the rest of the Admiralty?” I ask sharply.</p>
+
+<p>“No, Captain Avolc. She just likes making her own decisions about whom to trust with her plans and information. I'd rather not tell you something she'd rather tell your herself, or not tell you for that matter. Not all captains in the fleet are privy to her plans, they need only obey.”<br>
+Morlo readjusted herself in her seat in a shuffling manner. <br>
+“If you want to continued career as Captain, you best learn not try questioning her and her decisions too much.”</p>
+</div>
+
+<div class="deepeningF hidden"><p><strong>About Deepenings (Flatter)</strong></p>
+
+<p>“Well for what it’s worth, to someone like you I wouldn't entirely be opposed the consideration. The Fleet-Admiral has decided to allow it then? Deepenings.” <br>
+I asked casually. <br>
+Morlo seemed to eye me up and down again in her silently gauging manner. The balance of authority has shifted heavily in her favor with my casual admission.<br>
+“She has... It was deemed a fitting way to strengthen the spirit of the fleet and it had the Soft-spokens blessing.”</p>
+
+<p>“We have a soft-spoken aboard too, as it happens. A Mountain-Awe, it turned out.” I mentioned in passing.</p>
+
+<p>“Intriguing. However... even if she could expediently bless the union of your spirit to mine, I think we best wait until the Fleet-Admiral has gotten to speak with you.” Morlo spoke as if me deependng with her had been decided already.</p>
+</div>
+<div class="VesslaMorlo hidden"><p><strong>Scout Vessla</strong></p>
+<p>“You don’t happen to have run into a brown furred Scout called Vessla? We picked him up in a Lanaga village, but he deserted his service one island over, by Navpoint 4.”</p>
+
+<p>“Ah, I knew his story didn't quite hold up. Yes, we have him locked up under suspicion. Found him here in the village, trying to fit in. Desertion is it?” Morlo seemed to lick her chops. “I’ll take care of it.” <br>
+I narrowed my eyes at her. I could press that the scout was mine to deal with, but it was Morlo who captured him.</p>
 </div>
 
 
+<div class="kaelaniM hidden"><p><strong>The Kaelani</strong></p>
+<p>
+“What are you doing in the Kaelani village here?“ I ask casually. <br>
+“Holding the South East perimeter, waiting for someone like you, but also ‘trading’ for food. It’s the one currency that seems to work well in these blasted Isles.“ She shifts in her seat and cocks her head at me. <br>
+<div class="burn hidden">
+“I take it the smoke from Navpoint 4 was your doing then. Good work. We could see it all the way from here, made us know someone from the Admiralty might be coming.”<br>
+</div>
+<div class="noburn hidden">
+“You came via Navpoint 4 did you not? You must have found ‘Herald’ yet you left it be. Sheer luck you found us, we were looking for smoke from that direction.” <br>
+</div>
+“So you planned it that way?” <br>
+“The Fleet-Admiral did. ‘Herald’ took the brunt of the damage in our first engagement and kept slowing us down since. We hid it there. My job was to keep an eye on the vicinity, see who’s attention it attracted. Admiralty law is to burn our ships, reinforcements would be obligated to do so and thus inform us they were coming.”</p>
 
+<div class="noburn hidden">
+“Well, you did not follow the book by burning it either.” I retorted confidently. <br>
+“Touché, I suppose.” Morlo huffed.</p>
+</div>
+
+</div>
+
+<div class="morloEnough hidden"><p><strong>Enough questions</strong></p>
+“Well, I hope that sated your questions like it did me to give answers.” Morlo rose and I followed suit.  
+“It will have to do.” I replied. 
+“Excellent. Well, we had planned to forage a few more of the nearby isles, but your presence and news take precedent. We shall head for our rendezvous with the Fleet a bit earlier than intended. 
+Get  you to meet and have a debriefing with Fleet-Admiral Kaunis. She’ll be eager to hear what you have to say.”
+
+I nodded and we walked back out onto deck. I eyed her crew around me, most of them seemed to be groomed up and healthy. But there was something about them that slightly put me off. 
+Perhaps it was all the unfamiliar faces. I shook it off and returned to my ship. 
+
+Soon enough our ship ‘Attentive’ and Morlos “Defiance” were sailing in pair formation toward our final goal at last. We would soon be done with our mission, successfully so. 
+</div>
+ -->
+
+</div>
 
 </body>
 </html>

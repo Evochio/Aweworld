@@ -107,6 +107,15 @@
 		intelligence: 5,
 		charm: 8
 		},
+		krel: {
+		image: '../Images/assets/Priestess.png',
+		name: 'Krel',
+		title: 'Scout-Master',
+		experience: 3,
+		strength: 4,
+		intelligence: 6,
+		charm: 3
+		},
 		valnos: {
 		image: '../Images/assets/Valnosface.png',
 		name: 'Valnos',
@@ -148,7 +157,7 @@
  //Without prints out an array without a thing.  _.without(activeRoster, officer.tung)
  // write a function that remove(officer) and takes it away from activeRoster and adds it to Roster of the vored. like: function remove(x) { activeRoster = _.without(activeRoster, x) && deadRoster.push("x"); }
 var offList = {
-    activeRoster: [officer.arn, officer.keeper, officer.mirr, officer.nyxie, officer.ulv, officer.garsch, officer.elda, officer.ljus, officer.tung, officer.tick, officer.evok],
+    activeRoster: [officer.arn, officer.keeper, officer.mirr, officer.nyxie, officer.ulv, officer.garsch, officer.elda, officer.ljus, officer.tung, officer.tick, officer.evok, officer.krel],
     fullRoster: [officer.valnos, officer.ziggy, officer.glint, officer.melon, officer.arn, officer.keeper, officer.mirr, officer.nyxie, officer.tick, officer.ulv, officer.garsch, officer.tung, officer.evok, officer.elda, officer.ljus,],
 	firstOfficer: [officer.mirr],
 	deadRoster: []
