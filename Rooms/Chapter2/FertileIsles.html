@@ -419,7 +419,7 @@
 		else if (offList.firstOfficer[0].name == "Tung") {
 			$("#options").removeClass("hidden");
 			$("#leave").removeClass("hidden");
-			fertile.push("madK");
+			state.chapter.push("madK");
 		}
 		else if (offList.firstOfficer[0].name == "Garsch") {
 			$("#attend").removeClass("hidden");
@@ -441,7 +441,7 @@
 		removeOfficer(officer.arn)
 		state.chapter.push("noFirst");
 		fertile.push("infoGood");
-		fertile.push("happyK");
+		state.chapter.push("happyK");
 		lib.dialogue(e, "relieve")
      
 		$(".btn").addClass("hidden");
@@ -454,7 +454,7 @@
         // end by using lib.goTo
 		fertile.push("infoGood");
 		fertile.push("trade");
-		fertile.push("happyK");
+		state.chapter.push("happyK");
 		lib.dialogue(e, "negotiate2")
      
 		$(".btn").addClass("hidden");
@@ -935,7 +935,7 @@
 		if (_.contains(fertile, "trade")) {
 			$(".trade").removeClass("hidden");
 		}
-		if (_.contains(fertile, "happyK")) {
+		if (_.contains(state.chapter, "happyK")) {
 			$(".happyK").removeClass("hidden");
 		}
 		else {
@@ -959,7 +959,7 @@
 	  $('#leave').on('click', function() {
         // change state here
 		fertile.push("leave");
-		fertile.push("happyK");
+		state.chapter.push("happyK");
         // end by using lib.goTo
 		if (_.contains(fertile, "leave")) {
 			$(".leave").removeClass("hidden");
@@ -977,13 +977,13 @@
 		if (_.contains(fertile, "trade")) {
 			$(".trade").removeClass("hidden");
 		}
-		if (_.contains(fertile, "happyK")) {
+		if (_.contains(state.chapter, "happyK")) {
 			$(".happyK").removeClass("hidden");
 		}
 		else {
 			$(".madK").removeClass("hidden");
 		}
-		if (_.contains(fertile, "madK")) {
+		if (_.contains(state.chapter, "madK")) {
 			$(".madK").removeClass("hidden");
 			$(".happyK").addClass("hidden");
 		}

@@ -299,17 +299,17 @@ lib.makeCadetButton = function(cadetName) {
 var initialState = {
 	Glint: {
 		status: "Invisible", 
-		Loyalty: 5
+		Experience: 5
 		
 	},
 	Valnos: {
 		status: "Invisible", 
-		Loyalty: 5
+		Experience: 5
 		
 	},
 	Ziggy: {
 		status: "Invisible", 
-		Loyalty: 5
+		Experience: 5
 		
 	},
 	NonCadet: {
@@ -321,6 +321,7 @@ var initialState = {
   shipHealth: 10,
   crewLoss: 0,
   crewLossBattle: 0,
+  supplies: 10,
   vore: 0,
   days: 0,
   piety: 0,

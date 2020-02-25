@@ -6,7 +6,7 @@
 
   <link rel="stylesheet" href="../main.css"></link>
 
-  <script src="../jquery-2.1.3.js"></script>
+  <script src="../jquery-3.2.1.js"></script>
   <script src="../underscore.js"></script>
 	<script src="../bootstrap.min.js"></script>
  <link rel="stylesheet" href="../bootstrap.min.css"></link>
@@ -15,11 +15,16 @@
   <link rel="stylesheet" href="../main.css"></link>
   
   <style>
+
+  
 #Ziggy {
 position: fixed;
+bottom: 25px;
+right: 40px;
+  <!--
 bottom: 6px;
 right: 5px;
-
+-->
 }
 #ZThumb {
 top: auto;
@@ -40,6 +45,7 @@ right: 40px;
 	background-color: #996633;
 	border: 6px solid #331a00;
 	border-radius: 20px;
+	
 }
 #story-text {
 margin-right: 200px;
@@ -55,7 +61,7 @@ margin-right: 200px;
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
-   
+
 	var updateGameScore = function() {
 	state.flock.team = (state.flock.avolc + state.flock.ziggy);
 	state.flock.opponent = (state.flock.arn + state.flock.keeper);
@@ -589,8 +595,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 </div>
 <div class="scores">
-<p> Personal score: <div class="current-score"></div>Team score: <div class="team-score"></div>Opponent Team score: <div class="oteam-score"></div>
-<div class="current-cards"></div></p>
+<p> Personal score: <div class="current-score"></div>Team score: <div class="team-score"></div>Opponent Team score: <div class="oteam-score"></div></p>
 </div>
 
 <div id="story-text">
@@ -641,6 +646,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 <button class="btn btn-default hidden" id="toziggy">Report to Ziggys quarters</button>
 <button class="btn btn-default hidden" id="eaten">continue</button>
 <!--GAMESCORES HERE? -->
+<span id="cadetButtons"> </span>
 </div>
 
 <div class="round1 hidden"><p><strong>The Game - Ship rules - Round 1</strong></p>
@@ -1059,6 +1065,6 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 </script>
 
-<span id="cadetButtons"> </span>
+
 </body>
 </html>

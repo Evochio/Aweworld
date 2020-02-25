@@ -192,10 +192,12 @@ if (_.contains(state.locations, "Navpoint4")) {
 		lib.dialogue(e, "kidnap"),
 		$("#outcome2").removeClass("hidden");
 		$(".kidnap2").removeClass("hidden");
+		
 		}
 		else {
 		lib.dialogue(e, "kidnapFail")
 		Navpoint3.push("kidnapFail");
+		
 		$("#outcome2").removeClass("hidden");
 		state.scoutNumber -= 1;
 		}
@@ -754,8 +756,8 @@ if (_.contains(state.locations, "Navpoint4")) {
 	   $('#outcome2').on('click', function(e) {
         // change state here
 		// end by using lib.goTo
-		//lib.dialogue(e, "threaten")
 		
+		state.chapter.push("lanagaBad");
 		if ((_.contains(Navpoint3, "arrest") && _.contains(choiceOfficer, officer.garsch)) || _.contains(Navpoint3, "kidnapFail")) {
 		lib.dialogue(e, "consider7")
 		
@@ -790,6 +792,7 @@ if (_.contains(state.locations, "Navpoint4")) {
 		$("#button-2").removeClass("hidden");
 		foundLocation();
 		state.chapter.push("wVessla");
+		state.chapter.push("lanagaGood");
 		state.scoutNumber += 1;
 		state.locations.push("Gatormine");
 		$("#gatormine").removeClass("hidden");
@@ -806,6 +809,7 @@ if (_.contains(state.locations, "Navpoint4")) {
 		$("#button-2").removeClass("hidden");
 		state.locations.push("Gatormine");
 		state.chapter.push("wVessla");
+		state.chapter.push("lanagaGood");
 		state.scoutNumber += 1;
 		foundLocation();
 		
@@ -903,7 +907,7 @@ if (_.contains(state.locations, "Navpoint4")) {
 		lib.dialogue(e, "eatVessla"),
         $("#eatVessla").addClass("hidden");
 		$("#consider").addClass("hidden");
-		
+		state.chapter.push("eatVessla");
 		$("#gatormine").removeClass("hidden");
 		if (_.contains(state.visited, "Navpoint2")) {
 		$("#navpoint2").addClass("hidden");
@@ -920,6 +924,7 @@ if (_.contains(state.locations, "Navpoint4")) {
 		if (_.contains(Navpoint3, "convinced")) {
 		lib.dialogue(e, "consider5")
 		foundLocation();
+		state.chapter.push("lanagaGood");
 		state.locations.push("Gatormine");
 		state.chapter.push("wVessla");
 		state.scoutNumber += 1;
@@ -928,6 +933,7 @@ if (_.contains(state.locations, "Navpoint4")) {
 		}
 		else if (_.contains(Navpoint3, "leave")) {
 		lib.dialogue(e, "consider6")
+		state.chapter.push("lanagaPoor");
 		
 		}
 		else if (_.contains(Navpoint3, "shame") && favor >= 2) {
@@ -935,6 +941,7 @@ if (_.contains(state.locations, "Navpoint4")) {
 		foundLocation();
 		state.locations.push("Gatormine");
 		state.chapter.push("wVessla");
+		state.chapter.push("lanagaGood");
 		state.scoutNumber += 1;
 		$("#button-2").removeClass("hidden");
 		$("#gatormine").removeClass("hidden");
@@ -942,6 +949,8 @@ if (_.contains(state.locations, "Navpoint4")) {
 		else if (_.contains(Navpoint3, "letgo")) {
 		lib.dialogue(e, "consider4")
 		foundLocation();
+		state.chapter.push("lanagaGood");
+		state.chapter.push("vesslaLeave");
 		state.locations.push("Gatormine");
 		$("#button-2").removeClass("hidden");
 		$("#gatormine").removeClass("hidden");
@@ -988,10 +997,12 @@ if (_.contains(state.locations, "Navpoint4")) {
         // end by using lib.goTo
 		if (_.contains(choiceOfficer, officer.keeper)) {
 		lib.dialogue(e, "apprehend")
+		state.chapter.push("lanagaPoor");
 		$("#qVessla").removeClass("hidden");
 		}
 		else if (_.contains(Navpoint3, "Armed")) {
 			lib.dialogue(e, "apprehend2")
+			state.chapter.push("lanagaPoor");
 			$("#qVessla").removeClass("hidden");
 		}
 		else {

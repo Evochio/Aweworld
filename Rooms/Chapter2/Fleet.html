@@ -15,11 +15,348 @@
   <script src="../../officers.js"></script>
   <link rel="stylesheet" href="../../main.css"></link>
   <script>
+  
+  var approval = 0;
 
+  	
+   function status() {
+  if (  $("#crew").hasClass("hidden") && $("#supplies").hasClass("hidden") && $("#ship").hasClass("hidden") && $("#officers").hasClass("hidden") && $("#islanders").hasClass("hidden") && $("#intel").hasClass("hidden") ) {
+	$("#conclusion").removeClass("hidden");
+	}
+  }
+		
+  
+  
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
+	  
+		if (_.contains(offList.firstOfficer, officer.arn)) {
+		
+		 $(".arn").removeClass("hidden");
+	  
+		}
+		else if (_.contains(offList.firstOfficer, officer.mirr)) {
+		 $(".mirr").removeClass("hidden");
+		}
+	
+		else if (_.contains(offList.firstOfficer, officer.tung)) {
+		 $(".tung").removeClass("hidden");
+		}
+		else if (_.contains(offList.firstOfficer, officer.garsch)) {
+		 $(".garsch").removeClass("hidden");
+		}
+		if (_.contains(offList.deadRoster, officer.evok)) {
+		
+		 $(".evok").removeClass("hidden");
+	  
+		}
+	  
+	  	if (_.contains(state.chapter, "MorloPath")) {
+		$(".morlo").removeClass("hidden");
+	  }
+	  else {
+		$(".koen").removeClass("hidden");
+	  
+	  }
       
+	   $('#fleet').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "fleet")
+		$(".btn").addClass("hidden");
+        $("#flag").removeClass("hidden");
+		
+      })
+	  
+	   $('#flag').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "flag")
+		$(".btn").addClass("hidden");
+        $("#flag2").removeClass("hidden");
+		
+      })
+	  
+	   $('#flag2').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "flag2")
+		$(".btn").addClass("hidden");
+        $("#flag3").removeClass("hidden");
+		
+      })
+	  
+	   $('#flag3').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "flag3")
+		$(".btn").addClass("hidden");
+        $("#admiral").removeClass("hidden");
+		
+      })
+	  
+	  
+	  $('#admiral').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "admiral")
+		$(".btn").addClass("hidden");
+        $("#admiral2").removeClass("hidden");
+		
+      })
+	  
+	  
+	  $('#admiral2').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "admiral2")
+		$(".btn").addClass("hidden");
+        $("#you").removeClass("hidden");
+		
+      })
+	  
+	   $('#you').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "you")
+		$(".btn").addClass("hidden");
+        $("#debrief").removeClass("hidden");
+		
+      })
+	  
+	  
+	   $('#debrief').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "debrief")
+		$(".btn").addClass("hidden");
+		if (_.contains(state.inventory, "intel")) {
+        $("#intel").removeClass("hidden");
+		}
+		$("#crew").removeClass("hidden");
+		$("#supplies").removeClass("hidden");
+		$("#ship").removeClass("hidden");
+		$("#officers").removeClass("hidden");
+		$("#islanders").removeClass("hidden");
+		
+      })
+	  
+	    $('#intel').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "intel")
+		
+		$("#intel").addClass("hidden");
+		status();
+		approval += 1; 
+		
+      })
+	  
+	   $('#crew').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		if (state.crewLoss <= 5) {
+			$(".crewhigh").removeClass("hidden");
+			approval += 1; 
+		}
+		else if (state.crewLoss <= 10) {
+			$(".crewmid").removeClass("hidden");
+		}
+		else if (state.crewLoss <= 20) {
+			$(".crewlow").removeClass("hidden");
+			approval -= 1; 
+		}
+		
+		lib.dialogue(e, "crew")
+		
+		$("#crew").addClass("hidden");
+		status();
+      })
+	  
+	  $('#supplies').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		if (state.supplies <= 9) {
+			$(".supplyhigh").removeClass("hidden");
+			approval += 1; 
+		}
+		else if (state.supplies <= 7) {
+			$(".supplymid").removeClass("hidden");
+		}
+		else {
+			$(".supplylow").removeClass("hidden");
+			approval -= 1; 
+		}
+		
+		lib.dialogue(e, "supplies")
+		
+		$("#supplies").addClass("hidden");
+		status();
+      })
+	  
+	   $('#ship').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		if (state.shipHealth <= 9) {
+			$(".shiphigh").removeClass("hidden");
+			approval += 1; 
+		}
+		else if (state.shipHealth <= 7) {
+			$(".shipmid").removeClass("hidden");
+		}
+		else {
+			$(".shiplow").removeClass("hidden");
+			approval -= 1; 
+		}
+		
+		lib.dialogue(e, "ship")
+	
+		$("#ship").addClass("hidden");
+		status();
+      })
+	  
+	  
+	   $('#officers').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "officers")
+		
+		$("#officers").addClass("hidden");
+		status();
+		
+      })
+	  
+	   $('#islanders').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		
+		if (_.contains(state.chapter, "vesslaDes") || _.contains(state.chapter, "eatVessla")) {
+			$(".vesslaNo").removeClass("hidden");
+		}
+		else if (_.contains(state.chapter, "wVessla") || _.contains(state.chapter, "uVessla")) {
+			approval += 1; 
+			$(".vesslaYes").removeClass("hidden");
+		}
+		else if (_.contains(state.chapter, "wVessla")) {
+			$(".vesslaLeave").removeClass("hidden");
+			approval -= 1; 
+		}
+		
+		if (_.contains(state.chapter, "LanagaGood")) {
+			$(".lanagagood").removeClass("hidden");
+			approval += 1; 
+		}
+		else if (_.contains(state.chapter, "LanagaPoor")) {
+			$(".lanagapoor").removeClass("hidden");
+		}
+		else if (_.contains(state.chapter, "LanagaBad")) {
+			$(".lanagabad").removeClass("hidden");
+			approval -= 1; 
+		}
+		
+		if (_.contains(state.chapter, "happyK")) {
+			$(".kaelanigood").removeClass("hidden");
+		}
+		else if (_.contains(state.chapter, "madK")) {
+			$(".kaelanibad").removeClass("hidden");
+			approval -= 1; 
+		}
+		if (_.contains(state.chapter, "coldClaws")) {
+			$(".coldclaws").removeClass("hidden");
+		}
+		
+		lib.dialogue(e, "islanders")
+		
+		$("#islanders").addClass("hidden");
+		status();
+		
+      })
+	  
+	   $('#conclusion').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		
+		if ( approval >= 5) {
+			$(".high").removeClass("hidden");
+		}
+		else if (approval >= 3) {
+			$(".neutral").removeClass("hidden");
+		}
+		else {	
+		$(".low").removeClass("hidden");
+		}
+		
+		lib.dialogue(e, "conclusion")
+		
+		$(".btn").addClass("hidden");
+		$("#tidings").removeClass("hidden");
+		
+      })
+	  
+	  
+	   $('#tidings').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		
+				
+		lib.dialogue(e, "tidings")
+		
+		$(".btn").addClass("hidden");
+		$("#give").removeClass("hidden");
+		$("#nogive").removeClass("hidden");
+      })
+	  
+	  $('#give').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		
+				
+		lib.dialogue(e, "give")
+		
+		$(".btn").addClass("hidden");
+		$("#meeting").removeClass("hidden");
+		
+      })
+	  
+	   $('#nogive').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		
+				
+		lib.dialogue(e, "nogive")
+		
+		$(".btn").addClass("hidden");
+		$("#meeting").removeClass("hidden");
+		
+      })
+	  
+	   $('#meeting').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		
+				
+		lib.dialogue(e, "meeting")
+		
+		$(".btn").addClass("hidden");
+		$("#meeting2").removeClass("hidden");
+		
+      })
+	  
+	    $('#meeting2').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		
+				
+		lib.dialogue(e, "meeting2")
+		
+		$(".btn").addClass("hidden");
+		$("#meeting2").removeClass("hidden");
+		
+      })
+	  
+	  
+	  
       $('#button-1').on('click', function(e) {
         // change state here
         // end by using lib.goTo
@@ -48,30 +385,431 @@
 </head>
 <body>
 <div id="head">
-<div id="dayCounter">
-Day: <span class="days"><script>displayDays()</script></span>
-<br/>
-<span class="schedule"><script>displayShedule()</script></span>
-</div>
-<h1>Thousand Islands</h1>
+<h1>3rd Fleet of the Admiralty</h1>
 </div>
 
 
 <div id="story-text">
+<div class="morlo hidden">
+<p>‘Defiant’ takes us past many twisting clusters of islands that would have taken us days to investigate. We could have been close to the fleet and not know it as we’re deep in Thousand Isles now. <br>
+There is a friendly kind of rivalry between the crews of ‘Attentive’ and ‘Defiant’. They try to outrun us and we try to keep up and within a certain distance. It is good practise for both crews and the race makes us keep a good pace. Due to our weight in extra supplies, we have a bit of a harder time, but Nyxies sailing and knack for knowing how the winds might shift more than makes up for it. <br>
+At one point we stop at an Island briefly and a scout flies out onto the ‘Defiant’ and delivers a report, no doubt updating Captain Morlo on the fleets position. <br>
+Then off we sail again, to catch up to their location. It seems the fleet stays on constant the move.</p>
+</div>
+<div class="koen hidden">
+<p>‘Swift Bastard’ is amply named. The smaller ship is light and nimble and races ahead of us quite a deal many times. They always wait for us to catch up in the end however. <br>
+Officer Nyxie is taking this as a bit of an affront and is pushing our ship hard to go full speed. There are moments that we are matching their pace, but not for long periods, we’re just too heavy in the water with all our cargo. <br>
+It seems Captain Koen knows where we’re going. It’s a jumble of island clusters that would have taken us days to investigate, but we bypass it all. It’s a good thing we have a guide.</p>
+</div>
 
-<p>The Awe-Fleet in all its battered splendor. Has a few Battleships like the Admirals flagship and Frigates like your own ship. Also a Gryph Mercenary ship and a requisitioned Tradeship or two along with a Kingdom Envoy.</p>
 </div>
 <div id="tail">
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default" id="button-1"> Test </button>
-<button class="btn btn-default" id="button-2"> Fleet Battle </button>
+<button class="btn btn-default hidden" id="button-1"> Test </button>
+<button class="btn btn-default hidden" id="button-2"> Fleet Battle </button>
+
+<button class="btn btn-default" id="fleet">The Fleet</button>
+
+<button class="btn btn-default hidden" id="flag">The Fleet</button>
+<button class="btn btn-default hidden" id="flag2">The Flag-captain</button>
+<button class="btn btn-default hidden" id="flag3">Continue</button>
+<button class="btn btn-default hidden" id="admiral">The Fleet-Admiral</button>
+<button class="btn btn-default hidden" id="admiral2">Continue</button>
+
+<button class="btn btn-default hidden" id="you">About You</button>
+<button class="btn btn-default hidden" id="debrief">Debrief</button>
+
+<button class="btn btn-default hidden" id="intel">The Intel</button>
+<button class="btn btn-default hidden" id="crew">Remaining Crew</button>
+<button class="btn btn-default hidden" id="supplies">Remaining Supplies</button>
+<button class="btn btn-default hidden" id="ship">State of Ship</button>
+<button class="btn btn-default hidden" id="officers">Your Officers</button>
+<button class="btn btn-default hidden" id="islanders">Islander Relations</button>
+<button class="btn btn-default hidden" id="conclusion">Conclusion</button>
+
+<button class="btn btn-default hidden" id="tidings">Messenger in the night</button>
+<button class="btn btn-default hidden" id="give">Give Stroke information</button>
+<button class="btn btn-default hidden" id="nogive">Dont give anything.</button>
+
+<button class="btn btn-default hidden" id="meeting">Captains Meeting.</button>
+<button class="btn btn-default hidden" id="meeting2">Continue</button>
+
 <span id="cadetButtons"> </span>
 <script>
 
 </script>
 </div>
-<div class="envoy hidden"><p><strong>Envoy</strong></p>
+<div class="fleet hidden"><p><strong>The Fleet</strong></p>
+<p>The fateful day has arrived. The look-out calls out first, spotting ships, many ships. Then I see them too, a score of sails coming our way with haste. <br>
+Much of the crew pause what they’re doing to have a look as we approach the 3rd Fleet of the Admiralty, 10 warships are visible of various make. Most of them are Galley-Frigates like ours, but dispersed around the fleet are 3 imposing battleships, nearly double our size and bristling with Ballistae. <br>
+There are 2 other ships visible too, though less armed and armored. One looks like an ordinary merchant ship, just like the one we encountered before the Sea of Fangs. The other one is of similar shape, but of distinct elegant Kingdom flair.<br>
+We’re finally here. Our objective to find them and get their report can finally be completed. Though I have mixed feelings about returning home after we’re done here.</p>
 </div>
+
+<div class="flag hidden"><p><strong>The Fleet</strong></p>
+<p>We receive quite a bit of attention, the crews of the 3rd fleet are all eager to see the new ship arriving from back home. Though if they’re disappointed it’s just us, their faces are too far away to tell. <br>
+One of the Battleships, which judging by its banners and livery is the flagship, signals us to approach, but otherwise the fleet is making no signs of stopping. They merely scoop us up into their group and continue going in formation. <br>
+I can see no ships in pursuit, but perhaps the rumour of them being on the run is true? Hopefully I am about to find out. <br>
+<div class="arn hidden">
+“We’re finally here Captain, I confess I had some doubts whether we’d ever find them. But you saw us through.” First-Officer Arn stood beside me, looking around at all the ships surrounding us. <br>
+“Well thanks for the vote of confidence Arn.” I grumble. <br>
+“Be careful when you meet the Fleet-Admiral, she’s cant be… testy.” Arn nods and looks a bit uncertain. <br>
+</div>
+<div class="tung hidden">
+“Look at these ships Cap! Impressive! With these we could kick anyone’s tail!” First-Officer Tung grinned widely. <br>
+“They are a sight to behold.” I replied more cooly. There was no mistaking the scuffed look of many of the ships. <br>
+</div>
+<div class="mirr hidden">
+“I am happy and relieved we finally made it here. I feared we’d be sailing around a good while longer.” First-Officer Mirr puffed her tobacco, politely downwind of me. <br>
+“What? Didn’t think I’d get us here?” I turned toward her. <br>
+“Oh, I had confidence in you. You really are quite something Captain.” She smiled warmly.</p>
+</div>
+<p>
+<div class="garsch hidden">
+“3rd Fleet of the Admiralty, under the command of Fleet-Admiral Kaunis.” First-Officer Garsch stated matter of factly at my side. <br>
+“Indeed it is. Any words of advice?” I quirked a brow to the officer. <br>
+“Be wary. I worked with Kaunis in the past, she’s very determined her cause is right. Whatever that cause may be.” Garsch harrumphed, though not exactly with disapproval.</p>
+</div>
+</div>
+
+<div class="flag2 hidden"><p><strong>The Flag-Captain</strong></p>
+<p>Jumping to another ship while on the move, especially one much taller than ours takes me first up to the top of our mast and then I am gliding over, wings outstretched. <br>
+There were other means on offer, like a makeshift rocking and wobbly bridge or climbing up a rope ladder. Since we’re showing no signs of slowing down, all options seemed as risky to me as any other. <br>
+I land on the deck of the Flag-ship a bit more heavily than I had planned, but at least it was not in the sea. <br>
+A haggard looking Awe Captain with the decoration of Flag-Captain, the second-in-command of the Fleet and the one responsible for coordinating all the ships stands before me. <br>
+I salute her stiffly and she wearily returns it.<br>
+“Captain Avolc of ‘Attentive’ reporting. I am here on mission to resupply you and take your report. Admiralty back home are in the dark.” <br>
+“I see.” The Flag-Captain replies, then as if remembering courtesy she returns the salute. “Flag-Captain Marja of Battleship ‘Unwavering’, glad to have you among us. Are those your reports?” The Flag-Captain nods to my satchel and I return the nod with the satchel. <br>
+“I’ll make sure the Fleet-Admiral gets them. She will undoubtedly want to speak with you soon. I bid you wait until then.” The Flag-Captain said calmly, handing the satchel over to a white-furred cadet that had hovered quietly at her side. <br>
+“Take these to Fleet-Admiral Kaunis Cadet Aliyah.” The cadet scampered off in haste to obey. <br>
+I nodded after her. “Have a lot of cadets in the fleet?” <br>
+“No, not so many anymore.” Flag-Captain replied, before adding. “Most have been promoted to officers early to fill vacancies.” <br>
+I scowled lightly at the Flag-Captain, briefly she looked wearier than ever. Her eyes also had that same quality as I had seen on much of Morlos crew. Then she seemed to steel herself and her gaze became steely and more resolute, falling upon something in the distance. <br>
+“I must attend matters, Cadet Aliyah will fetch you when the Admiral is ready to see you.” The Flag-Captain walked off with brisk steps. I could not help feel slightly snubbed, but watching her, it seemed there was a lot on this Awes mind. Already she was gesticulating at a group of long-winged Awes, one of them promptly took off toward one of the ships in the formation to deliver a message.</p>
+</div>
+
+<div class="flag3 hidden"><p><strong></strong></p>
+<p>I looked around the deck of the battleship ‘Unwavering’ some more while waiting. The size of this ship was impressive, everything felt scaled up from ‘Attentive’ who I remember had felt large when I first boarded it. <br>
+The crew gave me wide berth has they hurried to and fro on their errands. There was a hustle and promptness on this ship that my own did not have. The crew worked fast and hastily with their tasks, never quite pausing to talk except if to communicate something essential. I suppose being on the Flag-ship of 3rd fleet attracted only that kind of diligence. <br>
+It’s a short while later that the white-furred Cadet reemerged at my side with a polite bow. <br>
+“Captain Avolc? The Fleet-Admiral will see you now. This way please.” She seemed to chirrup. Her demeanour reminded me of my own Cadets, eyes spirited and attentive. Untainted in a way. <br>
+“Ofcourse, lead the way Cadet.” I follow her as she leads on. Knowing the chatterbox nature of my own cadets, I pose her a question to see what I can glean in anticipation to the meeting. <br>
+“What’s it like being a Cadet on the flagship?” <br>
+“Oh, you know. Busy. But exciting!” She smiles back at me. “It's a privilege to learn from such experienced leaders.” <br>
+Her reply felt a little rehearsed. She was being careful, which was quite smart I suppose. She stops in front of a decorated door and knocks on it firmly. <br>
+“Here we are Captain.” She salutes and steps aside as I enter.</p>
+</div>
+
+
+<div class="admiral hidden"><p><strong>Fleet-Admiral</strong></p>
+<p>The Admiral's room is sizable, but a clutter of charts and documents. Currently she stands bent over one with two attending Awe officers, they are the letters and orders I brought from the Admiralty. She raises her head to inspect me as I enter. <br>
+The Fleet-Admiral herself is a matron of imposing presence. Taller then the Awes around her, sturdy wide-hipped and with a thick groomed mane, she stands well apart from the common Awe.<br>
+But its not her physical size or length of fur that gives her such an bolstered almost inspiring presence.<br>
+She has an aura of command around her, an air of confidence of one who's had her whims obeyed for most of her life and knows she's respected. It's not quite arrogance, though there's some of that too, it's a deep confidence and certainty in her own competence, hard-earned through a life-time of experience.<br>
+She's a master of her expertise the art of Command and she knows it.</p>
+</div>
+
+
+<div class="admiral2 hidden"><p><strong>Fleet-Admiral</strong></p>
+<p>Her grey eyes appraise me as I approach, glancing me up and down. Whatever her first impressions of me were she let none show.<br>
+The Officers step aside as I step forward to her to kneel, touch wings and brush paws in respect and acknowledgment of her higher authority.<br>
+Up-close it becomes pretty hard not to notice how she has retained quite a bit of the strength and physique of her pre-matron days. She must have fasted and trained hard to achieve it. <br>
+“Fleet-Admiral. Captain Avolc of ‘Attentive’ reporting in.” I bobbed my head.<br>
+“Captain Avolc.” She rumbled, her voice strong, Matron deep and quite husky from a lifetime of shouting orders. “I like what I see and your arrival is fortuitous. My only regret is that you seem to come alone?”<br>
+“Yes, Admiral. I was sent to appraise the situation along with supply and support. The Grand-Admiral has received only scant updates on your status out here. No word of the enemies we face have gotten through.” I summarized quickly.<br>
+“I see, that explains it. Our messages back home are being intercepted then.” She paced back to her desk and seemed to consider briefly before snapping a brief order to the two officers. <br>
+“Prepare to assemble the captains. Recall the patrols and foragers, we are moving up our timetable. Now leave, I need to debrief the Captain of ‘Attentive’.”</p>
+</div>
+
+
+<div class="you hidden"><p><strong>About You</strong></p>
+<p>“So, Captain Avolc. By your namesake and your eye-color, do I guess correctly that you’re related to Avokas.” The Admiral has been fixated by my eyes since I entered the room. I felt a surge of surprise at hearing that name. <br>
+“That is correct. She was my mother.” I reply after a pause. <br>
+“I thought so, you have her bearing and eyes. That blood of ancient Avon.” The Fleet-Admiral gave a chuckle. "Probably her eyesight too."<br>
+It was not the first time someone made a remark about my eyes and Avon, the mystical ‘First-Awe’ of our history. I blinked at her last remark, stumped. <br>
+“I served with her in the East sea around the Blockade days, she was strong and brilliant. I heard later what happened, such a shame, but she was always so headstrong. Shouldn’t have tried to have a child so close to Matronage.” The Fleet-Admiral shakes her head regretfully. <br>
+“Yet… If she had not, I would not have existed.” I can’t keep away the hint of acid in my tone. <br>
+“Yes, I suppose. You’re the legacy she chose, rather then service, she had that right.” It seems my presence dredged up a lot of memories in the Fleet-Admiral. She has a distracted distant look to her a while before her eyes return to the present.<br>
+“Well, I expect great things from you Captain Avolc. Let’s have a look at your reports.”</p>
+</div>
+
+
+<div class="debrief hidden"><p><strong>Debrief</strong></p>
+<p>“We were just eyeing through your reports, but let’s go through them together you and I. There are some parts of them that I am curious and concerned about.” She leafs through the papers, I just noticed her office had no chairs whatsoever. So I stiffen my back up straighter and await her judgment.</p>
+</div>
+
+
+<div class="intel hidden"><p><strong>The Intel</strong></p>
+<p>“I see you acquired an interesting report from the ‘Sailing-Company’. I am not sure what the Admiralty is thinking cutting deals with those rogues, but I just looked over this ‘Intel’ of dubious origins and compared it to some of our own reports. It has some corresponding data, so it seems legitimate.” The Fleet-Admiral leafs through some pages. It seems to have been what the she and the Officers had been pouring over as I arrived. <br>
+“If I may ask, what kind of information in it is of use? It just seemed like shipping information from a place called ‘Port Nowhere’.” I ask as courteously as I can. <br>
+“‘Port Nowhere’ is of great interest to us. It happens to be one of the largest free-ports in Thousand Isles, it's certainly the most prosperous one as well as inauspicious places around. This data will help to confirm some of our suspicions about the place. Well done retrieving it Captain.”</p>
+</div>
+
+
+<div class="crew hidden"><p><strong>Crew Left</strong></p>
+<div class="crewhigh hidden">
+The Admiral shifts papers and her eyes scan through the personnel records of the Attentive. <br>
+“Though we are down one ship and its crew has been dispersed among the fleet, the boost of personnel that you bring is fortuitous. It will relieve some of the strain we’ve been experiencing in some positions.” <br>
+I nod firmly. I knew some of my crew would be leaving us upon reaching the fleet, still, i had grown attached to many of them. <br>
+“You’ve done well keeping attrition down Captain, we will be relieving your ship of half its crew and filling some much needed gaps in the fleet.“ The Fleet-Admiral put the paper aside and moved to the next. Half my crew is quite a bit more than I had anticipated.</p>
+</div>
+
+<div class="crewmid hidden">
+The Admiral shifts papers and her eyes scan through the personnel records of the Attentive. <br>
+“Though we are down one ship and its crew has been dispersed among the fleet, the boost of personnel that you bring is fortuitous. It will relieve some of the strain we’ve been experiencing in some positions.” <br>
+I nod firmly. I knew some of my crew would be leaving us upon reaching the fleet, still, i had grown attached to many of them. The Fleet-Admiral frowns and raising her eyes to mine.<br>
+“Attrition seems to have been more or less average, especially considering some of the encounters you’ve documented. I do wish you’d tried to stay more out of trouble, every Awe is needed, but what’s done is done. We will be lifting close to half of your crew away to new posts around the fleet.” The Fleet-Admiral put the paper aside and moved to the next. Half my crew is quite a bit more than I had anticipated.</p>
+</div>
+
+<p>
+<div class="crewlow hidden">
+The Admiral shifts papers and her eyes scan through the personnel records of the Attentive. Then she raises her eyes to mine with an accompanying deep scowl. <br>
+“These numbers are unacceptable, you seem to have squandered Awe lives quite liberally. There are hardly enough reinforcements here to to be of use.” The Fleet-Admiral gave her head a disapproving shake. <br>
+“I am not sure what kind of captaining you’ve been doing in the East-Seas Captain Avolc, but if I notice you keeping this kind of reckless leadership up under my command, I will replace you.” <br>
+With a hard slap she put the papers back down on the desk. <br>
+“I will be lifting 40% of your ‘remaining’ crew away from you. I wish there had been more left to disperse among the fleet, you should be happy I did not take more out of your core crew to make up for it.”</p>
+</div>
+</div>
+
+<div class="supplies hidden"><p><strong>Supplies!</strong></p>
+<p>Fleet-Admiral Kaunis goes shifts from one paper to another in this unexpected review of my performance. At least I am not sorry to see contents of the current documents she’s holding go, what with all the crates in the holds of my ship littering every spare piece of space available. <br>
+<div class="supplyhigh hidden">
+“It seems the Admiralty has sent you with quite a bit of everything. Much of this will be quite useful in the coming days. I am glad to see you arrive with it when you have. We’ve had a bit of shortages of late that this will greatly alleviate.” <br>
+The Fleet-Admiral gave a nod and placed the papers down.</p>
+</div>
+<div class="supplymid hidden">
+“It seems the Admiralty had sent you with quite a bit of everything. You’ve been using some of it for various purposes I see. I will have to review them from your your reports, the Fleet is in quite a bit of shortage on many supplies, we could have used every piece! No matter, the numbers are adequate.”</p>
+</div>
+<div class="supplylow hidden">
+The Fleet Admiral huffs and holding several of the papers up to her face. Luckily hiding what must be a scary expression behind it. <br>
+“What is this? Is this a joke? Where have put all these supplies? Repairs? Parties?! Have you never done a resupply run before Captain? You’re supposed to save the supplies for their intended destination, not use them for bartering or leisure!” <br>
+The scary face emerged as papers go flying and her eyes pierces deep into me and saps me of warmth. <br>
+“Were you really the best they could find to send us? Ridiculous.”</p>
+</div>
+</div>
+
+<div class="ship hidden"><p><strong>State of ship</strong></p>
+<p>The Fleet-Admiral suddenly stepped hastily to the window of her chamber and stuck her head outside. I shift as I wait for her to return her attention back to me. Judging by the direction of her gaze, it’s my ship that’s now under scrutiny as she confirms the report of my ship’s damage and readiness report. <br>
+<div class="shiphigh hidden">
+“Well, I had almost forgotten what out frigates looked like when they were all pristine and fresh out of dock.” With brisk steps she was yet again back at her desk. <br>
+“You’ve at least taken care of your ship well, which speaks well for a captain, no matter whatever other shortcomings.” <br>
+“Thank you Admiral.” I reply, trying hard to keep my face neutral.</p>
+</div>
+<div class="shipmid hidden">
+“Ah, scuffed and bruised, just like ours. The West-Seas are hard on us all. “ With brisk steps she was yet again back at her desk. <br>
+“You’ve not made it to us unscathed, but I can’t fault you for that considering our own state of affairs.” <br>
+“Yes Admiral.” I reply curtly.</p>
+</div>
+<div class="shiplow hidden">
+“By Avons unruly mane, what have you put that poor ship through?!” The Fleet-Admiral gave a shout of incredulity from the window before she returned to face me with brisk steps. <br>
+“Your ship is in a worse state than ours and we’ve been here longer and in several battles! Explain!” <br>
+“Ah, we happened upon a battle ourselves.” I explain. <br>
+“With how many ships?” The Fleet-Admiral leans forward. <br>
+“Just one. But it had...” I respond, before the Fleet Admiral cuts me off. <br>
+“ONE!? It did ALL that?” She exclaims. <br>
+“Not all of it Admiral.” I answer truthfully. <br>
+“It’s clear you were not ready for the hardships of the West-Sea Captain.” She growls and her admonishment cuts deep.</p>
+</div>
+</div>
+
+<div class="officers hidden"><p><strong>Your Officers</strong></p>
+<p>The Fleet-Admiral now leafed through my Officer personnel files. Reviewing those I had available.<br>
+“They sure saddled you with a lot of male officers. Avons tail, what are they doing with all the capable folk!” <br>
+
+<div class="arn hidden">
+“I see you kept the Grand-Admirals insufferable whelp around. I half dreaded him standing where you are when I heard ‘Attentive’ had arrived. But it seems the Admiralty has some sense left in it.” Fleet-Admiral Kaunis gave a disdainful huff. “Males as Captains, authority would fall apart.” <br>
+“We had some early disagreements but they’ve since been resolved.” I reply. <br>
+“Replace him by a more a capable First-officer when you feel you have given him enough chances.” The Admiral said casually.</p>
+</div>
+
+<div class="mirr hidden">
+“Ah, I see you replaced the Grand-Admirals insufferable whelp with a more capable hand. <br>
+Officer Mirr, mmh? Former Crew-officer, those tend to be a natural step up to First-Officers. From a good family that one too. Excellent choice.” <br>
+“She has been quite observant and eager negotiator.” I reply. <br>
+“Ah, the diplomatic type. Well, there’s all kinds I suppose.” The Fleet-Admiral put the page aside while muttering.</p>
+</div>
+
+<div class="tung hidden">
+“What is this? You replaced the Grand-Admirals insufferable whelp with another male? Some unproven junior Arms-officer too?” Fleet-Admiral looked at me like I had suddenly sprouted an extra arm. <br>
+“Officer Tung is very driven and hard-working. Loyal too.” I reply with slight defensiveness. <br>
+“That describes most any Awe.” The Fleet Admiral shook her head firmly. “Make sure you replace him with a capable lass at first opportunity.”</p>
+</div>
+
+<div class="garsch hidden">
+<p>“Huh.. You have Officer Garsch as your First-Officer?” The Fleet-Admirals brow raised. <br>
+“Yes, after an incident with our former First-Officer, he seemed the most experienced.” I reply. <br>
+“That old thing, I thought his fur had turned grey by now. I worked with him at the Academy briefly during my overseeing of the place.” There was a modicum of respect in the Admirals tone. <br>
+“Oh? I was not aware.” I reply carefully. <br>
+“I am surprised you convinced him to step up. He was always an Awe that knew his place well and insisted on it, despite his capability. Hmph, while you should have considered someone with a bit more future promise as I wonder how well and long he’ll be ‘able’. He is at least reliable. ”</p>
+</div>
+
+<p><div class="evok hidden">
+Admiral Kaunis flips to another page. <br>
+“Your Raptorians are without a Pack-Master. I am not sure how you managed to lose one of those. They’re not easy to come by you know. Make sure you replace him with a senior Raptorian promptly or let them fight it out to pick a leader.” The Fleet Admirals nose wrinkled. <br>
+“Yes Admiral.” I reply, not looking forward to that task.</p>
+</div>
+</div>
+
+<div class="islanders hidden"><p><strong>Islander relations</strong></p>
+<p>
+<div class="lanagagood hidden">
+“Ah, so you managed to establish contact with the Lanagans. Very elusive people, very good. I take it you recovered our Scout then?” <br>
+<div class="vesslaYes hidden">
+“Yes, he is serving with us and helped establish contact.” I respond to which the Admiral merely nodded. <br>
+</div>
+<div class="vesslaNo hidden">
+“No, Scout Vessla is not with us. For various reasons he could not be recovered.” I respond carefully and the Admiral lift her gaze from her paper to me. <br>
+“Is that so. Well im sure its in your reports.” <br>
+</div>
+<div class="vesslaLeave hidden">
+“We agreed to let him stay with the Lanagans in return for future concessions and friendlier relations.” I respond carefully and the Admiral lift her gaze from her paper to me. <br>
+“Is that so. Presumptuous of you to think you had the authority to make that call, I’ll study your report about it later. ”</p>
+
+<p>“They were initially distrustful, but we managed to ease tensions. They seem to be positively inclined to working with us in the future.” I think back to Darter and Holixer. It seems so long ago now. <br>
+“Well, that’s good, they hold the islands on our approach to the Thousand Isles. Their potential cooperation will be useful.”</p>
+</div>
+</div>
+
+<p><div class="lanagapoor hidden">
+“I see you attempted to establish relations with the Lanagans. Very elusive and independent people. I take it you recovered our Scout then?” <br>
+<div class="vesslaYes hidden">
+“Yes, he is serving with us and helped establish contact.” I respond to which the Admiral merely nodded. <br>
+</div>
+<div class="vesslaNo hidden">
+“No, Scout Vessla is not with us. For various reasons he could not be recovered.” I respond carefully and the Admiral lift her gaze from her paper to me. <br>
+“Is that so. Well im sure its in your reports.” <br>
+</div>
+<div class="vesslaLeave hidden">
+“We agreed to let him stay with the Lanagans in return for future concessions and friendlier relations.” I respond carefully and the Admiral lift her gaze from her paper to me. <br>
+“Is that so. Presumptuous of you to think you had the authority to make that call, I’ll study your report about it later. ”</p>
+</div>
+<p>“Alas we were unable to come to an agreement with the Islanders. They were quite obstinate.” <br>
+“Hmph, might be we will have to send some more forceful encouragement their way someday soon.”</p>
+</div>
+
+<p><div class="lanagabad hidden">
+“I see you made us the enemy of the Lanagans. That will limit our options for that region in the future.” The Admiral disapprovingly gave a sigh. “Perhaps it was inevitable, but I wish someone more capable had given negotiation a shot. Now we have to consider pacifying that region with force to ensure our approach into the Thousand Isles is safe.” <br>
+I merely gave a nod and shifted the weight of my feet.</p>
+</div>
+
+<div class="kaelani hidden">
+<div class="kaelanigood hidden">
+“As for the Kaelani are mostly pacified from previous efforts. It’s good to hear you did not change our current working relation with them. I had some reports of rebelliousness brewing among them due to our recent commerce with them. <br>
+</div>
+<div class="kaelanibad hidden">
+“You’ve riled things up with the Kaelani I see.” <br>
+“Admiral, they withheld information about how to find the fleet. Because of them our arrival was much delayed.” I explain. Excuses seem to anger the Fleet-Admiral, but these words did not. <br>
+“They were already quite rebellious from our forced commerce with them, this will only make things worse, let’s hope this does not escalate.”</p>
+</div>
+</div>
+<p>
+<div class="coldclaws hidden">
+“So you’ve met with the Cold-Claws, Captain Koen had ensured us they were a friendly tribe, your report of them seems to confirm that in the least. That is useful knowledge.” The Admiral gave a nod. <br>
+“They are a ‘Resident’ tribe. Very hospitable indeed.” I reply. <br>
+“Still, we should be careful with our trust. I trust those who show nothing but a smile less than those who do not hide their intentions.” The Fleet-Admiral concluded.</p>
+</div>
+</div>
+
+<div class="conclusion hidden"><p><strong></strong></p>
+<p>
+<div class="neutral hidden">
+“Well Captain, it has been interesting to meet you. I am sure you will be able to contribute to my fleet strength in an adequate capacity.” She spoke promptly. <br>
+</div>
+<div class="low hidden">
+“I am appalled by the quality I’ve seen, as part of my fleet there you have A LOT of shaping up to do if you don’t want to see your career cut short.” The Admirals expression is one of distaste. <br>
+</div>
+<div class="high hidden">
+“Captain Avolc, you’re making your mother proud and I am reassured to have you as a part of our fleet-strength. I expect great things from you.” There was a glow in her voice. Relief. <br>
+</div>
+“Admiral, my orders from the Grand-Admiral were to resupply and collect a report of your progress then return.” I remind her cautiously. <br>
+“I am aware what your orders WERE, there is a clause in there that you are to stay and assist if needed. You are needed. I decide when it is time to let you go.” Her resolute words leave nothing to doubt. She continued just as firmly, her words absolute. <br>
+“We are having a captains meeting as soon as all the captains are assembled. With the news you bring, there is no doubt about the next course of action, it’s time to push back. Until then, you are dismissed.” <br>
+I leave, my head in a slight daze. It has been long since I had someone with such strength of character totally run me over. Not since the academy days. <br>
+</p>
+</div>
+
+<div class="tidings hidden"><p><strong>A fractured whole</strong></p>
+<p>It’s late evening and the skies are darkening when we receive a visitor. The fleet is always on the move, night as well as day, on pre-scouted routes to stay ahead of possible pursuers. The only ones able to move freely between ships are the scouts and the messengers. <br>
+One such messenger, a skittish looking Raveneye, has no reports or orders to give, but asks for a word in person instead and I take him to my chambers to see what he has on his mind. <br>
+“Thank you Captain. I am Stroke, I am here on behalf of Captain Klippa.” <br>
+“The Captain of the former ‘Herald’?” I narrow my eyes, the one ship had been damaged beyond repair and abandoned. <br>
+“That’s the one. She and a few other captains are wondering.” He seems to fidget, eyes and ears darting around nervously. “If… If you would be willing to share what news the Admiralty brings. Did… Did the Fleet-Admiral receive any special orders? Like… an order of recall or some such?”<br>
+<div class="noLook hidden">
+The Orders and reports I had turned over to the Admiral were confidential. I had chosen not to look at them or read them, so I was not aware of their contents. I did have some other reports and my own briefing I could share, it was clear no more support was coming. <br>
+</div>
+<div class="Looked hidden">
+The Orders and reports I had turned over to the Admiral were confidential. I had, at a moment of weakness, read them anyway. I knew the Grand Admiral pleading the Fleet-Admiral to return promptly. <br>
+</div>
+Stroke was asking for sensitive information. It seemed Morlos purge had far from caught all of the dissatisfied members of the Fleet. I said as much. <br>
+“You know what you’re asking for is highly confidential. It’s up to the Fleet-Admiral to divulge.” I cross my arms and Stroke squirms under my gaze. <br>
+“I know…! I am just the messenger. Klippa says the Fleet-Admiral keeps her own counsel, that it would be useful knowledge for the Captains meeting tomorrow. In case… in case… she lies!” Stroke did not like saying what he was saying, he was very uncomfortable with the words, it was clear they were not his own. <br>
+“Even entertaining the idea I hand over any information, I would clearly promptly be implicated if someone confronts the Admiral with it in some fool plot.” I snap angrily, though not at Stroke personally. He shrinks away all the same. <br>
+“Captain Klippa promised she was not going to do anything with it. Just wants to know. ‘B-build a case…’” The Raven-eye squeaked, fidgeting. <br>
+Stroke was losing his nerve and I had to decide how involved in this I wanted to be. Either I help them possibly undermine the Fleet-Admiral with scattered knowledge and reports I had. Or I stayed out of it, this was no moment for half-measures.</p>
+</div>
+
+<div class="give hidden"><p><strong></strong></p>
+<p>I hesitate only for a while before I move over to my desk and gather a few papers, copies I’ve made. <br>
+Stroke waits patiently until I hand over bundle of them, he does not look at the contents, just gently stows it into his satchel. <br>
+“I’ll hand this over swiftly. I hope… this will help us get home sooner.” <br>
+He departs into the night. I do not get much sleep that night.</p>
+</div>
+
+<div class="nogive hidden"><p><strong></strong></p>
+<p>I shake my head to Stroke. Getting involved in this seems like a bad play. I’ve just arrived, I must feel the waters first, perhaps meet this Captain Klippa in the upcoming Captains-Meeting. <br>
+Stroke nods solemnly and shuffles backwards anxiously. <br>
+“Will… you turn us in? K-klippa will say she does not know me if you do. All we want is… to get home. “ Stroke fidgeted with his paws. He was right, if I tried to report they approached me, it is likely Stroke would be made to take the fall. <br>
+“I won’t do anything right now.” I reassured him. “You may leave.” <br>
+He departs into the night. I do not get much sleep that night.</p>
+</div>
+
+<div class="meeting hidden"><p><strong></strong></p>
+<p>I am not yet fully aware of the system of scout messengers and rendezvous points the fleet has in use, but one by one a ship or two trickles in to join the fleet until we are 15 ships all in all. 12 of these are Awe warships in various states of readiness, 2 are ordinary trade-ships and the last one a Pirate Corsair ship. <br>
+The summons to join the Admiral for a briefing upon the Battleship ‘Unwavering’ follows promptly. <br>
+The table is surrounded by a mottley assembly of captains. Being the newest face, I receive a fair share of appraising looks from those I have not already met. There are not much time for personal introductions or socializing as the Fleet-Admiral gets the briefing started in a hasty no-nonsense attitude. The Fleet Admiral stands at the head of the table, flanked to her right by the Flag-Captain and to her left by what I assume is a Soft-Spoken priestess.</p>
+
+<p>“Captains. As you may have heard, Captain Avolc of the ‘Attentive’ arrived recently from the Admiralty. The news is that there are no reinforcements coming and that our requests and reports have not made it through.” She cut straight to the chase. <br>
+“All of them…?” A captain spoke up who’s name I did not know. She received a hard glare from the Fleet-Admiral. <br>
+“The ones that mattered.” The Fleet Admiral responded before continuing. “Now, I have heard all your arguments and I have listened, we have been performing a extended delaying action with the hostile elements as we waited for news and gathered intelligence. Now, however, is the time to act.”<br>
+The room seemed to hold its breath as the Fleet Admiral unveiled a map with arrows on the wall behind her. I quickly recognize it as a battle-plan.<br>
+ “Tomorrow we go on the offence again. I have been studying the reports and our previous encounters and composed a plan that…” <br>
+The Fleet-Admiral is suddenly interrupted by one of the Captain thumping the table to get attention while standing taller. She has a look of slight dismay to her.<br>
+“Admiral! I apologize, but…” <br>
+“SILENCE!” The Fleet-Admiral roared, making every Awe in the crowded room raise their hackles. The very air itself obeyed and became still, so did the bustle from around the ship beyond the room. <br>
+“Captain Klippa! I am laying out the plans for our next course of action, I have not opened the table to any discussion on the matter!” She glared and leaned forward, making the Captain in question shrink back so much she might climb into the pouch of the captain next to her to escape.<br>
+“Understood!?” She looked to us all and there were a mix of nods and salutes all around. Then she continued where she left off. <br>
+“The plan is to perform a series of feints against the pursuing fleet to ensure they assemble and regroup into full strength, then to make a head-on charge as I have outlayed here.” She pointed to the battle-plan. I blinked at the numbers of ships, they were twice our number, this looked like an insane plan. No one dared speak up. <br>
+“Their numbers will work against them, we have all observed they have little coordination or discipline, relying on their superior weapons. We will deliver a decisive blow and defeat them, but only in a massed engagement that plays to our strengths rather than skirmishes of attrition.“<br>
+ The Fleet-Admiral continued, further outlying the plan and took no questions or opinions upon it. It was bold, detailed and all or nothing and her will was absolute.</p>
+</div>
+
+<div class="meeting2 hidden"><p><strong></strong></p>
+<p>The interesting highlights of the meeting were about the non-combatants and their responsibility. It was the first time I got a good look at the non-Admiralty captains at the table. <br>
+A male Awe, with fancy clothing and a wulfish grin had stayed silent. In the end he was the one that dared speak up first. He was not of the Admiralty, he had a pin of the Merchant-League on his coat. A conscripted Trader as I came to understand, Captain Cholik. <br>
+“Good Admiral. I can see that you have not outlined any participation for the Merchant leagues meager ability to contribute in this battle. I assume however you do not wish us to be idle?”<br>
+“Yours and that of our Kingdom ally is to provide support post-battle and carry excess supplies.” The Admiral replied curtly. <br>
+“Mules and medical, understood Fleet-Admiral.” Captain Cholik replied. A red and black feathered Kingdom Gryph who’d sat quietly at the corner and watched the proceedings gave a courtful bow of his beak. <br>
+“House Feather-Frond will continue to assist in this endeavour.” He said with a musical lilt of a native Trade-Speech speaker. <br>
+“Captain Koen, I expect your Corsairs to participate more actively in the battle, you have been amply paid after all. You will be provided with Fire-flasks, I have put you on the east flank with the other two battleships.” The Admiral gave the Islander Captain a sparse look. <br>
+“As you wish Admiral! We’ll play to our strengths and not come up short of your fine ships!” The heavy set Islander Captain smirked with good humor. <br>
+And with that, the meeting concluded.</p>
+</div>
+
+
+<div class="1 hidden"><p><strong></strong></p>
+</div>
+
+
+<div class="1 hidden"><p><strong></strong></p>
+</div>
+
+
+<div class="1 hidden"><p><strong></strong></p>
+</div>
+
+
+
+
 </body>
 </html>
