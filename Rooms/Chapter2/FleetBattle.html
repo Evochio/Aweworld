@@ -48,30 +48,815 @@
 </head>
 <body>
 <div id="head">
-<div id="dayCounter">
-Day: <span class="days"><script>displayDays()</script></span>
-<br/>
-<span class="schedule"><script>displayShedule()</script></span>
-</div>
-<h1>Thousand Islands</h1>
+<h1>The Battle of Thunder and Armor</h1>
 </div>
 
 
 <div id="story-text">
+<p>The Awe-fleet sailed in staggered column formation with its two heavy battleships bringing up the front. Though at close inspection the slight battle-damaged and tattered condition of the ships was evident, it did not take away splendor and show of might which 3rd Fleet represented.</p>
 
-<p>Dramatic battle between battered Awe Fleet and numerically superior but ragtag Pirate fleet. The Fleet-Admirals tactical genius moves win the day. You may contribute positively or negatively.</p>
+<p>The reinforced decorative ramming bows gleamed and banners fluttered in the hard wind of today. This was the power of Awe ingenuity and diligence. Paired with Fleet-Admiral Kaunis hard unflappable steely-eyed resolve as the driving force at the heart and soul of it all, it was easy to imagine us an unstoppable force.</p>
+
+<p>So despite its setbacks and terrifying reality of the enemies armaments, I observed nothing but disciplined confidence in my crew and of those of neighboring ships as we sailed head on toward the mass of sails which represented the pursuing pirate force.</p>
+
+<p>“Signal from flagship: Echelon formation minor.” My First-officer observed.</p>
+
+<p>“Proceed.” I muttered clasping paws behind my back under my cape, rubbing digits together out of sight.</p>
+
+<p>Smoothly the ships eased into position, ‘Attentive’ in the center of this slightly diagonal line of ships. We were the newest addition to the fleet, but unlike the Mercenaries and requisitioned two traders bringing up the rear, our crew were all Admiralty trained.</p>
+
+<p>The enemy fleet was not as orderly. Though their jaws were probably salivating in anticipation of finally ending their long chase in this confrontation, their lead elements had smartly turned around to regroup with their trailing slower ships. This made their 'Fleet' a mess of sails and masts were converging in a scattered kind of chaos.</p>
+
+<p>But as things were at sea, we were still a long way from clashing together, they could see us coming and would have time organize.</p>
+
+<p>All-together I counted about 30 sails in their number. Though many of these were of a smaller variety of ships. It looked like they had about 5 Galleons, former cargo-ships as heavy and large as our battleships, 10 frigates of similar class to ours and the rest were smaller more nimble craft.<br>
+Normally smaller ships would be of little concern, but armed with the thunder-weapons they might prove to be a major nuisance in a large engagement.</p>
+
+<p>Our fleet of 15 ships (of which two trailing in support and one a untested Corsair) shiny as it was, seemed not quite as invulnerable against those odds. But the Admiral was gambling on this decisive battle. Gambling the future of western trade and perhaps safety of western coast both.</p>
 </div>
 <div id="tail">
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default" id="button-1"> Test </button>
-<button class="btn btn-default" id="button-2"> Port Nowhere </button>
+<button class="btn btn-default hidden" id="button-1"> Test </button>
+<button class="btn btn-default hidden" id="button-2"> Port Nowhere </button>
+
+<button class="btn btn-default hidden" id="engage"> Engage </button>
+<button class="btn btn-default hidden" id="battle"> Battle choices </button>
+
+<button class="btn btn-default hidden" id="craft"> Go for the Carrack </button>
+<button class="btn btn-default hidden" id="frigate"> Hit the Frigate </button>
+
+<button class="btn btn-default hidden" id="battle2"> Battle choices </button>
+
+<button class="btn btn-default hidden" id="wedged"> Assist the wedged Awes </button>
+<button class="btn btn-default hidden" id="craft2"> Go for Small-craft </button>
+
+<button class="btn btn-default hidden" id="battle3"> Battle Orders </button>
+
+<button class="btn btn-default hidden" id="battle3"> Battle Orders </button> <!-- Possible divergence point  -->
+
+
+<button class="btn btn-default hidden" id="battle4"> Assisting Daring-Dive </button>
+
+<button class="btn btn-default hidden" id="maintain">Maintain Course </button>
+
+<!-- Attacking smallcraft first  -->
+<button class="btn btn-default hidden" id="change"> Change target </button>
+
+<button class="btn btn-default hidden" id="firebombs">Firebombs (1 use)</button>
+<button class="btn btn-default hidden" id="assault"> Assault</button>
+<button class="btn btn-default hidden" id="assault2"> Assault Progress</button>
+
+<button class="btn btn-default hidden" id="maintainAlt">Engaging the 'Three-mast'</button>
+
+<button class="btn btn-default hidden" id="row">Row Faster! </button>
+<button class="btn btn-default hidden" id="slow">Preserve strength</button>
+
+<button class="btn btn-default hidden" id="closein">Closing in</button>
+<!-- End of smallcraft  -->
+
+<!-- Attacking Three-mast first  -->
+<button class="btn btn-default hidden" id="maintain2">Closing in</button>
+<!-- End of Three-mast first   -->
+
+<!-- Boarding action - Merged  -->
+<button class="btn btn-default hidden" id="firebombs2">Firebombs (1 use)</button>
+<button class="btn btn-default hidden" id="boarding"> Board them!</button>
+<button class="btn btn-default hidden" id="boardingFire"> Board them!</button>
+
+<button class="btn btn-default hidden" id="boarding2"> Boarding Action</button>
+
+<button class="btn btn-default hidden" id="reinforce">Reinforce with 2nd squad.</button>
+<button class="btn btn-default hidden" id="reinforceRap">Reinforce with Raptorians</button>
+<button class="btn btn-default hidden" id="pullback">Pull back!</button>    <!--  Successful only if Raptorians and Tung not deployed) -->
+
+<button class="btn btn-default hidden" id="boarding3">Battle progress</button>     <!--  Corsairs fully intervene here if went Maintain path? -->
+
+<button class="btn btn-default hidden" id="reinforceRap2">Reinforce with Raptorians</button>
+<button class="btn btn-default hidden" id="reinforce2">Reinforce with 2nd squad.</button>
+<button class="btn btn-default hidden" id="pullback2">Pull back!</button>  <!--  Only available on winning/Stalemate      Write-->
+<button class="btn btn-default hidden" id="retreat">Retreat!</button>  <!--  Only available on Losing      Write-->
+<button class="btn btn-default hidden" id="join">Join the Fray!</button>    <!--  Only available on Losing/Stalemate ?-->
+
+<!-- Personal fight -->
+<button class="btn btn-default hidden" id="sidestep">Sidestep</button>
+<button class="btn btn-default hidden" id="deflect">Deflect</button>
+<button class="btn btn-default hidden" id="gCaptain">The Gator captain</button>
+<button class="btn btn-default hidden" id="chargeIn">Charge in, inside his range!</button>
+<button class="btn btn-default hidden" id="goad">Goad the blow, then counter!</button>
+<button class="btn btn-default hidden" id="special">(1-shot) Use personal Bolt-Thrower</button>
+<button class="btn btn-default hidden" id="defense">Defensive stance & Parries</button>
+<button class="btn btn-default hidden" id="evade">Evade and Counter</button>
+<button class="btn btn-default hidden" id="special2">(1-shot) Use personal Bolt-Thrower</button>
+<button class="btn btn-default hidden" id="roll">Roll aside</button>
+<button class="btn btn-default hidden" id="holdblade">Hold blade up</button>
+<button class="btn btn-default hidden" id="vore">Swallowed</button>
+<!-- End of Personal fight  -->
+
+<button class="btn btn-default hidden" id="boarding4">Battle Conclusion</button>    <!--  Write. Flavor for Corsair intervention or winning on your own -->
+
+
 <span id="cadetButtons"> </span>
 <script>
 
 </script>
 </div>
-<div class="envoy hidden"><p><strong>Envoy</strong></p>
+<div class="engage hidden"><p><strong>Engagement</strong></p>
+<p>The battle is about to start, the signal orders are coming in rapidly from the flag-ship as the enemy force lines up their broadsides toward us in preparation to fire.</p>
+
+<p>“Signal from Flagship: All-ships, target stern, keep momentum.” First-mate notifies me.<br>
+“Understood” I reply. I feel the tension growing, not only in me, but the rest of the crew. Combat ramming in open sea this far from any friendly port is a risky venture. We cannot afford any poor hits that might wedge us stuck or do undue damage to our hull.<br>
+Speed is another factor, we have to maintain it at any cost and not get bogged down. We have solid good winds today, but have to be careful with the maneuvers. We can deploy the oars to accelerate if need be, but they’re fragile.</p>
+
+<p>The arrayed enemy fleet is seemingly unafraid of our ramming bows. They have formed two lines, one behind the other, in anticipation for our breakthrough to be able to fire upon us from both sides no doubt.<br>
+The sudden echoing thunder of fire soon reach us, the lead ship of the formation is in range and taking fire already. Soon so is the second ship, the Flag-ship itself. Not before long it's our turn as the entire wall of ship ahead of us spew fire and smoke and send their projectiles whistling through the air.</p>
+
+<p>TWANG, SPLASH. Their only target is our massive armored bow which seems to deflect a shot. Another splashes into the sea off our side.<br>
+More fire thunders.<br>
+CLANG, CRASH, SPLASH. Another hit to the bow and one shot goes high, tearing a circular hole through sails and snapping pieces of the rigging, narrowly missing a sailor in the sails.<br>
+Ever more fire, a constant thunder now from all over as the pirate fleet are firing their armaments irregularly all across the line at our approach.<br>
+A shot whistles past, another one splashes sea-water high enough to reach us. A third seems to graze our side hull with a tearing sound.</p>
+
+<p>Then they're turning their ship to port to point their own bows toward us to guard their sides as we head straight for them.</p>
+
+<p>“Signal from Flagship: All fleet to port, 45 degrees!” My officer calls.</p>
+
+<p>“Port 45 degrees!” I call out and our ship turns. <br>
+As one the whole fleet turns left, no longer heading straight for their target ship, but the one left of it. This was part of the Fleet-Admirals plan she had demonstrated for us beforehand. A clever maneuver and one seemingly the enemy did not anticipate to such an organized degree.</p>
+
+<p>The enemy ships try to veer away as they realize their foes they were trying to out-maneuver are not aiming for them at all, another ship now is. In some cases, like ours, the ship we were previously aiming for is now heading straight for our right side. But they lack the equipped ship or resolve for ramming and are turning desperately. <br>
+“Signal from Flagship: All fleet to starboard, 90 degrees!” My First-officer calls.<br>
+Here comes the final maneuver, the fleet turns as one again and we’re back on our original target, now with its side exposed to us.</p>
+
+<p>We smash a glancing hit at the rear of our target. A little too glancing for my taste, but it's a loud satisfying 'CRACK' all the same as our ships pass each-other.<br>
+Their crew are scrambling, a mix of Gators and some Gryphs. But we're past before they can fire into our side, having not anticipated a close pass on this side with our sudden manouvers.<br>
+Our previous target, now the victim of our flanking partner was less lucky. They teeter and groan from a devastating impact that shears off part of the stern. They won't be sailing anywhere anymore.</p>
+
+<p>“Signal from Flagship: All fleet, build speed, turn starboard for another pass. Target small-craft.”</p>
+
+<p>“Understood. Deploy the oars, turn us around.” From here on out, it would be mostly up to every captain. Hopefully it would be harder for the pirates to shoot as we closed in on a messy melee.</p>
 </div>
+
+<div class="battle2 hidden"><p><strong>Battle</strong></p>
+<p>The chaos of battle is unleashed. Our preplanned formation is already breaking apart, but that much had been expected.</p>
+
+<p>The constant din of thunder from the powerful enemy thunder-weapons echo across the sea and smoke is starting to thicken the air. Our initial charge seem to have incapacitated a few of the enemy frigates, I can see one of the smaller crafts floundering in the water. In the distance I spy our lead battleship locked in boarding action with one of the enemy galleons, pitched hand to hand combat taking place.</p>
+
+<p>Our starboard turn has given full wind to our sails, the Fleet-Admiral had planned this maneuver well and we quickly pick up lost speed as we turn back to the enemy scattering battle-line.</p>
+
+<p>A damaged frigate lays right ahead, low on speed and an easy target for another ramming blow. Beyond it though, a smaller more nimble ship harrying an Awe-Frigate with flanking shots with its two broadside Thunder-weapons. If I want to catch the smaller ship I have to maintain speed and pass the firing arch of the Frigate.</p>
+</div>
+
+
+<div class="frigate hidden"><p><strong>Hit the Frigate</strong></p>
+<p>“Ramming maneuver! Frigate right ahead of us!” I order the crew loudly, to prepare them.</p>
+
+<p>Our ship homes in on the target. They see us coming but we have higher speed and the impact is inevitable.</p>
+
+<p>A shout of warning suddenly alerts me to another enemy small-craft suddenly having an angle of fire on us. Their weapons flash and I manage to raise my wing-guard in time to deflect shrapnel of wood as a projectile slams into the side of our deck and explodes the wood into fragments.</p>
+
+<p>Some other crew are not as fast and collapse onto the deck with pained whines.<br>
+But there's no time to focus on that. Moments later we smash the stern of the frigate hard with a jolting groaning impact through the whole ship. Our weight and momentum trashes the rear of their ship so much that we nearly go through it. Luckily we do not get stuck and scrape past them. We pass close enough that I can clearly see onto their deck and who I think is their Gator captain angrily bellows what must be obscenities. They're as good as dead in the water now and probably taking on a mighty leak.</p>
+
+<p>They seem unable to turn as we pass, but we still come enough into their firing arch for them to punish us for our move.</p>
+
+<p>A powerful shot from seeming point-blank range explodes through the side of our ship into the interior compartments, causing untold havoc in there. But one shot is all they manage to fire, other weapons either incapacitated or reloading.</p>
+</div>
+
+
+
+<div class="craft hidden"><p><strong>Go for the Carrack</strong></p>
+<p>The smaller ships are the most pesky to deal with considering their speed and maneuverability. They may fit less of the weapons on their deck, but they're able to put get in better position to fire.</p>
+
+<p>'Attentive' homes in on the target. We go past the damaged frigate, past its rear and they no doubt sigh a breath of relief.<br>
+We don't go without punishment for our pass, the frigate fires a broadside at near point-blank and 2 shots explode through the side of our ship into the interior compartments, causing havoc below deck.<br>
+Or forward and Rear ballistae return fire. Their firepower are pathetic in comparison to the thunder-weapons and won't be able to damage the frigate itself. But that's not who the crews are aiming for.</p>
+
+<p>The Carrack sees us coming as we emerge from behind the Frigate. It slowly turns to try to avoid us, but we are maintaining speed and cut it off. Nyxie is spinning the wheel rapidly to turn us and catch the smaller crafts side.</p>
+
+<p>'CRACK', the ship shudders from impact, hull groaning. But the brunt of it was no doubt felt by the smaller sailing ship. They reel, are pushed aside and spin across our bow. The hit was a glancing one and they look intact on first glance.<br>
+“We hit a big gap into their hull Captain!” My First-officer proclaims, peering closer as we pass them.</p>
+</div>
+
+
+<div class="battle2 hidden"><p><strong>Battle</strong></p>
+<p>We are low on speed now, we've managed to damage two ships but taken a few hits in return. So far our ship is holding up well. I order us to steer us into some wind for more speed and watch as the sailors in the sail work hard to adjust, trim and make the most out of the wind we are getting.</p>
+
+<p>A whistling shot flies past just above deck, making several heads dodge on instinct, including mine. Our maneuver to pick up speed have put us slightly in the open and the numerically superior enemies are everywhere, it seems wherever we go we'll be in the angle of fire of somebody.<br>
+'THUNK' goes our bow as a shot slams into it, quickly followed by a less promising 'SMACK' of a iron ball embedding itself into our side from somewhere.<br>
+.<br>
+Another shot explodes into an Awe-Frigate ahead of us to our port who seem to have gotten themselves wedged into another enemy frigate in a less successful ram. They appear to be frantically working on dislodging themselves while fighting a backwards and forwards boarding action.</p>
+
+<p>“See if they require assistance!” I motion swiftly, waving to our scout to fly over inquire about assistance as our ship approaches theirs. It seems to be the ‘Resolute'.<br>
+The scout departs only to return after barely a moment, landing heavily and saluting.</p>
+
+<p>“The Captain informs that unless we can somehow magically pry their ship loose we should focus on battle and try not to repeat their mistake, but they did add that if we could drop off some Raptorians that would speed things up.”</p>
+
+<p>“Well, that was politely put.” I smirk.</p>
+
+<p>“I was paraphrasing some needless language.” The scout announced curtly.</p>
+
+<p>On our starboard another Awe-Frigate is angling to ram itself into another small-craft, though they are looking like they will miss.<br>
+We can try to assist the wedged Awe-frigate and drop off some help or go for ramming the small-craft from a sudden opposing angle to hem it in.</p>
+</div>
+
+
+
+<div class="wedged hidden"><p><strong>Help Wedged Awes</strong></p>
+<p>“Take us up along ‘Resolute', get me a squadron of Raptorians on deck and prepare them for boarding action!” I order loudly over the din of crashing wave and bellowing background thunder of our foes weapons.</p>
+
+<p>For a moment I feel almost overwhelmed by everything going on around me, the noise, movement and action. So much being at stake! But it's only the briefest of lapses of focus. A heavy shuddering impact and explosion of a direct hit on our ship is what jolts me back to focus and anger, my own snarling words calling out without having thought about it.</p>
+
+<p>“Return fire on whoever hit us with that!”</p>
+
+<p>The Ballistae crew who had been busy shooting at targets of opportunity turn their weapons and obey. I see them loading Fire-bolts to make it extra nasty. Whether the orders will be particularly effectual or not does not matter.</p>
+
+<p>The Packmaster arrives to report his squad ready. One squad of 6 Raptorians should suffice to turn the battle into our allies favor and not leave us too understrength or without muscle for the Oars.</p>
+
+<p>'Attentive' soon comes up alongside 'Resolute' and the Raptorians leap overboard. We do not pass close enough for for them to jump from ship to ship, that is too risky, but Raptorians are better swimmers than Awes and they should be able to climb aboard.</p>
+
+<p>We veer away, having picked up speed again as the battle progresses. The other Awe-frigate to our starboard managed only a light glancing blow the small-craft and appear to be turning to finish the job, having captured the ship with ropes of boarding hooks in their pass. They should be able to neutralize it quickly but it will take more time.</p>
+</div>
+
+
+<div class="craft2 hidden"><p><strong>Go for Small-craft</strong></p>
+<p>“Turn us starboard, cut off the smaller crafts escape!”</p>
+
+<p>Our speed isn't great, but assisting the other Awe-Frigate, the 'Avalanche', should make short work of the Small-craft who is fast and nimble but haven't quite detected our sudden course change to come straight for the opposite side.</p>
+
+<p>They are currently laying punishing fire upon 'Avalanche' as they approach, angling away from their charge and it seems increasingly clear that without our help it'll be a glancing hit at best.</p>
+
+<p>They notice us too late, in panic turning their ship to prevent themselves from being skewered by our ramming-bow and thus putting themselves more in line for 'Avalanche'.</p>
+
+<p>It's a sickening crunch of groaning and cracking wood as 'Avalanche' plows into their rear, almost entirely shattering the whole rear section of the ship apart. I see Crew-members of the enemy small-craft thrown overboard by the jolt of impact, some jumping voluntarily as now we come in from our own angle and add our own less impactful but no less crunching touch of our armored bow to the side of their own.</p>
+
+<p>Some crew of the 'Attentive' and 'Avalanche' cheer and hoot at one another as we pass one another. I spot the Captain of the 'Avalanche' touching her cap in my direction and I return the gesture.</p>
+</div>
+
+
+<div class="battle3 hidden"><p><strong>Battle Orders</strong></p>
+<p>The battle progresses around us, giving a stark reminder to crew as an enemy frigate lands a few close hits splashing water from an impact and then shuddering the hull under my feet with a hit to our rear. There's no damage to our rudder, but the shot has pierced several compartments below deck.</p>
+
+<p>“Direct orders from Flagship, captain!” My First-Officer suddenly announces. “Assist Battleship 'Daring dive'!”</p>
+
+<p>I turn my head to survey the rest of the battle. There were still the echo of thunder all over, but it seemed we were in the center of the fight, were there were the least concentration of enemy ships. Most of them seem to have scattered to surround our smaller force as best they can, Awe-ships at the edges of the slight encirclement are taking the worst of the brunt. The battleships most of all.<br>
+Things are a lot less dire then they could be, much of the enemy fleet is busy fleeing from our aggressive ships or unable to fire because of their own ships being in the way. The initial battle-lines have melted away, there is no semblance of coordination among them anymore.</p>
+
+<p>'Daring Dive' is locked in boarding with a galleon and surrounded by a frigate and a smaller craft who were leisurely bombarding it. Already it looked like smoke was rising from the Awe Battleship. The Frigate appears to be one of the dangerous and well-made Three-masted ones I heard about.</p>
+
+<p>I immediately set course in their direction, even though it would take us through the firing arch of a few enemies.<br>
+“How is the Flagship itself doing?” I query my First-officer.<br>
+“They are spitting out one order after another, direct commands to several ships. They just reduced the sails of a frigate to splinters with those heavy ballistae of theirs.”<br>
+“How about the battle itself?” I query, it’s always useful to hear the opinion someone with sharper eyes.<br>
+“I count 10 destroyed or disabled pirates, half of them smaller ships. No lost Awe-ships yet, though not for their lack of trying. 'Hard-Paw' is floundering and I cant see which ships they are due to smoke but we have two frigates on fire but still moving with oars.” Officer Nyxie replies. <br>
+A huge explosion in the distance thunders as one of the pirate ships, a big galleon, who had been on fire for some reason suddenly comes apart in an exploding ball of flames and debris. A frigate, 'Truth', who was sailing near it rocks heavily from the blast, sails nearly ripped from the masts entirely.<br>
+“Frightfully double-edged swords these thunder-weapons. They growl, they bite but they turn on their masters. They hurt our ships but it takes a lot to sink us and they cant coordinate their firepower. We are winning, overwhelmingly so!” Officer Nyxie exclaims.<br>
+“It's not over until it's over!” I call out.</p>
+</div>
+
+
+<div class="battle4 hidden"><p><strong>Assisting Daring-Dive</strong></p>
+<p>We come to the Battleships assistance, seeming to be the only Awe-Frigate not tied up. Though it's not a great distance, it takes us several precious minutes close the distance. Well enough time for the enemy Three-mast frigate to spot us and maneuver to intercept and put fire on us.</p>
+
+<p>We cant turn to help 'Daring-Dive' against the Galleon without exposing our sides to the Frigate, so they have to be dealt with first. They appear to have taken some punishment from the heavy ballistae on our battleship. They are unable to hoist full sails as parts of the mast appears broken and dangling with flapping broken sail.<br>
+'THOOM'! Their weapons thunder at us. A shot comes whistling in, coming in over our armored bow and bouncing once on mid deck only to devastatingly plow straight into our rear castle upon which I'm standing. Debris from breaking wood clatter against my wing-guard and armor and sting me painfully in several places. Other shouts and injured cries of crew follow soon after.</p>
+
+<p>'KFOOM'! Another shot comes in before I've even regained my composure. But it impacts the bow with a loud clattering clank and sound of shearing metal. It sounded like it broke away part of the armor.</p>
+
+<p>I'm unsure whether this Three-Mast is shooting something a lot more potent or they just have more skill.<br>
+“Keep course! Ready boarding hooks! We are not letting these ones go!” I bellow as I examine the devastation around me.<br>
+The shot hit just the edge of our platform, hard enough to leave a gaping hole all the way through out the back of our ship.<br>
+The injured are being taken below deck, but with holes like this being made I wonder if they're really much safer down there at all.</p>
+
+<p>'BWOOM'. The Small-craft has turned to fire upon as well. This one using our focused charge on the Frigate to get an angle on our side.<br>
+Several small things whistle past in the air, some clattering the side of our ship, some rending small holes all through our sails. Its not until I a unlucky sailor from the sails falls from her post and dangles from her safety harness that I realize they're shooting something much more insidious. They've loaded their shot with tiny shrapnel or bullets and just spraying it in our direction. They can't destroy our ship with it, but they can tatter our sails and hit our crew.</p>
+
+<p>“Captain! Orders!?” My First-mate has made the same realization. We may have drawn fire away from our battleship and relieved them of some pressure in their boarding battle with the Galleon. But now we're in a pinch between two dangerous opponents.</p>
+</div>
+
+<div class="maintain hidden"><p><strong>Maintain Course</strong></p>
+<p>The Three-masted Frigate represent a larger threat to our ship then the scatter-shot of the smaller craft.<br>
+I keep us on course, we should have enough speed to catch them.</p>
+
+<p>'BWOOF!' Another blast of shrapnel come whistling in from the side as the Small-craft maintains pace alongside us, tearing holes in sails and injuring my crew.</p>
+
+<p>“Reeking hot hells! Put some shielding cover up on starboard side and time their shots! If we can't find cover from their shots we have to make some!” I curse as I watch replacements rush out to take over posts of those fallen or injured. “Put on some more speed, out with the oars!” I glance upward toward the increasingly tattered sails.</p>
+
+<p>'THOOM! CLONG-clack!' I watch a piece of our armored bow go careening off into the air from the force of the impact. The outer plating being sheared off.</p>
+
+<p>'BWOOM-BDOOM' A second and a third shot follows. A spray of water off our side and whistling projectile leaves a circular hole in the sails without any further effect.</p>
+
+<p>My Ballistae crews have prepared boarding hooks as per my previous orders and are holding fire and keeping their heads down. I wish they could have been as effective on return fire, but at these distances they can but hope for lucky hits.</p>
+</div>
+
+
+
+<div class="change hidden"><p><strong>Changing target</strong></p>
+<p>The Scatter-shot of the smaller-craft represent a threat to crew and sails unlike the larger projectiles of the frigate.<br>
+A few more shots and they might tear our sails to tatters and effectively crippling us.</p>
+
+<p>We turn our bow toward the smaller craft, giving them a harder target to waste their shrapnel at.<br>
+The enemy frigate is turning slowly to compensate for our sudden shift in direction to keep us in their firing range. Our side is more exposed to their more powerful projectiles, but hopefully the last few shots were simply lucky.</p>
+
+<p>'BWOOF'. The Small-craft ahead of us fires another shot and the armored bow rattles and clunks with a shower of tiny pieces of metal rain. Only a few pieces fly over high bow and hit the sails. Their weapon now seems highly ineffective against us, seems they cant aim it that much higher.</p>
+
+<p>'BWOOM-KWOOM-BDOOM!' The frigate however fires next, with a salvo of three shots.</p>
+
+<p>Its devastation as all three crash into our side, iron balls burrowing deep into our ship through the hull, one smashing part of the mid deck into splinters and leaving a gaping new hole down to the deck below. <br>
+They are indeed shooting something much more potent. But our course is set, changing direction now would slow us down too much.<br>
+We bear down upon the Small-craft which is desperately trying to twist out of the way. They manage to avoid being rammed, but they come close enough to be reached. The ballistae hook them with ropes and they’re stuck to us. <br>
+The Three-mast frigate is lining up another shot at us. I have to decide how to deal with this small-craft fast.</p>
+</div>
+
+
+<div class="firebombs hidden"><p><strong>Firebombs</strong></p>
+<p>“Use the firebombs! Put it to flames and detach!” I call out. <br>
+The support crews, though working desperately through the mounting damage on our ship quickly rush up in response with the prepared vials of alchemical fire. <br>
+Soon enough flaming bottles hurl down to shatter into flames upon the smaller vessel. They are no fools, they know how to fight the fires correctly, but they are simply overwhelmed by the amount of fires starting to blaze away everywhere. <br>
+Pretty soon we make haste to push their ship away from us, as smoke envelops it and fires go more and more out of control on it, crew looking like they’re opting to abandon the ship then get burned. <br>
+BDOOM-BOOM. Two shots thunder as the Three-Mast Frigate fires at our exposed side once more. Again they land true, as we’ve slowed down to near stationary to deal with the small-craft. <br>
+The crew throws themselves to cover or hunch up as again splinters and debris explode around them. Our starboard side is looking ragged! Small fires have also broken out on the deck now as some of the alchemical fires shattered on our own ship on accident. <br>
+“Get us moving! Charge the Three-Mast!” I call out, the crew is sluggish to respond, many are injured. But we are moving. <br>
+Officer Tick has materialized, Water-soaked head popping up from a hatch. “We’re almost taking on more water then we’re able to deal with!”<br>
+“Are you telling me we’re sinking!?” I demand from him. <br>
+“Captain! ‘Daring-Dive’ is….” My first Officer calls out before being interrupted. <br>
+“If keep letting us get hit by any more shots like that! Its mayhem down there!” He vanishes again. <br>
+“Captain, ‘Daring-Dive’ is ablaze.” My First-Officer repeats. In the distance it seems that indeed a fire has gone out of control there too. Part of the rear castle of the ship has flames coming up from it. It’s still locked together with the Galley, it's impossible to tell what's going on from this angle. If they lost the fight or not. <br>
+THOOM. The Three-Mast is firing again, but it sounds distant. They have turned their third Thunder-weapon to shoot in the other direction. Another ship is approaching, but it's not an Awe-ship, it’s the Gryph Corsair mercenaries on their ship ‘Swift-Bastard’. <br>
+The Sleek looking ship jinks from side to side, as the shot just misses them. I can't imagine what a the Thunder-weapon would do to their fast but much less sturdy and smaller ship.</p>
+</div>
+
+
+
+<div class="assault hidden"><p><strong>Assault</strong></p>
+<p>“Assault crews, attack!” I call out. <br>
+<div class="TungText hidden">
+Officer Tung has been waiting for this moment and he leads a ferocious charge with the attack teams, leaping straight from the ship to land haphazardly in clusters on the captured smaller ship, straight into fighting. <br>
+Having a way to return to our ship seems more of an afterthought as they commit to the attack fully, which is the kind of reckless attack I’ve learned to expect from him. <br>
+“Get some ladders and climbing nets down for them to get back with. We need to depart as soon as we ca-” <br>
+</div>
+<div class="GarschText hidden">
+Officer Garschs attack force assault the ship with drilled precision, making sure to maximize their assault while taking minimal casualties in the boarding. <br>
+They are soon effectively pushing the defenders back, but his coordination is taking precious time.<br>
+My inner clock is starting to toll anxiously. Enough time should have passed for…. <br>
+</div>
+<div class="UlvText hidden">
+Ulv and her ‘gals’ as she calls them spring to action. They throw over copious amounts of ropes and hooks and assault the small ship from above, being the Awes most trained with projectile weapons they force the defenders to take cover below deck as they rain down bolts from their crossbows and cover the attack teams boarding action. <br>
+It’s effective in securing the ships deck, but the majority of the defenders are still holding out below deck. Flushing them out will take time. <br>
+</p>
+</div>
+</div>
+
+
+
+<div class="assault2 hidden"><p><strong>Assault</strong></p>
+<p>BDOOM-BOOM. Two shots thunder as the Three-Mast Frigate fires at our exposed side once more. Again they land true, as we’ve slowed down to near stationary to deal with the small-craft. <br>
+The crew throws themselves to cover or hunch up as again splinters and debris explode around them. Our starboard side is looking ragged!<br>
+Officer Tick has materialized, Water-soaked head popping up from a hatch. “We’re almost taking on more water then we’re able to deal with!”<br>
+“Are you telling me we’re sinking!?” I demand from him. <br>
+“Captain! ‘Daring-Dive’ is….” My first Officer calls out before being interrupted. <br>
+“If keep letting us get hit by any more shots like that! Its mayhem down there!” He vanishes again. <br>
+“Captain, ‘Daring-Dive’ is ablaze.” My First-Officer repeats. In the distance it seems that indeed a fire has gone out of control there too. Part of the rear castle of the ship has flames coming up from it. It’s still locked together with the Galley, it's impossible to tell what's going on from this angle. If they lost the fight or not. <br>
+THOOM. The Three-Mast is firing again, but it sounds distant. They have turned their third Thunder-weapon to shoot in the other direction. Another ship is approaching, but it's not an Awe-ship, it’s the Gryph Corsair mercenaries on their ship ‘Swift-Bastard’. <br>
+The Sleek looking ship jinks from side to side, as the shot just misses them. I can't imagine what a the Thunder-weapon would do to their fast but much less sturdy and smaller ship.</p>
+
+<div class="TungText hidden">
+Tungs team is starting to return to the ship. The small-craft is effectively neutralized, its crew defeated to the point of surrender. The attackers look ragged and injured, but to their credit they did it fast. <br>
+</div>
+<div class="GarschText hidden">
+Garsch has returned to the ship, his assault teams making a orderly withdrawal. Though much of its crew remain in pockets of resistance, the ship has been effectively disabled and sabotaged to where it’s no threat. <br>
+</div>
+<div class="UlvText hidden">
+Ulv’s ‘gals’ are pulling back. The small-craft is has been put ablaze and its weapon has been sabotaged. The defenders are still a threat, but the threat of the ship itself has been neutralized. It was effective work. <br>
+“Get us moving, charge the Three-Mast!” I call out, just as another pair of shots BOOM and whistle in to shatter our forward Ballistae into pieces and impact the side plating of our bow with a CRACK. <br>
+</div>
+</p>
+</div>
+
+
+
+<div class="maintainAlt hidden"><p><strong>Engaging 'Three-Mast'</strong></p>
+<p>We are leaving the disabled Small-craft behind. <span class="firebomb hidden">It’s violently ablaze and its crew are abandoning it by any means they can.</span><span class="assault hidden">Though some crew remain on it, it’s been effectively neutralized, sails in ruins and weapon sabotaged. The Fleet can deal with it later. </span></p>
+
+<p>We are picking up speed, Raptorians working the oars heavily to accelerate us while Officer Nyxie maneuvers for winds. The Three-Mast ship does not seem happy about now being engaged by two ships from two sides and is also deploying more sails to try to escape the trap.<br>
+The Thunder-weapons ‘BOOM’ once more. Two shots hurtle toward us, one splashing into the sea and the other hits high on our bow armor, breathing through and exploding debris and splinters at the forward ballistae before bouncing cross the ship and getting lodged against the lower wall of the command deck. <br>
+The third shot crashes into ‘Swift-Bastard’ that’s approaching from the opposite side. It’s quite distant to tell, but judging by how they quickly change course out of the Three-Masts firing line, to close in from behind instead, the shot must have hurt them a great deal. <br>
+“Captain, it’s going to take some time to catch up to them.” Officer Nyxie lets me know. <br>
+We have no other target to pursue, we need to cover the ‘Daring-dive’ and I doubt the ‘Swift-Bastard’ could deal with them on their own. <br>
+I could push the Raptorians and Support-crews to row at a harder pace. But then they will be exhausted for the coming fight.</p>
+</div>
+
+
+
+<div class="row hidden"><p><strong>Row Faster!</strong></p>
+<p>“Put the oars to high tempo. We need to push our speed!” I cry out the order. A low-officer rushes off below deck to relay my orders and soon the oars are taking harder and quicker strokes, adding several units of speed to our pace. <br>
+Despite it all, Officer Nyxie is grinning. This is the fastest this ship has ever gone and she’s clearly enjoying it. We’re lucky our sails have not taken much damage in the battle so far. <br>
+‘BDOOM-KWOM’, two shots again ring out as the ‘Three-mast’ has turned briefly from its attempted escape to line us up for more shots. <br>
+It seems our speed has their aim off, the shots land behind our ship, both of them missing. Though not before one of them smashes apart the top left part of one of our upper sails, sending ropes and loose sail whipping about up there and causing a flurry of curses among the sailing crew in the masts. <br>
+It will affect our speed until its fixed, but not noticeably.</p>
+</div>
+
+
+<div class="slow hidden"><p><strong>Preserve Strength</strong></p>
+<p>“Maintain tempo, we need our strength for the fight.” I announce. <br>
+Officer Nyxie does her best with what she has, pushing the ship and sailing crew to get as much speed out of the wind as she can, zigzagging us forward to both catch maximum wind as well as make us harder to hit. <br>
+‘BDOOM-KWOM’, two shots again ring out as the ‘Three-mast’ has turned briefly from its attempted escape to line us up for more shots. <br>
+Despite the evasive action, one of the shots crash hard into the hull somewhere. I am unable to see where except feel the shudder and groan of the ship under my feet. <br>
+“Hold out dear, we’re soon there to punish them.” I tell the ship, giving a wooden railing a steady pat. Somewhere below, I am sure Officer Tick is inventing new strings of curses.</p>
+</div>
+
+<div class="closein hidden"><p><strong>Closing in</strong></p>
+<p>
+<div class="slow hidden">
+Our approach is ponderous and tense, it looks like the ‘Three-mast’ will be able to let loose another volley at ut before we arrive. <br>
+“Brace yourselves, another shot is coming!” I warn the others, by now the timing of their reloads are keenly felt with a rising wave of subconscious anxiety among most of the crew. <br>
+“BOOM-BDOOM-.... BOOM.” Three shots this time, only able to aim at us. The ‘Whoosh’ and whistle of the projectiles and then the loud crash of wood and a plume of debris. All three hit us and I see one of our ballistae cracking in half, it’s crews tossed aside, another rumble into our side and make a plume of dust rise from one of the hatches to down below and a third is caught by the armored bow with an almighty ‘CLANG’, the ironball ricocheting visibly into the sea. <br>
+“Rotted Orchards! I am going to use the crew of those weapons as ammunition!” I cry out in anger while I watch support-crew rush to help wounded and fallen below deck to be tended to. <br>
+</div>
+‘Swift-Bastard’ makes it to the Three-Mast before us, nudging up behind them. They are not locking together entirely, but they do hurl over quite a few burning gifts as the ‘Three-Masts’ sails and hull are starting to catch fire in places. <br>
+Their actions slow the Three-Mast down and we quickly catch up. Now it's our turn to deliver the hurt. <br>
+“Get ready!” I call out. Already the oars are pulled in and stowed away, the Raptorians who worked hard getting us here now preparing themselves for fighting.<br>
+I can see the pirates on the ship now, fighting fires while many are readying to meet us. Gators most of them, many heavily armored in clunky armor and two handed weapons, some with bolt throwers. But there is a mix of Gryphs of various origins too, armed more lightly or with a mix of projectile weapons.<br>
+The ‘Swift-bastard’ has not committed to boarding yet, still nudged up close behind them, perhaps waiting for us. <br>
+<div class="assault hidden">
+We still have our firebombs, but this is a big Frigate, their effectiveness will be limited, but hopefully disruptive. <br>
+Or we commit fully and board. <br>
+</div>
+<div class="firebomb hidden">
+We’ve used up our assets and have no choice but to commit to boarding now.</p>
+</div>
+</div>
+
+
+<div class="maintain2 hidden"><p><strong>Closing in </strong></p>
+<p>We are closing in, I’ve ordered full speed, Oars and all to get us in range of them as soon as possible. <br>
+They shifted direction to try put on distance, opting to run then to remain on the attack as we kept closing in on them, but not before unleashing another thundering salvo. <br>
+Two of the shots rend into our ship, poor ‘Attentive’ seeming to shudder and groan. One of the shots whoosh past the command deck with a frightening ‘Buzz’ of air. <br>
+“We can’t take more hits like that…” I mutter. <br>
+ But they are running now and they lack the extra boost of Raptorian muscle-power propelling us forward the way no wind could, we will just barely catch up to them. It will not be a ram at this speed, but we should be able to force a boarding action. <br>
+The Small-craft is harrying us continuously. It’s spraying fire in our direction, I am painfully hit by a few shrapnel myself who dig their way through armor and into flesh. Luckily it’s mostly glancing hits or smaller pieces of shrapnel that find me, unlike some of my crew who drop to the ground with more serious injuries with every shot, despite our attempts to shield ourselves. <br>
+We have at least soon got a small improvised shielding palisade built to protect us at the command deck from that direction. The rest of the crew who don't need to be on deck are hiding below, for now, but they soon have to come up. We are about to attack. Already the forward ballista is firing ropes to try to catch them. <br>
+“Get ready!” I call out. Already the oars are pulled in and stowed away, the Raptorians who worked hard getting us here now preparing themselves for fighting.<br>
+I can see the pirates on the ship now, they are readying to meet us. Gators most of them, many heavily armored in clunky armor and two handed weapons, some with crossbows. But there is a mix of Gryphs of various origins too, armed more lightly or with a mix of projectile weapons.<br>
+We still have our firebombs, but this is a big Frigate, their effectiveness will be limited, but hopefully disruptive. <br>
+Or we commit fully and board.</p>
+</div>
+
+
+<div class="boarding hidden"><p><strong>Board them!</strong></p>
+<p>“Ready for boarding!” I call out, just as the side of our bow thunks up against the side of the ‘Three-Mast’ frigates stern none too gently. We are getting locked together now. <br>
+Already we are taking projectiles from the enemy ships defenders, haphazard shots from bows and crossbows. Our crew is doing its best to return the favor, projectiles whizzing back and forth. The Ballistae are certainly making the enemies duck, the heavy bolts happily rending whatever cover they think they’re safe behind at these ranges. <br>
+Our ships are of somewhat equal height, getting across won’t be a large hindrance. <br>
+<div class="TungText hidden">
+Officer Tung in charge of the offensive assault springs into action. With a call to battle he charges in first, blade held in the air. <br>
+Reckless as always his tactics consist of overwhelming the foe with ferocity and skill. Awes swarm onto the enemy frigate and into the ready defenders with a eruption of crossing blades and glinting metal. Tungs tactics seem to consist of pushing in hard at any gap presented and flank the enemy. <br>
+The heavily armored gators are proving a tough challenge for him and his attackers however. <br>
+</div>
+<div class="GarschText hidden">
+Officer Garsch’s assault teams line organize quickly and do not rush in until they are in formation and squads. They take a bit of fire doing so, but as they rush over to board and combatants clash into each other, the tactical situation quickly favor the attackers. Awes fight wing to wing, covering one another with by the books tactics, all rigorously enforced by Officer Garsch walking among them. <br>
+Even the heavily armed and armored Gators are slowly forced back, though they’re far from beaten.<br>
+</div>
+<div class="UlvText hidden">
+Officer Ulv and her gals are heavily favoring their projectile weapons and equipment. The duel between bolts and arrows are quickly turning in our favor as Awes take defensive positions throughout the ship, even up in the masts to rain fire upon the defenders of the Enemy frigate. <br>
+Soon enough most of them are forced more and more into cover under the punishing hail of fire. Making them unable to fully resist the attacking Awes from boarding their ship and start to take control of the upper deck. <br>
+Only the heavily Armed and armored gators are proving too tough to chase away that easily.</p>
+</div>
+<div class="maintain_ hidden">
+<p>‘BDOOM’ and Crack goes a shot into our exposed side. The Small-craft has changed shots and are now shooting normal shots at us. I grit my teeth at them. They are a problem. <br>
+Out of the smoke covering the battle another ship is also speeding toward us, the mercenary Corsairs with their sleek fast ship. Things are either about to get better or worse.</p>
+</div>
+</div>
+
+
+<div class="firebombs2 hidden"><p><strong>FireBombs!</strong></p>
+<p>“Deploy the firebombs!” I call out, just as the side of our bow thunks up against the side of the ‘Three-Mast’ frigates stern none too gently. We are getting locked together now. <br>
+Already we are taking projectiles from the enemy ships defenders, haphazard shots from bows and crossbows. The crew is doing its best to return the favor and give cover to the brave fighters tasked with running close and chucking in the alchemical fires. <br>
+As expected it has limited effect, though smoldering fires crackle over many places of their deck and outside of their hull, they seem to know how to combat them and none of it goes out of control. <br>
+They are certainly made busy however, forced to scramble and run around their ship to deal with the fires, allowing us to hook ourselves in properly for boarding. <br>
+Their Thunder-weapons, which I now can see are quite more sizable, are rendered inoperable with the fires crackling around them. They seem to have more discipline on this ship and nothing unexpectedly explodes, this is certainly a more trained and professional crew then common pirates. <br>
+‘BDOOM’ and Crack goes a shot into our exposed side. The Small-craft has changed shots and are now shooting normal shots at us. I grit my teeth at them. They are a problem. <br>
+Out of the smoke covering the battle another ship is also speeding toward us, the mercenary Corsairs with their sleek fast ship. Things are either about to get better or worse.</p>
+</div>
+
+
+<div class="boardingFire hidden"><p><strong>Board Them!</strong></p>
+<div class="firebomb2 hidden">
+With Fires crackling sporadically over the enemy frigate, battle is joined as my Assault squad rushes in to attack. <br>
+</div>
+<div class="TungText hidden">
+Officer Tung in charge of the offensive assault springs into action. With a call to battle he charges in first, blade held in the air. <br>
+Reckless as always his tactics consist of overwhelming the foe with ferocity and skill. His method seem to add fuel to the chaos of the many fires aboard. As pockets of fighting erupt everywhere making the enemy fighters unable to coordinate. <br>
+At first glance it looks like a mess of a melee, too much like wulfish tactics for my taste, but it’s a mess we’re slowly winning. <br>
+</div>
+<div class="GarschText hidden">
+ Officer Garsch’s assault teams line organize quickly, using the cover and distraction of the fires and do not rush in until they are in formation and squads. Thanks to this, as they rush over to board and combatants clash into each other, the tactical situation quickly favor the attackers. Awes fight wing to wing, covering one another with by the books tactics, all rigorously enforced by Officer Garsch walking among them. <br>
+It’s turning into a even fight however. The armored gators will not be easily dislodged and the smoke and fire makes organizing harder. <br>
+</div>
+<div class="UlvText hidden">
+Officer Ulv and her gals are heavily favoring their projectile weapons and equipment. The duel between bolts and arrows are quickly turned in our favor as Awes take advantage of the chaos of the numerous fire-bombs have left around the enemy ship, overwhelming them with a rain of projectiles and trying to prevent them from combating the flames. <br>
+The Fires do not quite take as we might had hoped however, smoke gives the enemy cover and the heavily armored gators seem to not be very deterred by our bolts. <br>
+</div>
+<div class="maintain_ hidden">
+The Corsairs I was worrying about seem to be speeding for the Small-craft which now has spotted them too. They have turned away from firing at us to meet this new threat, but it’s doubtful if they can line up their weapon in time. The ‘Swift bastard’ as the ship is called making up for its namesake. At least that is one problem off our back.</p>
+</div>
+</div>
+
+
+<div class="boarding2 hidden"><p><strong>Boarding Action</strong></p>
+<p>The fight is going strong, but no one is winning decisively yet and casualties are inevitably mounting. <br>
+<div class="TungText hidden">
+Officer Tungs chaotic fighting style while initially effective is starting to lose ground. The Gator fighters are too tough to overwhelm easily. <br>
+</div>
+<div class="GarschText hidden">
+Officer Garsch organized fighting is winning slightly, but his formations are starting to buckle in places, the Gator fighters are proving tough, but his tactics are so far keeping them at bay.<br>
+</div>
+<div class="UlvText hidden">
+Officers Ulvs assault is at a stalemate. They have expended a lot of their ammunition and the defenders have taken guarded defensive positions, but are getting bolder, fighting to retake the upper decks of their ships, slowly pushing them back in places. <br>
+ I have to consider the next move, many Awes are still waiting for orders and able to be utilized. The riley Raptorians are ready to be deployed too, but they are not at full strength from all their rowing, not that it stops them from potentially adding muscle and chaos to the fight. <br>
+I can also try to order my attackers back, to try to draw the defenders out of position.</p>
+</div>
+
+
+<div class="corsairs hidden">
+flavor text for their possible contribution
+</div>
+</div>
+
+
+
+<div class="reinforce hidden"><p><strong>Reinforce with 2nd Squad</strong></p>
+<p>The fight is going strong, but no one is winning decisively yet and casualties are inevitably mounting. <br>
+<div class="TungText hidden">
+Officer Tungs chaotic fighting style while initially effective is starting to lose ground. The Gator fighters are too tough to overwhelm easily. <br>
+</div>
+<div class="GarschText hidden">
+Officer Garsch organized fighting is winning slightly, but his formations are starting to buckle in places, the Gator fighters are proving tough, but his tactics are so far keeping them at bay.<br>
+</div>
+<div class="UlvText hidden">
+Officers Ulvs assault is at a stalemate. They have expended a lot of their ammunition and the defenders have taken guarded defensive positions, but are getting bolder, fighting to retake the upper decks of their ships, slowly pushing them back in places. <br>
+ I have to consider the next move, many Awes are still waiting for orders and able to be utilized. The riley Raptorians are ready to be deployed too, but they are not at full strength from all their rowing, not that it stops them from potentially adding muscle and chaos to the fight. <br>
+I can also try to order my attackers back, to try to draw the defenders out of position.</p>
+</div>
+
+<div class="UlvRein hidden">
+<div class="GarschText hidden">
+Garsch’s buckling formations suddenly get some windfall as a hail of projectiles start raining down on the opponents of his fighters. The more lightly armored opponents, mostly Gryphs, are forced into cover as Ulv and her ‘gals’ reinforce Garshes formations with not only more fighters but our rarer equipment of bolt throwers. <br>
+The advantage we had is growing further, the armored Gators soon being the only real threat left to deal with and increasingly surrounded. <br>
+</div>
+<div class="TungText hidden">
+Officer Tungs many pockets of fighting receive some relief as a hail of projectiles start raining down on the opponents as Officer Ulv and her ‘gals’ spring forward to assist. <br>
+Many of the more lightly armored opponents, mostly Gryphs, are forced to take cover as Ulv utilizes our rarer equipment of bolt throwers to good effect. <br>
+Here and there, pockets of fighters that looked to be overwhelmed now get some breathing space as fresh Awes join the fight. But what had been a chaotic melee before looks no less better now, the fighting is still inconclusive and costly. <br>
+</div>
+</div>
+<div class="TungRein hidden">
+<div class="GarschText hidden">
+Garsch’s carefully organized formations are bolstered by Officer Tungs more chaotic fighters who move into the clash with a reckless abandon. In many places this works quite well, as they push into the flanks of the enemy fighters effectively. But in other places, the organized line is broken apart by the less disciplined troops, as formations break it almost seems like the balance of fighting is shifting against our favor.<br>
+I can see Officer Garsch grabbing Officer Tung by the nape and shouting at him and pointing over the din of fighting. Luckily the two of them seem to be able to start coordinate better quickly and the fighting stabilizes into something more even.<br>
+</div>
+<div class="UlvText hidden">
+Ulvs fighters excel at ranged fighting, but they have some strong close-range combatants among them too. The mix seems to work well for her more defensive minded fighting, but is working against her in taking the enemy ship. Atleast, until officer Tung and his predominant ferocious close combat fighters join the fray. <br>
+With Ulv’s control of the deck, Officer Tung and his fighting force slowly start to work on overwhelming whatever defensive pockets of fighters that remained. But it’s looking costly.</p>
+</div>
+</div>
+<div class="GarschRein hidden">
+<div class="TungText hidden">
+Officer Tung and his pockets of fighting are looking increasingly desperate in places. Skilled as they are, the armored gators are tougher and stronger than the average Awe. <br>
+Officer Garsch and his troop form up and charge in to reinforce in a organized fashion, forming a line of fighting. Garsch has tactical sense to see what pushes are needed and soon many of Officer Tungs fighters are relieved. The fighting becomes more even.</p>
+</div>
+<div class="UlvText hidden">
+Ulvs fighters excel at ranged fighting, but they have some strong close-range combatants among them too. The mix seems to work well for her more defensive minded fighting, but is working against her in taking the enemy ship with a similar attitude. <br>
+Officer Garsch’s troop rushing in to reinforce her changes that. Able to organize and surround, together they soon securing more and more parts of the ship.</p>
+</div>
+</div>
+</div>
+
+
+
+<div class="reinforceRap hidden"><p><strong>Reinforce with Raptorians</strong></p>
+
+<div class="TungText hidden">
+With a bark of orders and thunder of stamping feet, the Raptorians rush up from below deck and throw themselves into the fighting. Some of them are armored and armed with vicious tail weapons, others who have been rowing more are wearing less. <br>
+The chaotic fighting that has been going on explode into a crazier flurry of fighting as Raptorians pounce into the mix, biting and viciously swinging their tail around.<br>
+This seems to suit Officer Tungs fighters just fine, who utilize the chaos to fight alongside the Raptorians well, throwing themselves into the gaps they create. The defenders are quickly being overwhelmed.</p>
+</div>
+<div class="UlvText hidden">
+With a bark of orders and thunder of stamping feet, the Raptorians rush up from below deck and throw themselves into the fighting. Some of them are armored and armed with vicious tail weapons, others who have been rowing more are wearing less. <br>
+The slight stalemate is suddenly interrupted by the arrival of battle-hungry Raptorians. The defenders who have been grouping up into defensive cover from Ulvs bolt-throwers are assailed and pushed back. Alas the big Raptorians get in the way for Ulvs team, who are only able to take occasional potshots to back them up. <br>
+The Raptorians do not have enough strength or numbers to assault the defensive positions the enemy defenders have taken. <br>
+</div>
+<div class="GarschText hidden">
+With a bark of orders and thunder of stamping feet, the Raptorians rush up from below deck and throw themselves into the fighting. Some of them are armored and armed with vicious tail weapons, others who have been rowing more are wearing less. <br>
+They crash into the lines of fighting where Officer Garsch had been carefully managing. Though the initial charge is effective in pushing many of the armored gators back, but the chaotic and bestial fighting style of the Raptorians do not work well with Officer Garschs attempts to organise. Unable to support one another, they are soon pushed back.</p>
+</div>
+</div>
+
+
+
+<div class="pullback hidden"><p><strong>Pull back</strong></p>
+<p>“Make the call, pull them back, maybe we can draw them out.” I tell me nearby subordinate. They obey and promptly make the call to retreat and pull back to the ship with with loud mountain-calls of ‘Haa-HOOOO’. <br>
+<div class="GarschText hidden">
+Officer Garsch managed to extradite his troops back to the ship in a organized fashion, he seems to understand my plan. The Armored gators follow eagerly and closely behind, scenting victory, but they’re soon surprised to find themselves fighting again. Now surrounded and outnumbered on our ship as the defensive squad joins the fray and cut them off, we are winning quite handily. <br>
+</div>
+<div class="UlvText hidden">
+Officer Ulv hears the call and pulls her troops back. Being in control of most of the deck she does so without being opposed or stopped. <br>
+Thinking we are on the retreat and about to cast off, the pirates rally and rush after to try to invade our ship. <br>
+But only a organized defense awaits them here as the defensive squads join the fighting and cut them off suddenly. It seems to have been a good move, many of the armored Gators are now surrounded and hard-pressed on our deck. We are winning quite handily.</p>
+</div>
+<p>
+<div class="TungText hidden">
+Officer Tung and his chaotic fighting while effective isn’t working in a prolonged fight and what’s worse. With the sudden call to retreat, his forces are unable to extradite themselves back to our ship, only making their situation worse when they try. <br>
+They are being overwhelmed and the pullback turns into a real retreat, the pirates rush our ship in pursuit and take the fighting to our side, now starting to press the defensive squad hard. The fighting is not looking very good. <br>
+</div>
+</p>
+</div>
+
+<div class="boarding3 hidden"><p><strong>Battle Progress</strong></p>
+
+<div class="corsairs hidden">
+<p>The Corsairs are joining the fray now, late to the party. I am not sure what kept them but I am glad to see them! They are climbing aboard from the opposite side of the ship, Gryphs of various origins but all wearing bandanas, little to nothing in terms of armor and an assortment of armaments seeming to favor reach weapons like Glaives and Spears.<br>
+Their push is timely and it’s certainly helping push the fighting into our favor.</p>
+</div>
+
+<div class="winning hidden">
+We are taking control of more and more of the ship and the enemy combatants are being pulled down and defeated one after another, victory is in our grasp. The Gator captain has showed himself and is coordinating the last of the defenses, he’s proving quite a challenge a final rallying knot of resistance. <br>
+</div>
+
+<div class="stalemate hidden">
+The fighting is inconclusive, going back and forth across the enemy ship in a stalemate <span class="corsairs hidden">, despite the Corsairs timely arrival. At least, thanks to them, we are not losing</span>. Casualties are mounting on both sides, it’s not certain who will break first. The Gator captain has showed himself and is coordinating the defenses, he might organize them and turn the tide yet.</p>
+</div>
+<div class="losing hidden">
+We are losing ground, the enemy combatants are pushing our forces back toward our ship. <span class="corsairs hidden">The Corsairs are doing their best, but the Gators are in good position to defend and push them back off the ship.</span>Those Armored Gators are very seasoned fighters and hard to beat, soon it will be they who are boarding ours. The Gator captain has showed himself and is coordinating the counter attack.</p>
+</div>
+<p>There are a few options left. <br>
+I can intervene myself, perhaps I can help bolster the fighting spirit of my fellow Awes and go for the Captain, cut off their leadership. <br>
+Or I can send in the last of the troops remaining. Give some of the Awes who have been fighting the longest might get a chance to pull back, but it's going to make for one crowded battle. <br>
+Or I order them all to pull back to our ship. Get on the defensive and see if we can try to pull away. Better to cut our losses.</p>
+</div>
+
+
+
+<div class="reinforceRap2 hidden"><p><strong>Reinforce with Raptorians</strong></p>
+<p>I’ve kept the Raptorians till last. Hopefully they have used every spare moment to rest and get themselves ready. Either way, they’ll be no more tired than the rest of the combatants fighting hard across the two ships. <br>
+I give the Orders for them to charge and the thunderous footsteps of them charging out of the lower holds is all the warning the pirates get before biting jaws and swinging tails are making a havoc all around. <br>
+This seems to be just the right push we needed. The tired Awes fall back to give room as Raptorians push in. The armored gators are visibly weary from fighting in heavy armor and now suddenly have to face opponents of their own size and strength. Needless to say, they are falling quickly, physically toppled over and pinned by the feral fighting styles of the Raptorians or they flee into each other as they try to retreat and reassess. <br>
+We are now winning firmly.</p>
+</div>
+
+<div class="reinforce2 hidden"><p><strong>Reinforce with 2nd Squad</strong></p>
+<p>There isn't much more to do then send in the defensive squad. Hopefully they’ll be able to stem the flow of battle. <br>
+<div class="TungText hidden">
+Officer Tungs fighters have been eagerly waiting to join the fray. At my orders they are finally allowed to do so. They fight ferociously and with skill, but there is little semblance of tactics other than occasional flanking maneuvers to their attacks. <br>
+Though they are improving the situation with fresh bodies into the fray, the battle has progressed into such a mess now that it’s but a scant improvement, but at least it’s not worse. <br>
+</div>
+<div class="GarschText hidden">
+Officer Garsch leads his troops into the chaotic fighting. It’s a mess of a battle at this point, even his attempt to organize it into some manner of order will fall woefully short. <br>
+Still, throwing fresh bodies into the fray seems to push the pirates back and improve the situation slightly. Even if it means now the majority of Awes on the ship are tied up into fighting. But I’ll take what I can get. <br>
+</div>
+<div class="UlvText hidden">
+Officer Ulv and her ‘gals’ do their best to join the fray, going from defensive fire with their bolt throwers to pushing forward and supporting the fighters. In places they join in the melee where help is needed. <br>
+The fresh bodies joining the fray does help the situation, but it's by now a mess of a battle with the majority of both crews engaged in fighting. There will be no decisive victory yet.</p>
+</div>
+</div>
+
+
+<div class="pullback2 hidden"><p><strong>Pull back</strong></p>
+
+</div>
+
+<div class="retreat hidden"><p><strong>Retreat!</strong></p>
+<p>“Make the call, pull them back, this grind is leading nowhere!” I order. It’s a hard call to make but it has to be done. <br>
+The officer obeys and soon lets out a loud mountain-call ‘Haa-HOOOO’, letting everyone know it’s time to pull back. <br>
+Whoever remains on the enemy ship tries to disengage, some turning immediately to jump from their ship to ours, abandoning their positions.</p>
+</div>
+
+
+<div class="join hidden"><p><strong>Join the Fray!</strong></p>
+<p>I have to intervene, it’s always a gamble to throw yourself into the fighting. If the captain falls, even a winning battle can turn. But I can't stand and watch any longer. There’s been some fool attempts to assault the command deck from across the ship already that my personal troop have repulsed. <br>
+“To me, let’s go for the head!” I announce and the Awes around me tense, knowing full well that we’re heading to the heart of the fighting. I can see the Captain in a place where I might reach now, but only if I act fast.<br>
+We rush past the defensive lines and then pass alongside the knots of fighting in a determined sudden push. From down in the midst of fighting, it’s hard to tell where anything is, but I remember where I saw the Captain and slash and heave my blade to force myself through, my personal guard giving me cover. <br>
+My presence in the fighting and determined push rallies other Awes in behind me, spurred by their duty to protect the captain and follow my example. <br>
+A large hulking armored gator bars my way to the Captain. It bellows a hissing growl and brings it great weapon down against me in a overhead chop.</p>
+</div>
+
+
+<div class="sidestep hidden"><p><strong>Sidestep</strong></p>
+<p>Such a sloppy blow is perhaps meant to scare my back. It’s simple enough to step aside and let the heavy blade slice the air of my previous decision. With the Gator off balance, I thrust my blade between his armor under his dominant arm. The Gator howls and staggers back, clutching his side. He won’t be lifting any with any ease. <br>
+The way to the Captain is clear.</p>
+</div>
+
+
+<div class="deflect hidden"><p><strong>Deflect</strong></p>
+<p>I’d rather not trust being able to maneuver correctly in a tight jostling space like this. I bring my blade up diagonally, other paw against the flat side of the blade, to brace against the heavy chop. <br>
+The weapons ‘CLANG’s loudly, but I manage to thrust the blow aside, though not without staggering and my blade gaining a ugly bend in the middle. At least it did not snap. <br>
+The Gator seems surprised I managed to withstand the blow and blinks at me angrily. But before either of us can follow up, a black-furred figure lands on top of him. Scout-Master Krel is part of my guard and has his short-blades out and finds gaps in the armor quickly. The large Gator bellows and twists, trying to shake him off, staggering out of the way in their struggle. The way to the Captain is clear.</p>
+</div>
+
+<div class="gCaptain hidden"><p><strong>The Gator Captain</strong></p>
+<p>The Captain of the Gators is a snaggletoothed tall but lean green plated individual. He’s wearing some armor like the other armored gators, if more ornate and less ill-fitting. He sees me approach and seems equally bemused and surprised for a moment. He’s armed with a flail and starts to spin the ball on chain, beckoning me closer. <br>
+Having pushed deep into the heart of the fighting, he seems to have the right idea of it. I cannot tarry here.</p>
+</div>
+
+
+<div class="chargeIn hidden"><p><strong>Charge inside his range!</strong></p>
+<p>I do not delay, I rush forward in a charge, seeking to get inside his effective range of that weapon. <br>
+The Gator Captain seems to laugh, if the guttural gargle is anything to go by and takes a step back while sweeping the flail horizontally across my approach. <br>
+I just barely get inside the spiked balls reach, though i'm still hit by the chain and it jolts me sideways off my charge. I manage a quick slash of my own, but it's haphazard and clanks against armor. <br>
+I am close now at least and the Gator Captain does not have enough room to maneuver to make space. He drops his flail draws a wicked looking cleaver instead and charges me with it.</p>
+</div>
+
+
+<div class="goad hidden"><p><strong>Goad the Blow and Counter</strong></p>
+<p>I approach slowly, giving the blade a quick twirl in my paw to show off that I am ready and confident. The Gator Captain seems to laugh, if the guttural gargle is anything to go by and with a mighty heave sends the flail arching down sideways against me. <br>
+It’s a quicker and harder blow then I had dared guess, it would pulverize me if it hit. I bend my knees and lean backwards, letting it pass just over my chest and snout, much too close for comfort. The spiked ball crashes into the floor with a loud ‘CRACK’.<br>
+I heave myself back up with a push of my wings and slash forward against the outstretched hand holding the flail. A satisfying hit and slice and a bellow, the Gator captain clutches his paw before letting go of the flail and drawing a cleaver with his other paw and charges me with it.</p>
+</div>
+
+
+<div class="special hidden"><p><strong>The Bolt-Thrower</strong></p>
+<p>I pull the little Bolt-thrower hanging from my hip with my free paw and aim for the Captains head, letting loose with the preloaded bolt. My bolt-thrower is small and the bolt far from powerful enough to pierce armor, but no one likes being shot at the face and the Captain predictably flinches back, managing to deflect the bolt on his armor. <br>
+It’s all the time I need to close the distance and give a chop of my sword at the Gators weapon-hand. He loses his grip and the flail goes flying, carried by its own momentum into the sea. <br>
+The Captain bellows angrily and drawing a big cleaver with his other paw, charging me angrily.</p>
+</div>
+
+<div class="defense hidden"><p><strong>Defensive stance</strong></p>
+<p>I change my stance, I’ve fought many duels, mostly in practise but in battle too. As the Gator Captain swings his cleaver at me I parry his blows and look for a opening. He is strong and hits are mostly reckless and hard, but they are fast enough that I cannot easily return blows. <br>
+<div class="weakSword hidden">
+My crooked sword suddenly creaks from one parry as the top half breaks apart. That hard deflection from earlier seems to have put too much of a strain on my blade, now I only have the bottom half left. <br>
+Seeing this the Gator Captain pushes his advantage and forces me back more and more. I try to dodge his swings but he easily disarms me and then knocks me onto my back with a backhand. <br>
+The cleaver suddenly ‘thunks’ into the ground next to me. The Gator Captain growls and throws himself at me, jaws open wide. <br>
+</div>
+<div class="injured hidden">
+It is getting harder and harder to parry his blows and keep up with his strength. Jolts of pain run through my body as old wounds flare up from the strain. I grit my teeth at them and try to ignore the ache. I spot a good chance to make him overreach and riposte, but there isn't enough strength in my counter blow, it has no effect. He backhands me hard, sending me staggering back with a wince.<br>
+The cleaver suddenly ‘thunks’ into the ground next to me. The Gator Captain growls and throws himself at me, jaws open wide. <br>
+</div>
+<div class="winNormal hidden">
+The Gator Captain is growing frustrated at my tenacity however, he’s swinging harder and more recklessly. I spot my chance and it only takes the sudden absence of my blade for him to overswing and unbalance himself, making himself completely open for my blade. <br>
+</div>
+<div class="offHand hidden">
+I am starting to see a clumsy pattern to his blows however. He is not used to fighting with his paw, it’s his offhand. It’s getting easier and easier to adapt to his hits and make him grow frustrated. He’s pretty soon putting more power into his blows to compensate and that’s when I let him swing at empty air and unbalance himself. He is all open for my attack.</p>
+</div>
+</div>
+
+
+<div class="evade hidden"><p><strong>Evade and Counter attack</strong></p>
+<div class="Normal hidden">
+<p>I am smaller than my opponent and try to put it to to my advantage. I jump aside from his vicious chop and slice out in a counter attack, drawing a wound on his arm in a gap of armor. He angrily backhands me across the head with his other arm, staggering me backwards, I almost fall over. <br>
+He throws his cleaver at me in frustration and it thunks against me, hilt first luckily, but further knocking me back and onto my behind. Relentless he charges after me, seeking to throw himself at me, Gator jaws open wide. <br>
+</div>
+<div class="offHand hidden">
+He throws his cleaver at me in frustration and then charges at me, but due to his offhanded grip it misses completely and as he throws himself at me, I ready my blade and it's too late for him to change his course. He crashes upon me, but my blade finds a gap in his armor. <br>
+The Gator Captain slumps to the ground and I climb out from under him and soon stand over him, victorious.</p>
+</div>
+</div>
+
+<div class="special2 hidden"><p><strong>The Bolt-Thrower</strong></p>
+<p>I raise my bolt thrower from my hip and let loose a shot right into those jaws. The Captain lets out a ‘Gawk!’ and clutches at his neck and snout. Before he sags to the ground, gagging at the bolt jammed into the back of his throat. I grab the cleaver he threw and with a mighty heave over my head knock it down over his head. Had I held the blade the right way down, I might have chopped his head off, but the blunt edge instead knocks him promptly unconscious. I am victorious.</p>
+</div>
+
+<div class="roll hidden"><p><strong>Roll aside</strong></p>
+<p>I try to roll aside, but my body responds too slowly due to the hits I’ve taken. The Captain lands on me and jaws snap down over my body, snaggly teeth holding me firmly.<br>
+I gasp and squeak in anger, bracing to give him a kick to the face, but he jostles me, laughs and tosses his head, engulfing me deep into his big jaws. His bite strength is too great for me to pry open, try as I might and then suddenly the world goes darker as he tosses his jaws back again, swallowing my legs and hips. <br>
+I am trapped in his mouth, peering out from between snaggly teeth. I curse in frustration and then ‘GULP’, the tongue undulates and I slide down into tight hot depths of Gator gullet.</p>
+</div>
+
+
+<div class="holdblade hidden"><p><strong>Hold blade up</strong></p>
+<p>I try to valiantly brace against his charge, despite my the ache in my body. He lands on me and his jaws snap down over me. I feel the blade hit him, but it merely scrapes against his armor and does not sink into his body as I had hoped. <br>
+I am hoisted off the ground, trapped in his snaggly maw. I try to slice at him with my blade, but he gives me a shake and I lose my grip on the blade. <br>
+The Gator Captain laughs and tosses his head, engulfing me deep into his big jaws. His bite strength is too great for me to pry open, try as I might and then suddenly the world goes darker as he tosses his jaws back again, shunting me deep into his mouth head first. <br>
+I get nothing but a first-hand view of his deep glistening gullet as he hoists me upward and prepares to send me down his gullet. <br>
+‘GULP’, the tongue undulates and I slide down into tight hot depths of his throat. Swallowed whole.</p>
+</div>
+
+<div class="vore hidden"><p><strong></strong></p>
+<p>I struggle in the tight hot gut of the enemy captain. Punching and cursing has no effect on the stomach walls however, they are quite deaf to my frustration. On the contrary, it suddenly thumps thumps audibly and physically against me as the Gator drums his filled belly and bellows a guttural cackle. <br>
+I can only hope that the battle is swinging into our favor without me and soon. My coat is already wet with goop and the hard churning walls are eagerly working me over ever more firmly.</p>
+</div>
+
+
+<div class="boarding4 hidden"><p><strong>The Battle conclusion</strong></p>
+
+</div>
+
+
+<div class="special hidden"><p><strong>The Bolt-Thrower</strong></p>
+
+</div>
+
+
+<div class="special hidden"><p><strong>The Bolt-Thrower</strong></p>
+
+</div>
+
+<div class="special hidden"><p><strong>The Bolt-Thrower</strong></p>
+
+</div>
+
+
+<div class="special hidden"><p><strong>The Bolt-Thrower</strong></p>
+
+</div>
+
 </body>
 </html>
