@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Aweworld</title>
+
+  <link rel="stylesheet" href="../../main.css"></link>
+
+  <script src="../../jquery-3.2.1.js"></script>
+  <script src="../../underscore.js"></script>
+	<script src="../../bootstrap.min.js"></script>
+ <link rel="stylesheet" href="../../bootstrap.min.css"></link>
+  <link rel="stylesheet" href="../../bootstrap-theme.min.css"></link>
+  <script src="../../main.js"></script>
+  <script src="../../jquery.cookie.js"></script>
+   <script src="../../officers.js"></script>
+  <link rel="stylesheet" href="../../main.css"></link>
+  <script>
+	var count = 0;
+   var force = [officer.tung, officer.garsch, officer.ulv]
+   
+   if (_.contains(offList.deadRoster, officer.tung)) {
+	force = _.without(force, officer.tung);
+   }
+   
+   var support = [officer.mirr, officer.arn, officer.keeper]
+   
+   if (_.contains(offList.deadRoster, officer.arn)) {
+	support = _.without(support, officer.arn);
+   }
+
+   	
+	function fighters(x) {
+		
+		if (force[x].name == 'Tung') {
+		
+					
+			return "Tung leads by example, first into the fray and often inspires Awes to fight ferociously. He excels in chaotic environments where his lack of advanced tactics do not inhibit him. Troop: Awes with  Light armor & Mobility."
+		}
+		
+		if (force[x].name == 'Garsch') {
+		
+					
+			return "Garsch leads by a disciplined and orderly method. He tries to create structure and order in any fight and encounter and is an expert at Wing to wing line-fighting. Troop: Awes with Heavy armor & Long-weapons."
+		}
+		
+		if (force[x].name == 'Ulv') {
+		
+					
+			return "Ulvs  troop are primarily made up of Awes trained with ranged weaponry and she favors their usage in attack as well as defense. She also has a small dedicated core of experienced Awes who she calls her ‘Gals’, these few excel and can adapt to any type of fighting. Troop: Awes with Light Armor  & Ranged-Weapons/Heavy weapons."
+		}
+		
+				
+	}
+	
+	function supporters(x) {
+		
+		if (support[x].name == 'Mirr') {
+		
+					
+			return "Officer Mirr lacks combat experience but has long worked as a Crew-Officer and knows the crew and their individual strengths well. As a charismatic speaker, she can potentially ensure their morale remains in check."
+		}
+		
+		if (support[x].name == 'Arn') {
+		
+					
+			return "Officer Arn has bowed out of leading the fighting forces, though he knows how to fight, he prefers to coordinate around the necessary survival of the ship, its crew and himself. He is talented at patching things up, but is prone to taking risks."
+		}
+		
+		if (support[x].name == 'Keeper') {
+		
+					
+			return "Officer Keeper seems well versed in all manner of things and is a suitable candidate. His methods and solutions tend to be unorthodox however, motivated by self-preservation and self-gain."
+		}
+		
+				
+	}
+   
+
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+	  
+		$("#officer0").text(force[0].name) 
+		$("#officer1").text(force[1].name)
+		
+		
+	  
+	   $('#force1').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "force1")
+		$(".btn").addClass("hidden");
+		$("#officer0").removeClass("hidden");
+		$("#officer1").removeClass("hidden");
+		if (force[2] == undefined) {
+		$("#officer2").addClass("hidden");
+		}
+		else {
+		$("#officer2").text(force[2].name) 
+		$("#officer2").removeClass("hidden");
+		}
+		
+		//$("#force2").removeClass("hidden");
+		
+      })
+	  
+	  $('#officer0').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		$(".btn").addClass("hidden");
+		
+		if (count < 1) {
+		lib.dialogue(e, force[0].name)
+		officer3[0] = force[0]
+		 $("#force2").removeClass("hidden");
+		}
+		else if (count == 1 ) {
+		lib.dialogue(e, force[0].name)
+		officer3[1] = force[0]
+		$("#repair").removeClass("hidden");
+		}
+		else {
+		lib.dialogue(e, support[0].name)
+		officer3[2] = support[0]
+		$("#raptorians").removeClass("hidden");
+		}
+		force = _.without(force, force[0]);
+		
+       
+		
+      })
+	  
+	   $('#officer1').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		$(".btn").addClass("hidden");
+		
+		if (count < 1) {
+		lib.dialogue(e, force[1].name)
+		officer3[0] = force[1]
+		 $("#force2").removeClass("hidden");
+		}
+		else if (count == 1 ) {
+		lib.dialogue(e, force[1].name)
+		officer3[1] = force[1]
+		$("#repair").removeClass("hidden");
+		}
+		else {
+		lib.dialogue(e, support[1].name)
+		officer3[2] = support[1]
+		$("#raptorians").removeClass("hidden");
+		}
+		force = _.without(force, force[1]);
+		
+       
+		
+      })
+	  
+	   $('#officer2').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		$(".btn").addClass("hidden");
+		
+		if (count < 1) {
+		lib.dialogue(e, force[2].name)
+		officer3[0] = force[2]
+		 $("#force2").removeClass("hidden");
+		}
+		else if (count == 1 ) {
+		lib.dialogue(e, force[2].name)
+		officer3[1] = force[2]
+		$("#repair").removeClass("hidden");
+		}
+		else {
+		lib.dialogue(e, support[2].name)
+		officer3[2] = support[2]
+		$("#raptorians").removeClass("hidden");
+		}
+		force = _.without(force, force[2]);
+        
+		
+      })
+	  
+	   $('#force2').on('click', function(e) {
+        // change state here
+		$("#officer0").text(force[0].name) 
+		$("#officer1").text(force[1].name)
+		count +=1 ;
+        // end by using lib.goTo
+		lib.dialogue(e, "force2")
+		$(".btn").addClass("hidden");
+		$("#officer0").removeClass("hidden");
+		$("#officer1").removeClass("hidden");
+		
+	  })
+	  
+	  
+	   $('#repair').on('click', function(e) {
+        // change state here
+		
+        // end by using lib.goTo
+		lib.dialogue(e, "repair")
+		$(".btn").addClass("hidden");
+		$("#wheel").removeClass("hidden");
+		
+		
+	  })
+	  
+	  
+	    $('#wheel').on('click', function(e) {
+        // change state here
+		
+        // end by using lib.goTo
+		lib.dialogue(e, "wheel")
+		$(".btn").addClass("hidden");
+		$("#force3").removeClass("hidden");
+		
+		
+	  })
+	  
+	  
+	    $('#force3').on('click', function(e) {
+        // change state here
+		count +=1;
+        // end by using lib.goTo
+		lib.dialogue(e, "force3")
+		$(".btn").addClass("hidden");
+		$("#officer0").text(support[0].name) 
+		$("#officer1").text(support[1].name)
+		$("#officer0").removeClass("hidden");
+		$("#officer1").removeClass("hidden");
+		if (support[1] == undefined) {
+		$("#officer2").addClass("hidden");
+		}
+		else {
+		$("#officer2").text(support[2].name) 
+		$("#officer2").removeClass("hidden");
+		}
+		
+		
+	  })
+	  
+	   $('#raptorians').on('click', function(e) {
+        // change state here
+		if (_.contains(offList.deadRoster, officer.evok)) {
+		 $(".evok").addClass("hidden");
+		  $(".noevok").addClass("hidden");
+		}
+		
+        // end by using lib.goTo
+		lib.dialogue(e, "raptorians")
+		$(".btn").addClass("hidden");
+		$("#medical").removeClass("hidden");
+		
+		
+	  })
+	  
+	  
+	   $('#medical').on('click', function(e) {
+        // change state here
+		
+        // end by using lib.goTo
+		lib.dialogue(e, "medical")
+		$(".btn").addClass("hidden");
+		$("#FleetBattle").removeClass("hidden");
+		
+		
+	  })
+	  
+	  
+	 	  
+	    $('#FleetBattle').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+		state.chapter[0] = ("FleetBattle");
+        lib.goTo('FleetBattle.html')
+      })
+		
+		
+    })
+	
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	img {
+	margin:auto;
+	}
+  </style>
+
+</head>
+<body>
+<div id="head">
+
+<h1>Prelude to Battle</h1>
+</div>
+
+
+<div id="story-text">
+
+<p>I am gathered with my officers. The elation of finding the fleet has slowly been replaced with a general apprehension visible in all their eyes. As I deliver the Fleet-Admirals plans for us and the Fleet, even more so.</p>
+
+<p>We’ll be part of the general formation. The Admirals plan is to draw the enemy fleet into a close chase, then trick them and charge them. We’ll be performing some preordained maneuvers before the leash comes off. <br>
+“We fought one of these ships with the Thunder-weapon and now we’re to face a whole fleet? We’ll be torn to shreds!” Officer Tick complained. <br>
+“Not necessarily.” I answered and showed a sketch of the ship profiles we’ll be facing. “The Fleet has met and assessed the strength of these ships in their previous engagements.” <br>
+I pointed to the 4 profiles of ship types we might meet, the last one on the page was familiar. <br>
+“We have the assortment of smaller ship types, dubbed ‘Small-craft’. They are fragile but quick and make up half the fleet.” I pointed to the small ships. <br>
+“Then we have the Galleons. Large captured cargo ships. They are slow and sturdy and the pirates use them mostly for boarding action. We need to avoid tangling with these, they have significant numbers of crew on them. There are only a handful however.” <br>
+“Then we have the frigates. These are a mix of captured larger tradeships and war-vessels. There are up to 10 of these.” I explained. <br>
+The crew looked a bit deflated. So I gave them the ‘good news’.<br>
+“Of all these ships, it’s only the last 4th variant, the Three-Masted Frigate, that has the Thunder-weapons able to significantly damage our ships. The rest appear to have some smaller variants that, although able to cause damage, needs a much clearer and closer shot to do so significantly.<br>
+“Ha! Give it to the Admiralty to build Warships tough enough to withstand even weapons we haven't seen before!” Officer Ulv laughed and slapped the table. <br>
+“Don't be complacent, you heard the captain, they can still damage us! And they’re over twice our number! How many of these ‘Three-Masts’ are there?” Officer Tick asked. <br>
+“That’s the good news, only two or three. But as you know, they are not to be underestimated, it only took 3 salvoes to cripple the ‘Herald’.” <br>
+“The profile looks familiar.” Officer Nyxie rubbed her chin. <br>
+“We fought one before.” I replied. “Around Pale-Rock.”<br>
+“Well.. at least it’s not 30 of those then!” Officer Keeper grinned widely, ever the optimist.</p>
+</div>
+<div id="tail">
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+
+<button class="btn btn-default hidden" id="FleetBattle"> Continue </button>
+
+<button class="btn btn-default" id="force1">1st Force</button>
+
+<button class="btn btn-default hidden" id="officer0"> </button>
+<button class="btn btn-default hidden" id="officer1"> </button>
+<button class="btn btn-default hidden" id="officer2"> </button>
+
+<button class="btn btn-default hidden" id="force2">2nd Force</button>
+
+<button class="btn btn-default hidden" id="repair">Maintinance and Repair</button>
+<button class="btn btn-default hidden" id="wheel">The helm</button>
+<button class="btn btn-default hidden" id="force3">Support Force</button>
+<button class="btn btn-default hidden" id="raptorians">The Raptorians</button>
+<button class="btn btn-default hidden" id="medical">Medical team</button>
+
+<button class="btn btn-default hidden" id="cadets">The cadets</button>
+
+<span id="cadetButtons"> </span>
+<script>
+
+</script>
+</div>
+
+<div class="force1 hidden"><p><strong>1st Force</strong></p>
+<p>With our reduced crew numbers it is best to divide our ships crew into three forces.<br>
+ 1st Force, the main attacking force. <br>
+2nd Force, the defensive force and secondary attack. <br>
+Finally the Support force, damage control, carrying wounded below deck and in charge of our special equipment.</p>
+
+<p>1st Force will be on-call to attack in whatever boarding action we encounter first. Who do I put in charge of this force?</p>
+<span class="theOfficer officerObjects"></span>
+<script>createOfficer4(force)
+$('#officerObject0').popover({title: force[0].name, content: fighters(0), trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject1').popover({title: force[1].name, content: fighters(1), trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject2').popover({title: force[2].name, content: fighters(2), trigger: "hover", placement: "top", container: "body"}); 
+
+</script>
+</div>
+
+<div class="force2 hidden"><p><strong>2nd Force</strong></p>
+<p>The 2nd Force will be manning defenses, but they will also be on-call to attack if needed. Who will be incharge of this force? <br>
+</p>
+<span class="theOfficer officerObjects"></span>
+<script>createOfficer4(force)
+$('#officerObject0').popover({title: force[0].name, content: fighters(0), trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject1').popover({title: force[1].name, content: fighters(1), trigger: "hover", placement: "top", container: "body"}); 
+
+
+</script>
+
+
+</div>
+
+
+
+<div class="Tung hidden"><p><strong>Officer Tung</strong></p>
+<p>Tung salutes firmly and cracks a grin. <br>
+“We’ve come a long way since that time I mouthed off at you. I’ll make you proud captain, glad to be serving under you!” <br>
+</p>
+</div>
+
+<div class="Garsch hidden"><p><strong>Officer Garsch</strong></p>
+<p>Officer Garsch just nods at my assignment for him. The older Awe takes the responsibility cooly and without comment.</p>
+</p>
+</div>
+
+<div class="Ulv hidden"><p><strong>Officer Ulv</strong></p>
+<p>Ulv rubs her paws together and seems to be smirking at some internal thought when hearing she’s picked. <br>
+“This’ll be good! My gals and I can handle this, dontcha worry!”</p>
+</p>
+</div>
+
+<div class="Mirr hidden"><p><strong>Officer Mirr</strong></p>
+<p>“I’ll keep things in check on my end Captain, so you can focus on the important stuff.” </p>
+</p>
+</div>
+
+<div class="Arn hidden"><p><strong>Officer Arn</strong></p>
+<p>“I’ll keep things runnin’ around you for as long as it can go Cap’.”</p>
+</div>
+
+<div class="Keeper hidden"><p><strong>Officer Keeper</strong></p>
+<p>“Ah, I appreciate you placing your trust in the Wulf! I will not disappoint!” 
+</p>
+</p>
+</div>
+
+
+
+<div class="repair hidden"><p><strong>Maintinance and Repair</strong></p>
+<p>Officer Tick will be in charge of the ship’s maintenance and health. There is no other Awe who could surpass him on this task. <br>
+“Will do Captain. Just don't expect me to perform miracles!”</p>
+</div>
+
+
+<div class="wheel hidden"><p><strong>The Helm</strong></p>
+<p>Officer Nyxie will be in charge of the helm and sails. She’s proven her worth time and time again while in charge of the ship. <br>
+“You flatter me! I’ll try my best to live up to your trust Captain!”<br>
+</p>
+</div>
+
+
+<div class="force3 hidden"><p><strong>Supporting forces</strong></p>
+<p>The Support force will likely have a hard job trying to hold things together. Their task is to assist wherever needed and be in charge of the special equipment. (Like the Firebombs).<br>
+This means damage control, wounded and putting out fires.</p>
+
+<span class="theOfficer officerObjects"></span>
+<script>createOfficer4(support)
+$('#officerObject0').popover({title: support[0].name, content: supporters(0), trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject1').popover({title: support[1].name, content: supporters(1), trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject2').popover({title: support[2].name, content: supporters(2), trigger: "hover", placement: "top", container: "body"}); 
+
+</script>
+
+</div>
+
+
+<div class="raptorians hidden"><p><strong>Raptorians</strong></p>
+<p>The Raptorians are ready for battle. They seem eager and energetic. They have been running a few drills with the oars we now have the space for having available and seem to have not lost their timing for it. <br>
+They will also be available as Heavy-Troops for the eventual fighting but we have to be careful about managing their stamina. <br>
+<div class="evok">
+Pack-Master Evok has ensured me they are in top shape and he’ll be leading them. <br>
+</div>
+<div class="noevok hidden">
+Our newly appointed Pack-Master Ravoc is still establishing his authority. This battle will prove whether he’s up for the role.</p>
+</div>
+</div>
+
+
+<div class="medical hidden"><p><strong>Medical team</strong></p>
+<p>Pouch-Matron Elda will of course oversee the health of the wounded with her nurses.<br>
+“I hope you won’t be sending too many Awes my way, but rest assured we have made the appropriate preparations, dear Captain.” The pouch Matron crooned warmly.</p>
+</div>
+
+
+<div class="envoy hidden"><p><strong>Envoy</strong></p>
+</div>
+
+
+</body>
+</html>

@@ -853,7 +853,7 @@
 	   $('#prisoner3').on('click', function(e) {
 		lib.dialogue(e, "prisoner3"),
          $("#prisoner3").addClass("hidden");
-		$("#endDemo").removeClass("hidden");
+		$("#restart").removeClass("hidden");
 		$(".alive").addClass("hidden");
 		$(".vored").removeClass("hidden");
 	
@@ -923,6 +923,12 @@
 		
       })
 	  
+	   $('#restart').on('click', function(e) {
+       location.reload(true)
+		
+    })
+	  
+	  /*
 	  $('#endDemo').on('click', function(e) {
 		lib.dialogue(e, "end"),
         $("#endDemo").addClass("hidden");
@@ -930,7 +936,7 @@
 		
       })
 	  
-	  /*
+	  
 	  //delete?
 	  $('#conclusion').on('click', function(e) {
 		lib.dialogue(e, "conclusion"),
@@ -1075,6 +1081,7 @@
 <button class="btn btn-default hidden" id="sand">Sand-Isles</button>
 <button class="btn btn-default hidden" id="lone">The Lone island</button>
 
+<button class="btn btn-default hidden" id="restart">Restart</button>
 <button class="btn btn-default hidden" id="endDemo">Demo end</button>
 
 
@@ -2130,7 +2137,7 @@ We'll have to hope the remoteness of the Island will protect it and that it serv
 
 <p>Our next destination awaits. Either we head west for Sand-Isles <span class="uVessla hidden">in pursuit of our treachorous scout and the Islanders that were scrounging around</span> or north to investigate another albeit outdated objective. A nameless lone island that was marked back home as a potentially good spot to set up a Admiralty naval base.</p>
 </div>
-
+<!--
 
 <div class="end hidden"><p><strong>End of Demo</strong></p>
 <p>End of Demo </p>
@@ -2214,7 +2221,7 @@ We'll have to hope the remoteness of the Island will protect it and that it serv
 <p>- You perished in the belly of your prisoner along with your officer and were digested. <br/> The prisoner managed to escape and return to his home isles, where your 'willing' demise and visible addition to his body lends his tales of prowess much status in the tribes.</p>
 </div>
 </div>
-
+-->
 <script>
  cadet[2].banter = [
 	{ target: '#Valnos', text: 'Finally, an island!', imageClass: "neutral"},

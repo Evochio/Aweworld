@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Aweworld</title>
+
+   <link rel="stylesheet" href="../../main.css"></link>
+
+  <script src="../../jquery-3.2.1.js"></script>
+  <script src="../../underscore.js"></script>
+	<script src="../../bootstrap.min.js"></script>
+ <link rel="stylesheet" href="../../bootstrap.min.css"></link>
+  <link rel="stylesheet" href="../../bootstrap-theme.min.css"></link>
+  <script src="../../main.js"></script>
+  <script src="../../jquery.cookie.js"></script>
+   <script src="../../officers.js"></script>
+  <link rel="stylesheet" href="../../main.css"></link>
+  <script>
+
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      
+      $('#part2').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "part2"),
+       $(".btn").addClass("hidden");
+	    $("#part3").removeClass("hidden");
+		
+      })
+	  
+	   $('#part3').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "part3")
+		$(".btn").addClass("hidden");
+        $("#stats").removeClass("hidden");
+		
+      })
+		
+		$('#stats').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "stats")
+		$(".btn").addClass("hidden");
+      })
+    })
+	
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	img {
+	margin:auto;
+	}
+  </style>
+
+</head>
+<body>
+<div id="head">
+
+<h1>Thousand Islands</h1>
+</div>
+
+
+<div id="story-text">
+
+<p>As the smoke clears over the battle, one thing is certain. Broken ships litter the sea, some sinking, some burning, others shattered from explosion or ramming. The Awe fleet is crippled, ships mangled and tattered, but floating. The pirate fleet, is devastated. <br>
+The few ships of the 3rd Fleet of the Awe Admiralty who are still able, patrol through the waters, picking up stragglers and captives. Smashing the few crippled pirate ships that remain that are not worthy of capture. Only a small handful of the pirate fleet escaped the carnage, racing away to tell the tale of their defeat. <br>
+ The Admiralty achieved a great victory here, a coming well-read chapter in naval history. But whatever fame that awaited this achievement, that was from what dwelled on the minds of captains and crew. <br>
+“What’s next? Half our ships are barely afloat and will likely never make it home. Battleship Daring Dive is still smoldering and my Battleship Greatmane is flooded.” The Captain of Greatmane herself, Captain Liv spoke angrily. <br>
+Nearly all the Captains stood assembled upon the deck of the Flagship, awaiting the Fleet-Admirals arrival. Mostly everyone sported a sizable ‘prize belly’ along with a fair share of scuffs and injuries. Captain Riva of the Frigate ‘Truth’ was absent and recuperating in the bottom of a pouch somewhere. <br>
+The Flag-Captain spoke up, somehow having managed to look even more weary and ruffled then before. <br>
+<br>
+“I ask that you show patience. The Fleet-Admiral will address our next move soon. Don’t forget, we’ve achieved a great victory here today!” Though she attempted it, the tone of her voice was anything but jovial. <br>
+“Indeed we have, my good captains!” Fleet-Admiral Kaunis emerged, casually striding into our midst in on impromptu meeting out in the open. Apparently the meeting room was missing a wall. <br>
+“Our achievement today will not go unnoticed! 3rd Fleet will go down in history. You all fought like no Awe has before, if we’d had captains like you back in the Great Blockade, it’d been over in a month rather then years!” It was rare glowing praise from the usually hard-faced Admiral. It was efficient too, here was a Matron that had the experience to make the distinction and who was notoriously hard to please. Everyone present, hard captains all, squirmed on their feet like younglings getting a pat on the head. So when she got to her true intention, no one had the presence to object right away. <br>
+“The pirates are on the back foot and we need a place to dock and repair. We shall press our advantage! We will be setting sail to Port Nowhere, to requisition their services and dig out the last vestiges of the pirate threat from these seas. It’s close and its two snacks in one gulp, Captains!” <br>
+The assembled Captains exchanged glances. Port Nowhere, a freeport of mixed repute. A floating nomadic city on the water. Nowhere as wealthy as the tradeports of the Kingdom, but said to be the largest place of illegitimate commerce between the west and east continents.</p>
+
+<p> “Emissary Chio here, whose house has a small stake in this city, has been informing me of the recent suspicious activities out of the northern quarters of the port.” The red feathered Kingdom Emissary at her side smiled at us. “He has promised the assistance of his house and its allies.” <br>
+“Likewise, Captain Avolcs recent acquisition of valuable Intel further points to much of the pirate activities being centered around this port. ” Eyes turned to me, not all happy. <br>
+“Captain Koen has also separately informed me that in his recent trips past the port the ‘Three-mast’ Frigates are likely being built here.”<br>
+“Aye, well. I saw one docked there that seemed half-finished, they’re building something. The port is also under much tighter lockdown then it used to be.” The large islander Captain spoke casually, oblivious or uncaring as The Fleet-Admiral visibly bristled at his interruption, but tolerated it.</p>
+
+<p>“Now is not the time to limp home! Many of our ships won’t make the journey. We press forward, we gain new allies to reinforce our numbers and we stamp our feet down on the last of the pirates!” The Fleet-Admiral clenched her paw and raised her voice and it was hard not to get pulled along with her spirit. Her arguments were all pretty solid. <br>
+“After we’ve finished inventory of our assets and damage assessments, all able ships but a small escort, will be sailing ahead to Port Nowhere to gather information and gain control of the vital parts of the port.” The Flag-Captain informed. “Ready your ships and reports, orders will follow.” <br>
+</p>
+</div>
+<div id="tail">
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="part2"> Continue </button>
+<button class="btn btn-default hidden" id="part3"> Continue </button>
+<button class="btn btn-default hidden" id="stats"> End of Chapter 2 </button>
+<span id="cadetButtons"> </span>
+<script>
+
+</script>
+</div>
+<div class="part2 hidden"><p><strong>Attentive</strong></p>
+<p>I return to ‘Attentive’ with a bit of a feeling of apprehension. It seemed this campaign was far from over. Winning did not mean going home. <br>
+Our ship was in a sorry state. Some of the lower decks are flooded and Awes have been bucketing out water since the end of the battle, but Officer Tick assured me it was contained to a few lower holds and that we were not taking on more. We can sail but until the breach is fully fixed, we’ll be doing it at a slight tilt. <br>
+The rest of the ship has mostly superficial scars and a lot of new drafty air holes. Our once proud armored bow is in tatters, the metal plates bent, loose or missing. But it did its job well. <br>
+Much of the crew is lethargic, the fighting forces especially, sporting sizable full bellies from the many captured pirates. But they earned their rest and prize and we have a lot of prisoners to work our way through. Throughout the fleet, the countless pirate crews are stewing away in numerous Awe bellies or waiting their turn to do so in cramped briggs. <br>
+I had a large selection to pick from myself if I chose to.</p>
+
+</div>
+
+<div class="part3 hidden"><p><strong>Attentive</strong></p>
+
+<p>At the dawn of the next day, the orders came. Messenger Stroke bowing and avoiding eye-contact as he handed the slip of paper over. <br>
+“Following ships and Captains are hereby assigned as ‘Forward Task-force’.</p>
+
+<p>‘Attentive’ - Captain Avolc<br>
+‘Avalanche’ - Captain Freja<br>
+‘Content’ - Captain Rauha<br>
+‘Defiance’ - Captain Morlo <br>
+‘Resolute’ - Captain Carla<br>
+-<br>
+‘Swift-Bastard’ - Captain Koen<br>
+(Captured) ‘Crooked-Teeth’ - Captain Klippa <br>
+Report to the flag-captain for further orders and prepare to set sail immediately.”</p>
+
+<p>The letter crumples in my paw. It seemed we had a lot of work yet to do under the will of Fleet-Admiral Kaunis.</p>
+
+<p>End of Chapter 2</p>
+</div>
+
+
+<div class="stats hidden"><p><strong>Attentive</strong></p>
+
+<p> Stats here </p>
+</div>
+</body>
+</html>

@@ -18,7 +18,7 @@
   
 	var battle = [];
 	var boarding = 0;
-	officer3 = [officer.tung, officer.ulv, officer.garsch];
+	officer3 = [officer.garsch, officer.tung, officer.mirr];
 	state.inventory.push("firebombs");
 
     $(document).ready(function() {
@@ -40,7 +40,26 @@
 			$('.' + officer3[0].name + 'Text').addClass("hidden");
 			
 		}
-	  
+		
+		$('.' + officer3[2].name + 'Text').removeClass("hidden");
+		
+		if (officer3[2].name == 'Keeper') {
+		
+		if (_.contains(state.inventory, "firebombs")) {
+		$(".KeeperTextF").removeClass("hidden");
+		} 
+		else {
+		$(".KeeperTextFno").removeClass("hidden");
+		
+		}
+		
+		}
+		else if (officer3[2].name == 'Arn') {
+		
+		}
+		else if (officer3[2].name == 'Mirr') {
+		
+		}
       
       $('#engage').on('click', function(e) {
         // change state here
@@ -187,6 +206,9 @@
         $(".btn").addClass("hidden");
 		
 		$("#row").removeClass("hidden");
+		if (officer3[2].name == "Keeper") {
+		$("#row").addClass("disabled");
+		}
 		$("#slow").removeClass("hidden");
 				
       })
@@ -287,11 +309,7 @@
 		battle.push(0);
 		battle.push(officer3[0].name);
         OffenseSquad()     
-		if (_.contains(battle, "assault") && _.contains(battle, "Tung")) {
-				boarding -= 1;
-				
-				}
-		
+			
 		lib.dialogue(e, "boarding"),
         $(".btn").addClass("hidden");
 		
@@ -342,6 +360,11 @@
 	  
 	   $('#boarding2').on('click', function(e) {
          
+		 if (_.contains(battle, "assault") && _.contains(battle, "Tung")) {
+				boarding -= 1;
+				
+				}
+		 
 		if (_.contains(battle, "Tung")) {
 				if (_.contains(battle, "fire")) {
 				boarding += 1;
@@ -407,6 +430,7 @@
 				boarding += 1;
 				}
 				else if (officer3[1].name == 'Tung') {
+				battle.push("ReinTung");
 				boarding -= 0;
 				}
 			}
@@ -416,6 +440,7 @@
 				boarding += 1;
 				}
 				else if (officer3[1].name == 'Tung') {
+				battle.push("ReinTung");
 				boarding -= 1;
 				}
 			}
@@ -441,6 +466,7 @@
 				boarding += 1;
 				}
 				else if (officer3[0].name == 'Tung') {
+				battle.push("ReinTung");
 				boarding -= 0;
 				}
 			}
@@ -450,6 +476,7 @@
 				boarding += 1;
 				}
 				else if (officer3[0].name == 'Tung') {
+				battle.push("ReinTung");
 				boarding -= 1;
 				}
 			}
@@ -499,7 +526,14 @@
       })
 	  
 	  $('#pullback').on('click', function(e) {
-             
+	  
+		battle.push("pullback");
+          if (_.contains(battle, "Tung")) {
+			boarding -=1; 	
+		} 
+		else {
+		boarding +=1; 	
+		}		
 		lib.dialogue(e, "pullback"),
         $(".btn").addClass("hidden");
 		
@@ -542,11 +576,15 @@
 		else {
 			$("#pullback2").removeClass("hidden");
 		}
+		 if (_.contains(battle, "pullback")) {
+			$("#pullback2").addClass("hidden");
+		} 
+		
 		
 		})
 
 		 $('#reinforce2').on('click', function(e) {
-             
+          boarding +=1;     
 		lib.dialogue(e, "reinforce2"),
         $(".btn").addClass("hidden");
 		
@@ -556,7 +594,7 @@
       })
 	  
 	   $('#reinforceRap2').on('click', function(e) {
-         boarding +=1;     
+         boarding +=2;     
 		lib.dialogue(e, "reinforceRap2"),
         $(".btn").addClass("hidden");
 		
@@ -566,7 +604,13 @@
       })
 	  
 	   $('#pullback2').on('click', function(e) {
-          
+          if (_.contains(battle, "ReinTung") || _.contains(battle, "Tung")) {
+		removeOfficer(officer.tung);
+		state.chapter.push("TungNommed");
+		$(".tungnom").removeClass("hidden");
+		$(".TungText").removeClass("hidden");
+		}
+		boarding +=1;
 		lib.dialogue(e, "pullback2"),
         $(".btn").addClass("hidden");
 		
@@ -576,7 +620,11 @@
       })
 		
 		$('#retreat').on('click', function(e) {
-          
+          if (_.contains(battle, "ReinTung") || _.contains(battle, "Tung")) {
+		removeOfficer(officer.tung);
+		state.chapter.push("TungNommed");
+		$(".tungnom").removeClass("hidden");
+		}
 		lib.dialogue(e, "retreat"),
         $(".btn").addClass("hidden");
 		
@@ -645,6 +693,7 @@
       })
 	  
 	   $('#goad').on('click', function(e) {
+	   // add injury penalty making you not get offhand bonus?
         battle.push("offhand")  
 		lib.dialogue(e, "goad"),
         $(".btn").addClass("hidden");
@@ -703,6 +752,25 @@
 		lib.dialogue(e, "evade")
         
 		})
+		
+		 $('#knockout').on('click', function(e) {
+          
+		lib.dialogue(e, "knockout"),
+        $(".btn").addClass("hidden");
+		
+		$("#boarding4").removeClass("hidden");
+			
+      })
+	  
+	   $('#disarm').on('click', function(e) {
+          
+		lib.dialogue(e, "disarm"),
+        $(".btn").addClass("hidden");
+		
+		$("#boarding4").removeClass("hidden");
+			
+      })
+	  
 	  
 	   $('#special2').on('click', function(e) {
           
@@ -747,59 +815,96 @@
 		 
 		 
 		 $('#boarding4').on('click', function(e) {
-          
+          $(".btn").addClass("hidden"); 
+		  $("#button-2").removeClass("hidden");		
 		if (_.contains(battle, "vore")) {
 		$(".duelsave").removeClass("hidden");
+				
 		}
 		else if (_.contains(battle, "join")) {
 		$(".duelwin").removeClass("hidden");
 		}
-		else if (_.contains(battle, "maintain") &&  boarding >= 3) {
+		else if (_.contains(battle, "maintain") &&  boarding >= 4) {
 		$(".Winmaintain").removeClass("hidden");
 		}
 		else if (_.contains(battle, "maintain") &&  boarding >= 2) {
-		$(".stalemate").removeClass("hidden");
+		$(".stalemate_").removeClass("hidden");
 		}
 		else if (_.contains(battle, "maintain") &&  boarding < 2) {
 		$(".lose").removeClass("hidden");
+		$("#attackCap").removeClass("hidden");
+		$("#noAttackCap").removeClass("hidden");
+		$("#button-2").addClass("hidden");		
 		}
 		else if (_.contains(battle, "change") &&  boarding >= 2) {
 		$(".winChange").removeClass("hidden");
 		$("#insist").removeClass("hidden");
 		$("#give").removeClass("hidden");
+		$("#button-2").addClass("hidden");	
 		}
 		else if (_.contains(battle, "change") &&  boarding < 2) {
 		$(".lose").removeClass("hidden");
+		$("#attackCap").removeClass("hidden");
+		$("#noAttackCap").removeClass("hidden");
+		$("#button-2").addClass("hidden");	
 		}
 		
-		lib.dialogue(e, "boarding4"),
-        $(".btn").addClass("hidden");
+		lib.dialogue(e, "boarding4")
+       
 		
 		
 		
 		})
 		
+		$('#attackCap').on('click', function(e) {
+     
+		lib.dialogue(e, "attackCap"),
+        $(".btn").addClass("hidden");
+		$("#restart").removeClass("hidden");	
+					
+      })
+	  
+	    $('#dive').on('click', function(e) {
+     
+		lib.dialogue(e, "dive"),
+        $(".btn").addClass("hidden");
+		$("#restart").removeClass("hidden");			
+      })
+	  
+	  $('#noAttackCap').on('click', function(e) {
+     
+		lib.dialogue(e, "noAttackCap"),
+        $(".btn").addClass("hidden");
+		$("#dive").removeClass("hidden");
+		$("#attackCap").removeClass("hidden");			
+      })
+	  
+	 
+		
 		$('#insist').on('click', function(e) {
        state.chapter.push("claim")
 		lib.dialogue(e, "insist"),
         $(".btn").addClass("hidden");
-					
+		$("#button-2").removeClass("hidden");					
       })
 	  
 	  $('#give').on('click', function(e) {
        
 		lib.dialogue(e, "give"),
         $(".btn").addClass("hidden");
-					
+		$("#button-2").removeClass("hidden");				
       })
 		
-		 
+		 $('#restart').on('click', function(e) {
+       location.reload(true)
+		
+    })
 		 
 		$('#button-2').on('click', function() {
         // change state here
         // end by using lib.goTo
-		state.chapter[0] = ("PortNowhere");
-        lib.goTo('PortNowhere.html')
+		
+        lib.goTo('PostBattle.html')
       })
     })
 	
@@ -845,7 +950,7 @@ Normally smaller ships would be of little concern, but armed with the thunder-we
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 
-<button class="btn btn-default hidden" id="button-2"> Port Nowhere </button>
+<button class="btn btn-default hidden" id="button-2"> Postbattle </button>
 
 <button class="btn btn-default" id="engage"> Engage </button>
 <button class="btn btn-default hidden" id="battle"> Battle choices </button>
@@ -885,10 +990,10 @@ Normally smaller ships would be of little concern, but armed with the thunder-we
 
 <!-- Boarding action - Merged  -->
 <button class="btn btn-default hidden" id="firebombs2">Firebombs (1 use)</button>
-<button class="btn btn-default hidden" id="boarding"> Board them!<span class="tiredAssault">(<span class="officer0"></span>s 1st Force)(tired)</span></button>
-<button class="btn btn-default hidden" id="boardingAlt"> Board them!<span class="tiredAssault">(<span class="officer1"></span>s 2nd Force)</span></button>
-<button class="btn btn-default hidden" id="boardingFire"> Board them!<span class="tiredAssault">(<span class="officer0"></span>s 1st Force)(tired)</span></button>
-<button class="btn btn-default hidden" id="boardingFireAlt"> Board them!<span class="tiredAssault">(<span class="officer1"></span>s 2nd Force)</span></button>
+<button class="btn btn-default hidden" id="boarding"> Board them!<span class="tiredAssault hidden">(<span class="officer0"></span>s 1st Force)(tired)</span></button>
+<button class="btn btn-default hidden" id="boardingAlt"> Board them!<span class="tiredAssault hidden">(<span class="officer1"></span>s 2nd Force)</span></button>
+<button class="btn btn-default hidden" id="boardingFire"> Board them!<span class="tiredAssault hidden">(<span class="officer0"></span>s 1st Force)(tired)</span></button>
+<button class="btn btn-default hidden" id="boardingFireAlt"> Board them!<span class="tiredAssault hidden">(<span class="officer1"></span>s 2nd Force)</span></button>
 
 <button class="btn btn-default hidden" id="boarding2"> Boarding Action</button>
 
@@ -924,8 +1029,15 @@ Normally smaller ships would be of little concern, but armed with the thunder-we
 
 <button class="btn btn-default hidden" id="boarding4">Battle Conclusion</button>    <!--  Complete all outcomes? -->
 
+
+<button class="btn btn-default hidden" id="attackCap">Attack Gator Captain</button>   
+<button class="btn btn-default hidden" id="noAttackCap">Pull back</button> 
+<button class="btn btn-danger hidden" id="dive">Dive in</button> 
+
 <button class="btn btn-default hidden" id="insist">Insist on Claim</button>   
 <button class="btn btn-default hidden" id="give">Give them Claim</button>  
+
+<button class="btn btn-danger hidden" id="restart">Restart</button> 
 
 <span id="cadetButtons"> </span>
 <script>
@@ -988,10 +1100,20 @@ Our previous target, now the victim of our flanking partner was less lucky. They
 
 <p>Some other crew are not as fast and collapse onto the deck with pained whines.<br>
 But there's no time to focus on that. Moments later we smash the stern of the frigate hard with a jolting groaning impact through the whole ship. Our weight and momentum trashes the rear of their ship so much that we nearly go through it. Luckily we do not get stuck and scrape past them. We pass close enough that I can clearly see onto their deck and who I think is their Gator captain angrily bellows what must be obscenities. They're as good as dead in the water now and probably taking on a mighty leak.</p>
+<div class="KeeperTextF hidden">
+<p>Officer Keeper suddenly appears with a team of the support crew, all holding firebombs. With efficient order, he and his teams chuck several of the precious bombs onto the deck of the passing ship. <br>
+They catch fire quickly and surprise everyone, me included. <br>
+“I did NOT give orders for firebombs!” I bellow angrilly. But even as I say that, the ship in question flares up into even more sudden flames as something flammable catches. There will be little chance for the enemy to put that out. <br>
+“Apologies Captain, I misunderstood my areas of responsibility. We still have some left, don’t you worry!”
+We leave the burning Frigate in our wake. <br>
+</p>
 
+</div>
+<div class="ArnText MirrText KeeperTextFno hidden">
 <p>They seem unable to turn as we pass, but we still come enough into their firing arch for them to punish us for our move.</p>
 
 <p>A powerful shot from seeming point-blank range explodes through the side of our ship into the interior compartments, causing untold havoc in there. But one shot is all they manage to fire, other weapons either incapacitated or reloading.</p>
+</div>
 </div>
 
 
@@ -1000,13 +1122,31 @@ But there's no time to focus on that. Moments later we smash the stern of the fr
 <p>The smaller ships are the most pesky to deal with considering their speed and maneuverability. They may fit less of the weapons on their deck, but they're able to put get in better position to fire.</p>
 
 <p>'Attentive' homes in on the target. We go past the damaged frigate, past its rear and they no doubt sigh a breath of relief.<br>
-We don't go without punishment for our pass, the frigate fires a broadside at near point-blank and 2 shots explode through the side of our ship into the interior compartments, causing havoc below deck.<br>
-Or forward and rear ballistae return fire. Their firepower are pathetic in comparison to the thunder-weapons and won't be able to damage the frigate itself. But that's not who the crews are aiming for.</p>
 
+<div class="ArnText hidden">
+<p>Officer Arn in charge of the Support Force is attentively directing Awes behind the scenes. As we pass the frigate, he ensure the oars are pulled back just in time to prevent their damage from getting snagged.</p>
+</div>
+<div class="MirrText hidden">
+<p>Mirr is keeping the crew steady and calm, but mistakes still happen. As we pass the Frigate, several oars get snagged and snap on the passing side. Instead of panicking about it, she seems them quickly replaced before we lose too much speed.</p>
+</div>
+We don't go without punishment for our pass, the frigate fires a broadside at near point-blank and 2 shots explode through the side of our ship into the interior compartments, causing havoc below deck. <span class="KeeperText hidden">Some Oars are also snagged and snapped against the back of the frigate as our Support forces are sloppy with withdrawing them in time. </span><br>
+Or forward and rear ballistae return fire. Their firepower are pathetic in comparison to the thunder-weapons and won't be able to damage the frigate itself. But that's not who the crews are aiming for.</p>
+<div class="ArnText hidden">
+The potential damage is lessened by Arn having briefly closed the hatches. <br>
+</div>
 <p>The Carrack sees us coming as we emerge from behind the Frigate. It slowly turns to try to avoid us, but we are maintaining speed and cut it off. Nyxie is spinning the wheel rapidly to turn us and catch the smaller crafts side.</p>
 
 <p>'CRACK', the ship shudders from impact, hull groaning. But the brunt of it was no doubt felt by the smaller sailing ship. They reel, are pushed aside and spin across our bow. The hit was a glancing one and they look intact on first glance.<br>
 “We hit a big gap into their hull Captain!” My First-officer proclaims, peering closer as we pass them.</p>
+
+<div class="KeeperTextF hidden">
+<p>Officer Keeper suddenly appears with a team of the support crew, all holding firebombs. With efficient order, he and his teams chuck several of the precious bombs onto the deck of the passing ship. <br>
+They catch fire quickly and surprise everyone, me included. <br>
+“I did NOT give orders for firebombs!” I bellow angrilly. But even as I say that, the ship in question flares up into even more sudden flames as something flammable catches. There will be little chance for the enemy to put that out. <br>
+“Apologies Captain, I misunderstood my areas of responsibility. We still have some left, don’t you worry!”
+We leave the burning Carrack in our wake.<br>
+</p>
+</div>
 </div>
 
 
@@ -1174,7 +1314,7 @@ They are soon effectively pushing the defenders back, but his coordination is ta
 My inner clock is starting to toll anxiously. Enough time should have passed for…. <br>
 </div>
 <div class="UlvText hidden">
-Ulv and her ‘gals’ as she calls them spring to action. They throw over copious amounts of ropes and hooks and assault the small ship from above, being the Awes most trained with projectile weapons they force the defenders to take cover below deck as they rain down bolts from their crossbows and cover the attack teams boarding action. <br>
+Ulv and her ‘gals’ as she calls them spring to action. They throw over copious amounts of ropes and hooks and assault the small ship from above, being the Awes most trained with projectile weapons they force the defenders to take cover below deck as they rain down bolts from their bolt-throwers and cover the attack teams boarding action. <br>
 It’s effective in securing the ships deck, but the majority of the defenders are still holding out below deck. Flushing them out will take time. <br>
 </p>
 </div>
@@ -1217,6 +1357,9 @@ The third shot crashes into ‘Swift-Bastard’ that’s approaching from the op
 “Captain, it’s going to take some time to catch up to them.” Officer Nyxie lets me know. <br>
 We have no other target to pursue, we need to cover the ‘Daring-dive’ and I doubt the ‘Swift-Bastard’ could deal with them on their own. <br>
 I could push the Raptorians and Support-crews to row at a harder pace. But then they will be exhausted for the coming fight.</p>
+<div class="KeeperText hidden">
+<p>The decision is made for me however, I notice our Oars on the port side are also still damaged from earlier, we won’t quite be able to achieve full speed eitherway.</p>
+</div>
 </div>
 
 
@@ -1256,7 +1399,7 @@ We still have our firebombs, but this is a big Frigate, their effectiveness will
 Or we commit fully and board. <br>
 </div>
 <div class="firebomb hidden">
-We’ve used up our assets and have no choice but to commit to boarding now.</p>
+We’ve used up our Firebomb assets and have no choice but to commit to boarding now.</p>
 </div>
 
 <div class="tiredAssault hidden">
@@ -1275,7 +1418,7 @@ Two of the shots rend into our ship, poor ‘Attentive’ seeming to shudder and
 The Small-craft is harrying us continuously. It’s spraying fire in our direction, I am painfully hit by a few shrapnel myself who dig their way through armor and into flesh. Luckily it’s mostly glancing hits or smaller pieces of shrapnel that find me, unlike some of my crew who drop to the ground with more serious injuries with every shot, despite our attempts to shield ourselves. <br>
 We have at least soon got a small improvised shielding palisade built to protect us at the command deck from that direction. The rest of the crew who don't need to be on deck are hiding below, for now, but they soon have to come up. We are about to attack. Already the forward ballista is firing ropes to try to catch them. <br>
 “Get ready!” I call out. Already the oars are pulled in and stowed away, the Raptorians who worked hard getting us here now preparing themselves for fighting.<br>
-I can see the pirates on the ship now, they are readying to meet us. Gators most of them, many heavily armored in clunky armor and two handed weapons, some with crossbows. But there is a mix of Gryphs of various origins too, armed more lightly or with a mix of projectile weapons.<br>
+I can see the pirates on the ship now, they are readying to meet us. Gators most of them, many heavily armored in clunky armor and two handed weapons, some with bolt-throwers. But there is a mix of Gryphs of various origins too, armed more lightly or with a mix of projectile weapons.<br>
 We still have our firebombs, but this is a big Frigate, their effectiveness will be limited, but hopefully disruptive. <br>
 Or we commit fully and board.</p>
 </div>
@@ -1283,7 +1426,7 @@ Or we commit fully and board.</p>
 
 <div class="boarding hidden"><p><strong>Board them!</strong></p>
 <p>“Ready for boarding!” I call out, just as the side of our bow thunks up against the side of the ‘Three-Mast’ frigates stern none too gently. We are getting locked together now. <br>
-Already we are taking projectiles from the enemy ships defenders, haphazard shots from bows and crossbows. Our crew is doing its best to return the favor, projectiles whizzing back and forth. The Ballistae are certainly making the enemies duck, the heavy bolts happily rending whatever cover they think they’re safe behind at these ranges. <br>
+Already we are taking projectiles from the enemy ships defenders, haphazard shots from bows and bolt-throwers. Our crew is doing its best to return the favor, projectiles whizzing back and forth. The Ballistae are certainly making the enemies duck, the heavy bolts happily rending whatever cover they think they’re safe behind at these ranges. <br>
 Our ships are of somewhat equal height, getting across won’t be a large hindrance. <br>
 <div class="TungText hidden">
 Officer Tung in charge of the offensive assault springs into action. With a call to battle he charges in first, blade held in the air. <br>
@@ -1308,7 +1451,7 @@ Out of the smoke covering the battle another ship is also speeding toward us, th
 
 <div class="firebombs2 hidden"><p><strong>FireBombs!</strong></p>
 <p>“Deploy the firebombs!” I call out, just as the side of our bow thunks up against the side of the ‘Three-Mast’ frigates stern none too gently. We are getting locked together now. <br>
-Already we are taking projectiles from the enemy ships defenders, haphazard shots from bows and crossbows. The crew is doing its best to return the favor and give cover to the brave fighters tasked with running close and chucking in the alchemical fires. <br>
+Already we are taking projectiles from the enemy ships defenders, haphazard shots from bows and Bolt-throwers. The crew is doing its best to return the favor and give cover to the brave fighters tasked with running close and chucking in the alchemical fires. <br>
 As expected it has limited effect, though smoldering fires crackle over many places of their deck and outside of their hull, they seem to know how to combat them and none of it goes out of control. <br>
 They are certainly made busy however, forced to scramble and run around their ship to deal with the fires, allowing us to hook ourselves in properly for boarding. <br>
 Their Thunder-weapons, which I now can see are quite more sizable then the normal variant, are rendered inoperable with the fires crackling around them. They seem to have more discipline on this ship and nothing unexpectedly explodes, this is certainly a more trained and professional crew then common pirates. <br>
@@ -1518,7 +1661,7 @@ We are losing ground, the enemy combatants are pushing our forces back toward ou
 <p>There are a few options left. <br>
 I can intervene myself, perhaps I can help bolster the fighting spirit of my fellow Awes and go for the Captain, cut off their leadership. <br>
 Or I can send in the last of the troops remaining. Give some of the Awes who have been fighting the longest might get a chance to pull back, but it's going to make for one crowded battle. <br>
-Or I order them all to pull back to our ship. Get on the defensive and see if we can try to pull away. Better to cut our losses.</p>
+Or I order them all to pull back to our ship. Get on the defensive and see if we can try to pull away.<span class="losing hidden"> Better to cut our losses.</span></p>
 </div>
 
 
@@ -1527,7 +1670,7 @@ Or I order them all to pull back to our ship. Get on the defensive and see if we
 <p>I’ve kept the Raptorians till last. Hopefully they have used every spare moment to rest and get themselves ready. Either way, they’ll be no more tired than the rest of the combatants fighting hard across the two ships. <br>
 I give the Orders for them to charge and the thunderous footsteps of them charging out of the lower holds is all the warning the pirates get before biting jaws and swinging tails are making a havoc all around. <br>
 This seems to be just the right push we needed. The tired Awes fall back to give room as Raptorians push in. The armored gators are visibly weary from fighting in heavy armor and now suddenly have to face opponents of their own size and strength. Needless to say, they are falling quickly, physically toppled over and pinned by the feral fighting styles of the Raptorians or they flee into each other as they try to retreat and reassess. <br>
-We are now winning firmly.</p>
+</p>
 
 <div class="corsairs hidden">
 <p>The Corsairs are committing more fighters too, they are wisely staying out of the Raptorians way. I can even see Captain Koen himself joining the fray at the opposite end of the fighting. Peculiarly enough, they seem to use the same fighting style as Awes fighting wing to wing. Perhaps I should not be so surprised, its an old martial tactic from the Republic of Preenlon.</p>
@@ -1555,13 +1698,51 @@ The fresh bodies joining the fray does help the situation, but it's by now a mes
 
 
 <div class="pullback2 hidden"><p><strong>Pull back</strong></p>
-
+<p>“Make the call, pull them back, this grind is leading nowhere!” I order. It’s a hard call to make but it has to be done. <br>
+The officer obeys and soon lets out a loud mountain-call ‘Haa-HOOOO’, letting everyone know it’s time to pull back. <br> 
+Whoever remains on the enemy ship tries to disengage, some turning immediately to jump from their ship to ours, abandoning their positions.</p>
+<div class="TungText hidden">
+<p>Officer Tung and his forces are caught flat footed, they try to extradite but several are overwhelmed as they stop putting on pressure. There’s no sight of Tung himself, I fear the worst as the Gator Captain is seen swallowing down a sizable bulge down his neck. <br>
+</div>
+<div class="GarschText hidden">
+Officer Garsch is able to pull his forces back, he had made sure to keep his back secured for such an eventuality. His fighting force does a fighting retreat and soon mostly all of them have their paws on our deck, trying to hold the Pirates off. <br>
+</div>
+<div class="UlvText hidden">
+Officer Ulv and her remaining ‘gals’ seems to at first not heed the call to retreat. But then, at a signature call of their own, they suddenly leap away from the hardest of the fighting. Given cover by Awes with ammunition left and in secure places to shoot with their bolt throwers.</p>
+</div>
+<p><div class="lose hidden">
+We try to push off from their ship, but the pirate crew seems not to be willing to let us go. Grappling hooks and ropes are tying us up, even as we try to cut them off. They are not letting their prey go. <br>
+</div>
+<div class="stalemate hidden">
+All our forces are tied up in pitched defensive fighting now, just trying to hold on to our position. <br>
+A couple of pirate gryph swings over by rope right onto the command deck to assault my position. I meet one and quickly block her hasty slash. It leaves her open for a follow-up kick and that sends her flying back, but only halfway across back to their ship. <br>
+Nyxie at my side is fighting too, surprisingly swift with her blade, giving her opponent no opening to attack her with a desperate flurry. I give her an assist and lunge for her opponent as well, which makes them yelp and stagger away wounded, before getting a kick too. <br>
+</p>
+</div>
 </div>
 
 <div class="retreat hidden"><p><strong>Retreat!</strong></p>
 <p>“Make the call, pull them back, this grind is leading nowhere!” I order. It’s a hard call to make but it has to be done. <br>
-The officer obeys and soon lets out a loud mountain-call ‘Haa-HOOOO’, letting everyone know it’s time to pull back. <br>
+The officer obeys and soon lets out a loud mountain-call ‘Haa-HOOOO-HOOO’, letting everyone know it’s time to retreat. <br>
 Whoever remains on the enemy ship tries to disengage, some turning immediately to jump from their ship to ours, abandoning their positions.</p>
+<div class="TungText hidden">
+<p>Officer Tung and his forces are caught flat footed, they try to extradite but several are overwhelmed as they stop putting on pressure. There’s no sight of Tung himself, I fear the worst as the Gator Captain is seen swallowing down a sizable bulge down his neck. <br>
+</div>
+<div class="GarschText hidden">
+Officer Garsch is able to pull his forces back, he had made sure to keep his back secured for such an eventuality. His fighting force does a fighting retreat and soon mostly all of them have their paws on our deck, trying to hold the Pirates off. <br>
+</div>
+<div class="UlvText hidden">
+Officer Ulv and her remaining ‘gals’ seems to at first not heed the call to retreat. But then, at a signature call of their own, they suddenly leap away from the hardest of the fighting. Given cover by Awes with ammunition left and in secure places to shoot with their bolt throwers.</p>
+</div>
+<p>l<div class="lose hidden">
+We try to push off from their ship, but the pirate crew seems not to be willing to let us go. Grappling hooks and ropes are tying us up, even as we try to cut them off. They are not letting their prey go. <br>
+</div>
+<div class="stalemate hidden">
+All our forces are tied up in pitched defensive fighting now, just trying to hold on to our position. <br>
+A couple of pirate gryph swings over by rope right onto the command deck to assault my position. I meet one and quickly block her hasty slash. It leaves her open for a follow-up kick and that sends her flying back, but only halfway across back to their ship. <br>
+Nyxie at my side is fighting too, surprisingly swift with her blade, giving her opponent no opening to attack her with a desperate flurry. I give her an assist and lunge for her opponent as well, which makes them yelp and stagger away wounded, before getting a kick too. <br>
+</p>
+</div>
 </div>
 
 
@@ -1696,17 +1877,27 @@ Captain Koen himself looks around before he spots me. <br>
 The distant thunder of Thunder-shot has grown quieter now, the battle overall seems to have come to a lull, though it’s hard to see due to smoke covering much of the sea. Captain Koen seems to have the same idea as mine. <br>
 “I’d say the bigger battle has been in the favor of you soft-wings, but we best head on out and earn our keep.” He returned to his ship.</p>
 </div>
-<div class="stalemate hidden">
-<p>The Pirates are refusing to give up, fighting hard and sometimes even pushing close enough that I have to stab and slash a few of them away myself from the command deck and nearby hatches down into the lower parts of the ship. <br>
+<div class="stalemate_ hidden">
+<p>The Pirates are refusing to give up and so are we, fighting hard and several times pushing close enough that I have to stab and slash a few of them away from the command deck and nearby hatches down into the lower parts of the ship. <br>
 The armored gators fight the hardest of all. They appear to have been some kind of elite fighting force, though outnumbered they kept us at bay and proved a tough opponent to crack. <br>
 My crew is not giving up on the fight either, but they’re all tired and ruffled, many are fighting with wounds. <br>
+<br>
 There is a shout as I now see the Corsairs arriving and starting to climb aboard. Armed with little more than Spears and Glaives and their bandanas, the Gryphs of various origin swarm the fight. <br>
 They are fresh and eager where the pirates are worn out and on their last legs. The fight quickly turns against them and bit by bit the surrender or fall. <br>
 Captain Koen himself is seen dispatching the Gator pirate Captain, doing so with a very quick flick of a sturdy blade that disarms the pirate and knocks him to the ground. <br>
 I am not surprised to see the large Gryph Captain helping himself to shove the defeated opponent into his wide open beak, gulping the gator down proudly for all to see. <br>
+<br>
 At the battles conclusion I meet with the Corsair Captain briefly, he’s resting a paw on his wide sagging gut with a smug looking expression. <br>
-“Well, it seems we arrived just in time to save you, Captain.” He chuckled and gave his large belly a pat. “You owe me one, I take repayment in favors!” He winked. I repressed a huff and sigh. <br>
-“Your arrival was timely, thank you Captain Koen.” I turn my head to the rest of the battle. <br>
+“Well, it seems we arrived just in time to save you, Captain.” He chuckled and gave his large belly a pat. “You owe me one, I take repayment in favors!” He winked. <br>
+<div class="tungnom hidden">
+<p>I nod toward the Gryph captains large belly, already gurgling loudly. <br>
+“Captain, I think the prize you ate might contain some Awe or two of mine.” <br>
+“Oh…?” Captain Koen hefted his great gut in his paws and let it drop heavily with a ‘gworble’.<br>
+ “Well, such things happen in pitched fighting. At least they are fortunate enough to get to join my body.” The Gryph Captain smirked. <br>
+I narrowed my eyes at him, his prodigious charms might normally be effective, but at the moment I am feeling less bemused. He notices the gaze and gives a pat to his gut. <br>
+“As with many turns of fate, I am afraid to say we all have to come to terms with this one, Captain.” He offered apologetically. Truth be told, a long time had passed since he was last seen.</p>
+</div>
+“Your arrival was timely, thank you Captain Koen.” I turn my head to the rest of the battle while I repressed a huff and sigh. <br>
 The distant thunder of Thunder-shot has grown quieter now, the battle overall seems to have come to a lull, though it’s hard to see due to smoke covering much of the sea. Captain Koen seems to have the same idea as mine. <br>
 “I’d say the bigger battle has been in the favor of you soft-wings, but we best head on out and continue to earn our keep.” He returned to his ship.</p>
 </div>
@@ -1715,8 +1906,14 @@ The distant thunder of Thunder-shot has grown quieter now, the battle overall se
 I spare a glance to the rest of the ship and I can see those Armored Gators now pushing down into the inside of our ship too. They’ve proven to be tough opponents, with armor able to withstand most attacks and endurance to back it up. <br>
 The Corsairs arrived a while ago and are trying to assist, but they’re having a hard time boarding onto the pirate ship to fully help us. <br>
 I am already seeing Pirates, Gator and Gryph both, starting to feast and stuff Awes into their jaws. A sign that things are far from our control if they think they have the time to stop and eat.</p>
+<p>Suddenly a large spiked ball on a chain crashes into the deck next to me, splintering the wood beneath it. It forces me and the few officers around me to jump to cover. <br>
+‘Gwaaaaarrh!’ Shouts a large Gator that suddenly in our midst. The Gator Captain has made his way over to try to end the fight himself. <br>
+Before I can engage him, a Gryph pirate tries to skewer me and I am forced to fend her off for a few moments before I manage to land a kick to her belly and send her tumbling off the side. <br>
+The Gator captain has meanwhile been busy, as I turn to face him, an assortment of flailing limbs and tails are sticking out from his toothy maw and bulging throat as he’s gulping down a couple of my officers in one big gluttonous lump. I didn't even have time to see who. <br>
+Even as I rush to engage him and save them he ‘GULPS’ and the rounded lump travels down his neck and vanishes with a smack of his jaws, soon distending his scaled belly. <br>
+He scoffs at my charge and licks his chops eagerly. More of his pirate crew are climbing onto the command deck now, outnumbering me.<br>
+</p>
 </div>
-
 
 <div class="duelwin hidden">
 With my victory over the Gator-Captain, coordination and morale plummets around the enemy fighters. <br>
@@ -1755,14 +1952,45 @@ I meet with Captain Koen of the Corsairs on the deck of the pirate ship. <br>
 “Well fought to you too Captain. What’s the problem?” I ask. <br>
 “Your officers are making claim on the Gator Captain while my subordinates are doing the same. We want the honor of claiming the Captain, we got to the ship first after all!” <br>
 I huff and cross my arms in return at him. He may have been first, but we boarded first. In the end it's a question of honor. Whoever gets to claims the Captain can claim to be the one who defeated the ship.</p>
+<div class="tungnom hidden">
+<p>Before I can make my decision a bruised Awe fighter under Officer Tungs command salutes and wants my attention. I nod for him to speak. <br>
+“Captain. Officer Tung was devoured by the Gator Captain during the fighting. I regret to report that he is… unrecoverable.” <br>
+I gave a dismissive wave of my paw and sighed. This could affect my decision in this claims dispute. <br>
+</p>
+</div>
 </div>
 
 
+</div>
+
+<div class="attackCap hidden"><p><strong>Attack the Captain</strong></p>
+<p>Try as I might to best him, there are too many interferences around, pirates far from leaving things to honor and ganging up on me. I end up being knocked around trying to avoid and deflect all the blows. My arm numb and sword dented, one blow finally knocks prone and I feel the air go out of me. <br>
+The Gator captain hoists me up by my tail, I feel too tired to care, even as he opens his jaws wide below me and drops me right down into that glistening pink fleshy pit of his gullet. <br>
+Wetness and muscle squelch and grind and a powerful ‘GLP’ sends me tumbling down to join the other Awes in his now likely wide scaly gut. <br>
+All around my crew are dealt similar fates, the losers of this battle becoming part of the winners.<br>
+</p>
+</div>
+
+<div class="noAttackCap hidden"><p><strong>Pull back</strong></p>
+<p>I retreat from the command deck there’s just too many to deal with and turn to face the middle deck. But everywhere below me are numerous enemies, many busy feasting on my crew. The ship is overwhelmed. There are no places to go, I can't see the Corsairs anywhere either and their ship is obscured. <br>
+One particular gryph pirate looks up at me and my consternation from the middeck and opens his beak to cackle, then yawns his beak wider, pointing toward it in taunting invitation.</p>
+</div>
+
+<div class="dive hidden"><p><strong>Dive</strong></p>
+<p>The heavy steps of the Gator captain closes in and I make a snap decision, choosing for some reason or another to take the invitation of the Gryph pirate. <br>
+He looks surprised as I jump toward him, but committed he braces yawns and I land with a slick ‘gluurrp’, plunging headfirst halfway down his throat. <br>
+For a moment it seems like he’ll choke, then he heaves some hard swallows and stuffs me down greedily, making sure to be the pirate that claimed a captain.<br>
+I wince as he snaps that beak shut around my legs and feet paws, forcing me into his tight but hungry stomach. <br>
+Curled up uncomfortably and churned hard from all sides, that’s how I end my career as Admiralty captain and become a Gryph pirates meal. There are few choices one can get to do in defeat, at least I had this. <br>
+</p>
 </div>
 
 
 <div class="insist hidden"><p><strong>Insist on Claim</strong></p>
 <p>“You may have reached the ship first, but we boarded first and fought the longest and you know it.” I tell the tall sturdy Gryph captain firmly, narrowing my eyes.<br>
+<div class="tungnom hidden">
+“Besides, Awes always try to reclaim their own.” I nodded firmly, whether you’re a believer in the Light of Awe spirits or not. <br>
+</div>
 For a moment it looks like he’s about to argue with me, his face darkening. But then he breaks into a grin and laughs. <br>
 “Fine! You’re right. I can tell you’re not one to be swayed. But you owe us one for the assist!” <br>
 The distant thunder of Thunder-shot has grown quieter now, the battle overall seems to have come to a lull, though it’s hard to see due to smoke covering much of the sea. Captain Koen seems to have the same idea as mine. <br>
@@ -1773,6 +2001,9 @@ The distant thunder of Thunder-shot has grown quieter now, the battle overall se
 <div class="give hidden"><p><strong>Give Claim</strong></p>
 <p>“Very well, if it’s important to you to have that claim, you’re welcome to it.” I give a dismissive wave of my paw. The important thing was that the enemies were beaten. <br>
 “Ah, Excellent! I am glad you see it our way! This will increase our standing quite a bit. ” Captain Koen grinned widely. <br>
+<div class="tungnom hidden">
+Several of the crew are unhappy with this decision. Most of all Officer Tungs former subordinates mutter amongst themselves. <br>
+</div>
 The distant thunder of Thunder-shot has grown quieter now, the battle overall seems to have come to a lull, though it’s hard to see due to smoke covering much of the sea. Captain Koen seems to have the same idea as mine. <br>
 “I’d say the bigger battle has been in the favor of you soft-wings, but we best head on out and earn our keep.” He returned to his ship.</p>
 </div>

@@ -276,8 +276,20 @@
 	   $('#conclusion').on('click', function(e) {
         // change state here
         // end by using lib.goTo
+			if (_.contains(state.inventory, "thunderweapon")) {
+				if (_.contains(state.inventory, "powder")) {
+				$(".powder").removeClass("hidden");
+				}
+			$(".thunder").removeClass("hidden");
+			approval += 1; 
+			}
+			else if (_.contains(state.inventory, "powder")) {
+			$(".powder2").removeClass("hidden");
+			}
 		
 		if ( approval >= 5) {
+		state.inventory.push("boltthrower")
+			$(".approval").removeClass("hidden");
 			$(".high").removeClass("hidden");
 		}
 		else if (approval >= 3) {
@@ -368,8 +380,8 @@
 		$('#button-2').on('click', function() {
         // change state here
         // end by using lib.goTo
-		state.chapter[0] = ("FleetBattle");
-        lib.goTo('FleetBattle.html')
+		state.chapter[0] = ("Prelude");
+        lib.goTo('Prelude.html')
       })
     })
 	
@@ -407,7 +419,7 @@ It seems Captain Koen knows where we’re going. It’s a jumble of island clust
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default hidden" id="button-1"> Test </button>
-<button class="btn btn-default hidden" id="button-2"> Fleet Battle </button>
+<button class="btn btn-default hidden" id="button-2"> Preperations </button>
 
 <button class="btn btn-default" id="fleet">The Fleet</button>
 
@@ -526,9 +538,9 @@ Up-close it becomes pretty hard not to notice how she has retained quite a bit o
 <div class="you hidden"><p><strong>About You</strong></p>
 <p>“So, Captain Avolc. By your namesake and your eye-color, do I guess correctly that you’re related to Avokas.” The Admiral has been fixated by my eyes since I entered the room. I felt a surge of surprise at hearing that name. <br>
 “That is correct. She was my mother.” I reply after a pause. <br>
-“I thought so, you have her bearing and eyes. That blood of ancient Avon.” The Fleet-Admiral gave a chuckle. "Probably her eyesight too."<br>
+“I thought so, you have her bearing and eyes. That blood of ancient Avon.” The Fleet-Admiral gave a chuckle. "Probably her perceptiveness as well as eyesight too."<br>
 It was not the first time someone made a remark about my eyes and Avon, the mystical ‘First-Awe’ of our history. I blinked at her last remark, stumped. <br>
-“I served with her in the East sea around the Blockade days, she was strong and brilliant. I heard later what happened, such a shame, but she was always so headstrong. Shouldn’t have tried to have a child so close to Matronage.” The Fleet-Admiral shakes her head regretfully. <br>
+“I served with her in the East sea around the Blockade days, but we both met when we were the equivalent of cadets together, she was strong and brilliant. Made for a great Captain. I heard later what happened, such a shame, but she was always so headstrong. Shouldn’t have tried to have a child so close to Matronage.” The Fleet-Admiral shakes her head regretfully. <br>
 “Yet… If she had not, I would not have existed.” I can’t keep away the hint of acid in my tone. <br>
 “Yes, I suppose. You’re the legacy she chose, rather then service, she had that right.” It seems my presence dredged up a lot of memories in the Fleet-Admiral. She has a distracted distant look to her a while before her eyes return to the present.<br>
 “Well, I expect great things from you Captain Avolc. Let’s have a look at your reports.”</p>
@@ -712,8 +724,48 @@ I merely gave a nod and shifted the weight of my feet.</p>
 </div>
 
 <div class="conclusion hidden"><p><strong></strong></p>
+
+<div class="thunder hidden">
+The Fleet-Admiral shifts her stance and cocks her head at me. Her height on me makes it unnerving. <br>
+“I have been informed you captured a Thunder-weapon from the enemy at one of their mines.” <br>
+<div class="powder hidden">
+She turns a page on her table. “...Ah. Along with some of the powder they use to discharge them.” <br>
+</div>
+“That is correct Fleet-Admiral. It took some doing to dig them out of that mine.” I nodded. <br>
+“Well, that’s useful. Of course, we have captured one or two of our own already. But I am sure Alchemist Singe will be happy for the addition.” <br>
+The Fleet Admiral crossed her arms. <br>
+“I have yet not approved us attempting to use them for our own benefit, too many unknowns in their handling. Such volatile weapons are best studied carefully first before haphazardly used.” <br>
+<p>I nodded in understanding, that made sense. You did not go into battle with a weapon you had never trained with. <br>
+“I’ll make sure your ship is supplied with some Firebombs Alchemist Singe has cooked up<span class="powder hidden">, infact I'll grant you two units of it due to getting the powder too</span>. I saw in your report you’ve seen them used by their occasional fliers. Well, we captured a large batch of them and have successfully managed to make more. They are simple enough to use that I’ve approved their dispersal with capable crews.” <br>
+“Thank you Fleet-Admiral.” I bowed my head. <br>
+</p>
+</div>
+<div class="powder2 hidden">
+<p>“I see you recovered some Thunder-powder from the enemy by one of their mining bases. “ <br>
+“That is correct Fleet-Admiral.” I reply. Unfortunately we had been unable to recover the Thunder-weapon itself, I hope she wouldn't be mad about that. <br>
+Well, that’s useful. We have captured one or two Thunder-Weapons of our own already. But I am sure Alchemist Singe will be happy for the addition of powder.” <br>
+The Fleet Admiral crossed her arms. <br>
+“I have yet not approved us attempting to use them for our own benefit, too many unknowns in their handling. Such volatile weapons are best studied carefully first before haphazardly used.” <br>
+<p>I nodded in understanding, that made sense. You did not go into battle with a weapon you had never trained with. <br>
+“I’ll make sure your ship is supplied with some Firebombs Alchemist Singe has cooked up. I saw in your report you’ve seen them used by their occasional fliers. Well, we captured a large batch of them and have successfully managed to make more. They are simple enough to use that I’ve approved their dispersal with capable crews.” <br>
+“Thank you Fleet-Admiral.” I bowed my head. <br>
+</p>
+</div>
+<div class="approval hidden">
+<p>The Admiral tapped her chin thoughtfully, she seemed to scan me up and down, eyes distant. If I had to guess, comparing me to my late mother again. I wonder what adventures the two of them got into.</p>
+“Since you’ve done well, it is only fair you’re rewarded for it.“ The Fleet Admiral knelt gingerly by a chest and retrieved an item before holding it out for me. “I give these to the Captains I think deserve a little extra.”<br>
+It was a Bolt-thrower. But not the cumbersome and bulky ordinary kind. This one was ornate and well-made. It was small enough to hold in one paw and had a clasp so it could be attached to the belt for easy and quick retrieval when needed. <br>
+I clasped it and marveled at it, unable to hold back a grin. <br>
+“Ah, girls and their toys, always the same goofy look when they see it. I am glad you like it. Treat it well.” The Fleet-Admiral smiled. <br>
+"I will, Fleet-Admiral. It's fine craftmanship!" <br>
+</p>
+</div>
+
+
+
 <p>
 <div class="neutral hidden">
+The Admiral seems to regard an ornate chest next to her for a moment. But then does a brief headshake and turns her attention back to me. <br>
 “Well Captain, it has been interesting to meet you. I am sure you will be able to contribute to my fleet strength in an adequate capacity.” She spoke promptly. <br>
 </div>
 <div class="low hidden">
