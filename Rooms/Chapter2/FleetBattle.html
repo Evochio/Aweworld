@@ -18,7 +18,8 @@
   
 	var battle = [];
 	var boarding = 0;
-	officer3 = [officer.garsch, officer.tung, officer.mirr];
+	var damage = 0;
+	officer3 = [officer.garsch, officer.tung, officer.keeper];
 	state.inventory.push("firebombs");
 
     $(document).ready(function() {
@@ -47,6 +48,9 @@
 		
 		if (_.contains(state.inventory, "firebombs")) {
 		$(".KeeperTextF").removeClass("hidden");
+			if (_.contains(state.inventory, "firebombs2")) {
+			state.inventory = _.without(state.inventory, "firebombs2");
+			}
 		} 
 		else {
 		$(".KeeperTextFno").removeClass("hidden");
@@ -86,6 +90,16 @@
 		lib.dialogue(e, "craft"),
         $(".btn").addClass("hidden");
 		$("#battle2").removeClass("hidden");
+		damage += 2;
+		if (officer3[2].name == 'Keeper') {
+		
+		}
+		else if (officer3[2].name == 'Mirr') {
+		
+		}
+		else if (officer3[2].name == 'Arn') {
+		
+		}
 		
 		
       })
@@ -96,13 +110,22 @@
 		lib.dialogue(e, "frigate"),
         $(".btn").addClass("hidden");
 		$("#battle2").removeClass("hidden");
+		damage += 1;
+		if (officer3[2].name == 'Keeper') {
+		damage -= 1;
+		}
+		else if (officer3[2].name == 'Mirr') {
 		
+		}
+		else if (officer3[2].name == 'Arn') {
+		
+		}
 		
       })
 	  
 	    $('#battle2').on('click', function(e) {
         // change state here
-       
+		damage += 1;
 		lib.dialogue(e, "battle2"),
         $(".btn").addClass("hidden");
 		$("#wedged").removeClass("hidden");
@@ -113,7 +136,7 @@
 	  
 	  $('#wedged').on('click', function(e) {
         // change state here
-       
+		damage += 1;
 		lib.dialogue(e, "wedged"),
         $(".btn").addClass("hidden");
 		$("#battle3").removeClass("hidden");
@@ -144,7 +167,7 @@
 	  
 	    $('#battle4').on('click', function(e) {
         
-       
+		damage += 1;
 		lib.dialogue(e, "battle4"),
         $(".btn").addClass("hidden");
 		$("#maintain").removeClass("hidden");
@@ -154,6 +177,7 @@
 	  
 	  //////////////////////////Change Route/////////
 	   $('#change').on('click', function(e) {
+	   damage += 3;
         battle.push("change");
 		$(".corsairs").removeClass("hidden");	
 		lib.dialogue(e, "change"),
@@ -170,13 +194,17 @@
       })
 	  
 	  $('#firebombs').on('click', function(e) {
-             
+         damage += 1;    
 		lib.dialogue(e, "firebombs"),
         $(".btn").addClass("hidden");
+		if (state.inventory.indexOf("firebombs2") == -1) {
 		$("#firebombs2").addClass("disabled");
-		$("#maintainAlt").removeClass("hidden");
 		$(".firebomb").removeClass("hidden");
-				
+		}
+		$(".firebomb_").removeClass("hidden");	
+		$("#maintainAlt").removeClass("hidden");
+		
+		
       })
 	  
 	  $('#assault').on('click', function(e) {
@@ -191,7 +219,7 @@
       })
 	  
 	   $('#assault2').on('click', function(e) {
-             
+        damage += 2;     
 		lib.dialogue(e, "assault2"),
         $(".btn").addClass("hidden");
 		
@@ -201,7 +229,7 @@
       })
 	  
 	   $('#maintainAlt').on('click', function(e) {
-             
+         damage += 1;    
 		lib.dialogue(e, "maintainAlt"),
         $(".btn").addClass("hidden");
 		
@@ -214,6 +242,7 @@
       })
 	  
 	   $('#row').on('click', function(e) {
+	   damage += 1;
         battle.push("row");     
 		lib.dialogue(e, "row"),
         $(".btn").addClass("hidden");
@@ -224,7 +253,8 @@
       })
 	  
 	    $('#slow').on('click', function(e) {
-             //You take extra damage here.             /ADD
+            
+			 damage += 2;
 		lib.dialogue(e, "slow"),
         $(".btn").addClass("hidden");
 		
@@ -235,7 +265,7 @@
 	  
 	  
 	   $('#closein').on('click', function(e) {
-             
+         damage += 2;    
 		lib.dialogue(e, "closein"),
         $(".btn").addClass("hidden");
 		
@@ -268,10 +298,10 @@
       })
 	  
 	    $('#maintain2').on('click', function(e) {
-             
+         damage += 2;    
 		lib.dialogue(e, "maintain2"),
         $(".btn").addClass("hidden");
-		if (_.contains(state.inventory, "firebombs")) {
+		if (_.contains(state.inventory, "firebombs") || _.contains(state.inventory, "firebombs2")) {
 		$("#firebombs2").removeClass("hidden");
 		}
 		else {
@@ -584,7 +614,10 @@
 		})
 
 		 $('#reinforce2').on('click', function(e) {
-          boarding +=1;     
+         boarding +=1; 
+		
+		$('.' + officer3[1].name + 'Text2').removeClass("hidden");
+		 
 		lib.dialogue(e, "reinforce2"),
         $(".btn").addClass("hidden");
 		
@@ -903,7 +936,7 @@
 		$('#button-2').on('click', function() {
         // change state here
         // end by using lib.goTo
-		
+		state.damageTaken = damage 
         lib.goTo('PostBattle.html')
       })
     })
@@ -1001,13 +1034,13 @@ Normally smaller ships would be of little concern, but armed with the thunder-we
 <button class="btn btn-default hidden" id="reinforceRap">Reinforce with Raptorians</button>
 <button class="btn btn-default hidden" id="pullback">Pull back!</button>    <!--  Successful only if Raptorians and Tung not deployed) -->
 
-<button class="btn btn-default hidden" id="boarding3">Battle progress</button>     <!--  Corsairs fully intervene here if went change pathxxx -->
+<button class="btn btn-default hidden" id="boarding3">Battle progress</button>   
 
-<button class="btn btn-default hidden" id="join">Join the Fray!</button>    <!--  Only available on Losing/Stalemate? Always availablexxx-->
+<button class="btn btn-default hidden" id="join">Join the Fray!</button>   
 <button class="btn btn-default hidden" id="reinforceRap2">Reinforce with Raptorians</button>
 <button class="btn btn-default hidden" id="reinforce2">Reinforce with 2nd Force.</button>   
-<button class="btn btn-default hidden" id="pullback2">Pull back!</button>  <!--  Only available on winning/Stalemate      Write-->
-<button class="btn btn-default hidden" id="retreat">Retreat!</button>  <!--  Only available on Losing      Write-->
+<button class="btn btn-default hidden" id="pullback2">Pull back!</button> 
+<button class="btn btn-default hidden" id="retreat">Retreat!</button> 
 
 
 <!-- Personal fight -->
@@ -1027,7 +1060,7 @@ Normally smaller ships would be of little concern, but armed with the thunder-we
 <button class="btn btn-default hidden" id="knockout">Knock him out.</button>
 <!-- End of Personal fight  -->
 
-<button class="btn btn-default hidden" id="boarding4">Battle Conclusion</button>    <!--  Complete all outcomes? -->
+<button class="btn btn-default hidden" id="boarding4">Battle Conclusion</button>    
 
 
 <button class="btn btn-default hidden" id="attackCap">Attack Gator Captain</button>   
@@ -1099,7 +1132,7 @@ Our previous target, now the victim of our flanking partner was less lucky. They
 <p>A shout of warning suddenly alerts me to another enemy small-craft suddenly having an angle of fire on us. Their weapons flash and I manage to raise my wing-guard in time to deflect shrapnel of wood as a projectile slams into the side of our deck and explodes the wood into fragments.</p>
 
 <p>Some other crew are not as fast and collapse onto the deck with pained whines.<br>
-But there's no time to focus on that. Moments later we smash the stern of the frigate hard with a jolting groaning impact through the whole ship. Our weight and momentum trashes the rear of their ship so much that we nearly go through it. Luckily we do not get stuck and scrape past them. We pass close enough that I can clearly see onto their deck and who I think is their Gator captain angrily bellows what must be obscenities. They're as good as dead in the water now and probably taking on a mighty leak.</p>
+But there's no time to focus on that. Moments later we smash the stern of the frigate hard with a jolting groaning impact through the whole ship. Our weight and momentum trashes the rear of their ship so much that we nearly go through it. Luckily we do not get stuck and scrape past them<span class="KeeperText hidden">, some Oars are also snagged and snapped against the back of the frigate as our Support forces are sloppy with withdrawing them in time</span>. We pass close enough that I can clearly see onto their deck and who I think is their Gator captain angrily bellows what must be obscenities. They're as good as dead in the water now and probably taking on a mighty leak.</p>
 <div class="KeeperTextF hidden">
 <p>Officer Keeper suddenly appears with a team of the support crew, all holding firebombs. With efficient order, he and his teams chuck several of the precious bombs onto the deck of the passing ship. <br>
 They catch fire quickly and surprise everyone, me included. <br>
@@ -1349,7 +1382,7 @@ Ulv’s ‘gals’ are pulling back. The small-craft is has been put ablaze and 
 
 
 <div class="maintainAlt hidden"><p><strong>Engaging 'Three-Mast'</strong></p>
-<p>We are leaving the disabled Small-craft behind. <span class="firebomb hidden">It’s violently ablaze and its crew are abandoning it by any means they can.</span><span class="assault hidden">Though some crew remain on it, it’s been effectively neutralized, sails in ruins and weapon sabotaged. The Fleet can deal with it later. </span></p>
+<p>We are leaving the disabled Small-craft behind. <span class="firebomb_ hidden">It’s violently ablaze and its crew are abandoning it by any means they can.</span><span class="assault hidden">Though some crew remain on it, it’s been effectively neutralized, sails in ruins and weapon sabotaged. The Fleet can deal with it later. </span></p>
 
 <p>We are picking up speed, Raptorians working the oars heavily to accelerate us while Officer Nyxie maneuvers for winds. The Three-Mast ship does not seem happy about now being engaged by two ships from two sides and is also deploying more sails to try to escape the trap.<br>
 The Thunder-weapons ‘BOOM’ once more. Two shots hurtle toward us, one splashing into the sea and the other hits high on our bow armor, breathing through and exploding debris and splinters at the forward ballistae <span class="UlvText hidden">crew</span> before bouncing cross the ship and getting lodged against the lower wall of the command deck. <br>
@@ -1399,7 +1432,7 @@ We still have our firebombs, but this is a big Frigate, their effectiveness will
 Or we commit fully and board. <br>
 </div>
 <div class="firebomb hidden">
-We’ve used up our Firebomb assets and have no choice but to commit to boarding now.</p>
+We<span class="KeeperTextF hidden">, or rather Officer Keeper,</span> have used up our extra Firebomb assets and have no choice but to commit to boarding now.</p>
 </div>
 
 <div class="tiredAssault hidden">
@@ -1679,15 +1712,15 @@ This seems to be just the right push we needed. The tired Awes fall back to give
 
 <div class="reinforce2 hidden"><p><strong>Reinforce with 2nd Squad</strong></p>
 <p>There isn't much more to do then send in the defensive squad. Hopefully they’ll be able to stem the flow of battle. <br>
-<div class="TungText hidden">
+<div class="TungText2 hidden">
 Officer Tungs fighters have been eagerly waiting to join the fray. At my orders they are finally allowed to do so. They fight ferociously and with skill, but there is little semblance of tactics other than occasional flanking maneuvers to their attacks. <br>
 Though they are improving the situation with fresh bodies into the fray, the battle has progressed into such a mess now that it’s but a scant improvement, but at least it’s not worse. <br>
 </div>
-<div class="GarschText hidden">
+<div class="GarschText2 hidden">
 Officer Garsch leads his troops into the chaotic fighting. It’s a mess of a battle at this point, even his attempt to organize it into some manner of order will fall woefully short. <br>
 Still, throwing fresh bodies into the fray seems to push the pirates back and improve the situation slightly. Even if it means now the majority of Awes on the ship are tied up into fighting. But I’ll take what I can get. <br>
 </div>
-<div class="UlvText hidden">
+<div class="UlvText2 hidden">
 Officer Ulv and her ‘gals’ do their best to join the fray, going from defensive fire with their bolt throwers to pushing forward and supporting the fighters. In places they join in the melee where help is needed. <br>
 The fresh bodies joining the fray does help the situation, but it's by now a mess of a battle with the majority of both crews engaged in fighting. There will be no decisive victory yet.</p>
 </div>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Aweworld</title>
+
+   <link rel="stylesheet" href="../../main.css"></link>
+
+  <script src="../../jquery-3.2.1.js"></script>
+  <script src="../../underscore.js"></script>
+	<script src="../../bootstrap.min.js"></script>
+ <link rel="stylesheet" href="../../bootstrap.min.css"></link>
+  <link rel="stylesheet" href="../../bootstrap-theme.min.css"></link>
+  <script src="../../main.js"></script>
+  <script src="../../jquery.cookie.js"></script>
+   <script src="../../officers.js"></script>
+  <link rel="stylesheet" href="../../main.css"></link>
+  <script>
+
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+      $("#side").removeClass("hidden");
+	  $(".sideImage").attr('src','../Images/assets/AvolcFace.png');
+      $('#button-1').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "envoy"),
+        $("#button-1").addClass("hidden");
+		
+      })
+		
+		$('#button-2').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+		state.chapter[0] = ("Thousand");
+        lib.goTo('Thousand.html')
+      })
+		
+    
+    })
+	
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	img {
+	margin:auto;
+	}
+  </style>
+
+</head>
+<body>
+<div id="head">
+
+<h1>Welcome to Chapter 2: Thousand Islands </h1>
+</div>
+<div id="side" class="hidden">
+<img class="sideImage" src=""></img>
+</div>
+
+<div id="story-text">
+
+<p>This is Chapter 2 of Aweworld.</p>
+
+<p>You’re controlling Captain Avolc about the Awe Galley-Frigate 'Attentive' as she journeys to find the Awes Admiralty ‘3rd Fleet’ in the large winding archipelago of ‘Thousand Islands’. Its a sea which lies between the homeland of Aweland in the small East Continent and the prosperous ‘Kingdom of Plumes’ and fearsome ‘Empire’ of the gators in the larger West Continent.</p>
+
+<img src='../Images/assets/Aweshipsmall.png' height="40%" width="40%"/>
+
+<p>This version does not import your stats from Chapter 1. You are given all Officers and base stats. </p>
+</div>
+<div id="tail">
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default hidden" id="button-1">  </button>
+<button class="btn btn-default" id="button-2">Thousand Islands</button>
+<span id="cadetButtons"> </span>
+<script>
+
+</script>
+</div>
+<div class="envoy hidden"><p><strong>Envoy</strong></p>
+</div>
+</body>
+</html>

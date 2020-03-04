@@ -279,12 +279,15 @@
 			if (_.contains(state.inventory, "thunderweapon")) {
 				if (_.contains(state.inventory, "powder")) {
 				$(".powder").removeClass("hidden");
+				state.inventory.push("firebombs2")
 				}
 			$(".thunder").removeClass("hidden");
 			approval += 1; 
+			state.inventory.push("firebombs")
 			}
 			else if (_.contains(state.inventory, "powder")) {
 			$(".powder2").removeClass("hidden");
+			state.inventory.push("firebombs")
 			}
 		
 		if ( approval >= 5) {

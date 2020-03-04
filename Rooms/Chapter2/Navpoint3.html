@@ -20,7 +20,7 @@
   	var Navpoint3 = [];
 	var favor = 0;
   
-state.chapter.push("testobject222223");
+
 
 state.visited.push("Navpoint3");
 
@@ -33,6 +33,9 @@ if (_.contains(state.locations, "Navpoint4")) {
 			}
 	}
     $(document).ready(function() {
+	
+	
+	 $('.' + offList.firstOfficer[0].name + 'Text2').removeClass("hidden");
 	
 	if (_.contains(state.visited, "Navpoint2")) {
 		$(".Visited").removeClass("hidden");
@@ -59,10 +62,12 @@ if (_.contains(state.locations, "Navpoint4")) {
 	  
 	   $('#scout').on('click', function(e) {
         // change state here
+		$(".sideImage").attr('src','../Images/assets/ScoutM.png');
         // end by using lib.goTo
 		lib.dialogue(e, "scout"),
         $("#scout").addClass("hidden");
 		$("#button-1").removeClass("hidden");
+		$("#side").removeClass("hidden");
       })
 	  
 	  
@@ -113,9 +118,10 @@ if (_.contains(state.locations, "Navpoint4")) {
 	  
 	   $('#mission2').on('click', function(e) {
         // change state here
+		$(".sideImage").attr('src','../Images/assets/' + offList.firstOfficer[0].name +'.png');
         // end by using lib.goTo
 		lib.dialogue(e, "mission2"),
-		$("#side").addClass("hidden");
+		
         $("#mission2").addClass("hidden");
 		if (_.contains(choiceOfficer, officer.keeper)) {
 		
@@ -174,6 +180,8 @@ if (_.contains(state.locations, "Navpoint4")) {
 	  
 	  $('#arrest').on('click', function(e) {
         // change state here
+		$("#side").removeClass("hidden");
+		$(".sideImage").attr('src','../Images/assets/Garsch.png');
 		Navpoint3.push("arrest");
         // end by using lib.goTo
 		lib.dialogue(e, "arrest"),
@@ -187,6 +195,9 @@ if (_.contains(state.locations, "Navpoint4")) {
 	   $('#kidnap').on('click', function(e) {
         // change state here
 		Navpoint3.push("kidnap");
+		$("#sideb").addClass("hidden");
+		$("#side").removeClass("hidden");
+		$(".sideImage").attr('src','../Images/assets/ScoutM.png');
         // end by using lib.goTo
 		if (_.contains(Navpoint3, "decline")) {
 		lib.dialogue(e, "kidnap"),
@@ -244,7 +255,11 @@ if (_.contains(state.locations, "Navpoint4")) {
 	  
 	   $('#talksVillage').on('click', function(e) {
         // change state here
-		
+		$(".face4").addClass("hidden");
+		$(".trio").removeClass("hidden");
+		$("#side").removeClass("hidden");
+		$("#sideb").removeClass("hidden");
+		$(".sideImage").attr('src','../Images/assets/AvolcFace.png');
         // end by using lib.goTo
 		lib.dialogue(e, "talksVillage"),
         $("#talksVillage").addClass("hidden");
@@ -254,6 +269,10 @@ if (_.contains(state.locations, "Navpoint4")) {
 	  
 	  $('#talksVillage2').on('click', function(e) {
         // change state here
+		$(".face4").removeClass("hidden");
+		$(".trio").addClass("hidden");
+		$("#side").removeClass("hidden");
+		$(".face4").attr('src','../Images/assets/Darter2.png');
 		Navpoint3.push("feast");
 		favor +=1;
         // end by using lib.goTo
@@ -303,6 +322,9 @@ if (_.contains(state.locations, "Navpoint4")) {
 	  
 	  $('#qlanaga').on('click', function(e) {
         // change state here
+		$(".trio").addClass("hidden");
+		$(".face4").removeClass("hidden");
+		$(".face4").attr('src','../Images/assets/Holixer.png');
         // end by using lib.goTo
 		$(e.target).removeClass("btn-default").addClass("btn-info")
 		lib.dialogue(e, "qlanaga"),
@@ -311,6 +333,9 @@ if (_.contains(state.locations, "Navpoint4")) {
 	  
 	   $('#qnowhere').on('click', function(e) {
         // change state here
+		$(".trio").addClass("hidden");
+		$(".face4").removeClass("hidden");
+		$(".face4").attr('src','../Images/assets/Holixer.png');
         // end by using lib.goTo
 		$(e.target).removeClass("btn-default").addClass("btn-info")
 		lib.dialogue(e, "qnowhere"),
@@ -318,6 +343,9 @@ if (_.contains(state.locations, "Navpoint4")) {
       })
 	   $('#qtribes').on('click', function(e) {
         // change state here
+		$(".trio").addClass("hidden");
+		$(".face4").removeClass("hidden");
+		$(".face4").attr('src','../Images/assets/Holixer.png');
         // end by using lib.goTo
 		$(e.target).removeClass("btn-default").addClass("btn-info")
 		lib.dialogue(e, "qtribes"),
@@ -326,6 +354,9 @@ if (_.contains(state.locations, "Navpoint4")) {
 	  
 	    $('#qtribes2').on('click', function(e) {
         // change state here
+		$(".trio").addClass("hidden");
+		$(".face4").removeClass("hidden");
+		$(".face4").attr('src','../Images/assets/Holixer.png');
 		favor +=1;
         // end by using lib.goTo
 		$(e.target).removeClass("btn-default").addClass("btn-info")
@@ -377,6 +408,11 @@ if (_.contains(state.locations, "Navpoint4")) {
 	    $('#talks').on('click', function(e) {
         // change state here
         // end by using lib.goTo
+		$("#side").removeClass("hidden");
+		$("#sideb").removeClass("hidden");
+		$(".sideImage").attr('src','../Images/assets/AvolcFace.png');
+		
+		
 		
 		if (_.contains(Navpoint3, "feast")) {
 		lib.dialogue(e, "talksb"),
@@ -392,6 +428,9 @@ if (_.contains(state.locations, "Navpoint4")) {
 	  
 	   $('#talks2').on('click', function(e) {
         // change state here
+		$(".trio").addClass("hidden");
+		$(".face4").removeClass("hidden");
+		$(".face4").attr('src','../Images/assets/Vessla.png');
         // end by using lib.goTo
 		if (_.contains(Navpoint3, "feast")) {
 		lib.dialogue(e, "talks2b")
@@ -407,6 +446,9 @@ if (_.contains(state.locations, "Navpoint4")) {
 	  
 	   $('#negotiate').on('click', function(e) {
         // change state here
+		$(".trio").addClass("hidden");
+		$(".face4").removeClass("hidden");
+		$(".face4").attr('src','../Images/assets/Vessla.png');
         // end by using lib.goTo
 		lib.dialogue(e, "negotiate"),
 		$("#questions").addClass("hidden");
@@ -418,6 +460,11 @@ if (_.contains(state.locations, "Navpoint4")) {
 	  
 	   $('#question').on('click', function(e) {
         // change state here
+		$("#side").removeClass("hidden");
+		$("#sideb").removeClass("hidden");
+		$(".trio").addClass("hidden");
+		$(".face4").removeClass("hidden");
+		$(".face4").attr('src','../Images/assets/Vessla.png');
 		Navpoint3.push("question");
         // end by using lib.goTo
 		lib.dialogue(e, "question"),
@@ -445,6 +492,11 @@ if (_.contains(state.locations, "Navpoint4")) {
 	  
 	   $('#shame').on('click', function(e) {
         // change state here
+		$(".face4").addClass("hidden");
+		$(".face3").removeClass("hidden");
+		$(".face2").removeClass("hidden");
+		
+		
 		Navpoint3.push("shame");
         // end by using lib.goTo
 		lib.dialogue(e, "shame"),
@@ -456,6 +508,8 @@ if (_.contains(state.locations, "Navpoint4")) {
 	  
 	  $('#appeal').on('click', function(e) {
         // change state here
+		$(".face4").addClass("hidden");
+		$(".trio").removeClass("hidden");
 		Navpoint3.push("appeal");
 		if ( favor >= 2 && _.contains(Navpoint3, "island")) {
 		$(".favor").removeClass("hidden");
@@ -480,6 +534,9 @@ if (_.contains(state.locations, "Navpoint4")) {
 	  
 	   $('#holixer').on('click', function(e) {
         // change state here
+		$(".trio").addClass("hidden");
+		$(".face4").removeClass("hidden");
+		$(".face4").attr('src','../Images/assets/Holixer.png');
         // end by using lib.goTo
 		lib.dialogue(e, "holixer"),
         $("#holixer").addClass("hidden");
@@ -497,6 +554,7 @@ if (_.contains(state.locations, "Navpoint4")) {
 	   $('#holixer2').on('click', function(e) {
         // change state here
 		Navpoint3.push("holixer");
+		$(".face4").attr('src','../Images/assets/Holixer.png');
         // end by using lib.goTo
 		lib.dialogue(e, "holixer2"),
         $("#holixer2").addClass("hidden");
@@ -512,6 +570,7 @@ if (_.contains(state.locations, "Navpoint4")) {
 	  $('#darter').on('click', function(e) {
         // change state here
 		Navpoint3.push("darter");
+		$(".face4").attr('src','../Images/assets/Darter2.png');
         // end by using lib.goTo
 		lib.dialogue(e, "darter"),
         $("#holixer2").addClass("hidden");
@@ -527,6 +586,7 @@ if (_.contains(state.locations, "Navpoint4")) {
 	    $('#vessla').on('click', function(e) {
         // change state here
 		Navpoint3.push("vessla");
+		$(".face4").attr('src','../Images/assets/Vessla.png');
         // end by using lib.goTo
 		lib.dialogue(e, "vessla"),
         $("#holixer2").addClass("hidden");
@@ -541,7 +601,7 @@ if (_.contains(state.locations, "Navpoint4")) {
 	  
 	  $('#nopick').on('click', function(e) {
         // change state here
-		
+		$(".face4").attr('src','../Images/assets/Holixer.png');
         // end by using lib.goTo
 		lib.dialogue(e, "nopick"),
         $("#holixer2").addClass("hidden");
@@ -565,17 +625,17 @@ if (_.contains(state.locations, "Navpoint4")) {
 		Navpoint3.push("vore");
 		if (_.contains(Navpoint3, "holixer")){
 		
-		$("#nodigested").removeClass("hidden");
+		$(".HolixernoDigest").removeClass("hidden");
 			
 		}	
 		else if (_.contains(Navpoint3, "darter")) {
-		$("#digested").removeClass("hidden");
-		$("#nodigested").removeClass("hidden");
+		$(".DarterDigest").removeClass("hidden");
+		$(".Darternodigest").removeClass("hidden");
 			
 		}
 		else if (_.contains(Navpoint3, "vessla")) {
-			$("#digested").removeClass("hidden");
-		$("#nodigested").removeClass("hidden");
+			$(".VesslaDigest").removeClass("hidden");
+		$(".Vesslanodigest").removeClass("hidden");
 			
 		}
         // end by using lib.goTo
@@ -588,20 +648,22 @@ if (_.contains(state.locations, "Navpoint4")) {
 	  
 	  
 	  
-	    $('#digested').on('click', function(e) {
+	    $('.digested').on('click', function(e) {
         // change state here
+		$("#side").addClass("hidden");
         // end by using lib.goTo
 		lib.dialogue(e, "digest"),
-        $("#digested").addClass("hidden");
-		$("#nodigested").addClass("hidden");
+        $(".digested").addClass("hidden");
+		$(".nodigested").addClass("hidden");
+		$("#restart").removeClass("hidden");
 		
       })
-	    $('#nodigested').on('click', function(e) {
+	    $('.nodigested').on('click', function(e) {
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "nodigest"),
-        $("#digested").addClass("hidden");
-		$("#nodigested").addClass("hidden");
+        $(".digested").addClass("hidden");
+		$(".nodigested").addClass("hidden");
 		$("#outcome").removeClass("hidden");
       })
 	  
@@ -610,6 +672,9 @@ if (_.contains(state.locations, "Navpoint4")) {
 	  
 	   $('#flirty').on('click', function(e) {
         // change state here
+		$(".trio").addClass("hidden");
+		$(".face4").removeClass("hidden");
+		$(".face4").attr('src','../Images/assets/Darter2.png');
         // end by using lib.goTo
 		lib.dialogue(e, "flirty"),
         $("#flirty").addClass("hidden");
@@ -710,6 +775,7 @@ if (_.contains(state.locations, "Navpoint4")) {
 	  
 	  $('#firm').on('click', function(e) {
         // change state here
+		$("#sideb").addClass("hidden");
         // end by using lib.goTo
 		lib.dialogue(e, "firm"),
         $("#firm").addClass("hidden");
@@ -742,6 +808,10 @@ if (_.contains(state.locations, "Navpoint4")) {
 	  
 	    $('#threaten').on('click', function(e) {
         // change state here
+		$("#side").removeClass("hidden");	
+		$("#sideb").removeClass("hidden");	
+		$(".face4").addClass("hidden");
+		$(".trio").removeClass("hidden");
 		Navpoint3.push("threaten");
         // end by using lib.goTo
 		lib.dialogue(e, "threaten"),
@@ -760,7 +830,8 @@ if (_.contains(state.locations, "Navpoint4")) {
 		state.chapter.push("lanagaBad");
 		if ((_.contains(Navpoint3, "arrest") && _.contains(choiceOfficer, officer.garsch)) || _.contains(Navpoint3, "kidnapFail")) {
 		lib.dialogue(e, "consider7")
-		
+		$("#side").addClass("hidden");
+		$("#sideb").addClass("hidden");
 		if (_.contains(state.visited, "Navpoint2")) {
 		$("#navpoint2").addClass("hidden");
 		$("#button-2").removeClass("hidden");
@@ -772,6 +843,12 @@ if (_.contains(state.locations, "Navpoint4")) {
 		}
 		
 		else {
+		$("#side").removeClass("hidden");
+		$("#sideb").removeClass("hidden");
+		$(".trio").addClass("hidden");
+		$(".face4").removeClass("hidden")
+		$(".face4").attr('src','../Images/assets/Vessla.png');
+		$(".sideImage").attr('src','../Images/assets/AvolcFace.png');
 		lib.dialogue(e, "questionV")
 		$("#eatVessla").removeClass("hidden");
 		$("#consider").removeClass("hidden");
@@ -786,6 +863,10 @@ if (_.contains(state.locations, "Navpoint4")) {
 	  
 	    $('#outcome').on('click', function(e) {
         // change state here
+		$("#side").removeClass("hidden");
+		$("#sideb").removeClass("hidden");
+		$(".face4").addClass("hidden");
+		$(".trio").removeClass("hidden");
         // end by using lib.goTo
 		if (_.contains(Navpoint3, "stay")) {
 		lib.dialogue(e, "success3")
@@ -832,6 +913,7 @@ if (_.contains(state.locations, "Navpoint4")) {
 		$("#apprehend").removeClass("hidden");
 		$("#letgo").removeClass("hidden");
 		}
+		
 		else if (_.contains(Navpoint3, "Armed") && _.contains(Navpoint3, "threaten")) {
 		lib.dialogue(e, "failed")
 		$("#apprehend").removeClass("hidden");
@@ -860,7 +942,7 @@ if (_.contains(state.locations, "Navpoint4")) {
 		$("#consider").removeClass("hidden");
 		}
 		
-		else if (_.contains(Navpoint3, "Armed") && _.contains(Navpoint3, "reassure")) {
+		else if (_.contains(Navpoint3, "Armed") && _.contains(Navpoint3, "reassure") && Navpoint3.indexOf("appeal") == -1) {
 		lib.dialogue(e, "negotiate2")
 		$("#letgo").removeClass("hidden");
 		$("#appeal").removeClass("hidden");	
@@ -903,6 +985,8 @@ if (_.contains(state.locations, "Navpoint4")) {
 	  
 	    $('#eatVessla').on('click', function(e) {
         // change state here
+		$("#side").addClass("hidden");
+		$("#sideb").addClass("hidden");
         // end by using lib.goTo
 		lib.dialogue(e, "eatVessla"),
         $("#eatVessla").addClass("hidden");
@@ -920,6 +1004,8 @@ if (_.contains(state.locations, "Navpoint4")) {
 	  
 	  $('#consider').on('click', function(e) {
         // change state here
+		$("#sideb").addClass("hidden");
+		$("#side").addClass("hidden");
         // end by using lib.goTo
 		if (_.contains(Navpoint3, "convinced")) {
 		lib.dialogue(e, "consider5")
@@ -981,6 +1067,10 @@ if (_.contains(state.locations, "Navpoint4")) {
 	   
 	  $('#qVessla').on('click', function(e) {
         // change state here
+		$(".trio").addClass("hidden");
+		$(".face4").removeClass("hidden");
+		$(".face4").attr('src','../Images/assets/Vessla.png');
+		$(".sideImage").attr('src','../Images/assets/AvolcFace.png');
         // end by using lib.goTo
 		lib.dialogue(e, "questionV2"),
         $("#eatVessla").removeClass("hidden");
@@ -1046,6 +1136,12 @@ if (_.contains(state.locations, "Navpoint4")) {
         lib.goTo('Themine.html')
       })
 	  
+	   $('#restart').on('click', function(e) {
+       location.reload(true)
+		
+    })
+	  
+	  
     })
 	
   </script>
@@ -1055,22 +1151,28 @@ if (_.contains(state.locations, "Navpoint4")) {
 	img {
 	margin:auto;
 	}
+	
+	.face1, .face2, .face3 {
+	  max-width: 50%;
+	height: auto;
+	}
+	
   </style>
 
 </head>
 <body>
 <div id="head">
-<div id="dayCounter">
-Day: <span class="days"><script>displayDays()</script></span>
-<br/>
-<span class="schedule"><script>displayShedule()</script></span>
-</div>
 <h1>The Scout and the Lanaga</h1>
 </div>
 <div id="side" class="hidden">
 <img class="sideImage" src=""></img>
 </div>
-
+<div id="sideb" class="hidden">
+ <img class="trio face1" src="../Images/assets/Darter2.png"/>
+  <img class="trio face2"  src="../Images/assets/Holixer.png"/>
+   <img class="trio face3"  src="../Images/assets/Vessla.png"/>
+   <img class="face4 hidden"  src="../Images/assets/Holixer.png"/>
+</div>
 <div id="story-text">
 
 <p>We sail deeper into Thousand Islands and the islands start to become more numerous. There's at least always one or two visible on the horizon somewhere at this point, but as we get deeper they can in places become almost a maze-like archipelago.</p>
@@ -1145,8 +1247,11 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <button class="btn btn-default hidden" id="vore">A choice made</button>
 
-<button class="btn btn-default hidden" id="digested">Digested</button>
-<button class="btn btn-default hidden" id="nodigested">Not Digested</button>
+<button class="btn btn-warning digested VesslaDigest hidden">Let him rest</button>
+<button class="btn btn-warning digested DarterDigest hidden">Intruiging words</button>
+<button class="btn btn-warning nodigested Vesslanodigest hidden">Assert authority</button>
+<button class="btn btn-warning nodigested Darternodigest hidden">A firm kicking</button>
+<button class="btn btn-warning nodigested HolixernoDigest hidden">Unexpected slumber</button>
 
 <button class="btn btn-default hidden" id="perhaps">Perhaps</button>
 <button class="btn btn-default hidden" id="stare">No answer(Glare)</button>
@@ -1176,6 +1281,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 <button class="btn btn-default hidden" id="button-2">Navpoint 4 </button>
 <button class="btn btn-default hidden" id="navpoint2">Navpoint 2 </button>
 <button class="btn btn-default hidden" id="gatormine">Gator mine </button>
+<button class="btn btn-default hidden" id="restart">Restart</button>
 
 <span id="cadetButtons"> </span>
 <script>
@@ -1262,7 +1368,26 @@ Officer Keeper does not seem too bothered by my decision, he gave a non-committe
 
 <p>&ldquo;Well done for now Officer.&rdquo;</p>
 
-<p>Either way, it seemed we had to either pay them a visit, on their terms unfortunately. Or we can decline and consider some more rougher hard-lined approaches, do things on our terms.</p>
+<p>It seemed we had to either pay them a visit, on their terms; Or we can decline and consider some more rougher hard-lined approaches, do things on our terms.</p>
+
+<p>My First-Officer offers their opinion.</p>
+
+<div class="GarschText2 hidden">
+<p>“Humph, I regret not acting on my first instinct and demanding the scout to accompany back. It’s up to you if you want to play nice with these people, but the Scout is way out of line, I say ready a troop to grab him. “</p>
+</div>
+
+<div class="TungText2 hidden">
+“Eh… Do we have time to waste playing around with these natives? Let’s just grab the scout and go.”  
+</div>
+
+<div class="MirrText2 hidden">
+“Captain, I don’t see an issue with taking the invitation. I am however troubled by the Scouts reluctance to report in. Could be something larger at play. “
+</div>
+
+<div class="ArnText2 hidden">
+“Cap’, the Admiralty is pretty strict on the rules when it comes to disobedience, a less generous Captain would be rooting them out forcibly already.  Now, i’ve skirted the rules a few times myself, I’d hear them out, but we should be wary what signals we send by playing along with their games.” 
+</div>
+
 </div>
 <div class="nyxieText hidden">
 <p>Nyxies boat comes paddling but a few hours later, just as things were starting to get dark. </p>
@@ -1282,6 +1407,26 @@ Officer Keeper does not seem too bothered by my decision, he gave a non-committe
 <p>What was the scout up to? Had he gone native? Either way, it seemed we had to pay them a visit, on their terms unfortunately.</p>
 
 <p>Or we can decline and consider some more hard-lined approaches and do things on our terms.</p>
+
+<p>My First-Officer offers their opinion.</p>
+
+<div class="GarschText2 hidden">
+<p>“It’s up to you if you want to play nice with these people, but the Scout is way out of line, I say ready a troop to grab him. “</p>
+</div>
+
+<div class="TungText2 hidden">
+“Eh… Do we have time to waste playing around with these natives? Let’s just grab the scout and go.”  
+</div>
+
+<div class="MirrText2 hidden">
+“Captain, I don’t see an issue with taking the invitation. I am however troubled by the Scouts reluctance to report in. Could be something larger at play. “
+</div>
+
+<div class="ArnText2 hidden">
+“Cap’, the Admiralty is pretty strict on the rules when it comes to disobedience, a less generous Captain would be rooting them out forcibly already.  Now, i’ve skirted the rules a few times myself, I’d her them out, but we should be wary what signals we send by playing along with their games.” 
+</div>
+
+
 </div>
 <div class="keeperText hidden">
 <p>We wait aboard the ship with our eyes toward the island. As one hour passes into another I'm starting to have doubts about this plan. Keeper however urges patience with a smile and cheery manner while he flicks his striped prehensile tail about as he paces along the ship, making us look as welcoming as possible.  One can never be sure about Wulfs, but I'd almost bet he was nervous and having some doubts himself. </p>
@@ -1537,13 +1682,19 @@ I warn you however that should you meet any, you might find their customs peculi
 
 <p>“In that order?” That sounded like a strange idea of hospitality. “A stew?”</p>
 
-<p>“Some variation of it. Dont be alarmed, its more a pampered warm herb bath.” </p>
+<p>“Some variation of it. Dont be alarmed, its more a pampered warm herb bath.  </p>
 
 <p>I nodded uncertainly. </p>
 
-<p>“There exists some nomad tribes too, not quite residents, its said they are even older to the isles, they claim they lived here when this was all land, not sea. A very small people, in population and stature. Smaller then you, Captain. You are unlikely to see them, but they exist. I have only seen them a few times myself.”</p>
+<p>"If anyone could help you find your fleet among the Thousand Isles, it would be them. They are quite a distance away to the northwest however.” Holixer added. </p>
 
-<p>"All the tribes are different and have their own customs you'll find. We of the Lanaga highly value our responsibility to our tribe and our sworn words. Other tribes might have other core principles they hold higher in regard. </p>
+<p>"Thank you, I'll keep them in mind." Hopefully we would find something before having to have to resort to sailing that far.</p>
+
+<p>“There exists some nomad tribes too, not quite residents, its said they are even older to the isles, they claim they lived here when this was all land, not sea. A very small people, in population and stature. Smaller then you, Captain. You are unlikely to see them, but they exist. I have only seen them a few times myself and glad for it, its said they can put a curse on you.”</p>
+
+<p>I scowled at that superstition. </p>
+
+<p>"All the tribes are different and have their own customs you'll find." Holixer resumed.  "We of the Lanaga highly value our responsibility to our tribe and our sworn words. Other tribes might have other core principles they hold higher in regard. </p>
 </div>
 
 
@@ -1859,7 +2010,7 @@ Holixer returns my gaze steadily. Stoic and mostly silent, he's certainly playin
 <div class="nofavor hidden">
 <p>“I am normally quite agreeable and might have considered trading such favors with you. Now after I've met you and come to understand more of what he fears, I however feel I must decline your offer.” Darter made a dismissive gesture. <br />
  <br />
-“The Chief-son has spoken.” Forager Holixer announced, adding his general agreement, before adding. "An oppertunity to redeem your trust by a demonstration of humbleness could be considered however." </p>
+“The Chief-son has spoken.” Forager Holixer announced, adding his general agreement, before adding. "An opportunity to redeem your trust by a demonstration of humbleness could be considered however." </p>
 
 <p>Besides Holixers ominous offer, it seemed this line of negotiation was blocked. The Islanders did not trust me or like me. </p>
 

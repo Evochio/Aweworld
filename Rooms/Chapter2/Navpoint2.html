@@ -278,9 +278,9 @@ officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
 			
 		}
 		
-		if (_.contains(state.visited, "Navpoint3")) {
+		if (_.contains(state.visited, "Navpoint3") && state.locations.indexOf("Navpoint4") == -1)  {
 		$("#navpoint3").addClass("hidden");
-		$("#button-2").removeClass("hidden");
+		$("#gatormine").removeClass("hidden");
 		}
 		else {
 			$("#navpoint3").removeClass("hidden");
@@ -341,11 +341,7 @@ officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
 </head>
 <body>
 <div id="head">
-<div id="dayCounter">
-Day: <span class="days"><script>displayDays()</script></span>
-<br/>
-<span class="schedule"><script>displayShedule()</script></span>
-</div>
+
 <h1>Three Sons</h1>
 </div>
 <div id="side" class="hidden">
@@ -365,6 +361,8 @@ Day: <span class="days"><script>displayDays()</script></span>
 <p>It does not take long while circling the islands to find the beach that had seen recent use.</p>
 
 <p>A bay with deep shallow let us sail in and anchor right close to he bay of the second most largest of the island trio. </p>
+
+<img src='../Images/assets/ThreeSons.jpg' height="40%" width="40%"/>
 
 </div>
 <div id="tail">
@@ -422,7 +420,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p> Our secondary objective of finding an island suitable as a potential forward naval base for the Admiralty I deem of low priority. Like the majority of islands around Thousand Isles, the waters are very shallow all around these islands, making close approach by ship a difficult affair. </p>
 
-<p>Assign an Officer.</p>
+<p>Assign an Officer. (Hover for detail)</p>
 
 <span class="theOfficer officerObjects"></span>
 
@@ -665,7 +663,7 @@ $('#actionRaptorian').popover({title: "Raptorians", content: "Raptorians are off
 
 <p>"Really? I thought it seemed alltogether too shallow all around for any large scale operations. I'm sure the Admiralty are not prepared to dredge half an island, cheaper to look elsewhere." </p>
 
-<p> <span class="title"></span>Arn shook his head and pointed at a sketch of the island made by one of the scouts. "Third island, the heavily forested one, along the north side its mostly deep and clear. The only initial challenge are the steep cliffs, but they could be quarried down, cleared and used as building materials, so could the woods. </p>
+<p> <span class="title"></span> Arn shook his head and pointed at a sketch of the island made by one of the scouts. "Third island, the heavily forested one, along the north side its mostly deep and clear. The only initial challenge are the steep cliffs, but they could be quarried down, cleared and used as building materials, so could the woods. </p>
 
 <p> I nodded my head in understanding and made a note of swinging by the north side on the way out to look at it from the sea. Although Arn had not found much of use in terms of the fleet, this was at least useful to someone back home. </p>
 </div>
