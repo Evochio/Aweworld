@@ -352,7 +352,8 @@ var initialState = {
   battle: [],
   auto: [],
   locations: [],
-  visited: []
+  visited: [],
+  destination: []
 }
 
 ///////////////////////////

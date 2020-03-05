@@ -245,6 +245,7 @@
       })
 	  
 	  $('#tickA').on('click', function(e) {
+		
 		lib.dialogue(e, "cadetsC"),
         $("#tickB").addClass("hidden");
 		$("#tickA").addClass("hidden");
@@ -256,6 +257,9 @@
       })
 	   
 	   $('#tickB').on('click', function(e) {
+		state.delay +=1;
+		state.supplies +=1;
+		state.shipHealth +=1;
 		lib.dialogue(e, "cadetsC"),
         $("#tickB").addClass("hidden");
 		$("#tickA").addClass("hidden");
@@ -843,10 +847,12 @@
 	  
 	   $('#prisoner2b').on('click', function(e) {
 		lib.dialogue(e, "prisoner2b"),
+		Navpoint4.push("info");
          $("#prisoner2a").addClass("hidden");
 		 $("#prisoner2b").addClass("hidden");
 		  $("#decision").removeClass("hidden");
 		  $(".bellyintel").removeClass("hidden");
+		  $(".info").removeClass("hidden");
 	
       })
 	  
@@ -874,6 +880,7 @@
 	  
 	  $('#eat').on('click', function(e) {
 		lib.dialogue(e, "eat"),
+		Navpoint4.push("info");
          $("#jail").addClass("hidden");
 		  $("#prisoner").addClass("hidden");
 		   $("#interrogate2").addClass("hidden");
@@ -881,6 +888,7 @@
 		$("#eat").addClass("hidden");
 		$("#side").addClass("hidden");
 		$(".vore").removeClass("hidden");
+		$(".info").removeClass("hidden");
       })
 	  
 	  $('#decision').on('click', function(e) {
@@ -893,6 +901,17 @@
       })
 	  
 	   $('#burn').on('click', function(e) {
+	   state.delay -=2;
+	   if (_.contains(state.visited, "Themine")) {
+		$(".gatormineVisisted").removeClass("hidden");
+		}
+		else if (_.contains(state.locations, "Themine")) {
+		$(".gatormine").removeClass("hidden");
+		}
+		else if (state.locations.indexOf("Themine") == -1) {
+		$(".gatormineNo").removeClass("hidden");
+		}
+	   
 		lib.dialogue(e, "burn"),
         $("#burn").addClass("hidden");
 		$("#leave").addClass("hidden");
@@ -902,24 +921,42 @@
       })	 
 
 		$('#leave').on('click', function(e) {
+		
+		if (_.contains(state.visited, "Themine")) {
+		$(".gatormineVisisted").removeClass("hidden");
+		}
+		else if (_.contains(state.locations, "Themine")) {
+		$(".gatormine").removeClass("hidden");
+		}
+		else if (state.locations.indexOf("Themine") == -1) {
+		$(".gatormineNo").removeClass("hidden");
+		}
+		
 		lib.dialogue(e, "leave"),
         $("#burn").addClass("hidden");
 		$("#leave").addClass("hidden");
 		$("#lone").removeClass("hidden");
 		$("#sand").removeClass("hidden");
 		
+		
+		
       })	
 	  
+	  //	if (_.contains(state.visited, "Navpoint4") && state.locations.indexOf("Navpoint4") == -1)  {
+	  // state.locations.push("Navpoint4");
+	  
+	  
 	  $('#sand').on('click', function(e) {
-		lib.dialogue(e, "end"),
-        $("#lone").addClass("hidden");
-		$("#sand").addClass("hidden");
+		
+		state.chapter[0] = ("FertileIsles");
+        lib.goTo('FertileIsles.html')
+		
 		
       })
 	   $('#lone').on('click', function(e) {
-		lib.dialogue(e, "end"),
-        $("#lone").addClass("hidden");
-		$("#sand").addClass("hidden");
+	   
+		state.chapter[0] = ("Themine");
+        lib.goTo('Themine.html')
 		
       })
 	  
@@ -1078,7 +1115,7 @@
 <button class="btn btn-default hidden" id="burn">Burn the ship</button>
 <button class="btn btn-default hidden" id="leave">Leave it</button>
 
-<button class="btn btn-default hidden" id="sand">Sand-Isles</button>
+<button class="btn btn-default hidden" id="sand">Fertile-Isles</button>
 <button class="btn btn-default hidden" id="lone">The Lone island</button>
 
 <button class="btn btn-default hidden" id="restart">Restart</button>
@@ -1298,7 +1335,8 @@ $('#officerObject2').popover({title: officer3[2].name, content: officerIntros(2)
 
 <p>"Besides clues left by the fleet, what are you so eager to find out there?" I inquired. </p>
 
-<p>“While they have not left any usable supplies behind, the ship itself can prove useful to us in terms of spare-parts or simply as raw material. There's some remnants of outer and inner plating we could easily scavenge for ourselves that would save me and the maintenance crew a lot of time in repairs.”</p>
+<p>“While they have not left any usable spare supplies behind, the ship itself can prove useful to us in terms of spare-parts or simply as raw material. There's some remnants of outer and inner plating we could easily scavenge for ourselves that would save me and the maintenance crew a lot of time in the long run and help us make repairs and gain supplies.”</p>
+
 <p>Tick knows these ships best, hopefully he can uncover some clues others might have missed. Besides investigating, he'd only need an extra day to perform his proposed scavenging operation.</p>
 <p>The weather is worsening and we do not have very long until we risk being trapped by a storm. An extra day might be pushing it, but I'm sure Tick knows that.</p>
 </div>
@@ -1687,7 +1725,7 @@ I sighed. It was never easy.</p>
 
 
 <div class="jail hidden"><p><strong>Lock them up</strong></p>
-<p>“Put them in the brig. We shall sail for the Sand-Isles and ask more questions. Firm questions. Unless our guest becomes more forthcoming.” <br />
+<p>“Put them in the brig. We shall sail for the Fertile-Isles and ask more questions. Firm questions. Unless our guest becomes more forthcoming.” <br />
 “Aye, Captain.” Officer Garsch replied. <br />
 “Go ahead, deliver yourselves! But you will only find beak and claw there!”<br />
 I smirked smugly. With that unwitting admission we knew where he came from. We had a possible destination to investigate. <br />
@@ -1719,7 +1757,7 @@ I swallowed a low long swallow, pulling the Gryphs head deeper toward my maw. <b
 “There be bounty upon Furwings. Safety and protection in return for capture!”<br />
 I clamped my mouth shut around their beak, closing them in, then tilted my head back and swallowed hard. <br />
 The islander slid past my neck with solid bulge and a muffled cry. I sat back briefly to let my stomach envelop the meal fully and tighten up around them. It didn’t take long for them to settle. They were good eating. <br />
-“We have the tribe-name, the records from Admiralty points their settlements to not far from nearby Sand-Isles.”<br />
+“We have the tribe-name, the records from Admiralty points their settlements to not far from nearby Fertile-Isles.”<br />
 “Very good, Captain. I shall ask Nyxie to plan us a course there.”<br />
 I rose sluggishly and my stomach sagged heavily before me, but I could take the weight without assistance.<br />
 There was one final matter to be settled. <br />
@@ -1828,7 +1866,7 @@ The stomach of our captured captor, was too tight to struggle against now with t
 <p>“Well...? Did we get any information?” I ask my attending Officer. </p>
 
 <p>“Hrmph, not as much as hoped. He was trying to be coy about your choice to jump down his beak, but after that stomach ache you gave him, he changed his tune. <br />
-He claims the fleet did pass by their Sand-Isles en masse a long while ago, stripped them of supplies in exchange for Awe Silver. Silver that no trader will accept for fear of retribution from the “Hunter-fleets”, I assume he means pirates.”</p>
+He claims the fleet did pass by their Fertile-Isles en masse a long while ago, stripped them of supplies in exchange for Awe Silver. Silver that no trader will accept for fear of retribution from the “Hunter-fleets”, I assume he means pirates.”</p>
 
 <p>“Thats all?” I frown. It was decent information, but I had still hoped for more. <br />
 “Well.. he said that the occasional ship still forages their territory regularly.”</p>
@@ -1893,7 +1931,7 @@ But first there was another matter.</p>
 
 <p>“Well, stow your gear Officer Tick. We are setting sail west.”</p>
 
-<p>Someone among the Gryph Islander tribes of Sand-Isles had knowledge and interest in Awe ships and officers.<span class="uVessla hidden"> Now they had a possible traitor too.</span></p> Perhaps that would be our next destination.</p>
+<p>Someone among the Gryph Islander tribes of Fertile-Isles had knowledge and interest in Awe ships and officers.<span class="uVessla hidden"> Now they had a possible traitor too.</span></p> Perhaps that would be our next destination.</p>
 
 <p>But first one last matter had to be dealt with. </p>
 </div>
@@ -2073,7 +2111,7 @@ The cadets exchange puzzled but relieved glances as a cry rises up from the wood
 <p>This is a very troubling development. It seems his loyalties truly lay elsewhere in the end.</p>
 <p>I have ordered all crew back to the ship and to raise the anchor. We are going to pursue them.</p>
 <p>We are much faster on the open sea, but we still have to sail out of this bay and surrounding maze of reefs before we can get on their tail.</p>
-<p>I've consulted my charts and judging by their heading and size of their craft. They must be heading toward the Sand-Isles. So thats where we are going next.</p>
+<p>I've consulted my charts and judging by their heading and size of their craft. They must be heading toward the Fertile-Isles. So thats where we are going next.</p>
 <p>But first we have a different decision to make.</p>
 </div>
 
@@ -2102,7 +2140,7 @@ The cadets exchange puzzled but relieved glances as a cry rises up from the wood
 <p>This is a very troubling development. It seems his loyalties truly lay elsewhere in the end.</p>
 <p>I have ordered all crew back to the ship and to raise the anchor. We are going to pursue them.</p>
 <p>We are much faster on the open sea, but we still have to sail out of this bay and surrounding maze of reefs before we can get on their tail.</p>
-<p>I've consulted my charts and judging by their heading and size of their craft. They must be heading toward the Sand-Isles. So thats where we are going next.</p>
+<p>I've consulted my charts and judging by their heading and size of their craft. They must be heading toward the Fertile-Isles. So thats where we are going next.</p>
 <p>But first we have a different decision to make.</p>
 
 </div>
@@ -2126,7 +2164,21 @@ Still, I cannot help but hesitate. There is much I do not know going on here.</p
 <p>But duty had to be done and we followed the book. Better this then seeing pirates come sailing with capable ships one day. </p>
 
 <p>We make it out of the bay and nearby shallows without incident. <br />
-<p>Our next destination awaits. Either we head west for Sand-Isles <span class="uVessla hidden">in pursuit of our treachorous scout and the Islanders that were scrounging around</span> or north to investigate another albeit outdated objective. A nameless lone island that was marked back home as a potentially good spot to set up a Admiralty naval base.</p>
+<p>Our next destination awaits. </p>
+
+ <div class="gatormineNo hidden">
+<p> We can head further westward <span class="uVessla hidden">,in pursuit of our treacherous scout and the Islanders that were scrounging around,</span>  to the Fertile-Islands inhabited by a tribe called ‘The Kaelani’. <span class="info hidden">Also according to our prisoner, the Fleet passed by there. </span>
+There is also a Lone-Island to the north east of here that I’ve marked as a point of interest that we could investigate before leaving the area. It’s location has marked it as a potentially good spot to set up a Admiralty naval base.</p>
+ </div>
+ 
+  <div class="gatormine hidden">
+<p> There is still the Lone island with supposed Pirates on it to the North-East that could be hazardous but possibly worth investigating. Or we put it behind us and head further West  <span class="uVessla hidden">,in pursuit of our treacherous scout and the Islanders that were scrounging around.</span>. The fertile islands inhabited by a tribe called the “Kaelani” are of interest. <span class="info hidden">Also according to our prisoner, the Fleet passed by there. </span></p>
+ </div>
+ 
+   <div class="gatormineVisisted hidden">
+<p>We’ve already investigated the nearby areas of interest. The only remaining destination is further westward, <span class="uVessla hidden">in pursuit of our treacherous scout and the Islanders that were scrounging around,</span>  to the Fertile-Islands inhabited by a tribe called ‘The Kaelani’.  <span class="info hidden">Also according to our prisoner, the Fleet passed by there. So I feel pretty confident about that destination.</span> </span></p>
+ </div>
+ 
 </div>
 
 <div class="leave hidden"><p><strong>Duty or Caution</strong></p>
@@ -2135,8 +2187,22 @@ Behind us the island with its hidden secret lays undisturbed. We did our best to
 If anyone sails into the bay or scouts it from the air, they are likely to find it. <br />
 We'll have to hope the remoteness of the Island will protect it and that it serves whatever purpose it was meant to serve when its original crew abandoned it here. </p>
 
-<p>Our next destination awaits. Either we head west for Sand-Isles <span class="uVessla hidden">in pursuit of our treachorous scout and the Islanders that were scrounging around</span> or north to investigate another albeit outdated objective. A nameless lone island that was marked back home as a potentially good spot to set up a Admiralty naval base.</p>
+<p>Our next destination awaits. </p>
+ <div class="gatormineNo hidden">>
+<p> We can head further westward <span class="uVessla hidden">,in pursuit of our treacherous scout and the Islanders that were scrounging around,</span>  to the Fertile-Islands inhabited by a tribe called ‘The Kaelani’. <span class="info hidden">Also according to our prisoner, the Fleet passed by there. </span>
+There is also a Lone-Island to the north east of here that I’ve marked as a point of interest that we could investigate before leaving the area. It’s location has marked it as a potentially good spot to set up a Admiralty naval base.</p>
+ </div>
+ 
+ <div class="gatormine hidden">>
+<p> There is still the Lone island with supposed Pirates on it to the North-East that could be hazardous but possibly worth investigating. Or we put it behind us and head further West  <span class="uVessla hidden">,in pursuit of our treacherous scout and the Islanders that were scrounging around.</span>. The fertile islands inhabited by a tribe called the “Kaelani” are of interest. <span class="info hidden">Also according to our prisoner, the Fleet passed by there. </span></p>
+ </div>
+ 
+ <div class="gatormineVisisted hidden">>
+<p>We’ve already investigated the nearby areas of interest. The only remaining destination is further westward, <span class="uVessla hidden">in pursuit of our treacherous scout and the Islanders that were scrounging around,</span>  to the Fertile-Islands inhabited by a tribe called ‘The Kaelani’.  <span class="uVessla hidden">Also according to our prisoner, the Fleet passed by there. So I feel pretty confident about that destination.</span> </span></p>
 </div>
+ 
+ 
+ </div>
 <!--
 
 <div class="end hidden"><p><strong>End of Demo</strong></p>

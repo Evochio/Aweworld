@@ -18,12 +18,13 @@
   <script>
   
   	state.visited.push("Themine");
+	state.delay +=2;
 	var Themine = [];
 	var talks = 0;
 	var time = 0;
-    state.Glint.status = 'available';
-    state.Valnos.status = 'available';
-	state.Ziggy.status = 'available';
+    state.Glint.status = 'invisible';
+    state.Valnos.status = 'invisible';
+	state.Ziggy.status = 'invisible';
 	
 	officer3 = [officer.evok, officer.mirr, officer.tick];
 	  backupOfficer = [officer.tung, officer.garsch]
@@ -114,14 +115,16 @@
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
+	 
 	  officerButtonNames();
        officerDouble();
 		checkdeadRoster();
-		
+		$(".face4").attr('src', officer.nyxie.image)
+		/*
 		if (_.contains(state.chapter, "uVessla") {
 		
 		}
-		
+		*/
 		function checkneg() {
 			if ( talks >= 2 ) {
 			
@@ -142,6 +145,10 @@
 		
 		
       $('#scoutreport').on('click', function(e) {
+	  $(".sideImage").attr('src','../Images/assets/ScoutM.png');
+	  $("#side").removeClass("hidden");
+	  $("#sideb").removeClass("hidden");
+	  
 		if (state.scoutNumber >= 4) {
 			 $(".scout4").removeClass("hidden");
 		}
@@ -165,6 +172,8 @@
 		 $("#assault").removeClass("hidden");
 		 $("#ram").removeClass("hidden");
 		 $("#careful").removeClass("hidden");
+		$("#side").addClass("hidden");
+	  $("#sideb").addClass("hidden");
 		
       })
 		
@@ -192,7 +201,7 @@
 		$("#careful").addClass("hidden");
 		 $("#mine").removeClass("hidden");
 		  $(".ramText").removeClass("hidden");
-		  state.inventory.push("thunderpowder");
+		  state.inventory.push("powder");
 		
       })
 	  
@@ -212,9 +221,11 @@
 		
 		 $('#mine').on('click', function(e) {
         // change state here
+		$(".sideImage").attr('src','../Images/assets/Calma.png');
         // end by using lib.goTo
 		lib.dialogue(e, "mine"),
         $("#mine").addClass("hidden");
+		$("#side").removeClass("hidden");
 		
 		$("#cadetChoice").removeClass("hidden");
 		
@@ -225,7 +236,7 @@
         // end by using lib.goTo
 		lib.dialogue(e, "cadetChoice"),
         $("#cadetChoice").addClass("hidden");
-		
+		$("#side").addClass("hidden");
 		$("#cadetExplore").removeClass("hidden");
 		$("#cadetStay").removeClass("hidden");
 		$("#cadetAssist").removeClass("hidden");
@@ -234,13 +245,16 @@
 		
 		 $('#cadetExplore').on('click', function(e) {
         // change state here
+		$("#side").addClass("hidden");
+		
 		Themine.push("cadetExplore");
+		$(".sideImage").attr('src','../Images/assets/Calma.png');
         // end by using lib.goTo
 		lib.dialogue(e, "cadetExplore"),
         $("#cadetExplore").addClass("hidden");
 		$("#cadetStay").addClass("hidden");
 		$("#cadetAssist").addClass("hidden");
-		
+		$("#side").removeClass("hidden");
 		$("#options").removeClass("hidden");
 		
       })
@@ -286,10 +300,11 @@
 		
 		 $('#options').on('click', function(e) {
         // change state here
+		
         // end by using lib.goTo
 		officerButtonNames();
 		lib.dialogue(e, "options")
-		
+		$("#side").addClass("hidden");
 		if ( time >= 5 ) {
 		$(".btn").addClass("hidden");
 		$("#late").removeClass("hidden");
@@ -319,6 +334,8 @@
 	   $('#officer0').on('click', function(e) {
         // change state here
         // end by using lib.goTo
+		$("#side").removeClass("hidden");
+		$(".sideImage").attr('src', officer3[0].image)
 		
 		$(".assaultb").addClass("hidden");
 		$(".assault2b").addClass("hidden");
@@ -352,9 +369,14 @@
 	  
 	   $('#officer1').on('click', function(e) {
         // change state here
+		$("#side").removeClass("hidden");
+		
+		$(".sideImage").attr('src', officer3[1].image)
         // end by using lib.goTo
 		if (_.contains(Themine, "negotiate1") && (Themine.indexOf("choiceKeeper") == -1 && Themine.indexOf("choiceMirr") == -1)) {
 		lib.dialogue(e, "negotiateOption")
+		$("#sideb").removeClass("hidden");
+		$(".face4").attr('src','../Images/assets/Keeper.png');
 		$("#mirr").removeClass("hidden");
 		$("#keeper").removeClass("hidden");
 		}
@@ -399,6 +421,8 @@
 	  
 	   $('#officer2').on('click', function(e) {
         // change state here
+		$("#side").removeClass("hidden");
+		$(".sideImage").attr('src','../Images/assets/Tick.png');
         // end by using lib.goTo
 		if (_.contains(Themine, "special")) {
 		lib.dialogue(e, "specialb")
@@ -433,7 +457,7 @@
 		$("#decline").removeClass("hidden");
 		$("#mirr").addClass("hidden");
 		$("#keeper").addClass("hidden");
-				
+		$("#sideb").addClass("hidden");		
       })
 	  
 	  $('#keeper').on('click', function(e) {
@@ -450,7 +474,8 @@
 		$("#decline").removeClass("hidden");
 		$("#mirr").addClass("hidden");
 		$("#keeper").addClass("hidden");
-				
+		$("#sideb").addClass("hidden");		
+		$(".sideImage").attr('src','../Images/assets/Keeper.png');		
       })
 	  
 	  
@@ -588,6 +613,7 @@
 		 $('#negotiate').on('click', function(e) {
         // change state here
 		 time += 1;
+		 $(".sideImage").attr('src', officer.avolc.image)
         // end by using lib.goTo
 		lib.dialogue(e, "negotiate"),
         $("#negotiateDom").removeClass("hidden");
@@ -688,7 +714,7 @@
 				$("#negotiateSurrenderB").removeClass("hidden");
 				$("#decline").addClass("hidden");
 			}
-			else if (_.contains(Themine, "negotiateDom") &&  _.contains(Themine, "negotiateBluff") && _.contains(state.inventory, "intel") ) {
+			else if (_.contains(Themine, "negotiateDom") &&  _.contains(Themine, "negotiateBluff") && (_.contains(state.inventory, "intel") || _.contains(Themine, "special3")) ) {
 				lib.dialogue(e, "negotiateSurrender")
 				$("#negotiateSurrenderA").removeClass("hidden");
 				$("#negotiateSurrenderB").removeClass("hidden");
@@ -701,7 +727,7 @@
 				 lib.dialogue(e, "negotiateEnd")
 			}
 			
-				
+				talks = 0;
 				$("#negotiateEnd").addClass("hidden");	
 			
       })
@@ -787,8 +813,9 @@
 	  
 	   $('#negotiateSurrender').on('click', function(e) {
         // change state here
+		
         // end by using lib.goTo
-		lib.dialogue(e, "negotiateSurrender"),
+		lib.dialogue(e, "negotiateSurrender")
         
 		
 		$("#decline").addClass("hidden");
@@ -798,10 +825,7 @@
 		$("#negotiateBluff").addClass("hidden");
 		$("#negotiatePeace").addClass("hidden");
 		$(".weapon").removeClass("hidden");
-		state.inventory.push("thunderweapon");
-		if (state.inventory.indexOf("powder") == -1) {
-					state.inventory.push("powder");
-				}
+		
 		$("#negotiateSurrenderA").removeClass("hidden");
 		$("#negotiateSurrenderB").removeClass("hidden");
 				
@@ -809,6 +833,11 @@
 	  
 	  $('#negotiateSurrenderA').on('click', function(e) {
         // change state here
+		state.inventory.push("thunderweapon");
+		
+		if (state.inventory.indexOf("powder") == -1) {
+					state.inventory.push("powder");
+				}
         // end by using lib.goTo
 		lib.dialogue(e, "negotiateSurrenderA")
         state.vore +=1; 
@@ -822,6 +851,11 @@
 	  
 	    $('#negotiateSurrenderB').on('click', function(e) {
         // change state here
+		state.inventory.push("thunderweapon");
+		
+		if (state.inventory.indexOf("powder") == -1) {
+					state.inventory.push("powder");
+				}
         // end by using lib.goTo
 		lib.dialogue(e, "negotiateSurrenderB")
         $(".gprisoners").removeClass("hidden");
@@ -904,6 +938,7 @@
 		$("#special3").addClass("hidden");
 		$(".specialText").addClass("hidden");
 		$(".special2Text").removeClass("hidden");
+		$(".boom").removeClass("hidden");
 		$("#negotiate").removeClass("disabled");
 		$("#officer0").removeClass("disabled");
 		$("#officer1").removeClass("disabled");
@@ -925,11 +960,12 @@
 	  
 	    $('#prisoners').on('click', function(e) {
         // change state here
+		state.chapter.push("LanagaPrisoners")
         // end by using lib.goTo
 		lib.dialogue(e, "prisoners"),
 		
 		$("#depart").removeClass("hidden");
-		
+		$("#side").addClass("hidden");
 		$("#prisoners").addClass("hidden");
 		$(".iprisoners").removeClass("hidden");
 		if (Themine.indexOf("ram") == -1) {
@@ -937,43 +973,80 @@
 		}
 		
 		
-		if (_.contains(state.locations, "Navpoint4")) {
-			$(".confirmtext").removeClass("hidden");
-			}
-			else {
+		
+		if (state.locations.indexOf("Navpoint4") == -1) {
+			
 				state.locations.push("Navpoint4");
 			}
+				
+		if (state.locations.indexOf("FertileIsles") == -1) {
 			
-		if (_.contains(state.locations, "Sandbanks")) {
-			$(".confirmtext").removeClass("hidden");
-			}
-			else {
-				state.locations.push("Sandbanks");
+				state.locations.push("FertileIsles");
+			}		
+			
+			
+		if (state.locations.indexOf("HabitedIsle") == -1) {
+			
+				state.locations.push("HabitedIsle");
 			}
 	
 				
       })
 	  
+	   $('#eatprisoners').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "eatprisoners"),
+		
+		$("#depart").removeClass("hidden");
+		
+		$(".btn").addClass("hidden");
+		$("#depart").removeClass("hidden");
+				
+      })
+	  
+	     $('#give').on('click', function(e) {
+        // change state here
+		state.chapter.push("LanagaPrisoners2")
+        // end by using lib.goTo
+		$(".give").removeClass("hidden");
+		$(".btn").addClass("hidden");
+		$("#depart").removeClass("hidden");
+		
+		
+		
+				
+      })
+	  
+	  
 	  
 	  
 	  $('#depart').on('click', function(e) {
         // change state here
+		  $(".sideImage").attr('src','../Images/assets/Nyxie.png');
         // end by using lib.goTo
 		if (_.contains(state.inventory, "powder")) {
 			$(".powder").removeClass("hidden")
 		}
 		
-		lib.dialogue(e, "depart"),
+		lib.dialogue(e, "depart")
+		
+		if (_.contains(state.chapter, "LanagaPrisoners")) {
+			$(".powder").removeClass("hidden")
+			
+			if (_.contains(state.locations, "Navpoint4") && state.visited.indexOf("Navpoint4") == -1) {
+			$("#navpoint4").removeClass("hidden")
+		}
+		}
+		
 		
 		$("#obelisk").removeClass("hidden");
-		if (_.contains(state.locations, "Navpoint4") && state.visited.indexOf("Navpoint4") == -1) {
-		$("#navpoint4").removeClass("hidden")
-		}
-		if (_.contains(state.locations, "habitetIsle")) {
+		
+		if (_.contains(state.locations, "HabitedIsle")) {
 		$("#habited").removeClass("hidden")
 		}
 		
-		if (_.contains(state.locations, "Sandbanks")) {
+		if (_.contains(state.locations, "FertileIsles")) {
 		$("#sandbanks").removeClass("hidden")
 		}
 		
@@ -1010,6 +1083,7 @@
 	  
 	  $('#sandbanks').on('click', function() {
         // change state here
+		state.destination.push("FertileIsle")
         // end by using lib.goTo
 		state.chapter[0] = ("Sandbanks");
         lib.goTo('Sandbanks.html')
@@ -1029,9 +1103,14 @@
 </head>
 <body>
 <div id="head">
-
-
 <h1>The Mine</h1>
+</div>
+<div id="side" class="hidden">
+<img class="sideImage" src=""></img>
+</div>
+<div id="sideb" class="hidden">
+
+   <img class="face4"  src="">
 </div>
 
 
@@ -1100,17 +1179,19 @@ The Scouts are ready to depart for a closer look.</p>
 <button class="btn btn-default hidden" id="special2">Dig it out.</button>
 <button class="btn btn-warning hidden" id="special3">Blast it.</button>
 
-<button class="btn btn-default hidden" id="prisoners">Prisoners</button>
+<button class="btn btn-default hidden" id="prisoners">Lanagan Prisoners</button>
+<button class="btn btn-default hidden" id="eatprisoners">Feed pirates too crew</button>
+<button class="btn btn-default hidden" id="give">Give pirates to Lanagans</button>
 
 <button class="btn btn-default hidden" id="late">Ships spotted.</button>
 <button class="btn btn-default hidden" id="depart">Depart</button>
 
 <button class="btn btn-default hidden" id="decline">Decline and consider other options.</button>
 
-<button class="btn btn-default hidden" id="habited"> Quicklink HabitedIsle</button>
-<button class="btn btn-default hidden" id="obelisk"> Quicklink The Obelisk</button>
-<button class="btn btn-default hidden" id="navpoint4"> Quicklink Navpoint 4 </button>
-<button class="btn btn-default hidden" id="sandbanks"> Quicklink Sandbanks </button>
+<button class="btn btn-default hidden" id="habited"> Cold Claws and Habited Isles</button>
+<button class="btn btn-default hidden" id="obelisk"> The Obelisk</button>
+<button class="btn btn-default hidden" id="navpoint4"> Navpoint 4 </button>
+<button class="btn btn-default hidden" id="sandbanks"> Kaelani and Fertile Isles </button>
 
 
 <span id="cadetButtons"> </span>
@@ -1589,7 +1670,7 @@ He reports stoically, his armor sporting quite a few dents and rends.</p>
 
 <p>“Pack is dent and bruise. 2 hurt that need rest. One fallen, might recover, might be meat.”</p>
 
-<p>That leaves X amount for the next assault. Plus the Awe troopers he thinks he needs.</p>
+<p>That still leaves a full compliment for the next assault. Plus the Awe troopers he thinks he needs.</p>
 
 </div>
 
@@ -1738,7 +1819,7 @@ The Gator commander meets me. Green scales, belly plates with a hefty rear-heavy
 
 <p>“Big enough to handle you.” I return and give him my best glare.</p>
 
-<p>“Bah! Speak then or begone. I listen.”</p>
+<p>“Bah! Speak then or begone. I listen.” <span class="boom hidden">He seemed to start as some loose dirt and gravel sprinkled down from the ceiling, then added. "Small Captain stop making big 'BOOM'. Mine will collapse and all treasure gone!" Seems our use of explosives have them rattled.</span></p>
 
 <p>I consider how to best approach this negotiation. I’ll only have two chances to sway them.</p>
 </div>
@@ -1832,11 +1913,19 @@ The Gators have surrendered.</p>
 
 <p>“No proof! Awe ships are few!” The commander croaked, shuffling his feet.</p>
 
-<div class="intelText">
-<p>(Intel) “After we captured Port Nowhere and filled our bellies with all pirates within, the rest are easy to find!”</p>
+
+<div class="intelText hidden">
+<p>(Intel bonus) “After we captured Port Nowhere and filled our bellies with all pirates within, the rest are easy to find!”</p>
 
 <p>“No! Untrue! You not have strength!” He bellowed. But he seemed most uncertain to me.</p>
 </div>
+
+<div class="boom hidden">
+<p>"Well, perhaps we'll use more 'Booms' then! See how long you last down here with the walls collapsing in on you!" I growled.  <br>
+
+The Gator captain hissed back gutturally. But there was a lack of conviction in it, his eyes darting around to the tunnel walls. </p>
+</div>
+
 </div>
 
 <div class="negotiateDom hidden"><p><strong>Dominant</strong></p>
@@ -1976,6 +2065,8 @@ With a final gulp, I seal the former pirate commander away in my gut. I feel him
 <p>‘BOOOAAAAUURRP’ I belch and give the gut a firm pat.</p>
 
 <p>“Alright, lets get his mine cleared.” I point to my escort. “Have the Raptorians move in and make sure everyone disarms and are rounded up.”</p>
+
+<img src='../Images/assets/Avolcvore6.png' height="40%" width="40%"/>
 </div>
 
 <div class="negotiateSurrenderB hidden"><p><strong>A Consumate surrender</strong></p>
@@ -1995,10 +2086,21 @@ Gators may be tough, but I still remember my training.</p>
 
 <p>The islanders are Lanagan and look haggard and starved. But hope is flaring in their eyes as we free them from their shackles.</p>
 
-<p>If they were not so weakened, I suspected they would have attacked our other Gator prisoners. <br>
-I see no reason to keep them around. They do not have much information to provide, except they do speak of an Island to the south-west where they had overheard the Awe fleet was supposed to been roaming. (Ofcourse, we have already been there.) (A brief comparison on charts confirm it is the island we have found clues about from other locations)</p>
+<p>If they were not so weakened, I suspected they would have attacked our other Gator prisoners outright. <br>
+I see no reason to keep them around. They do not have much conclusive information to provide concerning our fleet, but they do speak of an Island to the south-west where they had overheard the Awe fleet was supposed to been roaming.<span class="navpoint4 hidden"> Ofcourse, we have already been there.</span><span class="navpoint4no hidden"> A brief comparison on charts confirm it must be the island we have found clues about from other locations.</span></p>
+
+<p> They also let us know about the locations of two nearby tribes which might know more.  </p>
+
+<p>With the Gators running the mine having surrendered, we have to reach a decision on what to do with them all, they do not all fit on the ship and neither have we anywhere to ferry them to for a while. <br>
+The Lanagans have offered to take custody of them. No doubt they intend to use them for the same labor they were used for. I am not sure how they intend to control them all, even if the pirates now are in the chains they were in and without their weapons, but it would be their problem, not ours. <br>
+Or we can feed them to our crew, the fate the Admiralty considers to be the only righteous option for Pirates, no matter what ‘promises’ were given.</p>
 </div>
 
+<div class="eatprisoners hidden"><p><strong></strong></p>
+<p>Meals are being distributed among the crew. Anyone who fought or assisted in taking the island are given preferential choice. The Raptorians are quick to gluttonously feast and fill their bellies until they can hardly walk, even then there are plenty to go around for any Awe wishing to gain a boost padding to their fluff. <br>
+The prisoners are of course none too happy about their fate, but soon enough the only complaints heard from them are from within the deeply grumbling stomachs all around the ship.</p>
+<p>The crew are pleased and bolstered.</p>
+</div>
 <div class="late hidden"><p><strong>Ships spotted</strong></p>
 <p>I’m interrupted by a urgent message. Lookouts have spotted 2 sails approaching from the northwest. <br>
 They are too faint for me to make out, but after a brief discussion and a brief scouting forray from higher up by a keen-eyed Scout. They confirm that two mid-sized vessels are making their way straight toward us with haste and they are not Awe ships.</p>
@@ -2036,8 +2138,13 @@ Most of them speak of bases around Thousand Isle, but have no clear idea of wher
 
 <div class="iprisoners hidden">
 <p>The Islander prisoners we freed have assured us they can take care of themselves and have not requested transport. Around the supplies of the mining camp there are numerous smaller boats which they intend to use to travel back to their tribe.</p>
+<div class="give hidden">
+<p>The Gator prisoners will surely not fit on all these boats, but already we’ve spotted one paddling away at speed toward their nearest settlements to no doubt recruit aid. <br>
+The fate of the Gator pirates are in their vengeful hands.</p>
+</div>
+<p>They have helpfully marked some points of interest on our maps, some we already knew of. An outdated fleet rendezvous point marked as Navpoint 4 and then a group of islands beyond them inhabited by the Kaelani tribe, called the “Fertile Isles” in our charts.</p>
 
-<p>They have helpfully marked some points of interest on our maps, some we already knew of. Old rendezvous point marked as Navpoint 4 and then a group of  islands called the“Sand Isles” beyond them inhabited by the Kaelani tribe</p>
+<p> Lastly, they reveal the location of the Cold-Claws tribe, which lays a fair distance to the northwest. </p>
 </div>
 <div class="late2 hidden">
 <p>Unfortunately we were unable to recover the Thunder weapon or any useful information from this island. It is likely they will reinforce it thoroughly now.<br>
@@ -2052,6 +2159,11 @@ It’s only downsides is its barrenness, wood and food would have to grown or im
 It also lays in Lanaga claimed territory, although they do not currently have much in terms of control over the island. It is still somewhat of a diplomatic problem.</p>
 
 <p>As we put distance between us and the Island, our next destination awaits. We are ever deeper in the Thousand Isle sea. While there may be many places around to potentially explore, we have to stay focused on our goals and our leads.</p>
+
+<p>Nyxie piques up as I was studying the charts, poking her paw at a small dot. <br>
+“If you plan on heading northwest, let’s swing by the ‘Obelisk’, I’ve only read about it! It’s a bit out of the way, but if we’re going that way from here, it’s not that big of a detour.” She smiles brightly. <br>
+“Is there anything interesting there pertinent to our overall mission?” I raise my brow to her. <br>
+“Oh… nope! It’s just a pretty neat spire in the middle of nowhere that I want to look at!”</p>
 </div>
 <script>
  cadet[2].banter = [
