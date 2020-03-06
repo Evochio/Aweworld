@@ -19,13 +19,15 @@
   
   
     var sandbanks = [];
-  
+	state.visited.push("sandbanks");
   
   
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
-      
+      $("#side").removeClass("hidden");
+	  $(".sideImage").attr('src', officer.nyxie.image);
+	  
 	  $('#slow').on('click', function(e) {
         // change state here
         // end by using lib.goTo
@@ -41,7 +43,7 @@
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "letgo")
-     
+		$("#side").addClass("hidden");
 		$(".btn").addClass("hidden");
 		$("#leave").removeClass("hidden");
 		
@@ -53,7 +55,7 @@
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "chase")
-     
+		
 		$(".btn").addClass("hidden");
 		$("#chase2").removeClass("hidden");
 		
@@ -66,6 +68,20 @@
         // end by using lib.goTo
 		lib.dialogue(e, "chase2")
      
+		$("#sideb").removeClass("hidden");
+		$(".btn").addClass("hidden");
+		$("#options").removeClass("hidden");
+		
+						
+      })
+	  
+	  
+	    $('#options').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "options")
+		$("#side").addClass("hidden");
+		$("#sideb").addClass("hidden");
 		$(".btn").addClass("hidden");
 		$("#salvage").removeClass("hidden");
 		$("#noSalvage").removeClass("hidden");
@@ -75,6 +91,9 @@
 	  
 	    $('#noSalvage').on('click', function(e) {
         // change state here
+		$("#side").removeClass("hidden");
+		$(".sideImage").attr('src', officer.tick.image);
+		state.supplies -=1;
         // end by using lib.goTo
 		lib.dialogue(e, "noSalvage")
 		sandbanks.push("noSalvage");
@@ -298,7 +317,7 @@
 	  
 	   $('#results').on('click', function(e) {
         // change state here
-		
+		$("#side").addClass("hidden");
         // end by using lib.goTo
 		if (_.contains(sandbanks, "noSalvage")) {
 		lib.dialogue(e, "results")
@@ -354,7 +373,7 @@
         // change state here
         // end by using lib.goTo
 		
-        lib.goTo(state.chapter[0])
+        lib.goTo(state.destination[0] + '.html')
         
       })
 	   
@@ -379,14 +398,14 @@
 </head>
 <body>
 <div id="head">
-<div id="dayCounter">
-Day: <span class="days"><script>displayDays()</script></span>
-<br/>
-<span class="schedule"><script>displayShedule()</script></span>
-</div>
 <h1>Thousand Islands</h1>
 </div>
-
+<div id="side" class="hidden">
+<img class="sideImage" src=""></img>
+</div>
+<div id="sideb" class="hidden">
+ <img class="face" id="image" src="../Images/assets/Tick.png"/>
+</div>
 
 <div id="story-text">
 <p>A ship has been spotted in the distance, moving slowly. It’s a smaller model, a single masted ship with a sail and headsail. There is some disagreement around whether to call it a sloop or a cutter, it seems to of a model we’ve not seen before. In a way it's reminiscent of a Wulf-ship, but it seems bulkier. <br>
@@ -508,7 +527,7 @@ It is always impressive how he can coordinate and whip a workforce into gear in 
 Getting the ship turned around will involve measurement and getting a lot of the crew into the sea to dig away and the sandbar. It will be hard work and no one likes to be wet.<br>
  Elda has already raised some health concerns about potential length of duration in the water for Awe workers, she’s worried about ‘rotfur’ and other undercoat complications. Luckily the Raptorians do not suffer from these kinds of health concerns, not that they like laboring in the water much more, they are clumsy and seem to prone to getting saltwater into their noses which they seem to hate.<br>
 With our landing boats arrayed out in the water, crew diving, digging and working. It’s quite a noisy bustle of activity. <br>
-It attracts several curious very large seabirds that bob around and watch the proceedings. After a few nip at and harass the workcrews they’re promptly driven off with volleys of bolts from crossbows, many from Tick himself.</p>
+It attracts several curious very large seabirds that bob around and watch the proceedings. After a few nip at and harass the workcrews they’re promptly driven off with volleys of bolts from bolt-throwers, many from Tick himself.</p>
 </div>
 
 

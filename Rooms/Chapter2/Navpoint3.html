@@ -137,6 +137,7 @@ if (_.contains(state.locations, "Navpoint4")) {
         // change state here
 		Navpoint3.push("feast");
 		favor +=1;
+		state.supplies -=1;
         // end by using lib.goTo
 		lib.dialogue(e, "feast2"),
 		$("#feast2").addClass("hidden");

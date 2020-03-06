@@ -376,7 +376,7 @@
 		if (_.contains(Themine, "negotiate1") && (Themine.indexOf("choiceKeeper") == -1 && Themine.indexOf("choiceMirr") == -1)) {
 		lib.dialogue(e, "negotiateOption")
 		$("#sideb").removeClass("hidden");
-		$(".face4").attr('src','../Images/assets/Keeper.png');
+		$(".face4").attr('src','../Images/assets/KeeperFace.png');
 		$("#mirr").removeClass("hidden");
 		$("#keeper").removeClass("hidden");
 		}
@@ -1024,7 +1024,9 @@
 	  $('#depart').on('click', function(e) {
         // change state here
 		  $(".sideImage").attr('src','../Images/assets/Nyxie.png');
+		  $("#side").removeClass("hidden")
         // end by using lib.goTo
+		$(".btn").addClass("hidden");
 		if (_.contains(state.inventory, "powder")) {
 			$(".powder").removeClass("hidden")
 		}
@@ -1051,7 +1053,7 @@
 		}
 		
 				
-		$("#depart").addClass("hidden");
+		
 		
 				
       })

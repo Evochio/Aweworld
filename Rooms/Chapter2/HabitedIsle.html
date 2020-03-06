@@ -23,9 +23,11 @@
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
-        
+      // $(".face4").attr('src', officer.nyxie.image); 
+	  
+	  
 	  if (_.contains(offList.activeRoster, officer.arn)) {
-		
+		 $(".face6").removeClass("hidden");
 		 $(".MirrAlt").addClass("hidden");
 	  
 	  }
@@ -36,12 +38,12 @@
 	 if (_.contains(offList.deadRoster, officer.tung)) {
 		
 		 $(".Tungtext").addClass("hidden");
-	  
+		 $(".face5").removeClass("hidden");
 	  }
 	   if (_.contains(offList.deadRoster, officer.keeper)) {
 		
 		 $(".Keepertext").addClass("hidden");
-	  
+		 $(".face7").removeClass("hidden");
 	  }
 	  
 	  if (_.contains(state.chapter, "sickness")) {
@@ -54,6 +56,8 @@
 			 $(".rotFur").addClass("hidden");
 			}
 	  }
+	  
+	   $(".faces").addClass("hidden");
 	  
 	  $('#tribe').on('click', function(e) {
         // change state here
@@ -105,7 +109,8 @@
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "hospitality")
-		
+		$("#side").removeClass("hidden");
+		$(".sideImage").attr('src', officer.mirr.image);
 		$(".btn").addClass("hidden");
 		$("#contact").removeClass("hidden");
 		$("#cClaws").removeClass("hidden");
@@ -128,7 +133,7 @@
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "contact"),
-		
+		$("#side").addClass("hidden");
 		
 		
 		$("#contact").removeClass("btn-default");
@@ -141,7 +146,7 @@
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "cClaws"),
-		
+		$("#side").addClass("hidden");
 		
 		$("#resident").removeClass("hidden");
 		$("#cClaws").removeClass("btn-default");
@@ -154,7 +159,7 @@
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "cost"),
-		
+		$("#side").addClass("hidden");
 		
 		
 		$("#cost").removeClass("btn-default");
@@ -168,7 +173,7 @@
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "resident"),
-		
+		$("#side").addClass("hidden");
 		
 		
 		$("#resident").removeClass("btn-default");
@@ -181,8 +186,8 @@
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "elda2"),
-		
-		
+		$("#side").removeClass("hidden");
+		$(".sideImage").attr('src', officer.elda.image);
 		
 		$("#elda2").removeClass("btn-default");
 		$("#elda2").addClass("btn-info");
@@ -195,6 +200,12 @@
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "deliberations")
+		$(".sideImage").attr('src', officer.avolc.image);
+		$(".sideImage").addClass("hidden");
+		$("#side").removeClass("hidden");
+		$("#sideb").removeClass("hidden");
+		$(".faces").removeClass("hidden");
+		$(".face").addClass("hidden");
 		
 		$(".btn").addClass("hidden");
 		$("#permit").removeClass("hidden");
@@ -210,7 +221,9 @@
 		habited.push("permit");
         // end by using lib.goTo
 		lib.dialogue(e, "permit")
-		
+		$("#side").addClass("hidden");
+		$("#sideb").addClass("hidden");
+		$(".faces").addClass("hidden");
 		$(".btn").addClass("hidden");
 		
 		if (_.contains(state.chapter, "sickness")) {
@@ -229,6 +242,9 @@
 	   $('#denyLeave').on('click', function(e) {
         // change state here
 		habited.push("denyLeave");
+		$("#side").addClass("hidden");
+		$("#sideb").addClass("hidden");
+		$(".faces").addClass("hidden");
         // end by using lib.goTo
 		lib.dialogue(e, "denyLeave")
 		
@@ -496,6 +512,9 @@
 	  
 	  $('#corsair2').on('click', function(e) {
         // change state here
+		$(".face").removeClass("hidden");
+		$(".face").attr('src', "../Images/assets/Koen.png" );
+		
         // end by using lib.goTo
 		lib.dialogue(e, "corsair2")
 		
@@ -550,17 +569,49 @@
 	img {
 	margin:auto;
 	}
+	#sideb {
+	margin: none;
+	}
+	
+	.faces {
+	  max-width: 50%;
+	height: auto;
+	float: left;
+	}
   </style>
 
 </head>
 <body>
 <div id="head">
+<!--
 <div id="dayCounter">
 Day: <span class="days"><script>displayDays()</script></span>
 <br/>
 <span class="schedule"><script>displayShedule()</script></span>
 </div>
+ -->
 <h1>Thousand Islands</h1>
+</div>
+<div id="side" class="hidden">
+<img class="sideImage" src=""></img>
+ <img class="faces face4" src="../Images/assets/Nyxie.png">
+   <img class="faces face1" src="../Images/assets/garsch.png"/>
+   
+   <img class="faces face6 hidden"  src="../Images/assets/ArnFace.png"/>
+   
+   <img class="faces face3"  src="../Images/assets/Mirr.png"/>
+   <img class="faces face8"  src="../Images/assets/Ulv.png"/>
+   <img class="faces face11"  src="../Images/assets/Tick.png"/>
+</div>
+<div id="sideb" class="hidden">
+ <img class="face" id="image" src="../Images/assets/Mirr.png"/>
+<img class="faces face5 hidden"  src="../Images/assets/Tung.png"/>
+  <img class="faces face2"  src="../Images/assets/ScoutM.png"/>
+   <img class="faces face7 hidden"  src="../Images/assets/KeeperFace.png"/>
+  
+   <img class="faces face9"  src="../Images/assets/EldaFace.png"/>
+   <img class="faces face10"  src="../Images/assets/Priestess.png"/>
+   
 </div>
 
 

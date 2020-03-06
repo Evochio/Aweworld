@@ -13,17 +13,18 @@
   <link rel="stylesheet" href="../../bootstrap-theme.min.css"></link>
   <script src="../../main.js"></script>
   <script src="../../jquery.cookie.js"></script>
+   <script src="../../officers.js"></script>
   <link rel="stylesheet" href="../../main.css"></link>
   <script>
   
   
-		officer3 = [officer.mirr, officer.krel, officer.keeper];
+	
 	  
-   
+    officer3 = [officer.nyxie, officer.krel, officer.keeper];
    
    	function officerIntros(x) {
 		
-		if (officer3[x].name == 'Mirr') {
+		if (officer3[x].name == 'Nyxie') {
 			
 			return "We could use one of spare sails as a safety net between the ship and the obelisk. Then they jump down onto it!"
 			
@@ -43,33 +44,177 @@
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
-      
-      $('#button-1').on('click', function(e) {
+	  offList.firstOfficer[0] = officer.mirr;
+	  officerButtonNames();
+       officerDouble();
+		checkdeadRoster();
+     
+	  $("#side").removeClass("hidden");
+	  $("#sideb").removeClass("hidden");
+	  $(".sideImage").attr('src', officer.nyxie.image)
+	  $(".face4").attr('src', officer.keeper.image)
+	  
+      $('#scouts').on('click', function(e) {
         // change state here
+		$(".sideImage").attr('src', officer.krel.image)
+		$("#sideb").addClass("hidden");
         // end by using lib.goTo
-		lib.dialogue(e, "eat"),
-       state.vore += 200;
-	   state.crewMorale -= 5;
-	   state.chapter.push("eat");
+		lib.dialogue(e, "scouts"),
+		$(".btn").addClass("hidden");
+		$("#scouts2").removeClass("hidden");
+	   //state.chapter.push("eat");
 		
       })
 	  
-	   $('#button-2').on('click', function(e) {
+	   $('#volunteers').on('click', function(e) {
         // change state here
+		$(".sideImage").attr('src', officer.keeper.image)
+		$("#sideb").addClass("hidden");
         // end by using lib.goTo
-		lib.dialogue(e, "noeat"),
-       state.crewMorale += 15;
-		state.events.push("noeat");
+		lib.dialogue(e, "volunteers"),
+       $(".btn").addClass("hidden");
+		$("#volunteers2").removeClass("hidden");
       })
 	  
-	   $('#button-3').on('click', function(e) {
+	   $('#skip').on('click', function(e) {
         // change state here
         // end by using lib.goTo
-		lib.dialogue(e, "pouch"),
-       state.piety += 23;
-	   state.events.push("pouched");
+		$("#side").addClass("hidden");
+		$("#sideb").addClass("hidden");
+		
+		$(".skip2").removeClass("hidden");
+		lib.dialogue(e, "skip"),
+       $(".btn").addClass("hidden");
+		$("#habited").removeClass("hidden");
 		
       })
+	  
+	   $('#skip3').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		$(".skip3").removeClass("hidden");
+		lib.dialogue(e, "skip"),
+       $(".btn").addClass("hidden");
+		$("#habited").removeClass("hidden");
+		
+      })
+	  
+	    $('#scouts2').on('click', function(e) {
+        // change state here
+		
+        // end by using lib.goTo
+		lib.dialogue(e, "scouts2"),
+       $(".btn").addClass("hidden");
+		$("#decision").removeClass("hidden");
+		$(".scout2").removeClass("hidden");
+      })
+	  
+	   $('#volunteers2').on('click', function(e) {
+        // change state here
+		$("#sideb").addClass("hidden");
+		$("#side").addClass("hidden");
+        // end by using lib.goTo
+		 $(".btn").addClass("hidden");
+		if ( state.Valnos.Experience >= 6 ) {
+			$(".success").removeClass("hidden");
+			$("#volunteers3").removeClass("hidden");
+			$("#side").removeClass("hidden");
+			$(".sideImage").attr('src', officer.valnos.image)
+		}
+		else {
+			$(".fail").removeClass("hidden");
+			$("#skip3").removeClass("hidden");
+		}
+		
+		lib.dialogue(e, "volunteers2")
+      		
+      })
+	  
+	    $('#volunteers3').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "volunteers3"),
+       $(".btn").addClass("hidden");
+		$("#decision").removeClass("hidden");
+      })
+	  
+	    $('#decision').on('click', function(e) {
+        // change state here
+		$("#side").addClass("hidden");
+        // end by using lib.goTo
+		lib.dialogue(e, "decision"),
+       $(".btn").addClass("hidden");
+		$("#officer0").removeClass("hidden");
+		$("#officer1").removeClass("hidden");
+		$("#officer2").removeClass("hidden");
+      })
+	  
+	   $('#officer0').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "decision2"),
+       $(".btn").addClass("hidden");
+		$("#stranger").removeClass("hidden");
+		
+      })
+	  
+	   $('#officer1').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "decision2"),
+       $(".btn").addClass("hidden");
+		$("#stranger").removeClass("hidden");
+		
+      })
+	  
+	   $('#officer2').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "decision2"),
+       $(".btn").addClass("hidden");
+		$("#stranger").removeClass("hidden");
+		
+      })
+	  
+	  $('#stranger').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "stranger"),
+       $(".btn").addClass("hidden");
+		$("#kitchen").removeClass("hidden");
+		$("#nyxie").removeClass("hidden");
+      })
+	  
+	   $('#nyxie').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "nyxie"),
+       $(".btn").addClass("hidden");
+		
+		$("#nyxie2").removeClass("hidden");
+      })
+	  
+	   $('#nyxie2').on('click', function(e) {
+        // change state here
+		officer.nyxie.image = '../Images/assets/Nyxie+.png';
+		$("#side").removeClass("hidden");
+		$(".sideImage").attr('src', officer.nyxie.image)
+        // end by using lib.goTo
+		lib.dialogue(e, "nyxie2"),
+       $(".btn").addClass("hidden");
+		
+		$("#habited").removeClass("hidden");
+      })
+	  
+	   $('#kitchen').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "kitchen"),
+       $(".btn").addClass("hidden");
+		
+		$("#habited").removeClass("hidden");
+      })
+	  
 	  
 	   $('#navpoint4').on('click', function(e) {
         // change state here
@@ -82,8 +227,17 @@
 		 $('#habited').on('click', function() {
         // change state here
         // end by using lib.goTo
+		
+		state.destination[0] = ("HabitedIsle");
+		if (_.contains(state.visited, "sandbanks")) {
 		state.chapter[0] = ("HabitedIsle");
-        lib.goTo('HabitedIsle.html')
+		lib.goTo('HabitedIsle.html')
+		}
+		else {
+		state.chapter[0] = ("Sandbanks");
+		lib.goTo('Sandbanks.html')
+		}
+	        
       })
 	  
 	  
@@ -103,14 +257,15 @@
 </head>
 <body>
 <div id="head">
-<div id="dayCounter">
-Day: <span class="days"><script>displayDays()</script></span>
-<br/>
-<span class="schedule"><script>displayShedule()</script></span>
-</div>
+
 <h1>Thousand Islands</h1>
 </div>
-
+<div id="side" class="hidden">
+<img class="sideImage" src=""></img>
+</div>
+<div id="sideb" class="hidden">
+   <img class="face4"  src="">
+</div>
 
 <div id="story-text">
 
@@ -131,13 +286,32 @@ Day: <span class="days"><script>displayDays()</script></span>
 <div id="tail">
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default" id="button-1"> Test. Eat crew </button>
-<button class="btn btn-default" id="button-2"> Test2. dont eat crew </button>
-<button class="btn btn-default" id="button-3"> Test3. Live in pouch </button>
+<button class="btn btn-default" id="scouts"> Order the Scouts </button>
+<button class="btn btn-default" id="volunteers"> Ask for Volunteers (Reward) </button>
+<button class="btn btn-default" id="skip"> Dont send anyone. </button>
+<button class="btn btn-default hidden" id="skip3"> Back on track</button>
 
-<button class="btn btn-default" id="navpoint4"> test Navpoint4 </button>
+<button class="btn btn-default hidden" id="scouts2"> Findings</button>
+<button class="btn btn-default hidden" id="volunteers2">Competition</button>
 
-<button class="btn btn-default" id="habited"> Quicklink HabitedIsle</button>
+<button class="btn btn-default hidden" id="volunteers3"> Findings</button>
+
+<button class="btn btn-default hidden" id="decision">Decision</button>
+
+<button class="btn btn-default hidden" id="officer0"> </button>
+<button class="btn btn-default hidden" id="officer1"> </button>
+<button class="btn btn-default hidden" id="officer2"> </button>
+
+<button class="btn btn-default hidden" id="stranger">Stranger</button>
+
+<button class="btn btn-default hidden" id="kitchen">Send to Kitchens</button>
+<button class="btn btn-default hidden" id="nyxie">Let Nyxie handle him.</button>
+
+<button class="btn btn-default hidden" id="nyxie2">Nyxie+</button>
+
+<button class="btn btn-default hidden" id="sandbanks"> Fertile Isles</button>
+
+<button class="btn btn-default hidden" id="habited"> Habited Isles</button>
 <span id="cadetButtons"> </span>
 <script>
 
@@ -153,7 +327,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 To my surprise, he goes at it alone. First he climbs up the mast to the crows-nest and then he waits for a good wind and takes off from there. His underlings watch from the deck in silence as he circles around, looking for winds and updrafts to climb higher without wasting too much energy. It’s a rare Awe that can do it well enough that they’re not wasting more energy staying airborne like that then flapping their way to the goal.</p>
 </div>
 
-<div class="volunteer hidden"><p><strong></strong></p>
+<div class="volunteers hidden"><p><strong></strong></p>
 <p>“What kind of reward are you considering to give Keeper?” I quirk my head at the Wulf. <br>
 “Oh… I suppose I could take special requests from an eventual winner, within reason. Or ‘limited’ access to my personal stash of delicious goodies.” Keepers tail twirled around as he considered the manner. I shrugged, it was a good idea as any. It didn’t feel right to order the scouts to exert themselves over a mere curiosity. <br>
 “Put a request out for volunteers who wish to give it a try and win a reward. Don’t accept just anyone, I’d rather not be rowing out any small-boats to do rescues.” I say, deciding to make it a bit of an event. <br>
@@ -162,7 +336,7 @@ That narrowed it down to a 9 or so Awes, all but 2 of them male, who were soon c
 </div>
 
 <div class="skip hidden"><p><strong></strong></p>
-<p>I choose not to risk any of our capable Awes over a whim and a little bit of curiosity. This obelisk seems to have stood here for untold ages, built by people from a bygone era and it will no doubt stand longer still. Let others with better equipment and time investigate it. <br>
+<p><span class="skip2 hidden">I choose not to risk any of our capable Awes over a whim and a little bit of curiosity.</span><span class="skip3 hidden"> I choose not to risk more of our capable Awes over this venture of curiosity.</span> This obelisk seems to have stood here for untold ages, built by people from a bygone era and it will no doubt stand longer still. Let others with better equipment and time investigate it. <br>
 I can't help but wonder how and why they built it out to sea and how much taller this spire truly is, the waters around here are quite deep. It makes sense to think perhaps there was no sea here then, but that in itself is a frightening idea. <br>
 As we put distance to the obelisk and the setting sun dims on the horizon, it seems almost like there a faint glow to the obelisks peak. But as darkness falls further, no such light is visible further visible.</p>
 </div>
@@ -180,7 +354,7 @@ As he lands he has a look of consternation upon his face that’s quite unusual 
 Everyone looked up at the peak. There was no clear answers.</p>
 </div>
 
-<div class="volunteer2 hidden"><p><strong></strong></p>
+<div class="volunteers2 hidden"><p><strong></strong></p>
 <p>There are some drop-outs early. Some of the volunteers seem like they never had it in them to take the long flight and like they just wanted an excuse for exercise. <br>
 At least they did not drop into the sea. I think I had taken my time about ordering rescue for them. <br>
 One Awe tried flapping his way to the peak in a straight line. But he tired long before he reached the top and had to abort and glide back to the ship, panting as he came. <br>
@@ -202,7 +376,7 @@ Then another one tries, I can’t make out who it is, but judging by the excitem
 </div>
 
 
-<div class="volunteer3 hidden"><p><strong></strong></p>
+<div class="volunteers3 hidden"><p><strong></strong></p>
 <p>Cadet Valnos is up there a while. No doubt chiseling out a piece of the obelisk. <br>
 He soon emerges and descends with haste toward the ship, almost coming in a little too hard as he nearly overshoot due to his speed. <br>
 His breath is heavy and his wings are noticeably shuddering from effort as he hurries up to deliver his report. <br>
@@ -221,6 +395,10 @@ Everyone looked up at the peak. There was no clear answers.</p>
 
 
 <div class="decision hidden"><p><strong></strong></p>
+
+<p> My Officers offer their proposals. </p>
+
+
 <span class="theOfficer officerObjects"></span>
 
 
