@@ -608,7 +608,9 @@
 	
       })
 	 
-	 
+	 if (_.contains(state.chapter, "vesslaDes")) {
+	 state.scoutNumer -=1;
+	 }
 
 	  
 	  $('#scouts').on('click', function(e) {
@@ -922,8 +924,15 @@
 
 		$('#leave').on('click', function(e) {
 		
+		if (_.contains(state.chapter, "vesslaDes")) {
+	 state.scoutNumer -=1;
+	 }
+		
+		$("#lone").removeClass("hidden");
+		
 		if (_.contains(state.visited, "Themine")) {
 		$(".gatormineVisisted").removeClass("hidden");
+		$("#lone").addClass("hidden");
 		}
 		else if (_.contains(state.locations, "Themine")) {
 		$(".gatormine").removeClass("hidden");
@@ -935,7 +944,7 @@
 		lib.dialogue(e, "leave"),
         $("#burn").addClass("hidden");
 		$("#leave").addClass("hidden");
-		$("#lone").removeClass("hidden");
+		
 		$("#sand").removeClass("hidden");
 		
 		
@@ -1698,10 +1707,11 @@ Some Islander gryphs had been trying to sneak into the camp surrounding the stra
 <img id="actionRaptorian" class="action" src='../Images/assets/ActionRaptorian.png' height="40%" width="40%"/>
 <img id="actionAwes" class="action" src='../Images/assets/ActionAwes.png' height="40%" width="40%"/>
 <script>
-/*
+
 $('#actionScout').popover({title: "Scouts", content: "Scouts are support and recognizance. Like their namesake suggest, they provide tracking, pathfinding and investigation both alone and in supportive roles. But they are also effective at more clandestine tasks.", trigger: "hover", placement: "top", container: "body"}); 
 $('#actionRaptorian').popover({title: "Raptorians", content: "Raptorians are Shock-troops. Made for fast and heavy assault or pursuit situations they are often used for violent responses. In supportive non-combat roles they can offer muscle and intimidation.", trigger: "hover", placement: "top", container: "body"}); 
-*/
+$('#actionAwes').popover({title: "Awes", content: "Methodical and numerous, A troop of Awes can perform any duty. The quality of outcome depends strongly on their commander.", trigger: "hover", placement: "top", container: "body"}); 
+
 </script>
 </div>
 

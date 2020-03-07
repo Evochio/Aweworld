@@ -42,6 +42,7 @@ lib.dialogue = function(e, className) {
 	*/
 }
 
+
 //new button system. 
 var ziggy = {};
 var glint = {};
@@ -358,9 +359,15 @@ var initialState = {
 
 ///////////////////////////
 
+
 var parts = document.location.href.split('/');
 var lastPart = parts[parts.length-1];
 state = lib.load('state-'+lastPart) || initialState;
+
+
+
+
+
 
  displayDays = function () {
 $(".days").text(state.days).css('color', 'white');

@@ -288,6 +288,7 @@
 	   $('#cadetDiscovery').on('click', function(e) {
         // change state here
 		Themine.push("cadetDiscovery");
+		 $("#side").addClass("hidden");
         // end by using lib.goTo
 		lib.dialogue(e, "cadetDiscovery"),
        $("#cadetDiscovery").addClass("hidden");
@@ -499,6 +500,7 @@
 		*/
 		if ( time >= 5 ) {
 		$(".btn").addClass("hidden");
+		$("#side").addClass("hidden");
 		$("#late").removeClass("hidden");
 		}
 		else {
@@ -646,6 +648,10 @@
 		 $('#negotiateOff').on('click', function(e) {
         // change state here
 		 time += 1;
+		if (Themine.indexOf("negotiateOff") == -1 && _.contains(Themine, "choiceMirr")) {
+			Themine.push("negotiateOff");
+				}
+		 
         // end by using lib.goTo
 		if (_.contains(Themine, "negotiateOff") && _.contains(Themine, "assault3") && _.contains(Themine, "choiceMirr")) {
 				 $("#prisoners").removeClass("hidden");
@@ -964,7 +970,8 @@
         // end by using lib.goTo
 		lib.dialogue(e, "prisoners"),
 		
-		$("#depart").removeClass("hidden");
+		$("#eatprisoners").removeClass("hidden");
+		$("#give").removeClass("hidden");
 		$("#side").addClass("hidden");
 		$("#prisoners").addClass("hidden");
 		$(".iprisoners").removeClass("hidden");
@@ -1030,6 +1037,14 @@
 		if (_.contains(state.inventory, "powder")) {
 			$(".powder").removeClass("hidden")
 		}
+		if (state.locations.indexOf("Navpoint4") == -1) {
+			
+				state.locations.push("Navpoint4");
+			}
+		if (state.visited.indexOf("Navpoint4") == -1) {
+			$(".navpoint4Text").removeClass("hidden")
+		}
+		
 		
 		lib.dialogue(e, "depart")
 		
@@ -1072,8 +1087,16 @@
 	  $('#habited').on('click', function() {
         // change state here
         // end by using lib.goTo
+		state.destination[0] = ("HabitedIsle");
+		if (_.contains(state.visited, "sandbanks")) {
 		state.chapter[0] = ("HabitedIsle");
-        lib.goTo('HabitedIsle.html')
+		lib.goTo('HabitedIsle.html')
+		}
+		else {
+		state.chapter[0] = ("Sandbanks");
+		lib.goTo('Sandbanks.html')
+		}
+		
       })
 	  
 	  $('#navpoint4').on('click', function() {
@@ -1085,10 +1108,17 @@
 	  
 	  $('#sandbanks').on('click', function() {
         // change state here
-		state.destination.push("FertileIsle")
-        // end by using lib.goTo
+		
+		state.destination[0] = ("FertileIsle");
+		if (_.contains(state.visited, "sandbanks")) {
+		state.chapter[0] = ("FertileIsle");
+		lib.goTo('FertileIsle.html')
+		}
+		else {
 		state.chapter[0] = ("Sandbanks");
-        lib.goTo('Sandbanks.html')
+		lib.goTo('Sandbanks.html')
+		}
+		
       })
 	  
     })
@@ -1182,7 +1212,7 @@ The Scouts are ready to depart for a closer look.</p>
 <button class="btn btn-warning hidden" id="special3">Blast it.</button>
 
 <button class="btn btn-default hidden" id="prisoners">Lanagan Prisoners</button>
-<button class="btn btn-default hidden" id="eatprisoners">Feed pirates too crew</button>
+<button class="btn btn-default hidden" id="eatprisoners">Feed pirates to crew</button>
 <button class="btn btn-default hidden" id="give">Give pirates to Lanagans</button>
 
 <button class="btn btn-default hidden" id="late">Ships spotted.</button>
@@ -2138,15 +2168,22 @@ They are too faint for me to make out, but after a brief discussion and a brief 
 Most of them speak of bases around Thousand Isle, but have no clear idea of where those bases are.</p>
 </div>
 
+<div class="neutral hidden">
+<p>Investigation in the mining camps while we were dealing with the pirates have not been fruitless. <br>
+Bored Awes uncovered some reports that, crude as they are, seem to point toward an island to the south of us having something interesting on it. That Island correlates with an outdated fleet rendezvous point, it's the one I named Navpoint4 on my charts. <span class="navpoint4Text hidden"> Seems they’ve somehow been informed of the stranded ship we found on that island. It’s good we got there first.</span>  </p>
+</div>
+<div class="cadets2 hidden">
+<p>The Cadets have uncovered some reports that, crude as they are, seem to point toward an island to the south of us having something interesting on it. That Island correlates with an outdated fleet rendezvous point. it's the one I named Navpoint4 on my charts. <span class="navpoint4Text hidden"> Seems they’ve somehow been informed of the stranded ship we found on that island. It’s good we got there first.</span>  </p>
+</div>
+
+
 <div class="iprisoners hidden">
 <p>The Islander prisoners we freed have assured us they can take care of themselves and have not requested transport. Around the supplies of the mining camp there are numerous smaller boats which they intend to use to travel back to their tribe.</p>
 <div class="give hidden">
 <p>The Gator prisoners will surely not fit on all these boats, but already we’ve spotted one paddling away at speed toward their nearest settlements to no doubt recruit aid. <br>
 The fate of the Gator pirates are in their vengeful hands.</p>
 </div>
-<p>They have helpfully marked some points of interest on our maps, some we already knew of. An outdated fleet rendezvous point marked as Navpoint 4 and then a group of islands beyond them inhabited by the Kaelani tribe, called the “Fertile Isles” in our charts.</p>
-
-<p> Lastly, they reveal the location of the Cold-Claws tribe, which lays a fair distance to the northwest. </p>
+<p>They have helpfully marked some points of interest on our maps, some we already knew of. A group of islands inhabited by the Kaelani tribe, called the “Fertile Isles” in our charts and the location of the Cold-Claws tribe, which lays a fair distance to the northwest. </p>
 </div>
 <div class="late2 hidden">
 <p>Unfortunately we were unable to recover the Thunder weapon or any useful information from this island. It is likely they will reinforce it thoroughly now.<br>

@@ -28,6 +28,11 @@
 	
 	}
   */
+  
+    state.Glint.status = 'invisible';
+    state.Valnos.status = 'invisible';
+	state.Ziggy.status = 'invisible';
+  
   var fertile = [];
   	officer3 = [officer.mirr, officer.elda, officer.evok];
 	  backupOfficer = []
@@ -156,13 +161,14 @@
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "search"),
+		 $("#side").addClass("hidden");
         $("#look").addClass("hidden");
 		$("#catch").addClass("hidden");
 		$("#catch2").addClass("hidden");
 		$("#settlement").removeClass("hidden");
 		
       })
-	  
+	  /*
 	    $('#report').on('click', function(e) {
         // change state here
         // end by using lib.goTo
@@ -170,10 +176,9 @@
         $("#report").addClass("hidden");
 		$("#settlement").removeClass("hidden");
 		//old
+		 })
 		
-      })
-	  
-	     $('#choice').on('click', function(e) {
+		  $('#choice').on('click', function(e) {
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "choice"),
@@ -181,7 +186,10 @@
 		
 		
 				
+     
       })
+	  */
+	   
 	  
 	    $('#officer0').on('click', function(e) {
         // Choice of officer.
@@ -236,10 +244,13 @@
 	  
 	    $('#catch2').on('click', function(e) {
         // change state here
+		 $("#side").removeClass("hidden");
+		 $(".sideImage").attr('src', officer.krel.image)
         // end by using lib.goTo
 		if (state.scoutNumber > 3) {
 			lib.dialogue(e, "catch2")
 			$("#choice").removeClass("hidden");
+			$("#look").addClass("hidden");
 			
 		}
 		else {
@@ -249,7 +260,10 @@
 		}
 		
         $("#catch2").addClass("hidden");
-		$("#look").addClass("hidden");
+		
+		
+		
+		
 		
       })
 	  
@@ -275,6 +289,7 @@
 		$("#choice2").removeClass("hidden");
 		$("#choice3").removeClass("hidden");
 		$("#choice4").removeClass("hidden");
+		$(".sideImage").attr('src', officer3[0].image)
 		choiceOfficer.splice(0, 0, officer3[0])
 		$('.' + choiceOfficer[0].name + 'text').removeClass("hidden");
 		lib.dialogue(e, "interrogate")
@@ -288,6 +303,7 @@
 		$("#officer2").addClass("hidden");
 		
 		$("#resume").removeClass("hidden");
+		$(".sideImage").attr('src', officer3[1].image)
 		choiceOfficer.splice(0, 0, officer3[1])
 		$('.' + choiceOfficer[0].name + 'text').removeClass("hidden");
 		lib.dialogue(e, "interrogate")
@@ -298,7 +314,7 @@
         $("#officer0").addClass("hidden");
 		$("#officer1").addClass("hidden");
 		$("#officer2").addClass("hidden");
-		
+		$(".sideImage").attr('src', officer3[2].image)
 		$("#resume").removeClass("hidden");
 		choiceOfficer.splice(0, 0, officer3[2])
 		$('.' + choiceOfficer[0].name + 'text').removeClass("hidden");
@@ -355,7 +371,7 @@
 	   $('#resume').on('click', function(e) {
         // change state here
         // end by using lib.goTo
-		
+		$("#side").addClass("hidden");
 		if (_.contains(fertile, "information")){
 		lib.dialogue(e, "search2")
 		}
@@ -368,8 +384,8 @@
       })
 	  
 	   $('#settlement').on('click', function(e) {
-        // change state here
-        // end by using lib.goTo
+		//$("#sideb").removeClass("hidden");
+		//$(".face4").attr('src','../Images/assets/Koshhosh.png');
 		
 		if (_.contains(state.chapter, "time")) {
 			 lib.goTo('Aweship.html')
@@ -377,28 +393,22 @@
 		else {
 		
 		lib.dialogue(e, "settlement2")
-     
-		$(".btn").addClass("hidden");
-		$("#elder").removeClass("hidden");	
-		}
-		
-      })
-	  
-	   $('#elder').on('click', function(e) {
-        // change state here
-        // end by using lib.goTo
-		lib.dialogue(e, "elder")
-     
 		$(".btn").addClass("hidden");
 		$("#fOff").removeClass("hidden");	
 		$("#attend").removeClass("hidden");
-						
+		
+		
+		}
+		
       })
+	 
 	  
 	  
 	   $('#fOff').on('click', function(e) {
         // change state here
         // end by using lib.goTo
+		$("#side").removeClass("hidden");
+		$(".sideImage").attr('src', offList.firstOfficer[0].image)
 		
 		 $('.' + offList.firstOfficer[0].name + 'text2').removeClass("hidden");
  
@@ -437,6 +447,9 @@
 	  
 	    $('#relieve').on('click', function(e) {
         // change state here
+		//$("#sideb").removeClass("hidden");
+		//$(".face4").attr('src','../Images/assets/Koshhosh.png');
+		
         // end by using lib.goTo
 		removeOfficer(officer.arn)
 		state.chapter.push("noFirst");
@@ -463,6 +476,8 @@
 	  
 	  $('#options').on('click', function(e) {
         // change state here
+		$("#side").addClass("hidden");
+		$("#sideb").addClass("hidden");
 		fertile = _.without(fertile, "trade");
         // end by using lib.goTo
 		
@@ -478,6 +493,8 @@
 	  $('#awes').on('click', function(e) {
         // change state here
         // end by using lib.goTo
+		$("#side").removeClass("hidden");
+		$(".sideImage").attr('src','../Images/assets/ActionAwes.png');
 		
 		lib.dialogue(e, "awes")
      
@@ -489,8 +506,10 @@
 	  
 	   $('#scouts').on('click', function(e) {
         // change state here
+		$("#side").removeClass("hidden");
+		$(".sideImage").attr('src','../Images/assets/ActionScout.png');
         // end by using lib.goTo
-		if (scoutNumber >= 5) {
+		if (state.scoutNumber >= 5) {
 			$(".success2").removeClass("hidden");
 			fertile.push("infoGood");
 		}
@@ -508,9 +527,13 @@
 	  
 	    $('#raptorians').on('click', function(e) {
         // change state here
+		$("#side").removeClass("hidden");
+		$(".sideImage").attr('src','../Images/assets/ActionRaptorian.png');
+		
 		fertile.push("infoGood");
         // end by using lib.goTo
-		if (_.contains(offList.activeRoster, officer.evok) ) {
+		//_.contains(offList.activeRoster, officer.evok)
+		if (offList.deadRoster.indexOf(officer.evok) == -1) {
 			$(".Evoktext2").removeClass("hidden");
 			fertile.push("vesslaGood");
 		}
@@ -533,8 +556,12 @@
 	   $('#attend').on('click', function(e) {
         // change state here
         // end by using lib.goTo
-		lib.dialogue(e, "attend")
-     
+		lib.dialogue(e, "elder")
+		$("#side").removeClass("hidden");
+		$(".sideImage").attr('src', officer.avolc.image)
+		//$("#sideb").removeClass("hidden");
+		//$(".face4").attr('src','../Images/assets/Koshhosh.png');
+		
 		$(".btn").addClass("hidden");
 		$("#kaelaniq").removeClass("hidden");
 		$("#fleetq").removeClass("hidden");	
@@ -892,7 +919,9 @@
 	}
 	
 	
-		lib.dialogue(e, "enough")
+	
+	
+		
      
 		$(".btn").addClass("hidden");
 		
@@ -912,12 +941,22 @@
 			fertile.push("infoGood");
 			$("#conclusion").removeClass("hidden");
 		}
+		
+		if (fertile.indexOf("promisePrisoner") == -1 && fertile.indexOf("promiseTool") == -1 && fertile.indexOf("promiseFood") == -1 && fertile.indexOf("promiseYou") == -1){	
+		$(".nogame").removeClass("hidden");	
+		$("#conclusion").addClass("hidden");
+	}
+		lib.dialogue(e, "enough")
 						
       })
 	  
 	  
 	  $('#conclusion').on('click', function() {
         // change state here
+		$("#side").addClass("hidden");
+		$("#sideb").addClass("hidden");
+		
+		$('.' + offList.firstOfficer[0].name + 'text2').removeClass("hidden");
         // end by using lib.goTo
 		if (_.contains(fertile, "leave")) {
 			$(".leave").removeClass("hidden");
@@ -954,10 +993,22 @@
 		lib.dialogue(e, "conclusion")
      
 		$(".btn").addClass("hidden");
+		
+		if (_.contains(fertile, "infoGood")) {
+			$(".infogood").removeClass("hidden");
+			$("#Aweship").removeClass("hidden");
+			$("#button-3").removeClass("hidden");
+		}
+		else {
+		$("#button-3").removeClass("hidden");
+		}
+		
       })
 	  
 	  $('#leave').on('click', function() {
         // change state here
+		$("#side").addClass("hidden");
+		$("#sideb").addClass("hidden");
 		fertile.push("leave");
 		state.chapter.push("happyK");
         // end by using lib.goTo
@@ -1000,6 +1051,23 @@
 		lib.dialogue(e, "conclusion")
      
 		$(".btn").addClass("hidden");
+		
+		if (_.contains(fertile, "infoGood")) {
+			$(".infogood").removeClass("hidden");
+			$("#Aweship").removeClass("hidden");
+			$("#button-3").removeClass("hidden");
+		}
+		else {
+		$("#button-3").removeClass("hidden");
+		}
+		
+      })
+	  
+	  $('#Aweship').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+		state.chapter[0] = ("Aweship");
+        lib.goTo('Aweship.html')
       })
 		
 		$('#fleet').on('click', function() {
@@ -1013,7 +1081,15 @@
         // change state here
         // end by using lib.goTo
 		
-        lib.goTo('HabitedIsle.html')
+       state.destination[0] = ("HabitedIsle");
+		if (_.contains(state.visited, "sandbanks")) {
+		state.chapter[0] = ("HabitedIsle");
+		lib.goTo('HabitedIsle.html')
+		}
+		else {
+		state.chapter[0] = ("Sandbanks");
+		lib.goTo('Sandbanks.html')
+		}
       })
     })
 	
@@ -1029,14 +1105,14 @@
 </head>
 <body>
 <div id="head">
-<div id="dayCounter">
-Day: <span class="days"><script>displayDays()</script></span>
-<br/>
-<span class="schedule"><script>displayShedule()</script></span>
-</div>
 <h1>Thousand Islands</h1>
 </div>
-
+<div id="side" class="hidden">
+<img class="sideImage" src=""></img>
+</div>
+<div id="sideb" class="hidden">
+   <img class="face4"  src="">
+</div>
 
 <div id="story-text">
 
@@ -1139,20 +1215,25 @@ If we could catch one then we might be able to get some information of where a f
 <button class="btn btn-default hidden" id="leave">Leave</button>
 <button class="btn btn-default hidden" id="conclusion">Conclusion</button>
 
+<button class="btn btn-default hidden" id="Aweship"> Search Northwestern Isles </button>
 <button class="btn btn-default hidden" id="fleet"> Fleet </button>
-<button class="btn btn-default hidden" id="button-3"> Habited Isle </button>
+<button class="btn btn-default hidden" id="button-3"> Cold Claws and Habited Isle </button>
+
 <span id="cadetButtons"> </span>
 <script>
 
 </script>
 </div>
+
+
+<!--
 <div class="settlement hidden"><p><strong>Settlement</strong></p>
 <p>We sail around the various islands for a few hours. Though they are more dense in number in this chain of isles, many of them are small craggy. Not all of them have sufficient foliage or high cliffs to protect against the worst of the elements.  Many of them appear to have traces of some manner of cultivation or other upon them. </p>
 
 <p>Eventually Look-out reports seeing a fair-sized settlement on the high-ground of on one cluster of heavily wooded isles.  I've ordered us closer to investigate.  The waters appear deep here and we are able to get our ship quite close to the island.  There is no welcome or anyone come to greet us however, though its clear the settlement is inhabited and populated.</p>
 
 </div>
-
+ -->
 <div class="catch hidden"><p><strong>Catching a Fisher</strong></p>
 <p>Try as we might, the small vessels keep eluding us.<br>
 They are definitely very wary or afraid of Awe vessel, or perhaps just big vessels in general. It's a curious thing.<br>
@@ -1192,9 +1273,9 @@ It seems we’ll have to look for the settlement the hard way.</p>
 
 $('#officerObject0').popover({title: officer3[0].name, content: officerIntros(0), trigger: "hover", placement: "top", container: "body"}); 
 
-$('#officerObject0').popover({title: officer3[0].name, content: officerIntros(1), trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject1').popover({title: officer3[1].name, content: officerIntros(1), trigger: "hover", placement: "top", container: "body"}); 
 
-$('#officerObject1').popover({title: officer3[1].name, content: officerIntros(2), trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject2').popover({title: officer3[2].name, content: officerIntros(2), trigger: "hover", placement: "top", container: "body"}); 
 //$('#officerObject2').popover({title: officer3[2].name, content: "Dialogue", trigger: "hover", placement: "top", container: "body"}); 
 
 
@@ -1392,22 +1473,21 @@ I try to think of what the Elder might want.</p>
 
 <div class="question1 hidden"><p><strong></strong>
 <div class="q promiseFood hidden"><p><strong></strong>
-<p>“Ah, a return of what has been taken. A fair promise, modest but fair. Very well, that might might grant you the answer of direction our original food took.”</p>
+<p>“Ah, a return of what has been taken. A fair promise, modest but fair. Very well, that might might grant you the answer of direction our original food took. If you can answer me this.”</p>
 </div>
 <div class="q promiseTool hidden"><p><strong></strong>
-<p>“Of things to promise, tools to use to more easily replace what was lost, perhaps even grow more than what was had and have the means to protect it, that is a strong promise. That will grant you the answer of where our original food might be heading and where whose bellies it is to fill are.”</p>
+<p>“Of things to promise, tools to use to more easily replace what was lost, perhaps even grow more than what was had and have the means to protect it, that is a strong promise. That will grant you the answer of where our original food might be heading and where whose bellies it is to fill are. If you can answer me this.”</p>
 </div>
 <p>The Kaelani tribe, what kind of tribe are we?</p>
 </div>
 
 <div class="answer1 hidden"><p><strong></strong>
 <div class="correct1 hidden">
-<p>"This is correct, we are adopted. Brought into the fold and taught to survive. You pay attention. "</p>
+<p>"This is correct, we are adopted. Brought into the fold and taught to survive. You pay attention so you have earned an answer."</p>
 <p>Do you wish to make another wager? Might be more information in it, the steeper the wager, the better the word. </p>
 </div>
 <div class="incorrect1 hidden">
 <p>"Nay, we are not a tribe of this kind. You seem to care not about the distinction or of our ways. " </p>
-</div>
 
 <div class="q promiseFood hidden"><p><strong></strong>
 <p>“We shall be fair, we will not take all your food, for neither did your kin take all of ours. Also for where else will you seek to replenish it but at our very Isles or those of our fellow tribes. <br>
@@ -1420,13 +1500,15 @@ Wish to earn it back? Make another wager and I will pose a question.</p>
 </div>
 </div>
 
+</div>
+
 
 <div class="question2 hidden"><p><strong></strong>
 <div class="q promiseFood hidden"><p><strong></strong>
-<p>“Ah, a return of what has been taken. A fair promise, modest but fair. Very well, that might might grant you the answer of direction our original food took.”</p>
+<p>“Ah, a return of what has been taken. A fair promise, modest but fair. Very well, that might might grant you the answer of direction our original food took. If you can answer me this.”</p>
 </div>
 <div class="q promiseTool hidden"><p><strong></strong>
-<p>“Of things to promise, tools to with more easily replace what was lost; Perhaps even grow more than what was had and have the means to protect it, that is a strong promise. That will grant you the answer of where our original food might be heading and where whose bellies it is to fill are.”</p>
+<p>“Of things to promise, tools to with more easily replace what was lost; Perhaps even grow more than what was had and have the means to protect it, that is a strong promise. That will grant you the answer of where our original food might be heading and where whose bellies it is to fill are. If you can answer me this.”</p>
 </div>
 <p>Which of my great grandsons was the youngest one?</p>
 </div>
@@ -1434,7 +1516,7 @@ Wish to earn it back? Make another wager and I will pose a question.</p>
 
 <div class="answer2 hidden"><p><strong></strong>
 <div class="correct2 hidden">
-<p>"Very good, again you pay attention to detail, you care about who you meet and see. You are… “Attentive”, yes?"</p>
+<p>"Very good, again you pay attention to detail, you care about who you meet and see. You are… “Attentive”, yes? You have earned information!"</p>
 <p>Do you wish to make another wager? Might be more information in it, the steeper the wager, the better the word. </p>
 </div>
 <div class="incorrect2 hidden">
@@ -1499,6 +1581,12 @@ The old Elder looked more tired than before, his posture sagging a great deal in
 He suddenly shook his head in a sad manner. <br>
 "The valuable word, a secret of the Kaelani, is a sad one however. The seas are rising, always rising. Each generation have less and less Island left to live off. What will become of our children, when we have but the peaks of our islands left?"
 </p>
+<div class="uVessla hidden">
+<p>I frowned at this, while concerning news about the local populace if true, not really helpful to my current situation. <br>
+“And the scout?” I pressed. <br>
+“Ah, the concerns of the current press harder than the rising tides of morrow. In a hut at the southern peak, there is an occupant who is neither guest, enemy or Kaelani.” The Elder bowed his head. <br>
+I grinned at this and nodded back.</p>
+</div>
 </div>
 <p>“I hope this satisfies you Captain. We have now done trade in words and promises. I wish you all safe and expedient journeys home.” The Elder concluded. <br>
 With that, our meeting was over. <br>
@@ -1525,6 +1613,18 @@ With one word I can have this entire island overrun with Awe troops and captured
 <div class="enough hidden">
 <p>“Enough with these games.” I announce with a huff of a breath and wave of paw. <br>
 “Oh, you wish to to stop where you are?” Old Kosh-Hosh perked up from his seat.</p>
+
+<div class="nogame hidden">
+<p>I would not let myself be drawn into any silly games with this old islander. <br>
+
+"Stop before we even begin. I do not have the patience for playing around, we're here for a purpose."
+
+<p>“With no patience for the word, you shall receive none.” The Old islander rose to stand with the support of one of his great grandsons and made to hobble and leave. <br>
+If that’s how it was going to be, that left me with few options to acquire the information I wanted.</p>
+</p>
+</div>
+
+
 <div class="success hidden">
 <p>“Well I suppose, if you feel you have earned the words you came for then why wager more.” The old Gryph smacked his beak some.</p>
 <div class="low hidden">
@@ -1541,6 +1641,12 @@ The old Elder looked more tired than before, his posture sagging a great deal in
 “The Kaelani is in the middle, always trampled over. Our parents fought, but often lost. Yet for generations we have survived.” <br>
 He suddenly shook his head in a sad manner. <br>
 "The valuable word, a secret of the Kaelani, is a sad one however. The seas are rising, always rising. Each generation have less and less Island left to live off. What will become of our children, when we have but the peaks of our islands left?"
+<div class="uVessla hidden">
+<p>I frowned at this, while concerning news about the local populace if true, not really helpful to my current situation. <br>
+“And the scout?” I pressed. <br>
+“Ah, the concerns of the current press harder than the rising tides of morrow. In a hut at the southern peak, there is an occupant who is neither guest, enemy or Kaelani.” The Elder bowed his head. <br>
+I grinned at this and nodded back.</p>
+</div>
 </p>
 </div>
 <p>“I hope this satisfies you Captain. We have now done trade in words and promises. I wish you all safe and expedient journeys home.” The Elder concluded. <br>
@@ -1604,12 +1710,13 @@ With our youthful vigour digested and absorbed, he no doubt will have many added
 <p>“Aye Captain, I will take care of the negotiations, no problem. I’ll make the old gryph talk.”<br>
 First-Officer Arn saluted and moved down the docks to the hut with firm steps. He was always eager to accept the jobs that seemed on the outlook easy. <br>
 Negotiating with an old elder Gryph must have been far from easy however. He took his time inside that hut. <br>
+<br>
 Once he emerges on-deck again it’s without his hat, which he carries under his arm. He looks a little flummoxed.<br>
 “Ehr… Captain. The negotiations are complete.”<br>
 “How did it go Officer Arn?” I quirk a brow at him.<br>
 “Well… he refused to talk unless we had a little wager game about it. Riddles for answers… and I kind of lost.” Arn rubbed at his head. “I need your permission… to be relieved of duty”<br>
 “What did you lose Arn?” I narrow my eyes further. Typical of Arn to be tempted into a game of wagers.<br>
-“I wagered myself… that old decrepit gryph is going to eat me. But a… bet is a bet, right?” Officer Arn looked up, he was distinctly not exactly happy about it. Initially neither was I, but my surge of irritation become amusement. Somehow this seemed like a fitting conclusion to his bad habits. What kind of officer negotiates themselves into the belly of a elderly islander?<br>
+“I wagered myself… that old decrepit gryph is going to eat me. But a… bet is a bet, right?” Officer Arn looked up, he was distinctly not exactly happy about it. Initially neither was I, as he's clearly looking to me to bail him out, but my surge of irritation become amusement. Somehow this seemed like a fitting conclusion to his bad habits. What kind of officer negotiates themselves into the belly of a elderly islander?<br>
 He must have noticed my smirk as his eyes grew a little wider. <br>
 “You’re not going to permit it, are you? I mean… We could still send in the troops, take the village by force.” <br>
 I suppose there was that, I could bail him out with force. He was one of ours afterall.</p>
@@ -1646,7 +1753,7 @@ Tung walks onto deck, sporting a heavy sagging gut. He looks a little smug about
 “Did you eat the village elder?” I blinked at the First-Officer. <br>
 “Sure did. Good news though, he let slip that they DO know where the fleet is. We just need to ask some questions with sufficient amount of motivation. I’ll get the troops ready, er.. at your orders.”</p>
 </div>
-<div class="Tungtext2 hidden">
+<div class="Garschtext2 hidden">
 <p>“Understood Captain. I will hear them out and return.” It would be a meeting between two elders. Though the Gryph Village Elder looks older than Garsch, I am pretty sure he won't be able to match the stubbornness of our old officer. <br>
 They deliberate in that hut quite a while before Officer Garsch returns with his report. <br>
 “They’re more interested in playing games then giving answers Captain.” He reports, his face a mask. “They definitely know more than they let on, but they don’t trust us. The fleet has been buying wares from them for some time, perhaps not giving them much choice about it, but paying them all the same. “ <br>
@@ -1739,11 +1846,11 @@ We take his information, which turns out to be quite interesting indeed. We seem
 The Raptorians are recalled before the evening. They all look pretty pleased about themselves, no doubt they had a lot of fun with this assignment, allowed to go a little wild. Many of them have sagging bellies from having feasted upon opposition. At least they appear to have been following orders not to eat everyone on sight and only those who meant them harm. <br>
 </div>
 <div class="uVessla hidden">
-<div class="Evoktext2">
+<div class="Evoktext2 hidden">
 Evok himself comes to report another piece of fortuitous news. They took the hunt for our missing scout quite seriously and had a little competition about sniffing him down. Scout Vessla was found hiding in a quarry and was subsequently devoured trying to resist capture. <br>
 </p>
 </div>
-<div class="noEvok">
+<div class="noEvok hidden">
 <p>Unfortunately, Scout Vessla could not be found by the Raptorians, despite their keen noses. It is likely they forgot to search for him. Without a solid Pack-Master they are a little uncoordinated.</p>
 </div>
 </div>
@@ -1755,10 +1862,14 @@ Evok himself comes to report another piece of fortuitous news. They took the hun
 </div>
 <div class="infogood hidden">
 We have what we came for. Finally we are drawing close to our wayward fleet! <br>
-With the information we’ve gathered we have a clear direction to where we should find them. We must be wary of not running into the ships that pursue them, but out ship is fast, I have confidence we’ll succeed. <br>
+With the information we’ve gathered we have a clear direction to where we should find them. We must be wary of not running into the ships that pursue them, but even weighed down with supplies our ship is fast, I have confidence we’ll succeed. <br>
+<p>While the northwestern lead is solid, we can also sail more straight northward toward another Tribe we’ve heard about. The Cold-Claws tribe is apparently hospitable and friendly to outsiders. They are a few days of sailing away however.</p>
 </div>
 <div class="infobad hidden">
 We are still not fully in the know about where our fleet has gone. There are hints that they’ve been here, that’s for sure. But how long ago? Our search must continue. Any further inquiries with the Islanders are doomed to fail. Already, there has been a bit of a exodus from the village, their little craft have been scattering in all directions, in anticipation for further trouble. <br>
+
+<p>Perhaps we can see information at a more friendly settlement. The Cold-Claws to the north are supposed friendly to all visitors. At this point I don’t see what option remains other than blindly sailing around. <br>
+The island-chains are dense this far into the Thousand isles. We could be within miles of the fleet, even with the scouts flying recognizance and not know it.</p>
 </div>
 <div class="arnE hidden">
 It did cost me my First officer, who’s currently residing in that old Village Elders belly. I will have to look into replacing him with someone more sensible and less prone to gambling.<br>
@@ -1773,6 +1884,26 @@ The Islanders are at least less cold toward us as we made our leave then when we
 The Islanders that remain watch us leave, eager to see us gone. We’ve no doubt confirmed their preconceptions. We were nothing but trouble. <br>
 </div>
 <div class="vesslaGood hidden">
+<div class="high hidden">
+<p>The Kaelani were good to their word. Scout Vessla was found in an abandoned hut on the island by my First-Officer and a troop. <br>
+I am told he wisely did not put up a fight or try to flee.</p>
+
+<div class="Arntext2 hidden">
+<p>Arn swallowed him up on the spot and has been showing off his gut to the crew to make sure they get the message about what insubordination might lead to. </p>
+<img src='../Images/assets/Arnvore.png' height="40%" width="40%"/>
+</div>
+<div class="Mirrtext2 hidden">
+<p>Officer Mirr seems to have carried out his sentencing on the spot, in her typical fashion delegating the duty of consuming him for his transgressions to Low-Officer Calma. She’s made sure to have Calma follow her closely around, to make sure the message gets across to the crew what insubordination might lead to. </p>
+</div>
+<div class="Tungtext2 hidden">
+<p>Tung gobbled him down on the spot and have been extra loud in his general orders to the crew, to make sure the message gets across about what insubordination might lead to. </p>
+<img src='../Images/assets/Tungvore.png' height="40%" width="40%"/>
+</div>
+<div class="Garschtext2 hidden">
+<p>Garsch did not hesitate to eat him right away. I can tell he does not like the weight and strain the way he supports his back, but he’s ofcourse done the right thing. The message needs to gets across to the crew about what insubordination might lead to.</p>
+</div>
+
+</div>
 I am relieved the deserting Scout has been dealt with. It would not have been good to have such an unsavory element working against our interests here in the Thousand isles. <br>
 </div>
 <div class="vesslaBad hidden">
