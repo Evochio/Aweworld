@@ -220,6 +220,7 @@
         // change state here
         // end by using lib.goTo
 		state.chapter[0] = ("Navpoint4");
+		state.delay +=3
         lib.goTo('Navpoint4.html')
 		
       })
@@ -231,10 +232,12 @@
 		state.destination[0] = ("HabitedIsle");
 		if (_.contains(state.visited, "sandbanks")) {
 		state.chapter[0] = ("HabitedIsle");
+		state.delay +=2
 		lib.goTo('HabitedIsle.html')
 		}
 		else {
 		state.chapter[0] = ("Sandbanks");
+		state.delay +=1
 		lib.goTo('Sandbanks.html')
 		}
 	        

@@ -31,6 +31,11 @@
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
 	  
+	  if ( state.delay > 10) {		
+		$(".lateVore").removeClass("hidden");
+		$(".meeting_").addClass("hidden");
+		}
+	  
 		if (_.contains(offList.firstOfficer, officer.arn)) {
 		
 		 $(".arn").removeClass("hidden");
@@ -52,7 +57,7 @@
 	  
 		}
 	  
-	  	if (_.contains(state.chapter, "MorloPath")) {
+	  	if (_.contains(state.chapter, "morloPath")) {
 		$(".morlo").removeClass("hidden");
 	  }
 	  else {
@@ -71,6 +76,8 @@
 	  
 	   $('#flag').on('click', function(e) {
         // change state here
+		 $("#side").removeClass("hidden");
+		$(".sideImage").attr('src', offList.firstOfficer[0].image);
         // end by using lib.goTo
 		lib.dialogue(e, "flag")
 		$(".btn").addClass("hidden");
@@ -80,6 +87,9 @@
 	  
 	   $('#flag2').on('click', function(e) {
         // change state here
+		$("#side").addClass("hidden");
+		$(".face").attr('src', '../Images/assets/Marja.png');
+		$(".face2").attr('src', '../Images/assets/Aliyah.png');
         // end by using lib.goTo
 		lib.dialogue(e, "flag2")
 		$(".btn").addClass("hidden");
@@ -89,6 +99,10 @@
 	  
 	   $('#flag3').on('click', function(e) {
         // change state here
+		$("#sideb").addClass("hidden");
+		$(".face").addClass("hidden");
+		$("#side").removeClass("hidden");
+		$(".sideImage").attr('src', '../Images/assets/Aliyah.png');
         // end by using lib.goTo
 		lib.dialogue(e, "flag3")
 		$(".btn").addClass("hidden");
@@ -99,6 +113,9 @@
 	  
 	  $('#admiral').on('click', function(e) {
         // change state here
+		$("#story-text").addClass("shift");
+		$("#side").addClass("shift");
+		$(".sideImage").attr('src', '../Images/assets/Kaunis.png');
         // end by using lib.goTo
 		lib.dialogue(e, "admiral")
 		$(".btn").addClass("hidden");
@@ -118,6 +135,10 @@
 	  
 	   $('#you').on('click', function(e) {
         // change state here
+		$(".face").removeClass("hidden");
+		$(".face2").addClass("hidden");
+		$("#sideb").removeClass("hidden");
+		$(".face").attr('src', officer.avolc.image2);
         // end by using lib.goTo
 		lib.dialogue(e, "you")
 		$(".btn").addClass("hidden");
@@ -177,11 +198,11 @@
 	  $('#supplies').on('click', function(e) {
         // change state here
         // end by using lib.goTo
-		if (state.supplies <= 9) {
+		if (state.supplies >= 8) {
 			$(".supplyhigh").removeClass("hidden");
 			approval += 1; 
 		}
-		else if (state.supplies <= 7) {
+		else if (state.supplies > 5) {
 			$(".supplymid").removeClass("hidden");
 		}
 		else {
@@ -198,11 +219,11 @@
 	   $('#ship').on('click', function(e) {
         // change state here
         // end by using lib.goTo
-		if (state.shipHealth <= 9) {
+		if (state.shipHealth >= 9) {
 			$(".shiphigh").removeClass("hidden");
 			approval += 1; 
 		}
-		else if (state.shipHealth <= 7) {
+		else if (state.shipHealth >= 6) {
 			$(".shipmid").removeClass("hidden");
 		}
 		else {
@@ -305,7 +326,12 @@
 		lib.dialogue(e, "conclusion")
 		
 		$(".btn").addClass("hidden");
+		if ( state.delay < 10) {		
 		$("#tidings").removeClass("hidden");
+		}
+		else {
+		$("#meeting").removeClass("hidden");
+		}
 		
       })
 	  
@@ -313,7 +339,10 @@
 	   $('#tidings').on('click', function(e) {
         // change state here
         // end by using lib.goTo
-		
+		$("#story-text").removeClass("shift");
+		$("#side").removeClass("shift");
+		$("#side").addClass("hidden");
+		$(".face").attr('src', '../Images/assets/Stroke.png');
 				
 		lib.dialogue(e, "tidings")
 		
@@ -349,8 +378,13 @@
 	   $('#meeting').on('click', function(e) {
         // change state here
         // end by using lib.goTo
-		
-				
+		$("#story-text").removeClass("shift");
+		$("#side").removeClass("shift");
+		$("#side").removeClass("hidden");
+		$(".sideImage").attr('src', '../Images/assets/Kaunis.png');
+		$("#story-text").addClass("shift2");
+		$("#side").addClass("shift2");
+		$("#sideb").addClass("hidden");			
 		lib.dialogue(e, "meeting")
 		
 		$(".btn").addClass("hidden");
@@ -366,7 +400,7 @@
 		lib.dialogue(e, "meeting2")
 		
 		$(".btn").addClass("hidden");
-		$("#meeting2").removeClass("hidden");
+		$("#button-2").removeClass("hidden");
 		
       })
 	  
@@ -391,10 +425,32 @@
   </script>
   
   <style>
-    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+    /* Put styling that is specific to this page here. This is a CSS comment btw.
+	*/
 	img {
 	margin:auto;
 	}
+	
+	#story-text.shift {
+	    margin-left: 28%;
+	}
+	
+	#side.shift {
+	    width: 25%;
+		overflow-y:hidden
+	}
+	
+	#story-text.shift2 {
+	    margin-left: 35%;
+	}
+	
+	#side.shift2 {
+		margin-top: 7em;
+		max-height: 78%
+	    width: 30%;
+		overflow-y:hidden
+	}
+	
   </style>
 
 </head>
@@ -402,8 +458,13 @@
 <div id="head">
 <h1>3rd Fleet of the Admiralty</h1>
 </div>
-
-
+<div id="side" class="hidden">
+<img class="sideImage" src=""></img>
+</div>
+<div id="sideb" class="hidden">
+ <img class="face" id="image" src="../Images/assets/Tick.png"/>
+  <img class="face2" id="image" src="../Images/assets/Tick.png"/>
+</div>
 <div id="story-text">
 <div class="morlo hidden">
 <p>‘Defiant’ takes us past many twisting clusters of islands that would have taken us days to investigate. We could have been close to the fleet and not know it as we’re deep in Thousand Isles now. <br>
@@ -523,6 +584,9 @@ The Fleet-Admiral herself is a matron of imposing presence. Taller then the Awes
 But its not her physical size or length of fur that gives her such an bolstered almost inspiring presence.<br>
 She has an aura of command around her, an air of confidence of one who's had her whims obeyed for most of her life and knows she's respected. It's not quite arrogance, though there's some of that too, it's a deep confidence and certainty in her own competence, hard-earned through a life-time of experience.<br>
 She's a master of her expertise the art of Command and she knows it.</p>
+<div class="lateVore hidden">
+<p>A low rumbling “Glooouurrrnnnnn” echoes through the room. It’s only then I notice the rounded shape to her well-framed furred gut. Someone is busy being well on their way to adding on to the Admirals body. Somehow I can’t help but get the impression the Fleet-Admiral wouldn’t stoop to eating someone of no import herself, she’d have subordinates for that. This is someone of rank that has displeased her.</p>
+</div>
 </div>
 
 
@@ -633,7 +697,7 @@ The scary face emerged as papers go flying and her eyes pierces deep into me and
 “They sure saddled you with a lot of male officers. Avons tail, what are they doing with all the capable folk!” <br>
 
 <div class="arn hidden">
-“I see you kept the Grand-Admirals insufferable whelp around. I half dreaded him standing where you are when I heard ‘Attentive’ had arrived. But it seems the Admiralty has some sense left in it.” Fleet-Admiral Kaunis gave a disdainful huff. “Males as Captains, authority would fall apart.” <br>
+“I see you kept the Grand-Admirals insufferable whelp around. I half dreaded coming to see him standing where you are when I heard ‘Attentive’ had arrived. But it seems the Admiralty has some sense left in it.” Fleet-Admiral Kaunis gave a disdainful huff. “Males as Captains, authority would fall apart.” <br>
 “We had some early disagreements but they’ve since been resolved.” I reply. <br>
 “Replace him by a more a capable First-officer when you feel you have given him enough chances.” The Admiral said casually.</p>
 </div>
@@ -828,11 +892,18 @@ The table is surrounded by a mottley assembly of captains. Being the newest face
 “All of them…?” A captain spoke up who’s name I did not know. She received a hard glare from the Fleet-Admiral. <br>
 “The ones that mattered.” The Fleet Admiral responded before continuing. “Now, I have heard all your arguments and I have listened, we have been performing a extended delaying action with the hostile elements as we waited for news and gathered intelligence. Now, however, is the time to act.”<br>
 The room seemed to hold its breath as the Fleet Admiral unveiled a map with arrows on the wall behind her. I quickly recognize it as a battle-plan.<br>
- “Tomorrow we go on the offence again. I have been studying the reports and our previous encounters and composed a plan that…” <br>
+
+<div class="meeting_">
+“Tomorrow we go on the offence again. I have been studying the reports and our previous encounters and composed a plan that…” <br>
 The Fleet-Admiral is suddenly interrupted by one of the Captain thumping the table to get attention while standing taller. She has a look of slight dismay to her.<br>
 “Admiral! I apologize, but…” <br>
 “SILENCE!” The Fleet-Admiral roared, making every Awe in the crowded room raise their hackles. The very air itself obeyed and became still, so did the bustle from around the ship beyond the room. <br>
 “Captain Klippa! I am laying out the plans for our next course of action, I have not opened the table to any discussion on the matter!” She glared and leaned forward, making the Captain in question shrink back so much she might climb into the pouch of the captain next to her to escape.<br>
+</div>
+<div class="lateVore">
+<p>“Let me start by saying I am aware of the doubts and disobedience some of you have been harboring.” She slaps at her gut for emphasis. The figure who she had been digesting the day before now naught but a faint soft furry paunch on her otherwise large body. <br>
+“I welcome strategic or tactical insights, but I will not tolerate further unbecoming behavior from any of my captains! If you have objections about my plans or policy, you may join me after the meeting. Believe me, I have room enough to choke all of you down.”</p>
+</div>
 “Understood!?” She looked to us all and there were a mix of nods and salutes all around. Then she continued where she left off. <br>
 “The plan is to perform a series of feints against the pursuing fleet to ensure they assemble and regroup into full strength, then to make a head-on charge as I have outlayed here.” She pointed to the battle-plan. I blinked at the numbers of ships, they were twice our number, this looked like an insane plan. No one dared speak up. <br>
 “Their numbers will work against them, we have all observed they have little coordination or discipline, relying on their superior weapons. We will deliver a decisive blow and defeat them, but only in a massed engagement that plays to our strengths rather than skirmishes of attrition.“<br>

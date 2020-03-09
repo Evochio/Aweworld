@@ -746,6 +746,7 @@ if (_.contains(state.locations, "Navpoint4")) {
 	  
 	   $('#stay').on('click', function(e) {
         // change state here
+		state.delay +=1
         // end by using lib.goTo
 		Navpoint3.push("stay");
 		lib.dialogue(e, "stay"),
@@ -1114,17 +1115,20 @@ if (_.contains(state.locations, "Navpoint4")) {
 		if (_.contains(state.locations, "Navpoint4")) {
 		state.chapter[0] = ("Navpoint4");
         lib.goTo('Navpoint4.html')
+		state.delay +=1
 		$("#side").addClass("hidden");
 		}
 		else {
 		state.chapter[0] = ("Themine");
         lib.goTo('Themine.html')
+		state.delay +=1
 		$("#side").addClass("hidden");
 		}
       })
 	  
 	  $('#navpoint2').on('click', function() {
         // change state here
+		state.delay +=1
         // end by using lib.goTo
 		state.chapter[0] = ("Navpoint2");
         lib.goTo('Navpoint2.html')
@@ -1132,6 +1136,7 @@ if (_.contains(state.locations, "Navpoint4")) {
 	  
 	  $('#gatormine').on('click', function() {
         // change state here
+		state.delay +=1
         // end by using lib.goTo
 		state.chapter[0] = ("Themine");
         lib.goTo('Themine.html')
@@ -2746,6 +2751,8 @@ Awes were hurt in his retrieval and the village largely destroyed in their oppos
 <p>A satisfied deep 'Grurrrgh' echoes from my belly as the meal settles in. A skinny scout is hardly much of a meal as far as devouring a person goes, but my belt does beg for some loosening and I comply. </p>
 
 <p>Before the lethargy of feeding settles in, I have to decide upon our next destination. </p>
+
+<img src='../Images/assets/Avolcvore3.png' height="40%" width="40%"/>
 
 
 <p>We can head north to investigate the island with a potential pirate encampment on it. </p>

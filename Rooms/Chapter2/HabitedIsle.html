@@ -17,7 +17,7 @@
   <script>
 
   var habited = [];
-  
+  state.delay +=2
 	state.chapter.push("coldClaws");
 	
     $(document).ready(function() {
@@ -26,24 +26,25 @@
       // $(".face4").attr('src', officer.nyxie.image); 
 	  
 	  
-	  if (_.contains(offList.activeRoster, officer.arn)) {
-		 $(".face6").removeClass("hidden");
-		 $(".MirrAlt").addClass("hidden");
+	  if (_.contains(offList.deadRoster, officer.arn)) {
+		 $(".face6").addClass("hidden");
+		
+		 $("#Arntext").addClass("hidden");
 	  
 	  }
 	  else {
-		$("#Arntext").addClass("hidden");
+		 $(".MirrAlt").addClass("hidden");
 		}
 		
 	 if (_.contains(offList.deadRoster, officer.tung)) {
 		
 		 $(".Tungtext").addClass("hidden");
-		 $(".face5").removeClass("hidden");
+		 $(".face5").addClass("hidden");
 	  }
 	   if (_.contains(offList.deadRoster, officer.keeper)) {
 		
 		 $(".Keepertext").addClass("hidden");
-		 $(".face7").removeClass("hidden");
+		 $(".face7").addClass("hidden");
 	  }
 	  
 	  if (_.contains(state.chapter, "sickness")) {
@@ -547,18 +548,13 @@
 	  	  
 		$('#fleet').on('click', function() {
         // change state here
+		state.delay +=1
         // end by using lib.goTo
 		state.chapter[0] = ("Fleet");
         lib.goTo('Fleet.html')
       })
 	  
-		$('#battle').on('click', function() {
-        // change state here
-        // end by using lib.goTo
-		state.chapter[0] = ("FleetBattle");
-        lib.goTo('FleetBattle.html')
-      })
-	  
+		
 	  
     })
 	
@@ -627,7 +623,7 @@ We sail North-west, occasionally receiving a repeat run-in with curious Islander
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default hidden" id="button-1"> Test </button>
 <button class="btn btn-default hidden" id="fleet"> Fleet</button>
-<button class="btn btn-default hidden" id="battle"> Fleet Battle </button>
+
 
 <button class="btn btn-default hidden" id="elda1">Request from the Pouch-Matron</button>
 

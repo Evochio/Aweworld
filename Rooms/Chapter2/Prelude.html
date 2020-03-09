@@ -19,16 +19,10 @@
 	var count = 0;
    var force = [officer.tung, officer.garsch, officer.ulv]
    
-   if (_.contains(offList.deadRoster, officer.tung)) {
-	force = _.without(force, officer.tung);
-   }
    
    var support = [officer.mirr, officer.arn, officer.keeper]
    
-   if (_.contains(offList.deadRoster, officer.arn)) {
-	support = _.without(support, officer.arn);
-   }
-
+  
    	
 	function fighters(x) {
 		
@@ -80,17 +74,46 @@
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
+	   if (_.contains(offList.deadRoster, officer.arn)) {
+		support = _.without(support, officer.arn);
+		$(".face6").addClass("hidden");
+		}
+   
+   
+    
+	   if (_.contains(offList.deadRoster, officer.keeper)) {
+		support = _.without(support, officer.keeper);
+		 $(".Keepertext").addClass("hidden");
+		 $(".face7").addClass("hidden");
+	  }
+
+	  
+   if (_.contains(offList.deadRoster, officer.tung)) {
+	force = _.without(force, officer.tung);
+	 $(".face5").addClass("hidden");
+   }
+   
+		$(".face").addClass("hidden");
+		$(".sideImage").addClass("hidden");
+	  $(".faces").removeClass("hidden");
+	  $("#side").removeClass("hidden");
+	  $("#sideb").removeClass("hidden");
+	  
 	  
 		$("#officer0").text(force[0].name) 
 		$("#officer1").text(force[1].name)
-		
+		$(".faces").removeClass("hidden");
 		
 	  
 	   $('#force1').on('click', function(e) {
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "force1")
+		$(".faces").addClass("hidden");
 		$(".btn").addClass("hidden");
+		$(".sideImage").removeClass("hidden");
+		$("#side").addClass("hidden");
+		$("#sideb").addClass("hidden");
 		$("#officer0").removeClass("hidden");
 		$("#officer1").removeClass("hidden");
 		if (force[2] == undefined) {
@@ -109,20 +132,24 @@
         // change state here
         // end by using lib.goTo
 		$(".btn").addClass("hidden");
+		$("#side").removeClass("hidden");
 		
 		if (count < 1) {
 		lib.dialogue(e, force[0].name)
 		officer3[0] = force[0]
+		$(".sideImage").attr('src', force[0].image)
 		 $("#force2").removeClass("hidden");
 		}
 		else if (count == 1 ) {
 		lib.dialogue(e, force[0].name)
 		officer3[1] = force[0]
+		$(".sideImage").attr('src', force[0].image)
 		$("#repair").removeClass("hidden");
 		}
 		else {
 		lib.dialogue(e, support[0].name)
 		officer3[2] = support[0]
+		$(".sideImage").attr('src', support[0].image)
 		$("#raptorians").removeClass("hidden");
 		}
 		force = _.without(force, force[0]);
@@ -135,20 +162,23 @@
         // change state here
         // end by using lib.goTo
 		$(".btn").addClass("hidden");
-		
+		$("#side").removeClass("hidden");
 		if (count < 1) {
 		lib.dialogue(e, force[1].name)
 		officer3[0] = force[1]
+		$(".sideImage").attr('src', force[1].image)
 		 $("#force2").removeClass("hidden");
 		}
 		else if (count == 1 ) {
 		lib.dialogue(e, force[1].name)
 		officer3[1] = force[1]
+		$(".sideImage").attr('src', force[1].image)
 		$("#repair").removeClass("hidden");
 		}
 		else {
 		lib.dialogue(e, support[1].name)
 		officer3[2] = support[1]
+		$(".sideImage").attr('src', support[1].image)
 		$("#raptorians").removeClass("hidden");
 		}
 		force = _.without(force, force[1]);
@@ -161,20 +191,23 @@
         // change state here
         // end by using lib.goTo
 		$(".btn").addClass("hidden");
-		
+		$("#side").removeClass("hidden");
 		if (count < 1) {
 		lib.dialogue(e, force[2].name)
 		officer3[0] = force[2]
+		$(".sideImage").attr('src', force[2].image)
 		 $("#force2").removeClass("hidden");
 		}
 		else if (count == 1 ) {
 		lib.dialogue(e, force[2].name)
 		officer3[1] = force[2]
+		$(".sideImage").attr('src', force[2].image)
 		$("#repair").removeClass("hidden");
 		}
 		else {
 		lib.dialogue(e, support[2].name)
 		officer3[2] = support[2]
+		$(".sideImage").attr('src', support[2].image)
 		$("#raptorians").removeClass("hidden");
 		}
 		force = _.without(force, force[2]);
@@ -189,6 +222,7 @@
 		count +=1 ;
         // end by using lib.goTo
 		lib.dialogue(e, "force2")
+		$("#side").addClass("hidden");
 		$(".btn").addClass("hidden");
 		$("#officer0").removeClass("hidden");
 		$("#officer1").removeClass("hidden");
@@ -201,6 +235,8 @@
 		
         // end by using lib.goTo
 		lib.dialogue(e, "repair")
+		$("#side").removeClass("hidden");
+		$(".sideImage").attr('src', officer.tick.image)
 		$(".btn").addClass("hidden");
 		$("#wheel").removeClass("hidden");
 		
@@ -210,7 +246,7 @@
 	  
 	    $('#wheel').on('click', function(e) {
         // change state here
-		
+		$(".sideImage").attr('src', officer.nyxie.image)
         // end by using lib.goTo
 		lib.dialogue(e, "wheel")
 		$(".btn").addClass("hidden");
@@ -226,6 +262,7 @@
         // end by using lib.goTo
 		lib.dialogue(e, "force3")
 		$(".btn").addClass("hidden");
+		$("#side").addClass("hidden");
 		$("#officer0").text(support[0].name) 
 		$("#officer1").text(support[1].name)
 		$("#officer0").removeClass("hidden");
@@ -245,7 +282,12 @@
         // change state here
 		if (_.contains(offList.deadRoster, officer.evok)) {
 		 $(".evok").addClass("hidden");
-		  $(".noevok").addClass("hidden");
+		  
+		}
+		else {
+		$(".noevok").addClass("hidden");
+		$("#side").removeClass("hidden");
+		$(".sideImage").attr('src', officer.evok.image)
 		}
 		
         // end by using lib.goTo
@@ -259,7 +301,8 @@
 	  
 	   $('#medical').on('click', function(e) {
         // change state here
-		
+		$("#side").removeClass("hidden");
+		$(".sideImage").attr('src', officer.elda.image)
         // end by using lib.goTo
 		lib.dialogue(e, "medical")
 		$(".btn").addClass("hidden");
@@ -287,6 +330,12 @@
 	img {
 	margin:auto;
 	}
+	
+	.faces {
+	  max-width: 50%;
+	height: auto;
+	float: left;
+	}
   </style>
 
 </head>
@@ -295,11 +344,32 @@
 
 <h1>Prelude to Battle</h1>
 </div>
-
+<div id="side" class="hidden">
+<img class="sideImage" src=""></img>
+<img class="faces face6 hidden"  src="../Images/assets/ArnFace.png"/>
+ <img class="faces face4" src="../Images/assets/Nyxie.png">
+   <img class="faces face1" src="../Images/assets/garsch.png"/>
+   
+   
+   
+   <img class="faces face3"  src="../Images/assets/Mirr.png"/>
+   <img class="faces face8"  src="../Images/assets/Ulv.png"/>
+  
+</div>
+<div id="sideb" class="hidden">
+ <img class="face" id="image" src="../Images/assets/Mirr.png"/>
+    <img class="faces face11"  src="../Images/assets/Tick.png"/>
+<img class="faces face5 hidden"  src="../Images/assets/Tung.png"/>
+  <img class="faces face2"  src="../Images/assets/ScoutM.png"/>
+   <img class="faces face7 hidden"  src="../Images/assets/KeeperFace.png"/>
+  
+   <img class="faces face9"  src="../Images/assets/EldaFace.png"/>
+ 
+</div>
 
 <div id="story-text">
 
-<p>I am gathered with my officers. The elation of finding the fleet has slowly been replaced with a general apprehension visible in all their eyes. As I deliver the Fleet-Admirals plans for us and the Fleet, even more so.</p>
+<p>I am gathered with my officers back at the 'Attentive' a quarter of a day later from the Captains meeting. The elation of finding the fleet has slowly been replaced with a general apprehension visible in all their eyes. As I deliver the Fleet-Admirals plans for us and the Fleet, even more so.</p>
 
 <p>We’ll be part of the general formation. The Admirals plan is to draw the enemy fleet into a close chase, then trick them and charge them. We’ll be performing some preordained maneuvers before the leash comes off. <br>
 “We fought one of these ships with the Thunder-weapon and now we’re to face a whole fleet? We’ll be torn to shreds!” Officer Tick complained. <br>

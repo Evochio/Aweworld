@@ -78,6 +78,7 @@
 	  
 	    $('#options').on('click', function(e) {
         // change state here
+		state.delay +=1
         // end by using lib.goTo
 		lib.dialogue(e, "options")
 		$("#side").addClass("hidden");
@@ -94,6 +95,7 @@
 		$("#side").removeClass("hidden");
 		$(".sideImage").attr('src', officer.tick.image);
 		state.supplies -=1;
+		state.chapter.push("sickness");
         // end by using lib.goTo
 		lib.dialogue(e, "noSalvage")
 		sandbanks.push("noSalvage");
@@ -359,20 +361,12 @@
 						
       })
 	  
-	  
-	  
-      $('#button-1').on('click', function(e) {
-        // change state here
-        // end by using lib.goTo
-		lib.dialogue(e, "envoy"),
-        $("#button-1").addClass("hidden");
-		
-      })
+	 
 		
 		$('#leave').on('click', function() {
         // change state here
         // end by using lib.goTo
-		
+		state.delay +=1
         lib.goTo(state.destination[0] + '.html')
         
       })
@@ -420,7 +414,6 @@ This area of sea does not have as many isles around. Only a few very small tufts
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 
 
-<button class="btn btn-default hidden" id="button-1"> Test </button>
 <button class="btn btn-default hidden" id="leave"> Continue journey </button>
 <button class="btn btn-default hidden" id="habited"> Habited Isle</button>
 

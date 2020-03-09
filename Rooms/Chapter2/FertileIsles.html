@@ -159,6 +159,7 @@
       
       $('#look').on('click', function(e) {
         // change state here
+		state.delay +=1
         // end by using lib.goTo
 		lib.dialogue(e, "search"),
 		 $("#side").addClass("hidden");
@@ -201,7 +202,7 @@
 		$("#officer2").addClass("hidden");
 		
 		
-		$(".sideImage").attr('src','../Images/assets/'+ Officer3[0].name+'.png');
+		$(".sideImage").attr('src','../Images/assets/'+ officer3[0].name+'.png');
       })
 	  
 	  $('#officer1').on('click', function(e) {
@@ -325,6 +326,7 @@
 	    $('#choice2').on('click', function(e) {
         // change state here
         // end by using lib.goTo
+		$("#side").addClass("hidden");
 		lib.dialogue(e, "choice2")
        fertile.push("information")
 		$(".btn").addClass("hidden");
@@ -387,7 +389,7 @@
 		//$("#sideb").removeClass("hidden");
 		//$(".face4").attr('src','../Images/assets/Koshhosh.png');
 		
-		if (_.contains(state.chapter, "time")) {
+		if ( state.delay < 5) {
 			 lib.goTo('Aweship.html')
 		}
 		else {
@@ -1065,28 +1067,25 @@
 	  
 	  $('#Aweship').on('click', function() {
         // change state here
+		state.delay +=1
+		state.chapter.push("findAweship")
         // end by using lib.goTo
 		state.chapter[0] = ("Aweship");
         lib.goTo('Aweship.html')
       })
 		
-		$('#fleet').on('click', function() {
-        // change state here
-        // end by using lib.goTo
-		
-        lib.goTo('Fleet.html')
-      })
-	  
+	
 	  $('#button-3').on('click', function() {
         // change state here
         // end by using lib.goTo
-		
+		state.delay +=3
        state.destination[0] = ("HabitedIsle");
 		if (_.contains(state.visited, "sandbanks")) {
 		state.chapter[0] = ("HabitedIsle");
 		lib.goTo('HabitedIsle.html')
 		}
 		else {
+		state.delay +=2
 		state.chapter[0] = ("Sandbanks");
 		lib.goTo('Sandbanks.html')
 		}
@@ -1216,7 +1215,6 @@ If we could catch one then we might be able to get some information of where a f
 <button class="btn btn-default hidden" id="conclusion">Conclusion</button>
 
 <button class="btn btn-default hidden" id="Aweship"> Search Northwestern Isles </button>
-<button class="btn btn-default hidden" id="fleet"> Fleet </button>
 <button class="btn btn-default hidden" id="button-3"> Cold Claws and Habited Isle </button>
 
 <span id="cadetButtons"> </span>
@@ -1346,13 +1344,14 @@ Seems we have to keep searching the hard way. This was a literal dead end.</p>
 <div class="choice2 hidden"><p><strong>A gut feeling</strong></p>
 <p>'Ourph' I belch out a few feathers, the Islander had made quite a fiesty meal. Her struggles had been to no avail, she was restrained and Awe females are of more solid stuff then Gryphs.<br>
 I had by no uncertain terms set the ultimatum before her of what would await her if she was not more forthcoming, but this was the path she chose.<br>
-Still the answers would not come until far after she had tired herself out kicking and being defiant in my belly. When the threat of being churning digestion had started to become all too real did the defiance ebb away and answers started coming.<br>
+Still the answers would not come until far after she had tired herself out kicking and being defiant in my belly. When the threat of churning digestion had started to become all too real did the defiance ebb away and answers started coming.<br>
 The real direction of the Awe ship and information about it.<br>
 It's a frigate like ours and they seem to have been tasked to forage for supplies around these isles. This has greatly upset the local Islander Tribe, as they consider the food on these islands theirs.<br>
 If the fleet has been picking from their larders to support themselves it would explain the animosity and avoidance of our presence that we have been seeing. Times must be desperate indeed for them to do that.<br>
 I've already ordered the course set and now we can only hope we catch up to them.<br>
 I never promised to release the Gryph from my belly, it would be an easy matter to lean back and take a nap.<br>
 Or I can let her go, perhaps she will be more forthcoming in the future among Awes, though I suspect we have done little to alleviate their dislike for our kind.</p>
+<img src='../Images/assets/Avolcvore7.png' height="40%" width="40%"/>
 </div>
 
 <div class="release hidden"><p><strong>Let her go</strong></p>

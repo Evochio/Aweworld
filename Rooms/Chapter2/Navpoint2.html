@@ -310,19 +310,31 @@ officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
 		
 		if (_.contains(state.locations, "Navpoint4")) {
 		state.chapter[0] = ("Navpoint4");
+		state.delay +=2
         lib.goTo('Navpoint4.html')
 		$("#side").addClass("hidden");
 		}
 		else {
 		state.chapter[0] = ("Themine");
+		state.delay +=1
         lib.goTo('Themine.html')
 		$("#side").addClass("hidden");
 		}
 				
       })
 	  
+	  	$('#gatormine').on('click', function() {
+        // change state here
+		state.delay +=1
+        // end by using lib.goTo
+		state.chapter[0] = ("Themine");
+        lib.goTo('Themine.html')
+      })
+	  
+	  
 	  	$('#navpoint3').on('click', function() {
         // change state here
+		state.delay +=1
         // end by using lib.goTo
 		state.chapter[0] = ("Navpoint3");
         lib.goTo('Navpoint3.html')

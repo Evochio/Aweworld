@@ -21,7 +21,7 @@
     state.Glint.status = 'available';
     state.Valnos.status = 'available';
 	state.Ziggy.status = 'available';
-	
+	state.delay +=1
 	officer3 = [offList.firstOfficer[0], officer.ulv, officer.garsch];
 	  backupOfficer = [officer.garsch, officer.mirr]
    
@@ -956,14 +956,14 @@
 	  
 	  
 	  $('#sand').on('click', function(e) {
-		
+		state.delay +=1
 		state.chapter[0] = ("FertileIsles");
         lib.goTo('FertileIsles.html')
 		
 		
       })
 	   $('#lone').on('click', function(e) {
-	   
+	   state.delay +=1
 		state.chapter[0] = ("Themine");
         lib.goTo('Themine.html')
 		

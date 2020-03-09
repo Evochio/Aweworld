@@ -1,6 +1,7 @@
  var officer = {
 		avolc: {
 		image: '../Images/assets/AvolcFace.png',
+		image2: '../Images/assets/AvolcFaceflip.png',
 		name: 'Avolc',
 		title: 'Captain',
 		experience: 7,

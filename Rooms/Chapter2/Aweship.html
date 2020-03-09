@@ -18,7 +18,7 @@
   <script>
   
 	function morloQ() {
-	if (_.contains(state.chapter, "vesslaDes")){
+	if (_.contains(state.chapter, "vesslaDes") state.chapter.indexOf("findAweship") == -1){
 				
 		if ($("#theadmiral").hasClass("btn-info") && $("#vesslaMorlo").hasClass("btn-info") && $("#kaelaniM").hasClass("btn-info")) {
 		 $(".btn").addClass("hidden");
@@ -36,11 +36,28 @@
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
-      
 	  
+		  
+      if (_.contains(state.chapter, "findAweship")){
+		if ( state.delay >= 7 ) {
+		$(".story3").removeClass("hidden");
+		}
+	  else {
+	  	  $(".story2").removeClass("hidden");
+		}
+	  
+	  }
+	  else {
+		 $(".story1").removeClass("hidden");
+	  }
+	  
+	  
+	  
+	  state.chapter.push("morloPath")
 	   $('#Aweship').on('click', function(e) {
         // change state here
         // end by using lib.goTo
+		
 		lib.dialogue(e, "Aweship"),
         $(".btn").addClass("hidden");
 		
@@ -50,6 +67,9 @@
 	  
 	   $('#Aweship2').on('click', function(e) {
         // change state here
+		$("#sideb").removeClass("hidden");
+		$(".face").removeClass("hidden");	
+		$(".face4").attr('src', '../Images/assets/Morlo.png')
         // end by using lib.goTo
 		lib.dialogue(e, "Aweship2"),
         $(".btn").addClass("hidden");
@@ -98,7 +118,7 @@
 		lib.dialogue(e, "deepeningF"),
         $(".btn").addClass("hidden");
 		
-		  if (_.contains(state.chapter, "vesslaDes")){
+		  if (_.contains(state.chapter, "vesslaDes") && state.chapter.indexOf("findAweship") == -1){
 		$(".vesslaMorlo").removeClass("hidden");
 		}
 		$("#kaelaniM").removeClass("hidden");
@@ -112,7 +132,7 @@
 		lib.dialogue(e, "deepening"),
         $(".btn").addClass("hidden");
 		
-		 if (_.contains(state.chapter, "vesslaDes")){
+		 if (_.contains(state.chapter, "vesslaDes") state.chapter.indexOf("findAweship") == -1){){
 		$(".vesslaMorlo").removeClass("hidden");
 		}
 		
@@ -125,7 +145,14 @@
 	  $('#kaelaniM').on('click', function(e) {
         // change state here
         // end by using lib.goTo
-		lib.dialogue(e, "kaelaniM"),
+		 if (_.contains(state.chapter, "findAweship")) {
+		 lib.dialogue(e, "kaelaniM2")
+		 }
+		 else {
+		 lib.dialogue(e, "kaelaniM")
+		 }
+		
+		
         
 		$("#kaelaniM").removeClass("btn-default");
 		$("#kaelaniM").addClass("btn-info");
@@ -166,22 +193,31 @@
       })
 	  
 	  
-	  
-	  
-      $('#button-1').on('click', function(e) {
-        // change state here
-        // end by using lib.goTo
-		lib.dialogue(e, "envoy"),
-        $("#button-1").addClass("hidden");
-		
-      })
-		
+	 		
 		$('#fleet').on('click', function() {
         // change state here
         // end by using lib.goTo
 		state.chapter[0] = ("Fleet");
         lib.goTo('Fleet.html')
       })
+	  
+	  
+	   $('#habited').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+		state.delay +=2
+       state.destination[0] = ("HabitedIsle");
+		if (_.contains(state.visited, "sandbanks")) {
+		state.chapter[0] = ("HabitedIsle");
+		lib.goTo('HabitedIsle.html')
+		}
+		else {
+		state.delay +=1
+		state.chapter[0] = ("Sandbanks");
+		lib.goTo('Sandbanks.html')
+		}
+      })
+	  
     })
 	
   </script>
@@ -196,21 +232,38 @@
 </head>
 <body>
 <div id="head">
-
-
 <h1>Thousand Islands</h1>
 </div>
-
+<div id="side" class="hidden">
+<img class="sideImage" src=""></img>
+</div>
+<div id="sideb" class="hidden">
+   <img class="face4"  src="">
+</div>
 
 <div id="story-text">
+<div class="story1 hidden">
 <p>The waters appear deep here and we are able to get our ship quite close to the island.<br>
 The Island is quite tall and has a protected fertile little valley nestled between two major cliffs which dominate the Isle. The settlement seems to be built around cultivating this valley for food.<br>
 As we sail around the island from a suitable distance to find a place to dock, we come into the sight of the docks and a large ship at anchor.</p>
 </div>
+<div class="story2 hidden">
+<p>We sail northwest cutting across toward the end of the chain of Fertile islands that the Kaelani call their home. If an Aweship is foraging around here, it seems wiser to try intercept it to where it should be or is going to be then attempt to find its trail. <br>
+The Islands here are very lush and beautiful, in an odd way they remind me of the rich valleys of growth that hide among equally less hospitable environments in the Spine mountains back home.<br>
+We loiter and sail around the final few isles for half a day, I send scouts into the air periodically to get a longer view, but it's the look-out who suddenly makes a call. They spot something at anchor, emerging from behind an Island. <br>
+“Ship sighted! Ship sighted!”</p>
+</div>
+<div class="story3 hidden">
+<p>We loiter and sail around the final few isles for a day while the Scouts fly recognizense. <br>
+Eventually we come upon traces of the Aweships passing, namely a small village of angry Kaelani Islanders who were none too shy about sharing vehement words with our scouts. We must have missed it and it has already departed the Fertile Isles region. They could have sailed anywhere.<br>
+We’ll have to seek information with the rumored hospitable Cold-Claws tribe to the north. At this point, the chart is just too full of vague options and we need more leads.</p>
+</div>
+</div>
 <div id="tail">
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default" id="Aweship">The Aweship 'Defiant'</button>
+<button class="btn btn-default hidden" id="Aweship">The Aweship 'Defiant'</button>
+<button class="btn btn-default hidden" id="Aweship2">Cold Claws and Habited Isles.</button>
 
 <button class="btn btn-default hidden" id="Aweship2">Captain Morlo</button>
 
@@ -372,6 +425,29 @@ I narrowed my eyes at her. I could press that the scout was mine to deal with, b
 “Holding the South East perimeter, waiting for someone like you, but also ‘trading’ for food. It’s the one currency that seems to work well in these blasted Isles.“ She shifts in her seat and cocks her head at me. <br>
 <div class="burn hidden">
 “I take it the smoke from Navpoint 4 was your doing then. Good work. We could see it all the way from here, made us know someone from the Admiralty might be coming.”<br>
+</div>
+<div class="noburn hidden">
+“You came via Navpoint 4 did you not? You must have found ‘Herald’ yet you left it be. Sheer luck you found us, we were looking for smoke from that direction.” <br>
+</div>
+“So you planned it that way?” <br>
+“The Fleet-Admiral did. ‘Herald’ took the brunt of the damage in our first engagement and kept slowing us down since. We hid it there. My job was to keep an eye on the vicinity, see who’s attention it attracted. Admiralty law is to burn our ships, reinforcements would be obligated to do so and thus inform us they were coming.”</p>
+
+<div class="noburn hidden">
+“Well, you did not follow the book by burning it either.” I retorted confidently. <br>
+“Touché, I suppose.” Morlo huffed.</p>
+</div>
+
+</div>
+
+
+
+<div class="kaelaniM2 hidden"><p><strong>The Kaelani</strong></p>
+<p>“What are you doing with the Kaelani islands around here? We met with their village and they were… displeased.” I ask casually. <br>
+“Holding the South East perimeter, waiting for someone like you, but also ‘trading’ for food. It’s the one currency that seems to work well in these blasted Isles.“ She shifts in her seat and cocks her head at me.<br>
+</p>
+<div class="burn hidden">
+“I take it the smoke from Navpoint 4 was your doing then. Good work. We could see it all the way from here, made us know someone from the Admiralty might be coming. We waited for you a while, but then time pressed us, we must meet with the fleet at strict schedules.
+”<br>
 </div>
 <div class="noburn hidden">
 “You came via Navpoint 4 did you not? You must have found ‘Herald’ yet you left it be. Sheer luck you found us, we were looking for smoke from that direction.” <br>

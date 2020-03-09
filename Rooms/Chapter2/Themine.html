@@ -19,9 +19,12 @@
   
   	state.visited.push("Themine");
 	state.delay +=2;
+	
 	var Themine = [];
 	var talks = 0;
+	var talks2 = [];
 	var time = 0;
+	
     state.Glint.status = 'invisible';
     state.Valnos.status = 'invisible';
 	state.Ziggy.status = 'invisible';
@@ -306,7 +309,7 @@
 		officerButtonNames();
 		lib.dialogue(e, "options")
 		$("#side").addClass("hidden");
-		if ( time >= 5 ) {
+		if ( time >= 6 ) {
 		$(".btn").addClass("hidden");
 		$("#late").removeClass("hidden");
 		}
@@ -329,6 +332,38 @@
 		$("#officer2").removeClass("hidden");
 		$("#depart").removeClass("hidden");
 		}
+      })
+	  
+	   $('#decline').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		lib.dialogue(e, "options"),
+        officerButtonNames();
+		
+		if ( time >= 6 ) {
+		$(".btn").addClass("hidden");
+		$("#side").addClass("hidden");
+		$("#late").removeClass("hidden");
+		}
+		else {
+		
+		$(".btn").addClass("hidden");
+		
+		if (_.contains(Themine, "assault4")) {
+		$("#officer0").addClass("disabled");
+		}
+		if (_.contains(Themine, "special2") || _.contains(Themine, "special3")) {
+		
+		$("#officer2").addClass("disabled");
+		}
+		
+		$("#officer0").removeClass("hidden");
+		$("#officer1").removeClass("hidden");
+		$("#officer2").removeClass("hidden");
+		$("#depart").removeClass("hidden");
+		
+		}
+		
       })
 	  
 	  
@@ -481,48 +516,7 @@
 	  
 	  
 	  
-	   $('#decline').on('click', function(e) {
-        // change state here
-        // end by using lib.goTo
-		lib.dialogue(e, "options"),
-        officerButtonNames();
-		/*
-		$("#decline").addClass("hidden");
-		$("#options").addClass("hidden");
-		$("#special").addClass("hidden");
-		$("#special2").addClass("hidden");
-		$("#special3").addClass("hidden");
-		$("#negotiate").addClass("hidden");
-		$("#negotiateOff").addClass("hidden");
-		$("#assault2").addClass("hidden");
-		$("#assault3").addClass("hidden");
-		$("#assault4").addClass("hidden");
-		*/
-		if ( time >= 5 ) {
-		$(".btn").addClass("hidden");
-		$("#side").addClass("hidden");
-		$("#late").removeClass("hidden");
-		}
-		else {
-		
-		$(".btn").addClass("hidden");
-		
-		if (_.contains(Themine, "assault4")) {
-		$("#officer0").addClass("disabled");
-		}
-		if (_.contains(Themine, "special2") || _.contains(Themine, "special3")) {
-		
-		$("#officer2").addClass("disabled");
-		}
-		
-		$("#officer0").removeClass("hidden");
-		$("#officer1").removeClass("hidden");
-		$("#officer2").removeClass("hidden");
-		$("#depart").removeClass("hidden");
-		
-		}
-		
-      })
+	  
 	  
 	  
 	   $('#assault2').on('click', function(e) {
@@ -708,19 +702,19 @@
 		
 		
        
-			if (_.contains(Themine, "negotiatePeace") || _.contains(Themine, "negotiateBarg")) {
+			if (_.contains(talks2, "negotiatePeace") || _.contains(talks2, "negotiateBarg")) {
 				$(".negotiatebad").removeClass("hidden");
 				$("#negotiateAgree").removeClass("hidden");
 				$("#decline").removeClass("hidden");
 				 lib.dialogue(e, "negotiateEnd")
 			}
-			else if (_.contains(Themine, "negotiateDom") &&  (_.contains(Themine, "assault3") || (_.contains(Themine, "assault2") || _.contains(Themine, "special3")) )) {
+			else if (_.contains(talks2, "negotiateDom") &&  (_.contains(Themine, "assault3") || (_.contains(Themine, "assault2") || _.contains(Themine, "special3")) )) {
 				lib.dialogue(e, "negotiateSurrender")
 				$("#negotiateSurrenderA").removeClass("hidden");
 				$("#negotiateSurrenderB").removeClass("hidden");
 				$("#decline").addClass("hidden");
 			}
-			else if (_.contains(Themine, "negotiateDom") &&  _.contains(Themine, "negotiateBluff") && (_.contains(state.inventory, "intel") || _.contains(Themine, "special3")) ) {
+			else if (_.contains(talks2, "negotiateDom") &&  _.contains(talks2, "negotiateBluff") && (_.contains(state.inventory, "intel") || _.contains(Themine, "special3")) ) {
 				lib.dialogue(e, "negotiateSurrender")
 				$("#negotiateSurrenderA").removeClass("hidden");
 				$("#negotiateSurrenderB").removeClass("hidden");
@@ -732,8 +726,9 @@
 				
 				 lib.dialogue(e, "negotiateEnd")
 			}
-			
+				
 				talks = 0;
+				talks2 =[];
 				$("#negotiateEnd").addClass("hidden");	
 			
       })
@@ -742,7 +737,7 @@
 		 $('#negotiateDom').on('click', function(e) {
         // change state here
 		talks += 1; 
-		Themine.push("negotiateDom");
+		talks2.push("negotiateDom");
         // end by using lib.goTo
 		lib.dialogue(e, "negotiateDom"),
         
@@ -756,7 +751,7 @@
 	   $('#negotiateBarg').on('click', function(e) {
         // change state here
 		talks += 1;
-		Themine.push("negotiateBarg");
+		talks2.push("negotiateBarg");
         // end by using lib.goTo
 		lib.dialogue(e, "negotiateBarg"),
         
@@ -771,7 +766,7 @@
 	   $('#negotiateBluff').on('click', function(e) {
         // change state here
 		talks += 1; 
-		Themine.push("negotiateBluff");
+		talks2.push("negotiateBluff");
         // end by using lib.goTo
 		if (_.contains(state.inventory, "intel") ) {
 		$(".intelText").removeClass("hidden");
@@ -789,7 +784,7 @@
 		
 				
 		talks += 1; 
-		Themine.push("negotiatePeace");
+		talks2.push("negotiatePeace");
         // end by using lib.goTo
 		lib.dialogue(e, "negotiatePeace")
         
@@ -933,7 +928,7 @@
 	   $('#special3').on('click', function(e) {
         // change state here
 		Themine.push("special3");
-		 time += 1;
+		 
         // end by using lib.goTo
 		lib.dialogue(e, "special3"),
 		
@@ -1079,21 +1074,28 @@
 		
 		$('#obelisk').on('click', function() {
         // change state here
+		var x = time / 2;
+		state.delay += x;
         // end by using lib.goTo
 		state.chapter[0] = ("Obelisk");
+		state.delay +=1
         lib.goTo('Obelisk.html')
       })
 	  
 	  $('#habited').on('click', function() {
         // change state here
+		var x = time / 2;
+		state.delay += x;
         // end by using lib.goTo
 		state.destination[0] = ("HabitedIsle");
 		if (_.contains(state.visited, "sandbanks")) {
 		state.chapter[0] = ("HabitedIsle");
+		state.delay +=3
 		lib.goTo('HabitedIsle.html')
 		}
 		else {
 		state.chapter[0] = ("Sandbanks");
+		state.delay +=1
 		lib.goTo('Sandbanks.html')
 		}
 		
@@ -1101,21 +1103,28 @@
 	  
 	  $('#navpoint4').on('click', function() {
         // change state here
+		var x = time / 2;
+		state.delay += x;
         // end by using lib.goTo
 		state.chapter[0] = ("Navpoint4");
         lib.goTo('Navpoint4.html')
+		state.delay +=1
       })
 	  
 	  $('#sandbanks').on('click', function() {
         // change state here
+		var x = time / 2;
+		state.delay += x;
 		
-		state.destination[0] = ("FertileIsle");
+		state.destination[0] = ("FertileIsles");
 		if (_.contains(state.visited, "sandbanks")) {
-		state.chapter[0] = ("FertileIsle");
-		lib.goTo('FertileIsle.html')
+		state.chapter[0] = ("FertileIsles");
+		state.delay +=2
+		lib.goTo('FertileIsles.html')
 		}
 		else {
 		state.chapter[0] = ("Sandbanks");
+		state.delay +=1
 		lib.goTo('Sandbanks.html')
 		}
 		
