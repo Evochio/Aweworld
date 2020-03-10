@@ -184,8 +184,27 @@ var offList = {
 		
 	}
 	
+load = function (key) {
+  var value = localStorage.getItem(key);
+  try {
+    value = JSON.parse(value);
+    return value;
+  }
+  catch (SyntaxError) {
+    return null;
+  }
+}
 	
-		
+	
+var parts2 = document.location.href.split('/');
+var lastPart2 = parts2[parts2.length-1];
+offList = load('offData-'+lastPart2) || offList;
+	
+	
+		function officerData() {
+			officerX = offList
+			
+		}
 		
 	
 	

@@ -12,6 +12,8 @@
  <link rel="stylesheet" href="../bootstrap.min.css"></link>
   <link rel="stylesheet" href="../bootstrap-theme.min.css"></link>
   <script src="../main.js"></script>
+    <script src="../jquery.cookie.js"></script>
+  <script src="../officers.js"></script>
   <link rel="stylesheet" href="../main.css"></link>
   <script>
   state.days += 1;
@@ -70,6 +72,7 @@
 	   $("#button-1").addClass("hidden")
 	   $("#button-2").addClass("hidden")
 	   $("#button-3").addClass("hidden")
+	   $("#investigate").addClass("hidden")
 		state.raptorians -= 1;
         // end by using lib.goTo
 		lib.dialogue(e, "ignore")

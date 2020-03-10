@@ -14,6 +14,7 @@
   <script src="../../main.js"></script>
   <script src="../../jquery.cookie.js"></script>
    <script src="../../officers.js"></script>
+   <script src="../../jquery.cookie.js"></script>
   <link rel="stylesheet" href="../../main.css"></link>
   <script>
 	state.delay = 0;
@@ -29,6 +30,25 @@
         $("#button-1").addClass("hidden");
 		
       })
+	  
+	  
+	    $('#load').on('click', function(e) {
+		state = JSON.parse(Cookies.get('save'));
+		//offList = JSON.parse(Cookies.get('save2'));
+		offList.activeRoster = JSON.parse(Cookies.get('save2'));
+		offList.deadRoster = JSON.parse(Cookies.get('save3'));
+		offList.firstOfficer = JSON.parse(Cookies.get('save4'));
+		 // lib.goTo('Rooms/Chapter2/'+state.chapter[0]+'.html')
+		lib.goTo(state.chapter[0]+'.html')
+     
+      })
+	  
+	   $('#clear').on('click', function(e) {
+		Cookies.remove('save', { path: '/' });
+		Cookies.remove('save2', { path: '/' });
+		Cookies.remove('save3', { path: '/' });
+		Cookies.remove('save4', { path: '/' });
+    })
 		
 		$('#button-2').on('click', function() {
         // change state here
@@ -65,7 +85,7 @@
 
 <p>You’re controlling Captain Avolc about the Awe Galley-Frigate 'Attentive' as she journeys to find the Awes Admiralty ‘3rd Fleet’ in the large winding archipelago of ‘Thousand Islands’. Its a sea which lies between the homeland of Aweland in the small East Continent and the prosperous ‘Kingdom of Plumes’ and fearsome ‘Empire’ of the gators in the larger West Continent.</p>
 
-<img src='../Images/assets/Aweshipsmall.png' height="40%" width="40%"/>
+<img src='../Images/assets/Aweshipsmall.png' height="60%" width="60%"/>
 
 <p>This version does not import your stats from Chapter 1. You are given all Officers and base stats. </p>
 </div>
@@ -74,6 +94,8 @@
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default hidden" id="button-1">  </button>
 <button class="btn btn-default" id="button-2">Thousand Islands</button>
+<button class="btn btn-default" id="load">(Test) Load Save</button>
+<button class="btn btn-default" id="clear">Clear Save (Deletes cookies)</button>
 <span id="cadetButtons"> </span>
 <script>
 

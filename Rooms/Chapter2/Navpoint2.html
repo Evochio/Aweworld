@@ -13,11 +13,12 @@
   <link rel="stylesheet" href="../../bootstrap-theme.min.css"></link>
   <script src="../../main.js"></script>
   <script src="../../officers.js"></script>
+  <script src="../../jquery.cookie.js"></script>
   <link rel="stylesheet" href="../../main.css"></link>
   
   <script>
 
-state.chapter.push("testobject2");
+
 state.visited.push("Navpoint2");
 var navpoint2 = [];
 officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
@@ -279,10 +280,10 @@ officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
 		}
 		
 		if (_.contains(state.visited, "Navpoint3") && state.locations.indexOf("Navpoint4") == -1)  {
-		$("#navpoint3").addClass("hidden");
-		$("#gatormine").removeClass("hidden");
+		
+		$("#button-2").removeClass("hidden");
 		}
-		else {
+		else if (state.visited.indexOf("Navpoint3") == -1)) {
 			$("#navpoint3").removeClass("hidden");
 		}
 		lib.dialogue(e, "destination")
@@ -749,7 +750,7 @@ I could have interpret his unwillingness to deliver the report in person as a sl
 <p>We can still backtrack slightly and head towards Navpoint 3 to investigate the possibility of another scout or natives with further information or head on deeper into Thousand Islands to the next rendezvous point we found clues about, marked as Navpoint 4. It is unlikely we will return this way however if we sail on.</p>
 </div>
 <div class="Visited hidden">
-<p> We just need to keep heading deeper into the Thousand Isles to the next rendezvous point i've now marked as Navpoint 4.<div class="confirmtext hidden"> This seems to match and confirm the information we recieved from the Islanders, We are on the right path.</p>
+<p> We just need to keep heading deeper into the Thousand Isles to the next rendezvous point, an island to the west, i've now marked as Navpoint 4.<div class="confirmtext hidden"> This seems to match and confirm the information we recieved from the Islanders, We are on the right path.</p>
 </div>
 </div>
 <div class="gpirates hidden">

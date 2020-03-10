@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="../../bootstrap-theme.min.css"></link>
   <script src="../../main.js"></script>
   <script src="../../officers.js"></script>
+  <script src="../../jquery.cookie.js"></script>
   <link rel="stylesheet" href="../../main.css"></link>
   <script>
   
@@ -67,7 +68,8 @@
       
       $('#engage').on('click', function(e) {
         // change state here
-       
+      // officer3 = localStorage.getItem(officer3);
+	  officer3 = JSON.parse(localStorage.getItem("savedData"));
 		lib.dialogue(e, "engage"),
         $(".btn").addClass("hidden");
 		$("#battle").removeClass("hidden");

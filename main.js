@@ -24,10 +24,17 @@ lib.clear = function() {
 }
 
 lib.goTo = function (href) {
+	
+	if (offList == null) {
+		var officerX = 0;
+	}
+	else {officerX = offList}
   var parts = href.split('/');
   var lastPart = parts[parts.length-1];
   lib.save('state-'+lastPart, state);
+  lib.save('offData-'+lastPart, officerX);
   document.location.href = href;
+ // localStorage.setItem("officerData", JSON.stringify([officer3, officer, offlist.activeRoster, offlist.firstOfficer, offlist.deadRoster]));
 }
 lib.dialogue = function(e, className) { 
 	var answer1 = $("."+ className).html()
@@ -481,22 +488,28 @@ displayShipStatus = function () {
       });
 }
 
+
 saveButton = function () {
 	var button = $(' <button class="btn btn-default" id=save>Save</button> ')
 		$('#head').append(button)
+		xSave = state;
 		button.on('click', function() {
 		
-		Cookies.set('save', JSON.stringify(state), { expires: 365, path: '/' });
+		Cookies.set('save', JSON.stringify(xSave), { expires: 365, path: '/' });
 		Cookies.set('save2', JSON.stringify(offList.activeRoster), { expires: 365, path: '/' });
 		Cookies.set('save3', JSON.stringify(offList.deadRoster), { expires: 365, path: '/' });
 		Cookies.set('save4', JSON.stringify(offList.firstOfficer), { expires: 365, path: '/' });
-		
       });
 }
 
 
-
 /*
+
+	Cookies.set('save2', JSON.stringify(offList.activeRoster), { expires: 365, path: '/' });
+		
+		Cookies.set('save4', JSON.stringify(offList.firstOfficer), { expires: 365, path: '/' });
+
+
 moraleFailureCheck = function() {
 	if (state.crewMorale < -4) {
 	document.location.href = '/terrible-end.html'; }
@@ -521,6 +534,7 @@ $(document).ready(function() {
  createCadetButtons();
  loreButton();
  saveButton();
+ var officerX;
  newDialogue();
   console.log('Current state:', JSON.stringify(state, null, '\t'))
   $('#Ziggy, #Glint, #Valnos').addClass("hidden");

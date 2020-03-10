@@ -13,9 +13,24 @@
   <link rel="stylesheet" href="../../bootstrap-theme.min.css"></link>
   <script src="../../main.js"></script>
     <script src="../../officers.js"></script>
+	<script src="../../jquery.cookie.js"></script>
   <link rel="stylesheet" href="../../main.css"></link>
   
  <script>
+ /*
+ saveButton = function () {
+	var button = $(' <button class="btn btn-default" id=save>Save</button> ')
+		$('#head').append(button)
+		xSave = state;
+		button.on('click', function() {
+		
+		Cookies.set('save', JSON.stringify(xSave), { expires: 365, path: '/' });
+	
+		
+      });
+}
+ 
+*/ 
 	state.visited.push("Navpoint4");
 	var Navpoint4 = [];
     state.Glint.status = 'available';

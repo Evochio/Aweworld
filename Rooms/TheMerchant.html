@@ -12,6 +12,8 @@
  <link rel="stylesheet" href="../bootstrap.min.css"></link>
   <link rel="stylesheet" href="../bootstrap-theme.min.css"></link>
   <script src="../main.js"></script>
+    <script src="../jquery.cookie.js"></script>
+  <script src="../officers.js"></script>
   <link rel="stylesheet" href="../main.css"></link>
   <script>
   state.days += 2;
@@ -54,6 +56,7 @@
         // change state here
 		state.days += 2;
 		state.delay += 2;
+		state.supplies -= 1;
 		state.crewMorale += 1;
 		state.inventory.push("gratitude");
         // end by using lib.goTo

@@ -307,13 +307,15 @@
 		lib.dialogue(e, "medical")
 		$(".btn").addClass("hidden");
 		$("#FleetBattle").removeClass("hidden");
-		
+		//localStorage.setItem(officer3, officer3);
 		
 	  })
 	  
 	  
 	 	  
 	    $('#FleetBattle').on('click', function() {
+		//localStorage.setItem(officer3, officer3);
+		localStorage.setItem("savedData", JSON.stringify(officer3));
         // change state here
         // end by using lib.goTo
 		state.chapter[0] = ("FleetBattle");
