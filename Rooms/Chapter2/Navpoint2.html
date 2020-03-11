@@ -198,6 +198,8 @@ officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
 	  
 	  $('#missingScout').on('click', function(e) {
         // change state here
+		state.rapNumber -=1;
+		state.crewLoss +=1; 
         // end by using lib.goTo
 		lib.dialogue(e, "missingScout"),
         $("#missingScout").addClass("hidden");
@@ -283,7 +285,7 @@ officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
 		
 		$("#button-2").removeClass("hidden");
 		}
-		else if (state.visited.indexOf("Navpoint3") == -1)) {
+		else if (state.visited.indexOf("Navpoint3") == -1) {
 			$("#navpoint3").removeClass("hidden");
 		}
 		lib.dialogue(e, "destination")

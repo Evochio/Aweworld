@@ -11,15 +11,16 @@
 	<script src="../../bootstrap.min.js"></script>
  <link rel="stylesheet" href="../../bootstrap.min.css"></link>
   <link rel="stylesheet" href="../../bootstrap-theme.min.css"></link>
-    <script src="../../jquery.cookie.js"></script>
+<script src="../../main.js"></script>  
+  <script src="../../jquery.cookie.js"></script>
    <script src="../../officers.js"></script>
  
-  <script src="../../main.js"></script>
+  
   <link rel="stylesheet" href="../../main.css"></link>
   <script>
   
 	function morloQ() {
-	if (_.contains(state.chapter, "vesslaDes") state.chapter.indexOf("findAweship") == -1){
+	if (_.contains(state.chapter, "vesslaDes") && state.chapter.indexOf("findAweship") == -1){
 				
 		if ($("#theadmiral").hasClass("btn-info") && $("#vesslaMorlo").hasClass("btn-info") && $("#kaelaniM").hasClass("btn-info")) {
 		 $(".btn").addClass("hidden");
@@ -42,14 +43,17 @@
       if (_.contains(state.chapter, "findAweship")){
 		if ( state.delay >= 7 ) {
 		$(".story3").removeClass("hidden");
+		$("#late").removeClass("hidden");	
 		}
 	  else {
 	  	  $(".story2").removeClass("hidden");
+		  $("#Aweship").removeClass("hidden");	
 		}
 	  
 	  }
 	  else {
 		 $(".story1").removeClass("hidden");
+		 $("#Aweship").removeClass("hidden");	
 	  }
 	  
 	  
@@ -133,7 +137,7 @@
 		lib.dialogue(e, "deepening"),
         $(".btn").addClass("hidden");
 		
-		 if (_.contains(state.chapter, "vesslaDes") state.chapter.indexOf("findAweship") == -1){){
+		 if (_.contains(state.chapter, "vesslaDes") && state.chapter.indexOf("findAweship") == -1){
 		$(".vesslaMorlo").removeClass("hidden");
 		}
 		
@@ -203,7 +207,7 @@
       })
 	  
 	  
-	   $('#habited').on('click', function() {
+	   $('#late').on('click', function() {
         // change state here
         // end by using lib.goTo
 		state.delay +=2
@@ -264,7 +268,7 @@ We’ll have to seek information with the rumored hospitable Cold-Claws tribe to
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default hidden" id="Aweship">The Aweship 'Defiant'</button>
-<button class="btn btn-default hidden" id="Aweship2">Cold Claws and Habited Isles.</button>
+<button class="btn btn-default hidden" id="late">Cold Claws and Habited Isles.</button>
 
 <button class="btn btn-default hidden" id="Aweship2">Captain Morlo</button>
 

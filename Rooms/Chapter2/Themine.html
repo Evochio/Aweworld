@@ -128,6 +128,11 @@
 		
 		}
 		*/
+
+		if (_.contains(state.battle, "explosion")) {
+			$(".explode").removeClass("hidden");
+	}
+
 		function checkneg() {
 			if ( talks >= 2 ) {
 			
@@ -159,6 +164,10 @@
 		if (state.scoutNumber >= 5) {
 			 $(".scout5").removeClass("hidden");
 		}
+		if (state.scoutNumber <= 4) {
+			 $(".lessScout").removeClass("hidden");
+		}
+		
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "scoutreport"),
@@ -183,6 +192,7 @@
 		 $('#assault').on('click', function(e) {
         // change state here
 		Themine.push("assault");
+		state.crewLoss += 2; 
         // end by using lib.goTo
 		lib.dialogue(e, "assault"),
         $("#assault").addClass("hidden");
@@ -196,6 +206,7 @@
 	   $('#ram').on('click', function(e) {
         // change state here
 		Themine.push("ram");
+		state.crewLoss += 1; 
 		 time -= 2;
         // end by using lib.goTo
 		lib.dialogue(e, "ram"),
@@ -524,6 +535,8 @@
 		Themine.push("assault2");
         // end by using lib.goTo
 		lib.dialogue(e, "assault2")
+		state.crewLoss += 1;
+		state.rapNumber -= 1; 	
         time += 1;
 		if (_.contains(Themine, "cadetExplore") && Themine.indexOf("cadetDiscovery") == -1) {
 			$("#cadetDiscovery").removeClass("hidden");
@@ -547,10 +560,13 @@
 	   $('#assault3').on('click', function(e) {
         // change state here
 		Themine.push("assault3");
+		state.crewLoss += 12;
+		state.rapNumber -= 3; 
 		 time += 1;
         // end by using lib.goTo
 		if (_.contains(Themine, "cadetDiscovery") && (_.contains(Themine, "special2") || _.contains(Themine, "special3")) && _.contains(Themine, "assault")){
-		
+		state.crewLoss += 5;
+		state.rapNumber -= 1; 
 		lib.dialogue(e, "assault5")
 		//Very few losses
 		$("#depart").removeClass("hidden");
@@ -581,15 +597,19 @@
 	    $('#assault4').on('click', function(e) {
         // change state here
 		 time += 1;
+		 
 		Themine.push("assault4");
 		if (_.contains(Themine, "cadetDiscovery") || _.contains(Themine, "special2") || _.contains(Themine, "special3") || _.contains(Themine, "assault")){
-		
+		state.crewLoss += 8;
+		state.rapNumber -= 2; 
 		$(".assaultGood").removeClass("hidden");
 		$("#depart").removeClass("hidden");
 		 $(".weapon").removeClass("hidden");
 		 state.inventory.push("thunderweapon");
 		}
 		else {
+		state.crewLoss += 20;
+		state.rapNumber -= 5; 
 			$(".assaultBad").removeClass("hidden");
 			$("#options").removeClass("hidden");
 			officer3[0] = officer.garsch;
@@ -809,6 +829,8 @@
 		$("#negotiateBluff").addClass("hidden");
 		$("#negotiatePeace").addClass("hidden");
 		$("#negotiateEnd").addClass("hidden");	
+		
+		$("#restart").removeClass("hidden");
 				
       })
 	  
@@ -841,7 +863,7 @@
 				}
         // end by using lib.goTo
 		lib.dialogue(e, "negotiateSurrenderA")
-        state.vore +=1; 
+        state.vore +=2; 
 			
 		
 		$("#negotiateSurrenderA").addClass("hidden");
@@ -1068,7 +1090,12 @@
 				
       })
 	  
-	  
+	   $('#restart').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		location.reload(true)
+						
+      })
 		
 		
 		
@@ -1226,13 +1253,15 @@ The Scouts are ready to depart for a closer look.</p>
 
 <button class="btn btn-default hidden" id="late">Ships spotted.</button>
 <button class="btn btn-default hidden" id="depart">Depart</button>
+<button class="btn btn-default hidden" id="restart">Restart</button>
 
 <button class="btn btn-default hidden" id="decline">Decline and consider other options.</button>
 
+<button class="btn btn-default hidden" id="sandbanks"> Kaelani and Fertile Isles </button>
 <button class="btn btn-default hidden" id="habited"> Cold Claws and Habited Isles</button>
 <button class="btn btn-default hidden" id="obelisk"> The Obelisk</button>
 <button class="btn btn-default hidden" id="navpoint4"> Navpoint 4 </button>
-<button class="btn btn-default hidden" id="sandbanks"> Kaelani and Fertile Isles </button>
+
 
 
 <span id="cadetButtons"> </span>
@@ -1271,8 +1300,8 @@ Soon they are too small to make out, at least for my eyes.</p>
 
 <p>Or we could… <br>
 A sudden low *thoom* echoes across the water, very shortly after being followed by a familiar splash of something landing in the sea, far ahead of our ship. <br>
-They have fired a Thunder-shot at us from the top of the island. The low rumble dissipates and is not followed immediately by another. Appears perhaps there is just one. <br>
-Our other options at this point is to either assault the island quickly. Capture the docks and deploy our ground forces, Raptorians and Awes, to take the island and anything that remains docked quickly before they can organize further.</p>
+They have fired a Thunder-shot at us from the top of the island. The low rumble dissipates and is not followed immediately by another. <span class="scout5 hidden">It's quite valuable to know they do not have more then one of those.</span><span class="lessScout hidden">Who know's how many of those they have, we should get ready for a possibly costly attack.</span><br>
+Our other options at this point is to either assault the island quickly. Capture the docks and deploy our ground forces, Raptorians and Awes, to take the island and anything that remains docked quickly before they can organize further <span class="lessScout hidden">and deploy more possible weapons.</span>.</p>
 
 <p>Or we change our approach to come in more cautiously, out of line of sight of their weapon emplacements and whatever other potential surprises they might have.</p>
 </div>
@@ -1648,7 +1677,7 @@ That was quite a cold way of thinking! But still a valid option.</p>
 
 <p>“Speak then Officer, let’s hear it.” Officer Ulv is seldomly has bad ideas, even if they are often sometimes a bit rash.</p>
 
-<p>“The Powder we recovered from the enemy ship. I’ve done a few experiments with it. Its highly flammable, explosively so. More than any equivalent substance we have at home. In high enough concentrated quantities, a little flame and it will explode. (As you might be quite familiar with.)”</p>
+<p>“The Powder we recovered from the enemy ship. I’ve done a few experiments with it. Its highly flammable, explosively so. More than any equivalent substance we have at home. In high enough concentrated quantities, a little flame and it will explode. <span class="explode hidden"As you might be quite familiar with.</span>”</p>
 
 <p>Officer Tick immediately shook his head in disagreement. <br>
 “If you’re proposing we blast the entrance open then that sounds like folly and a waste.”</p>
@@ -2189,8 +2218,8 @@ Bored Awes uncovered some reports that, crude as they are, seem to point toward 
 <div class="iprisoners hidden">
 <p>The Islander prisoners we freed have assured us they can take care of themselves and have not requested transport. Around the supplies of the mining camp there are numerous smaller boats which they intend to use to travel back to their tribe.</p>
 <div class="give hidden">
-<p>The Gator prisoners will surely not fit on all these boats, but already we’ve spotted one paddling away at speed toward their nearest settlements to no doubt recruit aid. <br>
-The fate of the Gator pirates are in their vengeful hands.</p>
+<p>The Gator prisoners will surely not fit on all these boats, but already we’ve spotted one Islander paddling away at speed toward their nearest settlements to no doubt recruit aid. <br>
+The fate of the Gator pirates are in their vengeful Islanders paws.</p>
 </div>
 <p>They have helpfully marked some points of interest on our maps, some we already knew of. A group of islands inhabited by the Kaelani tribe, called the “Fertile Isles” in our charts and the location of the Cold-Claws tribe, which lays a fair distance to the northwest. </p>
 </div>

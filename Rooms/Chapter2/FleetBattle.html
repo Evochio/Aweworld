@@ -21,7 +21,7 @@
 	var boarding = 0;
 	var damage = 0;
 	officer3 = [officer.garsch, officer.tung, officer.keeper];
-	state.inventory.push("firebombs");
+	officer3 = JSON.parse(localStorage.getItem("savedData"));
 
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
@@ -802,6 +802,18 @@
 		lib.dialogue(e, "disarm"),
         $(".btn").addClass("hidden");
 		
+		$("#boarding4").removeClass("hidden");
+			
+      })
+	  
+	  $('#special').on('click', function(e) {
+         battle.push("offhand")  
+		lib.dialogue(e, "special"),
+        $(".btn").addClass("hidden");
+			
+		$("#defense").removeClass("hidden");
+		$("#evade").removeClass("hidden");
+			
 		$("#boarding4").removeClass("hidden");
 			
       })
@@ -1885,7 +1897,7 @@ I can only hope that the battle is swinging into our favor without me and soon. 
 </div>
 
 <div class="disarm hidden"><p><strong></strong></p>
-<p>It’s an easy enough chopping slice to make and I let out a ‘HYA’ as I put force into it. The arm holding his blade is quickly unable to hold a blade, or anything else ever again for that matter. <br>
+<p>It’s an easy enough chopping slice to make and I let out a ‘HA’ as I put force into it. The arm holding his blade is quickly unable to hold a blade, or anything else ever again for that matter. <br>
 The Captain howls and falls to his knees and I kick him over, making sure to stand over him visibly for all to see.</p>
 </div>
 

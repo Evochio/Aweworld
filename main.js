@@ -334,6 +334,7 @@ var initialState = {
   days: 0,
   piety: 0,
   raptorians: 3,
+  rapNumber: 30,
   scoutNumber: 3,
   injuries: 0,
   delay: 0,
@@ -490,7 +491,7 @@ displayShipStatus = function () {
 
 
 saveButton = function () {
-	var button = $(' <button class="btn btn-default" id=save>Save</button> ')
+	var button = $(' <button class="btn btn-default" id=save>Save (beta)</button> ')
 		$('#head').append(button)
 		xSave = state;
 		button.on('click', function() {
@@ -531,6 +532,7 @@ $(document).ready(function() {
   // Code you want to run at the beginning of every page load goes here.
   // For example, code that tests the state to see if morale is low enough to redirect you to an ending.
 // lib.makeCadetButtons();
+
  createCadetButtons();
  loreButton();
  saveButton();

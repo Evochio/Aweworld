@@ -169,7 +169,7 @@
 var offList = {
     activeRoster: [officer.arn, officer.keeper, officer.mirr, officer.nyxie, officer.ulv, officer.garsch, officer.elda, officer.ljus, officer.tung, officer.tick, officer.evok, officer.krel],
     fullRoster: [officer.valnos, officer.ziggy, officer.glint, officer.melon, officer.arn, officer.keeper, officer.mirr, officer.nyxie, officer.tick, officer.ulv, officer.garsch, officer.tung, officer.evok, officer.elda, officer.ljus,],
-	firstOfficer: [officer.arn],
+	firstOfficer: [officer.garsch],
 	deadRoster: []
 	
  }
@@ -183,7 +183,8 @@ var offList = {
 		offList.deadRoster.push(x);
 		
 	}
-	
+
+///////////////////////////////	
 load = function (key) {
   var value = localStorage.getItem(key);
   try {
@@ -199,13 +200,28 @@ load = function (key) {
 var parts2 = document.location.href.split('/');
 var lastPart2 = parts2[parts2.length-1];
 offList = load('offData-'+lastPart2) || offList;
-	
-	
+///////////////////////////////	
+	/*
 		function officerData() {
 			officerX = offList
 			
 		}
 		
+	*/
+	
+	if ( state.vore > 6 ) {
+		officer.avolc.image = '../Images/assets/AvolcFace3.png'
+		officer.avolc.image2 = '../Images/assets/AvolcFace3flip.png'
+	}
+	if ( state.vore > 2 ) {
+		officer.avolc.image = '../Images/assets/AvolcFace2.png'
+		officer.avolc.image2 = '../Images/assets/AvolcFace2flip.png'
+	}
+	
+	if (_.contains(state.chapter, "nyxiefat")) {
+		officer.nyxie.image = '../Images/assets/Nyxie+.png'
+		officer.nyxie.diplomacy = '(++++-)'
+	}
 	
 	
 	function checkdeadRoster() {
@@ -234,24 +250,24 @@ offList = load('offData-'+lastPart2) || offList;
 
 		if (offList.firstOfficer[0].name == officer3[1].name && officer3[1].name == officer3[0].name)  {
 		
-			if (_.contains(offList.activeRoster, backupOfficer[0])) {
-			officer3[1] = backupOfficer[0];
-			console.log(backupOfficer[0].name)
+			if (_.contains(offList.deadRoster, backupOfficer[0])) {
+			officer3[1] = backupOfficer[1];	
+			
 			}
 			else {
-			officer3[1] = backupOfficer[1];	
+			officer3[1] = backupOfficer[0];
 			}
 			
 		}	
 			
 		if (offList.firstOfficer[0].name == officer3[2].name && officer3[2].name == officer3[0].name) {
 				
-			if (_.contains(offList.activeRoster, backupOfficer[0])) {
-			officer3[2] = backupOfficer[0];
-			console.log(backupOfficer[0].name)
+			if (_.contains(offList.deadRoster, backupOfficer[0])) {
+			
+			officer3[2] = backupOfficer[1];	
 			}
 			else {
-			officer3[2] = backupOfficer[1];	
+			officer3[2] = backupOfficer[0];
 			}
 		
 		}

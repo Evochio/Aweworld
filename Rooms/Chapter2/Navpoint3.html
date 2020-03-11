@@ -181,6 +181,10 @@ if (_.contains(state.locations, "Navpoint4")) {
 	  
 	  $('#arrest').on('click', function(e) {
         // change state here
+		if (_.contains(choiceOfficer, officer.garsch)) {
+		
+		state.crewLoss +=1; 
+		}
 		$("#side").removeClass("hidden");
 		$(".sideImage").attr('src','../Images/assets/Garsch.png');
 		Navpoint3.push("arrest");
@@ -987,6 +991,7 @@ if (_.contains(state.locations, "Navpoint4")) {
 	  
 	    $('#eatVessla').on('click', function(e) {
         // change state here
+		state.vore += 1;
 		$("#side").addClass("hidden");
 		$("#sideb").addClass("hidden");
         // end by using lib.goTo
@@ -1318,7 +1323,7 @@ $('#officerObject2').popover({title: officer3[2].name, content: "Waste of time o
 
 <p>There are a few landing spots boats where mangrove isn't too thick, but they involve some cliff climbing. </p>
 
-<p>(Scouts bonus): There appears to be smoke of what could be cooking fires coming from the center of the island. However there are little to no visible open areas not covered by canopy of trees.</p>
+<p><i>Scouts bonus:</i> There appears to be smoke of what could be cooking fires coming from the center of the island. However there are little to no visible open areas not covered by canopy of trees.</p>
 
 <p>The scouts are unable to penetrate deep into the forest proper without making a proper expedition out of it. </p>
 </div>
@@ -1830,9 +1835,9 @@ I warn you however that should you meet any, you might find their customs peculi
 
 <p>“Captain, the Fleet-Admiral left me here to make contact but also negotiate the Lanaga tribes future cooperation with Admiralty operations in the area. They lay claim to this area of sea and its resources as their foraging grounds.” The scout explains.</p>
 
-<p>“Oh? You received such additional instructions were you to make contact with the natives?” I raise my brow. This is not quite what Scout Harbringa reported. </p>
+<p>“Oh? You received such additional instructions were you to make contact with the natives?” I raise my brow. This is not quite what Scout Harbringer reported. </p>
 
-<p>“My orders were to make contact, yes. But during my time here I've learned much of their customs and society. I wish to stay, no I wish to demand to stay.” </p>
+<p>“My orders were to make contact, yes. But during my time here I've learned much of their customs and society. I wish to stay, no, I wish to... I demand to stay.” Scout Vessla managed to sputter boldly after fearful hesitation.</p>
 
 <p>“Vessla has joined tribe Lanaga.” Holixer spoke up with a gravely firm voice. “He has expressed a desire for our protection and we have granted it.”</p>
 
@@ -2344,7 +2349,7 @@ It seemed wise, if I was to go through with this, to be in the favor of the stoi
 
 <p>&ldquo;Well, its time to let me out Scout. I don't have patience for dallying.&rdquo; I command firmly. Even from inside him, I have to ensure there are no questions of who's in command. He's going to be working for me after this, so best not give him ideas. </p>
 
-<p>&ldquo;Yes Captain, okay... &ldquo; The Scout shifted and moved. I felt him push against me as he crawled out of<div class="island hidden"> his hut</div><div class="ship hidden">my bed</div> to get more space. Paws pushed against me and he heaved, but all in the wrong ways.  He seemed to lack the technique or know-how in how to get me back up and I was smooshed this way and that as the Scout tried to cough me up. </p>
+<p>&ldquo;Yes Captain, okay... &ldquo; The Scout shifted and moved. I felt him push against me as he crawled out of<span class="island hidden"> his hut</span><span class="ship hidden">my bed</span> to get more space. Paws pushed against me and he heaved, but all in the wrong ways.  He seemed to lack the technique or know-how in how to get me back up and I was smooshed this way and that as the Scout tried to cough me up. </p>
 
 <p>It was not until I heard the burr of Holixers voice that things improved.  &ldquo;Here, let me aid you Vessla. You need to relax and then, open wide.&rdquo; </p>
 
@@ -2679,7 +2684,7 @@ Awes were hurt in his retrieval and the village largely destroyed in their oppos
 
 <p>The Scout remained sullen throughout my questions. It seemed some of his spirit had gone out of him. Perhaps it was resignation or guilt or a mix of both. Either way he answered with some useful information, though not as in depth as I would have liked, despite my urgings for leniency if he cooperated. </p>
 
-<p> Armed: The Tribe he had been living with were the Lanaga. This was one of their satellite foraging villages.  Though he would not fully divulge his reasoning for doing so, he said he had decided to stay here, feeling at home and welcome with the natives. </p>
+<p>The Tribe he had been living with were the Lanaga. This was one of their satellite foraging villages.  Though he would not fully divulge his reasoning for doing so, he said he had decided to stay here, feeling at home and welcome with the natives. </p>
 
 <p>It seemed to me the dangers and rigours of serving the Admiralty had perhaps become too much for him. How he had managed to graduate as a scout with such a cowardly attitude was beyond me. </p>
 

@@ -96,7 +96,11 @@
 		$("#side").removeClass("hidden");
 		$(".sideImage").attr('src', officer.tick.image);
 		state.supplies -=1;
+		
+		if (state.chapter.indexOf("sickness") == -1) {
 		state.chapter.push("sickness");
+		state.chapter.push("rotfur");
+		}
         // end by using lib.goTo
 		lib.dialogue(e, "noSalvage")
 		sandbanks.push("noSalvage");

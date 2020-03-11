@@ -354,7 +354,10 @@
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "permit2")
-		
+		$("#side").removeClass("hidden");
+		$(".faces").addClass("hidden");
+		$(".sideImage").removeClass("hidden");
+		$(".sideImage").attr('src', officer.ljus.image);
 		$(".btn").addClass("hidden");
 		$("#stopLeave1").removeClass("hidden");
 		$("#limitLeave1").removeClass("hidden");
@@ -380,7 +383,7 @@
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "stopLeave1")
-		
+		$("#side").addClass("hidden");
 		$(".btn").addClass("hidden");
 		
 		$("#ship2").removeClass("hidden");
@@ -392,7 +395,7 @@
 		habited.push("limitLeave1");
         // end by using lib.goTo
 		lib.dialogue(e, "limitLeave1")
-		
+		$("#side").addClass("hidden");
 		$(".btn").addClass("hidden");
 		$("#tick").removeClass("hidden");
 		
@@ -406,7 +409,7 @@
 		habited.push("nolimitLeave1");
         // end by using lib.goTo
 		lib.dialogue(e, "nolimitLeave1")
-		
+		$("#side").addClass("hidden");
 		$(".btn").addClass("hidden");
 		$("#tick").removeClass("hidden");
 		
@@ -418,7 +421,8 @@
 		
         // end by using lib.goTo
 		lib.dialogue(e, "tick")
-		
+		$(".sideImage").attr('src', officer.tick.image);
+		$("#side").removeClass("hidden");
 		$(".btn").addClass("hidden");
 		$("#nolimitLeave2").removeClass("hidden");
 		$("#stopLeave2").removeClass("hidden");
@@ -437,7 +441,7 @@
 			lib.dialogue(e, "limitLeave3")
 		}
 		
-				
+		$("#side").addClass("hidden");		
 		$(".btn").addClass("hidden");
 		$("#corsair").removeClass("hidden");
 		
@@ -449,7 +453,7 @@
 		
         // end by using lib.goTo
 		lib.dialogue(e, "stopLeave2")
-		
+		$("#side").addClass("hidden");
 		$(".btn").addClass("hidden");
 		
 		$("#corsair").removeClass("hidden");
@@ -463,7 +467,7 @@
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "ship2")
-		
+		state.shipHealth += 1;
 		$(".btn").addClass("hidden");
 		$("#corsair").removeClass("hidden");
 		
@@ -474,7 +478,8 @@
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "ship3")
-		
+		state.crewLoss += 2;
+		state.shipHealth += 2;
 		$(".btn").addClass("hidden");
 		$("#corsair").removeClass("hidden");
 		
@@ -482,6 +487,8 @@
 	  
 	    $('#limitLeave3').on('click', function(e) {
         // change state here
+		state.crewLoss += 4;
+		
         // end by using lib.goTo
 		lib.dialogue(e, "limitLeave3")
 		
@@ -493,6 +500,7 @@
 	  
 	   $('#nolimitLeave3').on('click', function(e) {
         // change state here
+		state.crewLoss += 15;
         // end by using lib.goTo
 		lib.dialogue(e, "nolimitLeave3")
 		
@@ -592,7 +600,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 <div id="side" class="hidden">
 <img class="sideImage" src=""></img>
  <img class="faces face4" src="../Images/assets/Nyxie.png">
-   <img class="faces face1" src="../Images/assets/garsch.png"/>
+   <img class="faces face1" src="../Images/assets/Garsch.png"/>
    
    <img class="faces face6 hidden"  src="../Images/assets/ArnFace.png"/>
    
@@ -604,9 +612,9 @@ Day: <span class="days"><script>displayDays()</script></span>
  <img class="face" id="image" src="../Images/assets/Mirr.png"/>
 <img class="faces face5 hidden"  src="../Images/assets/Tung.png"/>
   <img class="faces face2"  src="../Images/assets/ScoutM.png"/>
-   <img class="faces face7 hidden"  src="../Images/assets/KeeperFace.png"/>
+   <img class="faces face7 hidden"  src="../Images/assets/Keeperface.png"/>
   
-   <img class="faces face9"  src="../Images/assets/EldaFace.png"/>
+   <img class="faces face9"  src="../Images/assets/Eldaface.png"/>
    <img class="faces face10"  src="../Images/assets/Priestess.png"/>
    
 </div>
@@ -1080,7 +1088,7 @@ The ship is now also permeated by a peculiar herbal scent. Not too unpleasant.</
 <p>The final day of our stay on the Island has come. The crew have been busy fixing up the ship and polishing it to a shine. <br>
 It has been some time for rest for most of them, as many have been allowed to go down on half-duties or less, as long as they performed their work. <br>
 While the crew are rested, they are not necessarily happier. Many are resentful of the strict way we’ve chosen to keep them aboard. The many temptations of a good time on shore have been calling to them and although attempts at distractions have been made onboard, many have been giving long longing looks to the Island and its friendly people. <br>
-A few Awes have been forced to be made examples of, repeat offenders who have tried to elope onto the island have in the end been eaten by the First-Officer after repeated warnings. <br>
+A few Awes have been forced to be made examples of, repeat offenders who have tried to elope onto the island have in the end been eaten by the First-Officer or their subordinate after repeated warnings. <br>
 Officer Tick reports the ship has been patched up well over the days in the docks. It seems the Islanders have been quite helpful too, assisting in the work of patching the hull from the water after instructions. Most of them just seemed eager to help and learn and the crew are just as cheered at their friendly company.</p>
 
 <div class="baths hidden">

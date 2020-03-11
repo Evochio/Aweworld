@@ -38,7 +38,7 @@
 	state.Ziggy.status = 'available';
 	state.delay +=1
 	officer3 = [offList.firstOfficer[0], officer.ulv, officer.garsch];
-	  backupOfficer = [officer.garsch, officer.mirr]
+	  backupOfficer = [officer.mirr, officer.garsch]
    
    
    	function officerIntros(x) {
@@ -487,6 +487,7 @@
 		
 		else {
 		
+		state.crewLoss += 3;
 		lib.dialogue(e, "raidA")
 		$("#raptorians").removeClass("hidden");
 		if (_.contains(Navpoint4, "send") || _.contains(state.chapter, "uVessla")) {
@@ -896,6 +897,7 @@
       })
 	  
 	  $('#eat').on('click', function(e) {
+		state.vore +=1;
 		lib.dialogue(e, "eat"),
 		Navpoint4.push("info");
          $("#jail").addClass("hidden");
@@ -2213,7 +2215,7 @@ If anyone sails into the bay or scouts it from the air, they are likely to find 
 We'll have to hope the remoteness of the Island will protect it and that it serves whatever purpose it was meant to serve when its original crew abandoned it here. </p>
 
 <p>Our next destination awaits. </p>
- <div class="gatormineNo hidden">>
+ <div class="gatormineNo hidden">
 <p> We can head further westward <span class="uVessla hidden">,in pursuit of our treacherous scout and the Islanders that were scrounging around,</span>  to the Fertile-Islands inhabited by a tribe called ‘The Kaelani’. <span class="info hidden">Also according to our prisoner, the Fleet passed by there. </span>
 There is also a Lone-Island to the north east of here that I’ve marked as a point of interest that we could investigate before leaving the area. It’s location has marked it as a potentially good spot to set up a Admiralty naval base.</p>
  </div>
