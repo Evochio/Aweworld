@@ -216,7 +216,10 @@
         $(".btn").addClass("hidden");
 		
 		$("#assault2").removeClass("hidden");
+		
+		if (_.contains(state.inventory, "firebombs")) {
 		$(".assault_").removeClass("hidden");
+		}
 		$(".tiredAssault").removeClass("hidden");		
       })
 	  
@@ -355,7 +358,7 @@
 		battle.push(1);
 		battle.push(officer3[1].name);
         DefenseSquad()     
-		lib.dialogue(e, "boardingAlt"),
+		lib.dialogue(e, "boarding"),
         $(".btn").addClass("hidden");
 		
 		$("#boarding2").removeClass("hidden");
@@ -644,6 +647,7 @@
 		state.chapter.push("TungNommed");
 		$(".tungnom").removeClass("hidden");
 		$(".TungText").removeClass("hidden");
+		boarding -=1;
 		}
 		boarding +=1;
 		lib.dialogue(e, "pullback2"),
@@ -659,11 +663,12 @@
 		removeOfficer(officer.tung);
 		state.chapter.push("TungNommed");
 		$(".tungnom").removeClass("hidden");
+		boarding -=1;
 		}
 		lib.dialogue(e, "retreat"),
         $(".btn").addClass("hidden");
-		
-		
+		boarding +=0;
+		$("#boarding4").removeClass("hidden");
 		
 				
       })
@@ -814,9 +819,7 @@
 		$("#defense").removeClass("hidden");
 		$("#evade").removeClass("hidden");
 			
-		$("#boarding4").removeClass("hidden");
-			
-      })
+		})
 	  
 	  
 	   $('#special2').on('click', function(e) {
@@ -1597,6 +1600,7 @@ The Corsairs I was worrying about seem to be speeding for the Small-craft which 
 
 <div class="reinforce hidden"><p><strong>Reinforce with 2nd Squad</strong></p>
 <p>The fight is going strong, but no one is winning decisively yet and casualties are inevitably mounting. <br>
+<!--
 <div class="TungText hidden">
 Officer Tungs chaotic fighting style while initially effective is starting to lose ground. The Gator fighters are too tough to overwhelm easily. <br>
 </div>
@@ -1605,9 +1609,9 @@ Officer Garsch organized fighting is winning slightly, but his formations are st
 </div>
 <div class="UlvText hidden">
 Officers Ulvs assault is at a stalemate. They have expended a lot of their ammunition and the defenders have taken guarded defensive positions, but are getting bolder, fighting to retake the upper decks of their ships, slowly pushing them back in places. <br>
- I have to consider the next move, many Awes are still waiting for orders and able to be utilized. The riley Raptorians are ready to be deployed too, but they are not at full strength from all their rowing, not that it stops them from potentially adding muscle and chaos to the fight. <br>
-I can also try to order my attackers back, to try to draw the defenders out of position.</p>
+</p>
 </div>
+-->
 
 <div class="UlvRein hidden">
 <div class="GarschText hidden">
@@ -1781,7 +1785,7 @@ Officer Garsch is able to pull his forces back, he had made sure to keep his bac
 <div class="UlvText hidden">
 Officer Ulv and her remaining ‘gals’ seems to at first not heed the call to retreat. But then, at a signature call of their own, they suddenly leap away from the hardest of the fighting. Given cover by Awes with ammunition left and in secure places to shoot with their bolt throwers.</p>
 </div>
-<p>l<div class="lose hidden">
+<p><div class="lose hidden">
 We try to push off from their ship, but the pirate crew seems not to be willing to let us go. Grappling hooks and ropes are tying us up, even as we try to cut them off. They are not letting their prey go. <br>
 </div>
 <div class="stalemate hidden">

@@ -65,18 +65,46 @@
         $("#threaten").removeClass("hidden")
 		$("#soft").removeClass("hidden")
       })
+	  
 	  $('#hard').on('click', function(e) {
+       lib.dialogue(e, "hard"),
+	   
+	   $("#side").addClass("hidden")
+		state.crewMorale += 1;
+		
+		$("#hard").addClass("hidden")
+		$("#letgo").addClass("hidden")
+		$("#digest").removeClass("hidden")
+		$("#release").removeClass("hidden")
+		
+      })
+	  
+	  $('#digest').on('click', function(e) {
        lib.dialogue(e, "hard"),
 	   state.events.push("hard");
 	   $("#side").addClass("hidden")
-		state.crewMorale += 1;
+		removeOfficer(officer.tung);
 		state.vore += 1;
 		state.crewLoss += 1;
-		$("#hard").addClass("hidden")
-		$("#letgo").addClass("hidden")
+		$(".btn").addClass("hidden")
+		
 		$("#continue").removeClass("hidden")
 		
       })
+	  
+	   $('#release').on('click', function(e) {
+       lib.dialogue(e, "release"),
+	   state.events.push("soft");
+	   $("#side").addClass("hidden")
+	
+		state.vore += 1;
+		state.crewLoss += 1;
+		$(".btn").addClass("hidden")
+		
+		$("#continue").removeClass("hidden")
+		
+      })
+	  
 	   $('#soft').on('click', function(e) {
        lib.dialogue(e, "soft"),
 	   state.events.push("soft");
@@ -186,6 +214,9 @@
 
 <button class="btn btn-default" id="confrontation">Confrontation</button>
 <button class="btn btn-default hidden" id="hard">Eat Tung</button>
+<button class="btn btn-default hidden" id="digest">Digest Tung</button>
+<button class="btn btn-default hidden" id="release">Release him</button>
+
 <button class="btn btn-default hidden" id="soft">Diplomatic</button>
 <button class="btn btn-default hidden" id="threaten">Threaten</button>
 <button class="btn btn-default hidden" id="letgo">Let it go</button>
@@ -298,18 +329,36 @@
 <p>The meeting continued without interruption. </p>
 </div>
 
+<div class="digest hidden"><p><strong>Digest Tung</strong></p>
+<p>I give my belly a firm pat and lean back. No, it was best to make a thorough example. Officer Tung will get to serve me as part of my person. <br>
+That should also set the crew straight in that I mean business and am not to be pushed around. <br>
+There is a muffled wince from my belly as I let out a loud ‘BELCH’, letting my meal know we’re about to spend a lot of time together from now on.</p>
+
+</div>
+
+<div class="release hidden"><p><strong>Release Tung</strong></p>
+<p>I give my belly a squeeze and it ‘gwourbles’ in an agitated manner. It would rather like to keep what I’ve put into it. <br>
+But that’s not what I’ve decided, I am giving Officer Tung a second chance. Hopefully I’ve put my point across rather well for him not to try challenge me.<br>
+It’s a somewhat downcast officer that later salutes and hurries off to his quarters to get himself cleaned up.</p>
+
+</div>
+
+
 <div class="hard hidden"><p><strong>Eat Tung</strong></p>
 <p> "Fine. You're henceforth demoted to status of ration. I will carry out your sentencing. If you'd all excuse us for a moment if privacy. </p>
 
 <p>A rather nonplussed officer cadre hesitated a moment, turned to look at Tung and then filed out of the room. Arn paused briefly but then exited wordlessly. </p>
 
-<p>Tung was heavy, complained loudly but not dumb enough to fight his superior officer, especially while at port. He must have thought i was bluffing up until the moment I swallowed him whole. For Insubordination, contempt and... being hungry. I hadent had a solid meal in my long trip west and have to admit I was cranky. </p>
+<p>Tung was heavy, complained loudly but not dumb enough to fight his superior officer, especially while at port. He must have thought i was bluffing up until the moment I swallowed him whole. For Insubordination, contempt and... being hungry. I hadn't had a solid meal in my long trip west and have to admit I was cranky. </p>
 
 <p>But truth be told, I recognized Tungs type straight away. They can be solid officers and loyal to a fault, but only if you gain that loyalty to begin with. Otherwise they will find every opportunity to undermine you for their own agendas. </p>
 
 <p>Problem is that they rarely gain that attitude alone, there are deep-rooted problem somewhere in this crew. </p>
 
-<p>For now, this problem is deep in my gut. I called the officers back and resumed the meeting. No one made further remarks and chose to ignore any errant noise. </p>
+<p>For now, this problem is deep in my gut. I called the officers back and resumed the meeting. No one made further remarks and chose to ignore any errant noise from my stomach. </p>
+
+<p>Come conclusion of the meeting and as the Officers file out, Officer Tung has settled down, unable to affect the constitution of my belly in any significant manner to help him. The point has been thoroughly made. There is still a chance to release him, perhaps he’s learned his lesson. </p>
+
 <img src="Images/assets/Avolcbelly3.png" height="40%" width="40%"/> 
 </div>
 

@@ -75,7 +75,8 @@
 	   $('#quarters').on('click', function(e) {
        lib.dialogue(e, "quarters")
 	   $("#quarters").addClass("visited")
-	   $("#side").addClass("hidden")
+	   $("#side").removeClass("hidden")
+	   $(".sideImage").attr('src','Images/assets/Calma.png');
       	 if (_.contains(state.events, "incognito")){
 			$("#yes").removeClass("hidden")
 			$("#no").removeClass("hidden")
@@ -112,6 +113,7 @@
 		 
 		 $('#agree').on('click', function(e) {
        lib.dialogue(e, "agree")
+			state.events.push("CalmaPouch")
 			$("#agree").addClass("hidden")
 			$("#decline").addClass("hidden")
 			$("#captain").addClass("hidden")
@@ -124,6 +126,7 @@
 		 
 		 $('#decline').on('click', function(e) {
        lib.dialogue(e, "decline")
+	   $("#side").addClass("hidden")
 			$("#agree").addClass("hidden")
 			$("#decline").addClass("hidden")
 			$("#captain").addClass("hidden")
@@ -150,6 +153,7 @@
 	    $('#galley').on('click', function(e) {
 		lib.dialogue(e, "galley")
 		$("#galley").addClass("visited")
+		$(".sideImage").attr('src','Images/assets/Zat.png');
 		$("#side").removeClass("hidden")
        if (_.contains(state.events, "incognito")){
 			$("#apologize").removeClass("hidden")
@@ -177,6 +181,7 @@
 	   
 	   $('#noapologize').on('click', function(e) {
 	    lib.dialogue(e, "noapologize")
+		state.events.push("ZatBelly")
 	   $("#apologize").addClass("hidden")
 	   $("#noapologize").addClass("hidden")
 	   $("#apologize2").removeClass("hidden")
@@ -361,6 +366,9 @@
   
   <style>
     /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	.sideImage {
+	margin: auto;
+	}
   </style>
 
 </head>
@@ -374,7 +382,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 <h1>Departure</h1>
 </div>
 <div class="hidden" id="side">
- <img id="image" src="Images/assets/Zat.png"/>
+ <img class="sideImage" src="Images/assets/Zat.png"/>
 </div>
 
 <div id="story-text">

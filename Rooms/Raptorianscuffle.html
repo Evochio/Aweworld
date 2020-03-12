@@ -45,6 +45,7 @@
 		$('#button-2').on('click', function(e) {
 		lib.dialogue(e, "wait"),
 		state.events.push("wait");
+		state.supplies -= 1;
 		$("#side").removeClass("hidden")
         $("#button-3").addClass("hidden")
 		$("#button-1").addClass("hidden")
@@ -99,6 +100,7 @@
        lib.dialogue(e, "pouched")
 	   state.events.push("pouched");
 		$("#pouched").addClass("hidden")
+		$("#image").attr('src','Images/assets/Eldaface.png');
 		$("#injury").addClass("hidden")
         $("#button-4").removeClass("hidden")
 		
@@ -161,6 +163,7 @@
 		
 		}
        	state.crewLoss += 1;
+		state.rapNumber -= 1;
 		$("#Labor").addClass("hidden")
 		$("#Eat").addClass("hidden")
 		$("#Overboard").addClass("hidden")
@@ -168,6 +171,7 @@
       })
 	  $('#Overboard').on('click', function(e) {
 	  state.raptorians -= 1;
+	  state.rapNumber -= 2;
 	  state.crewLoss += 2;
        lib.dialogue(e, "overboard"),
 		$("#Labor").addClass("hidden")

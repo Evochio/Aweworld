@@ -570,6 +570,7 @@ margin-right: 200px;
 	   $('#toziggy').on('click', function(e) {
         lib.dialogue(e, "toziggy"),
 		state.crewLoss += 1;
+		removeOfficer(officer.arn);
 		state.events.push("toziggy");
 		state.events.push("noArn");
 		$("#button-17").removeClass("hidden")

@@ -229,6 +229,14 @@ officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
 			}
 			
 		}
+		else if (choiceOfficer[0].name == "Garsch") {
+		
+		$(".poorInvestigation").removeClass("hidden");
+			if (_.contains(state.locations, "Navpoint4")) {
+			$(".confirmtext").removeClass("hidden");
+			}
+			
+		}
 		else if (_.contains(choiceOfficer, officer.tung)) {
 		
 		$(".poorInvestigation").removeClass("hidden");
@@ -238,14 +246,6 @@ officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
 			
 		}
 		
-		else if (_.contains(choiceOfficer, officer.garsch)) {
-		
-		$(".poorInvestigation").removeClass("hidden");
-			if (_.contains(state.locations, "Navpoint4")) {
-			$(".confirmtext").removeClass("hidden");
-			}
-			
-		}
 		
 		else if (_.contains(choiceOfficer, officer.tick)){
 		

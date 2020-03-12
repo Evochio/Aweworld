@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="../main.css"></link>
   <script>
 	state.days += 1;
+	state.rapNumber -=1;
+	
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
@@ -140,6 +142,7 @@
 		else {
 		state.crewMorale -= 2;
 		}
+		removeOfficer(officer.arn);
 		state.events.push("eatArn");
 		state.events.push("noArn");
 		

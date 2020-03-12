@@ -341,7 +341,7 @@
 		 
 		 	 		 
 		 
-		 if (_.contains(state.events, "soft")) {
+		 if (offList.deadRoster.indexOf(officer.tung) > -1) {
 			lib.dialogue(e, "boardTung")
 			state.battle.push("boardTung")
 			state.crewMorale += 3
@@ -355,6 +355,7 @@
 			state.battle.push("board")
 			state.crewMorale += 3
 			state.crewLoss += 10;
+			state.rapNumber -= 1;
 			state.crewLossBattle += 10;
 			$("#button-12").removeClass("hidden");
 			$("#button-7").addClass("hidden")
@@ -365,6 +366,7 @@
 			state.battle.push("board")
 			state.crewMorale += 3
 			state.crewLoss += 10;
+			state.rapNumber -= 1;
 			state.crewLossBattle += 10;
 			$("#button-12").removeClass("hidden");
 			$("#button-7").addClass("hidden")
@@ -374,6 +376,7 @@
 			state.battle.push("boardLow")
 			state.crewMorale -= 2
 			state.crewLoss += 30;
+			state.rapNumber -= 3;
 			state.crewLossBattle += 30;
 			$("#button-7").removeClass("hidden");
 			}
@@ -389,6 +392,7 @@
         // end by using lib.goTo
          lib.dialogue(e, "leadF")
 		state.crewLoss += 8;
+		state.rapNumber -= 1;
 		state.crewLossBattle += 8;
 		$("#button-7").addClass("hidden")
 		$("#leadF").addClass("hidden")
@@ -411,6 +415,7 @@
 		$("#onwards").removeClass("hidden");
 		}
 		state.crewLoss += 10;
+		state.rapNumber -= 1;
 		state.crewLossBattle += 10;
          
 		$("#button-7").addClass("hidden") 
@@ -574,7 +579,7 @@
 		
 		else if ((state.battle.indexOf("manouver") > -1) && state.battle.indexOf("changePlan") > -1){
 			
-			 if (_.contains(state.events, "soft")) {
+			 if (offList.deadRoster.indexOf(officer.tung) > -1) {
 			lib.dialogue(e, "boardTung")
 			state.battle.push("boardTung")
 			state.crewMorale += 3
@@ -588,6 +593,7 @@
 			state.battle.push("board")
 			state.crewMorale += 3
 			state.crewLoss += 10;
+			state.rapNumber -= 1;
 			state.crewLossBattle += 10;
 			$("#button-12").removeClass("hidden");
 			$("#button-7").addClass("hidden")
@@ -597,6 +603,7 @@
 			state.battle.push("boardLow")
 			state.crewMorale -= 2
 			state.crewLoss += 30;
+			state.rapNumber -= 3;
 			state.crewLossBattle += 30;
 			$("#button-7").removeClass("hidden");
 			}
@@ -636,6 +643,7 @@
 		
         if (_.contains(state.battle, "boardTung")) {
 		lib.dialogue(e, "victory3")
+		removeOfficer(officer.tung);
 		}
 		else if (_.contains(state.battle, "board")){
 		lib.dialogue(e, "victory2")
@@ -691,6 +699,7 @@
 			state.battle.push("desperate")
 			$("#button-12").removeClass("hidden");
 			state.crewLoss += 15;
+			state.rapNumber -= 2;
 			state.crewLossBattle += 15;
 		 }
 		 
@@ -1573,7 +1582,7 @@ Raptorians waited eagerly for the command to charge as we locked ships. I could 
 
 <p> It took a while to puzzle out what had happened, but my ballistic officer, an ecstatic Officer Ulv quickly filled me in. </p>
 
-<p> "I was watching them real close, we were giving cover with the remaining ballista." Ulv grinned, she was from the same region as Ziggy i guessed by her maner of speech. </p>
+<p> "I was watching them real close, we were giving cover with the remaining ballista." Ulv grinned, she was from the same region as Ziggy I guessed by her maner of speech. </p>
 
 <p> "Whatever those barrels were filled with it was highly flamable! Like oil but more so! Once the contents started burning, it went woosh! And then it spread to the other barrels and that was more of a KABOOM. Glad ya had the sense to order everyone to jump, or you'd be crisps!" </p>
 
@@ -1595,7 +1604,7 @@ Raptorians waited eagerly for the command to charge as we locked ships. I could 
 
 <p>“Their weapons are disabled. They were VERY protective of them. So much so that they dared not fully advance while we held them. They were made out of Iron captain, we could not smash them. But we smashed what we could, supports and such. We also scattered black powder all around from barrels, thats what made them really mad and forced us to flee. “</p>
 
-<p>“You are to be commended for this Officer Garsh, you and all those who fought with you! Now go get yourself seen too.” I gave him a pat on the shoulder and he threw a quick salute, he looked solemn as he limped down below-deck and i knew why. Despite the success, we appear to have lost many in that desperate fight.</p>
+<p>“You are to be commended for this Officer Garsh, you and all those who fought with you! Now go get yourself seen too.” I gave him a pat on the shoulder and he threw a quick salute, he looked solemn as he limped down below-deck and I knew why. Despite the success, we appear to have lost many in that desperate fight.</p>
 
 <p>I glanced up at fast retreating ship, we are safe for now. We could pursue them, but for now I dont wish to push our luck further. We've also taken an amount of damage and injuries yet to be assessed. </p>
 

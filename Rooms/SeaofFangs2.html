@@ -97,6 +97,7 @@
 	 	$('#boatTung').on('click', function(e) {
 		state.events.splice(0, 1);	
 		state.events.push("hard");	
+		removeOfficer(officer.tung);
 		$("#side").removeClass("hidden")
 		$("#image").attr('src','Images/assets/Tung.png');
         $(".tung").removeClass("hidden")
@@ -248,7 +249,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p> Cliffs and reefs are thick here however. We cant safely move ahead without significant risk to the ship. I could however send the scouts by wing out to investigate, but I have to be wary of when I use them, they're irreplacable. Or we could deploy one of our smaller boats to row on over. </p>
 
-<p> My reclusive black-furred scout-master Sixt now stands beside me. I want his oppinion first.</p>
+<p> My reclusive black-furred scout-master Krel now stands beside me. I want his oppinion first.</p>
 
 <p> "Aye Captain, we are ready whenever you need us. We can fly there no problem. Getting back can be a bit harder however if we cant take off somewhere high enough." He speaks in a low soft voice. The other two scouts, distinguishable by their heavy cloaks, linger nearby. </p>
 

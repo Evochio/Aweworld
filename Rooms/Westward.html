@@ -21,7 +21,28 @@
     state.Glint.status = 'available';
     state.Valnos.status = 'available';
 	state.Ziggy.status = 'available';
+	officer3 = [officer.nyxie, officer.mirr, officer.garsch]
 	
+	 	function officerIntros(x) {
+		
+		if (officer3[x].name == 'Mirr') {
+			
+			return "Mirr the amicable Crew-Officer"
+			
+		}
+		if (officer3[x].name == 'Nyxie') {
+			
+			return "Nyxie the alert Navigator" 
+		}
+		
+		if (officer3[x].name == 'Garsch') {
+			return "Garsch the experienced Arms-Officer"
+		}
+		
+		if (officer3[x].name == 'Tung') {
+			return "Tung the spirited Arms-Officer"
+		}
+	}
 	
 	
     $(document).ready(function() {
@@ -56,6 +77,7 @@
 	  
 	  $('#nyxie').on('click', function(e) {
 		state.events.push("nyxie");
+		offList.firstOfficer[0] = officer.nyxie;
 		lib.dialogue(e, "nyxie"),
 		$("#nyxie").addClass("hidden")
 		$("#mirr").addClass("hidden")
@@ -67,6 +89,7 @@
 	
 	  $('#mirr').on('click', function(e) {
 		state.events.push("mirr");
+		offList.firstOfficer[0] = officer.mirr;
 		lib.dialogue(e, "mirr"),
 		$("#nyxie").addClass("hidden")
 		$("#mirr").addClass("hidden")
@@ -79,6 +102,7 @@
 	    $('#garsch').on('click', function(e) {
 		if (_.contains(state.events, "hard")) {
 		state.events.push("garsch");
+		offList.firstOfficer[0] = officer.garsch;
 		lib.dialogue(e, "garsch"),
 		$("#nyxie").addClass("hidden")
 		$("#mirr").addClass("hidden")
@@ -87,6 +111,8 @@
 		
 		}
 		else {
+		state.events.push("garschReject");
+		officer3[2] = officer.tung;
 		$("#tung").removeClass("hidden")
 		$("#garsch").addClass("hidden")
 			lib.dialogue(e, "garschtung")
@@ -98,6 +124,7 @@
 	
 	 $('#tung').on('click', function(e) {
 		state.events.push("tung");	
+		offList.firstOfficer[0] = officer.tung;
 		lib.dialogue(e, "tung"),
 		$("#nyxie").addClass("hidden")
 		$("#mirr").addClass("hidden")
@@ -156,6 +183,9 @@ else {
 	img {
 	margin: auto;
 	}
+	.sideImage {
+	margin: auto;
+	}
 	
 	#image2 {
 	width: 30%;
@@ -173,7 +203,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 </div>
 <div id="side" class="hidden">
  <img id="image" src=""/>
-
+ 
 </div>
 <div id="story-text">
 <p>I set our course Westward. The Wulf-ship has turned around and with full sails races back south-east toward Wulf-lands. </p>
@@ -330,10 +360,28 @@ Which brings me to her downside. She is for some reason hiding from greater resp
 <p><b>Garsch</b> has experience unlike any other. He's the oldest Officer aboard and has spent years training students in the Academy before he joined into this navy commission. He's unflappable and would be a stoic and reliable First-Officer. <br />
 Unfortunately, he's not very well liked among the crew. He drives them hard and has high expectations. His age might be a problem in the long-term, I cant shake the feeling this sudden assignment to sea is his last hurrah.</p>
 
+<span class="theOfficer officerObjects"></span>
+
+
+
+<br/>
+<script>
+officer.nyxie.image = src="Images/assets/Nyxie.png"
+officer.mirr.image = src="Images/assets/Mirr.png"
+officer.garsch.image = src="Images/assets/Garsch.png"
+officer.tung.image = src="Images/assets/Tung.png"
+
+createOfficer4(officer3)
+$('#officerObject0').popover({title: officer3[0].name, content: officerIntros(0), trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject1').popover({title: officer3[1].name, content: officerIntros(1), trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject2').popover({title: officer3[2].name, content: officerIntros(2), trigger: "hover", placement: "top", container: "body"}); 
+
+</script>
+<!--
 <img id="image2" src="Images/assets/Nyxie.png"/>
 <img id="image2" src="Images/assets/Mirr.png"/>
 <img id="image2" src="Images/assets/Garsch.png"/>
-
+-->
 </div>
 
 <div class="nyxie hidden"><p><strong>Nyxie</strong></p>
@@ -363,6 +411,15 @@ Unfortunately, he's not very well liked among the crew. He drives them hard and 
 <p>“Are you sure about this Garsch?” I hesitate. Its true I had not even considered Tung. He had mostly stayed out of my way since the first day. </p>
 
 <p>“I'm too old and weary for the job Captain. If there were no other choice, I'd take the job of course. But I don't want it. No, either pick Tung or someone else. I'll do what I can to assist whoever you choose.”<br />
+
+<span class="theOfficer officerObjects"></span>
+<script>
+createOfficer4(officer3)
+$('#officerObject0').popover({title: officer3[0].name, content: officerIntros(0), trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject1').popover({title: officer3[1].name, content: officerIntros(1), trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject2').popover({title: officer3[2].name, content: officerIntros(2), trigger: "hover", placement: "top", container: "body"}); 
+
+</script>
 </p>
 </div>
 

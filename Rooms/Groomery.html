@@ -167,11 +167,11 @@
 	   
       
 	  
-	  		if (_.contains(state.events, "hard")) {
+	  		if (_.contains(offList.deadRoster, officer.tung)) {
 			$('#tung').removeClass('hidden');
 			
 		}
-		else if (_.contains(state.events, "soft")) {
+		else  {
 			$('#notung').removeClass('hidden');
 			
 		}
@@ -182,6 +182,9 @@
   
   <style>
     /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	.sideImage {
+	margin: auto;
+	}
   </style>
 
 </head>
@@ -195,7 +198,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 <h1>The Groomery</h1>
 </div>
 <div id="side">
- <img id="image" src="Images/assets/Eldaface.png"/>
+ <img class="sideImage" src="Images/assets/Eldaface.png"/>
 </div>
 
 <div id="story-text">
