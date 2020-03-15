@@ -21,7 +21,9 @@
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
-     
+     if (_.contains(state.inventory, "evokBelly")) {
+		$(".evokBelly").removeClass("hidden")
+		}
 	  
       $('#button-1').on('click', function(e) {
 		lib.dialogue(e, "start"),
@@ -69,12 +71,10 @@
 
 <span class="evokBelly hidden"><p>I also regret not having forethought about leaving the consuming of Evok till after the meeting. He is proving to be a literal huge hassle to break down and i have been bed bound for a day. For better or worse I will be showing off quite a gut in our meeting. </span>
 </div>
-<hr />
+
 
 <script>
-if (_.contains(state.inventory, "evokBelly")) {
-		$(".evokBelly").removeClass("hidden")
-		};
+
 </script>
 <div id="tail">
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->

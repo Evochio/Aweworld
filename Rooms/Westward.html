@@ -67,6 +67,17 @@
 		$("#promotion").addClass("hidden");
 	})
 	
+	$('#keeper').on('click', function(e) {
+		lib.dialogue(e, "keeper"),
+		
+		
+		$("#promotion").removeClass("hidden")
+				
+		$("#keeper").addClass("hidden");
+		$("#side").removeClass("hidden")
+		$("#image").attr('src','Images/assets/Keeperface.png');
+	})
+	
 	$('#arn').on('click', function(e) {
 		lib.dialogue(e, "arn"),
 		$("#button-2").removeClass("hidden")
@@ -82,6 +93,7 @@
 		$("#nyxie").addClass("hidden")
 		$("#mirr").addClass("hidden")
 		$("#garsch").addClass("hidden")
+		$(".btn").addClass("hidden")
 		$("#button-2").removeClass("hidden");
 		$("#side").removeClass("hidden")
 		$("#image").attr('src','Images/assets/Nyxie.png');
@@ -94,6 +106,7 @@
 		$("#nyxie").addClass("hidden")
 		$("#mirr").addClass("hidden")
 		$("#garsch").addClass("hidden")
+		$(".btn").addClass("hidden")
 		$("#button-2").removeClass("hidden");
 		$("#side").removeClass("hidden")
 		$("#image").attr('src','Images/assets/Mirr.png');
@@ -105,6 +118,8 @@
 		offList.firstOfficer[0] = officer.garsch;
 		lib.dialogue(e, "garsch"),
 		$("#nyxie").addClass("hidden")
+		$(".first").addClass("hidden")
+		$(".first.officerObjects").toggleClass("hidden")
 		$("#mirr").addClass("hidden")
 		$("#garsch").addClass("hidden")
 		$("#button-2").removeClass("hidden");
@@ -113,6 +128,7 @@
 		else {
 		state.events.push("garschReject");
 		officer3[2] = officer.tung;
+		createOfficer4(officer3)
 		$("#tung").removeClass("hidden")
 		$("#garsch").addClass("hidden")
 			lib.dialogue(e, "garschtung")
@@ -129,6 +145,7 @@
 		$("#nyxie").addClass("hidden")
 		$("#mirr").addClass("hidden")
 		$("#tung").addClass("hidden")
+		$(".btn").addClass("hidden")
 		$("#button-2").removeClass("hidden");
 		$("#side").removeClass("hidden")
 		$("#image").attr('src','Images/assets/Tung.png');
@@ -136,8 +153,10 @@
 	  
 	  
 	  
-	
-	if (_.contains(state.events, "arn")) {
+	if (_.contains(state.events, "nokeeper")) {
+	$("#keeper").removeClass("hidden")
+	}
+	else if (_.contains(state.events, "arn")) {
 	$("#arn").removeClass("hidden")
 	}
 	else {
@@ -264,6 +283,7 @@ Although Wulfs do like to play around with words, perhaps this firm action will 
 <button class="btn btn-success hidden" id="button-1">Intel</button>
 <button class="btn btn-default hidden" id="button-2">Onwards</button>
 
+<button class="btn btn-default hidden" id="keeper">Keeper emerges</button>
 <button class="btn btn-default hidden" id="arn">Reconciliation</button>
 <button class="btn btn-default hidden" id="promotion">Promotions</button>
 
@@ -289,6 +309,18 @@ Although Wulfs do like to play around with words, perhaps this firm action will 
 
 <p>With a frustrated sigh and my eyes bleary in the candlelight I decide to leave things for the morrow. Dawn is a few hours away.</p>
 
+</div>
+
+<div class="keeper hidden"><p><strong>Keeper emerges</strong></p>
+<p>Keeper has suddenly appeared from seemingly nowhere and reported for duty as if he hasn't been missing for several days. At first I am angry with him, but I confess I am relieved he is not mysteriously disappeared anymore. <br>
+“I apologize Captain, when the Raptorians went out on their little hunt, my instincts bid me to hide and do so well. I have after all… shall we say, dined on a few of them, legally I might add; Nevertheless I figured I was one of their main targets.” The green Wulf bowed his head slightly. <br>
+“You are aware you bear part of the responsibility for riling them up like this. Where have you been hiding all this time?” I asked firmly. <br>
+“In hindsight yes, part of the blame would be on me. It would be gormless of me to deny it. I think it’s best I stay well enough away from them from now on. <br>
+As for where I’ve been hiding, I suppose you as captain are in the right to know. I hid in the pantry where my scent might be masked.” Officer Keeper spoke with surprising honesty. <br>
+“Ah, with Chef Zat. I suppose that makes sense that Wulfs stick together.” I hummed. <br>
+“Oh no Captain. That’s not true about Wulfs at all. He had some high reservations and expensive conditions about my being there I’ll have you know.” <br>
+With that I dismissed officer Keeper back to duty. Hopefully he would stay out of trouble. There was not really anything I could pin on him for the recent events. <br>
+I do wonder why he hid so long, he could at least have shown himself to assist and advice with the Wulf-ship. Perhaps Raptorians was not all he was hiding from.</p>
 </div>
 
 
@@ -360,7 +392,7 @@ Which brings me to her downside. She is for some reason hiding from greater resp
 <p><b>Garsch</b> has experience unlike any other. He's the oldest Officer aboard and has spent years training students in the Academy before he joined into this navy commission. He's unflappable and would be a stoic and reliable First-Officer. <br />
 Unfortunately, he's not very well liked among the crew. He drives them hard and has high expectations. His age might be a problem in the long-term, I cant shake the feeling this sudden assignment to sea is his last hurrah.</p>
 
-<span class="theOfficer officerObjects"></span>
+<span class="theOfficer officerObjects first"></span>
 
 
 
@@ -414,7 +446,6 @@ $('#officerObject2').popover({title: officer3[2].name, content: officerIntros(2)
 
 <span class="theOfficer officerObjects"></span>
 <script>
-createOfficer4(officer3)
 $('#officerObject0').popover({title: officer3[0].name, content: officerIntros(0), trigger: "hover", placement: "top", container: "body"}); 
 $('#officerObject1').popover({title: officer3[1].name, content: officerIntros(1), trigger: "hover", placement: "top", container: "body"}); 
 $('#officerObject2').popover({title: officer3[2].name, content: officerIntros(2), trigger: "hover", placement: "top", container: "body"}); 

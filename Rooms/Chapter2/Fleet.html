@@ -37,22 +37,24 @@
 		$(".meeting_").addClass("hidden");
 		}
 	  
-		if (_.contains(offList.firstOfficer, officer.arn)) {
+	  
+	  
+		if (offList.firstOfficer[0].name == "Arn") {
 		
 		 $(".arn").removeClass("hidden");
 	  
 		}
-		else if (_.contains(offList.firstOfficer, officer.mirr)) {
+		else if (offList.firstOfficer[0].name == "Mirr") {
 		 $(".mirr").removeClass("hidden");
 		}
 	
-		else if (_.contains(offList.firstOfficer, officer.tung)) {
+		else if (offList.firstOfficer[0].name == "Tung") {
 		 $(".tung").removeClass("hidden");
 		}
-		else if (_.contains(offList.firstOfficer, officer.garsch)) {
+		else if (offList.firstOfficer[0].name == "Garsch") {
 		 $(".garsch").removeClass("hidden");
 		}
-		if (_.contains(offList.deadRoster, officer.evok)) {
+		if (_.contains(offList.deadRoster, "Evok")) {
 		
 		 $(".evok").removeClass("hidden");
 	  
@@ -178,14 +180,14 @@
 	   $('#crew').on('click', function(e) {
         // change state here
         // end by using lib.goTo
-		if (state.crewLoss <= 5) {
+		if (state.crewLoss <= 15) {
 			$(".crewhigh").removeClass("hidden");
 			approval += 1; 
 		}
-		else if (state.crewLoss <= 10) {
+		else if (state.crewLoss <= 30) {
 			$(".crewmid").removeClass("hidden");
 		}
-		else if (state.crewLoss <= 20) {
+		else if (state.crewLoss > 30) {
 			$(".crewlow").removeClass("hidden");
 			approval -= 1; 
 		}
@@ -356,9 +358,9 @@
         // change state here
         // end by using lib.goTo
 		
-				
+		state.chapter.push("giveKlippa")		
 		lib.dialogue(e, "give")
-		
+		$(".klippadoc").removeClass("hidden");
 		$(".btn").addClass("hidden");
 		$("#meeting").removeClass("hidden");
 		
@@ -899,7 +901,7 @@ The room seemed to hold its breath as the Fleet Admiral unveiled a map with arro
 The Fleet-Admiral is suddenly interrupted by one of the Captain thumping the table to get attention while standing taller. She has a look of slight dismay to her.<br>
 “Admiral! I apologize, but…” <br>
 “SILENCE!” The Fleet-Admiral roared, making every Awe in the crowded room raise their hackles. The very air itself obeyed and became still, so did the bustle from around the ship beyond the room. <br>
-“Captain Klippa! I am laying out the plans for our next course of action, I have not opened the table to any discussion on the matter!” She glared and leaned forward, making the Captain in question shrink back so much she might climb into the pouch of the captain next to her to escape.<br>
+“Captain Klippa! I am laying out the plans for our next course of action, I have not opened the table to any discussion on the matter!” She glared and leaned forward, making the Captain in question shrink back so much she might climb into the pouch of the captain next to her to escape. <span class="klippadoc hidden">That, wisely so, seems the be the extent of her protests, despite the documents I gave her. For now. </span><br>
 </div>
 <div class="lateVore">
 <p>“Let me start by saying I am aware of the doubts and disobedience some of you have been harboring.” She slaps at her gut for emphasis. The figure who she had been digesting the day before now naught but a faint soft furry paunch on her otherwise large body. <br>

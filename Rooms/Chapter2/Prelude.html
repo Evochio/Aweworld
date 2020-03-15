@@ -16,12 +16,13 @@
    <script src="../../officers.js"></script>
   <link rel="stylesheet" href="../../main.css"></link>
   <script>
+   removeOfficer(officer.tung);
 	var count = 0;
    var force = [officer.tung, officer.garsch, officer.ulv]
    
    
    var support = [officer.mirr, officer.arn, officer.keeper]
-   
+  
   
    	
 	function fighters(x) {
@@ -74,24 +75,28 @@
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
-	   if (_.contains(offList.deadRoster, officer.arn)) {
+	  /*
+	   if (_.contains(offList.deadRoster, "Arn")) {
 		support = _.without(support, officer.arn);
 		$(".face6").addClass("hidden");
 		}
    
+   if (_.contains(offList.deadRoster, "Tung")) {
+	force = _.without(force, officer.tung);
+	 $(".face5").addClass("hidden");
+   }
    
+   
+   */
     
-	   if (_.contains(offList.deadRoster, officer.keeper)) {
+	   if (_.contains(offList.deadRoster, "Keeper")) {
 		support = _.without(support, officer.keeper);
 		 $(".Keepertext").addClass("hidden");
 		 $(".face7").addClass("hidden");
 	  }
 
 	  
-   if (_.contains(offList.deadRoster, officer.tung)) {
-	force = _.without(force, officer.tung);
-	 $(".face5").addClass("hidden");
-   }
+   
    
 		$(".face").addClass("hidden");
 		$(".sideImage").addClass("hidden");
@@ -102,13 +107,26 @@
 	  
 		$("#officer0").text(force[0].name) 
 		$("#officer1").text(force[1].name)
+		$("#officer2").text(force[2].name)
 		$(".faces").removeClass("hidden");
+		
+		  if (_.contains(offList.deadRoster, "Arn")) {
+			$(".face6").addClass("hidden");
+			}
+   
+        if (_.contains(offList.deadRoster, "Keeper")) {
+		 $(".face7").addClass("hidden");
+			}
+	  
+		if (_.contains(offList.deadRoster, "Tung")) {
+		$(".face5").addClass("hidden");
+			}
 		
 	  
 	   $('#force1').on('click', function(e) {
         // change state here
         // end by using lib.goTo
-		lib.dialogue(e, "force1")
+		createOfficer4(force)
 		$(".faces").addClass("hidden");
 		$(".btn").addClass("hidden");
 		$(".sideImage").removeClass("hidden");
@@ -116,6 +134,16 @@
 		$("#sideb").addClass("hidden");
 		$("#officer0").removeClass("hidden");
 		$("#officer1").removeClass("hidden");
+		$("#officer2").removeClass("hidden");
+		if (_.contains(offList.deadRoster, "Tung")) {
+		$("#officer0").addClass("hidden");
+		$("#officerObject0.officerObjects").toggleClass("hidden")
+		}
+		lib.dialogue(e, "force1")
+		
+		
+		
+		/*
 		if (force[2] == undefined) {
 		$("#officer2").addClass("hidden");
 		}
@@ -123,7 +151,7 @@
 		$("#officer2").text(force[2].name) 
 		$("#officer2").removeClass("hidden");
 		}
-		
+		*/
 		//$("#force2").removeClass("hidden");
 		
       })
@@ -217,15 +245,21 @@
 	  
 	   $('#force2').on('click', function(e) {
         // change state here
+		createOfficer4(force)
 		$("#officer0").text(force[0].name) 
 		$("#officer1").text(force[1].name)
 		count +=1 ;
         // end by using lib.goTo
-		lib.dialogue(e, "force2")
 		$("#side").addClass("hidden");
 		$(".btn").addClass("hidden");
 		$("#officer0").removeClass("hidden");
 		$("#officer1").removeClass("hidden");
+		if (_.contains(offList.deadRoster, "Tung")) {
+		$("#officer0").addClass("hidden");
+		$("#officerObject0.officerObjects").toggleClass("hidden")
+		}
+		lib.dialogue(e, "force2")
+		
 		
 	  })
 	  
@@ -259,28 +293,40 @@
 	    $('#force3').on('click', function(e) {
         // change state here
 		count +=1;
+		createOfficer4(support)
         // end by using lib.goTo
-		lib.dialogue(e, "force3")
 		$(".btn").addClass("hidden");
 		$("#side").addClass("hidden");
 		$("#officer0").text(support[0].name) 
-		$("#officer1").text(support[1].name)
+		
+		$("#officer2").text(support[2].name) 
 		$("#officer0").removeClass("hidden");
 		$("#officer1").removeClass("hidden");
+		$("#officer2").removeClass("hidden");
+		 if (_.contains(offList.deadRoster, "Arn")) {
+		$("#officer1").addClass("hidden");
+		$("#officerObject1.officerObjects").toggleClass("hidden")
+		}
+		else {
+		$("#officer1").text(support[1].name)
+		}
+		lib.dialogue(e, "force3")
+		
+		/*
 		if (support[1] == undefined) {
-		$("#officer2").addClass("hidden");
+		
 		}
 		else {
 		$("#officer2").text(support[2].name) 
 		$("#officer2").removeClass("hidden");
 		}
-		
+		*/
 		
 	  })
 	  
 	   $('#raptorians').on('click', function(e) {
         // change state here
-		if (_.contains(offList.deadRoster, officer.evok)) {
+		if (_.contains(offList.deadRoster, "Evok")) {
 		 $(".evok").addClass("hidden");
 		  
 		}
@@ -425,7 +471,7 @@ Finally the Support force, damage control, carrying wounded below deck and in ch
 
 <p>1st Force will be on-call to attack in whatever boarding action we encounter first. Who do I put in charge of this force?</p>
 <span class="theOfficer officerObjects"></span>
-<script>createOfficer4(force)
+<script>
 $('#officerObject0').popover({title: force[0].name, content: fighters(0), trigger: "hover", placement: "top", container: "body"}); 
 $('#officerObject1').popover({title: force[1].name, content: fighters(1), trigger: "hover", placement: "top", container: "body"}); 
 $('#officerObject2').popover({title: force[2].name, content: fighters(2), trigger: "hover", placement: "top", container: "body"}); 
@@ -434,10 +480,10 @@ $('#officerObject2').popover({title: force[2].name, content: fighters(2), trigge
 </div>
 
 <div class="force2 hidden"><p><strong>2nd Force</strong></p>
-<p>The 2nd Force will be manning defenses, but they will also be on-call to attack if needed. Who will be incharge of this force? <br>
+<p>The 2nd Force will be manning defenses, but they will also be on-call to attack if needed. Who will be in charge of this force? <br>
 </p>
 <span class="theOfficer officerObjects"></span>
-<script>createOfficer4(force)
+<script>
 $('#officerObject0').popover({title: force[0].name, content: fighters(0), trigger: "hover", placement: "top", container: "body"}); 
 $('#officerObject1').popover({title: force[1].name, content: fighters(1), trigger: "hover", placement: "top", container: "body"}); 
 
@@ -501,7 +547,7 @@ $('#officerObject1').popover({title: force[1].name, content: fighters(1), trigge
 This means damage control, wounded and putting out fires.</p>
 
 <span class="theOfficer officerObjects"></span>
-<script>createOfficer4(support)
+<script>
 $('#officerObject0').popover({title: support[0].name, content: supporters(0), trigger: "hover", placement: "top", container: "body"}); 
 $('#officerObject1').popover({title: support[1].name, content: supporters(1), trigger: "hover", placement: "top", container: "body"}); 
 $('#officerObject2').popover({title: support[2].name, content: supporters(2), trigger: "hover", placement: "top", container: "body"}); 

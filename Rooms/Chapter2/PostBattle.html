@@ -21,6 +21,11 @@
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
+	  if ( state.delay > 10) {		
+		$(".noklippa").removeClass("hidden");
+		$(".klippa").addClass("hidden");
+		}
+	  
       
       $('#part2').on('click', function(e) {
         // change state here
@@ -121,7 +126,7 @@ I had a large selection to pick from myself if I chose to.</p>
 ‘Resolute’ - Captain Carla<br>
 -<br>
 ‘Swift-Bastard’ - Captain Koen<br>
-(Captured) ‘Crooked-Teeth’ - Captain Klippa <br>
+(Captured 'Three-Mast') ‘Crooked-Teeth’ - <span class="klippa">Captain Klippa</span><span class="noklippa hidden">Captain Liv</span> <br>
 Report to the flag-captain for further orders and prepare to set sail immediately.”</p>
 
 <p>The letter crumples in my paw. It seemed we had a lot of work yet to do under the will of Fleet-Admiral Kaunis.</p>

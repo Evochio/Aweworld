@@ -82,6 +82,7 @@
 	  $('#digest').on('click', function(e) {
        lib.dialogue(e, "hard"),
 	   state.events.push("hard");
+	   state.events.push("digestTung");
 	   $("#side").addClass("hidden")
 		removeOfficer(officer.tung);
 		state.vore += 1;

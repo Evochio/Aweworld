@@ -27,22 +27,22 @@
       // $(".face4").attr('src', officer.nyxie.image); 
 	  
 	  
-	  if (_.contains(offList.deadRoster, officer.arn)) {
+	  if (_.contains(offList.deadRoster, "Arn")) {
 		 $(".face6").addClass("hidden");
 		
-		 $("#Arntext").addClass("hidden");
+		 $(".Arntext").addClass("hidden");
 	  
 	  }
 	  else {
 		 $(".MirrAlt").addClass("hidden");
 		}
 		
-	 if (_.contains(offList.deadRoster, officer.tung)) {
+	 if (_.contains(offList.deadRoster, "Tung")) {
 		
 		 $(".Tungtext").addClass("hidden");
 		 $(".face5").addClass("hidden");
 	  }
-	   if (_.contains(offList.deadRoster, officer.keeper)) {
+	   if (_.contains(offList.deadRoster, "Keeper")) {
 		
 		 $(".Keepertext").addClass("hidden");
 		 $(".face7").addClass("hidden");
@@ -208,6 +208,16 @@
 		$("#sideb").removeClass("hidden");
 		$(".faces").removeClass("hidden");
 		$(".face").addClass("hidden");
+		
+		if (_.contains(offList.deadRoster, "Arn")) {
+		 $(".face6").addClass("hidden");
+		
+		 }
+		
+	 if (_.contains(offList.deadRoster, "Tung")) {
+		
+		 $(".face5").addClass("hidden");
+	  }
 		
 		$(".btn").addClass("hidden");
 		$("#permit").removeClass("hidden");
@@ -692,7 +702,7 @@ We sail North-west, occasionally receiving a repeat run-in with curious Islander
 
 <div class="tribe hidden"><p><strong>The Cold-Claw tribe</strong></p>
 The Home Isle of the Cold claws is impressive and sizable. It’s the first time we see a real sign of a real sizable habitation around the place. <br>
-The island is very large and winding, with plenty of lush satellites around it. Our scouts report it would take several days of travel and scouting to gather a comprehensive report. <br>
+The island is very large and winding, with plenty of lush smaller islands around it. Our scouts report it would take several days of travel and scouting to gather a comprehensive report. <br>
 For now they inform me that there are numerous small knots of settlements scattered about inland, but there is a largeish beach settlement with docks built out of wood that seem like the likely place to visit. <br>
 As we sail in toward the beach and dock, we are soon flocked with small sailing vessels that sail in alongside us. At the docks, a small crowd has gathered. <br>
 They seem a very welcoming people. I get the feeling they have not seen an Aweship before however. <br>

@@ -268,6 +268,7 @@
         // change state here
 		state.battle.push("retreat")
         // end by using lib.goTo
+		$(".btn").addClass("hidden")
 		if (_.contains(state.battle, "sails") && _.contains(state.events, "arn"))
 		{
 		$("#escape").removeClass("hidden");
@@ -311,6 +312,7 @@
 		$("#button-8").addClass("hidden")
 		$("#button-9").addClass("hidden")
 		$("#button-10").addClass("hidden")
+		$(".btn").addClass("hidden")
 		$("#button-11").removeClass("hidden");
 		if (state.battle.indexOf("approach") > -1) { 
 		$("#ram").removeClass("hidden");

@@ -16,22 +16,24 @@
   <script src="../officers.js"></script>
   <link rel="stylesheet" href="../main.css"></link>
   <script>
+
+  
+  
 	 displayCrewBattle = function () {
 $(".crewbattle").text(state.crewLossBattle);
 	}
 	
 	
 	
-	offList.deadRoster = _.without(offList.deadRoster, offList.deadRoster[0]);
 	if (offList.deadRoster.indexOf(officer.tung) == -1) {
 	officer3 = [officer.mirr, officer.garsch, officer.tung]
-		console.log("toot")
+		
 		$("#tungtext").removeClass("hidden")
 		}
 		else {
-		console.log("toot2")
-		officer3 = [officer.mirr, officer.garsch]
-		$("#officerObject2").addClass("hidden")
+		
+		officer3 = [officer.mirr, officer.garsch, officer.melon]
+		
 		}
 	
 	/*
@@ -68,10 +70,7 @@ $(".crewbattle").text(state.crewLossBattle);
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked. offList.deadRoster.indexOf(officer.tung) > -1
 	  
-	  
-	
-	
-	  
+		  
       
       $('#button-1').on('click', function(e) {
         // change state here
@@ -114,26 +113,24 @@ $(".crewbattle").text(state.crewLossBattle);
 		
 		
 		 $('#promotion').on('click', function(e) {
-		 
-		 		
-		officerButtonNames() 
-		 
-		 
-		lib.dialogue(e, "promotion"),
-		$("#officer0").removeClass("hidden");
-		$("#officerObject0").removeClass("hidden")	
 		
-		$("#officer1").removeClass("hidden");
-		$("#officerObject1").removeClass("hidden")
+		 createOfficer4(officer3);	
 		if (officer3[2].name == "Tung") {
 		$("#officer2").removeClass("hidden");
-		$("#officerObject2").removeClass("hidden")
+		$(".tungtext").removeClass("hidden");
+		
 		}
-			else {
-			$("#officerObject2").addClass("hidden")	
-			}
-		$("#officerObject2").addClass("hidden")	
+		else {
+		$("#officerObject2.officerObjects").toggleClass("hidden")
+			
+		}
+		officerButtonNames() 
+		lib.dialogue(e, "promotion"),
+		$("#officer0").removeClass("hidden");
+		$("#officer1").removeClass("hidden");
 		$("#promotion").addClass("hidden");
+		$("#side").addClass("hidden");
+		$(".nyxie").addClass("hidden");
 		
 	})
 	
@@ -162,6 +159,48 @@ $(".crewbattle").text(state.crewLossBattle);
 		$("#button-2").removeClass("hidden")
 		}
 		})
+		
+		
+		$('#officer0').on('click', function(e) {
+		
+		offList.firstOfficer[0] = officer.mirr;
+		lib.dialogue(e, "mirr2"),
+		offList.firstOfficer[0].image = "../" + offList.firstOfficer[0].image
+		$(".btn").addClass("hidden")
+		$("#image").removeClass("hidden")
+		$("#button-2").removeClass("hidden");
+		$("#side").removeClass("hidden")
+		$("#image").attr('src','Images/assets/Mirr.png');
+	})
+	  
+	    $('#officer1').on('click', function(e) {
+		
+		offList.firstOfficer[0] = officer.garsch;
+		lib.dialogue(e, "garsch2"),
+		offList.firstOfficer[0].image = "../" + offList.firstOfficer[0].image
+		$(".btn").addClass("hidden")
+		$("#image").removeClass("hidden")
+		$("#button-2").removeClass("hidden");
+		
+		$("#side").removeClass("hidden")
+		$("#image").attr('src','Images/assets/Garsch.png');
+	})
+	
+	 $('#officer2').on('click', function(e) {
+		
+		offList.firstOfficer[0] = officer.tung;
+		lib.dialogue(e, "tung2"),
+		offList.firstOfficer[0].image = "../" + offList.firstOfficer[0].image
+		$(".btn").addClass("hidden")
+		$("#image").removeClass("hidden")
+		$("#button-2").removeClass("hidden");
+		$("#side").removeClass("hidden")
+		$("#image").attr('src','Images/assets/Tung.png');
+	})
+	  
+		
+		
+		
 	
 	if (offList.firstOfficer[0].name == "Arn") {
 	 $('.arn').removeClass('hidden');
@@ -221,7 +260,7 @@ Day: <span class="days"><script>displayDays()</script></span>
   <img class="mirr face" src="Images/assets/Mirr.png"/>
  <img class="nyxie face" src="Images/assets/Nyxie.png"/>
   <img class="arn face hidden" src="Images/assets/Arnface.png"/>
- 
+  <img class="sideImage hidden" id="image" src="Images/assets/Nyxie.png"/>
 </div>
 
 
@@ -509,8 +548,9 @@ Her excuses had been just that, excuses. She had been through a difficult start 
 </div>
 
 <div class="promotion hidden"><p><strong>Promotions</strong></p>
-<div class="tungtext hidden">
+
 <p>I have to promote a new First Officer, its best done as promptly as possible. <br>
+<div class="tungtext hidden">
 I have added Officer Tung to the choices. He has proven himself capable and unflappable in the previous battle. <br>
 </p>
 </div>
@@ -520,10 +560,10 @@ Which brings me to her downside. She is for some reason hiding from greater resp
 <p><b>Garsch</b> has experience unlike any other. He's the oldest Officer aboard and has spent years training students in the Academy before he joined into this navy commission. He's unflappable and would be a stoic and reliable First-Officer. <br />
 Unfortunately, he's not very well liked among the crew. He drives them hard and has high expectations. His age might be a problem in the long-term, I cant shake the feeling this sudden assignment to sea is his last hurrah.</p>
 <div class="tungtext hidden">
-<p><b>Tung</b> is larger than most typical male Awes, he is brave, headstrong and has turned out to be obedient. He thrives in martial action but can be quite chaotic and uncoordinated and he tends to try too hard to prove males can do as well as females.</p>
+<p><b>Tung</b> is larger than most typical male Awes, he is brave, headstrong and has turned out to be obedient. He would be an unorthodox choice but has Garsches reccomendation and potential for growth. He thrives in martial action but can be quite chaotic and uncoordinated and he tends to try too hard to prove males can fight as well as females.</p>
 </div>
 
-<span class="theOfficer officerObjects"></span>
+<span class="theOfficer"></span>
 
 
 
@@ -534,15 +574,46 @@ officer.garsch.image = src="Images/assets/Garsch.png"
 officer.tung.image = src="Images/assets/Tung.png"
 officer.melon.image = src="Images/assets/Melon.png"
 
-createOfficer4(officer3)
+
 $('#officerObject0').popover({title: officer3[0].name, content: officerIntros(0), trigger: "hover", placement: "top", container: "body"}); 
 $('#officerObject1').popover({title: officer3[1].name, content: officerIntros(1), trigger: "hover", placement: "top", container: "body"}); 
 $('#officerObject2').popover({title: officer3[2].name, content: officerIntros(2), trigger: "hover", placement: "top", container: "body"}); 
 
 </script>
-
-
-
 </div>
+
+
+<div class="tung2 hidden"><p><strong>Tung</strong></p>
+<p>“This is a bit sudden Captain. I mean, I accept and all. But you know, we haven't exactly seen eye to eye.” Tung stood straight and firm. He really was quite stout for a male Awe, there certainly was a lot of mountain blood in him. </p>
+
+<p>“I wont lie to you, you were not my first choice Tung. But you came recommended and I think I might have unfairly overlooked you before. Do you feel up for the job yourself?” </p>
+
+<p>“I do. I watched Arn do it, didn't seem that hard. I can do some things better.” Tung huffed, he certainly didn't lack confidence. </p>
+
+<p>“Very well then. With that kind of attitude you have a head-start.” I pinned the First-Officers insignias on his shoulders. “There'll be no more of that Soft-fur talk will there?” I fixed him with a hard glare. He looked right back and smirked. </p>
+
+<p>“Not with you, Captain.”</p>
+</div>
+
+<div class="garsch2 hidden"><p><strong>Garsch</strong></p>
+<p>“I understand your need for a First-Officer, Captain. A ship needs a clear chain of command, I will do my best to back you up.” The old Officer stood at attention. </p>
+
+<p>“You're the most reliable choice Garsch. I have confidence in you.” I pinned the First-officer insignia to his shoulder pads. </p>
+
+<p>“Thank you Captain. I shall perform my duty to you, the crew and the Admiralty.”</p>
+</div>
+
+
+<div class="mirr2 hidden"><p><strong>Mirr</strong></p>
+<p>“I you truly feel I'm the one you need to back you up, I accept the position.” Mirr nodded. “But I'll come out and say right away that I'm not cut out tactics and flinging a sword around.” She smiled bemused. </p>
+
+<p>“Firstly, you're not supposed to fling the sword. Secondly, I'm aware of this, but your other strengths more then make up for it, if only you'd let it.” I placed the first-officer insignia on her shoulder pad. </p>
+
+<p>“Very well captain.” She saluted and smiled solemnly. "I understand why you chose Nyxie, she is smart, smarter then she lets on. I'll try to fill a similar role as well as I can." </p>
+</div>
+
+
+
+
 </body>
 </html>

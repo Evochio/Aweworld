@@ -22,6 +22,9 @@
       state.events.push("raptoriansRebel");
 	  state.events.push("noArn");
 	  state.events.push("hard");
+	  removeOfficer(officer.arn);
+	  removeOfficer(officer.tung);
+	  
 	  state.crewLoss += 13;
       $('#button-1').on('click', function(e) {
 		lib.dialogue(e, "admit"),
@@ -61,6 +64,7 @@
 	   $('#evokEat').on('click', function(e) {
        lib.dialogue(e, "evokEat"),
 	   state.crewLoss += 5;
+	   state.rapNumber -= 5;
 	    $("#evokEat").addClass("hidden")
 		$("#evokEaten").addClass("hidden")
 		$("#sentence").addClass("hidden")
@@ -72,6 +76,7 @@
        lib.dialogue(e, "sentence"),
 	   state.crewMorale += 2;
 	   state.crewLoss += 6;
+	   state.rapNumber -= 6;
         $("#evokEat").addClass("hidden")
 		$("#evokEaten").addClass("hidden")
 		$("#sentence").addClass("hidden")
@@ -88,14 +93,17 @@
 		lib.dialogue(e, "rescued"),
         state.crewMorale += 1;
 		state.crewLoss += 8;
+		state.rapNumber -= 8;
 		$("#rescued").addClass("hidden")
 		$("#button-4").removeClass("hidden")		
       })
 	   $('#evokEaten').on('click', function(e) {
        lib.dialogue(e, "evokEaten"),
 	   state.inventory.push("evokBelly");
+	   removeOfficer(officer.Evok);
 	   state.crewMorale += 1;
-	   state.vore += 1;
+	    state.rapNumber -= 1;
+	   state.vore += 2;
 		state.crewLoss += 1;
         $("#evokEat").addClass("hidden")
 		$("#evokEaten").addClass("hidden")
@@ -153,7 +161,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p> Finding the culprits would be difficult, but in a way they all shared the guilt. That the gambling would escalate into such an outcome<span id="gamblingForbid" class="hidden">, despite my efforts to stop it, </span>was hard to predict. I feel slightly responsible for not having kept an eye on Arn or the growing discontent. But Arn had sure paid for his mistakes now.</p>
 <script>
-if (_.contains(state.events, "soft")) {
+if (offList.deadRoster.indexOf("Tung") == -1) {
 			$('#tung').removeClass('hidden');
 	}
 if (_.contains(state.events, "gamblingForbid")) {

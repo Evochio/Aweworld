@@ -181,7 +181,7 @@ var offList = {
 		
 		offList.activeRoster = _.without(offList.activeRoster, x);
 		offList.deadRoster.push(x);
-		
+		offList.deadRoster.push(x.name);
 	}
 
 ///////////////////////////////	
@@ -250,7 +250,7 @@ offList = load('offData-'+lastPart2) || offList;
 
 		if (offList.firstOfficer[0].name == officer3[1].name && officer3[1].name == officer3[0].name)  {
 		
-			if (_.contains(offList.deadRoster, backupOfficer[0])) {
+			if (_.contains(offList.deadRoster, backupOfficer[0].name)) {
 			officer3[1] = backupOfficer[1];	
 			
 			}
@@ -262,7 +262,7 @@ offList = load('offData-'+lastPart2) || offList;
 			
 		if (offList.firstOfficer[0].name == officer3[2].name && officer3[2].name == officer3[0].name) {
 				
-			if (_.contains(offList.deadRoster, backupOfficer[0])) {
+			if (_.contains(offList.deadRoster, backupOfficer[0].name)) {
 			
 			officer3[2] = backupOfficer[1];	
 			}

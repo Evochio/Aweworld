@@ -16,7 +16,7 @@
   <script src="../../jquery.cookie.js"></script>
   <link rel="stylesheet" href="../../main.css"></link>
   <script>
-  
+
 
   
     state.Glint.status = 'invisible';
@@ -129,7 +129,7 @@
 	  
 	   officerButtonNames();
        officerDouble();
-		checkdeadRoster();
+		
 		
 		if (_.contains(state.chapter, "vesslaDes")){
 		$(".uVessla").removeClass("hidden");
@@ -261,13 +261,24 @@
 	    $('#choice').on('click', function(e) {
         // change state here
         // end by using lib.goTo
+		createOfficer4(officer3)		
+		if (_.contains(offList.deadRoster, "Evok")) {
+		
+			$("#officerObject2.officerObjects").toggleClass("hidden")
+		}
 		lib.dialogue(e, "choice"),
         //$("#look").addClass("hidden");
 		$("#choice").addClass("hidden");
-		
+		$("#side").addClass("hidden");
 		$("#officer0").removeClass("hidden");
 		$("#officer1").removeClass("hidden");
 		$("#officer2").removeClass("hidden");
+		if (_.contains(offList.deadRoster, "Evok")) {
+			$("#officer2").addClass("hidden");	
+			$("#officerObject2.officerObjects").toggleClass("hidden")
+		}
+		
+		
 		
       })
 	  
@@ -280,6 +291,7 @@
 		$("#choice2").removeClass("hidden");
 		$("#choice3").removeClass("hidden");
 		$("#choice4").removeClass("hidden");
+		$("#side").removeClass("hidden");
 		$(".sideImage").attr('src', officer3[0].image)
 		choiceOfficer.splice(0, 0, officer3[0])
 		$('.' + choiceOfficer[0].name + 'text').removeClass("hidden");
@@ -292,7 +304,7 @@
         $("#officer0").addClass("hidden");
 		$("#officer1").addClass("hidden");
 		$("#officer2").addClass("hidden");
-		
+		$("#side").removeClass("hidden");
 		$("#resume").removeClass("hidden");
 		$(".sideImage").attr('src', officer3[1].image)
 		choiceOfficer.splice(0, 0, officer3[1])
@@ -305,6 +317,7 @@
         $("#officer0").addClass("hidden");
 		$("#officer1").addClass("hidden");
 		$("#officer2").addClass("hidden");
+		$("#side").removeClass("hidden");
 		$(".sideImage").attr('src', officer3[2].image)
 		$("#resume").removeClass("hidden");
 		choiceOfficer.splice(0, 0, officer3[2])
@@ -884,9 +897,9 @@
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "digestE")
-     
+		$("#side").addClass("hidden");
 		$(".btn").addClass("hidden");
-		
+		$("#restart").removeClass("hidden");	
 		
 						
       })
@@ -1099,6 +1112,14 @@
 		lib.goTo('Sandbanks.html')
 		}
       })
+	  
+	   $('#restart').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		location.reload(true)
+						
+      })
+	  
     })
 	
   </script>
@@ -1225,6 +1246,7 @@ If we could catch one then we might be able to get some information of where a f
 
 <button class="btn btn-default hidden" id="Aweship"> Search Northwestern Isles </button>
 <button class="btn btn-default hidden" id="button-3"> Cold Claws and Habited Isle </button>
+<button class="btn btn-default hidden" id="restart">Restart</button>
 
 <span id="cadetButtons"> </span>
 <script>
@@ -1276,7 +1298,7 @@ It seems we’ll have to look for the settlement the hard way.</p>
 
 
 <br/>
-<script>createOfficer4(officer3)
+<script>
 
 $('#officerObject0').popover({title: officer3[0].name, content: officerIntros(0), trigger: "hover", placement: "top", container: "body"}); 
 
