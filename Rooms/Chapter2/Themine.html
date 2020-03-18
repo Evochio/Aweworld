@@ -322,6 +322,7 @@
 	  
 	   $('#cadetDiscovery').on('click', function(e) {
         // change state here
+		state.Valnos.Experience +=1  
 		Themine.push("cadetDiscovery");
 		 $("#side").addClass("hidden");
         // end by using lib.goTo
@@ -342,7 +343,7 @@
 		lib.dialogue(e, "options")
 		$("#side").addClass("hidden");
 		
-		if ( time >= 2  && Themine.indexOf("cadetSiege2") == -1) {
+		if ( time >= 2  && Themine.indexOf("cadetSiege2") == -1 && _.contains(Themine, "cadetAssist")) {
 		$("#cadetSiege").removeClass("hidden");
 		}
 		
@@ -377,6 +378,7 @@
         // end by using lib.goTo
 		lib.dialogue(e, "options"),
         officerButtonNames();
+		$("#side").addClass("hidden");
 		
 		if ( time >= 2  && Themine.indexOf("cadetSiege2") == -1) {
 		$("#cadetSiege").removeClass("hidden");
@@ -1055,7 +1057,42 @@
 	   $('#eatprisoners').on('click', function(e) {
         // change state here
         // end by using lib.goTo
-		lib.dialogue(e, "eatprisoners"),
+		lib.dialogue(e, "eatprisoners") 
+		
+		$("#GThumb").removeClass("hidden");
+		$("#VThumb").removeClass("hidden");
+		$("#ZThumb").removeClass("hidden");
+		
+		$("#ZThumb").addClass("new");
+		
+		if (_.contains(Themine, "cadetDiscovery") || _.contains(Themine, "cadetAssist")) {
+		
+		cadet[2].banter = [
+	{ target: '#Ziggy', text: "Oough yea! Mine squirms real good.", imageClass: "vore"},
+	{ target: '#Ziggy', text: 'Gators sure are a bellyfull!', imageClass: "vore"},
+	{ target: '#Glint', text: 'Hnmp, you didnt have to pick such a large one. ', imageClass: "vore" },
+	{ target: '#Valnos', text: "*Hiccup*", imageClass: "vore"}
+		];
+
+		cadet[1].banter = [
+	{ target: '#Ziggy', text: "Oough yea! Mine squirms real good.", imageClass: "vore"},
+	{ target: '#Ziggy', text: 'Gators sure are a bellyfull!', imageClass: "vore"},
+	{ target: '#Glint', text: 'Hnmp, you didnt have to pick such a large one. ', imageClass: "vore" },
+	{ target: '#Valnos', text: "*Hiccup*", imageClass: "vore"}
+
+		];
+
+		cadet[0].banter = [
+	{ target: '#Ziggy', text: "Oough yea! Mine squirms real good.", imageClass: "vore"},
+	{ target: '#Ziggy', text: 'Gators sure are a bellyfull!', imageClass: "vore"},
+	{ target: '#Glint', text: 'Hnmp, you didnt have to pick such a large one. ', imageClass: "vore" },
+	{ target: '#Valnos', text: "*Hiccup*", imageClass: "vore"}
+
+		];
+		
+		
+		}
+		
 		
 		$("#depart").removeClass("hidden");
 		

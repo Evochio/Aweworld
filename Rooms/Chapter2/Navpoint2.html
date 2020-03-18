@@ -18,11 +18,15 @@
   
   <script>
 
-
+		state.Glint.status = 'available';
+		state.Valnos.status = 'available';
+		state.Ziggy.status = 'available';
+  
+  
 state.visited.push("Navpoint2");
 var navpoint2 = [];
 officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
-  backupOfficer = [officer.tung, officer.garsch]
+  backupOfficer = [officer.tung, officer.garsch];
    
    	function officerIntros(x) {
 		
@@ -51,7 +55,10 @@ officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
    
    
    $(document).ready(function() {
-  
+		
+		$("#GThumb").addClass("hidden");
+		$("#VThumb").addClass("hidden");
+		$("#ZThumb").addClass("hidden");
  
 	officerDouble();
 	checkdeadRoster();
@@ -84,7 +91,7 @@ officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
 		$("#officer1").addClass("hidden");
 		$("#officer2").addClass("hidden");
 		
-		$("#raptorians").removeClass("hidden");
+		$("#water").removeClass("hidden");
 		$(".sideImage").attr('src','../Images/assets/' + choiceOfficer[0].name + '.png');
       })
 	  
@@ -98,7 +105,7 @@ officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
         $("#officer0").addClass("hidden");
 		$("#officer1").addClass("hidden");
 		$("#officer2").addClass("hidden");
-		$("#raptorians").removeClass("hidden");
+		$("#water").removeClass("hidden");
 		$(".sideImage").attr('src','../Images/assets/' + choiceOfficer[0].name + '.png');
       })
 	  $('#officer2').on('click', function(e) {
@@ -111,7 +118,7 @@ officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
         $("#officer0").addClass("hidden");
 		$("#officer1").addClass("hidden");
 		$("#officer2").addClass("hidden");
-		$("#raptorians").removeClass("hidden");
+		$("#water").removeClass("hidden");
 		$(".sideImage").attr('src','../Images/assets/' + choiceOfficer[0].name + '.png');
       })  
 	  
@@ -131,17 +138,200 @@ officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
 		
       })
 	  
+	  $('#water').on('click', function(e) {
+        
+		$(".sideImage").attr('src', officer.keeper.image);		
+		$("#side").removeClass("hidden");
+		$(".face").attr('src', '../Images/assets/Zat.png');		
+		$("#sideb").removeClass("hidden");
+		
+		lib.dialogue(e, "water"),
+        $(".btn").addClass("hidden");
+		$("#wateryes").removeClass("hidden");
+		$("#waterno").removeClass("hidden");
+				
+      })
+	  
+	  $('#wateryes').on('click', function(e) {
+			state.supplies +=1; 
+			state.crewMorale +=1; 
+			state.chapter.push("sickness");
+			state.chapter.push("birdlice");
+			
+		$("#side").addClass("hidden");
+		$("#sideb").addClass("hidden");
+		lib.dialogue(e, "wateryes"),
+        $(".btn").addClass("hidden");
+		$("#cadetQ").removeClass("hidden");
+		
+				
+      })
+	  
+	  
+	   $('#waterno').on('click', function(e) {
+        $("#sideb").addClass("hidden");		
+		$("#side").addClass("hidden");
+		lib.dialogue(e, "waterno"),
+        $(".btn").addClass("hidden");
+		$("#cadetQ").removeClass("hidden");
+						
+      })
+	  
+	  
+	   $('#cadetQ').on('click', function(e) {
+        		
+		$("#side").addClass("hidden");
+		lib.dialogue(e, "cadetQ"),
+        $(".btn").addClass("hidden");
+		$("#cadetQF").removeClass("hidden");
+		$("#cadetQE").removeClass("hidden");
+				
+      })
+	  
+	  
+	    $('#cadetQE').on('click', function(e) {
+        		
+		$("#side").addClass("hidden");
+		lib.dialogue(e, "cadetQE"),
+        $(".btn").addClass("hidden");
+		$("#raptorians").removeClass("hidden");
+		
+				
+      })
+	  
+	   $('#cadetQF').on('click', function(e) {
+        navpoint2.push("forage");		
+		$("#side").addClass("hidden");
+		lib.dialogue(e, "CadetQF"),
+        $(".btn").addClass("hidden");
+		$("#raptorians").removeClass("hidden");
+		
+				
+      })
+	  
+	    $('#cadetQR').on('click', function(e) {
+        state.Ziggy.Experience +=1  
+		state.Valnos.Experience +=1  
+		state.Glint.Experience +=1  
+
+		$("#GThumb").removeClass("hidden");
+		$("#VThumb").removeClass("hidden");
+		$("#ZThumb").removeClass("hidden");
+		
+		$("#side").addClass("hidden");
+		if (_.contains(navpoint2, "forage")) {
+		lib.dialogue(e, "cadetQFR")
+		
+		
+		 cadet[2].banter = [
+	{ target: '#Valnos', text: "Captain was kind of hard on us.", imageClass: "sad"},
+	{ target: '#Valnos', text: 'Did we really screw up that bad?', imageClass: "sad"},
+	{ target: '#Ziggy', text: 'Ya well, you screw up sometimes, what can ya do.', imageClass: "smug" },
+	{ target: '#Valnos', text: "But how many times can we keep screwing up?", imageClass: "concerned"},
+	{ target: '#Ziggy', text: ' Until she eats us I guess, heh.', imageClass: "blush"},
+	{ target: '#Glint', text: "Go deepen with the captain if you’re so eager then.", imageClass: "smug"},
+	{ target: '#Ziggy', text: 'Oh you’re not getting rid of me that easy Glint!', imageClass: "happy"},
+	{ target: '#Ziggy', text: "Besides, Captain likes me the most.", imageClass: "smug"}
+
+		];
+
+	cadet[1].banter = [
+	{ target: '#Glint', text: 'I collected lots of good stuff, a whole barrelful.', imageClass: "sad"},
+	{ target: '#Glint', text: 'But because you two were just messing around, I get yelled at too!', imageClass: "concerned"},
+	{ target: '#Glint', text: 'Why don’t you listen to my orders for once?', imageClass: "angry" },
+	{ target: '#Ziggy', text: 'You’re not in charge Glint!', imageClass: "angry"},
+	{ target: '#Ziggy', text: ' I won’t take orders from you unless the Captain tells me to.', imageClass: "angry"},
+	{ target: '#Valnos', text: 'Captain did not put anyone in charge because were supposed to cooperate.', imageClass: "angry" },
+	{ target: '#Valnos', text: 'Or try learn to do so.', imageClass: "sad"},
+	{ target: '#Glint', text: 'Try cooperating with her!', imageClass: "angry"},
+	{ target: '#Ziggy', text: 'Cooperate with my belly.', imageClass: "smug"},
+	{ target: '#Glint', text: 'You see!', imageClass: "surprised"}
+
+	];
+
+	cadet[0].banter = [
+	{ target: '#Ziggy', text: "So…", imageClass: "concerned"},
+	{ target: '#Ziggy', text: 'Who gets to eat that Cavy I caught?', imageClass: "smug"},
+	{ target: '#Ziggy', text: "Because, it really kind of looked delicious. ", imageClass: "happy" },
+	{ target: '#Glint', text: 'Didn’t look like no Cavy I seen. ', imageClass: "suspicious"},
+	{ target: '#Glint', text: "Not sure I want to be in the same room as you if it makes your stomach bad.", imageClass: "suspicious"},
+	{ target: '#Ziggy', text: "Look, at least it’s not Sour-grass.", imageClass: "suspicious" },
+	{ target: '#Valnos', text: 'There’s a old Raveneye way of cooking Sour-grass so it becomes sweet and savoury. ', imageClass: "sad"},
+	{ target: '#Valnos', text: "You just have to pickle it a while first.", imageClass: "blush"},
+	{ target: '#Glint', text: "You really need to learn to speak up Valnos.", imageClass: "concerned" }
+
+
+
+	];
+		
+		
+		}
+		else {
+		lib.dialogue(e, "cadetQER")
+		
+		
+		 cadet[2].banter = [
+	{ target: '#Valnos', text: "These cliffs are really high. Like little miniature mountains.", imageClass: "happy"},
+	{ target: '#Glint', text: 'They just look high because there’s nothing else around. They’re just small hills compared to home.', imageClass: "neutral"},
+	{ target: '#Valnos', text: 'True, still I don’t envy the crew who have to climb them to get water.', imageClass: "surprised" }
+	
+	];
+
+	cadet[1].banter = [
+	{ target: '#Glint', text: 'I know what you’re going to say.', imageClass: "concerned"},
+	{ target: '#Glint', text: 'But you two should have let me do the orders.', imageClass: "angry"},
+	{ target: '#Glint', text: 'The captain was right, we wasted all that time chasing shadows for nothing. ', imageClass: "sad" },
+	{ target: '#Valnos', text: 'Captain did not put anyone in charge.', imageClass: "angry"},
+	{ target: '#Glint', text: 'That was to test us! You can’t have three commanders, just look how it went. ', imageClass: "surprised"},
+	{ target: '#Ziggy', text: 'I won’t take orders from you. You have terrible ideas! You wanted to dig the earth for ‘samples’!', imageClass: "suspicious" },
+	{ target: '#Glint', text: 'Well, you wanted to climb and shake the trees for your phantoms!', imageClass: "suspicious"},
+	{ target: '#Valnos', text: 'I did suggest to make a sweep like the Captain said. But you didn’t listen.', imageClass: "sad"},
+	{ target: '#Glint', text: ' I heard you say no such thing.', imageClass: "concerned"},
+	{ target: '#Ziggy', text: 'Me neither.', imageClass: "surprised"},
+	{ target: '#Valnos', text: 'See.', imageClass: "sad"},
+	{ target: '#Ziggy', text: 'Commanders need to be HEARD', imageClass: "angry"},
+	{ target: '#Ziggy', text: ' I also suggested a sweep!', imageClass: "happy"},
+	{ target: '#Glint', text: 'You did not!', imageClass: "angry"},
+	{ target: '#Ziggy', text: 'How do you know!? I might have mumbled it, like Valnos.', imageClass: "smug"}
+
+	];
+
+	cadet[0].banter = [
+	{ target: '#Ziggy', text: "I’m not crazy am I? You saw them too?", imageClass: "surprised"},
+	{ target: '#Valnos', text: 'I did see something. Black, big eyes, very quick. Might have had a beak.', imageClass: "suspicious"},
+	{ target: '#Glint', text: "That could have been any kind of animal.", imageClass: "angry" },
+	{ target: '#Ziggy', text: 'Nah Glint! I saw it look at me, it was like it was shaking its little claw at me.', imageClass: "suspicious"},
+	{ target: '#Glint', text: "Are you sure you were not dreaming?", imageClass: "smug"},
+	{ target: '#Ziggy', text: "Then explain the spear!", imageClass: "angry" },
+	{ target: '#Glint', text: 'It’s a stick, it’s not even that pointy.', imageClass: "concerned"},
+	{ target: '#Ziggy', text: "It is!", imageClass: "angry"}
+
+
+
+	];
+		
+		
+		}
+        $(".btn").addClass("hidden");
+		$("#destination").removeClass("hidden");
+		
+				
+      })
+	  
+	  
+	  
 	    $('#raptorians').on('click', function(e) {
         		
 		
         
-		if (_.contains(offList.activeRoster, officer.evok)) {
-		$(".Evoktext").removeClass("hidden");
-		$(".sideImage").attr('src','../Images/assets/Evok.png');
-		}
-		else {
+		if (_.contains(offList.deadRoster, "Evok")) {
 		$(".noEvoktext").removeClass("hidden");
 		 $("#side").addClass("hidden");
+		}
+		else {
+		 $("#side").removeClass("hidden");
+		$(".Evoktext").removeClass("hidden");
+		$(".sideImage").attr('src','../Images/assets/Evok.png');
 		}
 		lib.dialogue(e, "raptorians"),
         $("#raptorians").addClass("hidden");
@@ -155,12 +345,13 @@ officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
 	  
 	   $('#raptorians2').on('click', function(e) {
         // change state here
+		state.raptorians -=1; 
         // end by using lib.goTo
 		lib.dialogue(e, "raptorians2"),
         $("#raptorians2").addClass("hidden");
 		$("#raptorians3").addClass("hidden");
 		$("#raptorians4").addClass("hidden");
-		$("#destination").removeClass("hidden");
+		$("#cadetQR").removeClass("hidden");
 		$("#side").addClass("hidden");
       })
 	  
@@ -171,7 +362,7 @@ officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
         $("#raptorians2").addClass("hidden");
 		$("#raptorians3").addClass("hidden");
 		$("#raptorians4").addClass("hidden");
-		$("#destination").removeClass("hidden");
+		$("#cadetQR").removeClass("hidden");
 		$("#side").addClass("hidden");
       })
 	  $('#raptorians4').on('click', function(e) {
@@ -184,6 +375,9 @@ officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
 		$("#missing").removeClass("hidden");
 		$("#side").addClass("hidden");
       })
+	  
+	  
+	  
 	  
 	  $('#missing').on('click', function(e) {
         // change state here
@@ -200,11 +394,12 @@ officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
         // change state here
 		state.rapNumber -=1;
 		state.crewLoss +=1; 
+		state.raptorians -=1; 
         // end by using lib.goTo
 		lib.dialogue(e, "missingScout"),
         $("#missingScout").addClass("hidden");
 		$("#missingRaptorian").addClass("hidden");
-		$("#destination").removeClass("hidden");
+		$("#cadetQR").removeClass("hidden");
 		
       })
 	  $('#missingRaptorian').on('click', function(e) {
@@ -213,7 +408,7 @@ officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
 		lib.dialogue(e, "missingRaptorian"),
         $("#missingRaptorian").addClass("hidden");
 		$("#missingScout").addClass("hidden");
-		$("#destination").removeClass("hidden");
+		$("#cadetQR").removeClass("hidden");
 		
       })
 	  
@@ -362,7 +557,9 @@ officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
 <div id="side" class="hidden">
 <img class="sideImage" src=""></img>
 </div>
-
+<div id="sideb" class="hidden">
+<img class="face" src=""></img>
+</div>
 <div id="story-text">
 
 <p>We sail by many smaller yet forested islands. We are still at the edges of Thousand islands but already I'm starting to understand where this sea got its name. </p>
@@ -388,6 +585,18 @@ officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
 <button class="btn btn-default hidden" id="officer0"> </button>
 <button class="btn btn-default hidden" id="officer1"> </button>
 <button class="btn btn-default hidden" id="officer2"> </button>
+
+<button class="btn btn-default hidden" id="water">Pristine Water </button>
+<button class="btn btn-default hidden" id="wateryes">Gather Water </button>
+<button class="btn btn-default hidden" id="waterno">Dont gather Water </button>
+
+
+<button class="btn btn-default hidden" id="cadetQ">Cadet Quest</button>
+
+<button class="btn btn-default hidden" id="cadetQE">Explore Third island.</button>
+<button class="btn btn-default hidden" id="cadetQF">Forage for food</button>
+
+<button class="btn btn-default hidden" id="cadetQR">Cadet Quest Results</button>
 
 <button class="btn btn-default hidden" id="raptorians"> Raptorians want ashore </button>
 <button class="btn btn-default hidden" id="raptorians2">Refuse request </button>
@@ -452,7 +661,7 @@ $('#officerObject2').popover({title: officer3[2].name, content: officerIntros(2)
 
 </script>
 </div>
-</div>
+
 <!--
 <div class="clues2 hidden"><p><strong> Search for Clues</strong></p>
 <p> Poor investigation: </p>
@@ -525,6 +734,105 @@ $('#officerObject2').popover({title: officer3[2].name, content: officerIntros(2)
 </div>
 
 </div>
+
+<div class="water hidden"><p><strong>Pristine Water</strong></p>
+<p>While my expedition team explores the island, I receive a quick report from their initial findings. <br>
+Keeper and surprisingly Chef Zat presents it as a source of interest to our supplies.<br>
+“Captain, as you know the local water sources are somewhat depleted from the previous visitors, but the landing parties report that there’s a larger fresh water source at the top of the peak of this island. It would take some extra crews and a little hard work, but you Awes are good climbers so it would not cost us more than a little extra effort from some extra landing parties. “ Said Keeper. <br>
+“Is there a catch of some sort? Why have the landing parties not chosen to forage water from that one?” I asked<br>
+“Well, there are some signs of a small trail leading up there and there are stone markings around it. We are not sure what they mean. As far as we know, no Islander tribe have made claim on this Island. Either way, there’s more than enough to go around up there.” Keeper replied.<br>
+“Could the water be bad?” I quirk my head. <br>
+“I thought of that and I have a sample here!” Keeper sloshed a small container. He always came prepared. Chef Zat perked up and spoke. <br>
+“I’ve tested it and had it tasted, it seems very clean and fresh; Surprisingly pristine and delicious in fact! Water like this would be a very worthwhile trading commodity back in arid Wulflands, we’re a bit of water connoisseurs there.” <br>
+“We’re not dragging water to the Wulf-lands.” I frowned. <br>
+“Oh, hah, you misunderstand. It was just his way of indirectly telling you our arid originated Chef highly approves of the water and deems it highly drinkable.” Keeper chuckled. <br>
+“We should replace our stores with it as much as possible, it’ll cheer up the crew from the stale stuff we have in the holds now.” Chef Zat filled in. <br>
+“So the only problem is an old circle of stones.“ I crossed my arms. <br>
+“Well yes, you Awes are a bit superstitious, so I thought it best to seek your approval.” Keeper nodded.</p>
+</div>
+
+<div class="wateryes hidden"><p><strong>Pristine Water</strong></p>
+<p>I give permission to retrieve the water. To fill as many barrels as we can and even replace some of the less fresher ones. <br>
+The peak and its height proved a insignificant challenge to the work-crews assigned for the job. In fact they seemed to like it and soon barrels of fresh pristine water were being hoisted aboard. <br>
+I had a sip of the water myself and it did indeed taste very fresh and delicious. Like meltwater from the mountain streams of home. The crew with certainly approve.</p>
+</div>
+
+<div class="waterno hidden"><p><strong>Pristine Water</strong></p>
+<p>We are not in any dire need of water so I don’t see why we should expend energy on this endeavour. <br>
+Chef Zat is disappointed but in the end I have the final call on the matter. Believe what they will for my reasoning, superstitious or otherwise.</p>
+</div>
+
+<div class="cadetQ hidden"><p><strong>Cadet Quest</strong></p>
+<p>The island presents a good opportunity to give the cadets some assignment and have them learn some lessons. This place seems largely uninhabited so its ideal to let them loose on it without them bumbling into too much trouble. <br>
+I have two lessons in mind and have to make my mind up on one of them. <br>
+ I could have them forage for food and supplies, see how well they combine their knowledge to gather us some extra barrels of rations. It might turn out to be a bit difficult, due to the nearby islands being picked clean from the previous visitors. Cooperation will be key. <br>
+ <br>
+Secondly, I could assign them a small command of a few hardy sailors and send them to explore the third and larger island. The scouts have not seen anything from the air, but a small team of extra eyes having a look at it to see what they uncover might be useful. It would be interesting to see if one of them takes command of the others, or if the three of them will be able to share the command.</p>
+</div>
+<div class="cadetQF hidden"><p><strong>Cadet Quest - Food forage</strong></p>
+<p>“I expect you to fill all three of these barrels with some manner of fresh or otherwise edible produce that will pass Cooks inspection.”<br>
+“Yes, Captain! Of course!” Glint saluted stiffly, eager to please and make up for their previous mischiefs.<br>
+Two other two cadets equally stood silently, seeming to share their fellow cadets excitement. This would be a rare chance for them to have some autonomy and be away from the ship.<br>
+But I suspected they didn't quite understand yet that it was no field trip they were being sent out upon.<br>
+In a way I was setting them up to fail, they only had a day and the island, although dense, was small and seemed to contain mostly brambles and knotty old trees of the non-fruit bearing variety.<br>
+But it would be interesting to see what they came up with, even if they ended up shoving each-other into the barrels.<br>
+“You have a day, then I expect the barrels back right here on deck, full or with a damn good excuse!” I added quite some bite to my tone.<br>
+“Yes, Captain!” All three saluted in unison, their fur bristling.<br>
+“Get to it then, dismissed!” I watched them pause in hesitation, look at the barrels and then at the shore of the island not far from our anchored position. I raised my brow at them and they scrambled in confusion, grabbing a barrel each and rolling them aimlessly in separate directions before erupting in a chatter with each other.<br>
+They would have to arrange transport to and fro the island on their own of course.</p>
+</div>
+
+<div class="cadetQFR hidden"><p><strong>Cadet Quest - Results</strong></p>
+<p>Along with Chef Zat, I inspected the three barrels with a mild look of displeasure. They were far from full and seemed to mostly contain the most random assortment of goods I ever could have expected. One even had a something scampering around inside.<br>
+“So this is what you claim will pass for foraged rations?” I looked up at the cadets arrayed in front of me. They looked a bit rough from not only a day of digging through brambles. They shifted their footing uncertainly.<br>
+“What's this, why is this one half-full of just grass?” I tapped the first barrel.<br>
+“I-its Sour-grass Captain.” Valnos spoke up. “You can boil it and drink the soup. Its... supposed to...”<br>
+“It’s very low on nutrition, it’s gives you a bellyache and is really only a last resort kind of food to stave off starvation.” Chef Zat tapped the barrel, shaking his head. <br>
+“I wouldn't even serve sour-grass soup to prisoners! Not unless I really enjoyed watching peoples faces shrivel up, but there are laws against that.” I huffed and Valnos looked down at his toes.<br>
+“And this, someone explain this Cavy looking thing.” I tapped the side of the second barrel in question where some kind of stressed rodent was running in circles inside.<br>
+“Thats mine!” Ziggy raised a paw enthusiastically. “I caught that! It’s a fat one!”<br>
+“So you caught one miserable rodent for one or two sailor to sup on?” I raised a brow.<br>
+“There's other stuff in there. Whole lot of Knot-berries!” Ziggy protested hesitantly, getting a little frustrated with this show.<br>
+“You mean this trampled mush or these little brown pellets most of them have transformed into? It’s all contaminated now.” Chef Zat wrinkled his nose down at the contents of the barrel.<br>
+“What...? Oh...” Ziggy pulled at her collar.<br>
+“And don't get me started on this unholy mix of a mess in this one.” I tapped the third barrel, it was Glints turn to cringe, to her credit she remained silent. “Mushroom bits, twigs with berries, dirt with roots. What's this, Bark?”<br>
+“For tea.” Glint squeaked silently.<br>
+“Oh, how considerate! So the cook is just supposed to boil the whole barrel is he?”<br>
+“There’s a little bit of everything in there, but again, it’s all mixed up. It would have to be emptied and sorted, which might take longer than gathering a new barrel. And much of this is unusable mush now. “ Chef Zat explained. <br>
+The cadets all had the look on their faces now of where they thought me unfair. They had probably expected me to shower them with praise for filling up 3 barrels. I softened my tone, here came the lecture.<br>
+“You failed to follow my orders to fill these barrels with usable edibles. You could not even fulfill a part of my order by filling one.” I paused and looked all three over closely. “Had you worked together, you could have filled one of these up with berries, there's enough scattered and ruined in all three. Perhaps you could even have organized fast enough for something for a second barrel too.”<br>
+I continued, stepping up to pace behind them.<br>
+“You are a crew. Crews work together! They don't compete or rush off to do their own thing, we are weaker divided. You consolidate and cooperate!” I let the words sink in.<br>
+“Now go get yourselves cleaned up and take a day off.”</p>
+</div>
+<div class="cadetQE hidden"><p><strong>Cadet Quest - Island Exploration</strong></p>
+<p>“I am assigning you to explore the around the base of the peak of the third and largest of the ‘Three sons’. You will be doing so with a small company of sailors that will be under your combined command.” <br>
+The Cadets stood silently, but they excitement was palpable. This would be a rare chance for them to have some autonomy and be away from the ship as well as give orders to crew.<br>
+“Mind you, this will only be a brief exploratory mission. You have a day as we leave tomorrow past midday, I expect you back by then.” I told them firmly. <br>
+“Yes Captain!” They all responded in chorus. They could be so diligent when given the equivalent of a Cavy on a stick.<br>
+The 3 sailors and Low-Officer I put under their command were all experienced and capable. If anything happened they would be able to bring the Cadets back. <br>
+“Off you go then, I expect a report tomorrow evening after we depart.” <br>
+</p>
+</div>
+<div class="cadetQER hidden"><p><strong>Cadet Quest - Island Exploration</strong></p>
+<p>The cadet expedition team return. They seem to be in one piece, though it’s not all smiles and good humor and they appear to be a bit ruffled up from roughing it in the woods and steep cliffs for a day. <br>
+The cadets deliver their initial report. <br>
+“The place is largely uninhabited. There are however traces of passage that we believe can indicate that this place is sometimes visited by Islanders.” Cadet Glint spoke first at my bidding. She was usually the most comprehensive. <br>
+“I SWEAR I saw some little folk scurrying about. Valnos saw them too!” Ziggy could not contain herself any longer. “Right Valnos?” <br>
+“I saw something watching us and at another point caught something going through our packs while we camped. But it was dark, they were dark and could have been inquisitive wildlife. Whatever I saw was smaller than me.” Valnos reported hesitantly. <br>
+“One threw a very small spear at me!” Ziggy held up a small pointy twig. <br>
+I was not quite sure how to take their report. Despite what Ziggy saw, overall it seemed the island was not generally habited. <br>
+I asked the Low-Officer for her report and while she looked like she wanted nothing else by drop by the groomery and then her bunk, she reported diligently. <br>
+“The Cadets are a little scatterbrained and unorganized, there’s little in terms of hierarchy among them so orders were at times... conflicting. We spent most of the time fruitlessly searching for the tiny phantoms two of them claimed seeing. If what they saw is true, it was worthy of investigation I suppose, but we never saw or found anything but Cadet Ziggy’s pointy stick. They performed as expected from a junior Officer-Cadet.” <br>
+I thanked her and sent her on her way. <br>
+The Cadets awaited my verdict. <br>
+“It sounds to me like you spent most of the time searching for these now unconfirmed small wildlife.” I crossed my arms. “What am I to do about a report like this? You may or may not have seen something, you have a small stick as proof.”<br>
+“We did search, Captain. We just didn’t find them!” Ziggy complained. <br>
+“I don’t want incomplete reports like this. Whether you saw something or not, you should have confirmed what you were able to confirm. There were 7 of you in total, that should have been enough for a decent wide sweep through the island with time to spare, enough to find any potential hidden settlements or not. Instead you ran from bush to bush looking for shadows.” <br>
+I paced back and forth in front of them. <br>
+“Did it occur to you that I gave you command over some of the ships most experienced sailors? Did it occur to you to ask them for advice? I expect better and more methodical thinking next time.”</p>
+</div>
+
 
 
 <div class="raptorians hidden"><p><strong>  Raptorians want ashore</strong></p>
