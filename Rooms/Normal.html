@@ -16,12 +16,14 @@
   <script src="../officers.js"></script>
   <link rel="stylesheet" href="../main.css"></link>
   <script>
+  state.events.push("toziggy")
 		state.Glint.status = "available"
 		state.Valnos.status = "available"
+		state.Ziggy.status = "available"
 	$(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
-      
+      $("#Ziggy").addClass("belly")
       $('#button-1').on('click', function() {
         // change state here
         // end by using lib.goTo
@@ -45,6 +47,9 @@
   
   <style>
     /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	
+	
+	
   </style>
 
 </head>
@@ -151,16 +156,16 @@ Day: <span class="days"><script>displayDays()</script></span>
 		
 		$(".ziggy").removeClass("hidden")
 		cadet[0].banter = [
-    { target: '#Ziggy', text: 'UAAAAARRRRRRRP, heh, scuses.', imageClass: "smug"},
+    { target: '#Ziggy', text: 'UAAAAARRRRRRRP, heh, scuses.', imageClass: "vore"},
     { target: '#Glint', text: 'Ugh, you are so crude and desipicable.', imageClass: "angry"},
-    { target: '#Ziggy', text: 'Hah, so grumpy today! Whats the matter, dont sleep well? Something keep you up?', imageClass: "happy" },
+    { target: '#Ziggy', text: 'Hah, so grumpy today! Whats the matter, dont sleep well? Something keep you up?', imageClass: "belly" },
     { target: '#Glint', text: 'Its no surprise your body is as crude and annoyingly noisy as you.', imageClass: "angry"},
-	{ target: '#Ziggy', text: 'Hah, sounds like someone is just envious! Valnos wasent bothered!', imageClass: "blush"},
+	{ target: '#Ziggy', text: "Hah, sounds like someone is just envious! Valnos wasn't bothered!", imageClass: "belly"},
 	{ target: '#Valnos', text: 'Maybe a little...', imageClass: "sad"},
 	{ target: '#Glint', text: 'Im not envious.', imageClass: "concerned"},
-	{ target: '#Ziggy', text: 'Its okay, really, i understand. Its not fair.', imageClass: "neutral"},
+	{ target: '#Ziggy', text: 'Its okay, really, i understand. Its not fair.', imageClass: "belly"},
 	{ target: '#Glint', text: 'Oh?', imageClass: "blush"},
-	{ target: '#Ziggy', text: 'Yeah, who wouldnt want what Arn got and join with me, right?', imageClass: "happy"},
+	{ target: '#Ziggy', text: 'Yeah, who wouldnt want what Arn got and join with me, right?', imageClass: "vore"},
 	{ target: '#Glint', text: 'Fiend!', imageClass: "surprised"}
 						];
 
@@ -168,7 +173,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 	{ target: '#Valnos', text: 'With Arn gone, i think thats the last we saw of that racket', imageClass: "happy"},
 	{ target: '#Valnos', text: 'But the ship is now without an official First-officer', imageClass: "neutral"},
 	{ target: '#Valnos', text: 'It might work for a while, i think, but someone needs to be appointed acting first-officer, right?', imageClass: "sad" },
-	{ target: '#Ziggy', text: 'Hey, i clearly got the most officer in me. Appoint me!', imageClass: "happy"},
+	{ target: '#Ziggy', text: 'Hey, i clearly got the most officer in me. Appoint me!', imageClass: "belly"},
 	{ target: '#Glint', text: 'That joke wasent funny the first 5 times either', imageClass: "suspicious"}
 				];
 		

@@ -20,7 +20,9 @@
   	var Navpoint3 = [];
 	var favor = 0;
   
-
+state.Glint.status = 'available';
+    state.Valnos.status = 'available';
+	state.Ziggy.status = 'available';
 
 state.visited.push("Navpoint3");
 
@@ -2912,6 +2914,40 @@ Awes were hurt in his retrieval and the village largely destroyed in their oppos
 </div>
 
 </div>
+
+<Script>
+ 
+ cadet[2].banter = [
+	{ target: '#Valnos', text: "Oh wow, natives! Islanders!", imageClass: "surprised"},
+	{ target: '#Ziggy', text: 'Are they pirates?', imageClass: "suspicious"},
+	{ target: '#Glint', text: 'No, they’re indigenous folk who live on these islands.', imageClass: "happy" },
+	{ target: '#Valnos', text: "I heard there’s different kinds of them.", imageClass: "blush"},
+	{ target: '#Glint', text: 'They’re all Gryphs though, no?', imageClass: "neutral"},
+	{ target: '#Valnos', text: "Yes, but like… different origins, I'm not sure. Wow, hope I get to see one!", imageClass: "happy"}
+
+];
+
+ cadet[1].banter = [
+	{ target: '#Glint', text: 'It must take a hardy people to eke out a living in a place like this.', imageClass: "concerned"},
+	{ target: '#Glint', text: 'Always marveled at the Mountain-Awes for surviving around the barren peaks of the spines.', imageClass: "concerned"},
+	{ target: '#Glint', text: 'But in a way,  I wonder perhaps if it’s harder here.', imageClass: "sad" },
+	{ target: '#Valnos', text: 'Well, there’s a lot less fish in the mountains.', imageClass: "happy"},
+	{ target: '#Glint', text: 'Eugh… If that’s all they eat here they have my respect.', imageClass: "surprised"}
+
+];
+
+ cadet[0].banter = [
+	{ target: '#Ziggy', text: "Weird place to live, a small forest surrounded by sea.", imageClass: "concerned"},
+	{ target: '#Glint', text: 'Yes, quite horrid. No safe mountains or anything around to go too.', imageClass: "sad"},
+	{ target: '#Ziggy', text: "Yea! Like, what happens if there’s like… a REALLY tall wave!?", imageClass: "sad" },
+	{ target: '#Valnos', text: 'You’d get wet.', imageClass: "suspicious"},
+	{ target: '#Ziggy', text: "Imagine sleeping and then just suddenly… you’re wet.!", imageClass: "surprised"},
+	{ target: '#Glint', text: "Lets not.", imageClass: "blush" }
+
+
+
+];
+</script>
 
 
 </body>

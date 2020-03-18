@@ -25,9 +25,9 @@
 	var talks2 = [];
 	var time = 0;
 	
-    state.Glint.status = 'invisible';
-    state.Valnos.status = 'invisible';
-	state.Ziggy.status = 'invisible';
+    state.Glint.status = 'available';
+    state.Valnos.status = 'available';
+	state.Ziggy.status = 'available';
 	
 	officer3 = [officer.evok, officer.mirr, officer.tick];
 	  backupOfficer = [officer.tung, officer.garsch]
@@ -276,12 +276,34 @@
 	  
 		 $('#cadetStay').on('click', function(e) {
         // change state here
+		Themine.push("cadetStay");
         // end by using lib.goTo
 		lib.dialogue(e, "cadetStay"),
-        $("#cadetExplore").addClass("hidden");
-		$("#cadetStay").addClass("hidden");
-		$("#cadetAssist").addClass("hidden");
+         $(".btn").addClass("hidden");
+		$("#options").removeClass("hidden");
 		
+      })
+	  
+	  $('#cadetship').on('click', function(e) {
+        // change state here
+		$(".sideImage").attr('src', officer.elda.image)
+        // end by using lib.goTo
+		lib.dialogue(e, "cadetShip"),
+         $(".btn").addClass("hidden");
+		$("#options").removeClass("hidden");
+		
+      })
+	  
+	   $('#cadetSiege').on('click', function(e) {
+        // change state here
+		Themine.push("cadetSiege2");
+		if (state.locations.indexOf("Navpoint4") == -1) {
+			
+				state.locations.push("Navpoint4");
+			}
+        // end by using lib.goTo
+		lib.dialogue(e, "cadetSiege"),
+         $(".btn").addClass("hidden");
 		$("#options").removeClass("hidden");
 		
       })
@@ -289,12 +311,11 @@
 	  
 	   $('#cadetAssist').on('click', function(e) {
         // change state here
+		Themine.push("cadetAssist");
         // end by using lib.goTo
 		lib.dialogue(e, "cadetAssist"),
-       $("#cadetExplore").addClass("hidden");
-		$("#cadetStay").addClass("hidden");
-		$("#cadetAssist").addClass("hidden");
-		
+       $(".btn").addClass("hidden");
+				
 		$("#options").removeClass("hidden");
 		
       })
@@ -320,6 +341,12 @@
 		officerButtonNames();
 		lib.dialogue(e, "options")
 		$("#side").addClass("hidden");
+		
+		if ( time >= 2  && Themine.indexOf("cadetSiege2") == -1) {
+		$("#cadetSiege").removeClass("hidden");
+		}
+		
+		
 		if ( time >= 6 ) {
 		$(".btn").addClass("hidden");
 		$("#late").removeClass("hidden");
@@ -350,6 +377,10 @@
         // end by using lib.goTo
 		lib.dialogue(e, "options"),
         officerButtonNames();
+		
+		if ( time >= 2  && Themine.indexOf("cadetSiege2") == -1) {
+		$("#cadetSiege").removeClass("hidden");
+		}
 		
 		if ( time >= 6 ) {
 		$(".btn").addClass("hidden");
@@ -538,10 +569,14 @@
 		state.crewLoss += 1;
 		state.rapNumber -= 1; 	
         time += 1;
+		$("#decline").addClass("hidden");
 		if (_.contains(Themine, "cadetExplore") && Themine.indexOf("cadetDiscovery") == -1) {
 			$("#cadetDiscovery").removeClass("hidden");
 			$("#assault3").addClass("hidden");
 			$("#decline").addClass("hidden");
+		}
+		else if (_.contains(Themine, "cadetStay")){
+		$("#cadetship").removeClass("hidden");
 		}
 		else {
 				//$("#assault3").removeClass("hidden");
@@ -1213,6 +1248,8 @@ The Scouts are ready to depart for a closer look.</p>
 <button class="btn btn-warning hidden" id="cadetAssist">Assist in Siege</button>
 
 <button class="btn btn-warning hidden" id="cadetDiscovery">Cadet Trouble</button>
+<button class="btn btn-default hidden" id="cadetship">Cadet Duties</button>
+<button class="btn btn-default hidden" id="cadetSiege">Cadet Duties</button>
 
 <button class="btn btn-default hidden" id="options">Assault Options</button>
 
@@ -1498,8 +1535,34 @@ He can’t listen to those feelings any longer.</p>
 
 <p>He has rope in his pack, if he ties it around that huge boulder and then...<br>
 </p>
-
 </div>
+
+
+<div class="cadetShip hidden"><p><strong>Cadet Duties</strong></p>
+<p>“Now young Cadets, don’t hang your ears low. There will be plenty of work for you yet.” Elda spoke with a crooning rumble. “If there are wounded in the fighting, many of them will depend on your support. This is honorable work.” <br>
+“I am ready to help Matron.” Valnos squeaked. <br>
+“Ye, I mean, sure. But I ain't here to become no Pouch-Matron.” Ziggy complained. <br>
+“Worry not dear Ziggy, I understand your energetic spirit well. Though you have some good hips on you for it.” Elda smiled. <br>
+“Only a fifth of females are born with the ability to be true pouch-matrons anyway. You got to have the right….” Glint lectured before cut off. <br>
+“The right scent, yea yea, I know that. I got tested to have it back in the academy! Doesn't mean I have to become one though!” Ziggy harrumphed. <br>
+“What! You of all people!?” Glint exclaimed. <br>
+“What a treat. No, it does not mean you have to dear Ziggy. But one never knows how your heart and spirit grows as you grow older.” <br>
+“F-first injuries are coming in!” Valnos announced at the door.</p>
+</div>
+
+<div class="cadetSiege hidden"><p><strong>Cadet Duties</strong></p>
+<p>“So when do we get to join the charge into the mines?” Ziggy wondered aloud, taking a pause from lifting crates to watch the preparations and defenses around the mine entrance. <br>
+“You want to go in there?” Valnos cringed noticeably, looking up from his inventory notes. <br>
+“Don’t be such a squeaky lil Cavy! As an officer, you gotta be ready to step up!” Ziggy drew and held her sword up. <br>
+“I don't relish the thought either, it’s dark and tight and probably full of ambushes. Ziggy is right though, we can not shirk from duty.” Glint dropped a heavy satchel onto the ground. <br>
+“I know, I know! I don’t mean to sound like a coward or anything. I just… fight best when I can spread my wings.” Valnos straightened and thumped his spear on the ground and spread his wings wide, which were quite of a impressive span for his size. <br>
+The other two cadets eyes him with a dubious looks. <br>
+“How goes your flying lessons with Krel anyway?” Glint cocked her head. <br>
+“Ah… Can’t quite keep up with them yet.” Valnos kicked the ground. <br>
+“Well duh… they’re scouts… Hey whatcha got there?“ Ziggy pointed to the edge of a object sticking out of the dirt where Valnos kicked. <br>
+ “Hmm, something has been buried here.”</p>
+</div>
+
 
 <div class="options hidden"><p><strong>Assault Options</strong></p>
 
@@ -2244,46 +2307,31 @@ It also lays in Lanaga claimed territory, although they do not currently have mu
 “Is there anything interesting there pertinent to our overall mission?” I raise my brow to her. <br>
 “Oh… nope! It’s just a pretty neat spire in the middle of nowhere that I want to look at!”</p>
 </div>
+
 <script>
  cadet[2].banter = [
-	{ target: '#Valnos', text: 'Finally, an island!', imageClass: "neutral"},
-	{ target: '#Glint', text: 'The ship will be busy.', imageClass: "smug"},
-	{ target: '#Ziggy', text: 'Too busy to push us around!?', imageClass: "smug" },
-	{ target: '#Valnos', text: "Maybe they'll let us ashore?", imageClass: "happy"},
-	{ target: '#Glint', text: 'Would love some solid ground under my paws.', imageClass: "concerned"},
-	{ target: '#Ziggy', text: 'Fight pirates!', imageClass: "happy"},
-	{ target: '#Valnos', text: 'Oh... maybe not that...!', imageClass: "blush"},
-	{ target: '#Ziggy', text: "You'd rather stay and swab the deck, eh? Then you won't need this!", imageClass: "smug"},
-	{ target: '#Valnos', text: 'Give that back! I just head it cleaned.', imageClass: "surprised"},
-	{ target: '#Ziggy', text: "Only officers get caps, you're a sailor now!", imageClass: "happy"},
-	{ target: '#Valnos', text: 'Come on Ziggy! Glint?', imageClass: "sad"},
-	{ target: '#Ziggy', text: 'Ooop, its in Glints pouch now!', imageClass: "happy"},
-	{ target: '#Glint', text: 'HEY!! Ah! Paws off!', imageClass: "blush"}
+	{ target: '#Valnos', text: "Hey you two, we’re to report to the Captain right away.", imageClass: "surprised"},
+	{ target: '#Valnos', text: 'It’s battlestations!', imageClass: "concerned"},
+	{ target: '#Glint', text: 'Oh dear, I’ll get ready.', imageClass: "surprised" },
+	{ target: '#Ziggy', text: "Wahoooo!", imageClass: "happy"}
 ];
 
  cadet[1].banter = [
-	{ target: '#Glint', text: 'My shoulders are killing me!', imageClass: "sad"},
-	{ target: '#Ziggy', text: 'Tick-shifts reeking stinks!', imageClass: "suspicious"},
-	{ target: '#Valnos', text: 'He does push us further then the other Officers do.', imageClass: "sad" },
-	{ target: '#Glint', text: 'Why did we have to assemble crates only to pull them apart again for half a day?!', imageClass: "angry"},
-	{ target: '#Valnos', text: 'I suppose its educational.', imageClass: "neutral"},
-	{ target: '#Glint', text: "We're Officer-Cadets, not shipwrights or laborers!", imageClass: "suspicious"},
-	{ target: '#Valnos', text: "Not so loud! Last time you said that he doubled our workload!", imageClass: "blush"},
-	{ target: '#Ziggy', text: "Ye! Shut your squeaking gob Glint!", imageClass: "angry"}
+	{ target: '#Glint', text: 'It’ll be nice to be able to prove our worth for a change.', imageClass: "suspicious"},
+	{ target: '#Ziggy', text: 'Surprised to hear you say that.', imageClass: "surprised"},
+	{ target: '#Glint', text: 'I am an future officer of the Admiralty as well as you.', imageClass: "angry" },
+	{ target: '#Glint', text: 'I can handle myself!', imageClass: "smug"},
+	{ target: '#Ziggy', text: 'Right on!', imageClass: "blush"}
+
 ];
 
  cadet[0].banter = [
-	{ target: '#Glint', text: "Who's is this broken hammer and why was is it on my bunk?", imageClass: "suspicious"},
-	{ target: '#Ziggy', text: 'Uh....', imageClass: "surprised"},
-	{ target: '#Valnos', text: "A carpenters hammer? Looks pretty ornate.", imageClass: "neutral" },
-	{ target: '#Ziggy', text: 'Ah...', imageClass: "concerned"},
-	{ target: '#Glint', text: "Whats the point of an elaborately ornate tool? It'll just break. Seems foolish and expensive.", imageClass: "angry"},
-	{ target: '#Valnos', text: "Perhaps it was not meant to be used?", imageClass: "suspicious" },
-	{ target: '#Ziggy', text: 'Its Officer Ticks hammer. I might have accidentally borrowed it.', imageClass: "concerned"},
-	{ target: '#Glint', text: "You...", imageClass: "surprised"},
-	{ target: '#Valnos', text: "...broke Ticks hammer?!", imageClass: "surprised" },
-	{ target: '#Ziggy', text:  "I didn't know it was important! You got my back, right?!", imageClass: "sad"},
-	{ target: '#Glint', text: "We're dead!", imageClass: "sad"}
+	{ target: '#Ziggy', text: "Pirates! Pirates! Oh fluff! Let me at ‘em!", imageClass: "happy"},
+	{ target: '#Ziggy', text: 'Where are my wing-guards!', imageClass: "angry"},
+	{ target: '#Glint', text: "Not this again, they’re where you always need to keep them!", imageClass: "angry" },
+	{ target: '#Ziggy', text: 'Did you move them again!', imageClass: "suspicious"},
+	{ target: '#Ziggy', text: "I said hands off my stuff! ", imageClass: "angry"},
+	{ target: '#Glint', text: "You always leave it in the middle of the floor!", imageClass: "angry" }
 
 ];
 

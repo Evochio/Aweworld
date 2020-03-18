@@ -428,6 +428,13 @@ Hover border for the whole officer object
 	background-position: 600px 0px; 
 }
 
+.vore {
+	background-position: 200px 286px; 
+}
+.belly {
+	background-position: 200px 572px; 
+}
+
 .new {
 	background-position: 0px 50px; 
 	

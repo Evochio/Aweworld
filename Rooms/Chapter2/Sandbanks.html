@@ -17,13 +17,18 @@
   <link rel="stylesheet" href="../../main.css"></link>
   <script>
 
-  
+    state.Glint.status = 'available';
+		state.Valnos.status = 'available';
+		state.Ziggy.status = 'available';
   
     var sandbanks = [];
 	state.visited.push("sandbanks");
   
   
     $(document).ready(function() {
+		$("#GThumb").addClass("hidden");
+		$("#VThumb").addClass("hidden");
+		$("#ZThumb").addClass("hidden");
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
       $("#side").removeClass("hidden");
@@ -96,6 +101,41 @@
 		$("#side").removeClass("hidden");
 		$(".sideImage").attr('src', officer.tick.image);
 		state.supplies -=1;
+		$("#GThumb").removeClass("hidden");
+		$("#VThumb").removeClass("hidden");
+		$("#ZThumb").removeClass("hidden");
+		
+cadet[2].banter = [
+	{ target: '#Valnos', text: 'It’s so shallow and the water so crisp. Look at all those fish!', imageClass: "happy"},
+	{ target: '#Ziggy', text: 'Oh yeah, look at that. DON’T FALL IN.', imageClass: "happy"},
+	{ target: '#Valnos', text: 'Yaaah!', imageClass: "surprised" },
+	{ target: '#Ziggy', text: "Don’t worry, I gotchu!", imageClass: "blush"},
+	{ target: '#Valnos', text: 'Don’t push me like that! Matrons breath! ', imageClass: "concerned"},
+	{ target: '#Ziggy', text: 'Haha, should have seen your face! You’re all poofed!', imageClass: "happy"}
+];
+
+ cadet[1].banter = [
+	{ target: '#Glint', text: 'Tick is a pain in the tuft, but you have to admire the efficiency.', imageClass: "smug"},
+	{ target: '#Valnos', text: 'Easy to say from up here, you’re not in the water getting soaked and getting salt up your nostrils.', imageClass: "sad"},
+	{ target: '#Glint', text: 'Well, the perks of being an Officer-cadet.', imageClass: "happy" },
+	{ target: '#Valnos', text: 'Dont...', imageClass: "surprised"},
+	{ target: '#Ziggy', text: 'There you are! Was brought to find you, we’re on 3rd shift, waterduty. Splish-splash! Going to stink big-time!', imageClass: "neutral"},
+	{ target: '#Valnos', text: "...Jinx it.", imageClass: "concerned"},
+	{ target: '#Glint', text: "I deserve this. ", imageClass: "sad"}
+];
+
+ cadet[0].banter = [
+	{ target: '#Ziggy', text: "I really wanted to go to the island.", imageClass: "angry"},
+	{ target: '#Glint', text: 'You always want ashore. ', imageClass: "concerned"},
+	{ target: '#Ziggy', text: "I sense a good fight over there, life or death struggle.", imageClass: "suspicious" },
+	{ target: '#Glint', text: 'You can have one riiight here', imageClass: "smug"},
+	{ target: '#Ziggy', text: "Oh! Nice one! Excellent belly-stroke timing.", imageClass: "surprised"},
+	{ target: '#Glint', text: "Can’t believe I am descending down to your level.", imageClass: "surprised" },
+	{ target: '#Ziggy', text: 'My level is doooown here.', imageClass: "blush"},
+	{ target: '#Glint', text: "Ooookay.", imageClass: "suspicious"}
+
+];
+		
 		
 		if (state.chapter.indexOf("sickness") == -1) {
 		state.chapter.push("sickness");
@@ -331,6 +371,37 @@
 		}
 		else if (_.contains(sandbanks, "vore")) {
 		lib.dialogue(e, "results3")
+		
+	
+		$("#ZThumb").removeClass("hidden");
+	
+	cadet[2].banter = [
+	{ target: '#Valnos', text: '...', imageClass: "sad"}
+];
+
+ cadet[1].banter = [
+	{ target: '#Glint', text: '...', imageClass: "concerned"},
+];
+
+ cadet[0].banter = [
+	{ target: '#Ziggy', text: "So, we are not talking about this, like ever.", imageClass: "sad"},
+	{ target: '#Valnos', text: 'Like we are now?', imageClass: "sad"},
+	{ target: '#Ziggy', text: "Exactly, we don’t talk about it like we’re talking about it now.", imageClass: "concerned" },
+	{ target: '#Valnos', text: 'Aren’t we talking about it?', imageClass: "suspicious"},
+	{ target: '#Ziggy', text: "No, we’re not talking about it.", imageClass: "suspicious"},
+	{ target: '#Glint', text: "You know, if you would just stop looking for fights…", imageClass: "angry" },
+	{ target: '#Ziggy', text: 'WE’RE NOT TALKING ABOUT IT.', imageClass: "angry"},
+	{ target: '#Glint', text: "Guh…", imageClass: "concerned"},
+	{ target: '#Valnos', text: 'Ship is unstuck.', imageClass: "sad"},
+	{ target: '#Glint', text: "Good.", imageClass: "suspicious" },
+	{ target: '#Ziggy', text: 'Look, for what it’s worth, I am sorry.', imageClass: "surprised"},
+	{ target: '#Glint', text: "Just...", imageClass: "surprised"},
+	{ target: '#Ziggy', text: 'But we’re not talking about it.', imageClass: "suspicious"},
+	{ target: '#Glint', text: "Ugh...", imageClass: "concerned"}
+
+];
+	
+		
 		}
 		else {
 		lib.dialogue(e, "results2")
@@ -746,9 +817,10 @@ The Peli's body, used to digesting fish, will have a little to figure out with t
 A quartet of Awes proves to be no big challenge, the heavy bloated gut of the bird steadily burbling and gworbling as it over time shrinks in size as the meals within digest and absorb away, adding on to the Peli's body liberally. <br>
 It’s quite a satisfied Peli that sits in the warm light of the setting sun. The thoughts of a bird are not overly complex, but as Awes pleasantly become part of its rudimentary ‘self’, eyes that before never considered things like a sunset and its gold reflection upon the water now shine a little brighter in waters reflection. The bird comes to terms that it is pleased, well-fed and pleased indeed. It’s a new kind of momentary moment of reflection, brief in the dim mind of a bird, but likely not its last.</p>
 </div>
+<script>
 
 
-
+</script>
 
 </body>
 </html>

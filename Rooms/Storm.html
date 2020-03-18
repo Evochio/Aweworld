@@ -15,11 +15,16 @@
   <script src="../officers.js"></script>
   <link rel="stylesheet" href="../main.css"></link>
   <script>
+	  state.Glint.status = 'available';
+		state.Valnos.status = 'available';
+		state.Ziggy.status = 'available';
+		
 	state.days += 1;
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
-      
+      	
+
         $('#through').on('click', function(e) {
 		lib.dialogue(e, "through"),
 		
@@ -137,16 +142,27 @@ cadet[0].banter = [
 ];
 
 cadet[1].banter = [
-    { target: '#Glint', text: 'If we are going through that i better get my rain-cloak ready.', imageClass: "sad"},
+    { target: '#Glint', text: 'If we are going through that i better get my raincloak ready.', imageClass: "sad"},
 	{ target: '#Glint', text: 'But you know what they say about prudence. We are supposed to arrive at our destination in one piece.', imageClass: "concerned"}
 
 	];
+
+
+if (_.contains(state.events, "valnosPrize")) {
+
+	cadet[2].banter = [
+	{ target: '#Valnos', text: 'Ogh... settle already.', imageClass: "vore"},
+	{ target: '#Ziggy', text: "It's just... not...fair!", imageClass: "suspicious"}
 	
- cadet[2].banter = [
+];
+}
+else {
+	cadet[2].banter = [
 	{ target: '#Valnos', text: 'Hmmm, i hope this storm doesent catch up to our merchant friends.', imageClass: "sad"}
 	
 ];
 
+}
 
 </script>
 </div>

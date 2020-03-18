@@ -112,7 +112,7 @@
 	  	$('#button-7').on('click', function(e) {
         // change state here
 		state.vore += 1;
-		
+		state.events.push("valnosPrize")
 		lib.dialogue(e, "cadetPrize")
 		$("#button-6").addClass("hidden");
 		$("#button-7").addClass("hidden");

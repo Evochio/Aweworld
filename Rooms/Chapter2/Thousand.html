@@ -17,6 +17,9 @@
   <link rel="stylesheet" href="../../main.css"></link>
   <script>
 	
+	 state.Glint.status = 'available';
+    state.Valnos.status = 'available';
+	state.Ziggy.status = 'available';
   
   
     $(document).ready(function() {
@@ -271,5 +274,45 @@ Day: <span class="days"><script>displayDays()</script></span>
 <p>This destination lays further away to the west by about 2 days.</p>
 
 </div>
+
+<Script>
+ 
+ cadet[2].banter = [
+	{ target: '#Valnos', text: "Thousand Islands, we're here!", imageClass: "neutral"},
+	{ target: '#Ziggy', text: 'Finally! Islands to explore, a whole thousand of them!', imageClass: "happy"},
+	{ target: '#Valnos', text: 'Thousand Islands actually has a lot more than just a thousand isles. I don’t think they’ve counted them all yet! Many are kind of small.', imageClass: "smug" },
+	{ target: '#Ziggy', text: "Pfff… there can't be more then a thousand of something.", imageClass: "blush"},
+	{ target: '#Glint', text: 'Oh, Matrons breath…', imageClass: "concerned"},
+	{ target: '#Ziggy', text: 'Why they name it  Thousand isles then and not “Lotsa islands”?', imageClass: "smug"},
+	{ target: '#Valnos', text: 'In trade-speech Thousand islands are called ‘Last lands”, because they thought they were the last pieces of land on the edge of the world.', imageClass: "angry"},
+	{ target: '#Ziggy', text: "Well surprise, there's us! And we're on the edge of the world!", imageClass: "happy"},
+	{ target: '#Valnos', text: 'Well... acctually!', imageClass: "angry"},
+	{ target: '#Valnos', text: 'No nevermind, you know what, sure.', imageClass: "smug"}
+];
+
+ cadet[1].banter = [
+	{ target: '#Glint', text: 'I don’t envy the Captain, how are we supposed to find anyone in this place.', imageClass: "concerned"},
+	{ target: '#Valnos', text: 'We have charts no? Places and dates the fleet is supposed to go and meet.', imageClass: "suspicious"},
+	{ target: '#Glint', text: 'Yes, but that was before this whole pirate fleet affair, they can’t be relied on anymore surely!', imageClass: "sad" },
+	{ target: '#Valnos', text: 'Well… we must investigate for leads and rumours. No doubt they want to be found, by the right people.', imageClass: "happy"},
+	{ target: '#Glint', text: 'I hope you’re right. Meanwhile, we must do our best to support her!', imageClass: "smug"}
+
+];
+
+ cadet[0].banter = [
+	{ target: '#Ziggy', text: "So listen, if I eat more pirates then you two. You gotta be my subordinates.", imageClass: "happy"},
+	{ target: '#Glint', text: 'That’s not how it works.', imageClass: "angry"},
+	{ target: '#Ziggy', text: "Sure it does, the most badass Awe is the boss!", imageClass: "angry" },
+	{ target: '#Valnos', text: 'That’s technically true.', imageClass: "smug"},
+	{ target: '#Glint', text: "Don’t encourage her!", imageClass: "surprised"},
+	{ target: '#Ziggy', text: "Ha! My first order is going to be for you to crawl into my mouth.", imageClass: "smug" },
+	{ target: '#Ziggy', text: 'My second order… wait, where are you going!', imageClass: "surprised"}
+
+];
+
+
+</script>
+
+
 </body>
 </html>

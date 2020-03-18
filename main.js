@@ -243,7 +243,7 @@ var showNextDialogue = function () {
     // then hide the previous line
     if(i > 0 && previousTarget !== currentTarget) {
         $(banter[i-1].target).popover('hide');
-		console.log('checkcheck', previousTarget, currentTarget, banter, i)
+		//console.log('checkcheck', previousTarget, currentTarget, banter, i)
     }
     // if i has gone beyond the size of the banter array
     if(i >= banter.length) {
