@@ -54,6 +54,7 @@ lib.dialogue = function(e, className) {
 var ziggy = {};
 var glint = {};
 var valnos = {};
+var aliyah = {};
 var notCadet = {};
 
 var checkHidden = function() {
@@ -65,6 +66,9 @@ var checkHidden = function() {
 			}
 	if (state.Valnos.status == 'available' || 'disabled') {
 			$("#Valnos").removeClass("hidden")
+			}
+	if (state.Aliyah.status == 'available' || 'disabled') {
+			$("#Aliyah").removeClass("hidden")
 			}
 }
 
@@ -78,11 +82,14 @@ var checkHidden2 = function() {
 	if (state.Valnos.status == 'available' || 'disabled') {
 			$("#VThumb").removeClass("hidden")
 			}
+	if (state.Aliyah.status == 'available' || 'disabled') {
+			$("#AThumb").removeClass("hidden")
+			}
 }
 
 
 //Test Noncadet
-var cadet = [ziggy, glint, valnos, notCadet];
+var cadet = [ziggy, glint, valnos, aliyah, notCadet];
 var createCadetButtons = function() {
 	
 	// Thumbnail system
@@ -95,7 +102,7 @@ var createCadetButtons = function() {
 			$('#Glint').addClass("border");
 			$('#Glint').siblings().attr('disabled', true);
 			$("#Gthumb").addClass("hidden")
-        	$("#ZThumb, #GThumb, #VThumb").addClass("hidden")
+        	$("#ZThumb, #GThumb, #VThumb, #AThumb").addClass("hidden")
 			checkHidden();
 						
 			cadetIndex = 1;
@@ -113,7 +120,7 @@ var createCadetButtons = function() {
 			$('#Ziggy').addClass("border");
 			$('#Ziggy').siblings().attr('disabled', true);
 			$("#Zthumb").addClass("hidden")
-        	$("#ZThumb, #GThumb, #VThumb").addClass("hidden")
+        	$("#ZThumb, #GThumb, #VThumb, #AThumb").addClass("hidden")
 			checkHidden();
 			
 			cadetIndex = 0;
@@ -132,15 +139,35 @@ var createCadetButtons = function() {
 			$('#Valnos').addClass("border");
 			$('#Valnos').siblings().attr('disabled', true);
 			$("#Vthumb").addClass("hidden")
-        	$("#ZThumb, #GThumb, #VThumb").addClass("hidden")
+        	$("#ZThumb, #GThumb, #VThumb, #AThumb").addClass("hidden")
 			checkHidden();
 			
 			cadetIndex = 2;
 			showNextDialogue();
 	
       });
+	}
+	  
+	  if (state.Aliyah.status == 'available') {
+		var button = $(' <button id=AThumb>  </button> ')
+		$('#cadetButtons').append(button)
+		button.on('click', function() {
+			
+			$(this).removeClass("new");
+			$('#Aliyah').removeClass("noBorder");
+			$('#Aliyah').addClass("border");
+			$('#Aliyah').siblings().attr('disabled', true);
+			$("#AThumb").addClass("hidden")
+        	$("#ZThumb, #GThumb, #VThumb, #AThumb").addClass("hidden")
+			checkHidden();
+			
+			cadetIndex = 3;
+			showNextDialogue();
+	
+      });
 	  
 	}
+	
 	
 	
 	// .......
@@ -180,6 +207,18 @@ var createCadetButtons = function() {
 			button.popover(options)
 	}
 	
+	if (state.Aliyah.status == 'available') {
+		var button = $(' <button id=Aliyah>  </button> ')
+		$('#cadetButtons').append(button)
+		button.on('click', function() {
+			$(this).removeClass("new");
+			$(this).siblings().attr('disabled', true);
+			cadetIndex = 3;
+			showNextDialogue();
+			});
+			button.popover(options)
+	}
+	
 	
 	
 }
@@ -188,8 +227,8 @@ var testCadet = function() {
 if (state.Valnos.status == 'available') {
 		var button = $(' <img class=NotCadet src=""></img> ')
 		$('#testbutton').append(button)
-		
-			button.popover(options2)	
+		cadetIndex = 4;
+		button.popover(options2)	
 			
 	}
 }
@@ -252,11 +291,11 @@ var showNextDialogue = function () {
 		
 		
 		checkHidden2();
-		$('#ZThumb, #GThumb, #VThumb').attr('disabled', false);
-		$('#Ziggy, #Glint, #Valnos').addClass("hidden");
-        $('#Ziggy, #Glint, #Valnos').attr('disabled', false);
-		$('#Ziggy, #Glint, #Valnos').addClass("noBorder");
-		$('#Ziggy, #Glint, #Valnos').removeClass("border");
+		$('#ZThumb, #GThumb, #VThumb, #AThumb').attr('disabled', false);
+		$('#Ziggy, #Glint, #Valnos, #Aliyah').addClass("hidden");
+        $('#Ziggy, #Glint, #Valnos, #Aliyah').attr('disabled', false);
+		$('#Ziggy, #Glint, #Valnos, #Aliyah').addClass("noBorder");
+		$('#Ziggy, #Glint, #Valnos, #Aliyah').removeClass("border");
         return;
     }
     
@@ -272,6 +311,7 @@ var newDialogue = function () {
 $("#ZThumb").addClass("new")
 $("#GThumb").addClass("new")
 $("#VThumb").addClass("new")
+
 }
 
 // Old button system. 
@@ -320,7 +360,14 @@ var initialState = {
 		Experience: 5
 		
 	},
+	
+	Aliyah: {
+		status: "Invisible", 
+		
+		
+	},
 	NonCadet: {
+		
 		
 		
 		
@@ -539,7 +586,7 @@ $(document).ready(function() {
  var officerX;
  newDialogue();
   console.log('Current state:', JSON.stringify(state, null, '\t'))
-  $('#Ziggy, #Glint, #Valnos').addClass("hidden");
-  $('#Ziggy, #Glint, #Valnos').addClass("noBorder");
+  $('#Ziggy, #Glint, #Valnos, #Aliyah').addClass("hidden");
+  $('#Ziggy, #Glint, #Valnos, #Aliyah').addClass("noBorder");
   ////////////////////////////
 });

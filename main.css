@@ -1,9 +1,9 @@
 /* Put styling there that applies to more than one page. */
-#Valnos, #Ziggy, #Glint{
+#Valnos, #Ziggy, #Glint, #Aliyah{
 float:right;
 }
 
-#Vthumb, #Zthumb, #Gthumb{
+#Vthumb, #Zthumb, #Gthumb, #AThumb{
 float:right;
 }
 
@@ -22,7 +22,7 @@ float:right;
 	cursor: pointer;
 	
 }
-#VThumb:hover, #GThumb:hover, #ZThumb:hover {
+#VThumb:hover, #GThumb:hover, #ZThumb:hover, #AThumb:hover {
 	
 	border: 2px solid red;
 	
@@ -52,6 +52,31 @@ float:right;
 	border-radius: 5px;
 	position: relative;
 	cursor: pointer;
+}
+
+#AThumb {
+	top: 25px;
+	right: 40px;
+	background-image: url("Rooms/Images/Aliyahthumb2.png");
+	width: 200px;
+	height: 50px;
+	float: right;
+	border: 1px solid #331a00;
+	border-radius: 5px;
+	position: relative;
+	cursor: pointer;
+}
+
+#Aliyah {
+	background-image: url("Rooms/Images/Aliyah.png");
+	height: 286px;
+	width: 200px;
+	cursor: pointer;
+	position: relative;
+	text-align: center;
+	bottom: 200px;
+	
+	border-radius: 10px;
 }
 
 #Valnos {

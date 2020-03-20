@@ -507,13 +507,18 @@
         // change state here
 		fertile.push("awes")
         // end by using lib.goTo
-		lib.dialogue(e, "cadetQ")
-     
-		$(".btn").addClass("hidden");
-		$("#cadetInfo").removeClass("hidden");
-		if (_.contains(state.chapter, "vesslaDes")){
-		$("#cadetVessla").removeClass("hidden");
+		$("#side").removeClass("hidden");
+		$(".sideImage").attr('src','../Images/assets/ActionAwes.png');
+		
+		lib.dialogue(e, "awes")
+		state.chapter.push("madK");
+		if (_.contains(fertile, "cadetVessla") && (_.contains(fertile, "Glint") || _.contains(fertile, "Valnos"))) {
+			fertile.push("vesslaGood")
+			$(".uVessla").addClass("hidden");
 		}
+		fertile.push("infoGood");
+		$(".btn").addClass("hidden");
+		$("#cadetR").removeClass("hidden");
 		
 		
       })
@@ -521,13 +526,31 @@
 	   $('#scouts').on('click', function(e) {
         // change state here
 		fertile.push("scouts")
-		lib.dialogue(e, "cadetQ")
+		$("#side").removeClass("hidden");
+		$(".sideImage").attr('src','../Images/assets/ActionScout.png');
+        // end by using lib.goTo
+		
+		if (_.contains(fertile, "cadetVessla") && (_.contains(fertile, "Glint") || _.contains(fertile, "Valnos"))) {
+			fertile.push("vesslaGood")
+			$(".uVessla").addClass("hidden");
+			fertile.push("infoGood");
+			fertile.push("vesslaGood")
+		}		
+		else if (state.scoutNumber >= 5) {
+			$(".success2").removeClass("hidden");
+			fertile.push("infoGood");
+			fertile.push("vesslaGood")
+			
+		}
+		else {
+			$(".fail2").removeClass("hidden");
+			state.chapter.push("madK");
+		}
+		
+		lib.dialogue(e, "scouts")
      
 		$(".btn").addClass("hidden");
-		$("#cadetInfo").removeClass("hidden");
-		if (_.contains(state.chapter, "vesslaDes")){
-		$("#cadetVessla").removeClass("hidden");
-		}
+		$("#cadetR").removeClass("hidden");
 		
       })
 	  
@@ -535,18 +558,35 @@
 	    $('#raptorians').on('click', function(e) {
         // change state here
 		fertile.push("raptorians")
-		lib.dialogue(e, "cadetQ")
+		$("#side").removeClass("hidden");
+		$(".sideImage").attr('src','../Images/assets/ActionRaptorian.png');
+		state.chapter.push("madK");
+		fertile.push("infoGood");
+        // end by using lib.goTo
+		//_.contains(offList.activeRoster, officer.evok)
+		
+		if (_.contains(fertile, "cadetVessla") && _.contains(fertile, "Ziggy")) {
+			fertile.push("vesslaGood");
+		}	
+		else if (offList.deadRoster.indexOf("Evok") == -1) {
+			$(".Evoktext2").removeClass("hidden");
+			fertile.push("vesslaGood");
+		}	
+		else {
+			$(".noEvok").removeClass("hidden");
+		}
+		
+		lib.dialogue(e, "raptorians")
      
 		$(".btn").addClass("hidden");
-		$("#cadetInfo").removeClass("hidden");
-		if (_.contains(state.chapter, "vesslaDes")){
-		$("#cadetVessla").removeClass("hidden");
-		}
+		$("#cadetR").removeClass("hidden");
 		
       })
 	  
 	  
-	  	  
+	  
+	  
+	  
 	  
 	   $('#attend').on('click', function(e) {
         // change state here
@@ -962,13 +1002,13 @@
 		fertile.push("cadetInfo")
         // end by using lib.goTo
 		createOfficer4(cadetM);	
-		lib.dialogue(e, "cadetInfo2")
+		lib.dialogue(e, "cadetInfo")
 		
 		$(".btn").addClass("hidden");
-		$("#Ziggy2").removeClass("hidden");
-		$("#Valnos2").removeClass("hidden");
-		$("#Glint2").removeClass("hidden");
-		$(".cadetInfo").removeClass("hidden");
+		$("#Ziggy").removeClass("hidden");
+		$("#Valnos").removeClass("hidden");
+		$("#Glint").removeClass("hidden");
+		
 						
       })
 	  
@@ -977,62 +1017,57 @@
 		fertile.push("cadetVessla")
         // end by using lib.goTo
 		createOfficer4(cadetM);	
-		lib.dialogue(e, "cadetVessla2")
+		lib.dialogue(e, "cadetVessla")
 		
 		$(".btn").addClass("hidden");
-		$("#Ziggy2").removeClass("hidden");
-		$("#Valnos2").removeClass("hidden");
-		$("#Glint2").removeClass("hidden");
-		$(".cadetVessla").removeClass("hidden");
+		$("#Ziggy").removeClass("hidden");
+		$("#Valnos").removeClass("hidden");
+		$("#Glint").removeClass("hidden");
 		
 						
       })
 	  
-	   $('#Ziggy2').on('click', function(e) {
+	   $('#Ziggy').on('click', function(e) {
         // change state here
 		fertile.push("Ziggy")
 		state.Ziggy.Experience +=1;
         // end by using lib.goTo
-		$("#side").removeClass("hidden");
-		$(".sideImage").attr('src', officer.ziggy.image);
+		
 		lib.dialogue(e, "Ziggy")
 		
 		$(".btn").addClass("hidden");
 		$(".ziggyText").removeClass("hidden");
-		$("#action").removeClass("hidden");
+		$("#conclusion").removeClass("hidden");
 		
 						
       })
 	  
-	  $('#Valnos2').on('click', function(e) {
+	  $('#Valnos').on('click', function(e) {
         // change state here
 		fertile.push("Valnos")
 		state.Valnos.Experience +=1;
         // end by using lib.goTo
-		$("#side").removeClass("hidden");
-		$(".sideImage").attr('src', officer.valnos.image);
 		
 		lib.dialogue(e, "Valnos")
 		
 		$(".btn").addClass("hidden");
 		$(".valnosText").removeClass("hidden");
-		$("#action").removeClass("hidden");
+		$("#conclusion").removeClass("hidden");
 		
 						
       })
 	  
-	  $('#Glint2').on('click', function(e) {
+	  $('#Glint').on('click', function(e) {
         // change state here
 		fertile.push("Glint")
 		state.Glint.Experience +=1;
         // end by using lib.goTo
-		$("#side").removeClass("hidden");
-		$(".sideImage").attr('src', officer.glint.image);
+		
 		lib.dialogue(e, "Glint")
 		
 		$(".btn").addClass("hidden");
 		$(".glintText").removeClass("hidden");
-		$("#action").removeClass("hidden");
+		$("#conclusion").removeClass("hidden");
 		
 						
       })
@@ -1061,12 +1096,8 @@
 		$("#side").removeClass("hidden");
 		$(".sideImage").attr('src','../Images/assets/ActionScout.png');
      
-		if ((_.contains(fertile, "cadetVessla") || _.contains(fertile, "cadetInfo")) && _.contains(fertile, "Ziggy")) {
-			
-			$(".fail2").removeClass("hidden");
-			state.chapter.push("madK");
-		}	
-		else if (_.contains(fertile, "cadetVessla") && (_.contains(fertile, "Glint") || _.contains(fertile, "Valnos"))) {
+		
+		if (_.contains(fertile, "cadetVessla") && (_.contains(fertile, "Glint") || _.contains(fertile, "Valnos"))) {
 			fertile.push("vesslaGood")
 			$(".uVessla").addClass("hidden");
 			fertile.push("infoGood");
@@ -1099,24 +1130,17 @@
 		$("#side").removeClass("hidden");
 		$(".sideImage").attr('src','../Images/assets/ActionRaptorian.png');
 		state.chapter.push("madK");
+		fertile.push("infoGood");
 		
-		
-		
-		if (_.contains(fertile, "cadetVessla") && _.contains(fertile, "Glint")) {
-			
-		}	
-		else if (_.contains(fertile, "cadetVessla") && _.contains(fertile, "Ziggy")) {
+		if (_.contains(fertile, "cadetVessla") && _.contains(fertile, "Ziggy")) {
 			fertile.push("vesslaGood");
-			fertile.push("infoGood");
 		}	
 		else if (offList.deadRoster.indexOf("Evok") == -1) {
 			$(".Evoktext2").removeClass("hidden");
 			fertile.push("vesslaGood");
-			fertile.push("infoGood");
 		}	
 		else {
 			$(".noEvok").removeClass("hidden");
-			fertile.push("infoGood");
 		}
 		
 		lib.dialogue(e, "raptorians")
@@ -1131,88 +1155,19 @@
 	  
 	  $('#cadetR').on('click', function(e) {
         // change state here
-		$(".btn").addClass("hidden");
 		
-		$("#conclusion").removeClass("hidden");
         // end by using lib.goTo
-		if ((_.contains(fertile, "scouts") || _.contains(fertile, "awes"))  && _.contains(fertile, "Glint")) {
-		$(".cadetSuccess").removeClass("hidden");	
-		}
-		else if (_.contains(fertile, "raptorians")  && _.contains(fertile, "Glint")) {
-		$(".cadetFail").removeClass("hidden");	
-		}
-		else if ((_.contains(fertile, "scouts") || _.contains(fertile, "awes"))  && _.contains(fertile, "Ziggy")) {
-		$(".cadetFail").removeClass("hidden");			
-		}
-		else if (_.contains(fertile, "raptorians")  && _.contains(fertile, "Ziggy")) {
-		$(".cadetSuccess").removeClass("hidden");
-		}
-		else if ((_.contains(fertile, "raptorians") || _.contains(fertile, "awes"))  && _.contains(fertile, "Valnos")) {
-		$(".cadetFail").removeClass("hidden");
-			
-			$(".btn").addClass("hidden");
-			$("#chide").removeClass("hidden");
-			$("#commend").removeClass("hidden");
-						
-		}
-		else if (_.contains(fertile, "scouts")  && _.contains(fertile, "Valnos")) {
-		$(".cadetSuccess").removeClass("hidden");
-		}
 		
 		lib.dialogue(e, "cadetR")
 		
-		
-		
-						
-      })
-	  
-	  
-	    $('#chide').on('click', function(e) {
-        // change state here
-			if (_.contains(fertile, "tease"))	{
-			lib.dialogue(e, "chide2")
-			}
-			else {
-			lib.dialogue(e, "chide")
-			}
-				
-		
 		$(".btn").addClass("hidden");
+		
 		$("#conclusion").removeClass("hidden");
 		
-						
-      })
-	  
-	   $('#commend').on('click', function(e) {
-        // change state here
-		$(".btn").addClass("hidden");
-		$("#conclusion").removeClass("hidden");
-		if (_.contains(state.chapter, "valnosBelly") || _.contains(state.events, "cadetPrize")) {
-			fertile.push("tease");
-			$(".tease").removeClass("hidden");
-			$(".btn").addClass("hidden");
-			$("#agree").removeClass("hidden");
-			$("#chide").removeClass("hidden");
-			}
-		else {
-		$(".notease").removeClass("hidden");
-		}
-				
-		lib.dialogue(e, "commend")
-		
 		
 						
       })
 	  
-	   $('#agree').on('click', function(e) {
-        // change state here
-			
-		lib.dialogue(e, "agree")
-		$(".btn").addClass("hidden");
-		$("#conclusion").removeClass("hidden");
-		
-						
-      })
 	  
 	  
 	  $('#conclusion').on('click', function() {
@@ -1493,17 +1448,12 @@ If we could catch one then we might be able to get some information of where a f
 <button class="btn btn-default hidden" id="cadetInfo">Look for information</button>
 <button class="btn btn-default hidden" id="cadetVessla">Look for Vessla</button>
 
-<button class="btn btn-default hidden" id="Ziggy2">Ziggy</button>
-<button class="btn btn-default hidden" id="Valnos2">Valnos</button>
-<button class="btn btn-default hidden" id="Glint2">Glint</button>
+<button class="btn btn-default hidden" id="Ziggy">Ziggy</button>
+<button class="btn btn-default hidden" id="Valnos">Valnos</button>
+<button class="btn btn-default hidden" id="Glint">Glint</button>
 
 <button class="btn btn-default hidden" id="action">Action Report</button>
 <button class="btn btn-default hidden" id="cadetR">Cadet results</button>
-
-<button class="btn btn-default hidden" id="chide">Chide Valnos</button>
-<button class="btn btn-default hidden" id="commend">Commend Valnos</button>
-
-<button class="btn btn-default hidden" id="agree">Agree</button>
 
 <button class="btn btn-default hidden" id="leave">Leave</button>
 <button class="btn btn-default hidden" id="conclusion">Conclusion</button>
@@ -2104,44 +2054,6 @@ Or we can just pack up and leave.</p>
 
 <div class="scouts hidden"><p><strong>Scouts</strong>
 <p>The scouts converge on the island. They are small and experts at making themselves not be noticed, but its still an island full of Islanders. But even if they’re noticed, a few Awes skulking about should not cause a ruckus. <br>
-
-<div class="cadetInfo hidden">
-
-<div class="valnosText hidden">
-<p>Valnos seems to have a very investigative head on his shoulders. While leading the other Cadets, he manages to assist the Scouts adequately enough to help lead them on the right track. <br>
-It seems to me the Cadets see some excitement in his capture. Because it’s none other than Valnos who returns to the ship, clutching a full and heavy belly filled with former Scout. <br>
-<p>This frees up time for the Scouts to pursue information gathering about the passing Aweship. Come evening they have some tidbits that make an interesting whole. <br>
-The Aweship has been here recently and its currently foraging the nearby islands. They even have a potential direction we could head in to catch up to them.</p>
-</p>
-</div>
-<div class="glintText hidden">
-<p>Glint seems to know how and where to ask the right questions. While the Scouts search, the cadets go from door to door and have word with the populace. She manages to find a disgruntled Islander who through her charms she glean enough information from to assist the Scouts in finding our wayward Scout. <br>
-Glint returns to the ship sporting a sizable gut, filled with former Scout. <br>
-<p>This frees up time for the Scouts to pursue information gathering about the passing Aweship. Come evening they have some tidbits that make an interesting whole. <br>
-The Aweship has been here recently and its currently foraging the nearby islands. They even have a potential direction we could head in to catch up to them.</p>
-</p>
-</div>
-<div class="ziggyText hidden">
-<p>Ziggy leads her squad to boldly gather information among the populace. She’s not very subtle with her questions and her movements and inquiries around the town rouse suspicion and watchfulness, making the scouts jobs harder.</p>
-</div>
-</div>
-
-<div class="cadetVessla hidden">
-<div class="glintText hidden">
-<p>Glint seems to know how and where to ask the right questions. While the Scouts search, the cadets go from door to door and have word with the populace. She manages to find a disgruntled Islander who through her charms she glean enough information from to assist the Scouts in finding our wayward Scout. <br>
-Glint returns to the ship sporting a sizable gut, filled with former Scout. <br>
-</p>
-</div>
-<div class="valnosText hidden">
-<p>Valnos seems to have a very investigative head on his shoulders. While leading the other Cadets, he manages to assist the Scouts adequately enough to help lead them on the right track. <br>
-It seems to me the Cadets see some excitement in his capture. Because it’s none other than Valnos who returns to the ship, clutching a full and heavy belly filled with former Scout. <br>
-</p>
-</div>
-<div class="ziggyText hidden">
-<p>Ziggy leads her squad to boldly gather information among the populace. She’s not very subtle with her questions and her movements and inquiries around the town rouse suspicion and watchfulness, making the scouts jobs harder.</p>
-</div>
-</div>
-
 <div class="fail2 hidden">
 Come evening the Scouts return with ill news. They skulked about the island, even stopped to question a few interesting individuals, but they were unable to uncover much of critical interest. <br>
 It’s clear the Aweship has passed by here. But we don't know when and where exactly. <br>
@@ -2156,7 +2068,20 @@ They managed to overhead some talks and squeeze a few Islanders for information.
 The Aweship has been here recently and its currently foraging the nearby islands. They even have a potential direction we could head in to catch up to them. <br>
 </p>
 </div>
-
+<div class="valnosText hidden">
+<p>Valnos seems to have a very investigative head on his shoulders. While leading the other Cadets, he manages to assist the Scouts adequately enough to help lead them on the right track. <br>
+It seems to me the Cadets see some excitement in his capture. Because it’s none other than Valnos who returns to the ship, clutching a full and heavy belly filled with former Scout. <br>
+<p>This frees up time for the Scouts to pursue information gathering about the passing Aweship. Come evening they have some tidbits that make an interesting whole. <br>
+The Aweship has been here recently and its currently foraging the nearby islands. They even have a potential direction we could head in to catch up to them.</p>
+</p>
+</div>
+<div class="glintText hidden">
+<p>Glint seems to know how and where to ask the right questions. While the Scouts search, the cadets go from door to door and have word with the populace. She manages to find a disgruntled Islander who through her charms she glean enough information from to assist the Scouts in finding our wayward Scout. <br>
+Glint returns to the ship sporting a sizable gut, filled with former Scout. <br>
+<p>This frees up time for the Scouts to pursue information gathering about the passing Aweship. Come evening they have some tidbits that make an interesting whole. <br>
+The Aweship has been here recently and its currently foraging the nearby islands. They even have a potential direction we could head in to catch up to them.</p>
+</p>
+</div>
 
 </div>
 
@@ -2168,22 +2093,6 @@ It's a passive populace that later meet the Awes moving through their streets an
 The few conflicts that do flare up are brief and quickly squelched. The Kaelani are not happy with this treatment of occupying force. <br>
 By evening, the Awe troops return, a few looking well fed and reports are gathered. There is enough information to puzzle together some critical info. <br>
 An Aweship has indeed been here recently. It’s foraging the nearby Isles for food. Some of the isles they’ve yet to touch are to the north-northeast. Perhaps we can catch them there. <br>
-
-<div class="cadetInfo hidden">
-<div class="glintText hidden">
-<p>Glint seems to know how and where to ask the right questions. While the Scouts search by subtler means, the cadets go from door to door and have a quiet word with the populace. She manages to find a disgruntled Islander who through her charms she gleans enough information to make a contribution to the investigation.</p>
-</div>
-<div class="valnosText hidden">
-<p>Valnos seems to have a very investigative head on his shoulders. While leading the other Cadets, attempts to assist the Awe Squads. However, while he does not impede their progress, his help is negligible as he ends up in conflict with his temporary subordinates. <br>
-</p>
-</div>
-<div class="ziggyText hidden">
-<p>The Cadet squad with Ziggy in charge seem to make an meaningful contribution to the search. Ziggys method of questioning is certainly louder and less subtle than other Awe squads, but it seems it makes some Islanders more willing to talk, if only to get rid of her.</p>
-</div>
-</div>
-
-
-<div class="cadetVessla hidden">
 <div class="valnosText hidden">
 <p>Valnos seems to have a very investigative head on his shoulders. While leading the other Cadets, he manages to assist the Awe Squads adequately, successfully pursuing his own parallel investigation.<br>
 It seems to me the Cadets see some excitement in his capture. Because it’s none other than Valnos who returns to the ship, clutching a full and heavy belly filled with former Scout.</p>
@@ -2191,10 +2100,6 @@ It seems to me the Cadets see some excitement in his capture. Because it’s non
 <div class="glintText hidden">
 <p>Glint seems to know how and where to ask the right questions. The Cadet squads assist going from door to door and have word with the populace. She manages to find a disgruntled Islander who through her charms she glean enough information from to assist the Scouts in finding our wayward Scout. <br>
 Glint returns to the ship sporting a sizable gut, filled with former Scout.</p>
-</div>
-<div class="ziggyText hidden">
-<p>The Cadet squad with Ziggy in charge seem to make an meaningful contribution to the search. Ziggys method of questioning is certainly louder and less subtle than other Awe squads, but it seems it makes some Islanders more willing to talk, if only to get rid of her.</p>
-</div>
 </div>
 <div class="uVessla hidden">
 The Scout was nowhere to be found. If he’s here, he’s been able to evade our inquiries and searches. Vexing.</p>
@@ -2218,29 +2123,11 @@ Evok himself comes to report another piece of fortuitous news. They took the hun
 <div class="noEvok hidden">
 <p>Unfortunately, Scout Vessla could not be found by the Raptorians, despite their keen noses. It is likely they forgot to search for him. Without a solid Pack-Master they are a little uncoordinated.</p>
 </div>
-<div class="cadetInfo hidden">
-<div class="glintText hidden">
-<p>Unusually, it seems the worst of the Raptorian rampaging and intimidation are curbed by the Cadet squad led by Cadet Glint. She tries to take charge of them to organize them into more ‘civilized’ measures of questioning. <br>
-The result however is poor, the Raptorians are confused at the limitations and not much is gained as a result.</p>
-<p>The Raptorians fail to find both the scout and any useful information about the Aweships whereabouts.</p>
-</div>
-<div class="valnosText hidden">
-<p>In the middle of the rampaging Raptorians, the cadet Squad join the hunt for information. However, while Valnos is wise to stay out of the Raptorians way and not impede them, they seem to achieve little as a group as he ends up in conflict with his temporary subordinates.</p>
-</div>
-<div class="ziggyText hidden">
-<p>With Ziggy in charge of the Cadets, there was no question she’d be taking the rowdier path. She stuck close to the Raptorians and helped ease the edge of their rougher type of investigations.</p>
-</div>
-</div>
-<div class="cadetVessla hidden">
 <div class="ziggyText hidden">
 <p>With Ziggy in charge of the Cadets, there was no question she’d be taking the rowdier path. She stuck close to the Raptorians and helped ease the edge of their rougher type of investigations.<br>
 Her help turns out to be invaluable, as she ends up guiding the Raptorians to the location of the hidden Scout. Scout Vessla was found hiding in a quarry and got cornered. <br>
 Ziggy ofcourse lays claim on the Scout and proudly flaunts her bellyful of deserter. <br>
 </p>
-</div>
-<div class="valnosText hidden">
-<p>In the middle of the rampaging Raptorians, the cadet Squad join the hunt for the missing Scout. However, while Valnos is wise to stay out of the Raptorians way and not impede them, they seem to achieve little as a group as he ends up in conflict with his temporary subordinates.</p>
-</div>
 </div>
 </div>
 </div>
@@ -2257,7 +2144,7 @@ Or I can keep them out of the way on the ship. I believe it’s officer Keepers 
 </div>
 
 
-<div class="cadetInfo2 hidden"><p><strong>Awes</strong>
+<div class="cadetInfo hidden"><p><strong>Awes</strong>
 The Cadets can attempt to apply their charms to the native villagers. All three of them are more or less fluent in Trade-Speech, or should be. 
 The question is if I should put on charge of the others this time around. It seems to me like it would be a useful exercise as well as a chance to potentially show some favor toward one of them while spurring the other two to work harder. 
 I have to keep in mind they will be operating at the same time as the Raptorians, Scouts, other Awe squads. 
@@ -2266,7 +2153,7 @@ Which one do I put in charge?
 <span class="theOfficer officerObjects"></span>
 </div>
 
-<div class="cadetVessla2 hidden"><p><strong>Awes</strong>
+<div class="cadetVessla hidden"><p><strong>Awes</strong>
 <p>Vessla is hiding somewhere in this village. Perhaps all it takes are three pairs of fresh eyes to find him. <br>
 The question is if I should put on charge of the others this time around. It seems to me like it would be a useful exercise as well as a chance to potentially show some favor toward one of them while spurring the other two to work harder. <br>
 I have to keep in mind they will be operating at the same time as the Raptorians, Scouts, other Awe squads. <br>
@@ -2331,117 +2218,17 @@ Glints written report is impeccably detailed, perhaps too much so, with an exten
 </div>
 </div>
 
-<div class="cadetSuccess hidden">
-<div class="cadetInfo hidden">
+<div class="cadetGood hidden">
 <div class="valnosText hidden">
-<p>The Cadets are rather successful in their own investigation. Managing to contribute to the overall mission. <br>
-Valnos seems aglow as he delivers his written report and summary. <br>
-“Well, I’ve been working together with Scout-Master Krel and the other scouts a while now, being tutored in flight and recognizance doctrine. So it was easy to fall in and help them in their search without being too intrusive.“ <br>
-“And how did it work out with the squad?” I asked him. <br>
-“Mmmh, it was a bit hard at the start. But they soon understood I had a little practise in this area, so they calmed down. Ziggy was a good distraction at times, she pretends to be lost like a master. Glint was good at talking when that was needed.”<br>
-“Very good Valnos.” I commended him. While it seems he had got an easy assignment that played to his strengths. He had also managed to utilize the other Cadets in useful ways. He has a promising future. <br>
-</p>
-</p>
 </div>
 <div class="ziggyText hidden">
-<p>The Cadets are rather successful in their own investigation. Managing to contribute to the overall mission. <br>
-Ziggy delivers her written report, it’s a bit lacking in detail and certainly is nonconventional. But it’s better then what she usually delivers and it’s clear she’s making an effort. She complements it with a boastful quick summary. <br>
-“Ya! So we totally got some answers outta them Gryph-folks! Just hadda squeeze them right ya know, people always know more then they let on!” <br>
-“And how did it work out with the squad?” I ask her. <br>
-“Well, I had to threaten to eat them a little now and then, just to get running ya know. But ye, Glint is good at smiling pretty and Valnos is kind of sneaky, so I told them to do smiley-sneaky stuff.” <br>
-“I see. Well, good work Ziggy.” She had not done too bad. I was surprised she had not abused her authority to munch on the other Cadets. There was promise in her. <br>
-Ziggy saluted and grinned widely. <br>
-</p>
 </div>
 <div class="glintText hidden">
-<p>The Cadets are rather successful in their own investigation. Managing to contribute to the overall mission. <br>
-Glints written report is impeccably detailed, perhaps too much so, with an extensive cursive styling around the borders too. She adds a quick summary with it, standing tall and proud with the other two cadets loitering in the background, looking tired. <br>
-“I found a contact in the populace that seemed the old unhappy loner kind of sort. It didn’t take much persuasion to get them to talk. One meandering topic lead to another and we got the information we were looking for.” <br>
-“And how did it work out with the squad?” I asked her. <br>
-“I think we work together much better when we have a sensible guiding paw in charge. Ziggy stayed out of trouble and Valnos had his uses. Can’t really ask for much better!” <br>
-“I see. Well, good work for now Glint.” While Glint had provided results, it seemed she had not fully utilized her fellow cadets and done most of the talking herself. She had some learning to do about trusting others. <br>
-</p>
-</div>
-</div>
-
-<div class="cadetVessla hidden">
-<div class="valnosText hidden">
-<p>The Cadets are rather successful in their own investigation. Managing to contribute to the capture of the deserter Scout. <br>
-Valnos is supporting his belly with a paw when he delivers his written report and summary. <br>
-“I see you were successful in capturing the Scout. Well done. How did you do it?” I asked him. <br>
-“Thank you Captain! Ourph. I... I’ve been working together with Scout-Master Krel and the other scouts a while now, being tutored in flight and recognizance doctrine. So it was easy to cooperate with them overall. I tried to think the way a Scout would who did not want to be found and… it seems we were lucky!” The Cadet patpat his belly firmly, it grumbled wetly in reply. <br>
-“And how did it work out with the squad?” I asked him. <br>
-“Mmmh, it was a bit hard at the start. But they soon understood I d I had a little practise in this area, so they calmed down. Ziggy was quick on her feet when we were tracking him and fought well, Glint had some good insights too about things I had not thought about.” <br>
-“Very good Valnos. You’re dismissed for now, go sleep off that deserter, you’ve earned it!” I commended him. While it seems he had got an easy assignment that played to his strengths. He had also managed to utilize the other Cadets in useful ways. He has a promising future. <br>
-</p>
-</div>
-<div class="ziggyText hidden">
-<p>The Cadets are rather successful in their own investigation. Managing to contribute to the capture of the deserter Scout. <br>
-Ziggy delivers her written report, it’s a very lacking in detail and certainly rushed. Seems she’s been busy teasing, boasting and showing off her prize belly. She complements it with a boastful quick summary. <br>
-“Ouf, he sure wriggles! Anyway… ya. So… The Raptorians were all over the place, which is well and good, few places to hide. But they kind of tend to rely on their noses ya know. If they cant smell it, it ain't there. So I figured i’d look in smelly places where they might miss something and there he was! Hiding!” <br>
-“And how did it work out with the squad?” I asked her. <br>
-“Well, they should be glad I am kind of full now. Heh, I jest! I think it went fine? Valnos was like good at thinking like a sneaky scout and Glint at being ‘Glinty’, talk talk you know. We all helped.” <br>
-“I see. Good work Ziggy. You’re dismissed, go sleep off that meal.” She had not done too bad. I was surprised she had not abused her authority to munch on the other Cadets. There was promise in her. <br>
-“Yeeee, he’s going to look good on me! Arentcha?” Ziggy squeezed her belly. <br>
-</p>
-</div>
-<div class="glintText hidden">
-<p>The Cadets are rather successful in their own investigation. Managing to contribute to the capture of the deserter Scout. <br>
-Glints written report is impeccably detailed, perhaps too much so, with an extensive cursive styling around the borders too. She adds a quick summary with it, standing tall and proud, her full belly on display.<br>
-“I see you were successful in capturing the Scout. Well done. How did you do it?” I asked her. <br>
-“I found a contact in the populace that seemed the old unhappy loner kind of sort. It didn’t take much persuasion to get them to talk. They were not happy about our presence and it was not hard to twist that to our benefit. Once we had the location of the Scout, we informed the other squads for assistance and cornered them!” <br>
-“And how did it work out with the squad?” I asked her. <br>
-“I think we work together much better when we have a sensible guiding paw in charge. Ziggy stayed out of trouble and Valnos had his uses. Can’t really ask for much better!” <br>
-“I see. Well, good work for now Glint. You are dismissed, go sleep off that deserter.” While Glint had provided results, it seemed she had not fully utilized her fellow cadets and done most of the talking herself. Sometimes the results matter, but she had some learning to do about trusting others.</p>
-</p>
-</div>
 </div>
 </div>
 
 </div>
 
-<div class="commend hidden"><p><strong>Commend Valnos</strong>
-<p>“It is what I would have done. You are correct. You’re in a bit harder position then me to get that authority, I suppose you used the means and rights bestowed upon your temporary rank to assert yourself.” <br>
-I gave the Cadet a brief smile. <br>
-“Regardless, you failed in your assignment and now I am two cadets short. Or am I?” <br>
-“Oh, uhm…” The male cadet blushed curiously, his ears drooping as he sheepishly gave a chuckle. “Not yet, Captain.” It seems he relished his comeuppance on the other two. My words were merely meant to tease him, but there genuine brief glint of greed in his eyes. <br>
-I had to put the record straight with him before he was genuinely tempted to absorb his fellow cadets. <br>
-“As the Admiralty rules go, an Awe may only eat another without their consent if they outrank them, and they have probable cause. Your temporary rank has expired at the conclusion of your mission and judging by the muffled bickering, they are not entirely onboard to deepen with you Valnos.” <br>
-<div class="tease hidden">
-“Ourph… this is true Captain.” Valnos squeaked, his tail swished as he flushed and smiled shyly at me. “Unless there is an absence of a direct superior.“<br>
-“What are you implying Cadet? I am your superior.” I narrowed my eyes at him. <br>
-Valnos straightened then, I could tell he was feeling emboldened by certain previous actions. <br>
-“Would you wish not to be?” He gave his belly a solid pat, with every implication of an invitation. <br>
-“You three are the strongest females I know, so much more capable than me! What if you we’re all just mine!” <br>
-I was not expecting him to make the proposition. It was a brave gamble on his part.<br>
-</div>
-<div class="notease hidden">
-“Yes Captain” Valnos nodded, sobered from my words. “I’ll let them go right away.” <br>
-Needless to say, Glint and Ziggy had a few things to say about their temporary confinement. But I gave them a stern talking to, letting them know on no uncertain terms that I supported Valnos decision. <br>
-Sufficiently chastised, they retired to the groomery to be cleaned up. They would be more careful about stepping on the black furred Cadet in the future.</p>
-</div>
-</div>
-
-
-<div class="chide hidden"><p><strong>Chide Valnos</strong>
-<p>“Not every circumstance merits the use of such extreme measures. While true, I have done it and will no doubt do it sometime again, one has to keep in mind what such actions might cost.” <br>
-Cadet Valnos looked slightly nervous under my hard gaze. <br>
-“For one, you know fully well that your authority was temporary.” <br>
-“But. The Admiralty rules say “An Awe may only eat another without their consent if they outrank them, and they have probable cause. I had both, for the time.” Valnos squeaked. <br>
-“True, but you knew you could not keep them. Consider what happens next. You have to get along with your fellow officers in the long run, asserting yourself over them dominantly when there were other options might cause you problems and reduction of goodwill for the future.”<br>
-“Y-yes Captain.” Valnos lowered his head. He probably knew from the start this had not been a good idea, but even someone as usually timid as him can lose their temper. “I’ll release them right away. <br>
-Needless to say, Glint and Ziggy had a few things to say about their temporary confinement. But I gave them a stern talking to, letting them know on no uncertain terms that Valnos had not been in the wrong about what he did. <br>
-Sufficiently chastised, they retired to the groomery to be cleaned up. They would perhaps be more careful about stepping on the black furred Cadet in the future. Or bide their time until it was their turn. <br>
-</p>
-</div>
-
-<div class="chide2 hidden"><p><strong>Chide Valnos</strong>
-<p>Valnos that's enough!</p>
-</div>
-
-<div class="agree hidden"><p><strong>Commend Valnos</strong>
-<p>You're going to be one lucky plump male!</p>
-</div>
 
 
 <div class="conclusion hidden"><p><strong>Conclusion</strong>

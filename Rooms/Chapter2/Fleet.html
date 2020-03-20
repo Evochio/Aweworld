@@ -26,11 +26,21 @@
 	}
   }
 		
-  
+		state.Glint.status = 'available';
+		state.Valnos.status = 'available';
+		state.Ziggy.status = 'available';
+		state.Aliyah.status = 'available';
+		
+		
   
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
+	  testCadet();
+		$("#GThumb").addClass("hidden");
+		$("#VThumb").addClass("hidden");
+		$("#ZThumb").addClass("hidden");
+		$("#AThumb").addClass("hidden");
 	  
 	  if ( state.delay > 10) {		
 		$(".lateVore").removeClass("hidden");
@@ -116,9 +126,19 @@
 	  
 	  $('#admiral').on('click', function(e) {
         // change state here
+		$("#GThumb").removeClass("hidden");
+		$("#VThumb").removeClass("hidden");
+		$("#ZThumb").removeClass("hidden");
+		$("#AThumb").removeClass("hidden");
+		checkHidden2();
 		$("#story-text").addClass("shift");
 		$("#side").addClass("shift");
-		$(".sideImage").attr('src', '../Images/assets/Kaunis.png');
+		
+		$(".orig").removeClass("sideImage");
+		$(".orig").addClass("hidden");
+		$("#testbutton").addClass("sideImage");
+		$("#testbutton").removeClass("hidden");
+		$(".NotCadet").attr('src', '../Images/assets/Kaunis.png');
         // end by using lib.goTo
 		lib.dialogue(e, "admiral")
 		$(".btn").addClass("hidden");
@@ -341,6 +361,10 @@
 	  
 	   $('#tidings').on('click', function(e) {
         // change state here
+		$("#GThumb").addClass("hidden");
+		$("#VThumb").addClass("hidden");
+		$("#ZThumb").addClass("hidden");
+		$("#AThumb").addClass("hidden");
         // end by using lib.goTo
 		$("#story-text").removeClass("shift");
 		$("#side").removeClass("shift");
@@ -462,10 +486,12 @@
 <h1>3rd Fleet of the Admiralty</h1>
 </div>
 <div id="side" class="hidden">
-<img class="sideImage" src=""></img>
+<span id="testbutton" class="hidden"></span>
+<img class="orig sideImage" src=""></img>
+<img class="face3 hidden" id="image" src="../Images/assets/Aliyah.png"/>
 </div>
 <div id="sideb" class="hidden">
- <img class="face" id="image" src="../Images/assets/Tick.png"/>
+  <img class="face" id="image" src="../Images/assets/Tick.png"/>
   <img class="face2" id="image" src="../Images/assets/Tick.png"/>
 </div>
 <div id="story-text">
@@ -555,7 +581,7 @@ I can see no ships in pursuit, but perhaps the rumour of them being on the run i
 <div class="flag2 hidden"><p><strong>The Flag-Captain</strong></p>
 <p>Jumping to another ship while on the move, especially one much taller than ours takes me first up to the top of our mast and then I am gliding over, wings outstretched. <br>
 There were other means on offer, like a makeshift rocking and wobbly bridge or climbing up a rope ladder. Since we’re showing no signs of slowing down, all options seemed as risky to me as any other. <br>
-I land on the deck of the Flag-ship a bit more heavily than I had planned, but at least it was not in the sea. <br>
+I land on the deck of the Flag-ship a bit more heavily than I had planned, but at least it was not in the sea. My cadets land nearby, Valnos with easy grace and Ziggy with a heavy thump. Younger and lighter they make it look easier.  <br>
 A haggard looking Awe Captain with the decoration of Flag-Captain, the second-in-command of the Fleet and the one responsible for coordinating all the ships stands before me. <br>
 I salute her stiffly and she wearily returns it.<br>
 “Captain Avolc of ‘Attentive’ reporting. I am here on mission to resupply you and take your report. Admiralty back home are in the dark.” <br>
@@ -926,17 +952,86 @@ And with that, the meeting concluded.</p>
 </div>
 
 
-<div class="1 hidden"><p><strong></strong></p>
-</div>
+<Script>
+ cadet[3].banter = [
+	{ target: '#Aliyah', text: "Oh hello you three!", imageClass: "neutral"},
+	{ target: '#Valnos', text: 'Oh, Hi?', imageClass: "happy"},
+	{ target: '#Ziggy', text: 'Hey!', imageClass: "happy" },
+	{ target: '#Glint', text: "Greetings Aliyah.", imageClass: "neutral"},
+	{ target: '#Aliyah', text: 'Glint, I missed you! Happy to see you all.', imageClass: "neutral"},
+	{ target: '#Aliyah', text: "Not many my age around!", imageClass: "neutral"},
+	{ target: '#Ziggy', text: 'What happened to them?', imageClass: "concerned"},
+	{ target: '#Aliyah', text: 'Oh haha! I ate them all of course!', imageClass: "neutral" },
+	{ target: '#Glint', text: "Really?", imageClass: "blush"},
+	{ target: '#Aliyah', text: 'Hah! Of course not. All the older cadets have been promoted.', imageClass: "neutral"},
+	{ target: '#Valnos', text: "How long have you been with the fleet?", imageClass: "smug"},
+	{ target: '#Aliyah', text: 'Like a year, put me on the flagship just as I graduated.', imageClass: "neutral" },
+	{ target: '#Ziggy', text: "Lucky!", imageClass: "surprised"},
+	{ target: '#Aliyah', text: 'How about you?', imageClass: "neutral"},
+	{ target: '#Valnos', text: "We just graduated and got our assignments.", imageClass: "neutral"},
+	{ target: '#Aliyah', text: 'Oh, I see! You were in B-class with Glint, I think I remember seeing you.', imageClass: "neutral" },
+	{ target: '#Glint', text: "Aliyah was fast-tracked to graduate for her exceptional scores. ", imageClass: "neutral"},
+	{ target: '#Aliyah', text: 'We’re on different ships, but I hope we’ll get to meet often!', imageClass: "neutral"},
+	{ target: '#Valnos', text: "Sure!", imageClass: "blush"},
+	{ target: '#Glint', text: 'It’s good to see you again Aliyah.', imageClass: "smug" },
+	{ target: '#Ziggy', text: "A-Class, pheh!", imageClass: "suspicious"}
+
+];
+
+ cadet[2].banter = [
+	{ target: '#Valnos', text: "So Aliyah, what’s it like working under the Admiral?", imageClass: "smug"},
+	{ target: '#Aliyah', text: 'Oh, I am mostly assigned to the Flag-Captain.', imageClass: "neutral"},
+	{ target: '#Aliyah', text: 'I imagine that’s much the same as you guys.', imageClass: "neutral" },
+	{ target: '#Valnos', text: "Has it not been scary with the pirate fleet and all? ", imageClass: "sad"},
+	{ target: '#Aliyah', text: 'Yea! Plenty scary! But ‘Unwavering’ is pretty solid, I feel safe on this ship. ', imageClass: "neutral"},
+	{ target: '#Aliyah', text: "Your fur is so dark! Are you part Raveneye?", imageClass: "neutral"},
+	{ target: '#Valnos', text: 'I am! You are a Mountain-Awe?', imageClass: "blush" },
+	{ target: '#Ziggy', text: "Duh, she’s snow-white Valnos!", imageClass: "smug"},
+	{ target: '#Glint', text: 'Zig, Shush!', imageClass: "angry"},
+	{ target: '#Aliyah', text: "It’s true, part of me is.", imageClass: "neutral"},
+	{ target: '#Valnos', text: 'Must make you popular. ', imageClass: "smug" },
+	{ target: '#Aliyah', text: "Kind of, yes, haha! Sometimes I wish I was beige and dark furred like you. It’s so pretty!", imageClass: "neutral"},
+	{ target: '#Valnos', text: 'Really?', imageClass: "blush"},
+	{ target: '#Aliyah', text: "Uhuh!", imageClass: "neutral"},
+	{ target: '#Valnos', text: "I… oh.. uh.. uhm…", imageClass: "blush"},
+	{ target: '#Glint', text: '...‘thanks’', imageClass: "suspicious" },
+	{ target: '#Valnos', text: "Thanks!", imageClass: "blush"},
+	{ target: '#Ziggy', text: '… sitting in a tree… K-I-S..', imageClass: "smug"},
+	{ target: '#Glint', text: "...!", imageClass: "angry"},
+	{ target: '#Ziggy', text: "Ow!", imageClass: "surprised"}
+
+];
+
+ cadet[1].banter = [
+	{ target: '#Ziggy', text: 'So you two know each other? ', imageClass: "blush"},
+	{ target: '#Aliyah', text: 'Yea! Glint and I grew up on the same mountain!', imageClass: "neutral"},
+	{ target: '#Aliyah', text: 'Her family visited sometimes and we’d play!', imageClass: "neutral" },
+	{ target: '#Glint', text: 'We joined the Academy at the same time, but they put us in different classes. ', imageClass: "concerned"},
+	{ target: '#Aliyah', text: 'I was sad about that, seems we’re fated to never hang out long!', imageClass: "neutral"},
+	{ target: '#Glint', text: 'Heh, so it goes. We’ll see what the future brings.', imageClass: "smug"},
+	{ target: '#Ziggy', text: 'Yea, you might end up hanging out as my tummy together.', imageClass: "happy"},
+	{ target: '#Aliyah', text: 'Wow, haha, you’re a spunky one!', imageClass: "neutral" },
+	{ target: '.NotCadet', text: 'KEEP IT DOWN OUT THERE!', imageClass: "happy"},
+	{ target: '#Aliyah', text: 'Eep! Let’s go guys!', imageClass: "neutral"},
+	{ target: '.NotCadet', text: 'Cadets are an universally noisome bunch.', imageClass: "happy"}
+];
+
+ cadet[0].banter = [
+	{ target: '#Ziggy', text: "Whoa, I almost forgot there were other Awes around then us a while.", imageClass: "surprised"},
+	{ target: '#Ziggy', text: 'So many new faces and cool ships! The Battleships are so big!', imageClass: "happy"},
+	{ target: '#Aliyah', text: "Big enough to get lost in!", imageClass: "neutral" },
+	{ target: '#Aliyah', text: 'At least I kept getting lost the first days.', imageClass: "neutral"},
+	{ target: '#Valnos', text: 'I like getting lost in books.', imageClass: "blush"},
+	{ target: '#Glint', text: "Ziggy gets lost in our room still", imageClass: "smug"},
+	{ target: '#Ziggy', text: "Why don’t you go get lost!", imageClass: "suspicious" },
+	{ target: '#Aliyah', text: "Oh my, you guys are so charming! ", imageClass: "neutral" }
 
 
-<div class="1 hidden"><p><strong></strong></p>
-</div>
+
+];
 
 
-<div class="1 hidden"><p><strong></strong></p>
-</div>
-
+</script>
 
 
 

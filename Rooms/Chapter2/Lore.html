@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Aweworld Lore</title>
+
+
+  <link rel="stylesheet" href="../../main.css"></link>
+
+  <script src="../../jquery-3.2.1.js"></script>
+  <script src="../../underscore.js"></script>
+	<script src="../../bootstrap.min.js"></script>
+ <link rel="stylesheet" href="../../bootstrap.min.css"></link>
+  <link rel="stylesheet" href="../../bootstrap-theme.min.css"></link>
+  <script src="../../main.js"></script>
+  <script src="../../jquery.cookie.js"></script>
+   <script src="../../officers.js"></script>
+  <link rel="stylesheet" href="../../main.css"></link>
+  <script>
+	
+   	
+	$(document).ready(function() {
+	 $("#save").addClass("hidden");
+	 
+	removeLore();
+     currentPage();
+	$('.aweOverview').on('click', function(e) {
+		
+		lib.dialogue(e, "aweOverview2")
+	  })
+	
+	$('.aweHistory').on('click', function(e) {
+      
+		lib.dialogue(e, "aweHistory2")
+	  })
+	$('.raptorians').on('click', function(e) {
+      
+		lib.dialogue(e, "raptorians2")
+		console.log("derp222")
+	  })
+	  
+	$('.admiralty').on('click', function(e) {
+      
+		lib.dialogue(e, "admiralty2")
+		console.log("derp")
+	  })
+	  
+	
+	$('.wulfOverview').on('click', function(e) {
+      
+		lib.dialogue(e, "wulfOverview2")
+	  })
+	 $('.wulfHistory').on('click', function(e) {
+      
+		lib.dialogue(e, "wulfHistory2")
+	  })
+	 $('.sailingCompany').on('click', function(e) {
+      
+		lib.dialogue(e, "sailingCompany2")
+	  })
+	  
+	   $('.gryphOverview').on('click', function(e) {
+      
+		lib.dialogue(e, "gryphOverview2")
+	  })
+	   $('.kingdom').on('click', function(e) {
+      
+		lib.dialogue(e, "kingdom2")
+	  })
+	   $('.republic').on('click', function(e) {
+      
+		lib.dialogue(e, "republic2")
+	  })
+	  
+	  
+	   
+	   $('.gatorOverview').on('click', function(e) {
+      
+		lib.dialogue(e, "gatorOverview2")
+	  })
+	   
+	   $('.gatorHistory').on('click', function(e) {
+      
+		lib.dialogue(e, "gatorHistory2")
+	  })
+	   
+	   $('.drudgeOverview').on('click', function(e) {
+      
+		lib.dialogue(e, "drudgeOverview2")
+	  })
+	  
+    
+	 })
+	 
+  </script>
+  
+  <style>
+
+   #intro
+ {
+	width: 50%;
+	margin: 1em;
+	padding: 0.5em;
+	margin-left: 5em;
+	max-height: 70%;
+	display: inline-block;
+	font-size: 130%;
+	text-align: justify;
+	background-color: #331a00;
+	border: 6px solid #cb9969;
+	border-radius: 20px;
+	color: white;
+	
+ }
+  
+#side2
+{
+	padding: 0.5em;
+	color: white;
+	position: fixed;
+	margin-top: 6em;
+	width: 10%;
+	height: 90%;
+	left: 0px;
+	bottom: 0px;
+	background-color: #996633;
+	border: 6px solid #cb9969;
+	border-radius: 20px;
+}
+
+#story-text {
+margin-left: 15%;
+	background-image: none;
+	font-size: 130%;
+	text-align: justify;
+	background-color: #996633;
+	border: 6px solid #cb9969;
+	border-radius: 20px;
+	color: white;
+}
+
+
+
+
+ul, li, button {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	
+}
+
+
+li {
+	display: block;
+
+	line-height: 2em;
+	font-size: 1em;
+	text-decoration: none;
+	background:  #cb9969;
+	color: white;
+	text-align: center;
+	
+	
+}
+
+.main {
+
+
+width: 100%;
+padding: 0.5em;
+border: 3px solid #331a00;
+border-radius: 10px;
+background: #d5973c;
+background: -moz-linear-gradient(top,  #d5973c 31%, #eab92d 100%);
+background: -webkit-linear-gradient(top,  #d5973c 31%,#eab92d 100%);
+background: linear-gradient(to bottom,  #d5973c 31%,#eab92d 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d5973c', endColorstr='#eab92d',GradientType=0 );
+
+}
+
+button {
+	
+	width: 90%;
+	line-height: 2em;
+	font-size: 1em;
+	text-decoration: none;
+	
+	color: white;
+	border-radius: 10px;
+	
+background: #d5973c;
+background: -moz-linear-gradient(top,  #d5973c 31%, #eab92d 100%);
+background: -webkit-linear-gradient(top,  #d5973c 31%,#eab92d 100%);
+background: linear-gradient(to bottom,  #d5973c 31%,#eab92d 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d5973c', endColorstr='#eab92d',GradientType=0 );
+
+}
+
+button:hover, .sub:hover, .sub:active, .sub:focus {
+	
+background: #593013;
+background: -moz-linear-gradient(top, #593013 31%, #7f4400 100%);
+background: -webkit-linear-gradient(top, #593013 31%,#7f4400 100%);
+background: linear-gradient(to bottom, #593013 31%,#7f4400 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#593013', endColorstr='#7f4400',GradientType=0 );
+}
+
+.sub {
+cursor: pointer;
+
+}
+
+.current {
+
+background: #593013;
+background: -moz-linear-gradient(top, #593013 31%, #7f4400 100%);
+background: -webkit-linear-gradient(top, #593013 31%,#7f4400 100%);
+background: linear-gradient(to bottom, #593013 31%,#7f4400 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#593013', endColorstr='#7f4400',GradientType=0 );
+
+
+}
+
+.midmenu {
+
+margin-bottom: 0.2em;
+}
+
+/*dropdown menu styles*/
+
+
+
+  </style>
+
+</head>
+<body>
+<div id="head">
+<h1>Lore of Aweworld (Under construction)</h1>
+</div>
+
+<div id="side2">
+
+<ul class="topmenu">
+ <li><div class="main"><strong> Races of Aweworld</strong></div></li>
+
+	<ul class="Racemenu">
+	  <li><button data-toggle="collapse" data-target=".Awemenu" class="midmenu" id="Awes">Awes </button></li>
+		<ul class="collapse Awemenu">
+		<li class="sub aweOverview">Overview</li>
+		<li class="sub aweHistory">History</li>
+		<li class="sub raptorians">Raptorians</li>
+		<li class="sub admiralty">The Admiralty</li>
+		</ul>
+	  <li><button data-toggle="collapse" data-target=".Wulfmenu" class="midmenu" id="Wulfs">Wulfs </button></li>
+		<ul class="collapse Wulfmenu">
+		<li class="sub wulfOverview">Overview</li>
+		<li class="sub wulfHistory">History</li>
+		<li class="sub sailingCompany">The Sailing company</li>
+		</ul>
+	  <li><button data-toggle="collapse" data-target=".Gryphmenu" class="midmenu" id="Gryphs">Gryphs </button></li>
+		<ul class="collapse Gryphmenu">
+		<li class="sub gryphOverview">Overview</li>
+		<li class="sub kingdom">Kingdom of Plumes</li>
+		<li class="sub republic">(Fallen)Republic of Preenlon</li>
+		</ul>
+	  <li><button data-toggle="collapse" data-target=".Gatormenu" class="midmenu" id="Gators">Gators </button></li>
+	   <ul class="collapse Gatormenu">
+		<li class="sub gatorOverview">Overview</li>
+		<li class="sub gatorHistory">History</li>
+		</ul>
+	  <li><button data-toggle="collapse" data-target=".Drudgemenu" class="midmenu" id="Drudges">Drudges </button></li>
+		<ul class="collapse Drudgemenu">
+		<li class="sub drudgeOverview">Overview</li>
+	</ul>
+	
+	<li><div class="main"><strong>Known World</strong></div></li>
+	
+	
+	
+</ul>
+</div>
+<div id="story-text">
+<p>Welcome to the Lore of Aweworld.</p> 
+<p> This is still under some construction and will contain some inconsistencies. Infact, all this needs a major design overhaul and rewrites so its easier to read. Have patiance.</p>
+</div>
+
+
+<div class="aweOverview2 hidden"><p><strong>Overview of Awes</strong></p>
+<p>Average Height: 1.6m</p>
+
+<p>Average Lifespan: </p>
+
+<p>Males: 80 years</p>
+
+<p>Females: 140 years</p>
+
+<p><br />
+<img src="../Images/assets/Avolc3.png"/> 
+</p>
+
+<p>Awes hail from the mountains they call Homepeaks that dominate the central parts of the eastern continent. They are thick of fur and able to tolerate most weathers but are not overly fond of high tempratures. </p>
+
+<p>Males are light of build and have larger wings then females while females are stouter and stronger.</p>
+
+<p>While they now dominate most of the flatter northern parts of the continent, living where the growing of food is the easiest, they always have a fondness for mountains, deep valleys and hills. </p>
+
+<p>Awes are highly social and enjoy the company of eachother. They are born in litters of 1-4 and families tend to be big and help raise and take care of eachother.</p>
+
+<p>Awes are matriarchal. Females, who are of more heavier and robust build then males, are nearly always the leaders of their communities.</p>
+
+<p>Females undergo a minor transformation when they reach menopause around the age of 70-80, becoming what they call 'Matrons'. They gain a minor growth-spurt, increasing mostly in mass and robustness over height, how much depends on availablity of sustenance. </p>
+
+<p>Despite this added size and strength, Matrons are not good warriors, they loose a lot of their reflexes and physical edge. Instead they are leaders, administrators, teachers and caretakers of young in Awe society. Their wisdom and seniority is traditionaly always defered to by others Awes and they take this responsibility seriously.</p>
+
+<p>There exists a few variations of Awes. While the vast majority are tones of yellow or golden of fur with a brown mane (males of slightly darker shades), tones tend to noticably differ in communities isolated from one another in just a few generations, making it sometimes easy to spot what region of a continent an Awe is from. But there exists some that are even more different still.</p>
+
+<b><p>MountainAwes</p></b>
+
+<p>Deep in the mountains of Homepeaks ancestral Awes with white fur still live with the traditions and lifestyles of old. Slightly nomadic, they forage the land and travel in tribes between ancestral homesteads depending on availability of food. Reclusive and prefering to keep to themselves, they remain apart from the general Awe population.</p>
+
+<b><p>RavenEyes</p></b>
+
+<p>On the peninsula dubbed RavenIsle to the north-east of the continent lives Awes who have black fur and yellow eyes, which gave them their names. The far north have long dark nights which permits Raveneyes to hide well. Raveneyes originate from refugees from the fall of the First Age who survived by hiding from Raptorian Horde of the time. Raveneyes are generaly timid and of slightly smaller build then common Awes.</p>
+<img src="../Images/assets/Raveneye.png"/> 
+
+</div>
+
+<div class="aweHistory2 hidden"><p><strong>History of Awes</strong></p>
+<p>Awe written history is short, but the oral one stretches far back into the annals of time. </p>
+
+<p>Because of this lack of record, a complete or for that matter fully accurate historical recounting is at best difficult.</p>
+
+<p>But researchers have now collected enough record and documented enough oral traditions and stories to paint a clearer image of our past. Understanding our past and its lessons are what will help us face the challenges of tomorrow. And so we do no repeat the mistakes we've painfully suffered before.</p>
+
+<p>Earliest tales of Awe come from the cold mountains of Homepeaks. Although its a whole different matter of debate still at the time of writing under contention, everyone agrees that Awes originate from the giant mountainranges that split the south and north part of the continent.</p>
+
+<p>These tales hold old dialects and are often made to rhyme so they're remembered better. Their contents tell of cold dark nights, of travels and of hardships. Most of them are, in practicality, lessons on how to survive and how to prosper and what to watch out for.</p>
+
+<p>A fact learned from these collective stories tell of a nomadic way of life, traveling through the mountains as the seasons changed. It is to believed the old Awes of those days traveled regularly from the northwest to the southeast, in time with the shifting of the season winds, so that the tall peaks would shield them from the worst of the frigid winds.</p>
+
+<p>This rugged way of life seems to have persisted for many generations and it is undoubtedly where we as a species developed our thick coats of fur. It is believed the climate at the time was of a harsher and colder nature. It is quite likely that the north continent was covered in a receding ice and did not offer much in the way of alternative living.</p>
+
+<p>Cautionary tales, though their meaning under question, also tell of the dangers of wandering beyond the protective peaks. Or one would be swept away by 'night-wanderers'.</p>
+
+<p>However around 5000 years ago, Awes are known to have started moving north and settle down as the great glaciers withdrew. The climate had gotten milder and the fertile lands that had been hidden or blocked by the ices emerged.</p>
+
+<p>Though Awes might have been moving throughout the region earlier, the excavations found tell of the first semi-permanent settlements emerging at this time.</p>
+
+<p>Numare and Tranquil, on the east-coast both have layer upon layer of history if one digs for it.</p>
+
+<p>Other major settlements include the Hrystcrag on the west-coast and Lean on what used to be the shorelines of the great central lake.</p>
+
+<p>This is when our first written records begin to emerge.</p>
+
+<p>Awes of this time did not practise advanced agriculture, they hunted and tended herds and picked from the seasonal fruits in rudimentary orchards they created.</p>
+
+<p>The first ever written record from this time recovered is in fact of a trade treaty between two villages. One place was rich in apples and the other was close the the seasonal migration of Horned beast.</p>
+
+<p>Its believed this growing practise of trade is what sparked the thriving golden-age of the time that we nowadays merely call “The First Age”.</p>
+
+<p><br />
+</p>
+
+<b><p>The First Age</p></b>
+
+<p>Awes of the First age were slightly different from today's Awes in that they resembled "Raveneyes" in height and stature, though its well-documented they were mostly fully golden or brown.</p>
+
+<p>The First Age marked a time of unchecked expansion and growth for our species. Communities grew and spread and left their mark on the land. Where First-Age Awes lived aplenty, fruit-trees can always be found growing wild.</p>
+
+<p>It was also a time of fracture, while communities and early-cities traded prominently there existed very little unity. Many recovered treaties, often chiseled in stone, clearly state forage rights and borders. Awes of the time guarded their resources preciously, for it was their means of which to trade themselves other desired goods.</p>
+
+<p>There is even believed to have been minor armed conflicts between competitors. In much of a way, the First-Age Awes had a close resemblance to the City-states of the Wulfs of the time. Which might not be so strange because there exists much evidence of communication and rudimentary trade existing between our two peoples even then. </p>
+
+<p> Though under debate, First-Age Awes could very well be emulating the wingless cousins of the south. There exists a lot of evidence in the similarity of writing and even metallurgy from this time-period.</p>
+
+<p><br />
+</p>
+
+<b><p>The Fall of the First-Age</p></b>
+
+<p>As communities grew and agriculture developed, the First-Age Awes took up more space and came into more and more conflict with the Raptorians of the time. Though usually satisfied to leave eachother alone, the matter which brought the most conflict were the large herds of horned beasts that the Raptorians of the time more or less relied on for survival. A herd passing through is believed to have trampled and stripped the lands near bare and could be a disaster to community of Awes.</p>
+
+<p>Hunting of Horned-Beasts for the safety of crops and their meat for consumption and trade was thus extensive, especially in the northern cities around Lake Sigh who were adjacent to their believed lands of roaming. </p>
+
+<p>Many recovered documents also exists of the meat being in high demand with the southern cities and communities, who themselves were expert toolmakers and bronze workers. There even exists scattered hints of this meat being traded on to Wulf cities.</p>
+
+<p>So what caused the Raptorian horde and the Fall of the First Age of Awes? Common folk-lore try to depict Raptorians as some creatures of malice and destruction who came from the north to lay ruin to all. While the events of the time might lend a hint of credence to such tales, the real reason could have been much more mundane and tragic.</p>
+
+<p>Its believed the Horned-beasts were either hunted to extinction or all perished to some manner of disease. It could well be a combination of the two. This must have driven the Raptorians to near starvation and desperation.</p>
+
+<p>How they managed to organize is unknown, it could well have been that the northern First-Age Awes were able to defend themselves well enough for the Raptorians to be forced to.</p>
+
+<p>The combined and unified Raptorian tribes swept over everything. Consuming all in their wake.</p>
+
+<p>The speed and ravenousness of this assault was so great that little documentation of the assault exists except scattered communications among the southern communities of Tranquil between the local Matrons who discuss how to handle and distribute the huge influx of refugees. This is also where the first mention of an organized armed force is mentioned in writing. </p>
+
+<p>“1<sup>st</sup> &amp; 3<sup>rd</sup> Heavy guard dispatched. Supply requested. Hara commands.”</p>
+
+<p>But what became of this force is unknown. Tranquil itself was overrun not long after and most of its populace along with any other low-land community fled for the perceived safety of their ancestral homes in mountains of Homepeaks.</p>
+
+<p>What had been a sprawling civilization of Awes with countless cities and a growing craft for Art and craftsmanship fell in a short few years to the horde. What followed was a bleak time for conqueror and conquered both as the true enemy of all, that which sparked the conflict to begin with, descended upon all. The time of Hunger.</p>
+
+<p><br />
+</p>
+
+<b><p>The Time of Hunger and the War of folly. </p></b>
+
+<p>With so many Awe refugees flooding the Peaks, it was inevitable that the original inhabitants of the mountains and the desperate newcomers clash.</p>
+
+<p>The spectre of hunger drove Awe against Awe in the first truly recorded Civil-war among Awes. 'The war in the mountains' as it was called at the time or the 'War of Folly' as it now more known as played out in many pockets of verdant valleys and mountainside pasturelands.</p>
+
+<p>First there existed many sides, as communities banded together according to former alliances and occupied what they could to sustain themselves and their families. But it shifted quickly to a form of North Awes against South Awes as the southern communities of 'Tranquil' and later 'Lagoons' blamed the scattered Northern Awes refugees to have brought the wroth of Raptorians upon all.</p>
+
+<p>But the war did not truly escalate until the united MountainAwes intervened in an attempt to expel both sides from what they considered, perhaps rightfully, to be their ancestral lands and bread-baskets.</p>
+
+<p>During this time of chaos there existed as many voices of reason as there did discord. Greed and folly saw some valleys destroyed in landslides or avalanches rather then lost to the paws of their enemies, trapped as they were, such was the desperation that could have driven Awekind to destruction.</p>
+
+<p>One recorded community of Lagoon Awes are reported to have attempted to flee south of the Homepeaks, into the jungles of 'The Thick' in an attempt to reach Wulflands. But no Wulfish records ever report any such Awes arriving to their destination.</p>
+
+<p>Another scattered alliance of Northern Awes attempted to march back north in force through the west coast, but were driven back in a route when the Raptorian horde found them before they made it very far.</p>
+
+<p>Although the war had few winners and most likely would have had fewer still had it continued, the dominant faction who in the end brokered the treaty to whom all parties would sign and agree to were the MountainAwes. Although few in number their inherent strength and knowledge of the mountains, their leader Avon, saw them to a string of victories which forced all factions to pause and consider their offer for parley seriously.</p>
+
+<p>Avon assembled and hosted a council of the Matrons from all major parties involved and made them see the folly of continued conflict. And although the terms of peace were harsh, they were so equally so for all. </p>
+
+<p>All Awes were to renounce their past affiliations, all Awes were to mix among each other equally so that no community had majority and mates were to be chosen from as distant kin possible to ensure all Awes would become one kind, one community.</p>
+
+<p>Only the children of these unions were to be permitted to mate hence-on and the rule of mateship would persist for 5 generations.</p>
+
+<p>The treaty was embraced slowly at first, but as Mountainawes took the first step to intermingle, so other soon followed. Those who resisted were quickly swept away as single Awe future embraced with fervor.</p>
+
+<p>Modern History and Second-Age</p>
+
+<p>The 6<sup>th</sup> generation became our pilgrims and settlers and spread back north again. Though not without trepidation and caution. But all that was found were ruins of the First-age. Overgrown or razed. The Raptorian Horde became a legend, for they no longer patrolled the feet of the mountains or came lurking in the lower valleys. They had seemed to vanish along with the age they ended.</p>
+
+<p>The land as we understand it was different from the land of the First-Awes too. Overgrown and wild once more. Young forest had sprung up where before had been prairie and bare hills. No large horned beasts roamed the land any longer nor other larger animals it seemed.</p>
+
+<p>Raptorians were eventually rediscovered, few in number, in the colder northern shores where they clung to life among the colonies of seals for the meat they needed to survive. Although imposing, far were they from the bloodlusting hungering legends of a few generations past.</p>
+
+<p>We are currently in what many refer to the Second-Age of Awes. We have once more spread across the north continent and established ourselves. But this time as one people, organized and supporting one another, for the interest of all rather than a few.</p>
+
+<p>We've learned from the lessons of the First-Age. We will be one step ahead of any folly and see no disaster fall upon us again. The world is big, dangerous and much of it undiscovered. For Awes to thrive and be safe, we must find the dangers before they find us and be prepared to deal with them. Be it with force of Arms, wit and skill or guiding paw. </p>
+
+</div>
+
+<div class="raptorians2 hidden"><p><strong>Raptorians</strong></p>
+
+<p>Height: 2.5 meters</p>
+
+<p>Average lifespan:</p>
+
+<p>60-100 years.</p>
+
+<p>Vassals of Awe</p>
+
+<img src="../Images/assets/Raptorian.png" style="width: 50%;"/> 
+
+<p>Raptorians were nomadic hunter-gatherers. They lived in packs and wandered the land, in the past they tracked vast herds of horned grazers. Its believed that they even to some extent herded them to pastures. The health of the herd was the health of the pack. </p>
+
+<p>Its of some dispute where Raptorians originate from. They are currently found no other continent then the northern part of Awelands. Some believe they wandered in from the east along with their herds during the time of ice, but no landmass have yet been found within safe sailing distance so at the moment it is mere speculation. </p>
+
+<p>Raptorians are strong, bipedal and furless. They handle the cold with eating plenty and maintaining a layer of fat under their hides. But of recent times when integrating into Awe society, many Raptorians prefer living and working in warmer southern valleys when given the chance. </p>
+
+<p>An ordinary Raptorian pack consists of an Alpha, often the strongest of them who are also smart enough to maintain alliances of strong beta males. An Alpha may be either male or female, there are few physiological differences between males and females except that 3 in 4 are born male. Thus females are often coveted and guarded closely in a pack by an escort of male guardians/suitors. Raptorians are slow breeders and a female may only have one offspring every 2-3 years. </p>
+
+<p>Raptorians are today almost fully integrated into Awe society. They even have local representation in regional councils. </p>
+
+<p>Although the average Raptorian is highly intelligent, able to learn numbers and letters, even a craft. Raptorians prefer to hire themselves out as laborers, doing physical labor and tasks that are too grueling for ordinary Awes to perform. They are quiet and uncomplaining workers, seeming to be satisfied with simple tasks for the pay of meat, social security and a cut going back to their pack. </p>
+
+<p>Some packs are more close-knit and specialized, hiring themselves out in groups. Most of such packs work for the Awe military. </p>
+
+<p><br />
+</p>
+
+<b><p>The Raptorian Horde</p></b>
+
+<p>The immense horde of Raptorians which ended the first-age of Awes. Its believed it formed when a majority of the Horned-Beasts the raptorians relied on for food inexplicably died out. Something unified the Packs and drove them to attack, consume and destroy all Awe settlements they could find on the northern continent. </p>
+
+<p>This immense mega-pack of sorts are estimated to have had Raptorians in their many thousands perhaps tens of thousands. Surviving accounts are few and scattered.</p>
+
+<p>After all Awes were driven into the mountains or consumed, its believed the pack turned on itself. Unable to pursue Awes in the mountains they scoured the land of every living thing until there was none left to feed the horde. </p>
+
+<p>Large quantities of Raptorians bones have been found scattered around the feet of the mountains and around the southern part valleys. </p>
+
+<p>When Awes once more spread into the north continent many generations later, the raptorians who were eventually found up in the coasts and north numbered merely in their hundreds. </p>
+
+<p>The oral account of these Raptorians were that they were not part of the Pack that disappeared south. They had been the remnants, the old and the very young, who had been left behind. In their lore the event was called “They betrayal”. But in the years they struggled to survive, the true meaning behind the name was lost, perhaps purposely so.</p>
+
+<p>Today Raptorians once more number in the many thousands. Though a fraction of Awe population, they are an integral and accepted part of it. </p>
+
+</div>
+
+<div class="admiralty2 hidden"><p><strong>The Admiralty</strong></p>
+
+<p>The Admiralty is the Awe military organization in charge of the Navy. Its not THE navy, but the institution that has been given leadership over it. </p>
+
+<p>Though it may be considered a technicality, for the navy would today not be able to operate without the Admirality, they would be nothing but a bunch of Awes in hats and capes without the navy employing them. </p>
+
+<p>The navy itself, the ships, the resources for their maintainance is all owned by the state. The Admirality are the crew, the captains and the know-how. Though of late the Admiralty itself has begun to commission ships of their own requested specification.</p>
+
+<p>This was not always so. The Admiralty came to power and fame during the East-sea piracy crisis. A band of knowledgable captains, formers traders and merchanters aswell as many “retired” navy captains, took it upon themselves to organize in a manner that the inflexible state navy was unable to do. </p>
+
+<p>This was a time before the western passage was found and the west sea off the coast of Aweland considered too dangerous for sailing. Back then all trade, even with the far west Kingdom of Plumes and the Empire came through the east, around or through the Wulf-Lands. </p>
+
+<p>As the second-age of Awes bloomed, so their their demand for goods and technology. Trade grew exponentially in a few decades and so did those who would take advantage of it. Piracy grew with it, until it reached such levels that nearly half of the trade was stiffled and thus prices grew. </p>
+
+<p>The state responded with the purchase and repurposing of tradeships into escorts for the Awe-Guard. But these prooved inefficient at their tasks, they were overarmored and armed, crewed by soldiers and led by captains chosen from senior military commanders of the Awe-guard with little to no sea-experience. </p>
+
+<p>Tired of seeing their nation humuliated at sea, a select number of captains from various backgrounds banded together and formed their own force. The Admiralty. Some of it was an emulation on how Gryphs crewed their ships. With an officer-core of absolute authority and a structure of under-officers to lead the rest of the crew. Crew which were prioritized to having sea-faring experience over miltary. </p>
+
+<p>Together the organization drove away or captured many a Wulfish merchanters and known pirates and grew in strength. In their final act, now joined by the navy, they even blockaded Wulfish ports to pressure the neutral Wulf city-states to stop harboring known criminals and their pirate businesses. </p>
+
+<p>The operation was succesfull and piracy in the east was practicaly stiffled to non-existant levels. The Council of Matrons were quick to employ The Admiralty and put it in charge. </p>
+
+<p>The Admiralty has since then expanded its influence and might to such a level that it is now the largest and most prominent miltary organization of the Awes. They are the first line of defence for Awelands and its interests.</p>
+
+<p>Since the Western trade routes were discovered and opened. The Admiralty has pooled a majority of its resources on the westcoast and moved its headquarters from Tranquil to Hrystcrags. </p>
+
+<b><p>The Academy</p></b>
+
+<p>As the demand for more ships and crew grow, so do the demand for competent officers and commanders. </p>
+
+<p>The Academy was first founded by the order of the Council of Matrons to pass on the knowledge of military leaders to new generations. But it saw scarce use until the Admiralty was given charge to train captains and officers there. </p>
+
+<p>The Admiralty, now newly in charge of the navy, conversely pooled most of their funding into expanding it.</p>
+
+<p>Its now grown to be one of the foremost places of learning in Awelands and a prestigious school of high reputation, even abroad. Though it trains foremost officers for the Admirality and the Awe-guard, its since expanded into more civilian fields to take advantage of their expertise curriculum.</p>
+
+<b><p>Raptorians and squires</p></b>
+
+<p>Raptorians brought out to sea isn't an entirely new concept. They've willingly worked as laborers in many industries and enterprises and proven to be tough, able and willing to listen. </p>
+
+<p>Trouble arose when ships are out to sea for extended periods of time. Raptorians are large and require space but they also do not do well with idleness. A lot of the work done on a ships is technical and except hoisting sails, do not require their stronger physique, so they end up brooding in whatever quarters assigned to them until they're needed. Not being needed makes a raptorian wish to move on, normally they are free to do so, but at sea they will suddenly find themselves extremely restless and trapped.</p>
+
+<p>The first instances of the normally placid Raptorians turning on their employers were reported from long-distance trading vessels. In one case almost the entire crew of a trading vessel off the east coast were lost to a hungry rampage. </p>
+
+<p>This caused for a time a problem to their reputation and naval vessels refused to hire them. </p>
+
+<p>However, the need for heavy duty labor as well as bodyguards for increasingly dangerous trade-lanes are undeniable. The role of the raptorians have become ever more compulsory in working Awe society. </p>
+
+<p>In facing this problem during the early formation of the Admiralty, the thinkers behind the creation of the new Awe navy came up with a simple solution.</p>
+
+<b><p>Squires. </p></b>
+
+<p>In a way, caretakers, tenders or supervisors of raptorians have never been a new thing. While Raptorians are in no way dumb, they work better and more efficiently under supervision.</p>
+
+<p>An investigation in the shipping industry found that where Raptorians had close bonds with their supervisors and otherwise had higher levels of interaction reported little to no problems. </p>
+
+<p>Assigning Awes who are skilled at working closely with raptorian into a role of squire of one or more raptorians has almost entirely rooted out the restlessness problems previously faced and is now an adopted standard practise for the admiralty. </p>
+</div>
+
+<div class="wulfOverview2 hidden"><p><strong>Wulf Overview</strong></p>
+
+<p><b>Height: </b>1.5 m</p>
+
+<p>Average Lifespan: 60 years</p>
+
+<img src="../Images/assets/Viska2.png"/ style="width: 50%;"> 
+
+<p>Wulfs live primarily in the southern half of the east continent. They are an dextrous and agile people who are at home in trees which they are able to scamper across and climb with ease. Their coats can vary wildly in color, from green and sandy yellow to even red. While color isnt entierly hereditary, as blood mixes often among Wulfs, majority have some form of stripes or patches of black over their bodies or tails that are.</p>
+
+<p>Most of their cities are in forests along the coasts and among the tree-tops, where their dwellings span with bridges from tree to tree. Larger cities however are so populous that the trees end up partially encased in construction. </p>
+
+<p>Wulf male and females look mostly similar and are equal in strength and position. Infact in Wulf culture and language there exists no male or female pronouns, instead they have pronouns that describe their main characteristic, wether they are of subtle or dominant nature. But such distinctions are so hard to make for Non-wulfs that is best not apptempted, for getting the pronouns wrong can be considered an insult.</p>
+
+<p>Wulfs birth litters of 2-3 Wulfs. Once the Wulf-pups are old enough to run around by themselves, they are often left to their own devices. Wulf young are thus taught to be very independent at a startlingly early age. This has translated into Wulfs having highly individualistic view on personal freedom and often migrate openly between cities until a place is found where they feel at home and can practise their craft.</p>
+
+<p>Wulfs have little to no central government. Each citystate is loosely ruled by the general will of its population. The demand for a craft or service being determined and regulated by a complicated system of food and produce donation. For a long time one could have considered their governance being a form of near Anarchy and chaos, many of the smaller cities still are, especially for outsiders. But Wulfs tend to emulate success and have adopted something of a council in its larger cities that better help determine the distribution of labor. </p>
+
+</div>
+
+<div class="wulfHistory2 hidden"><p><strong>Wulf History</strong></p>
+
+
+<p>Wulfish history is a scattered mess of tales and folklore. It is undeniable they originate from their wilder, less sophisticated feral cousins, The Igwulfs that live in the ‘The Thick’ (Large swathe of flooded jungle covering the north), who’s namesake they share so closely. Ig, as it turns out means warrior in the old native tongue.</p>
+
+<p>While Wulfs are not as bestial as their warrior brethren of the jungles, smaller of stature then most of all of “The Races”, they are sometimes jokingly called “Domesticated Wulfs”. Be careful, for though small in stature, underestimating a Wulf might be one of the last things you do.</p>
+
+<p>They are in essence a folk that have been around for a long time, living off the land in smaller clans and spreading themselves into every nook and corner of the south continent. </p>
+
+<p>It’s uncertain at what point in history they settled permanently and created their first city. Opinions of which of the many core city-states were the first are split. The truth may lie in that once one working city rose, able to support itself with rudimentary agriculture, the practise spread as Wulfs imitate success. </p>
+
+<p>Their very first cities may infact not have been built by themselves but been old ruins moved into. Scattered stonework found in the oldest City-states are thought too advanced in cut for early Wulfs who prefered trees to have produced.</p>
+
+<p>Another controversial topic is whether it was the sudden pressence of Gryph explorer-traders that set the settlements into real motion as they brought with them knowledge of crafts and culture of the Westlands. The period of the early rise of Wulf cities coincide with the Fall of the Republic of Preenlon far in the West. </p>
+
+<p>The pressence of the east continent and its Wulfish people became a somewhat well-known secret among Kingdom traders around this time. But permanent trade never took off in any large measure because of the distances and dangers involved and Wulfs were said to be a crude deceptive and backward folk that had little of considered value that was not perishable. </p>
+
+<p>Part of their disdain might have been the mismatch of ideologies and contact between the lands fell into near forgotten obscure minimal contact for centuries. Only the most intrepid or desperate Gryph traders pushed out of regular markets, braved the perilous seas.</p>
+</br>
+<p>The most fascinating aspect of Wulf culture, that flustered early Gryph traders, are their lack of any formal currency or goverment. Skills and to some extent knowledge, is what is considered worth something, so Wulfs would be prone to migrate where their skills would be in demand.</p>
+
+<p>With a lack of currency and official leaders, Wulfs agree to a sort of unspoken social contract. They must all contribute to the success of the whole. They learn skills while growing up, hunt, farm or produce to justify their existence and pool their resources, sharing equally. They do this in seeming anarchy, policing themselves, devouring those who are considered not worth their weight in meat. Harsh as this may seem, this does not quite happen as often as one might think.</p>
+
+<p>Paradoxically, this will to share and interchange of skills and knowledge between cities from open migration, while certainly helping the spread of succesfull ideas, did not translate into open cooperation between the rising city-states. Instead cities, perhaps as a instinctive remnant of their clan-like days, are extremely competitive with each other. Especially when it comes to trade.</p>
+
+<p>While individual Wulfs may have little prejudice toward each other, they fiercely struggle to ensure the city they consider their home to be the strongest and most dominant. Trade is a vital tool of survival and prosperity for any city. But Wulfs will stop at little to gain an edge, even cheating and stealing is fair game if it’s done to another city. But rarely tolerated to your own.</p>
+
+<p>Hostilities and rivalries between cities are common, but never quite to the point of any open wars. Most conflicts are based around local resources and production. The fiercest of struggles might arise when two nearby cities producing the same resources will fight fiercely for their right to be sole exporter of said goods, for the alternative means undercutting the other and devaluing their goods to the benefit of other cities.</p>
+
+<p><br />
+</p>
+
+<p><b>Invasion</b></p>
+
+<p>Although centuries of contact with Gryph traders inevitably changed Wulf society to become more 'Western', Wulfs were historically never interested in broadening their territory and slow with accepting new technology. Though they are always interested in the availability of resources and inventive enough to build rudimentary ships for fishing and transporting goods.</p>
+
+<p>But during the time of Warlord Clix and his drive in expansion and exploration, the gator Empire set eyes on their lands for a brief time.</p>
+
+<p>The 5<sup>th</sup> Land-grabbers made landfall on the Wulfish west-shores, tasked to explore, gather slaves and assess the local potential for expansion. Although they found clear signs of habitation, they found none to capture.</p>
+
+<p>The Wulfs had recieved warning and cleverly hid themselves from the foreign army, refusing confrontation with the invaders, evacuating minor settlements in their wake and at the most trying to raid their supply-lines. In frustration the gator commander marched on the Wulf City-state of Thistletimber and set fire to it to lure them out, but even this proved fruitless. None came to rescue their belongings or buildings at the settlement and most of the forest burned to ash. </p>
+
+<p>It did however stir nearby neighboring cities and minor settlements into action. The first unified Wulf force ever, gathered itself to repulse the invaders en masse.</p>
+
+<p>Together they poured over the gator force in a tide bodies, daggers and fangs, but suffered catastrophic losses against the more organized, hardened and well-armed small explorative force.</p>
+
+<p>While the day was won, it was a pyrrhic victory that taught Wulfs a hard lesson about a broader world.</p>
+
+<p>Luckily for the Wulfs, Warlord Clix set his eyes and vast armada westestwards rather then east before the reports of Wulflands reached him and no further Gator forces were sent across the sea.</p>
+
+<p>The concept of foreign invaders and the danger they possessed should have been enough to unify the many city-states to a common goal. But any attempts into some form of unified government ended in failure long before it began. While the danger was admitted as real, no consensus could be reached in how to organize, because large-scale organization itself was never a popular concept among the individualistic Wulfs.</p>
+
+<p>What was however agreed upon was that the current way of life was too lax, there was a need of Warriors as a new dedicated class of occupation. Wulfs who learned how to scout, fight and raid and could do so as a focus and be supported by their commune or city.</p>
+
+<p>These warriors were initially to be considered neutral and stateless, not to be used or recruited for City-state conflicts. But the “rules” were made intentionally vague. It take long for idle Warriors to be forced to find ways to uphold the social-contract and contribute to the city that supported them. And through what other way then through skills they were taught. It was not long before city-states conflicts were no longer limited to mere raiding.</p>
+
+<p>The brief invasion saw a kindled interests in Wulfs for technology, they had been bested by iron arms and armor. Success required immitation. So the rare Gryph traders that braved the long voyage for exotic goods soon found Wulfs trying hard to appease them and interested in all manner of goods and techniques. The new demand among Wulflands would make a few Gryph Trading houses very rich indeed.</p>
+<p><b><br />
+</b></p>
+
+<p><b>Recent History</b></p>
+
+<p>The rise and rapid regrowth of the Awes in the north, saw considerable boosts in trade for the Wulfs, who by now was adopting Gryph ideas for commerce whole-heartedly and growing increasingly reliant on the supply and demand of goods. </p>
+
+<p>At the time the only safe link to the western continent for the Awes were from their east coast through Wulf-lands and the Wulfs profited greatly from the increased traffic not only in trade but piracy and tariffs or both.</p>
+
+<p>Idle warriors from their respective city-states often found their fortunes stealing or raiding from the fledgling nation of the north. It was not unusual for a Wulf “Trader” to exchange goods from a raided trade ship they themselves robbed if the goods were not in their liking.</p>
+
+<p>The popular belief is that it stifled trade to such a point that it probably led to the infamous Sea of Fangs path in the west-sea to be eventually discovered by intrepid explorers and fortune seekers.</p>
+
+<p>Whats certain however is that it woke the ire of the Awes and soon saw to their second albeit far less bloody military setback. Awes organized a fleet to blockade all Eastern Wulfish ports in what became known as the “Great Blockade”. This stifled trade and supply to such a degree that every city state involved soon promised to stop harboring and hiding known pirates and raiders.</p>
+
+<p>The results were that many independent warriors-vessels found themselves without a place to call home, shunned or even facing capture unless they turned a leaf.</p>
+
+<p>Most traffic after this turned more legitimate, pride ruffled as it had turned out the fluffy winged relatives from the north had bite. But you would be hard-pressed today to find a Wulf that recognize the conflict ever happened.</p>
+
+<p>Wulfs as they are like to emulate success however. And there was a broad view among the stricken cities that a form of overarching guiding paw was needed to direct its warriors to where they needed to be.</p>
+
+<p>The Wulf lands today are prosperous and well-guarded. In a sense they have achieved a form of nationwide Mercenary Company called “The sailing company”, which handles and assigns privateering warrior vessels after needs and requests of states that support them with a somewhat tangible control.</p>
+
+</div>
+
+<div class="sailingCompany2 hidden"><p><strong>The Sailing Company</strong></p>
+
+<p>The sailing company was created in imitation and response to the Aweish Admiralty. Its official task is to protect the interests of the city-states which fund it and provide Wulfish captains and warriors wulfs with employment and direction. Be it with Trade or Patrol, with Wulfs, these two often go hand in hand. Where other similar cooperative ventures and forms of leadership or centralized governance has failed, the sailing company has managed to survive because its leadership is largely clandestine and thus whatever self-interest it has perceived to have overlaps with those who employ or are employed by it. City-states in contract with the Sailing-company become in a sense allied and see large boons to their Trade security and administration.</p>
+
+<p>Not much is known about the inner workings of the Sailing company. While young, it has grown influential over Wulf politics fast, to the point where it more or less represents Wulfish foreign policy, trade, navy and intelligence. It maintains its power as long as it maintains its trust with its client cities and Captains under its employ.</p>
+
+<p>Raiding and piracy is officially unsanctioned under the Sailing company. But this has not stoped many Wulfish captains and crews from, after their terms of contract, using company funded training and sometimes even ships to seek their fortunes in less legitimate ways.</p>
+
+<p>This has given the company less then a favorable reputation with Awes and even Gryph trading houses. </p>
+</div>
+
+<div class="gryphOverview2 hidden"><p><strong>Gryph Overview</strong></p>
+<p>Height: 2 m</p>
+
+<p>Average lifespan: 150-200 years</p>
+
+<img src="../Images/assets/Kveest.png" style="width:50%;"/> 
+
+<p>Gryphs call the temperate southern islands and peninsulas of the vast west continent their home. While the largest collective of them live in the Kingdom of plumes on the peninsula called Clewas, they tend to exist slightly everywhere and are a common sight as laborers in the empire aswell as distant villages on far-off isles, they are a scattered people and thus come in a variety of plumages and statures.</p>
+
+<p>Gryph genders are easy to tell apart. Males often have colorful feathers and plumages, from red, green and sometimes even blue feathers with a crest of taller expressive feathers upon their head and necks. Females have more earthy colors of brown, grey or black and white.</p>
+
+<p>Gryphs are polygamous, males work hard to impress females and make names for themselves. Its often said its their main motivation in life and every enterprising Gryphs dream to attract himself as many females as possible for his own harem. Wealth being secondary.</p>
+
+<p>Females thusly enjoy pampered lives in Gryph society and do not object to tying themselves to the most potent of males who either are able to provide for them or otherwise impress them with prowess or personality. This often makes male Gryphs percieved as relentless flirts among other races and their females as lofty spoiled snobs. </p>
+
+<p>Females may lay one egg every year and can do so for most of their adult lives. Conditions permitting, most females will at most lay 10 eggs in their lives due to the stresses it puts on their body.</p>
+
+<p>The first-born of young Gryphs often follow in their sires footsteps to add to or continue their trade or craft. The later ones, if hatched, often end up working for their elder brothers or leave to find their own path.</p>
+
+<p>The Kingdom of Plumes is an oligarchy, led by several princess of wealthy houses. Wealth equals power, so being a prince is not a birthright. Anyone could rise their family name to become a prince and it is this that is a Gryphs third goal in life. Status. Gryphs living in other nations tend to follow the customs of the area, though they are primarily loyal to their lineage. </p>
+
+</div>
+
+<div class="kingdom2 hidden"><p><strong>The Kingdom of Plumes</strong></p>
+<p>The kingdom is a nation of wealthy merchant princess. Known through the world for its influence and control over majority of coastal trade. Kingdom traders, always on the quest of new fortunes are also the ones who discovered the East continent, or rather the safe passages there, with its people of Wulfs and Awes. Connecting the world through trade for a wealthier tomorow. </p>
+
+<p>The 9 wealthiest and powerful of family houses are the ones which are allowed to house a palace on the 9 branches of the oldest of the World trees. Of these one is chosen King, often the wealthiest, giving them veto rights. Together they are sworn to protect the World trees of the Kingdom and all its inhabitants.</p>
+
+<p>The world trees are what the Kingdom's existence have always existed around. Immense thick trees of over a 100 meters, some of the oldest up to 200. These are what have sustained Gryphs of the kingdom for as long as there is memory. They are sacred to most Gryphs of the kingdom and are cared meticulously by the Gryphs who live on them and under them.</p>
+
+<p>It is said these trees grew in more places once, but since the discovery of 'The Thick' in the center of the far eastern continent, they had never been found anywhere but in the large fertile peninsula of Clewas.</p>
+
+<p>Each World tree in the kingdom has a name and is owned by a family house or several minor houses. The amount of trees a House owns is often directly representative of their wealth. In the past owning several trees meant direct prosperity as your family could grow and eat well of the trees year round fruits. But nowdays they cost more to maintain then they provide and gryphs main food source come from fish and agriculture from neighboring lands.</p>
+
+<p>The Kingdom is one of the oldest existing nations in the world. It has existed in name since the earliest records, though it has often been in many different forms. In the past it was knowns as the Kingdoms rather then Kingdom, as it was not unified into its current form of governance until as little as a few hundred years ago. </p>
+
+<p>Before even the kingdoms, ancient Gryphs of various family tribes fought and wrestled for power and space and each others wives. Many of the Princely houses of today can trace their lineage back even to these days as many of the house names still exist.</p>
+
+<p>But as climates got warmer and food became more available, tribes grew larger, forming minor kingdoms of their own and some, perhaps ousted, even established themselves on the main continent where they spread further rapidly. </p>
+
+<p>These would later come to be the foundation of the great Republic of Preenlon after they waged a war of independence from the princes and kings of the Kingdoms.</p>
+
+<p>During the Millenia of the Republics rise to glory and success, the kingdoms held little power or influence. So many of its houses were subjects of the Republic that the Kingdoms were considered a vassal state.</p>
+
+<p>The Kingdoms feared the power of the Gators who spread and grew in power in the north. Their constant wars and aggressions often spread close. But at the same time the Kingdoms, although subjects of the Republic, enjoyed a privileged position between the Republic and the Gator Empires as a neutral place of trade and commerce.</p>
+
+<p>Its from this time the keen mercantile culture which permeates the Kingdom today truly grew into its own. And it was through the force of wealth and goods that many Kingdoms grew bold enough attempt to throw off their ties with the Republic. In a way things had gone full circle as Kingdoms one by one struggled for independence. To gain freedom from tax and tariffs. But such attempts were often quickly squashed, in some cases whole houses of lineages even destroyed. This created further animosity among the remaining kingdoms and further will for self-rule.</p>
+
+<p>It was during this time of contention that the Warlord Krakow suddenly arose, invaded and destroyed the Republic of Preenlon utterly.</p>
+
+<p>Many historical rumours say, though none of today's houses will admit to it, that his campaign was well-funded by the Kingdoms and that his startling success was an unforeseen accident. </p>
+
+<p>It is likely the kingdoms involved only wished to weaken the Republic so to be able to fully gain their chance of independence.</p>
+
+<p>Their independence were certainly gained, along with more refugees of the republic then the lands could truly hold and sustain. But with those also the Republics great fleets where nowhere else to go.</p>
+
+<p>It was during this time of crisis, that the Kingdoms became the Kingdom. To survive as a whole and in fear of being the next target of Gator assault they united and put their minds and plumes together.</p>
+
+<p>Although the Kingdom saw conflicts with the Gator empires that now surrounded it in the coming times, even seeing its own brief invasion of Warlord Maw, shrewd diplomacy and diplomacy as well as a focus on being a more valuable ally and trading partner has had it last to this day.</p>
+</div>
+
+<div class="republic2 hidden"><p><strong>The Republic of Preenlon</strong></p>
+<p>The Republic was one of the first and mightiest empires in the known world. Its power and culture still permeate the world to this day as techniques, tools and military ideas created by the Gryphs of this empire are in use today. It was not the first nation to be ruled by the will of its people, but it set the ground for what would be the most succesful one.</p>
+
+<p>The republic formed on the southern stretches of the west continent and was named after the fertile areas which divided the southern half from the northern Gator inhabited empires. Preenlon.</p>
+
+<p>But the wetlands of Preenlon were highly coveted by the Gators of the northern marches and had to be defended fiercely. It was always to be an area of high contention. Its said that Gators lived there first in smaller unusually peaceful tribes, but were ousted when the great warming saw Gryphs expand past their homes in their world trees. While Gryphs of the Pre-Republic claimed it was they who cultivated and made the land into the breadbasket it was.</p>
+
+<p>The Republic formed out of necessity for survival, for while the Kingdoms enjoyed a largely geographical safety from various marauding gator warlords, the Gryphs of the 'mainland' did not. The fertile land and its free growing and easily domesticated Rice plant and other edibles saw a quick explosion in Gryph population as agriculture developed, the skills of irrigation, crop rotation and the tools of harvesting pioneered in these lands.</p>
+
+<p>The Republic early on also held a rare trade communication with the isolationist Drudges on their island to the south. It could well be that this is where many of their skills and techniques were gained. For their sudden rise to power with their superior technology which lasted over a thousand years is hard to explain. Most of their internal early history was lost with their fall, as their halls of records and knowledge were burned along with their cities in their eventual fall.</p>
+
+<p>Up until this event. The republic Armies had a savage reputation of skill and speed that could never be matched, though over the millennia many self-proclaimed Gator warlords tried and failed, the Republic troops always made sure to make attacks against them costly and are even known to have counter-attacked deep into Gator home domains.</p>
+
+<p>But perhaps wisely, fearing a Gator unification like the one that eventually doomed them, they never ventured far north or tried to expand past the fertile Preenlon areas. </p>
+
+<p>The Republic utilized a rapidly deployable army with a rigid military structure of commanders and sub-commanders. They valued discipline, perseverance and honor. While a single Gryph soldier would have a hard time with a physically superior Gator, they utilized every advantage to get ahead. With their aerial reconnaissance and rigid martial practises, their Republic fighting force were for a time unmatched.</p>
+
+<p>But in their final century, amidst culture and scientific advances, cracks began to appear. The fertile wetlands of Preenlon were never rich in one vital resource. Metals. The demand for the resource was great, but supply was rarely found elsewhere except in the north among the gators. The Kingdoms, the supposed vassals of the republic, also used this demand to their greatest advantage to grow wealthy and powerful.</p>
+
+<p>This put the Republic into a form of recession which sowed discontent amount the populace. The armies, which were expensive in upkeep, were reduced in size and stripped of replacement gear. Though their training and skill persisted, other internal struggles also arose, political scandals and demagoguery saw the people divided and rumours even abounded of splitting the republic into two states, further dividing the leadership.</p>
+
+<p>It was during this time many of the Kingdoms attempted to secede. This could not be permitted, for the tax gained by trade may have been what kept the Republic afloat and much resources were put into striking down the rebellions. Though not at its height, the republic armies had no problems crushing its opposition. But the operations were seen as expensive and internal politics were ever divided.</p>
+
+<p><br />
+</p>
+
+<p>During all of this, a self-proclaimed warlord had once again risen in the north. Warlord Krakow. Its not to be said that the Republic did not take the threat seriously. Nor were they caught unprepared, for when Gators march to war they tended to do so without subtlety. </p>
+
+<p>The sharp well-equiped Third-army met the advance of the Warlord Krakows personal warband.</p>
+
+<p>Even had they been at their height of power, it is likely they would still have lost the battle of Hrodros march that followed. Warlord Krakow so soundly routed and annihilated the elite third army of the Republic that there was no question of how brutal yet calculated his tactics were. The Warlord had not come without knowledge of Gryph military tactics.</p>
+
+<p>But all the problems afflicting the Republic had a clear effect on how the nation would react to the outcome of the fateful defeat. Armies were pulled back defense rather than strike out in retaliatory strike. Fear and uncertainty among the leadership bid the military to wait for the elite Second-Army, stuck overseas in the Kingdoms, to first return before a campaign be launched, if one were to be launched at all. Krakows army had been said to have been well bloodied and the Warlord retreated uncontested back to Gator lands.</p>
+
+<p>Here the warlord amassed a new army, as the word of his victory over the previously undefeated republic spread. The response to his call to war was unprecedented. As if collectively scenting the blood of a wounded animal, Gator warbands from all corners of the stagnant empire amassed, lusting for glory. The “War-horde” he amassed flooded into northern Preenlon, like an unchecked tide.</p>
+
+<p>The Preenlon armies are said to have fought as well as could have been expected of them. After several string of victories, they held the loosely controlled Gator armies back for many days, before falling back to their fortifications. But soon they lost ground not only to the sheer press of seemingly endless Gator reinforcements, but also Krakows personally led savage “siegebreakers” which punctured holes in the already cracked armor of Preenlons military.</p>
+
+<p>Sensing defeat, the fractured populace panicked. Many fleeing south and those who could, across the seas to the Kingdoms. The Republic officially requested the aid of the Kingdoms and received promises of aid in troops and material both, despite their recent animosity. But none of these would arrive in time before the Preenlon army finally broke under the near constant assault and push. The fall of the Republic was inevitable.</p>
+
+<p>It is said the remnants of the Preenlon army, reservist, formerly retired and volunteers held the final passage of Anchor pass (A thin stretch of land which divides a southern part of Preenlon from its fertile northern wetlands) for a whole week to allow as much of the populace to be evacuated by the navy as possible. The press of gator bodies pushing in from the north are rumoured to have been a sea of green that the brave Preenlon Gryphs stood against day and night until every last one fell to iron or toothy jaws.</p>
+
+<p>The surviving Preenlon gryphs spread themselves to wherever they could, never to reclaim their homelands. Most who settled in the Kingdoms became little better then serfs, forced to live among the roots of the world trees, to scrape their living as best they could with whatever crafts they could bring. Subjects now in a system of wealthy princes and merchantlords. Some became landless merchants, of which there exists Houses of to this day with their fleets of merchant-ships.</p>
+
+<p>Some consolidation for the survivors were that the Warlord Krakow (Forever a name cursed among Gryphs), perished in the aftermath of the final siege as his uncontrolled armies turned on itself in ferocious infighting.</p>
+
+</div>
+
+<div class="gatorOverview2 hidden"><p><strong>Gator Overview</strong></p>
+<p>Height: 2 meters or above</p>
+
+<p>Average lifespan: 100 years</p>
+
+<img src="../Images/assets/Gator.png" height="40%" width="40%"/> 
+
+<p>Gators are hulking thick scaly reptiles. They are of amphibious origins but have established themselves in all corners of the large east continent. </p>
+
+<p>Gators come in different breeds and sizes. There can often be as stark a size difference gator to Gator as there is in intelligence. Different habitats have given rise to a diverse species that over time have bred and mixed together as they have conquered or otherwise unified under similar banners. Size do not denote positively or negatively to intelligence, but often enough a smaller Gator has had to be clever to survive to adulthood. </p>
+
+<p>But most Gators are known for their hulking size, large guts and brutish behavior. The largest among them are often the ones who rise to power. Power they often wish to expand. The cleverest are the ones who succeed and are not overthrown. This leaves them with a checkered messy past of constantly rising and falling communities, kingdoms and minor nations. </p>
+
+<p>They are an old race that have fought and warred each-other before even the furred races of the east across the sea even established their first real cities. In a way its their way of stability for Gators have a need to prove themselves, much like their neighbors the Gryphs, but through might and strength then other means. Without conflict, who would be the strongest? Who would lead? There would just be unchecked growth until the marches could hold no more there would not be enough to fill their bellies if all were to share.</p>
+
+<p>True Gator history is dominated by the rise Warlords. A warlord is a Gator of special kind of breed that seem to appear every few hundred years that stand well above others. They are rumored to be larger, smarter and posses a charisma that other Gators find irresistible. Whether they truly are some form of Apex-Gator or history simply has embellished them remains unconfirmed. </p>
+
+<p>But their impact on gator history is undeniable, a rise of a warlord is often quick and represent the time Gator-kind is truly the most ferocious dangerous. For often then they become, for a time, unified and work towards a purpose together. They shape their history and those around them to such a degree that gators refer to the time they ruled and the time afterwards in ages dedicated to their name. In ways, Warlords represent smaller golden ages of rapid progress but sometimes also times of turmoil and domestic disaster for Gator-kind. </p>
+
+<p>Todays Empire of Gators has been mostly stable and not seen violent upheavals for centuries. The majority of the Empre, The Core domains, have been peaceful and settled into a form of routine. As per ancient agreement, domains watch eachother closely for build-up and instead wage proxy-wars in the disputed lands to the west to dispel differences in seemingly near controlled wars. </p>
+
+</div>
+
+<div class="gatorHistory2 hidden"><p><strong>History and Warlords</strong></p>
+<p>Gator history brims with conquerors, kings and tyrants. But few of them rise above the rest in history as true legends, recognized as Warlords. Though the title of Warlord claimed by any gator with a piece of sharp metal to his name and grand ambitions to boot, the true owners of this title that everyone recognizes go to a select few who changed History, not only for gators, but often around the world. </p>
+
+<p>Here are a list of the most notable ones which brought the largest change. </p>
+
+<b><p>Warlord Gatox the Mighty ca 4000 years ago</p></b>
+
+<p>Warlord Gatox is the first recorded true warlord of Gator-kind. Most Gators of today will claim to have lineage tracing back to Gatox. Gatox is rumored to rallied his kind into an epic rebellion against overlords who ruled them. Its unclear who these overlords were but some believe it was the Drudges, who has today retreated to isolation on their isle. </p>
+
+<p>Though tales of Gatoxes exploits diverge, there are many epics about mighty cloud-towering beasts he slew and ate, countless legendary warriors he slew and ate and ancient cities he single-handedly also conquered and ate. Tales of his fall also diverge, but most seem to agree on that he one day simply tried to eat too much.</p>
+
+<b><p>Warlord Harrow the Conqueror ca 2500 years ago. </p></b>
+
+<p>Hundreds of years after Gatoxes time, Gator-kind knew nothing else but wars and conflicts. Clan rivalries and warrior kings ruled the lands and fought over breeding grounds and fertile marches. Many legendary warriors came and went but though some came close, none ruled supreme or changed things for the better. Until Harrow rose to power with a small organized army from the Midland center marches.</p>
+
+<p>Harrows campaigns, well-documented and preserved in stone etchings, are studied among Gator-kind and his tactics are often used and reproduced almost religiously in wars up till today. His use of formations and standard equipment proved how smaller numbers could match and defeat larger forces. </p>
+
+<p>With superior tactics of battle-lines, shield-walls, flanking and use of reserves he quickly laid to ruin competitors and lords alike and unified the countless warring scattered kingdoms that had arisen after Gatoxes reign. </p>
+
+<p>He focused their power outward and under his rule stood for the largest expansion of Gator territory then any other warlord afterwards. In ways he was more of a settler then a warrior, for it was mostly empty lands they “conquered” and made livable by working the land. Harrow showed how expansion could be made not only by taking what exists, but taming and changing the land to suit your need. </p>
+
+<p>Gators spread as far as the barren blasted land in the west, conquering and taming the countryside and mountains both to their needs. </p>
+
+<p>One could argue Harrow was more of a settler then a conqueror. But Harrow the settler would have not given credit to this tactical genius. </p>
+
+<b><p>Warlord Krakow the pillager 2000 years ago</p></b>
+
+<p>What Harrow built, Krakow nearly tore down. Krakow is an example of a Warlord that truly can represent the most dangerous of what Gators can be. A ferocious near mindless fighting force with a singular goal. </p>
+
+<p>Krakow grew up while the tales and exploits of Harrow was still fresh in many Gators minds. Many ambitious warriors proclaimed themselves Warlords at this time. Krakow sought them out and defeated them all either through single-combat or underhanded but efficient surprise attacks.</p>
+
+<p>The lands of the Gators by this time was too large and stable with alliances built from Harrows legacy for Krakow to unify through conquest under his banner under one lifetime. </p>
+
+<p>The word of his name circulated a while but did not gain traction until he, with his personal army, invaded the Republic of Preenlon and spectacularly defeated the previously undefeated Gryph main army in a savage battle. Gators left their homelands in droves to flock to his banners and conquests. Though Krakows armies suffered heavy losses to the brave and desperate defenders of the Republic, his blood-lust and appetite did not abate, he threw his forces at the Gryph armies his pillaging horde reached the southern sea. With his momentum lost and new eager Gators flooding from from the north to join the fight, Krakows mighty army imploded under the weight of itself. With no supply-train, minimal discipline and nothing to conquer, Krakow is said to have been lost in the ferocious infighting that inevitably occurred.</p>
+
+<p>Leaderless the hordes of gator warriors spread and rampaged the lands of Preenlon in minor warbands for years to come, putting a permanent end to the Gryphs ancestral homes, nations and varied city-states. Back up north, the void left by so many warriors leaving their homes or returning with unsatisfied bloodlust, destabilized gator kingdoms to such a degree that it inevitably sparked new chaotic wars that put an end to the time of stability that Harrow built. </p>
+
+<b><p>Warlord Nindar the builder, 1500 years ago.</p></b>
+
+<p>The Story of Nindar is an unlikely one, his actions were not given a “Warlords” status and recognized until nearly a few hundred years later by Core the Unifier. </p>
+
+<p>Amidst the chaos left from Krakows rampage and the ripples of conflict that shook the continent for decades thereafter, a young gator rose to fame not through war and prowess but skill and intellect. </p>
+
+<p>Nindar began his career as building ingenious and spectacular forts.</p>
+
+<p>He applied construction techniques he himself pioneered that quickly impressed local leaders and dukes. For the forts were not only sturdier and harder to assail, they looked spectacularly imposing. Which in gator terms are beautiful.</p>
+
+<p>It was also the speed of which he finished the projects, all thanks to the fast-drying and hardening rock-mold mix today called Nindar-Stone, forts no longer had to be built by hauling rocks from quarries or mountains but could be made on location with much easier to acquire materials. </p>
+
+<p>Soon his skill was sought after by every minor baron and king in the lands and his wealth greatly grew with it. With the riches he amassed he made himself an army of not soldiers, but builder apprentices. </p>
+
+<p>Nindars architecture exploded across the land, the greatest of which were the ones he personally oversaw, one project always out-shadowed by the next. </p>
+
+<p>His final project which in the end claimed his life in a controversial construction accident would be The great tower of Nindar that still stand to this day. Though he did not see it to its completion, the greatest of his apprentices poured over his plans and sketches and finished it 10 years after his death.</p>
+
+<p>What Nindar perhaps unwittingly achieved with his construction was a kind of peace no Warlord of time could have achieved. His many forts that now dotted the land gave stability and security to the many kingdoms previously not seen. In the few cases where war did break out, Nindars Forts proved themselves to be very costly affairs to siege time and time again. </p>
+
+<b><p>Warlord Core the Unifier, 1000 years ago </p></b>
+
+<p>Core went by many names throughout his life and was at times thought to be several people. He rose to power in the stability or rather uneasy truces and alliances that followed the many kingdoms held. The cost of war was high, none wished to expose their back to another by tying up their resources on one flank or be bogged down by Nindars Forts. Yet greed and ambition would not be sated and the situation gave rise to a new sort of warfare. Mercenary wars. If threatened a kingdom could quickly bolster its forces with coin and just as quickly stand such an army down.</p>
+
+<p>Core led an independent army for hire, one with allegiance to the one with the most coin. He helped many a kingdom expand their territories and claim land by clever quick tactics of raids deep within borders. But he would never tie himself down in allegiance or servitude to any lord for long. Core had ambitions of his own, one which he soon sprung on the unsuspecting kingdoms.</p>
+
+<p>With his wealth he had one by one bought and taken ownership of all the independent armies the many kingdoms increasingly relied upon. Under different guises and names he posed as different leaders and many times even waged skirmish-wars against himself as a ruse. </p>
+
+<p>By manipulating the ambitions and fears of the leaders he created a conflict where one of his armies threatened another and caused a major build up of mercenary forces and armies. It was looking like an all out war between the many kingdoms and alliances. But few other then Cores most trusted captains knew who the majority of the armies assembled across the many borders truly belonged to.</p>
+
+<p>In one fell swoop, in an operation called by many names but in the end coined as “Cores triumph”, the armies of Core captured 3 of the major central kingdoms and 8 outlying baronies and cities without assaulting a single rampart, for his troops already stood on them.</p>
+
+<p>The balance of power shifted dramatically. And in a few years, those that would not yield found themselves conquered by an army that seemed to know every in and out of their defenses. </p>
+
+<p>Core became in part the first Warlord Emperor of the empire and unifier of the fractured lands without excessive loss of life or warfare. His reign and title of Warlord was quickly recognized and soon the continent was for the first time, united as one. </p>
+
+<p>Many put focus on Cores guile and cleverness in how he conquered and deceived the old kingdoms into his mercy. But few truly realize how the domestic policies and laws he set in place thereafter made sure the Empire he helped create held and did not fracture apart under its own weight even long after he was gone. The provinces he conquered and its surrounding provinces would hereafter be named the Core domains and their stability and alliances have since then been strong and become the heart of the Empire. </p>
+
+<b><p>Warlord Maw the burner 500 years ago</p></b>
+
+<p>Maw is the most infamous Warlord of recent times and his status of Warlord is often an argued topic. </p>
+
+<p>Maw was a warleader, an enormous Gator by Gator standards and a clever one at that. He won many a feuds, battles and campaigns, was known for consuming large quantities of his rivals and even earning himself a minor kingdom that he managed to hold on to right in the center of the disputed lands in the heart of the empire. </p>
+
+<p>While his feats were worthy of recognition, it was not quite enough for the increasingly high standards for title of Warlord, which he highly coveted. Maw even went as far as controversially get himself “officially” recognized as Gatoxes bloodline and descendant by Empire officials during his diplomatic visits to the core domains.</p>
+
+<p>His ambition for Warlord status was well known, but try as he might, he could not rally enough power and support to his cause and to be strong enough to break the web of alliances which protected the old core gator domains. The Core domains were not keen on the rise of another Warlord. Maw, although a formidable Gator, convinced nobody of his good intentions. </p>
+
+<p>Maw was convinced the Gryphs were the cause of his problems securing alliances and saw only one opportunity. And that was to follow Krakows footsteps and conquer a foreign enemy and prove himself an undisputed Warlord. So he abandoned his kingdom and marched on the Kingdom of Plumes, intent on burning the great forests of World Trees to the ground in a surprise attack. </p>
+
+<p>Maw managed the crossing into Kingdom Lands, cut down and burned several sacred World Trees before the trap he'd put himself in sprung. His army was attacked, pincered from behind by two Core-domain armies, allies of the Kingdom and a flood of outraged swooping Gryph Kingdom Troops from the front. </p>
+
+<p>Maw is said to have broken through and tried to flee toward the still burning an fallen World trees to make a last stand, but get consumed by the inferno.</p>
+
+<p>Maw was posthumously recognized as a Warlord. But he also came to be represent an end to the age of conqueror warrior-Warlords. The Empire of Gators had now grown stable, with its defensive alliances protecting its Core domains that not even the most formidable Gator could break.</p>
+
+<p><br />
+</p>
+
+<b><p>Warlord Clix the explorer 300 years ago</p></b>
+
+<p>A ship-builder and innovator. He drove gators to follow him out to sea and mapped most of the surrounding islands and lands. </p>
+
+<p>Clix was a crafter from Core who made his name as a great inventor. He build many a technical mechanisms that became widely popular in the Empire and the world. The current Emperor of Core at the time, Garg, heard about his skill and recognized the potential in the sharp if somewhat eccentric Clix and made him his head shipwright. </p>
+
+<p>Clix was taken by the task and built the grand dreadnaughts that Gators employ to this day. He was also fascinated by maps and sea-charts and expressed his displeasure at how little of the world had been truly explored. The dangers of the Open-Sea, who were the true cause, seemed to not phase him and he only thought it was because of a lack of trying that more lands had not been found.</p>
+
+<p>At this time the Gryphs from the Kingdom of Plumes were the main pioneers of Ship Construction. They traded with mysterious folk far across the sea with their giant Trade-cruiser ships, whose secrets they guarded no matter how much the Empire bargained or pressured. </p>
+
+<p>The Emperor, impressed with the fearsome but bulky Dreadnought warships tasked Clix with building something that could travel across the seas with ease and be able to handle the rough and perilous open seas which formed such impassable boundaries.</p>
+
+<p>A few years later, the Clix explorers was ready for the sea and proved up to the task of surviving the harsch conditions. By this time Emperor Garg had perished in a controversial marriage accident and Clix was somewhat forgot about in the ensuing short succession war. </p>
+
+<p>Clix continued as Shipwright and expanded his production massively during this time, unhindered by oversight and thought by many as a leader, built himself a personal navy. By the time the situation in the Empire was resolved and a new Emperor appointed, Clix had gained the loyalty of the Gator navy with his new ships and had enough power to conquer most of the coastal provinces and sea trade. </p>
+
+<p>But the new Emperor did not have cause to fear, for Clix, while ambitious was openly set to his new obsession of mapping the world. The new Emperor, fresh in his power and in need of allies rather then enemies chose to not stand in his way, content in pretending he was in control. </p>
+
+<p>Fleets of ships were sent scouring the seas recklessly. To find lands to explore and possibly conquer. Many not to return. The South island of Novinus where Drudges resided was mapped. The far Western shores past the blasted lands were discovered as fertile and returning late with a few ships short, The Eastern Wulflands were reported as discovered after the Wulfs had driven them off. </p>
+
+<p>But by this time Clixs ambitions, impatience and seeming eccentricity had grown extreme. He was busy building himself a personal flag-ship of size that rivaled the Gryphs Trade-cruisers. The western expeditions had reported something which were to become his final obsession. A land beyond the western fertile shores that shimmered with light far in the horizon. Explorers had tried to reach it but seemed to not come closer before the rough seas threatened to overcome even their new sturdy ships. </p>
+
+<p>Clix was certain this meant there existed a land with mountains of gold and he set off not a year later with his flagship and a large portion of his fleet to discover it. </p>
+
+<p>Him and his fleet was never seen or heard from again. </p>
+
+<p>For the sheer scale of his overall contributions to the Gator empire, the Emperor, perhaps relieved to see him gone, posthumously named him Warlord Clix the explorer. Though it would take years to rebuild the Gator navy.</p>
+</div>
+
+<div class="drudgeOverview2 hidden"><p><strong>Drudge Overview</strong></p>
+<p>Height: Highly varies</p>
+
+<p>Average lifespan: Unknown</p>
+
+<p>Drudges are an isolationist and xenophobic species that live on their sizable island Novinus south of the Empire and the former Preenlon republic. They do not permit outsiders and only practise a very highly regulated trade in a designated public port. </p>
+
+<p>Though some would argue Drudges are related to the furred species of the east, carrying similar muzzles and short-furred coats, they differ in that they appear to be more subterranian in nature. They walk with a hunch, have armored backs and tails with long claws upon their paws. They appear to dislike bright light and are often seen with heavy cloaks and cowls when out in the open. </p> 
+
+<p>Little is known of their internal culture and goverment, outsiders are not permitted inside their land and their shores are highly guarded. Apptempts to explore Novinus, covertly or otherise to make light of their secrets have been turned back aggresively or found little signs of large settlements besides agriculture. Its thought their society stretches deep underground. </p>
+
+<p>A big curiosity about Drudges seem to be that they were not always as withdrawn a race. Historical and even archeological records show a clear pressence of Drudges in the worlds history. The fallen Republic of Preenlon is well known for having had more extensive diplomatic relations with them, but the traces predate even that. Its clear they used to be as widespread race and its thought some traces of them have even been found in the East continents of Awelands and Wulflands. Its even thought the overlords whom the Gators and their warlord Gatox rebelled against in their folklore were an ancient Drudge culture.</p> 
+
+
+</div>
+
+
+</div>
+</body>
+</html>
