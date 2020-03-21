@@ -16,6 +16,10 @@
   <script src="../../jquery.cookie.js"></script>
   <link rel="stylesheet" href="../../main.css"></link>
   <script>
+  
+  state.Glint.status = 'available';
+    state.Valnos.status = 'available';
+	state.Ziggy.status = 'available';
 
   var habited = [];
   state.delay +=2
@@ -236,6 +240,7 @@
 		$("#side").addClass("hidden");
 		$("#sideb").addClass("hidden");
 		$(".faces").addClass("hidden");
+		
 		$(".btn").addClass("hidden");
 		
 		if (_.contains(state.chapter, "sickness")) {
@@ -247,6 +252,9 @@
 			$("#permit2").removeClass("hidden");
 		
 		}
+		
+	
+		
 				
       })
 	  
@@ -257,6 +265,8 @@
 		$("#side").addClass("hidden");
 		$("#sideb").addClass("hidden");
 		$(".faces").addClass("hidden");
+		$("#ZThumb").addClass("new");
+		$("#GThumb").addClass("new");
         // end by using lib.goTo
 		lib.dialogue(e, "denyLeave")
 		
@@ -271,6 +281,26 @@
 			$("#denyLeave2").removeClass("hidden");
 		
 		}
+		
+		 cadet[1].banter = [
+	{ target: '#Glint', text: "Ship is starting to look better than ever.", imageClass: "neutral"},
+	{ target: '#Glint', text: 'It’s rare to get a chance to dock somewhere with resources for a good maintenance overhaul.', imageClass: "happy"},
+	{ target: '#Ziggy', text: 'He’s out of hearing range now.', imageClass: "concerned" },
+	{ target: '#Glint', text: 'Oh phew… ', imageClass: "concerned" },
+	{ target: '#Ziggy', text: 'Suck up.', imageClass: "smug" }
+
+	];
+
+
+ cadet[0].banter = [
+	{ target: '#Ziggy', text: "I can’t believe it", imageClass: "concerned"},
+	{ target: '#Ziggy', text: 'This suuuuucks.', imageClass: "concerned"},
+	{ target: '#Ziggy', text: "Right there, within view, food, drink and play.", imageClass: "sad" },
+	{ target: '#Ziggy', text: 'But here I am, stuck mending ropes.', imageClass: "suspicious"},
+	{ target: '#Valnos', text: "Quiet Ziggy, Tick will hear you. He’ll put more ropes on the pile.", imageClass: "concerned"},
+	{ target: '#Ziggy', text: "All work and no play makes Ziggy, something something…", imageClass: "neutral"}
+
+	];
 				
       })
 	  
@@ -332,6 +362,7 @@
 		
 		$(".btn").addClass("hidden");
 		$(".baths").removeClass("hidden");
+		$("#GThumb").addClass("new");
 				
 		if (_.contains(habited, "permit")) {	
 			$("#permit2").removeClass("hidden");
@@ -339,6 +370,20 @@
 		else {
 			$("#denyLeave2").removeClass("hidden");
 		}
+		
+		 cadet[1].banter = [
+	{ target: '#Glint', text: "Are they sure it’s safe?", imageClass: "surprised"},
+	{ target: '#Ziggy', text: 'Just get in already! ', imageClass: "angry"},
+	{ target: '#Glint', text: 'Oh, that’s warm!', imageClass: "neutral" },
+	{ target: '#Valnos', text: 'I feel like a vegetable.', imageClass: "happy" },
+	{ target: '#Ziggy', text: 'We’re Cadet-soup now.', imageClass: "smug" },
+	{ target: '#Glint', text: 'Don’t say that! ', imageClass: "blush" },
+	{ target: '#Glint', text: 'It’s weird enough as it is.', imageClass: "surprised" }
+
+	];
+		
+		
+		
       })
 	  
 	  
@@ -372,7 +417,28 @@
 		$("#stopLeave1").removeClass("hidden");
 		$("#limitLeave1").removeClass("hidden");
 		$("#nolimitLeave1").removeClass("hidden");
+		$("#ZThumb").addClass("new");
+		$("#VThumb").addClass("new");
 		
+		
+			 cadet[2].banter = [
+	{ target: '#Valnos', text: "Glint, join my team for tossball? ", imageClass: "happy"},
+	{ target: '#Glint', text: 'No thank you, I am quite enjoying the shade and juice. ', imageClass: "happy"},
+	{ target: '#Valnos', text: 'You sure? Ziggy just bet she could beat any team 3 on 1. ', imageClass: "smug" },
+	{ target: '#Valnos', text: 'Said she’d crawl into mouth of anyone who beat her.', imageClass: "smug" },
+	{ target: '#Glint', text: 'Hmmm…', imageClass: "suspicious" },
+	{ target: '#Glint', text: 'No thanks. I saw her play in the Academy league.', imageClass: "smug" },
+	{ target: '#Valnos', text: 'Your loss!', imageClass: "happy" }
+
+	];
+
+
+ cadet[0].banter = [
+	{ target: '#Ziggy', text: "OOOURRRPH", imageClass: "vore"},
+	{ target: '#Ziggy', text: 'Never bet against Ziggy!', imageClass: "vore"},
+	{ target: '#Ziggy', text: "Hahaha! You guys are staying with me today!", imageClass: "vore" }
+
+	];
 		
       })
 	  
@@ -397,6 +463,28 @@
 		$(".btn").addClass("hidden");
 		
 		$("#ship2").removeClass("hidden");
+		$("#ZThumb").addClass("new");
+		$("#GThumb").addClass("new");
+		
+		 cadet[1].banter = [
+	{ target: '#Glint', text: "Ship is starting to look better than ever.", imageClass: "neutral"},
+	{ target: '#Glint', text: 'It’s rare to get a chance to dock somewhere with resources for a good maintenance overhaul.', imageClass: "happy"},
+	{ target: '#Ziggy', text: 'He’s out of hearing range now.', imageClass: "concerned" },
+	{ target: '#Glint', text: 'Oh phew… ', imageClass: "concerned" },
+	{ target: '#Ziggy', text: 'Suck up.', imageClass: "smug" }
+
+	];
+
+
+ cadet[0].banter = [
+	{ target: '#Ziggy', text: "I can’t believe it", imageClass: "concerned"},
+	{ target: '#Ziggy', text: 'This suuuuucks.', imageClass: "concerned"},
+	{ target: '#Ziggy', text: "Right there, within view, food, drink and play.", imageClass: "sad" },
+	{ target: '#Ziggy', text: 'But here I am, stuck mending ropes.', imageClass: "suspicious"},
+	{ target: '#Valnos', text: "Quiet Ziggy, Tick will hear you. He’ll put more ropes on the pile.", imageClass: "concerned"},
+	{ target: '#Ziggy', text: "All work and no play makes Ziggy, something something…", imageClass: "neutral"}
+
+	];
 		
       })
 	  
@@ -1165,10 +1253,32 @@ First we fought them, for who else did the traders hire! But then they just kept
 <p>Our meeting concluded and our journey progressed at good speed. “Attentive” and “Swift bastard” racing at full speed toward our final goal at last. We would soon be done with our mission, successfully so.</p>
 </div>
 
+<script>
+ cadet[2].banter = [
+	{ target: '#Valnos', text: "Oh, look at these islanders! See, they look different!", imageClass: "surprised"},
+	{ target: '#Glint', text: 'I can see, look like seafowl.', imageClass: "suspicious"},
+	{ target: '#Ziggy', text: 'I wonder if they screech as much.', imageClass: "concerned" }
 
+];
 
-<div class="envoy hidden"><p><strong>Envoy</strong></p>
-</div>
+ cadet[1].banter = [
+	{ target: '#Glint', text: 'Interesting culture of hospitality.', imageClass: "neutral"},
+	{ target: '#Glint', text: 'To be so excessively welcoming and happy for visitors.', imageClass: "blush"},
+	{ target: '#Glint', text: 'It’s almost suspicious!', imageClass: "concerned" },
+	{ target: '#Glint', text: 'But… I can’t see how they’re nothing but genuinely pleased to host us.', imageClass: "happy"}
+
+];
+
+ cadet[0].banter = [
+	{ target: '#Ziggy', text: "Party Island, Party Island", imageClass: "happy"},
+	{ target: '#Ziggy', text: 'PARTY ISLAND, PARTY ISLAND', imageClass: "happy"},
+	{ target: '#Glint', text: "Avon’s breath Ziggy! Stop chanting, Shut up!", imageClass: "angry" },
+	{ target: '#Valnos', text: 'It’s no use, she’s too deep in R&R fever.', imageClass: "suspicious"},
+	{ target: '#Ziggy', text: " Part-IIIEEEE", imageClass: "happy"}
+
+];
+
+</script>
 
 </body>
 </html>

@@ -510,6 +510,7 @@
 		lib.dialogue(e, "cadetQ")
      
 		$(".btn").addClass("hidden");
+		$(".awe2").removeClass("hidden");
 		$("#cadetInfo").removeClass("hidden");
 		if (_.contains(state.chapter, "vesslaDes")){
 		$("#cadetVessla").removeClass("hidden");
@@ -524,6 +525,7 @@
 		lib.dialogue(e, "cadetQ")
      
 		$(".btn").addClass("hidden");
+		$(".scouts2").removeClass("hidden");
 		$("#cadetInfo").removeClass("hidden");
 		if (_.contains(state.chapter, "vesslaDes")){
 		$("#cadetVessla").removeClass("hidden");
@@ -538,6 +540,7 @@
 		lib.dialogue(e, "cadetQ")
      
 		$(".btn").addClass("hidden");
+		$(".raptorian2").removeClass("hidden");
 		$("#cadetInfo").removeClass("hidden");
 		if (_.contains(state.chapter, "vesslaDes")){
 		$("#cadetVessla").removeClass("hidden");
@@ -1132,24 +1135,40 @@
 	  $('#cadetR').on('click', function(e) {
         // change state here
 		$(".btn").addClass("hidden");
-		
+		$("#side").removeClass("hidden");
 		$("#conclusion").removeClass("hidden");
         // end by using lib.goTo
 		if ((_.contains(fertile, "scouts") || _.contains(fertile, "awes"))  && _.contains(fertile, "Glint")) {
-		$(".cadetSuccess").removeClass("hidden");	
+		$(".cadetSuccess").removeClass("hidden");
+		if (_.contains(fertile, "cadetVessla")) {
+		$(".sideImage").attr('src','../Images/assets/Glintfacevore.png');	
+			}
+			else {
+		$(".sideImage").attr('src','../Images/assets/Glintface.png');	
+			}
 		}
 		else if (_.contains(fertile, "raptorians")  && _.contains(fertile, "Glint")) {
 		$(".cadetFail").removeClass("hidden");	
+		$(".sideImage").attr('src','../Images/assets/Glintface.png');	
 		}
 		else if ((_.contains(fertile, "scouts") || _.contains(fertile, "awes"))  && _.contains(fertile, "Ziggy")) {
-		$(".cadetFail").removeClass("hidden");			
+		$(".cadetFail").removeClass("hidden");	
+		
+		$(".sideImage").attr('src','../Images/assets/Ziggyface.png');	
 		}
 		else if (_.contains(fertile, "raptorians")  && _.contains(fertile, "Ziggy")) {
 		$(".cadetSuccess").removeClass("hidden");
+			if (_.contains(fertile, "cadetVessla")) {
+			$(".sideImage").attr('src','../Images/assets/Ziggyfacevore.png');	
+			}
+			else {
+			$(".sideImage").attr('src','../Images/assets/Ziggyface.png');
+			}
+			
 		}
 		else if ((_.contains(fertile, "raptorians") || _.contains(fertile, "awes"))  && _.contains(fertile, "Valnos")) {
 		$(".cadetFail").removeClass("hidden");
-			
+		$(".sideImage").attr('src','../Images/assets/Valnosfacevore.png');		
 			$(".btn").addClass("hidden");
 			$("#chide").removeClass("hidden");
 			$("#commend").removeClass("hidden");
@@ -1157,6 +1176,13 @@
 		}
 		else if (_.contains(fertile, "scouts")  && _.contains(fertile, "Valnos")) {
 		$(".cadetSuccess").removeClass("hidden");
+			if (_.contains(fertile, "cadetVessla")) {
+			$(".sideImage").attr('src','../Images/assets/Valnosfacevore.png');	
+			}
+			else {
+			$(".sideImage").attr('src','../Images/assets/Valnosface.png');
+			}		
+			
 		}
 		
 		lib.dialogue(e, "cadetR")
@@ -1169,6 +1195,11 @@
 	  
 	    $('#chide').on('click', function(e) {
         // change state here
+		
+		$("#sideb").removeClass("hidden");
+		$(".sideImage").attr('src', officer.avolc.image);
+		$(".face4").attr('src','../Images/assets/Valnosfacevore.png');
+		
 			if (_.contains(fertile, "tease"))	{
 			lib.dialogue(e, "chide2")
 			}
@@ -1185,6 +1216,10 @@
 	  
 	   $('#commend').on('click', function(e) {
         // change state here
+		$("#sideb").removeClass("hidden");
+		$(".sideImage").attr('src', officer.avolc.image);
+		$(".face4").attr('src','../Images/assets/Valnosfacevore.png');
+		
 		$(".btn").addClass("hidden");
 		$("#conclusion").removeClass("hidden");
 		if (_.contains(state.chapter, "valnosBelly") || _.contains(state.events, "cadetPrize")) {
@@ -1206,10 +1241,40 @@
 	  
 	   $('#agree').on('click', function(e) {
         // change state here
+		if (_.contains(state.chapter, "valnosBelly")) {
+			$(".dance").removeClass("hidden");
+			}
+			else {
+			$(".regular").removeClass("hidden");
+			}
+		lib.dialogue(e, "agree")
+		$(".btn").addClass("hidden");
+		$("#agree2").removeClass("hidden");
+		
+						
+      })
+	  
+	  
+	  $('#agree2').on('click', function(e) {
+        // change state here
+		$("#sideb").addClass("hidden");
+		$(".sideImage").attr('src', '../Images/assets/Valnosfacevore.png');
+		
 			
 		lib.dialogue(e, "agree")
 		$(".btn").addClass("hidden");
-		$("#conclusion").removeClass("hidden");
+		$("#restart").removeClass("hidden");
+		$("#gurgle").removeClass("hidden");
+						
+      })
+	  
+	  
+	  $('#gurgle').on('click', function(e) {
+        // change state here
+		$(".sideImage").attr('src', '../Images/assets/Valnosfacefat.png');	
+		lib.dialogue(e, "gurgle")
+		$(".btn").addClass("hidden");
+		$("#restart").removeClass("hidden");
 		
 						
       })
@@ -1503,7 +1568,9 @@ If we could catch one then we might be able to get some information of where a f
 <button class="btn btn-default hidden" id="chide">Chide Valnos</button>
 <button class="btn btn-default hidden" id="commend">Commend Valnos</button>
 
-<button class="btn btn-default hidden" id="agree">Agree</button>
+<button class="btn btn-danger hidden" id="agree">Agree</button>
+<button class="btn btn-success hidden" id="agree2">Continue</button>
+<button class="btn btn-success hidden" id="gurgle">Gurgle</button>
 
 <button class="btn btn-default hidden" id="leave">Leave</button>
 <button class="btn btn-default hidden" id="conclusion">Conclusion</button>
@@ -2259,18 +2326,24 @@ Or I can keep them out of the way on the ship. I believe it’s officer Keepers 
 
 <div class="cadetInfo2 hidden"><p><strong>Awes</strong>
 The Cadets can attempt to apply their charms to the native villagers. All three of them are more or less fluent in Trade-Speech, or should be. 
-The question is if I should put on charge of the others this time around. It seems to me like it would be a useful exercise as well as a chance to potentially show some favor toward one of them while spurring the other two to work harder. 
-I have to keep in mind they will be operating at the same time as the Raptorians, Scouts, other Awe squads. 
-Which one do I put in charge? 
+The question is if I should put on charge of the others this time around. It seems to me like it would be a useful exercise and learning experience, as well as a chance to potentially show some favor toward one of them while spurring the other two to work harder. <br>
+I have to keep in mind they will be operating at the same time or with the <span class="raptorian2"> Raptorians</span><span class="scouts2"> Scouts</span><span class="awe2"> Awe squads</span>. <br>
+Which one do I put in charge? <br>
+All three are capable in their own way and have their own strengths. <br>
+I know Ziggy and Glint might chafe taking orders from the other, but Valnos might have it naturally harder, as a young male, to assert authority. <br>
+</p>
 
 <span class="theOfficer officerObjects"></span>
 </div>
 
 <div class="cadetVessla2 hidden"><p><strong>Awes</strong>
 <p>Vessla is hiding somewhere in this village. Perhaps all it takes are three pairs of fresh eyes to find him. <br>
-The question is if I should put on charge of the others this time around. It seems to me like it would be a useful exercise as well as a chance to potentially show some favor toward one of them while spurring the other two to work harder. <br>
-I have to keep in mind they will be operating at the same time as the Raptorians, Scouts, other Awe squads. <br>
-Which one do I put in charge?</p>
+The question is if I should put on charge of the others this time around. It seems to me like it would be a useful exercise and learning experience, as well as a chance to potentially show some favor toward one of them while spurring the other two to work harder. <br>
+I have to keep in mind they will be operating at the same time or with the <span class="raptorian2"> Raptorians</span><span class="scouts2"> Scouts</span><span class="awe2"> Awe squads</span>. <br>
+Which one do I put in charge? <br>
+All three are capable in their own way and have their own strengths. <br>
+I know Ziggy and Glint might chafe taking orders from the other, but Valnos might have it naturally harder, as a young male, to assert authority. <br>
+</p>
 
 <span class="theOfficer officerObjects"></span>
 </div>
@@ -2289,7 +2362,7 @@ I honestly had no idea how things would turn out with Ziggy in charge. She was c
 The other two cadets look highly disgruntled, but are wisely keeping their mouths shut for now. <br>
 I can see this will be difficult for Valnos. I am sure Glint and Ziggy like Valnos well enough, but their rivalry is quite real and many females chafe about being subordinate to a male. <br>
 Valnos seems well aware of it and throws them occasional glances. <br>
-“For this mission, you are in charge. Thus you have the authority to deal with issues as would a Mid-Officer. Use these powers as you see fit.” I gave Valnos a pat on the shoulder. <br>
+“For this mission, you are in charge. Thus you have the authority to deal with issues as would a Mid-Officer. I know it's harder to gain acceptance as a male, so use these powers as you see fit.” I gave Valnos a pat on the shoulder and smiled. <br>
 He nodded back at me and seemed to steel himself.<br>
 </p>
 </div>
@@ -2404,7 +2477,8 @@ Glints written report is impeccably detailed, perhaps too much so, with an exten
 <p>“It is what I would have done. You are correct. You’re in a bit harder position then me to get that authority, I suppose you used the means and rights bestowed upon your temporary rank to assert yourself.” <br>
 I gave the Cadet a brief smile. <br>
 “Regardless, you failed in your assignment and now I am two cadets short. Or am I?” <br>
-“Oh, uhm…” The male cadet blushed curiously, his ears drooping as he sheepishly gave a chuckle. “Not yet, Captain.” It seems he relished his comeuppance on the other two. My words were merely meant to tease him, but there genuine brief glint of greed in his eyes. <br>
+“Oh, uhm…” The male cadet blushed curiously, his ears drooping as he sheepishly gave a chuckle.  <br>
+“Not yet, Captain.” It seems he relished his comeuppance on the other two. My words were merely meant to tease him, but there genuine brief glint of greed in his eyes. <br>
 I had to put the record straight with him before he was genuinely tempted to absorb his fellow cadets. <br>
 “As the Admiralty rules go, an Awe may only eat another without their consent if they outrank them, and they have probable cause. Your temporary rank has expired at the conclusion of your mission and judging by the muffled bickering, they are not entirely onboard to deepen with you Valnos.” <br>
 <div class="tease hidden">
@@ -2436,12 +2510,65 @@ Sufficiently chastised, they retired to the groomery to be cleaned up. They woul
 </div>
 
 <div class="chide2 hidden"><p><strong>Chide Valnos</strong>
-<p>Valnos that's enough!</p>
+<p>“Valnos, while I admire a your newfound gumption, there’ll be no more of that!” I chided, firming up against the unexpected onslaught of temptation. <br>
+“Oh uh… yes Captain, ofcourse. Sorry, I don’t… Know what came over me.” Valnos shrunk slightly. His gamble has failed. <br>
+“It’s one thing to mete out disciplinary punishment, another to start to indulge in the privileges of authority! If you’re to be a good officer of the Admiralty, you must be able to steel yourself against the temptations of your ego.” <br>
+Valnos nodded vigorously. <br>
+“A captain could, with the right pace and force of personality end up devouring her whole crew if she did not temper her urges. And what kind of ship can operate with a crew of one?” I made a sweeping motion over the ship. <br>
+“Yes Captain, you’re right. I-I apologize.” Valnos bowed his head. <br>
+“Good. Now, release your fellow Cadets before the temptation to have them added to your person settles in on them too.” <br>
+Needless to say, Glint and Ziggy had a few things to say about their temporary confinement. But I gave them a stern talking to, letting them know on no uncertain terms that I supported Valnos decision. <br>
+Sufficiently chastised, they retired to the groomery to be cleaned up. They would be more careful about stepping on the black furred Cadet in the future. I too, would keep an eye on him. His spirit and person was stronger then he let on, for a moment I had been tempted to deepen with him.</p>
 </div>
 
 <div class="agree hidden"><p><strong>Commend Valnos</strong>
-<p>You're going to be one lucky plump male!</p>
+<p>“I…” I manage to utter before faltering in slight consternation. <br>
+He saw me hesitate at the same time I realized I was doing so too. It was an instant of recognition and shift in paradigms of personal power. <br>
+Valnos smiled wide and squeezed his sizable belly hard, before licking his lips eagerly. Already the stomach was squeezing and giving a churn on the two occupants, as if his body recognized it would have to make room for more soon somehow. <br>
+Nothing had been said and nothing agreed upon, but the way he seemed already so sure and confident about how he imminently would be adding me to his person made it even harder to deny that I wouldn’t. <br>
+“Gosh I want to digest you, all three of you, so bad!” The Cadet wiggled and stepped closer. <br>
+<div class="dance hidden">
+“Ever since you picked me for the Dance. It’s all I have been able to think about.”<br>
 </div>
+<div class="regular hidden">
+“I’ve looked up to you all so much! Ever since I got to eat that thief though, it’s all I’ve been able to think about sometimes!”<br>
+</div>
+“Valnos, there are things that need be done, preparations…!” I find my heart fluttering, fur poofing. <br>
+“I-I’ll take care of all that! Just… Leave ‘everything’ to me!” He nodded and took my paws in his. “Just… get in my stomach now, alright?” He smirked. <br>
+There was no saying no to that. My resistance melted away, the first part of me Cadet Valnos would break down. <br>
+“Alright…” <br>
+</p>
+</div>
+
+<div class="agree2 hidden"><p><strong>Commend Valnos</strong>
+<p>Valnos opened his mouth wide while smiling and placed my paws inside, I leaned forward into that warm tongue and let him start swallowing me. <br>
+‘Glup’, arms started sliding into his gullet. He holds on to my arms and pulls me inward, eagerly consuming me. <br>
+His large stuffed belly is between us, in the way, it’s squirming and bumping. It’s going to be a tight fit to get in there, Valnos is going going to have to put his capacity to the test. But if anything is true when it comes to Awes and feeding, if there’s a will there’s a way. <br>
+He swallows hard, my arms are inside him, my snout push in past his lips, little teeth and fangs brushing against my ears. There is a pang of disbelief, a vestige of resistance along with a feeling of “What am I doing?”.<br>
+Then Valnos braces and grips me firmly and shoves me down his gullet in one heaving rolling swallow and I slide down well past my mane and chest into him. He is incontrol, he is the person I am deepening with. This little bold male, weaker then I in so many ways, but stronger in the one way that mattered; Will. <br>
+As I start to push into his stomach, it’s a tight slimy fit indeed. The two shapes already jostling for space, grunt and complain at my intrusion, there is no stopping my descent however. A determined Valnos has gripped my hips and is doing his best to hoist my upward so he can shove and gulp me down. I feel my hips and belly squeeze past his jaws, leaving only my legs and tail kicking and flailing into the air awkwardly. <br>
+His belly is noisily emitting a strained groan and gurgle. It’s none too pleased about this ambition of his to stomach all three of us. But the Cadet seems not to let a little bellyache stop him from fulfilling his greedy need to claim us all. <br>
+He gulps furiously, moaning and rubbing at his straining bulged taut belly before finally, I feel my feet paws get a squeeze and press of his tongue and I’m fully swallowed and inside the Cadet. <br>
+“Captain…? You… too?” I receive a question from one of my fellow occupants. I find myself slightly too embarrassed to answer. It was hard to imagine that inquisitive young cadet, who often shyly hanged around in the background, now laying on the floor of my cabin with a bellyful of all of us. <br>
+“Bwuuuoooorrp!” Valnos lets out a belch. “Oouuf.. nnhhh.. I did it…!” Valnos squeaked, giving a groan. One never knew where fate would take you. Now ours would converge with his. <br>
+</p>
+</p>
+</div>
+
+<div class="gurgle hidden"><p><strong>Commend Valnos</strong>
+<p>True to this word, Valnos would indeed take care of the rest. What that meant for us was more immediate. <br>
+With clear intent to digest, his hot stomach walls undulated and constricted. It was tight but not crushingly so, the male Awe only had so much strength. <br>
+Long minutes of wet gwwurbles accompanied each squelching churn, sounds which reverberated with your spirit and mind and let you know it was time to give up your resistance and submit. <br>
+My fellow occupants defiant squirms slowly calmed with them. Valnos was digesting us, we were his meals meals and more. When Awes absorbs Awe it’s not just for food. Our will and spirit would join with his and carry on. Some believed this more deeply than others but this was facts all Awes knew.<br>
+Firmly massaged around, fur soaked through with potent digestive fluids I feel my pulse slow to a sedated instinctive rest. Mind becoming muddled and slow, at peace. Valnos’s body is slowly breaking us down, the definition of time slips away along with the awareness of my own body. <br>
+I am only aware that I am in Valnos, with others, and he is digesting. <br>
+Gllrrnn, glooorggh, grruurgh, goes the stomach. Loud, a little troubled but proud all the same. <br>
+A formerly taut lumpy stomach bubbles and sloshes, rounder and smoother. It gets rubs from more then one set of paws. It gets blessings from the Voice-Matron and it gets a checkup from the Pouch-Matron. <br>
+With hard work it shrinks as 4 Awes become 1. Valnos wakes up occasionally, too full for a long while to perform his duties. He is eager to do so, there is much be done around the ship now. He might be slightly responsible for a void of leadership that the crew needs to adjust to, but he is ready to step up and fill that void to the best of his abilities. <br>
+The logs and charts need to be kept in order, the first officer will have to step up as Captain. But at least the officer system is robust enough to handle changes like this. There is going to be no need for a cadet anymore, not that I mind. <br>
+I am more than I was before and not just physically. I know I can do whatever I set my mind to, I feel like a door is opened I was not aware of existed before. I can take charge, I can lead. The girls might frown, but I have in me the strength of three I looked up to the most, they don’t scare me anymore. Though the new paunch and thicker tail will keep me from flying practise, it will be a nice reminder for everyone; That I have room for them all if need be.</p>
+</div>
+
 
 
 <div class="conclusion hidden"><p><strong>Conclusion</strong>
