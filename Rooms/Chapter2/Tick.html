@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Aweworld</title>
 
-  <link rel="stylesheet" href="../../main.css"></link>
+   <link rel="stylesheet" href="../../main.css"></link>
 
   <script src="../../jquery-3.2.1.js"></script>
   <script src="../../underscore.js"></script>
@@ -12,13 +12,199 @@
  <link rel="stylesheet" href="../../bootstrap.min.css"></link>
   <link rel="stylesheet" href="../../bootstrap-theme.min.css"></link>
   <script src="../../main.js"></script>
+  <script src="../../officers.js"></script>
+  <script src="../../jquery.cookie.js"></script>
   <link rel="stylesheet" href="../../main.css"></link>
+  
   <script>
-
+  
+  state.Ziggy.status = "invisible";
+    state.Glint.status = "available";
+	  state.Valnos.status = "available";
+	var count = 0;
     $(document).ready(function() {
+	testCadet();
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
-      
+	  $("#GThumb").addClass("hidden");
+		$("#VThumb").addClass("hidden");
+	
+	  
+	  
+	  $(".NotCadet").attr('src', officer.avolc.image);
+	  $("#side").removeClass("hidden");
+	    $(".face").attr('src', officer.tick.image);
+	  $("#sideb").removeClass("hidden");
+	  
+        $('#tick').on('click', function(e) {
+		lib.dialogue(e, "tick"),
+		
+         $("#tick").addClass("hidden");
+		$("#ticka").removeClass("hidden");		
+		$("#tickb").removeClass("hidden");
+		$("#tickc").removeClass("hidden");
+		$("#tickd").removeClass("hidden");
+		$("#testbutton").removeClass("hidden");
+		
+		
+		
+	
+      })
+	  $('#ticka').on('click', function(e) {
+		lib.dialogue(e, "ticka"),
+		$("#sideb").addClass("hidden");	
+		$(".NotCadet").attr('src', officer.tick.image);
+		
+		$("#ticka").addClass("hidden");		
+		$("#tickb").addClass("hidden");
+		$("#tickc").addClass("hidden");
+		$("#tickd").addClass("hidden");
+		
+		
+		$("#VThumb").addClass("new")
+		$("#GThumb").removeClass("hidden");
+		$("#VThumb").removeClass("hidden");
+		$("#side").removeClass("hidden");
+		$("#testbutton").removeClass("hidden");
+	
+	cadet[1].banter = [
+	{ target: '.NotCadet', text: 'You understand the fatal mistake Ziggy did now?'},
+	{ target: '#Glint', text: 'Yes, Officer', imageClass: "blushing"},
+		{ target: '.NotCadet', text: 'And what was that?', imageClass: "angry"},
+	{ target: '#Glint', text: 'She did not follow procedure tightening the cleats?', imageClass: "concerned"},
+	{ target: '.NotCadet', text: "That’s a given, but what effects would that have. Valnos?"},
+	{ target: '#Valnos', text: "Uhm… deep d-demotion?", imageClass: "surprised"},
+	{ target: '.NotCadet', text: "NO! By not following proper procedure, she again missed measuring the bore length for the screws!"},
+	{ target: '#Valnos', text: "B-but…The length was correct.", imageClass: "concerned"},
+	{ target: '.NotCadet', text: "She did not make sure! Such half-measures lead to inevitable mistakes. In this case, a possible loose cleat that tears loose during stress and throwing whatever or whoever relied upon it to the mercy of the winds. "},
+	{ target: '.NotCadet', text: "That’s two demerit marks now Valnos, I had hoped you aimed higher than my waist for your career."},
+	{ target: '#Valnos', text: "N-no, I mean, yes! I am!", imageClass: "concerned"},
+	{ target: '.NotCadet', text: "We will see. Next question, moving on to the bowsprit."}
+];
+	cadet[2].banter = [
+	{ target: '.NotCadet', text: 'You understand the fatal mistake Ziggy did now?'},
+	{ target: '#Glint', text: 'Yes, Officer', imageClass: "blushing"},
+		{ target: '.NotCadet', text: 'And what was that?', imageClass: "angry"},
+	{ target: '#Glint', text: 'She did not follow procedure tightening the cleats?', imageClass: "concerned"},
+	{ target: '.NotCadet', text: "That’s a given, but what effects would that have. Valnos?"},
+	{ target: '#Valnos', text: "Uhm… deep d-demotion?", imageClass: "surprised"},
+	{ target: '.NotCadet', text: "NO! By not following proper procedure, she again missed measuring the bore length for the screws!"},
+	{ target: '#Valnos', text: "B-but…The length was correct.", imageClass: "concerned"},
+	{ target: '.NotCadet', text: "She did not make sure! Such half-measures lead to inevitable mistakes. In this case, a possible loose cleat that tears loose during stress and throwing whatever or whoever relied upon it to the mercy of the winds. "},
+	{ target: '.NotCadet', text: "That’s two demerit marks now Valnos, I had hoped you aimed higher than my waist for your career."},
+	{ target: '#Valnos', text: "N-no, I mean, yes! I am!", imageClass: "concerned"},
+	{ target: '.NotCadet', text: "We will see. Next question, moving on to the bowsprit."}
+];
+	
+      })
+	  
+	  $('#tickb').on('click', function(e) {
+		lib.dialogue(e, "tickb")
+		count =+1;
+		
+		 $("#tickb2").removeClass("hidden");
+		 $("#gulp").removeClass("hidden");	
+		$("#ticka").addClass("hidden");		
+		$("#tickb").addClass("hidden");
+		$("#tickc").addClass("hidden");
+		$("#tickd").addClass("hidden");
+	
+      })
+	  
+	   $('#gulp').on('click', function(e) {
+		lib.dialogue(e, "gulp"),
+		
+         $(".btn").addClass("hidden");
+		 $("#tickb1").removeClass("hidden");
+		
+      })
+	  
+	  $('#tickb1').on('click', function(e) {
+		lib.dialogue(e, "tickb1"),
+		count =+1;
+		 $(".NotCadet").attr('src', officer.tick.image);
+         $("#sideb").addClass("hidden");
+         $("#tickb1").addClass("hidden");
+		 $("#tickb3").removeClass("hidden");
+		 $("#tickb2").removeClass("hidden");	
+      })
+	  
+	  $('#tickb2').on('click', function(e) {
+		//back out
+		if (count == 1) {
+		$(".back1").removeClass("hidden");
+		$("#sideb").removeClass("hidden");
+		$(".face").attr('src', officer.avolc.image);
+		 $(".NotCadet").attr('src', officer.tick.image);
+		}
+		else if (count == 2) {
+		$(".back2").removeClass("hidden");
+		$("#sideb").removeClass("hidden");
+		$(".face").attr('src', officer.avolc.image);
+		}
+		else if (count == 3) {
+		$(".back3").removeClass("hidden");
+		$(".NotCadet").attr('src', officer.avolc.image);
+		$("#sideb").removeClass("hidden");	
+		}
+		
+		lib.dialogue(e, "tickb2")
+		
+         $(".btn").addClass("hidden");
+		 $("#tickb1").addClass("hidden");
+		
+			
+      })
+	  
+	  $('#tickb3').on('click', function(e) {
+		lib.dialogue(e, "tickb3"),
+		count =+1;
+        
+		 $("#tickb3").addClass("hidden");
+		 $("#tickb4").removeClass("hidden");
+			
+      })
+	  
+	  $('#tickb4').on('click', function(e) {
+		lib.dialogue(e, "tickb4"),
+		/*digested?*/
+         $(".btn").addClass("hidden");
+		 $("#tickb3").addClass("hidden");
+		 $("#restart").removeClass("hidden");
+			
+      })
+	  
+	  $('#tickc').on('click', function(e) {
+		lib.dialogue(e, "tickc"),
+		
+         $("#conclusionxxxxxxxxxxx").removeClass("hidden");
+		 
+		$("#ticka").addClass("hidden");		
+		$("#tickb").addClass("hidden");
+		$("#tickc").addClass("hidden");
+		$("#tickd").addClass("hidden");
+	
+      })
+	  $('#tickd').on('click', function(e) {
+		lib.dialogue(e, "tickd"),
+		
+         $("#conclusionxxxxxxxxxxx").removeClass("hidden");
+		 
+		$("#ticka").addClass("hidden");		
+		$("#tickb").addClass("hidden");
+		$("#tickc").addClass("hidden");
+		$("#tickd").addClass("hidden");
+	
+      })
+	  
+	  
+	   $('#restart').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		  location.reload(true)
+		
+      })
+	  
       $('#button-1').on('click', function(e) {
         // change state here
         // end by using lib.goTo
@@ -47,12 +233,15 @@
 </head>
 <body>
 <div id="head">
-<div id="dayCounter">
-Day: <span class="days"><script>displayDays()</script></span>
-<br/>
-<span class="schedule"><script>displayShedule()</script></span>
-</div>
+
 <h1>Complaints</h1>
+</div>
+<div id="side" class="hidden">
+
+<span id="testbutton" class=""> </span>
+</div>
+<div id="sideb" class="hidden">
+<img class="face" src=""></img>
 </div>
 
 
@@ -74,7 +263,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>“Are they truly such menaces to warrant this...? I have not heard similar complaints of other officers. And I cannot punish someone to be forcibly deepened for excessive chatter.” I queried curiously.</p>
 
-<p> “During the week they have been under my tutelage, they have broken several tools. They perform tasks with no expedience and complain of orders. They have grown complacent and lazy from lack of consequence and proper discipline. They are your direct subordinates and I cannot perform potentially impairing disciplinary actions to parties responsible without your permission. I do not mean to end anyone, only exert discipline.” Tick seemed to puff himself up. However, besides his tail he was the smallest of the Officers on board in stature, perhaps even one of the smaller Awes. It looked a little bit comical.</p>
+<p> “During the week they have been under my tutelage, they have broken several tools. They perform tasks with no expedience and complain of orders. They have grown complacent and lazy from lack of consequence and proper discipline. They are your direct subordinates and I cannot perform potentially impairing disciplinary actions to parties responsible without your permission. I do not mean to end anyone, only exert discipline.” Tick seemed to puff himself up. However, besides his long tail, he was the smallest of the Officers on board in stature. It looked a little bit comical.</p>
 
 <p>But none of his words were fully as amusing. Though Tick was renowned on the ship for being the toughest and most fastidiously hard to please Officer to work under he rarely raised a fuss up the rank unless something truly rankled him or somehow threatened the ship.</p>
 
@@ -88,7 +277,62 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>Alternatively, I take matters into my own paws. Whether that means accepting the critique or not. </p>
 
-<p> Let Tick discipline the Cadets. (Tick devours one or several cadets)</p>
+</div>
+<div id="tail">
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+
+<button class="btn btn-default hidden" id="tick">Ticks Complaint</button>
+<button class="btn btn-default" id="ticka">Allow Cadets disciplined</button>
+
+<button class="btn btn-warning" id="tickb">Accept Responsibility</button>
+<button class="btn btn-default hidden" id="gulp">Climb into his mouth</button>
+<button class="btn btn-default hidden" id="tickb1">Half-Shift</button>
+<button class="btn btn-default hidden" id="tickb3">Full shift</button>
+<button class="btn btn-warning hidden" id="tickb4">Full shift and Half</button>
+<button class="btn btn-default hidden" id="tickb2">Back out.</button>
+<button class="btn btn-default" id="tickc">Discipline Tick</button>
+<button class="btn btn-default hidden" id="tickd">Rebuke and Reject</button>
+<button class="btn btn-default hidden" id="restart">Restart</button>
+
+<span id="cadetButtons"> </span>
+<script>
+
+</script>
+</div>
+<div class="tick hidden"><p><strong>Complaint from Tick</strong></p>
+<p>“Permission to devour the cadets captain.” Tick suddenly announced himself and simultaneously requested at my door.</p>
+
+<p>“Excuse me, permission to do what?”</p>
+
+<p>Tick sighs, clearly frustrated with having to repeat himself. “I'm asking permission to consume the cadets.”</p>
+
+<p>I snap at him irritatedly for being so curt. “I heard what you said, but I need a bit of context and explanation here!”</p>
+
+<p>“They are rowdy, they are insubordinate and they chatter amongst themselves constantly about everything. They have caused the ship damage and need to be made an example of for the good of discipline and order.” Tick explained calmly with a steady tenor, arms behind his back.</p>
+
+<p>“Is this about your hammer? I found myself asking, holding back a grin rather successfully. To Ticks credit, he held his expression perfectly in his standard bored neutral.</p>
+
+<p>“No. But but it is one of many examples reckless thoughtlessness.” Tick replied.</p>
+
+<p>“Are they truly such menaces to warrant this...? I have not heard similar complaints of other officers. And I cannot punish someone to be forcibly deepened for excessive chatter.” I queried curiously.</p>
+
+<p>
+“During the week they have been under my tutelage, they have broken several tools. They perform tasks with no expedience and complain of orders.<br />
+They have grown complacent and lazy from lack of consequence and proper discipline. They are your direct subordinates and I cannot perform potentially impairing disciplinary actions to parties responsible without your permission. I do not mean to end anyone, only exert discipline.” Tick seemed to puff himself up. But he was the smallest of the Officers on board in stature, perhaps even one of the smaller Awes. It looked a little bit comical.</p>
+
+<p>But none of his words were fully as amusing. Though Tick was renowned on the ship for being being the toughest and most fastidiously hard to please Officer to work under he rarely raised a fuss up the rank unless something truly rankled him or somehow threatened the ship.</p>
+
+<p>“I sense some rebuke toward me there, do you imply to say that I am part responsible?” I fix the Officer with a cool gaze, deciding to test his resolve in this matter. Perhaps he's let out enough steam to have cooled his head.</p>
+
+<p>“... Yes Captain.” Tick replied after but a moments pause. “If you wish to take responsibility I'd be satisfied by consuming you in their stead.” He sensed the trap and doubled down. I'm momentarily utterly baffled by his boldness and impertinence. But he remains standing there in his 'at ease' posture, committed to his words.</p>
+
+<p>“Officer Tick, You have some guts!”<br />
+Someone there among the Gryph Islander tribes of Sand-Isles had knowledge and interest in Awe ships and officers.</p>
+
+</div>
+
+<div class="ticka hidden"><p><strong>Complaint from Tick</strong></p>
 
 <p>“Very well, Officer Tick.” I finally conceded after some thought. “Perhaps you’re seeing something I’ve missed. I give you permission to carry out what measures you think will help with discipline.”</p>
 
@@ -98,10 +342,126 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>Well, he sure would get back at them now. Like or dislike, no doubt they would have to come to terms to accept him. Knowing Tick, he might omit to tell them their punitive dismissal to his gut is supposed to be temporary.</p>
 
-<p>Tick: You understand the fatal mistake Ziggy did now? Glint: Yes, Officer!  Ziggy: Gnmmph! Tick: And what was that? Glint: She did not follow procedure tightening the cleats? Tick: That’s a given, but what effects would that have. Valnos? Ziggy: Gllrrgghn ‘Nnhhh..!’ Valnos: “Uhm… deep d-demotion?” Tick: NO! By not follow proper procedure, she again missed measuring the bore length for the screws!  Valnos: B-but…The length was correct.  Tick: She did not make sure! Such half-measures lead to inevitable mistakes. In this case, a possible loose cleat that tears loose during stress and throwing whatever or whoever relied upon it to the mercy of the winds.  Tick: That’s two demerit marks now Valnos, I had hoped you aimed higher than my waist for your career.  Valnos: N-no, I mean, yes! I am! Tick: We will see. Next question, moving on to the bowsprit. </p>
+<img src="../Images/assets/Tickvore.png" height="40%" width="40%"/>
 
-<p>Discipline Tick. (Avolc devours Tick)</p>
+</div>
 
+<div class="tickb hidden"><p><strong>Accept responsibility</strong></p>
+<p>Tick was riled up enough to confront me about this, even going so far as maneuvering this situation into to where the responsibility is mine. It was a powerplay to have me back down, but I was going to make him eat his words and more. <br />
+“Well, Officer Tick.” I turned and plucked my cap off my head and started to disrobe my heavy cloak and epaulets. “I'll take responsibility for my underlings, you are right to demand disciplinary action.”</p>
+
+<p>The usually stoic officer seemed to gulp visibly and shift his weight uncertainly. Perhaps he had not quite expected this outcome, neither was I. But this was the track we were going on.</p>
+
+<p>“I believe standard disciplinary stomach-time equals half a shift. For the three cadets thats a total of one and half shift-time, no?” I raised a brow at Tick, curious to hear his response. The Officer had stepped forward and started to loosen his necktie and vest. His movements were clipped, mechanical, nervous.</p>
+
+<p>“A full shift would be at the limit to where our career choices risk drastic change. There is no warrant for your permanent demotion.” Tick responded with all formality.</p>
+
+<p>“Very well, we will start with half-shift and then take it from there.”</p>
+
+<p>I walked across the room and opened my door briefly. Glint, the current attending Cadet on duty perked to attention.</p>
+
+<p>“Tell the First-Officer I will be indisposed for a shift or so and that they are in-charge for the time being.”</p>
+
+<p>Cadet Glint blinked, saluted, glanced once past me into the chambers at Officer Tick and then hurried off without a word.</p>
+
+<p>I turned to face Officer Tick, he was looking uncharacteristically unsure about himself, it’s clear he had not quite foreseen this, but he was not backing down. I still could. </p>
+</div>
+
+
+<div class="gulp hidden"><p><strong>Accept responsibility</strong></p>
+<p>Tick nearly gagged at how forcibly I shunted myself into his mouth. <br>
+“Ooggnhhff” He complained briefly, for a moment wary of putting his paws on me, having them hover uncertainly. <br>
+I did not let his discomfort hinder me. With casual businesslike effectiveness, I pushed one foot down his throat and then supported myself against a desk to raise the other foot and have it wiggle into Ticks jaws. <br>
+He staggered briefly, on the verge of falling over, but then seemed to firm up and try to assert control. He grabbed at me to support me and heavy swallows followed as I started to sink down into his maw. <br>
+I chose feet-first to mess with him, it’s more difficult for the untrained and the small. But I am not about to make this a easy and leisurely experience for him. <br>
+To my surprise however, he was by no means untrained. He soon had control of me, gullet gripping tightly with firm swallows as I slid down into his stretching belly. He gripped my arms and tucked my wings in and toss-gulped mightily to choke me down. <br>
+Soon enough his jaws crept up to my cheek fur, teeth of his maw starting to surround my view before he wrapped his tongue around the tip of my snout and open-mouth gulped, letting the tip of my snout vanish down his throat before he closed his maw to fully seal me in.</p>
+</div>
+
+<div class="tickb1 hidden"><p><strong>Half-Shift</strong></p>
+<p>Officer Ticks stomach was cramped and uncomfortable, he was not a very large Awe to find yourself crammed into. But I could tell it might had been much worse had he not had ample practice with stomaching Awe-kin, most High-Officers of his rank do.</p>
+
+<p>The Officer knew better however to try amble out of the room. Seeing their captain in the belly of the ships maintenance officer would only unnecessarily shake up their faith the strength and stability of their leadership. I felt him transport us to more comfortable seating, where he leaned back with a heavy sigh.</p>
+
+<p>We exchanged no words and let only the occasional hiccup, gurgle and stray belch sound in the room. This was informal, just plain protocol. An act that needed to be carried out.</p>
+
+<p>After four hours I admit I found myself having relaxed enough to almost doze off when Officer Tick spoke up, paw knead/shaking at me through the belly.</p>
+
+<p>“Half a shift as passed, Captain. Do you wish to space out this sentence or carry on?”</p>
+
+<p>His stomach was tighter around me. It had begun to churn and undulate faintly as his bodys gastric tract had begun to carefully probe at me. One can only mentally hold such at bay for so long.</p>
+</div>
+
+<div class="tickb2 hidden"><p><strong>Back-out</strong></p>
+<div class="back1 hidden">
+I’m suddenly struck by the realization that perhaps I too was being a bit hotheaded about this. <br>
+We stood facing each other a while in silence before I put my paws to my hips. <br>
+Tick was the most headstrong male I met. I had come to respect his opinion over the weeks we’ve sailed together. I saw some of myself in him, but that didn't mean I should literally be inside him. <br>
+He seemed to notice the prolonged pause and huffed, though he tried not to betray his feelings, I could tell he was relieved by how his posture relaxed. Either way, this had become ‘his’ win. He was gracious enough to extend a plum branch of peace. <br>
+“We both have a lot of work to do then spend it… indisposed. I promise not to be too hard on the cadets, I understand they’re important for the future of the Admiralty.” <br>
+I let out a sigh. <br>
+“Hmph… very well. Alright. In that case you may discipline them as you see fit Officer Tick. However, I expect you to be more civil in the future.” <br>
+“Yes Captain.” Tick replied and marched out in his usual hurried pace.</p>
+</div>
+
+<div class="back2 hidden">
+“This will do.” I say firmly. <br>
+“Very well Captain.” Officer Tick replied and I feel him shift and ready to release me. <br>
+It takes a few tries, my method of entry controversy had rolled me up into an awkward position. But soon enough I pull myself out of Ticks maw and with surprising grace step onto the floor of my chambers. <br>
+Tick looks a little haggard and tired, but he manages to remain standing in his usual firm posture, more or less. <br>
+“Do we have to repeat this? Or will that be enough Officer?” I brush down some of the worst of my fur, a trip to the groomery awaits. <br>
+“I believe, we said three half-shifts. I can be back for the remaining two on the morrow.” Tick bobs his head slowly and turns as if to leave, just waiting to be dismissed. <br>
+I should have expected him to be such a stickler, even though I have a feeling he does enjoys this arrangement as much as me. I merely return the nod and dismiss him.</p>
+</div>
+<p>
+<div class="back3 hidden">
+“I believe… it's time for a pause.” I grunt from the darkness of his belly. <br>
+“Of Course Captain.” Officer Tick replied and I feel him shift and ready to release me. <br>
+He has a little difficulty at first, his body is reluctant to let me go by now as I had pushed my stay to the limits of what would be considered a visit. <br>
+Eventually I pull myself out of his jaws into the cool air of my cabin. <br>
+We both look a little haggard and tired, wings drooping. <br>
+“I believe… that will be enough, Captain. I… Owe you an apology for being so hot headed and pushing this issue.” Officer Tick looked up, for this brief moment, features a little softened form his usually stern exterior. “Putting you in this position was… not fair.”<br>
+“Very well. It’s okay Officer Tick.” I reply. “I believe we might have that in common.” <br>
+“I am not so sure.” Tick straightened his back and then his uniform. “I don’t know if i’d go so far for the Cadets. I’ll go easy on them, I suppose they don’t have to be engineers exactly like me.” <br>
+“Tick, I doubt anyone can.”<br>
+</p>
+</div>
+</div>
+
+<div class="tickb3 hidden"><p><strong>Full-shift</strong></p>
+<p>“We carry on Officer Tick” I replied curtly, trying to sound as formal and unbothered as possible. Though my voice was no doubt a little strained as his stomach-walls churned in response to my movement.</p>
+
+<p>“Humf... Very well Captain.” Tick replied as curtly as always. I felt him shift and jostle his body back. Something rested against my back on the outside of his belly. It took a while to realize he was reading a tome.</p>
+
+<p>The second half of the full shift was less pleasant. The Officers stomach grew increasingly slick and animated. Low grumbling groans and long drawn out grumbles echoed loudly around me and no doubt through the room.<br />
+There was little rest to be had as his body and stomach increasingly constricted itself firmer around mine, pulling me deeper against his body. Only the mental willpower of my Officer kept the true onslaught of digestion at bay.</p>
+
+<p>By the time I felt another firm shake and rub from his paws kneading against my form, almost in a possessive way. I was being kneaded and churned around in the midst of a chorus of wet sloppy eager burbles.</p>
+
+<p>“Thats a full shift, Captain.” Was all the Officer announced before waiting for my reply.</p>
+</div>
+
+<div class="tickb4 hidden"><p><strong>One and half-shift</strong></p>
+<p>“We shall... carry on, Officer Tick.” I grunted from within his distended noisy gut.</p>
+
+<p>I felt him shift once more, jostling me around as he moved with unknown purpose. It was hard to tell from within the dark roiling depths of my Officers stomach. But from the shift of angle, I think he was now laying down.</p>
+
+<p>“Very well Captain. As you choose.”</p>
+
+<p>Moments passed slowly, the undulating stomach shifted gear, each pulse and squeeze of muscle seemed stronger then the last. Sticky fluids was all in my fur and getting squelched and rubbed in everywhere. The stomach gourgled and glrrrnnned aggressively about me as it worked.</p>
+
+<p>It was hard to maintain concentration, I felt I was going in and out of focus. It was hard to discern elapsed time. I was about to ask the Officer, but I remembered he was a diligent one that would make sure to announce with this third and last half-shift ended.</p>
+
+<p>But I knew better, by now, he must be actively digesting me. An Awe can only hold back the workings of their belly for so long; He warned me before going in. Now, he had accepted my choice and now let his body deal with me.</p>
+
+<p>Glug, glurrnn, blurble. My world was a hot roiling stewing churning cauldron. Ticks small body would have no problems breaking mine down. He'd become a plump little Officer after he was through with me.</p>
+
+<p>“One and half-shift, Captain.” A faint voice announced somewhere far away. I comfortably added myself onto that voice.</p>
+
+<img src="../Images/assets/Tickvore.png" height="40%" width="40%"/>
+</div>
+
+<div class="tickc hidden"><p><strong>Discipline Tick</strong></p>
 <p>Officer Tick has stepped over the line. Right or not, as captain, I cannot let that go. </p>
 
 <p>“Officer Tick.” I thumped the ground with my tail for emphasis and hardened my glare. “If someone needs a lesson, it appears to me you have some attitude that needs to be put in check first!” </p>
@@ -112,7 +472,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>“Yes… “ Tick replies after a pause. “I can become hotheaded.” </p>
 
-<p>“Would you say storming into the Captains office and asking to devour Junior-Officers or the Captain in their stead a thought through cool-headed move?”</p>
+<p>“Would you say storming into the Captains office and demanding to devour Junior-Officers or the Captain in their stead a thought through cool-headed move?”</p>
 
 <p>Tick stood silent, averting his gaze downwards briefly before replying. “No.”</p>
 
@@ -120,11 +480,13 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>“Officer Tick, none of us are above critique, myself included, but as Officers we must stand above such behavior. I will converse with the Cadets about their conduct.” I stepped up to Tick and placed my paws on his shoulders. “You will be present. But as an example for what that kind of behavior will bring.”</p>
 
-<p>“Yes, Captain, I apologize Captain. “ Tick replied before I yanked him close and shoved his head into my mouth.  He tensed in my grip, but did not resist as I swallowed around him and pulled him up into my throat. </p>
+<p>“Yes, Captain, I apologize Captain. “ Tick replied before I yanked him close and shoved his head into my mouth. <br />
+He tensed in my grip, but did not resist as I swallowed around him and pulled him up into my throat. </p>
 
 <p>Male Awes were as always smaller and lighter and were easy to get your jaws around, Tick wasn’t considered large even among male Awes, so it was with a somewhat pleased feeling of accomplishment that I managed to hoist him up over my head and down to his waist in a single motion.</p>
 
-<p>I closed my eyes and felt him slip down into my body, stomach filling out with his weight and mass. He did not kick or resist as his feet slipped into my gullet, but his longer than average tail did betray the emotions beneath his calm the way it flicked and whipped from my lips.  I let it dangle and flick about for a while and went to sit down to finish my paperwork while my stomach settled. </p>
+<p>I closed my eyes and felt him slip down into my body, stomach filling out with his weight and mass. He did not kick or resist as his feet slipped into my gullet, but his longer than average tail did betray the emotions beneath his calm the way it flicked and whipped from my lips. <br />
+I let it dangle and flick about for a while and went to sit down to finish my paperwork while my stomach settled. </p>
 
 <p>I would have to have a serious talk with the Cadets. Unpleasant temper or not, Tick was still right. It would not do to appear to coddle or protect them too much. They had to respect their senior officers even if they did not agree with their decisions or demeanor. </p>
 
@@ -138,101 +500,12 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>“R-right away, Captain!”</p>
 
-<p>Lecture and Dismiss. (No stomachs are filled)</p>
+<img src="../Images/assets/Avolcvore8.png" height="40%" width="40%"/>
 
-<p> Take responsibility (Tick devours the Captain)</p>
-
-<p>Get ate</p>
-
-<p>Tick was riled up enough to confront me about this, even going so far as maneuvering this situation into “Well, Officer Tick.” I turned and plucked my cap off my head and started to disrobe my heavy cloak and epaulets. “I'll take responsibility for my underlings, you are right to demand disciplinary action.”</p>
-
-<p>The usually stoic officer seemed to gulp visibly and shift his weight uncertainly. Perhaps he had not quite expected this outcome, neither was I. However, we were set upon this track now.</p>
-
-<p>“I believe standard disciplinary stomach-time equals half a shift. For the three cadets that’s a total of one and half shift-time, no?” I raised a brow at Tick, curious to hear his response. The Officer had stepped forward and started to loosen his necktie and vest. His movements were clipped, mechanical and nervous.</p>
-
-<p>“A full shift would be at the limit to where our career choices risk drastic change. There is no warrant for your permanent demotion.” Tick responded with all formality.</p>
-
-<p>“Very well, we will start with half-shift and then take it from there.” I replied curtly and casually.</p>
-
-<p>I walked across the room and opened my door briefly. Glint, the current attending Cadet on duty perked to attention.</p>
-
-<p>“Tell the First-Officer I will be indisposed for a shift or so and that they are in-charge for the time being.”</p>
-
-<p>Cadet Glint blinked, saluted, glanced once past me into the chambers at Officer Tick and then hurried off without a word.</p>
-
-<p>I then climbed into Officer Ticks mouth and proceeded to let myself get eaten. <Write more Vore here></p>
-
-<p>Half-shift</p>
-
-<p>Officer Ticks stomach was cramped and uncomfortable, he was not a very large Awe to find yourself crammed into. But I could tell it might had been much worse had he not had ample practice with stomaching Awe-kin, most High-Officers of his rank do.</p>
-
-<p>The Officer knew better however to try amble out of the room. Seeing their captain in the belly of the ships maintenance officer would only unnecessarily shake up their faith the strength and stability of their leadership. I felt him transport us to more comfortable seating, where he leaned back with a heavy sigh.</p>
-
-<p>We exchanged no words and let only the occasional hiccup, gurgle and stray belch sound in the room. This was informal, just plain protocol. An act that needed to be carried out.</p>
-
-<p>After four hours I admit I found myself having relaxed enough to almost doze off when Officer Tick spoke up, paw knead/shaking at me through the belly.</p>
-
-<p>“Half a shift as passed, Captain. Do you wish to space out this sentence or carry on?”</p>
-
-<p>His stomach was tighter around me. It had begun to churn and undulate faintly as his bodys gastric tract had begun to carefully probe at me. One can only mentally hold such at bay for so long.</p>
-
-<p>Full-shift</p>
-
-<p>“We carry on Officer Tick” I replied curtly, trying to sound as formal and unbothered as possible. Though my voice was no doubt a little strained as his stomach-walls churned in response to my movement.</p>
-
-<p>“Humf... Very well Captain.” Tick replied as curtly as always. I felt him shift and jostle his body back. Something rested against my back on the outside of his belly. It took a while to realize he was reading a tome.</p>
-
-<p>The second half of the full shift was less pleasant. The Officers stomach grew increasingly slick and animated. Low grumbling groans and long drawn out grumbles echoed loudly around me and no doubt through the room. There was little rest to be had as his body and stomach increasingly constricted itself firmer around mine, pulling me deeper against his body. Only the mental willpower of my Officer kept the true onslaught of digestion at bay.</p>
-
-<p>By the time I felt another firm shake and rub from his paws kneading against my form, almost in a possessive way. I was being kneaded and churned around in the midst of a chorus of wet sloppy eager burbles.</p>
-
-<p>“That’s a full shift, Captain.” Was all the Officer announced before waiting for my reply.</p>
-
-<p>One and half-shift</p>
-
-<p>“We shall... carry on, Officer Tick.” I grunted from within his distended noisy gut.</p>
-
-<p>I felt him shift once more, jostling me around as he moved with unknown purpose. It was hard to tell from within the dark roiling depths of my Officers stomach. From the shift of angle, I think he was now laying down.</p>
-
-<p>“Very well Captain. As you choose.” He seemed to grunt low, sounding sleepy.</p>
-
-<p>Moments passed slowly, the undulating stomach shifted gear, each pulse and squeeze of muscle seemed stronger then the last. Sticky fluids was all in my fur and being squelched and rubbed in everywhere. The stomach gourgled and glrrrnnned aggressively about me as it worked.</p>
-
-<p>It was difficult to maintain concentration, I felt I was going in and out of focus and it was hard to discern elapsed time. I was about to ask the Officer, but I remembered he was a diligent one that would make sure to announce with this third and last half-shift ended.</p>
-
-<p>However, even now I knew better. He was actively digesting me by now. An Awe can only hold back the workings of their belly for so long. He warned me, before I went in. He had accepted my choice and now let his body deal with me. It was time for me to do the same.</p>
-
-<p>Glug, glurrnn, blurble. My world was a hot roiling stewing churning cauldron. Ticks small body would have no problems breaking mine down. He would become a plump little Officer after he was through with me.</p>
-
-<p>“One and half-shift, Captain.” A faint voice announced somewhere for away. I added myself onto that voice. </p>
-
-<p> Eat Tick</p>
-
-<p>“Officer Tick.” I tapped my foot and hardened my glare. “If someone needs a lesson, it appears to me you have some attitude that needs to be put in check first!” </p>
-
-<p>Ticks ears drooped a little bit. The tone of my voice betrayed my discontent at our exchange. There were clear lines of authority and respect that had to be maintained and Tick had skirted beyond what was seemly. </p>
-
-<p>“I will consider your words and look into the Cadets activities. But this is not the proper way to bring issues to my attention!” I leaned in on him and he leaned back. That was satisfactory. </p>
-
-<p>“Yes, Captain. I apologize Captain. I let my temper get the better of me.” Tick muttered, though loud enough to be heard. </p>
-
-<p>“Quite so. I think the only proper response is the disciplinary action you yourself in your temper proposed. Half a shift in confinement.” I patted at my gut for emphasis. </p>
-
-<p>Officer Tick nodded slowly and look down at the ground. “Yes Captain.”</p>
-
-<p>“Good!” I put a paw on his shoulder, then on the other and yawned wide and hoisted him into my maw.</p>
 </div>
-<div id="tail">
 
-<!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default" id="button-1"> Test </button>
-<button class="btn btn-default" id="button-2"> Continue </button>
-<span id="cadetButtons"> </span>
-<script>
-
-</script>
-</div>
-<div class="envoy hidden"><p><strong>Envoy</strong></p>
+<div class="tickd hidden"><p><strong>Complaint from Tick</strong></p>
+<p>**A stern lecture or other. Possibly scrap this.  </p>
 </div>
 </body>
 </html>

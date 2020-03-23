@@ -22,12 +22,20 @@
 	var damage = 0;
 	officer3 = [officer.garsch, officer.tung, officer.keeper];
 	officer3 = JSON.parse(localStorage.getItem("savedData"));
+	
+	state.Glint.status = 'available';
+		state.Valnos.status = 'available';
+		state.Ziggy.status = 'available';
 
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
     $(".officer0").text(officer3[0].name) 
 	$(".officer1").text(officer3[1].name) 
 	$(".officer2").text(officer3[2].name) 
+	
+		$("#GThumb").addClass("hidden");
+		$("#VThumb").addClass("hidden");
+		$("#ZThumb").addClass("hidden");
 	  
 	  function OffenseSquad() {	  
 	  		
@@ -169,6 +177,20 @@
 	  
 	    $('#battle4').on('click', function(e) {
         
+		$("#GThumb").removeClass("hidden");
+		$("#VThumb").removeClass("hidden");
+		$("#ZThumb").removeClass("hidden");
+		
+	if (_.contains(state.chapter, "Csupport")) {
+		 cadet[2].banter = [
+	{ target: '#Ziggy', text: "Glint I can’t find Valnos! ", imageClass: "surprised"},
+	{ target: '#Glint', text: 'He’s below Ziggy, what are you doing up here?', imageClass: "neutral"},
+	{ target: '#Ziggy', text: 'Oh that’s good, I thought he was up here!', imageClass: "happy" },
+	{ target: '#Glint', text: 'Get below deck, we shouldn’t be up here unless there is fire!', imageClass: "angry"}
+
+];
+		
+		}
 		damage += 1;
 		lib.dialogue(e, "battle4"),
         $(".btn").addClass("hidden");
@@ -1290,7 +1312,7 @@ The shot hit just the edge of our platform, hard enough to leave a gaping hole a
 The injured are being taken below deck, but with holes like this being made I wonder if they're really much safer down there at all.</p>
 
 <p>'BWOOM'. The Small-craft has turned to fire upon as well. This one using our focused charge on the Frigate to get an angle on our side.<br>
-Several small things whistle past in the air, some clattering the side of our ship, some rending small holes all through our sails. Its not until I a unlucky sailor from the sails falls from her post and dangles from her safety harness that I realize they're shooting something much more insidious. They've loaded their shot with tiny shrapnel or bullets and just spraying it in our direction. They can't destroy our ship with it, but they can tatter our sails and hit our crew.</p>
+Several small things whistle past in the air, some clattering the side of our ship, some rending small holes all through our sails. Its not until I see an unlucky sailor from the sails falls from her post and dangles from her safety harness that I realize they're shooting something much more insidious. They've loaded their shot with tiny shrapnel or bullets and just spraying it in our direction. They can't destroy our ship with it, but they can tatter our sails and hit our crew.</p>
 
 <p>“Captain! Orders!?” My First-Officer has made the same realization. We may have drawn fire away from our battleship and relieved them of some pressure in their boarding battle with the Galleon. But now we're in a pinch between two dangerous opponents.</p>
 </div>
@@ -2059,14 +2081,43 @@ The distant thunder of Thunder-shot has grown quieter now, the battle overall se
 “I’d say the bigger battle has been in the favor of you soft-wings, but we best head on out and earn our keep.” He returned to his ship.</p>
 </div>
 
-<div class="1 hidden"><p><strong>The Bolt-Thrower</strong></p>
 
-</div>
+<script>
+ cadet[2].banter = [
+	{ target: '#Ziggy', text: "Glint I can’t find Valnos! ", imageClass: "surprised"},
+	{ target: '#Glint', text: 'He was assisting with the sails.', imageClass: "neutral"},
+	{ target: '#Ziggy', text: 'I know! He’s not up there! ', imageClass: "concerned" },
+	{ target: '#Ziggy', text: "What if he fell off the ship? ", imageClass: "surprised"},
+	{ target: '#Glint', text: 'He can fly pretty well Ziggy. Don’t worry about him right now.', imageClass: "concerned"},
+	{ target: '#Ziggy', text: "Drat, alright! You're right!", imageClass: "happy" },
+	{ target: '#Glint', text: 'Get below deck, we shouldn’t be up here unless there is fire!', imageClass: "angry"}
+
+];
 
 
-<div class="1 hidden"><p><strong>The Bolt-Thrower</strong></p>
 
-</div>
+ cadet[1].banter = [
+	{ target: '#Ziggy', text: 'Missed me! Haha!', imageClass: "happy"},
+	{ target: '#Ziggy', text: 'Glint?', imageClass: "surprised"},
+	{ target: '#Ziggy', text: 'Hey Glint get up!', imageClass: "concerned" },
+	{ target: '#Ziggy', text: 'Ah reeks! This is no time for sleeping. ', imageClass: "suspicious"},
+	{ target: '#Ziggy', text: 'C’mon Glint… Let’s get you to Elda, Ziggy’s gotcha!', imageClass: "blush" },
+	{ target: '#Ziggy', text: 'You’ll be okay.', imageClass: "sad"},
+	{ target: '#Ziggy', text: 'You’ll be okay…', imageClass: "sad"}
+];
+
+ cadet[0].banter = [
+	{ target: '#Ziggy', text: "Sail us closer! I want to hit them with my sword!", imageClass: "happy"},
+	{ target: '#Glint', text: 'Are you mad!? The ship is coming apart, people are hurt everywhere!', imageClass: "suprised"},
+	{ target: '#Ziggy', text: "I’m just not afraid anymore! Haha!", imageClass: "happy" },
+	{ target: '#Glint', text: 'Maybe you should be! ', imageClass: "angry"},
+	{ target: '#Glint', text: "..GET DOWN!", imageClass: "suprised"}
+
+];
+
+</script>
+
+
 
 </body>
 </html>

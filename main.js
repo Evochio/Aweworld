@@ -24,7 +24,7 @@ lib.clear = function() {
 }
 
 lib.goTo = function (href) {
-	
+	 state.destination[1] = href;
 	if (offList == null) {
 		var officerX = 0;
 	}
@@ -34,6 +34,7 @@ lib.goTo = function (href) {
   lib.save('state-'+lastPart, state);
   lib.save('offData-'+lastPart, officerX);
   document.location.href = href;
+ 
  // localStorage.setItem("officerData", JSON.stringify([officer3, officer, offlist.activeRoster, offlist.firstOfficer, offlist.deadRoster]));
 }
 lib.dialogue = function(e, className) { 

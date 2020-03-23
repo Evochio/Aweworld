@@ -22,14 +22,14 @@
 		state.Ziggy.status = 'invisible';
 		state.Aliyah.status = 'invisible';
   
-   removeOfficer(officer.tung);
+  // removeOfficer(officer.tung);
 	var count = 0;
    var force = [officer.tung, officer.garsch, officer.ulv]
    
    
    var support = [officer.mirr, officer.arn, officer.keeper]
   
-  
+  var cadetsq = [officer.valnos, officer.ziggy, officer.glint]
    	
 	function fighters(x) {
 		
@@ -72,6 +72,29 @@
 		
 					
 			return "Officer Keeper seems well versed in all manner of things and is a suitable candidate. His methods and solutions tend to be unorthodox however, motivated by self-preservation and self-gain."
+		}
+		
+				
+	}
+	
+	function cadetsquad(x) {
+		
+		if (cadetsq[x].name == 'Valnos') {
+		
+					
+			return "I want to assist the navigation squad. I can work the sails pretty well and can fly pretty well if anything happens. "
+		}
+		
+		if (cadetsq[x].name == 'Ziggy') {
+		
+					
+			return "Well, If I can’t join the fighters, I’ll join the support-crew, might be the closest I get to action. I am not scared! "
+		}
+		
+		if (cadetsq[x].name == 'Glint') {
+		
+					
+			return "I’ll also join the support crew. Ropes and such are not my strength and I feel I’d only get in Eldas ways. Someone has to watch Ziggy's also."
 		}
 		
 				
@@ -332,6 +355,7 @@
 	  
 	   $('#raptorians').on('click', function(e) {
         // change state here
+		$(".face").removeClass("hidden");
 		if (_.contains(offList.deadRoster, "Evok")) {
 		 $(".evok").addClass("hidden");
 		  
@@ -341,6 +365,8 @@
 		$("#side").removeClass("hidden");
 		$(".sideImage").attr('src', officer.evok.image)
 		}
+		$("#sideb").removeClass("hidden");
+		$(".face").attr('src', officer.krel.image)
 		
         // end by using lib.goTo
 		lib.dialogue(e, "raptorians")
@@ -353,13 +379,51 @@
 	  
 	   $('#medical').on('click', function(e) {
         // change state here
+		$("#sideb").addClass("hidden");
 		$("#side").removeClass("hidden");
 		$(".sideImage").attr('src', officer.elda.image)
         // end by using lib.goTo
 		lib.dialogue(e, "medical")
 		$(".btn").addClass("hidden");
+		$("#cadets").removeClass("hidden");
+		
+		
+	  })
+	  
+	  
+	  
+	   $('#cadets').on('click', function(e) {
+        // change state here
+		$("#side").addClass("hidden");
+		
+        // end by using lib.goTo
+		lib.dialogue(e, "cadets")
+		$(".btn").addClass("hidden");
+		$("#cadetsChoose").removeClass("hidden");
+		$("#support").removeClass("hidden");
+		
+	  })
+	  
+	   $('#support').on('click', function(e) {
+        // change state here
+		state.chapter.push("Csupport")
+        // end by using lib.goTo
+		lib.dialogue(e, "support")
+		$(".btn").addClass("hidden");
 		$("#FleetBattle").removeClass("hidden");
-		//localStorage.setItem(officer3, officer3);
+		
+		
+	  })
+	  
+	  
+	    $('#cadetsChoose').on('click', function(e) {
+        // change state here
+		createOfficer4(cadetsq)
+        // end by using lib.goTo
+		lib.dialogue(e, "cadetsChoose")
+		$(".btn").addClass("hidden");
+		$("#FleetBattle").removeClass("hidden");
+		
 		
 	  })
 	  
@@ -390,6 +454,8 @@
 	height: auto;
 	float: left;
 	}
+	
+	
   </style>
 
 </head>
@@ -458,10 +524,13 @@ The crew looked a bit deflated. So I gave them the ‘good news’.<br>
 <button class="btn btn-default hidden" id="repair">Maintinance and Repair</button>
 <button class="btn btn-default hidden" id="wheel">The helm</button>
 <button class="btn btn-default hidden" id="force3">Support Force</button>
-<button class="btn btn-default hidden" id="raptorians">The Raptorians</button>
+<button class="btn btn-default hidden" id="raptorians">The Raptorians and Scouts</button>
 <button class="btn btn-default hidden" id="medical">Medical team</button>
 
 <button class="btn btn-default hidden" id="cadets">The cadets</button>
+
+<button class="btn btn-default hidden" id="support">Support force</button>
+<button class="btn btn-default hidden" id="cadetsChoose">Let Cadets choose</button>
 
 <span id="cadetButtons"> </span>
 <script>
@@ -572,6 +641,12 @@ Pack-Master Evok has ensured me they are in top shape and he’ll be leading the
 <div class="noevok hidden">
 Our newly appointed Pack-Master Ravoc is still establishing his authority. This battle will prove whether he’s up for the role.</p>
 </div>
+ <br>
+<p>Scout-Master Krel will stay close to my person, both as bodyguard as well as able to assign his scouts as messengers if needed. <br>
+While they are potentially useful for sabotage, they are generally not suited for large scale battles like this, furthermore their numbers are few. <br>
+The Fleet-Admiral herself has recommended each captain keep them out of the fighting as much as possible. <br>
+</p>
+
 </div>
 
 
@@ -580,9 +655,24 @@ Our newly appointed Pack-Master Ravoc is still establishing his authority. This 
 “I hope you won’t be sending too many Awes my way, but rest assured we have made the appropriate preparations, dear Captain.” The pouch Matron crooned warmly.</p>
 </div>
 
-
-<div class="envoy hidden"><p><strong>Envoy</strong></p>
+<div class="cadets hidden"><p><strong>Cadet duties</strong></p>
+<p>The Cadets are going to have to be involved in some manner in this battle. While they’re still too junior for commands of their own, especially in something dangerous like this, it’s best to be prepared that in a crisis even they might have to step up and lead incase there’s many injuries. <br>
+Question is what I should have them do during battle. They have some experience working on the Support crew; Putting out fires, carrying ammunition and supplies. So I am inclined to assign them there. <br>
+Or I can let them choose their roles themselves. So they can pick between navigation, support, medecine themselves. All except the assault squads.</p>
 </div>
+
+<div class="cadetsChoose hidden"><p><strong>Cadet duties</strong></p>
+<p>I listen to the Cadets wishes and assign them where requested.</p>
+
+<span class="theOfficer officerObjects"></span>
+<script>
+$('#officerObject0').popover({title: cadetsq[0].name, content: cadetsquad(0), trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject1').popover({title: cadetsq[1].name, content: cadetsquad(1), trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject2').popover({title: cadetsq[2].name, content: cadetsquad(2), trigger: "hover", placement: "top", container: "body"}); 
+
+</script>
+</div>
+
 
 
 </body>

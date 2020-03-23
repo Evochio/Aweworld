@@ -34,14 +34,29 @@ localStorage.clear();
  	    $(document).ready(function() {
 		removeLore();
 		$("#Glint").addClass("hidden")
-	  $('#button-1').on('click', function() {
+	
+
+	$('#button-1').on('click', function() {
 	  
 		localStorage.clear();
         // change state here
         // end by using lib.goTo
         lib.goTo('Rooms/Intro.html')
 		
+			
       })
+	  
+	  
+	 $('#chapter1').on('click', function() {
+	 
+		$(".btn").addClass("hidden");
+		$("#button-1").removeClass("hidden");
+		$("#button-2").removeClass("hidden");
+		$("#load").removeClass("hidden");		
+     
+	  })
+		
+     
 	    $('#button-2').on('click', function() {
 		
 		localStorage.clear();
@@ -71,7 +86,7 @@ localStorage.clear();
 		
       })
 	  
-	  $('#load').on('click', function(e) {
+	  $('#load2').on('click', function(e) {
 		state = JSON.parse(Cookies.get('save'));
 		
 		offList.activeRoster = JSON.parse(Cookies.get('save2'));
@@ -79,6 +94,18 @@ localStorage.clear();
 		offList.firstOfficer = JSON.parse(Cookies.get('save4'));
 		 
 		lib.goTo('Rooms/Chapter2/'+state.chapter[0]+'.html')
+     
+      })
+	  
+	  
+	  $('#load').on('click', function(e) {
+		state = JSON.parse(Cookies.get('save'));
+		
+		offList.activeRoster = JSON.parse(Cookies.get('save2'));
+		offList.deadRoster = JSON.parse(Cookies.get('save3'));
+		offList.firstOfficer = JSON.parse(Cookies.get('save4'));
+		 
+		lib.goTo('Rooms/'+state.destination[1])
      
       })
 	   
@@ -129,11 +156,12 @@ Contains Soft Vore and entries of implied to mild digestion. </p>
 	
 	</div>
 <div id="tail">
-
-<button class="btn btn-default" id="button-1">Introduction</button>
-<button class="btn btn-default" id="button-2">Skip Introduction & Prologue</button>
+<button class="btn btn-default" id="chapter1">Chapter 1</button>
+<button class="btn btn-default hidden" id="button-1">Introduction</button>
+<button class="btn btn-default hidden" id="button-2">Skip Introduction & Prologue</button>
+<button class="btn btn-default hidden" id="load">Load Chapter 1 Save</button>
 <button class="btn btn-default" id="chapter2">Chapter 2 (WIP)</button>
-<button class="btn btn-default hidden" id="load">Test Load</button>
+<button class="btn btn-default hidden" id="load2">Test Load</button>
 
 <script>
 cadet[1].banter = [
