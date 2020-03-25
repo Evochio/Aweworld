@@ -36,20 +36,7 @@
 	    $(".face").attr('src', officer.tick.image);
 	  $("#sideb").removeClass("hidden");
 	  
-        $('#tick').on('click', function(e) {
-		lib.dialogue(e, "tick"),
-		
-         $("#tick").addClass("hidden");
-		$("#ticka").removeClass("hidden");		
-		$("#tickb").removeClass("hidden");
-		$("#tickc").removeClass("hidden");
-		$("#tickd").removeClass("hidden");
-		$("#testbutton").removeClass("hidden");
-		
-		
-		
-	
-      })
+       
 	  $('#ticka').on('click', function(e) {
 		lib.dialogue(e, "ticka"),
 		$("#sideb").addClass("hidden");	
@@ -64,6 +51,7 @@
 		$("#VThumb").addClass("new")
 		$("#GThumb").removeClass("hidden");
 		$("#VThumb").removeClass("hidden");
+		$("#leave").removeClass("hidden");
 		$("#side").removeClass("hidden");
 		$("#testbutton").removeClass("hidden");
 	
@@ -100,7 +88,7 @@
 	  
 	  $('#tickb').on('click', function(e) {
 		lib.dialogue(e, "tickb")
-		count =+1;
+		count += 1;
 		
 		 $("#tickb2").removeClass("hidden");
 		 $("#gulp").removeClass("hidden");	
@@ -121,7 +109,7 @@
 	  
 	  $('#tickb1').on('click', function(e) {
 		lib.dialogue(e, "tickb1"),
-		count =+1;
+		count += 1;
 		 $(".NotCadet").attr('src', officer.tick.image);
          $("#sideb").addClass("hidden");
          $("#tickb1").addClass("hidden");
@@ -152,13 +140,13 @@
 		
          $(".btn").addClass("hidden");
 		 $("#tickb1").addClass("hidden");
-		
+		 $("#leave").removeClass("hidden");
 			
       })
 	  
 	  $('#tickb3').on('click', function(e) {
 		lib.dialogue(e, "tickb3"),
-		count =+1;
+		count += 1;
         
 		 $("#tickb3").addClass("hidden");
 		 $("#tickb4").removeClass("hidden");
@@ -177,7 +165,7 @@
 	  $('#tickc').on('click', function(e) {
 		lib.dialogue(e, "tickc"),
 		
-         $("#conclusionxxxxxxxxxxx").removeClass("hidden");
+         $("#leave").removeClass("hidden");
 		 
 		$("#ticka").addClass("hidden");		
 		$("#tickb").addClass("hidden");
@@ -188,7 +176,7 @@
 	  $('#tickd').on('click', function(e) {
 		lib.dialogue(e, "tickd"),
 		
-         $("#conclusionxxxxxxxxxxx").removeClass("hidden");
+         $("#leave").removeClass("hidden");
 		 
 		$("#ticka").addClass("hidden");		
 		$("#tickb").addClass("hidden");
@@ -213,11 +201,11 @@
 		
       })
 		
-		$('#button-2').on('click', function() {
-        // change state here
+		$('#leave').on('click', function() {
+			state.chapter.push("angryTick")
         // end by using lib.goTo
-		
-        lib.goTo('.html')
+		lib.goTo(state.destination[0] + '.html')
+        
       })
     })
 	
@@ -282,7 +270,6 @@
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 
-<button class="btn btn-default hidden" id="tick">Ticks Complaint</button>
 <button class="btn btn-default" id="ticka">Allow Cadets disciplined</button>
 
 <button class="btn btn-warning" id="tickb">Accept Responsibility</button>
@@ -294,43 +281,14 @@
 <button class="btn btn-default" id="tickc">Discipline Tick</button>
 <button class="btn btn-default hidden" id="tickd">Rebuke and Reject</button>
 <button class="btn btn-default hidden" id="restart">Restart</button>
+<button class="btn btn-default hidden" id="leave"> Continue </button>
 
 <span id="cadetButtons"> </span>
 <script>
 
 </script>
 </div>
-<div class="tick hidden"><p><strong>Complaint from Tick</strong></p>
-<p>“Permission to devour the cadets captain.” Tick suddenly announced himself and simultaneously requested at my door.</p>
 
-<p>“Excuse me, permission to do what?”</p>
-
-<p>Tick sighs, clearly frustrated with having to repeat himself. “I'm asking permission to consume the cadets.”</p>
-
-<p>I snap at him irritatedly for being so curt. “I heard what you said, but I need a bit of context and explanation here!”</p>
-
-<p>“They are rowdy, they are insubordinate and they chatter amongst themselves constantly about everything. They have caused the ship damage and need to be made an example of for the good of discipline and order.” Tick explained calmly with a steady tenor, arms behind his back.</p>
-
-<p>“Is this about your hammer? I found myself asking, holding back a grin rather successfully. To Ticks credit, he held his expression perfectly in his standard bored neutral.</p>
-
-<p>“No. But but it is one of many examples reckless thoughtlessness.” Tick replied.</p>
-
-<p>“Are they truly such menaces to warrant this...? I have not heard similar complaints of other officers. And I cannot punish someone to be forcibly deepened for excessive chatter.” I queried curiously.</p>
-
-<p>
-“During the week they have been under my tutelage, they have broken several tools. They perform tasks with no expedience and complain of orders.<br />
-They have grown complacent and lazy from lack of consequence and proper discipline. They are your direct subordinates and I cannot perform potentially impairing disciplinary actions to parties responsible without your permission. I do not mean to end anyone, only exert discipline.” Tick seemed to puff himself up. But he was the smallest of the Officers on board in stature, perhaps even one of the smaller Awes. It looked a little bit comical.</p>
-
-<p>But none of his words were fully as amusing. Though Tick was renowned on the ship for being being the toughest and most fastidiously hard to please Officer to work under he rarely raised a fuss up the rank unless something truly rankled him or somehow threatened the ship.</p>
-
-<p>“I sense some rebuke toward me there, do you imply to say that I am part responsible?” I fix the Officer with a cool gaze, deciding to test his resolve in this matter. Perhaps he's let out enough steam to have cooled his head.</p>
-
-<p>“... Yes Captain.” Tick replied after but a moments pause. “If you wish to take responsibility I'd be satisfied by consuming you in their stead.” He sensed the trap and doubled down. I'm momentarily utterly baffled by his boldness and impertinence. But he remains standing there in his 'at ease' posture, committed to his words.</p>
-
-<p>“Officer Tick, You have some guts!”<br />
-Someone there among the Gryph Islander tribes of Sand-Isles had knowledge and interest in Awe ships and officers.</p>
-
-</div>
 
 <div class="ticka hidden"><p><strong>Complaint from Tick</strong></p>
 

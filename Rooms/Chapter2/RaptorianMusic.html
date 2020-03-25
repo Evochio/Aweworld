@@ -12,26 +12,52 @@
  <link rel="stylesheet" href="../../bootstrap.min.css"></link>
   <link rel="stylesheet" href="../../bootstrap-theme.min.css"></link>
   <script src="../../main.js"></script>
+  <script src="../../officers.js"></script>
+  <script src="../../jquery.cookie.js"></script>
   <link rel="stylesheet" href="../../main.css"></link>
+  
   <script>
+
+state.Glint.status = 'invisible';
+    state.Valnos.status = 'invisible';
+	state.Ziggy.status = 'invisible';
+
+
 
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
       
-      $('#button-1').on('click', function(e) {
+      $('#letthem').on('click', function(e) {
         // change state here
+        state.raptorians +=1; 
+        state.crewMorale -=1;
         // end by using lib.goTo
-		lib.dialogue(e, "envoy"),
-        $("#button-1").addClass("hidden");
-		
+		    lib.dialogue(e, "letthem"),
+        $(".btn").addClass("hidden");
+		 $("#continue").removeClass("hidden");
+        
+      })
+	  
+	  
+	    $('#stop').on('click', function(e) {
+        // change state here
+        state.raptorians -=1; 
+        state.crewMorale +=1;
+        // end by using lib.goTo
+		  lib.dialogue(e, "stop"),
+         $(".btn").addClass("hidden");
+		 $("#continue").removeClass("hidden");
       })
 		
-		$('#button-2').on('click', function() {
+		$('#continue').on('click', function() {
         // change state here
         // end by using lib.goTo
-		
-        lib.goTo('.html')
+			state.chapter.push("raptorianMusic")
+        // end by using lib.goTo
+		  lib.goTo(state.destination[0] + '.html')
+        
+      
       })
     })
 	
@@ -47,20 +73,16 @@
 </head>
 <body>
 <div id="head">
-<div id="dayCounter">
-Day: <span class="days"><script>displayDays()</script></span>
-<br/>
-<span class="schedule"><script>displayShedule()</script></span>
-</div>
-<h1>Thousand Islands</h1>
+
+<h1>Crew event</h1>
 </div>
 
 
 <div id="story-text">
 
-<p>The thumping through the floor and even walls of the deck reach me while going over the recent charts and course plotting. My quill cant quite make straight lines as the regular thumps grow in intensity and seem to shake the whole ship. </p>
+<p>The thumping through the floor and even walls of the deck reach me while going over the recent charts and course plotting. My quill can't quite make straight lines as the regular thumps grow in intensity and seem to shake the whole ship. </p>
 
-<p>I'm not alarmed, for if it were something of danger, I would have been notified by now. Curiosity and no small amount of annoyance at my crooked ink lines grips me however and I don my cloak and hat and leave my chambers to investigate. </p>
+<p>I'm not alarmed, for if it were something of danger, I would have been notified by now. Curiosity and no small amount of annoyance at my crooked inklines grips me however and I don my cloak and hat and leave my chambers to investigate. </p>
 
 <p>Cadet Valnos stands outside my door, a cadet ever at my attendance during the evening hours. </p>
 
@@ -68,13 +90,13 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>“I'm not certain Captain, but I heard Ziggy mention the Raptorians were putting up a show...?”</p>
 
-<p>“A show?” As I listen the thumping grows in rhythm, gaining a beat of sorts.  I head toward the stairs to the lower decks, past the kitchens and to the bilge, where the storage holds and Raptorian pens are located, where the noise grew louder.</p>
+<p>“A show?” As I listen the thumping grows in rhythm, gaining a beat of sorts.  I head toward the stairs to the lower decks, past the kitchens and to the bilge, where the storage holds and Raptorian pens are located, here the noise grew louder.</p>
 
-<p>Sometimes they stamped and thumped briefly in rhythm before a charge in battle. To build up their courage and aggression and unnerve their foes its said.  This wasn't quite as aggressive as that and certainly more ordered and synchronized by the sound of it. </p>
+<p>Sometimes they stamped and thumped briefly in rhythm before a charge in battle. To build up their courage and aggression and unnerve their foes it's said.  This wasn't quite as aggressive as that and certainly more ordered and synchronized by the sound of it. </p>
 
-<p>Already there is a bit of a crowd of onlookers crowding the tight hallways. They fail to notice me amidst the deeply thumping din and its not until my Cadet shoos them aside that they hastily part to give me a path through to the source of this commotion. </p>
+<p>Already there is a bit of a crowd of onlookers crowding the tight hallways. They fail to notice me amidst the deeply thumping din and it's not until my Cadet shoos them aside that they hastily part to give me a path through to the source of this commotion. </p>
 
-<p>Before me a dozen Raptorian are making music. Heavy tails rise and beat down on what looks like drums made out of tautly stuffed heavy burlap sacks in a regular beat. They are working together, half of them taking turns with every second beat while some steadily stamp their feet.  I arrived at the fore just as a deep throaty wordless 'singing' rises up through the thumping beat. In truth its more of a growling vibrating note then a song, pitch alternating slowly as they growled their tune.  Others join with their voices, barking growled words or making brief hoots or hisses together. </p>
+<p>Before me a dozen Raptorian are making music. Heavy tails rise and beat down on what looks like drums made out of tautly stuffed heavy burlap sacks in a regular beat. They are working together, half of them taking turns with every second beat while some steadily stamp their feet.  I arrived at the fore just as a deep throaty wordless 'singing' rises up through the thumping beat. In truth it's more of a growling vibrating note then a song, pitch alternating slowly as they growled their tune.  Others join with their voices, barking growled words or making brief hoots or hisses together. </p>
 
 <p>Raptorian music was rare. I had heard of it, a distant memory even niggles the back of my mind of attending and hearing something like this before, early in my childhood.  Many attribute Raptorians to being nothing but dim obedient brutes, with no ambition or culture.  I would never underestimate them so, but as I stood enthralled and listened, I wondered idly why displays like this were so rare. </p>
 
@@ -82,31 +104,35 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>Listening to the growled Raptorian words through the deep throaty hum and thumping beat, I almost missed the Awe Squires, attendants of the Raptorians, making their own contribution in the background with shakers and tambourines of some kind.</p>
 
-<p>Another Officer broke through the crowd, a stern-faced and perturbed Officer Tick shoving his way forward. Seeing me at the front he paused with a mix of perturbed annoyance and concern before stepping to my side.</p>
+<p>Another Officer broke through the crowd, an unusually stern-faced Officer Mirr shoving her way forward. Seeing me at the front she paused with a mix of concern before stepping to my side.</p>
 
-<p>“Captain, this has gone on long enough! We are entering a major sleep-shift and they are going rattling the whole ship apart!” He shouts faintly over the noise of the beat.</p>
+<p>“Captain, this has gone on long enough! We are entering a major sleep-shift and it feels like they are going to rattle the whole ship apart!” She shouts faintly over the noise of the beat.</p>
 
-<p>Choices 2x</p>
-
-<p>Let them be: I hold out a paw to Officer Tick to stand down and then crossed my arms to listen a while longer.  The Raptorians seldom made cultural displays like this. Whatever had triggered it or whatever it meant, I decided to leave them to it.  Besides, I found myself liking the sound, the beat shook me through my pelt.</p>
-
-<p>In the end I retired back to my cabin after listening a while. But I felt more then heard the thumping for quite a while that night. </p>
-
-<p> Motion the Squires to wrap it up: Tick was right of course. The Raptorians were welcome to their music, but there was a time and a place for everything.  With some reluctance, for I did personally enjoy the deep rhythm, I motioned for the Squires attention and made a cutting motion.  They looked at me disappointed and saddened but nodded before I turned to leave. </p>
-
-<p>The thumping soon wound down steadily and by the time I was back in my cabin, the ship no longer shuddering.</p>
 </div>
 <div id="tail">
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default" id="button-1"> Test </button>
-<button class="btn btn-default" id="button-2"> Continue </button>
+
+<button class="btn btn-default hidden" id="continue"> Continue </button>
+<button class="btn btn-default" id="letthem"> Let them be </button>
+<button class="btn btn-default" id="stop"> Wrap it up! </button>
 <span id="cadetButtons"> </span>
 <script>
 
 </script>
 </div>
-<div class="envoy hidden"><p><strong>Envoy</strong></p>
+<div class="letthem hidden"><p><strong>Let them be</strong></p>
+<p> I hold out a paw for Officer Mirr to stand down and then crossed my arms to listen a while longer.  The Raptorians seldom made cultural displays like this. Whatever had triggered it or whatever it meant, I decided to leave them to it.  Besides, I found myself liking the sound, the beat shook me through my pelt.</p>
+
+<p>In the end I retired back to my cabin after listening a while. But I felt more then heard the thumping for quite a while that night. </p>
+
 </div>
+
+<div class="stop hidden"><p><strong>Wrap it up! </strong></p>
+<p>Mirr was right of course. The Raptorians were welcome to their music, but there was a time and a place for everything.  With some reluctance, for I did personally enjoy the deep rhythm, I motioned for the Squires attention and made a cutting motion.  They looked at me disappointed and saddened but nodded before I turned to leave. </p>
+
+<p>The thumping soon wound down steadily and by the time I was back in my cabin, the ship no longer shuddering.</p>
+</div>
+
 </body>
 </html>

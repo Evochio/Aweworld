@@ -17,9 +17,45 @@
    <script src="../../jquery.cookie.js"></script>
   <link rel="stylesheet" href="../../main.css"></link>
   <script>
+  
+		state.Valnos.status = 'available';
+		state.Ziggy.status = 'available';
+		state.Glint.status = 'invisible';
 
     $(document).ready(function() {
-      // Put logic that is specific to this page here, mainly what happens when buttons to other
+	
+	 if (_.contains(state.chapter, "cadetsChoose")) {
+
+ cadet[2].banter = [
+	{ target: '#Valnos', text: "Where is Glint, Ziggy?", imageClass: "neutral"},
+	{ target: '#Ziggy', text: 'She’s safe, where were you!?', imageClass: "surprised"},
+	{ target: '#Valnos', text: 'I was hit by something and fell off the mast.', imageClass: "surprised" },
+	{ target: '#Valnos', text: "Got lost in the smoke trying to fly back.", imageClass: "concerned"},
+	{ target: '#Valnos', text: 'Landed on the wrong ship!', imageClass: "blush"},
+	{ target: '#Ziggy', text: "Bet they were happy to see you.", imageClass: "smug"},
+	{ target: '#Valnos', text: 'Captain Carla was quite nice actually.', imageClass: "happy" }
+
+];
+
+}
+else {
+
+ cadet[2].banter = [
+	{ target: '#Valnos', text: "Where is Glint, Ziggy?", imageClass: "neutral"},
+	{ target: '#Ziggy', text: 'She’s safe, where were you!?', imageClass: "surprised"},
+	{ target: '#Valnos', text: 'I was running messages for Keeper and Tick.', imageClass: "concerned" },
+	{ target: '#Ziggy', text: "Couldn’t find you, I got worried.", imageClass: "concerned"},
+	{ target: '#Valnos', text: 'Sorry Ziggy, I just sort of got grabbed and told to hurry.', imageClass: "sad"}
+
+
+];
+}
+	
+	
+	if (_.contains(state.inventory, "intel")) {
+        $(".intel").removeClass("hidden");
+		}
+	   // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
 	  if ( state.delay > 10) {		
 		$(".noklippa").removeClass("hidden");
@@ -86,7 +122,9 @@ The Flag-Captain spoke up, somehow having managed to look even more weary and ru
 The assembled Captains exchanged glances. Port Nowhere, a freeport of mixed repute. A floating nomadic city on the water. Nowhere as wealthy as the tradeports of the Kingdom, but said to be the largest place of illegitimate commerce between the west and east continents.</p>
 
 <p> “Emissary Chio here, whose house has a small stake in this city, has been informing me of the recent suspicious activities out of the northern quarters of the port.” The red feathered Kingdom Emissary at her side smiled at us. “He has promised the assistance of his house and its allies.” <br>
+<div class="intel hidden">
 “Likewise, Captain Avolcs recent acquisition of valuable Intel further points to much of the pirate activities being centered around this port. ” Eyes turned to me, not all happy. <br>
+</div>
 “Captain Koen has also separately informed me that in his recent trips past the port the ‘Three-mast’ Frigates are likely being built here.”<br>
 “Aye, well. I saw one docked there that seemed half-finished, they’re building something. The port is also under much tighter lockdown then it used to be.” The large islander Captain spoke casually, oblivious or uncaring as The Fleet-Admiral visibly bristled at his interruption, but tolerated it.</p>
 
@@ -139,5 +177,26 @@ Report to the flag-captain for further orders and prepare to set sail immediatel
 
 <p> Stats here </p>
 </div>
+<script>
+
+
+
+
+ cadet[0].banter = [
+	{ target: '#Valnos', text: "Wait, you didn’t eat someone.", imageClass: "suspicious"},
+	{ target: '#Valnos', text: 'Is that someone in your pouch?', imageClass: "blush"},
+	{ target: '#Ziggy', text: "Ye, it’s Glint, she’s recovering.", imageClass: "blush" },
+	{ target: '#Valnos', text: 'You really can do the Pouch-Matron thing!?', imageClass: "surprised"},
+	{ target: '#Ziggy', text: 'Ye, kind of. Look there were a lot of hurt Awes, all the nurses were busy.', imageClass: "neutral"},
+	{ target: '#Valnos', text: " Is it safe? I mean, you’re not a...", imageClass: "blush"},
+	{ target: '#Ziggy', text: "I dunno, never done it before! Elda said to wait and see. ", imageClass: "concerned" },
+	{ target: '#Valnos', text: "She’s gonna be so furious if she ends up your hips!", imageClass: "smug" },
+	{ target: '#Ziggy', text: "Ye well, she’ll be mad either way.", imageClass: "concerned" }
+
+
+];
+
+</script>
+
 </body>
 </html>

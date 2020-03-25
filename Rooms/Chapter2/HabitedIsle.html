@@ -16,7 +16,12 @@
   <script src="../../jquery.cookie.js"></script>
   <link rel="stylesheet" href="../../main.css"></link>
   <script>
-  
+  state.destination[0] = 'HabitedIsle'
+
+  if (_.contains(state.chapter, "sickness") && state.chapter.indexOf("sickness2") == -1) {
+	lib.goTo('Sickness.html')
+  }
+
   state.Glint.status = 'available';
     state.Valnos.status = 'available';
 	state.Ziggy.status = 'available';

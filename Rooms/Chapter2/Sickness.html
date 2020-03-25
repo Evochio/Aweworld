@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Aweworld</title>
+
+  <link rel="stylesheet" href="../../main.css"></link>
+
+  <script src="../../jquery-3.2.1.js"></script>
+  <script src="../../underscore.js"></script>
+	<script src="../../bootstrap.min.js"></script>
+ <link rel="stylesheet" href="../../bootstrap.min.css"></link>
+  <link rel="stylesheet" href="../../bootstrap-theme.min.css"></link>
+  <script src="../../main.js"></script>
+  <script src="../../jquery.cookie.js"></script>
+   <script src="../../officers.js"></script>
+  <link rel="stylesheet" href="../../main.css"></link>
+  <script>
+  
+  state.Glint.status = 'invisible';
+    state.Valnos.status = 'invisible';
+	state.Ziggy.status = 'invisible';
+	
+	     
+	
+
+  
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+	  if (_.contains(state.chapter, "rotfur")) {
+		$(".rotfur").removeClass("hidden");
+	  }
+	  else {
+		$(".birdlice").removeClass("hidden");
+	  }
+
+
+     
+	  $("#side").removeClass("hidden");
+	 
+	//  $(".sideImage").attr('src', officer.nyxie.image)
+	//  $(".face4").attr('src', officer.keeper.image)
+	  
+    
+	  
+	  $('#leave').on('click', function() {
+		// change state here
+		state.chapter.push("sickness2")
+        // end by using lib.goTo
+		lib.goTo(state.destination[0] + '.html')
+        
+      })
+	  
+	  
+	  
+      })
+   
+	
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	img {
+	margin:auto;
+	}
+  </style>
+
+</head>
+<body>
+<div id="head">
+
+<h1>Sickness</h1>
+</div>
+<div id="side" class="">
+<img class="sideImage" src="../Images/assets/Daisy.png"></img>
+</div>
+<div id="sideb" class="hidden">
+   <img class="face4"  src="">
+</div>
+
+<div id="story-text">
+
+<p>A nurse from the groomery comes to visit. Nurse Daisy, who tutors attentively under Pouch-Matron Elda to one day be a capable Pouch-Matron herself. I’ve been under her expert ministrations a few times when visiting the groomery, I have no doubt she will. <br>
+“Daisy, what can I do for you?” <br>
+“Captain.” Daisy nods in greeting and steps in as I step aside. “I have some unfortunate news.” <br>
+“What’s the matter Daisy?” I raise my brow and have her sit down. <br>
+“There’s a sickness spreading among the crew. The cases have gone from a few individuals to several in just a short time. ” <br>
+“What’s ailing them?” I tensed. Daisy, from what I understood, was a bit of a disease expert, I understood why Elda sent her instead of herself. <br>
+
+<div class="birdlice hidden">
+“It’s birdlice. I know it’s not really a sickness per say, but it needs to be treated as one.” Daise frowned. <br>
+“Lice? Really? I thought all crewmembers are thoroughly checked before departure, why now suddenly?” I frown, suddenly I can't help but feel itchy. <br>
+“We must have picked it up very recently. On the last few island we visited or so, I am not sure. Either way, birdlice are not native to our continent. They attack the wings first but then spread inward.” Daisy explained while motioning along her own wing. <br>
+“What needs be done?” I shuddered. <br>
+“We need to start early, check all of the crew and then start trying to split those afflicted from those who are not, put them on separate shifts from one another to start with. We have methods of delousing of course, but the problem with birdlice is that it takes a long time and their eggs are hard to find.” Daisy explained patiently. <br>
+“I will agree to your recommendations course, you can coordinate with officer Mirr about the shifts.” I nod severely. <br>
+“Thank you Captain! It’s just a few cases still, but these things are best acted upon quickly.We have some scented oils which can be used to slightly repel bird lice, but it's meant for other parasites and we do not have enough to go around for the whole crew. Just the officers and groomery nurses.” <br>
+</div>
+<div class="rotfur hidden">
+“It’s Rotfur Captain. It’s a type of fungus that sets into the undercoat. If untreated, it becomes increasingly problematic.” <br>
+“Where did we get this from?” I frown, unable to help feeling itchy. <br>
+“It comes from not drying and grooming your coat properly after you get soaked down to the undercoat. It almost certain it came from the prolonged exposure to water many Awes had when we were stuck at the sandbanks Captain. There must have been some kind of bloom and the spores were in the water.” Daisy explained. <br>
+“I see, ofcourse. This is bad news.” I cross my arms and huff a breath. <br>
+“Once Rotfur sets in, it takes time to treat. It’s quite stubborn. What’s worse, its infectious before symptoms like itch are felt as the spores are released with shed fur. The deeper it sets in, the more you start to shed and itch.” Daisy frowned and nibbled at the claws of her red paws anxiously. <br>
+“What do you recommend?” I ask her, hopefully she has a plan. <br>
+“Have all the crew checked, Isolate the ones afflicted while they’re treated. There are some oils we can distribute that will prevent infection, but not enough to go around. We can supply it to the officers and us groomery nurses of course.”</p>
+</div>
+<p>The Crew would grumble at the measures, as they always do at anything inconvenient, even if it’s for their own good. I saw now reason not to take Daisys word for what’s best however.</p>
+</div>
+<div id="tail">
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+<button class="btn btn-default" id="leave"> Continue </button>
+
+<span id="cadetButtons"> </span>
+<script>
+
+</script>
+</div>
+
+
+</body>
+</html>

@@ -6,7 +6,7 @@
 
   <link rel="stylesheet" href="../main.css"></link>
 
-  <script src="../jquery-2.1.3.js"></script>
+  <script src="../jquery-3.2.1.js"></script>
   <script src="../underscore.js"></script>
 	<script src="../bootstrap.min.js"></script>
  <link rel="stylesheet" href="../bootstrap.min.css"></link>
@@ -16,14 +16,14 @@
   <script src="../officers.js"></script>
   <link rel="stylesheet" href="../main.css"></link>
   <script>
-  state.events.push("toziggy")
+ 
 		state.Glint.status = "available"
 		state.Valnos.status = "available"
 		state.Ziggy.status = "available"
 	$(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
-      $("#Ziggy").addClass("belly")
+    
       $('#button-1').on('click', function() {
         // change state here
         // end by using lib.goTo

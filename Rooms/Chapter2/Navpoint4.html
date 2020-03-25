@@ -31,6 +31,18 @@
 }
  
 */ 
+state.destination[0] = 'Navpoint4'
+
+if (_.contains(state.chapter, "sickness") && state.chapter.indexOf("sickness2") == -1) {
+  lib.goTo('Sickness.html')
+}
+if (state.chapter.indexOf("angryTick") == -1) {
+  lib.goTo('Tick.html')
+}
+
+
+
+
 	state.visited.push("Navpoint4");
 	var Navpoint4 = [];
     state.Glint.status = 'available';

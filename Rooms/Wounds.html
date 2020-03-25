@@ -6,7 +6,7 @@
 
   <link rel="stylesheet" href="../main.css"></link>
 
-  <script src="../jquery-2.1.3.js"></script>
+  <script src="../jquery-3.2.1.js"></script>
   <script src="../underscore.js"></script>
 	<script src="../bootstrap.min.js"></script>
  <link rel="stylesheet" href="../bootstrap.min.css"></link>
@@ -17,9 +17,54 @@
   <link rel="stylesheet" href="../main.css"></link>
   <script>
 	  state.Ziggy.status = 'invisible';
+	  state.Glint.status = 'invisible';
+	  state.Valnos.status = 'invisible';
+	  
 	
 	state.injuries += 1;
+	
+		
+	if (offList.deadRoster.indexOf("Tung") == -1) {
+	officer3 = [officer.mirr, officer.garsch, officer.tung]
+		
+		$("#tungtext").removeClass("hidden")
+		}
+		else {
+		
+		officer3 = [officer.mirr, officer.garsch, officer.melon]
+		
+		}
+
+	function officerIntros(x) {
+		
+		if (officer3[x].name == 'Mirr') {
+			
+			return "Mirr the amicable Crew-Officer"
+			
+		}
+				
+		if (officer3[x].name == 'Garsch') {
+			return "Garsch the experienced Arms-Officer"
+		}
+		
+		if (officer3[x].name == 'Tung') {
+			return "Tung the spirited Arms-Officer"
+		}
+		if (officer3[x].name == 'Melon') {
+			return "Wait... MELON!?"
+		}
+	}	
+	
     $(document).ready(function() {
+	
+	if (state.injuries >= 2 ) {
+	 $('#injuryProne').removeClass('hidden');
+	 }
+	 else {
+		$('#injuryFirst').removeClass('hidden');
+		$("#safe").addClass("hidden")
+		}
+
 	
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
@@ -32,15 +77,21 @@
 	  }
 	  
 	  
+	  
 	    $('#safe').on('click', function(e) {
 		lib.dialogue(e, "safe"),
-		
+		 $("#side").removeClass("hidden") 
+		$("#image").removeClass("hidden")
+		$("#image").attr('src', 'Images/assets/Eldaface.png');
 		$("#safe").addClass("hidden")
 		$("#duty").addClass("hidden")
 		$("#restart").removeClass("hidden")
       })
 	  
       $('#duty').on('click', function(e) {
+	  	 $("#side").removeClass("hidden") 
+		$("#image").removeClass("hidden")
+		$("#image").attr('src', 'Images/assets/Eldaface.png');
 		lib.dialogue(e, "duty"),
 		
 		$("#duty").addClass("hidden")
@@ -48,7 +99,10 @@
 		$("#answers").removeClass("hidden")
 			
       })
+	  
 	    $('#answers').on('click', function(e) {
+		
+		$("#image").addClass("hidden")
 		 if (_.contains(state.battle, "explosion")) {
 		
 		lib.dialogue(e, "answersE")
@@ -56,32 +110,23 @@
 	  else {
 		lib.dialogue(e, "fight")
 	  }
-		
-		$("#button-2").removeClass("hidden")
+	  
+	  	$("#button-2").removeClass("hidden")
 		$("#answers").addClass("hidden")
-			
-      })
+		$("#side").addClass("hidden")
 		
-		$('#resignation').on('click', function() {
-        // change state here
-        // end by using lib.goTo
-        lib.dialogue(e, "resignation")
-		$("#resignation").addClass("hidden")
-		$("#button-2").removeClass("hidden")
-		})
-	
 	if (_.contains(state.events, "arn")) {
 	 $('.arn').removeClass('hidden');
 	 }
 	 else if (_.contains(state.events, "mirr")) {
 		$('.mirr').removeClass('hidden');
 		$("#button-2").addClass("hidden")
-		$("#resignation").removeClass("hidden")
+		$("#resign").removeClass("hidden")
 	}
 	else if (_.contains(state.events, "nyxie")) {
 		$('.nyxie').removeClass('hidden');
 		$("#button-2").addClass("hidden")
-		$("#resignation").removeClass("hidden")
+		$("#resign").removeClass("hidden")
 	}
 	else if (_.contains(state.events, "garsch")) {
 		$('.garsch').removeClass('hidden');
@@ -89,6 +134,111 @@
 	else if (_.contains(state.events, "tung")) {
 		$('.tung').removeClass('hidden');
 	}
+	
+					
+      })
+		
+			
+	
+	 $('#promotion').on('click', function(e) {
+		
+		 createOfficer4(officer3);	
+		if (officer3[2].name == "Tung") {
+		$("#officer2").removeClass("hidden");
+		$(".tungtext").removeClass("hidden");
+		
+		}
+		else {
+		$("#officerObject2.officerObjects").toggleClass("hidden")
+			
+		}
+		officerButtonNames() 
+		lib.dialogue(e, "promotion"),
+		$("#officer0").removeClass("hidden");
+		$("#officer1").removeClass("hidden");
+		$("#promotion").addClass("hidden");
+		$("#side").addClass("hidden");
+		$(".nyxie").addClass("hidden");
+		
+	})
+	
+		
+		
+		
+		$('#resign').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+        lib.dialogue(e, "resignation")
+		$("#resign").addClass("hidden")
+		$("#officerObject2").addClass("hidden")	
+		$(".face").addClass("hidden")
+		if (offList.firstOfficer[0].name == "Mirr") {
+		$(".mirr").addClass("sideImage")
+		$('.mirr').removeClass('hidden');
+		 $("#side").removeClass("hidden") 
+		$("#image").removeClass("hidden")
+		$("#image").attr('src', "Images/assets/Mirr.png");
+		$("#button-2").removeClass("hidden")
+		}
+		else if (offList.firstOfficer[0].name == "Nyxie") {
+		$(".nyxie").addClass("sideImage")
+		$('.nyxie').removeClass('hidden');
+		$("#promotion").removeClass("hidden")
+		 $("#side").removeClass("hidden") 
+		$("#image").removeClass("hidden")
+		$("#image").attr('src', "Images/assets/Nyxie.png");
+		}
+		
+		else {
+		$("#button-2").removeClass("hidden")
+		}
+		})
+		
+		
+		$('#officer0').on('click', function(e) {
+		
+		offList.firstOfficer[0] = officer.mirr;
+		lib.dialogue(e, "mirr2"),
+		offList.firstOfficer[0].image = "../" + offList.firstOfficer[0].image
+		$(".btn").addClass("hidden")
+		$("#image").removeClass("hidden")
+		$("#button-2").removeClass("hidden");
+		$("#side").removeClass("hidden")
+		$("#image").attr('src','Images/assets/Mirr.png');
+	})
+	  
+	    $('#officer1').on('click', function(e) {
+		
+		offList.firstOfficer[0] = officer.garsch;
+		lib.dialogue(e, "garsch2"),
+		offList.firstOfficer[0].image = "../" + offList.firstOfficer[0].image
+		$(".btn").addClass("hidden")
+		$("#image").removeClass("hidden")
+		$("#button-2").removeClass("hidden");
+		
+		$("#side").removeClass("hidden")
+		$("#image").attr('src','Images/assets/Garsch.png');
+	})
+	
+	 $('#officer2').on('click', function(e) {
+		
+		offList.firstOfficer[0] = officer.tung;
+		lib.dialogue(e, "tung2"),
+		offList.firstOfficer[0].image = "../" + offList.firstOfficer[0].image
+		$(".btn").addClass("hidden")
+		$("#image").removeClass("hidden")
+		$("#button-2").removeClass("hidden");
+		$("#side").removeClass("hidden")
+		$("#image").attr('src','Images/assets/Tung.png');
+	})
+	  
+	
+	
+	
+	
+	
+	
+	
 	
 		$('#button-2').on('click', function(e) {
         // change state here
@@ -113,6 +263,18 @@
   
   <style>
     /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	
+		.face {
+	margin: auto;
+	width: 50%;
+	
+	}
+	
+	.sideImage {
+	margin: auto;
+	width: 100%
+	}
+	
   </style>
 
 </head>
@@ -120,6 +282,12 @@
 <div id="head">
 <h1>Wounds</h1>
 </div>
+<div class="hidden" id="side">
+
+  <img class="sideImage hidden" id="image" src="Images/assets/Nyxie.png"/>
+</div>
+
+
 <div id="story-text">
 <p>The warm comforting embrace of a matrons pouch, its enough to bring an Awe back to her early childhood, when the world consisted of little more then a safe comforting cocoon of warmth and softness. Occasionally a soothing voice and purr would calm any other worries.</p>
 
@@ -136,6 +304,14 @@
 <button class="btn btn-default" id="safe">You are safe now, rest.</button>
 <button class="btn btn-default" id="duty">There are duties to fulfill.</button>
 <button class="btn btn-default hidden" id="answers">Answers</button>
+<button class="btn btn-default hidden" id="resign">Resignation</button>
+<button class="btn btn-default hidden" id="promotion">New First-Officer</button>
+
+
+<button class="btn btn-default hidden" id="officer0"> </button>
+<button class="btn btn-default hidden" id="officer1"> </button>
+<button class="btn btn-default hidden" id="officer2"> </button>
+
 <button class="btn btn-default hidden" id="button-2">Continue</button>
 
 <button class="btn btn-default hidden" id="restart">Just a dream? (restart page)</button>
@@ -144,14 +320,7 @@
 </div>
 
 <script>
-	if (state.injuries >= 1 ) {
-	 $('#injuryProne').removeClass('hidden');
-	 }
-	 else {
-		$('#injuryFirst').removeClass('hidden');
-		$("#safe").addClass("hidden")
-		}
-
+	
 
 </script>
 
@@ -251,7 +420,7 @@
 
 <span class="arnLives hidden">"Tick reported none of the damage received is critical, they have already plugged the worst of the breaches." Arn spoke gruffly, finally speaking up. "But he very firmly pointed out that we nearly bit the rot on this one."</span>
 
-<p> "We tried to recover as much of the enemy ship they could. But whatever worthwhile there had been had sunk to the bottom of the sea. Of the enemy crew there was unsuprisingly little trace." Officer<span class="arnLives hidden">Arn</span><span class="arnDead hidden">Nyxie</span>  spoke calmly.</p>
+<p> "We tried to recover as much of the enemy ship they could. But whatever worthwhile there had been had sunk to the bottom of the sea. Of the enemy crew there was unsuprisingly little trace." Officer<span class="arnLives hidden"> Arn</span><span class="arnDead hidden"> Nyxie</span> spoke calmly.</p>
 
 <p> The scout-master who had been lurking quietly on-foot in a corner spoke up. </p>
 
@@ -352,9 +521,11 @@ In that battle there. I was entirely overwhelmed. If you had not shouted at me w
 
 <p>“It was not the kindest first day for a First-Officer Nyxie. I understand you were overwhelmed.” I try to reassure her. </p>
 
-<p>“No captain, I do not want to do it, i-i-im so sorry! Im out of my depths, I only wish to sail, steer and navigate large beautiful ships! And its not fair to the crew to have someone like me in this position. If you want to demote me or punish me thats o-okay. I understand.” </p>
+<p>“No captain, I do not want to do it, i-i-im so sorry! I'm out of my depth, I only wish to sail, steer and navigate large beautiful ships! And its not fair to the crew to have someone like me in this position. If you want to demote me or punish me thats o-okay. I understand.” </p>
 
 <p>Nyxie lowered her head, as if to await my wroth and judgment. I can only exhale slowly and put a paw to her shoulder and squeeze gently. <br />
+
+<p>She seemed genuinely regretful but at the same time completely honest. It was just the way she was, she would have made a great First-Officer if she had wanted it. But her heart lay strongly with navigating and sailing, I had seen her behind the helm plenty, there was no denying her love for it.</p>
 </p>
 </div>
 <div class="mirr hidden">
@@ -368,8 +539,80 @@ In that battle there. I was entirely overwhelmed. If you had not shouted at me w
 “I know how to defend myself, I know where to cut and when to dodge. But after today... I do not have the spirit of battle. I cant be the one that tells others where to go bleed and perish, I do not have the heart and I hope you can respect that, my captain. I'm sorry.” </p>
 
 <p>She handed the First-officers insignia back at me, and stared into my eyes intently.</p>
+
+<p>Something in those eyes gave me pause as I was about to take the insignia from her, her paws too clutched it rather tighter than she probably realized. She did not want me to take it. <br>
+Her excuses had been just that, excuses. She had been through a difficult start and was now simply strongly doubting herself. <br>
+“No, Officer Mirr. I think I will not accept your resignation. I see a different Awe in you then you do. I think, with a little time, you will start to see her too.” <br>
+“Captain?” Officer Mirr quirked her head, her paw closed around the insignia slightly. She was looking momentarily perplexed before she sighed with a slight smile. <br>
+“I… Just joined the Admiralty to run away from responsibility. But it always seems to find me anyway. Perhaps, you’re right. Perhaps, I have to face this. But if I do an awful job, you best come pluck this thing away from me, okay?”</p>
 </div>
 </div>
+
+<div class="promotion hidden"><p><strong>Promotions</strong></p>
+
+<p>I have to promote a new First Officer, its best done as promptly as possible. <br>
+<div class="tungtext hidden">
+I have added Officer Tung to the choices. He has proven himself capable and unflappable in the previous battle. <br>
+</p>
+</div>
+<p><b>Mirr</b> knows the crew well and knows how to read people in general. She is a great negotiator and would have no problem keeping the peace on the ship and everyone satisfied. She has hidden qualities of leadership and courage in her that she's trying to hide. <br />
+Which brings me to her downside. She is for some reason hiding from greater responsibility, perhaps she feel content in her simple role as Crew Officer. She's also not the most martially adept officer we have.</p>
+
+<p><b>Garsch</b> has experience unlike any other. He's the oldest Officer aboard and has spent years training students in the Academy before he joined into this navy commission. He's unflappable and would be a stoic and reliable First-Officer. <br />
+Unfortunately, he's not very well liked among the crew. He drives them hard and has high expectations. His age might be a problem in the long-term, I cant shake the feeling this sudden assignment to sea is his last hurrah.</p>
+<div class="tungtext hidden">
+<p><b>Tung</b> is larger than most typical male Awes, he is brave, headstrong and has turned out to be obedient. He would be an unorthodox choice but has Garsches reccomendation and potential for growth. He thrives in martial action but can be quite chaotic and uncoordinated and he tends to try too hard to prove males can fight as well as females.</p>
+</div>
+
+<span class="theOfficer"></span>
+
+
+
+<br/>
+<script>
+officer.mirr.image = src="Images/assets/Mirr.png"
+officer.garsch.image = src="Images/assets/Garsch.png"
+officer.tung.image = src="Images/assets/Tung.png"
+officer.melon.image = src="Images/assets/Melon.png"
+
+
+$('#officerObject0').popover({title: officer3[0].name, content: officerIntros(0), trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject1').popover({title: officer3[1].name, content: officerIntros(1), trigger: "hover", placement: "top", container: "body"}); 
+$('#officerObject2').popover({title: officer3[2].name, content: officerIntros(2), trigger: "hover", placement: "top", container: "body"}); 
+
+</script>
+</div>
+
+
+<div class="tung2 hidden"><p><strong>Tung</strong></p>
+<p>“This is a bit sudden Captain. I mean, I accept and all. But you know, we haven't exactly seen eye to eye.” Tung stood straight and firm. He really was quite stout for a male Awe, there certainly was a lot of mountain blood in him. </p>
+
+<p>“I wont lie to you, you were not my first choice Tung. But you came recommended and I think I might have unfairly overlooked you before. Do you feel up for the job yourself?” </p>
+
+<p>“I do. I watched Arn do it, didn't seem that hard. I can do some things better.” Tung huffed, he certainly didn't lack confidence. </p>
+
+<p>“Very well then. With that kind of attitude you have a head-start.” I pinned the First-Officers insignias on his shoulders. “There'll be no more of that Soft-fur talk will there?” I fixed him with a hard glare. He looked right back and smirked. </p>
+
+<p>“Not with you, Captain.”</p>
+</div>
+
+<div class="garsch2 hidden"><p><strong>Garsch</strong></p>
+<p>“I understand your need for a First-Officer, Captain. A ship needs a clear chain of command, I will do my best to back you up.” The old Officer stood at attention. </p>
+
+<p>“You're the most reliable choice Garsch. I have confidence in you.” I pinned the First-officer insignia to his shoulder pads. </p>
+
+<p>“Thank you Captain. I shall perform my duty to you, the crew and the Admiralty.”</p>
+</div>
+
+
+<div class="mirr2 hidden"><p><strong>Mirr</strong></p>
+<p>“I you truly feel I'm the one you need to back you up, I accept the position.” Mirr nodded. “But I'll come out and say right away that I'm not cut out tactics and flinging a sword around.” She smiled bemused. </p>
+
+<p>“Firstly, you're not supposed to fling the sword. Secondly, I'm aware of this, but your other strengths more then make up for it, if only you'd let it.” I placed the first-officer insignia on her shoulder pad. </p>
+
+<p>“Very well captain.” She saluted and smiled solemnly. "I understand why you chose Nyxie, she is smart, smarter then she lets on. I'll try to fill a similar role as well as I can." </p>
+</div>
+
 
 <script>
 /*

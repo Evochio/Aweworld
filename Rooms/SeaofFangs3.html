@@ -6,7 +6,7 @@
 
   <link rel="stylesheet" href="../main.css"></link>
 
-  <script src="../jquery-2.1.3.js"></script>
+  <script src="../jquery-3.2.1.js"></script>
   <script src="../underscore.js"></script>
 	<script src="../bootstrap.min.js"></script>
  <link rel="stylesheet" href="../bootstrap.min.css"></link>
@@ -24,6 +24,22 @@
 	$(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
+	  if (_.contains(state.events, "noArn")) {
+	$('.noArn').removeClass('hidden');
+}
+	else {
+	$('.arn').removeClass('hidden');
+	}
+
+	if (state.delay < 2) {
+	$('.time').removeClass('hidden');
+}
+	else {
+	$('.late').removeClass('hidden');
+	}
+
+
+
       
       $('#bane').on('click', function(e) {
         lib.dialogue(e, "bane"),
@@ -137,9 +153,16 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>“Captain!” She saluted, paw over chest, always formal and close to protocol. It was a comforting trait. I nodded for her to speak.</p>
 
+<div class="late hidden">
 <p>“As you may well be aware we are severely behind schedule and at risk at missing our scheduled rendeuvouz.” She spoke calmly, no hint of criticism in her tone. Still I could not help but bristle slightly.</p>
 
 <p>“Keenly.” I responded with unintended icyness. Nyxie would not be mentioning this unless she had some sort of plan. She was a straightforward Awe.</p>
+</div>
+<div class="time hidden">
+	<p>“We are making decent time on our schedule!” She spoke cheerfully. “I’d be comfortable if we were more ahead of it however. One never knows what complications one might run into!” <br>
+		“Indeed.” I responded calmly, waiting for her to continue. There is likely a point to this. <br>
+		</p>
+</div>
 
 <p>“Well, with the current status of the tides, there's a chance for a possible short-cut.”</p>
 
@@ -191,12 +214,6 @@ Day: <span class="days"><script>displayDays()</script></span>
 <span class="noArn hidden"><p>If Nyxie kept up this kind of innitiative, i did not have to look long for a new First-Officer</p></span>
 
 <script>
-if (_.contains(state.events, "noArn")) {
-	$('.noArn').removeClass('hidden');
-}
-else {
-	$('.arn').removeClass('hidden');
-}
 
 
 </script>

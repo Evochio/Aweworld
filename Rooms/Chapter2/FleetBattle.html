@@ -776,13 +776,17 @@
 		else if (_.contains(battle, "deflect")) {
 		$(".weakSword").removeClass("hidden");
 		$("#roll").removeClass("hidden");
-		$("#special2").removeClass("hidden");	
+		if (_.contains(state.inventory, "boltthrower")) {
+		$("#special2").removeClass("hidden");
+		}
 		}
 		else if (state.injuries > 3 ) {
 		$(".injured").removeClass("hidden");
 		$("#roll").removeClass("hidden");
 		$("#holdblade").removeClass("hidden");
-		$("#special2").removeClass("hidden");	
+		if (_.contains(state.inventory, "boltthrower")) {
+		$("#special2").removeClass("hidden");
+		}	
 		}
 		else {
 		$(".winNormal").removeClass("hidden");
@@ -808,7 +812,9 @@
 			$(".Normal").removeClass("hidden");
 			$("#roll").removeClass("hidden");
 		$("#holdblade").removeClass("hidden");
-		$("#special2").removeClass("hidden");	
+		if (_.contains(state.inventory, "boltthrower")) {
+		$("#special2").removeClass("hidden");
+		}
 		}
 		 
 		lib.dialogue(e, "evade")
@@ -846,7 +852,7 @@
 	  
 	   $('#special2').on('click', function(e) {
           
-		lib.dialogue(e, "defense"),
+		lib.dialogue(e, "special2"),
         $(".btn").addClass("hidden");
 		
 		$("#boarding4").removeClass("hidden");
@@ -881,6 +887,9 @@
 		$("#boarding4").removeClass("hidden");
 		
 		}
+		else {
+		$("#restart").removeClass("hidden");	
+		}
 			
       })
 	  	 //////////////////////////personal fight End/////////
@@ -897,7 +906,7 @@
 		$(".duelwin").removeClass("hidden");
 		}
 		else if (_.contains(battle, "maintain") &&  boarding >= 4) {
-		$(".Winmaintain").removeClass("hidden");
+		$(".winMaintain").removeClass("hidden");
 		}
 		else if (_.contains(battle, "maintain") &&  boarding >= 2) {
 		$(".stalemate_").removeClass("hidden");
@@ -1089,7 +1098,7 @@ Normally smaller ships would be of little concern, but armed with the thunder-we
 <button class="btn btn-default hidden" id="chargeIn">Charge in, inside his range!</button>
 <button class="btn btn-default hidden" id="goad">Goad the blow, then counter!</button>
 <button class="btn btn-default hidden" id="special">(1-shot) Use personal Bolt-Thrower</button>
-<button class="btn btn-default hidden" id="defense">Defensive stance & Parries</button>
+<button class="btn btn-default hidden" id="defense">Defensive stance and Parries</button>
 <button class="btn btn-default hidden" id="evade">Evade and Counter</button>
 <button class="btn btn-default hidden" id="special2">(1-shot) Use personal Bolt-Thrower</button>
 <button class="btn btn-default hidden" id="roll">Roll aside</button>
@@ -1920,6 +1929,9 @@ I get nothing but a first-hand view of his deep glistening gullet as he hoists m
 <div class="vore hidden"><p><strong></strong></p>
 <p>I struggle in the tight hot gut of the enemy captain. Punching and cursing has no effect on the stomach walls however, they are quite deaf to my frustration. On the contrary, it suddenly thumps thumps audibly and physically against me as the Gator drums his filled belly and bellows a guttural cackle. <br>
 I can only hope that the battle is swinging into our favor without me and soon. My coat is already wet with goop and the hard churning walls are eagerly working me over ever more firmly.</p>
+<p>It becomes increasingly apparent that no help is coming, battle likely going poorly enough for the crew to be too busy to help.  I kick for as long as I can, but in the end I am too tired to struggle. It's easier to accept the might of the squeezing stomach around me and let it have me.</p>
+
+<p>Somewhere a thunderous belch quakes and vibrates my surroundings.</p>
 </div>
 
 <div class="disarm hidden"><p><strong></strong></p>

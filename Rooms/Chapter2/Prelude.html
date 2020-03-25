@@ -419,6 +419,7 @@
 	    $('#cadetsChoose').on('click', function(e) {
         // change state here
 		createOfficer4(cadetsq)
+		state.chapter.push("cadetsChoose");
         // end by using lib.goTo
 		lib.dialogue(e, "cadetsChoose")
 		$(".btn").addClass("hidden");

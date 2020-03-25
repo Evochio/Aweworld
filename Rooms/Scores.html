@@ -7,7 +7,7 @@
 
   <link rel="stylesheet" href="../main.css"></link>
 
-  <script src="../jquery-2.1.3.js"></script>
+  <script src="../jquery-3.2.1.js"></script>
   <script src="../underscore.js"></script>
 	<script src="../bootstrap.min.js"></script>
  <link rel="stylesheet" href="../bootstrap.min.css"></link>
@@ -69,6 +69,42 @@ $(".days").text(state.days);
 	
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
+	  if (_.contains(offList.deadRoster, "Arn")) {
+		$('.arnNo').removeClass('hidden');
+	
+		}
+	  else {
+		 $('.arn').removeClass('hidden');
+	  }
+	  
+	  if (_.contains(state.inventory, "intel")) {
+		$('.intel').removeClass('hidden');
+	
+		}
+	  else {
+		 $('.intelNo').removeClass('hidden');
+	  } 
+	  
+	if (_.contains(state.events, "digestTung")) {
+		$('.tungNo').removeClass('hidden');
+		}
+	else if (_.contains(offList.deadRoster, "Tung")) {
+		$('.tungNo2').removeClass('hidden');
+		}
+	  else  {
+		 $('.tung').removeClass('hidden');
+	  }
+	 
+	  if (_.contains(state.events, "noKeeper")) {
+		$('.keeperno').removeClass('hidden');
+	
+		}
+	  else {
+		 $('.keeper').removeClass('hidden');
+	  } 
+
+
+
      
 	   $("." + offList.firstOfficer[0].name).removeClass('hidden');
 
@@ -157,39 +193,7 @@ Morale points: <span class="morale"><script>displayMorale()</script></span> </p>
  
 
 
- if (_.contains(offList.deadRoster, "Arn")) {
-		$('.arnNo').removeClass('hidden');
-	
-		}
-	  else {
-		 $('.arn').removeClass('hidden');
-	  }
-	  
-	  if (_.contains(state.inventory, "intel")) {
-		$('.intel').removeClass('hidden');
-	
-		}
-	  else {
-		 $('.intelNo').removeClass('hidden');
-	  } 
-	  
-	if (_.contains(state.events, "digestTung")) {
-		$('.tungNo').removeClass('hidden');
-		}
-	else if (_.contains(offList.deadRoster, "Tung")) {
-		$('.tungNo2').removeClass('hidden');
-		}
-	  else  {
-		 $('.tung').removeClass('hidden');
-	  }
-	 
-	  if (_.contains(state.events, "noKeeper")) {
-		$('.keeperno').removeClass('hidden');
-	
-		}
-	  else {
-		 $('.keeper').removeClass('hidden');
-	  } 
+ 
 </script>
 </div>
 <div id="tail">

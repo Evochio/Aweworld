@@ -122,11 +122,9 @@
 		lib.goTo('Prelude-3.html')
 	  })
 	  $('#button-9').on('click', function() { 
-	  window.localStorage.clear();
-	  lib.goTo('../index.html')
-	  /*
-	  document.location.href = '../index.html'
-	  */
+		lib.clear();
+	    document.location.href = '../index.html'
+	  
 	  });
     })
   </script>

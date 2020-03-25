@@ -16,7 +16,18 @@
    <script src="../../officers.js"></script>
   <link rel="stylesheet" href="../../main.css"></link>
   <script>
-  
+  state.destination[0] = 'Themine'
+
+  if (_.contains(state.chapter, "sickness") && state.chapter.indexOf("sickness2") == -1) {
+	lib.goTo('Sickness.html')
+  }
+  if (state.chapter.indexOf("angryTick") == -1) {
+	lib.goTo('Tick.html')
+  }
+
+
+		
+
   	state.visited.push("Themine");
 	state.delay +=2;
 	
@@ -456,7 +467,7 @@
 		if (_.contains(Themine, "negotiate1") && (Themine.indexOf("choiceKeeper") == -1 && Themine.indexOf("choiceMirr") == -1)) {
 		lib.dialogue(e, "negotiateOption")
 		$("#sideb").removeClass("hidden");
-		$(".face4").attr('src','../Images/assets/KeeperFace.png');
+		$(".face4").attr('src',officer.keeper.image);
 		$("#mirr").removeClass("hidden");
 		$("#keeper").removeClass("hidden");
 		}
@@ -555,7 +566,7 @@
 		$("#mirr").addClass("hidden");
 		$("#keeper").addClass("hidden");
 		$("#sideb").addClass("hidden");		
-		$(".sideImage").attr('src','../Images/assets/KeeperFace.png');		
+		$(".sideImage").attr('src',officer.keeper.image);		
       })
 	  
 	  

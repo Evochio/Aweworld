@@ -169,7 +169,7 @@
 var offList = {
     activeRoster: [officer.arn, officer.keeper, officer.mirr, officer.nyxie, officer.ulv, officer.garsch, officer.elda, officer.ljus, officer.tung, officer.tick, officer.evok, officer.krel],
     fullRoster: [officer.valnos, officer.ziggy, officer.glint, officer.melon, officer.arn, officer.keeper, officer.mirr, officer.nyxie, officer.tick, officer.ulv, officer.garsch, officer.tung, officer.evok, officer.elda, officer.ljus,],
-	firstOfficer: [officer.garsch],
+	firstOfficer: [officer.arn],
 	deadRoster: []
 	
  }
@@ -271,7 +271,14 @@ offList = load('offData-'+lastPart2) || offList;
 			}
 		
 		}
+		if (offList.firstOfficer[0].name == (officer3[1].name || officer3[2].name)) {
+		
+		 officer3[0] = backupOfficer[2];
+		}
 	}
+	
+	
+				
 		
 	
 	

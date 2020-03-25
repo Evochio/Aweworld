@@ -86,12 +86,24 @@
         // change state here
         // end by using lib.goTo
 		lib.dialogue(e, "where"),
-        $("#destinations").removeClass("hidden");
+        $("#cadet").removeClass("hidden");
 		$("#where").addClass("hidden");
       })
 	  
-	    $('#destinations').on('click', function(e) {
+	  
+	   $('#cadet').on('click', function(e) {
         // change state here
+		$("#side").removeClass("hidden");
+        // end by using lib.goTo
+		lib.dialogue(e, "cadet")
+		$(".btn").addClass("hidden");
+        $("#destinations").removeClass("hidden");
+		
+      })
+	  
+	    $('#destinations').on('click', function(e) {
+        // change state 
+		$("#side").addClass("hidden");
         // end by using lib.goTo
 		lib.dialogue(e, "destinations"),
         $("#button-2").removeClass("hidden");
@@ -112,6 +124,8 @@
 		state.delay +=1
         // end by using lib.goTo
 		state.chapter[0] = ("Navpoint3");
+		
+		state.destination[0] = ("Navpoint3");
         lib.goTo('Navpoint3.html')
       })
 	  
@@ -139,7 +153,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 <h1>Thousand Islands</h1>
 </div>
 <div class="hidden" id="side">
- <img id="image" src="../Images/assets/Arnface.png"/>
+ <img id="image" src="../Images/assets/Tick.png"/>
 </div>
 
 <div id="story-text">
@@ -200,6 +214,9 @@ Day: <span class="days"><script>displayDays()</script></span>
 <button class="btn btn-default hidden" id="clear"> Clear library </button>
 <button class="btn btn-default hidden" id="delete"> Delete cookie </button>
 <button class="btn btn-default hidden" id="where"> Where is the fleet?</button>
+
+<button class="btn btn-default hidden" id="cadet">Cadet Tutoring</button>
+
 <button class="btn btn-default hidden" id="destinations">Destinations</button>
 <button class="btn btn-default hidden" id="button-2"> Navpoint 2 </button>
 <button class="btn btn-default hidden" id="button-3"> Navpoint 3 </button>
@@ -273,6 +290,14 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>This destination lays further away to the west by about 2 days.</p>
 
+</div>
+<div class="cadet hidden"><p><strong>Cadet tutoring</strong></p>
+<p>The Cadets need to be assigned tutoring with different Officers, it's important they get the chance to soak knowledge and experience from the many knowledgeable officers around the ship. <br>
+For a few half-day shifts a week, they should be working under a Officer of my choice. Due to their Academy training, they have a wide field of knowledge in a bit of everything, but real world experience is often different from what you were taught. <br>
+At some point, they will start to realize what their own strengths and weaknesses are and perhaps they might find a field they wish to specialize in further. <br>
+To start out, Officer Tick has made very clear indications that although he does not relish the idea of having three untested Cadets under his temporary command, they need some extensive training in the day to day operations of ships maintenance to meet his standards. <br>
+“Captain. I do not trust an officer that does not know how to run a ship without having it fall apart around them. The Cadet’s may have been taught the difference between a spanner and a hammer, but they are like infants when it comes to proper ship upkeep.” <br>
+“In that case I leave them in your patient and capable hands.” I told him and watched with bemusement as the Cadets, with heavy steps, were marched away by the short officer.</p>
 </div>
 
 <Script>

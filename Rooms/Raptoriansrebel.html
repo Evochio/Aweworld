@@ -6,7 +6,7 @@
 
   <link rel="stylesheet" href="../main.css"></link>
 
-  <script src="../jquery-2.1.3.js"></script>
+  <script src="../jquery-3.2.1.js"></script>
   <script src="../underscore.js"></script>
 	<script src="../bootstrap.min.js"></script>
  <link rel="stylesheet" href="../bootstrap.min.css"></link>
@@ -100,14 +100,15 @@
 	   $('#evokEaten').on('click', function(e) {
        lib.dialogue(e, "evokEaten"),
 	   state.inventory.push("evokBelly");
-	   removeOfficer(officer.Evok);
+	   removeOfficer(officer.evok);
 	   state.crewMorale += 1;
 	    state.rapNumber -= 1;
-	   state.vore += 2;
+		state.vore += 2;
 		state.crewLoss += 1;
         $("#evokEat").addClass("hidden")
 		$("#evokEaten").addClass("hidden")
 		$("#sentence").addClass("hidden")
+		
 		$("#button-4").removeClass("hidden")
 		
       })
@@ -157,7 +158,7 @@ Day: <span class="days"><script>displayDays()</script></span>
 
 <p>This whole gambling business was one head-ache after another. But this seemed to have been the final end of it. Now i just had to decide how to deal with the fall-out of it.</p>
 
-<p>13 Awes are missing, most likely digesting. First-officer Arn <span id="tung" class="hidden"> and Officer Tung among them</span>. I dont know which belly they might be in and no one is talking. As it looks, all Raptorians seem to be in on it, either directly or by not talking, their squires too. Evok too is being silent, but accepting full responsibility.</p>
+<p>13 Awes are missing, most likely digesting. First-officer Arn <span id="tung" class="hidden"> and Officer Tung</span> among them. I dont know which belly they might be in and no one is talking. As it looks, all Raptorians seem to be in on it, either directly or by not talking, their squires too. Evok too is being silent, but accepting full responsibility.</p>
 
 <p> Finding the culprits would be difficult, but in a way they all shared the guilt. That the gambling would escalate into such an outcome<span id="gamblingForbid" class="hidden">, despite my efforts to stop it, </span>was hard to predict. I feel slightly responsible for not having kept an eye on Arn or the growing discontent. But Arn had sure paid for his mistakes now.</p>
 <script>

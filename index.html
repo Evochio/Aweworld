@@ -38,7 +38,7 @@ localStorage.clear();
 
 	$('#button-1').on('click', function() {
 	  
-		localStorage.clear();
+		lib.clear();
         // change state here
         // end by using lib.goTo
         lib.goTo('Rooms/Intro.html')
@@ -59,12 +59,13 @@ localStorage.clear();
      
 	    $('#button-2').on('click', function() {
 		
-		localStorage.clear();
+		lib.clear();
 		
         // change state here
 
         // end by using lib.goTo
-        lib.goTo('Rooms/Ship_Crew.html')
+		document.location.href = 'Rooms/Ship_Crew.html'
+        //lib.goTo('Rooms/Ship_Crew.html')
 		
      
 	  })
@@ -82,7 +83,10 @@ localStorage.clear();
         // change state here
 
         // end by using lib.goTo
-        lib.goTo('Rooms/Chapter2/Chapter2.html')
+		lib.clear();
+		localStorage.clear();
+		document.location.href = 'Rooms/Chapter2/Chapter2.html'
+        //lib.goTo('Rooms/Chapter2/Chapter2.html')
 		
       })
 	  

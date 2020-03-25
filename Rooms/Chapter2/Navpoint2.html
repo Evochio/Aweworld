@@ -18,6 +18,15 @@
   
   <script>
 
+state.destination[0] = 'Navpoint2'
+
+ if (state.chapter.indexOf("raptorianMusic") == -1) {
+	lib.goTo('RaptorianMusic.html')
+  }
+
+
+
+
 		state.Glint.status = 'available';
 		state.Valnos.status = 'available';
 		state.Ziggy.status = 'available';
@@ -26,7 +35,7 @@
 state.visited.push("Navpoint2");
 var navpoint2 = [];
 officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
-  backupOfficer = [officer.tung, officer.garsch];
+  backupOfficer = [officer.tung, officer.garsch, officer.mirr];
    
    	function officerIntros(x) {
 		
@@ -202,7 +211,7 @@ officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
 	   $('#cadetQF').on('click', function(e) {
         navpoint2.push("forage");		
 		$("#side").addClass("hidden");
-		lib.dialogue(e, "CadetQF"),
+		lib.dialogue(e, "cadetQF"),
         $(".btn").addClass("hidden");
 		$("#raptorians").removeClass("hidden");
 		
@@ -416,7 +425,7 @@ officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
         // change state here
 		revealText();
         // end by using lib.goTo
-		if (_.contains(choiceOfficer, officer.arn)) {
+		if (choiceOfficer[0].name == "Arn") {
 		
 		$(".poorInvestigation").removeClass("hidden");
 			if (_.contains(state.locations, "Navpoint4")) {
@@ -432,7 +441,7 @@ officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
 			}
 			
 		}
-		else if (_.contains(choiceOfficer, officer.tung)) {
+		else if (choiceOfficer[0].name == "Tung") {
 		
 		$(".poorInvestigation").removeClass("hidden");
 			if (_.contains(state.locations, "Navpoint4")) {
@@ -442,7 +451,7 @@ officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
 		}
 		
 		
-		else if (_.contains(choiceOfficer, officer.tick)){
+		else if (choiceOfficer[0].name == "Tick"){
 		
 		$(".goodInvestigation").removeClass("hidden");
 		
@@ -453,7 +462,7 @@ officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
 				state.locations.push("Navpoint4");
 			}
 		}
-		else if (_.contains(choiceOfficer, officer.mirr)){
+		else if (choiceOfficer[0].name == "Mirr"){
 		
 		$(".goodInvestigation").removeClass("hidden");
 		
@@ -477,8 +486,14 @@ officer3 = [offList.firstOfficer[0], officer.garsch, officer.tick];
 		}
 		
 		if (_.contains(state.visited, "Navpoint3") && state.locations.indexOf("Navpoint4") == -1)  {
+			
+			if (_.contains(state.locations, "Gatormine")) {
+				$("#button-2").addClass("hidden");
+			}
+			else {
+				$("#button-2").removeClass("hidden");
+			}
 		
-		$("#button-2").removeClass("hidden");
 		}
 		else if (state.visited.indexOf("Navpoint3") == -1) {
 			$("#navpoint3").removeClass("hidden");
@@ -662,33 +677,6 @@ $('#officerObject2').popover({title: officer3[2].name, content: officerIntros(2)
 </script>
 </div>
 
-<!--
-<div class="clues2 hidden"><p><strong> Search for Clues</strong></p>
-<p> Poor investigation: </p>
-
-<p>The shacks appear to have been mostly used to keep objects rather then people dry from rain. There are signs and remains that reveal they have constructed severals barrels and containers and stocked up very well on water.</p>
-
-<p>One of the shacks were slightly better built then the others and appear to have housed someone in charge. Scratchings in the wood imply a lot of counting having been done. </p>
-
-<p>Awe lettering and fur found around the place make it no doubt that it was Awes who were here and not some others.</p>
-
-<p>Further investigation of the island show less sign of passage then expected. Whoever was here was not here long and focused on their tasks.</p>
-</div>
-<div class="clues3 hidden"><p><strong> Search for Clues</strong></p>
-<p> Good investigation </p>
-
-<p>The shacks appear to have been mostly used to keep objects rather then people dry from rain. There are signs and remains that reveal they have constructed severals barrels and containers and stocked up very well on water.</p>
-
-<p>One of the shacks were slightly better built then the others and appear to have housed someone in charge. Scratchings in the wood imply not only a lot of counting having been done, but also Admiralty code in what at first glance appeared to be random marks. </p>
-
-<p> The code is vague, but seems to refer to positional numbering used in latitudes on standard Admiralty charts. This gives us a pretty clear clue where they were headed next. </p>
-
-<p>Further investigation of the island show less sign of passage then expected. Whoever was here was not here long and focused on their tasks.</p>
-
-<p>It seems clear someone was not planning on resupplying any time soon again and made a big operation out of stocking up quick from the islands. Judging by how cleaned up and little was left around, I suspect that although it was done under efficient haste rather then under any duress. It is likely the fleet used their supplies to move deeper into Thousand Island without having to have to worry for stops. </p>
-
-</div>
--->
 <div class="officerDiag hidden">
 <div class="ArnO hidden"><p><strong> Search for clues</strong></p>
 <p> <span class="title"></span> Arn spreads the crew thin trying to examine as much of the island as possible at the time alloted to him. Soon Awes are coming and going with reports, but he seems to have everything under control. </p>

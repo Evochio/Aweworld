@@ -23,17 +23,25 @@
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
+	  	if (_.contains(state.events, "eatArn")) {
+	 $('.noarn').removeClass('hidden');
+	 }
+	 else {
+		$('.arn').removeClass('hidden');
+	}
       
       $('#button-1').on('click', function() {
         // change state here
         // end by using lib.goTo
-        lib.goTo('../index.html')
-		localStorage.clear()
+		
+		document.location.href = '../index.html'
+		
       })
 		$('#button-2').on('click', function() {
         // change state here
         // end by using lib.goTo
-         goBack();
+        document.location.href = 'Flock-confront.html'
+		// goBack();
 		})
     
     })
@@ -102,16 +110,11 @@
 </div>
 
 <script>
-	if (_.contains(state.events, "eatArn")) {
-	 $('.noarn').removeClass('hidden');
-	 }
-	 else {
-		$('.arn').removeClass('hidden');
-	}
+
 </script>
 <div id="tail">
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
-<button class="btn btn-default" id="button-1">Back to the start</button>
+<button class="btn btn-default" id="button-1">Back to the start </button>
 <button class="btn btn-default" id="button-2">Retry Event</button>
 </div>
 </body>
