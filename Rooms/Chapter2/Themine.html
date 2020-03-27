@@ -41,7 +41,7 @@
 	state.Ziggy.status = 'available';
 	
 	officer3 = [officer.evok, officer.mirr, officer.tick];
-	  backupOfficer = [officer.tung, officer.garsch]
+	  backupOfficer = [officer.garsch]
    
    
    	function officerIntros(x) {
@@ -119,7 +119,36 @@
 			
 		}
 		if (officer3[x].name == 'Garsch') {
+
+		
+			if (_.contains(Themine, "evokEaten")) {
+
 			return "I do not reccomend further assaults. Morale is low and even if we might succeed, it will be too costly."
+			}
+		else if (_.contains(Themine, "assault3")){
+		
+		return "I am sorry Captain, I am unable to persuade the Raptorians to attack anymore."
+	}
+			
+		else if (_.contains(Themine, "special2") || _.contains(Themine, "special3")) {
+		
+		return "The mine entrance is cleared, we can proceed."
+	}
+		else if (_.contains(Themine, "special") && Themine.indexOf("cadetDiscovery") == -1) {
+		return "The Entrance is blocked. I have the Raptorians on hold until further notice."
+	}	
+		else if (_.contains(Themine, "cadetDiscovery") && _.contains(Themine, "special") &&  (Themine.indexOf("special2") == -1 && Themine.indexOf("special3") == -1)) {
+		return "We can assault through the alternate passage, it's a tight fit however."
+	}	
+		else if (_.contains(Themine, "cadetDiscovery")) {
+		return "With two openings we can attack from two sides. Shall I order the assault?"
+	}	
+	
+		else {
+		return "Talk to me and I'll show you the assault plan."
+		}
+
+			
 		
 			}
 	}
@@ -139,6 +168,13 @@
 		
 		}
 		*/
+			if (officer3[0].name == 'Garsch') {
+			$(".GarschText").removeClass("hidden");
+	}
+	else {
+		$(".EvokText").removeClass("hidden");
+	}
+		
 
 		if (_.contains(state.battle, "explosion")) {
 			$(".explode").removeClass("hidden");
@@ -368,6 +404,9 @@
         $("#options").addClass("hidden");
 		 $("#decline").addClass("hidden");
 		
+		if (_.contains(Themine, "assault4") && officer3[0].name == 'Garsch') {
+		$("#officer0").addClass("disabled");
+		}
 		if (_.contains(Themine, "assault4")) {
 		$("#officer0").addClass("disabled");
 		}
@@ -403,7 +442,9 @@
 		else {
 		
 		$(".btn").addClass("hidden");
-		
+		if (_.contains(Themine, "assault4") && officer3[0].name == 'Garsch') {
+		$("#officer0").addClass("disabled");
+		}
 		if (_.contains(Themine, "assault4")) {
 		$("#officer0").addClass("disabled");
 		}
@@ -432,9 +473,24 @@
 		$(".assault2b").addClass("hidden");
 		$(".assault3b").addClass("hidden");
 		
+		
+		$("#decline").removeClass("hidden");
+		
+		$("#officer0").addClass("hidden");
+		$("#officer1").addClass("hidden");
+		$("#officer2").addClass("hidden");
+		$("#depart").addClass("hidden");
+		
 		if  (_.contains(Themine, "assault3")) {
+			
+			if  (officer3[0].name == 'Evok') {		
 			$("#assault4").removeClass("hidden");
 			$(".assault3b").removeClass("hidden");
+			}
+			else {
+				$("#decline").addClass("hidden");
+				$("#options").removeClass("hidden");
+			}
 		}
 		else if (_.contains(Themine, "assault2")) {
 			$(".assault2b").removeClass("hidden");
@@ -449,12 +505,6 @@
 		}
 		
         lib.dialogue(e, "officer0")
-		$("#decline").removeClass("hidden");
-		
-		$("#officer0").addClass("hidden");
-		$("#officer1").addClass("hidden");
-		$("#officer2").addClass("hidden");
-		$("#depart").addClass("hidden");
 		
       })
 	  
@@ -608,11 +658,10 @@
 	   $('#assault3').on('click', function(e) {
         // change state here
 		Themine.push("assault3");
-		state.crewLoss += 12;
-		state.rapNumber -= 3; 
+		
 		 time += 1;
         // end by using lib.goTo
-		if (_.contains(Themine, "cadetDiscovery") && (_.contains(Themine, "special2") || _.contains(Themine, "special3")) && _.contains(Themine, "assault")){
+		if (_.contains(Themine, "cadetDiscovery") && (_.contains(Themine, "special2") || _.contains(Themine, "special3")) && (_.contains(Themine, "assault") || officer3[0].name == 'Garsch')){
 		state.crewLoss += 5;
 		state.rapNumber -= 1; 
 		lib.dialogue(e, "assault5")
@@ -624,7 +673,8 @@
 		 state.inventory.push("thunderweapon");
 		}
 		else {
-		
+		state.crewLoss += 12;
+		state.rapNumber -= 4; 
 		lib.dialogue(e, "assault3")
 		$("#assault3").addClass("hidden");
 		$(".assault3Text").removeClass("hidden");
@@ -662,6 +712,7 @@
 			$("#options").removeClass("hidden");
 			officer3[0] = officer.garsch;
 			removeOfficer(officer.evok)
+			Themine.push("evokEaten");
 			
 		}
         // end by using lib.goTo
@@ -1669,6 +1720,7 @@ $('#officerObject2').popover({title: officer3[2].name, content: officerIntros(2)
 
 <div class="officer0 hidden"><p><strong></strong></p>
 <div class="assaultb hidden">
+	<div class="EvokText hidden">	
 <p>I listen to Evoks plan. Though he by no means delivers as detailed plans as some of my other Officers, not to speak of his lack of written documentation. His kind are excellent at breaking defenses so he seems like the right tool for the job.</p>
 
 <p>“The pack can attack. Break through barricade, force inside, Awe assist gaps. Will take few attempts, some will be hurt. Win in the end.”</p>
@@ -1678,24 +1730,53 @@ $('#officerObject2').popover({title: officer3[2].name, content: officerIntros(2)
 <p>His plan was not as simple as I thought it to be. He had put quite a bit of thought into formation and composition of his attack force as well as specific armor and armament. <br>
 The attack seems in good hands.</p>
 </div>
-
+<div class="GarschText hidden">	
+<p>Garsch meets me with a assembled ring of senior Raptorians. <br>
+Since Packmaster Evok is ‘absent’, the leadership of the Raptorians have been in slight flux. <br>
+It’s not easy to pick a new Packmaster it turns out as it takes the Raptorians having the ability to fight it out amongst themselves to choose one, or rather, for one to rise above the rest.<br>
+So far, they have been able to manage and Garsch is experienced with discipline, so while they don't directly serve under him, they listen to him. <br>
+Grasch's plan is not very advanced, Raptorians don’t do well with complicated plans. The plans and distribution of armaments and armor however quite extensive. <br>
+“Give the Raptorians the right tools and they generally do the right job.” He concludes.</p>
+</div>
+</div>
 <div class="assault2b hidden">
+<div class="EvokText hidden">	
 <p>“We attack again? Still have strength.“ Evok rumbled in inquiry as I approached him.</p>
 
 <p>Several of his Raptorians rouse from their rest. Looking my way with interest.</p>
 </div>
+<div class="GarschText hidden">	
+<p>“The Raptorians are ready for another assault Captain. Just give the orders.” Garsch looked a bit out of place in their midst. The big Raptorians seemed to perk up with eager interest, ready to go again.</p>
+</div>
+</div>
 <p></p>
 <div class="assault3b hidden">
-<p>It is a beaten up troop of attackers that meet my approach, Raptorian and Awe both. But they seem like they still have some fight left in them.</p>
 
+<div class="EvokText hidden">	
+<p>It is a beaten up troop of attackers that meet my approach, Raptorian and Awe both. But they seem like they still have some fight left in them.</p>
 <p>Evok nods at me, waiting for the order to attack again. <br>
 “We finish it, last push. No more places for Gator to hide, no more traps, Evok ready.”</p>
 </div>
+<div class="GarschText hidden">	
+<p>It is a dejected looking bunch of Raptorians, all of them are hurt from fighting down in the tunnels, some more then others, all of them dirty and ragged.<br>
+Garsch stands among them, he’s not looking too perky himself. At my approach he walks up to meet me. <br>
+“Captain, I am unable to mount another assault. The Raptorians wont move.” Garsch looked a little frustrated, but otherwise kept his cool demeanour. <br>
+“I know the defenders down in the mine likely are on their last legs, but we cannot be sure if they have more ammunition for their Thunder-weapon. The threat of another point-blank shot has spooked them. Without a Packmaster, we are unlikely to get them moving.” He explained. <br>
+I sigh, it seems this avenue of attack is closed. <br>
+</p>
+</div>
+</div>
 
 <div class="cadetDiscovery3 hidden"><p>
+	
 With the alternative entrance to the mine, we can push from two directions at once. <br>
+<div class="EvokText hidden">	
 Evok has divided up the attack force accordingly. <br>
 “Before, Cave tunnel tight, hard to fight and trade places. Not so big problem problem.”</p>
+</div>
+<div class="GarschText hidden">	
+<p>“With a two-pronged assault it won’t be long until they’re overwhelmed. The Raptorians had problems maneuvering and fighting abreast before, but now we don’t have to cram them all down the same passage. “ Garsch explained.</p>
+</div>
 </div>
 </div>
 
@@ -1833,6 +1914,7 @@ Some unlucky pirates who had been digging were not as lucky and the ones who wer
 </div>
 
 <div class="assault2 hidden"><p><strong></strong></p>
+<div class="EvokText hidden">	
 <p>I let Evok take charge. They take their time getting ready, putting on their heaviest armor with the help of their diligent attendant squires who run back and forth between the armory of the ship and the camp.</p>
 
 <p>The attack in the end is sudden and violent. They charge the barricades as one, growling and snarling, bodily smashing through the sharpened stakes, mounds of rocks and wall of spears and projectiles.</p>
@@ -1851,11 +1933,27 @@ He reports stoically, his armor sporting quite a few dents and rends.</p>
 
 <p>“Pack is dent and bruise. 2 hurt that need rest. One fallen, might recover, might be meat.”</p>
 
-<p>That still leaves a full compliment for the next assault. Plus the Awe troopers he thinks he needs.</p>
+<p>That still leaves a full complement for the next assault. Plus the Awe troopers he thinks he needs.</p>
+</div>
+<div class="GarschText hidden">	
+<p>I let Garsch proceed with his plans. The Raptorians take their time getting ready, putting on their heaviest armor with the help of their diligent attendant squires who run back and forth between the armory of the ship and the camp.<br>
+The attack in the end is sudden and violent. They charge the barricades as one, growling and snarling, bodily smashing through the sharpened stakes, mounds of rocks and wall of spears and projectiles.<br>
+It seems at first as if they have taken the Mine pirates by surprise, they seem to break through quite a distance, most of them disappearing down into the gloom of the mine<br>
+A troop of armored Awe with Garsch in charge soon charge in after them as soon as there is space.<br>
+But the Awes suddenly dash out again as soon as they went inside, dodging aside as the Raptorians come hurrying back. I see one limping heavily while another is being dragged, looking lifeless, by his compatriots. The last ones out holding back counter attack of some sorts with snarling swipes of their weaponized tails. The Pirates withdraw before getting too close to the entrance however, I do hear the bellowing of someone in charge of them.</p>
 
+<p>The first assault did not succeed. But neither did anyone quite expect it would. <br>
+Garsch gives his brief report. <br>
+“Seems they have many choke points ahead and the Raptorians have a bit of problems pushing through. I have some ideas how to deal with that, I’ll go earlier with some Awe troops next time.“<br>
+“How many wounded?” I ask<br>
+“Surprisingly few considering the lack of packmaster, 2 wounded and one fallen. They seemed to remember my warning not to commit to the assault too hard.” <br>
+That still leaves a full complement for the next assault. Plus the Awe troopers he thinks he needs.<br>
+</p>
+</div>
 </div>
 
 <div class="assault3 hidden"><p><strong></strong></p>
+<div class="EvokText hidden">	
 <p>The Raptorians are gearing up to attack again. This time several squads of armed and armored Awe among them. My Arms officer is coordinating them and will be participating as backup. But overall command lays with Evok for this operation. <br>
 It’s unusual for a non-Awe to command Awes, but in this case, he’s the expert breaker of defenses. I trust his expertise.</p>
 
@@ -1874,7 +1972,26 @@ This time the accompanying Awes hurry in sooner and faster, a clear goal in mind
 
 <p>While many injured Awes are being carried down to the ship, the Raptorians took the brunt of the casualties. They are hardy and while many of them will survive, it will be a long time until some of them can fight again, if at all. But by the sound of it the Pirates took it worse down there. <br>
 The prize of getting our paws on one if their weapons is near.</p>
+</div>
+<div class="GarschText hidden">	
+<p>The Raptorians are gearing up to attack again. This time several squads of armed and armored Awe among them. Garsch is coordinating them and will be participating and be in overall command.</p>
 
+<p>At a signal they rush inside once more, same ferocity and speed as before. Echoes of snarls and clanks and clangs of weapons hitting armor grow fainter as the fighting proceed deeper into the cave. <br>
+This time the accompanying Awes hurry in sooner and faster, a clear goal in mind. I wish them fortune as they disappear into the gloom.<br>
+It’s a nervous wait. Occasionally a injured Raptorian staggers out of the cave, no longer able to contribute in the tight tunnels and having been ordered back. There are Awes being carried out too.</p>
+
+<p>Then there’s a tremendous shaking ‘THOOM’ from within the cave, followed by a cloud of dust.</p>
+
+<p>Raptorians and Awe emerge, covered in dust, dragging with them wounded and incapacitated compatriots. It’s a similar retreat from before. This time the amount of casualties were rougher than last time. Several of the fighters collapse from exhaustion at the sides of the mine entrance.</p>
+
+<p>A dust covered Garsch delivers the report. He is wearing armor and though it does not look scratched it’s plenty stained. <br>
+“They had a surprise for us in the final chamber, they dared fire the Thunder-Weapon inside the mine. Before that things were going well, despite their many ambushes.” <br>
+“Are you okay Garsch?” <br>
+“Huh? Sorry Captain, ears ringing. Yes, I am fine. I am sure the hearing will recover.”<br>
+While many injured Awes are being carried down to the ship, the Raptorians took the brunt of the casualties. They are hardy and while many of them will survive, it will be a long time until some of them can fight again, if at all. But by the sound of it the Pirates took it worse down there. <br>
+The will to fight seem to have gone out most of the troops, especially the Raptorians. The loud explosion and claustrophobic has spooked them.<br>
+</p>
+</div>
 </div>
 
 
@@ -1917,6 +2034,7 @@ I fruitlessly seek Evok for a report. It seems however, the gator commanders squ
 </div>
 
 <div class="assault5 hidden">
+<div class="EvokText hidden">	
 <p>The Raptorians are gearing up to attack again. This time several squads of armed and armored Awe among them. My Arms officer is coordinating them and will be participating as backup. But overall command lays with Evok for this operation. <br>
 It’s unusual for a non-Awe to command Awes, but in this case, he’s the expert breaker of defenses. I trust his expertise.</p>
 
@@ -1937,6 +2055,23 @@ This time the accompanying Awes hurry in sooner and faster, a clear goal in mind
 <p>“Victory, Captain. Mine is clear, pirates are our strength now.”</p>
 
 <p>I do not bother asking about high-ranking prisoners.</p>
+</div>
+<div class="GarschText hidden">	
+<p>The Raptorians are gearing up to attack again. This time several squads of armed and armored Awe among them. Garsch is coordinating them and will be participating and be in overall command.</p>
+
+<p>The broadened cave entrance provides more tactical options and it looks like the Raptorians are hoping to crush them with numbers, able to fit more into the front of a charge overall.<br>
+Meanwhile on the far side of the peak, a second force is gearing up to push in at the weakened Pirates. Considering our first island assault there can't be many left in the mines able to defend against such a heavy two pronged attack.<br>
+At a signal they rush inside once more, same ferocity and speed as before. Echoes of snarls and clanks and clangs of weapons hitting armor grow fainter as the fighting proceed deeper into the cave. <br>
+This time the accompanying Awes hurry in sooner and faster, a clear goal in mind. I wish them fortune as they disappear into the gloom.<br>
+It’s a nervous wait. Occasionally a injured Raptorian staggers out of the cave, no longer able to contribute in the tight tunnels and having been ordered back. But the flow of wounded seem light.<br>
+It is a considerable time later, with occasional messengers rushing back and forth to relay news, that the majority of the Assault troop returns together. Many of them appear quite well-fed, bellies sagging with conquered foes. Even the occasional Awe is helped along with similar prize in their belly. <br>
+ Behind them they are dragging the grand prize however, a tube of metal. The thunder weapon.<br>
+Garsch emerges, he looks tired and haggard, like the years caught up with him. He must have fought hard in there and it shows on the wear of his armor. <br>
+“They are beaten. The Raptorians alas went out of control in their victory and had a bit of a feeding frenzy. There will be no prisoners Captain.” He explained. <br>
+“You’ve done very well Officer, this was a difficult task, I don’t expect you to be a packmaster and control them. Get some well-earned rest. “</p>
+</div>
+
+
 </div>
 
 <div class="negotiate1 hidden"><p><strong></strong></p>
