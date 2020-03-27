@@ -346,7 +346,7 @@
 		$(".low").removeClass("hidden");
 		}
 		
-		lib.dialogue(e, "conclusion")
+		
 		
 		$(".btn").addClass("hidden");
 		if ( state.delay < 10) {		
@@ -355,6 +355,122 @@
 		else {
 		$("#meeting").removeClass("hidden");
 		}
+		
+		if (_.contains(state.chapter, "morloTempt")) {
+			$(".Morlo2").removeClass("hidden");	
+			$(".btn").addClass("hidden");
+			$("#morlo").removeClass("hidden");	
+
+		}
+		else {
+			$(".noMorlo").removeClass("hidden");
+
+		}
+		
+		lib.dialogue(e, "conclusion")
+
+      })
+
+	  $('#morlo').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		$(".face").attr('src', '../Images/assets/Morlo.png');		
+		lib.dialogue(e, "morlo3")
+		$(".btn").addClass("hidden");
+		if (approval >= 3) {
+			$("#insist").removeClass("hidden");
+			$("#declineMid").removeClass("hidden");
+		}
+		else {
+			$("#agreeLow").removeClass("hidden");
+			$("#declineLow").removeClass("hidden");
+
+		}
+		
+      })
+
+	  $('#insist').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		$("#sideb").addClass("hidden");
+		$("#story-text").removeClass("shift");
+		$("#side").removeClass("shift");
+		$("#testbutton").addClass("hidden");
+		$(".face3").removeClass("hidden");
+		$(".face3").attr('src', '../Images/assets/Morlo.png');	
+		lib.dialogue(e, "insist")
+		$(".btn").addClass("hidden");
+		$("#deepen").removeClass("hidden");
+		$("#restart").removeClass("hidden");
+      })
+
+	  $('#agreeLow').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		$("#sideb").addClass("hidden");
+		$("#story-text").removeClass("shift");
+		$("#side").removeClass("shift");
+		$("#testbutton").addClass("hidden");
+		$(".face3").removeClass("hidden");
+		$(".face3").attr('src', '../Images/assets/Morlo.png');				
+		lib.dialogue(e, "agreeLow")
+		$(".btn").addClass("hidden");
+		$("#deepen").removeClass("hidden");
+		$("#restart").removeClass("hidden");
+      })
+
+	  $('#declineLow').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		$("#sideb").addClass("hidden");
+		$("#story-text").removeClass("shift");
+		$("#side").removeClass("shift");
+		$("#testbutton").addClass("hidden");
+		$(".face3").removeClass("hidden");
+		$(".face3").attr('src', '../Images/assets/Morlo.png');			
+		lib.dialogue(e, "declineLow")
+		$(".btn").addClass("hidden");
+		$("#deepen").removeClass("hidden");
+		$("#restart").removeClass("hidden");
+      })
+
+	  $('#declineMid').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+				
+		lib.dialogue(e, "declineMid")
+		$(".btn").addClass("hidden");
+		if ( state.delay < 10) {		
+		$("#tidings").removeClass("hidden");
+		}
+		else {
+		$("#meeting").removeClass("hidden");
+		}
+		
+      })
+
+	  $('#deepen').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+				
+		lib.dialogue(e, "deepen")
+		$(".btn").addClass("hidden");
+		
+		$("#restart").removeClass("hidden");
+      })
+
+
+	  $('#restart').on('click', function(e) {
+        // change state here
+        // end by using lib.goTo
+		if (approval < 3) {
+			document.location.href = 'Aweship.html'
+		}
+		else {
+			location.reload(true)
+
+		}
+			
 		
       })
 	  
@@ -533,12 +649,21 @@ It seems Captain Koen knows where we’re going. It’s a jumble of island clust
 <button class="btn btn-default hidden" id="islanders">Islander Relations</button>
 <button class="btn btn-default hidden" id="conclusion">Conclusion</button>
 
+<button class="btn btn-warning hidden" id="morlo">Morlo</button>
+<button class="btn btn-danger hidden" id="insist">Insist on Deepening</button>
+<button class="btn btn-danger hidden" id="agreeLow">Agree to Deepen</button>
+<button class="btn btn-warning hidden" id="declineLow">Decline to Deepen</button>
+<button class="btn btn-warning hidden" id="declineMid">Decline to Deepen</button>
+<button class="btn btn-success hidden" id="deepen">Morloness</button>
+
 <button class="btn btn-default hidden" id="tidings">Messenger in the night</button>
 <button class="btn btn-default hidden" id="give">Give Stroke information</button>
 <button class="btn btn-default hidden" id="nogive">Dont give anything.</button>
 
 <button class="btn btn-default hidden" id="meeting">Captains Meeting.</button>
 <button class="btn btn-default hidden" id="meeting2">Continue</button>
+
+<button class="btn btn-default hidden" id="restart">Restart</button>
 
 <span id="cadetButtons"> </span>
 <script>
@@ -872,9 +997,16 @@ The Admiral seems to regard an ornate chest next to her for a moment. But then d
 </div>
 “Admiral, my orders from the Grand-Admiral were to resupply and collect a report of your progress then return.” I remind her cautiously. <br>
 “I am aware what your orders WERE, there is a clause in there that you are to stay and assist if needed. You are needed. I decide when it is time to let you go.” Her resolute words leave nothing to doubt. She continued just as firmly, her words absolute. <br>
+<div class="Morlo2 hidden">
+"As a matter of fact, we have something to discuss about that." The Fleet-Admiral leaned in over her desk. <br>
+
+</div>
+<div class="noMorlo hidden">
 “We are having a captains meeting as soon as all the captains are assembled. With the news you bring, there is no doubt about the next course of action, it’s time to push back. Until then, you are dismissed.” <br>
 I leave, my head in a slight daze. It has been long since I had someone with such strength of character totally run me over. Not since the academy days. <br>
+</div>
 </p>
+
 </div>
 
 <div class="tidings hidden"><p><strong>A fractured whole</strong></p>
@@ -950,6 +1082,116 @@ A male Awe, with fancy clothing and a wulfish grin had stayed silent. In the end
 “As you wish Admiral! We’ll play to our strengths and not come up short of your fine ships!” The heavy set Islander Captain smirked with good humor. <br>
 And with that, the meeting concluded.</p>
 </div>
+
+
+<div class="morlo3 hidden"><p><strong>Morlo</strong></p>
+	“Morlo! Can you step in please.” <br>
+From a side room a door opened and the prominent and wide Captain Morlo squeezed through, forced to do so with a awkward diagonal sidestep. She made it look natural however. <br>
+“Yes, Fleet-Admiral.” Morlo answered after she was through. I wondered if she’d been hiding out there and privy to all our conversation. <br>
+“Now, I’ll be blunt. I heard from Morlo you made overtures of interest to deepening her.” The Admiral motioned toward Morlos protruding cream furred belly. <br>
+There was no point lying here, I did imply as much when I was trying to talk up the Captain. <br>
+“Yes, Admiral. I might have said that.” <br>
+“I have lost quite a few of my upper command to her growing waistline.” The Fleet Admiral said before turning to Morlo. “I take it you have interest in eating the Captain?” <br>
+“Yes, since she announced interest, I am quite keen to proceed to eat her.” Morlo replied, her eyes wandering over me. It was not a look one gives an equal, more one given to a morsel. <br>
+“You are greedy Morlo, most of your appetite has been justified and good for the fleet however.”<br>
+<div class="neutral high hidden">
+“In this case, considering your performance, I’d rather you stuck around and contributed to the Fleet than adding further units of weight to Morlo. Even if I am not overly keen on Captains with submissive tendencies.” <br>
+The Fleet Admiral narrowed her eyes and Morlo was looking sour, but unwilling to argue with her. <br>
+<div class="low hidden">
+“In this case, I insist you two do deepen. I am quite sure it won’t be hard to find someone to fill in for you.” The Fleet-Admiral waved her paw. <br>
+Morlo seemed to give a rare smirk and then looked me over again. It almost looked like she’d scarf me down there and then, her belly certainly had that idea as it gave a low grrrrmble of anticipation.
+</div>
+
+</div>
+
+	<div class="declineMid hidden"><p><strong>Decline Morlo</strong></p>
+	I sense that the moment moment requires some candid honesty to get me out of this situation. Especially if the Fleet-Admiral is as perceptive as I think she is. <br>
+	I shouldn't perhaps made myself out to being so struck by Morlo in our initial meeting.<br>
+	“Though the compliment was genuine and Morlo is undoubtedly a high candidate for deepening for any Awe. I am not yet prepared to take any such plunge. I might, in part, have said what I did to get in her good graces and open up a little bit.“ <br>
+	The Fleet-Admiral huffed at this. <br>
+	“Well, all you’ll get from Morlo is her open jaws if you tempt her Captain. I expect my captains to remain strong of spirit and not pining for the comfortable escape of another Awes belly. No matter how big it is!”<br>
+	Morlo did not break her mask of impassiveness. But there was no denying the continued faint rumbles of her stomach. It was unable to be nowhere as diplomatic as her. <br>
+	“Very well. Perhaps we shall revisit this at another time.” <br>
+	I bobbed my head politely to her and then saluted the Fleet-Admiral. With the matter settled she turned to the window, facing away from us. <br>
+	“We are having a captains meeting as soon as all the captains are assembled. With the news you bring, there is no doubt about the next course of action, it’s time to push back. Until then, you are dismissed.” <br>
+	I leave, my head in a slight daze. It has been long since I had someone with such strength of character totally run me over. Not since the academy days. <br>
+	Morlo too was a powerful figure to be wary off. The rotund Captain did not even spare me a glance as we parted ways, but I heard her stomach well long after she rounded a corner.<br>
+	
+</div>	
+
+
+<div class="declineLow hidden"><p><strong>Decline Morlo</strong></p>
+	I looked back and forth between Morlo and the Fleet-Admiral, things were moving a little fast. I had not agreed to anything yet. <br>
+“Now, I may have announced interest before, but it was out of polite admiration.” I tried to explain. <br>
+“You were genuine though, I could tell.” Morlo replied, approaching slowly. I found myself backing away out of instinct, feeling that if she got in reach she’d snatch me up in an instant. <br>
+The Fleet-Admiral merely watched on cooly from behind her desk, arms crossed. <br>
+“I might have, but a compliment is not… oouff.” I am interrupted as I find my back and Morlos prominent cream belly suddenly pinning me against it. <br>
+Her large soft bulk holds me steady, unable to escape. Morlo seems to enjoy my predicament, the impassive mask breaking into a smug mischievous grin. <br>
+“Captain, in our line of work there are no maybe’s. Someone either is or isn’t obedient or capable or a willing addition to my paunch.” She leaned in close, piercing me with her hungry gaze before making a sniff. “You opened the door to joining me. Now both the Admiral and me deems my body is where you’re best suited to be.”<br>
+My heart was beating hard, I braced against that gut but was unable to push it off. Morlo was in complete control. She licked her lips, seeming to adjust her footing as she leaned forward to grab me. <br>
+“You don’t smell the least bit scared Captain, so no need to make this harder than it needs to be. You look utterly delectable, so just be honored about joining the ‘family’.” She swayed her large wobbling body from side to side, grinding that huge gut against me. <br>
+Behind her the Fleet-Admiral made an impatient sound and Morlo glanced backward briefly, remembering herself and changing back to her business face. <br>
+<br>
+She grabs me around the arms suddenly yanks me forward toward her open jaws. She has surprisingly wide and deep gape and I vanish into its to my shoulders before the back of her tongue rolls around my snout and a rolling gulp beckons me to plummet down her gullet. <br>
+A slight subtle ‘mmmh’ escapes her, vibrating around me. If her size was not obvious enough, it’s clear eating other Awes is her one pleasure in life. <br>
+Strong paws clasp my hips and shove at me from behind, further hastening my descent into the heat and tightness of her body. <br>
+This is an Awe that’s arguably made eating her occupation, as she swallows around me, I have to gasp in and groan at how her muscles grip and squelch and force me down. It takes naught but a few solid gulps from the sizable Captain to end me and send me sliding down into her wide gut. <br>
+In her stomach it's surprisingly non-spacious and I manage to barely roll around into a seated position. All those layers of insulating fat make the walls press against me tightly, the muscles stomach giving a wet welcoming glluurngh at my arrival. <br>
+Morlo has eaten me, she didn't even hesitate. Am I naught but another notch to her belt?
+</div>	
+
+<div class="agreeLow hidden"><p><strong>Agree to Deepen</strong></p>
+	I looked back and forth between Morlo and the Fleet-Admiral, things were moving a little fast. I had not agreed to anything yet. <br>
+“Now, I may have announced interest before, but it was out of polite admiration.” I tried to explain. <br>
+“You were genuine though, I could tell.” Morlo replied, approaching slowly. I found myself backing away out of instinct, feeling that if she got in reach she’d snatch me up in an instant. <br>
+The Fleet-Admiral merely watched on cooly from behind her desk, arms crossed. <br>
+“I might have, but a compliment is not… oouff.” I am interrupted as I find my back and Morlos prominent cream belly suddenly pinning me against it. <br>
+Her large soft bulk holds me steady, unable to escape. Morlo seems to enjoy my predicament, the impassive mask breaking into a smug mischievous grin. <br>
+“Captain, in our line of work there are no maybe’s. Someone either is or isn’t obedient or capable or a willing addition to my paunch.” She leaned in close, piercing me with her hungry gaze before making a sniff. “You opened the door to joining me. Now both the Admiral and me deems my body is where you’re best suited to be.”<br>
+My heart was beating hard, I braced against that gut but was unable to push it off. Morlo was in complete control. She licked her lips, seeming to adjust her footing as she leaned forward to grab me. <br>
+“You don’t smell the least bit scared Captain, so no need to make this harder than it needs to be. You look utterly delectable, so just be honored about joining the ‘family’.” She swayed her large wobbling body from side to side, grinding that huge gut against me. <br>
+Behind her the Fleet-Admiral made an impatient sound and Morlo glanced backward briefly, remembering herself and changing back to her business face. <br>
+<br>
+She grabs me around the arms suddenly yanks me forward toward her open jaws. She has surprisingly wide and deep gape and I vanish into its to my shoulders before the back of her tongue rolls around my snout and a rolling gulp beckons me to plummet down her gullet. <br>
+A slight subtle ‘mmmh’ escapes her, vibrating around me. If her size was not obvious enough, it’s clear eating other Awes is her one pleasure in life. <br>
+Strong paws clasp my hips and shove at me from behind, further hastening my descent into the heat and tightness of her body. <br>
+This is an Awe that’s arguably made eating her occupation, as she swallows around me, I have to gasp in and groan at how her muscles grip and squelch and force me down. It takes naught but a few solid gulps from the sizable Captain to end me and send me sliding down into her wide gut. <br>
+In her stomach it's surprisingly non-spacious and I manage to barely roll around into a seated position. All those layers of insulating fat make the walls press against me tightly, the muscles stomach giving a wet welcoming glluurngh at my arrival. <br>
+Morlo has eaten me, she didn't even hesitate. Am I naught but another notch to her belt?
+</div>	
+
+<div class="insist hidden"><p><strong>Insist to Deepen</strong></p>
+	“I believe deepening rights extend beyond Admiralty rules.” I placed my paw against Morlos prominent gut. It was warm. “If you’ve opened for deepenings, then you cannot deny me my right to do so.” <br>
+	The Fleet-Admiral glared at me and Morlo raised her brow in surprise at my insistence to get to join her belly. <br>
+	“Hrn, well, you’re right ofcourse. If you’re feeling that strongly about it, then begone. Infact, swallow her right away Morlo!” The Admiral growled and cut the air with her paw. <br>
+	“Yes Admiral. Right away.” Morlo replied curtly, turned to me and put both her paws against my chest under my arms and hoisted me up to her face. <br>
+	“Any last words?” She asked with impatient formality, unable to resist giving the briefest of licks to her lips. <br>
+	“The cadets are a handful.” I replied, feeling a quiver of thrill run through me. This was all so sudden, but Morlo had such strength to her character. I was drawn to her like a moth to flame. <br>
+	“Noted.” She replied before pulling me toward her snout. I bump up against her lips and muzzle before she deigns to open her mouth and when she does, its wide and big enough to swallow several Awes at once. <br>
+	She dumps me into her mouth and shifts her grip, I feel her large belly under me while my chin rests against the back of her tongue. Then she pushes me in and gulps and I’m crammed into the rippling muscled folds of her gullet. <br>
+	<br>
+	A slight subtle ‘mmmh’ escapes her, vibrating around me. If her size was not obvious enough, it’s clear eating other Awes is her one pleasure in life. <br>
+	Strong paws clasp my hips and shove at me from behind, further hastening my descent into the heat and tightness of her body. <br>
+	This is an Awe that’s arguably made eating her occupation, as she swallows around me, I have to gasp in and groan at how her muscles grip and squelch and force me down. It takes naught but a few solid gulps from the sizable Captain to end me and send me sliding down into her wide gut. <br>
+	In her stomach it's surprisingly non-spacious and I manage to barely roll around into a seated position. All those layers of insulating fat make the walls press against me tightly, the muscles stomach giving a wet welcoming glluurngh at my arrival. <br>
+	Morlo has eaten me, she didn't even hesitate. Am I naught but another notch to her belt?
+</div>	
+
+<div class="deepen hidden"><p><strong>Becoming girth on Morlo</strong></p>
+I feel the walls push against me strangely, in a slight wobbling rub. I realize quickly it's Morlo rubbing her big tubby belly and me occupying it around, wobbling and squelching me around inside its largesse. <br>
+There is a brief chuckle with it that makes the belly bounce up and down briefly, a very smug and pleased sounding one. <br>
+“Perhaps I’ll visit your crew. Make sure they get in line, sniff out troublemakers.” She mused to herself with a greedy eagerness, giving her belly a solid squeeze. Had I sailed my crew through trouble and hard seas just to deliver them to Morlos gut? I certainly had myself. <br>
+As her stomach churned around me, none too shyly well on its way on digesting me already, I had to shudder at her ravenous force of personality. I was going to be part of this person now, part of this appetite. Rather then impossible to resist, it was easy to surrender to her. Easy to be swept up. I certainly did not last long, soon flowing away into Morloness through a riot of heavy roiling gurgles. <br>
+<br>
+Morlo felt that slight tingle of satisfaction, a flow of wellbeing and contedness that comes in the afterglow of a good meal digested. And there only was one type of good meal in her book. None that served to energize her like that of her own kin.<br>
+The Fleets Voice-Matron claimed that pleasant warm feeling meant a spirit absorbed and a deepening gone well. But she had never known it not too, so while the thought spoke to her sense of vanity, she gave the superstition not much heed. <br>
+Morlo was efficient, while she digested she scribbled in her ledgers, signing off on shift-schedules and crew assignments. Though her thoughts inevitably strayed. <br>
+This new Captain had been a decent one. She had had size and weight to her, there had been muscle under the softness. There was no doubt she had been strong. It made her ultimate submission all the more delectable of course. <br>
+Even now she felt her body processing the last of it, grumbling away in a low ‘grroouuu’ and burble. Air bubbled up and Morlo stifled a sizable belch.<br>
+Work completed, it was time for preparations. There would be a Captains meeting soon, the Fleet-Admiral was making her move to the next step of her plans. It was important she looked her best. <br>
+This was something that had become increasingly difficult however. With her latest addition, she gazed herself at the ridiculousness in the mirror. She hardly managed to tie her sash around her gut, she’d had to get it lengthened (again). Her jacket was too tight and taut, her arms looked stiff and now chafed around her armpits. This would not do at all! Surely fabric is able to stretch.<br>
+‘Rrrrttcchh’ went her officers jacket. Morlo huffed a quiet sigh at the challenges she faced.<br>
+</div>	
 
 
 <Script>

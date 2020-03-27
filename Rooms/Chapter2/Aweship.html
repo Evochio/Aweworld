@@ -74,8 +74,10 @@
         // change state here
 		state.chapter.push("morloPath")
 		$("#sideb").removeClass("hidden");
+		$("#side").removeClass("hidden");
 		$(".face").removeClass("hidden");	
 		$(".face4").attr('src', '../Images/assets/Morlo.png')
+		$(".sideImage").attr('src', officer.avolc.image)
         // end by using lib.goTo
 		lib.dialogue(e, "Aweship2"),
         $(".btn").addClass("hidden");
@@ -120,6 +122,7 @@
 	  	  
 	   $('#deepeningF').on('click', function(e) {
         // change state here
+		state.chapter.push("morloTempt")
         // end by using lib.goTo
 		lib.dialogue(e, "deepeningF"),
         $(".btn").addClass("hidden");
