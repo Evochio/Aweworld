@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Aweworld</title>
+
+  <link rel="stylesheet" href="../../main.css"></link>
+
+  <script src="../../jquery-3.2.1.js"></script>
+  <script src="../../underscore.js"></script>
+	<script src="../../bootstrap.min.js"></script>
+ <link rel="stylesheet" href="../../bootstrap.min.css"></link>
+  <link rel="stylesheet" href="../../bootstrap-theme.min.css"></link>
+  <script src="../../main.js"></script>
+  <script src="../../officers.js"></script>
+  <script src="../../jquery.cookie.js"></script>
+  <link rel="stylesheet" href="../../main.css"></link>
+  
+  <script>
+
+state.Glint.status = 'invisible';
+    state.Valnos.status = 'invisible';
+	state.Ziggy.status = 'invisible';
+
+
+
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+	  
+	  if (_.contains(state.events, "CalmaPouch")) {
+		$(".pouched").removeClass("hidden");
+		
+	  }
+	  
+	    if (_.contains(offList.deadRoster, "Tung")) {
+		$(".tung").addClass("hidden");
+		$(".sideImage").attr('src', officer.garsch.image)
+		 
+		 }
+		 else {
+		 $(".garsch").addClass("hidden");
+		 $(".sideImage").attr('src', officer.tung.image)
+		 }
+      
+      $('#watch').on('click', function(e) {
+        // change state here
+     
+        // end by using lib.goTo
+		    lib.dialogue(e, "watch"),
+        $(".btn").addClass("hidden");
+		 $("#continue").removeClass("hidden");
+		  $("#sideb").removeClass("hidden");
+		  $(".sideImage").attr('src', '../Images/assets/Calma.png')
+		  $(".face4").attr('src', '../Images/assets/Ziggyface.png')
+        
+      })
+	  
+	  
+	    $('#participate').on('click', function(e) {
+        // change state here
+      
+        // end by using lib.goTo
+		  lib.dialogue(e, "participate"),
+         $(".btn").addClass("hidden");
+		  $("#duelZig").removeClass("hidden");
+		  $("#declineDuel").removeClass("hidden");
+		  $("#sideb").removeClass("hidden");
+		  $(".sideImage").attr('src', '../Images/assets/Calma.png')
+		  $(".face4").attr('src', '../Images/assets/Ziggyface.png')
+		
+      })
+	  
+	  
+	  	    $('#declineDuel').on('click', function(e) {
+        // change state here
+      
+        // end by using lib.goTo
+		  lib.dialogue(e, "declineDuel"),
+         $(".btn").addClass("hidden");
+		  $("#side").addClass("hidden");
+		   $("#sideb").addClass("hidden");
+		 
+		 $("#continue").removeClass("hidden");
+		
+      })
+		
+		 $('#duelZig').on('click', function(e) {
+        // change state here
+      
+	  $(".sideImage").attr('src', officer.avolc.image)
+        // end by using lib.goTo
+		    lib.dialogue(e, "duelZig"),
+        $(".btn").addClass("hidden");
+		 $("#evasive1").removeClass("hidden");
+		  $("#defence1").removeClass("hidden");
+		   $("#offence1").removeClass("hidden");
+        
+      })
+		
+			 $('#evasive1').on('click', function(e) {
+       
+		    lib.dialogue(e, "evasive1"),
+        $(".btn").addClass("hidden");
+		 $("#duel2").removeClass("hidden");
+		  $("#declineDuel2").removeClass("hidden");
+        
+      })
+	  
+	  
+	   $('#defence1').on('click', function(e) {
+       
+		    lib.dialogue(e, "defence1"),
+        $(".btn").addClass("hidden");
+		 $("#duel2").removeClass("hidden");
+		  $("#declineDuel2").removeClass("hidden");
+        
+      })
+	  
+	   $('#offence1').on('click', function(e) {
+       
+		    lib.dialogue(e, "defence1"),
+        $(".btn").addClass("hidden");
+		 $("#ziggyClaim").removeClass("hidden");
+		  
+        
+      })
+	  
+	  	 $('#ziggyClaim').on('click', function(e) {
+        // change state here
+		 $("#sideb").addClass("hidden");
+		$(".sideImage").attr('src', '../Images/assets/Ziggyfacevore.png')
+        // end by using lib.goTo
+		    lib.dialogue(e, "ziggyClaim"),
+        $(".btn").addClass("hidden");
+		$("#yes").removeClass("hidden");
+		$("#notYet").removeClass("hidden");
+        
+      })
+	  
+	   $('#yes').on('click', function(e) {
+        // change state here
+		$("#sideb").removeClass("hidden");
+		  $(".sideImage").attr('src', officer.ziggy.image)
+		  $(".face4").attr('src', officer.avolc.image2)
+        // end by using lib.goTo
+		    lib.dialogue(e, "yes"),
+        $(".btn").addClass("hidden");
+		$("#continue").removeClass("hidden");
+        
+      })
+	  
+	   $('#notYet').on('click', function(e) {
+        // change state here
+     
+        // end by using lib.goTo
+		   
+        $(".btn").addClass("hidden");
+		 if (_.contains(state.events, "toziggy")) {
+		$(".arnDigest").removeClass("hidden");
+		$("#yes2").removeClass("hidden");
+		$("#ziggyDigest").removeClass("hidden");
+	  }
+	  else {
+		$(".normal").removeClass("hidden");
+		$("#continue").removeClass("hidden");
+        }
+		
+		 lib.dialogue(e, "notYet")
+      })
+	  
+	    $('#yes2').on('click', function(e) {
+        // change state here
+		$("#sideb").removeClass("hidden");
+		$(".sideImage").attr('src', officer.ziggy.image)
+		  $(".face4").attr('src', officer.avolc.image2)
+        // end by using lib.goTo
+		    lib.dialogue(e, "yes2"),
+        $(".btn").addClass("hidden");
+		$("#continue").removeClass("hidden");
+        
+      })
+	  
+	   $('#ziggyDigest').on('click', function(e) {
+        // change state here
+     
+        // end by using lib.goTo
+		    lib.dialogue(e, "ziggyDigest"),
+        $(".btn").addClass("hidden");
+		$("#restart").removeClass("hidden");
+        
+      })
+	  
+	  
+	    $('#restart').on('click', function(e) {
+        // change state here
+      location.reload(true)
+        // end by using lib.goTo
+		
+        
+      })
+	  
+	  
+		   $('#declineDuel2').on('click', function(e) {
+        // change state here
+      
+        // end by using lib.goTo
+		  lib.dialogue(e, "claimZiggy1"),
+         $(".btn").addClass("hidden");
+		 
+		 $("#claimZiggy").removeClass("hidden");
+		 $("#decline").removeClass("hidden");
+      })
+	  
+	  
+	  	   $('#claimZiggy').on('click', function(e) {
+        // change state here
+      $(".sideImage").attr('src', officer.avolc.image)
+	  $(".face4").attr('src', officer.ziggy.image)
+        // end by using lib.goTo
+		  lib.dialogue(e, "claimZiggy2"),
+         $(".btn").addClass("hidden");
+		  $("#sideb").addClass("hidden");
+		 $("#continue").removeClass("hidden");
+      })
+	  
+	  	   $('#claimCalma').on('click', function(e) {
+        // change state here
+		$(".sideImage").attr('src', officer.avolc.image)
+      $(".ziggyBelly").addClass("hidden");
+        // end by using lib.goTo
+		  lib.dialogue(e, "claimCalma2"),
+         $(".btn").addClass("hidden");
+		 
+		 $("#continue").removeClass("hidden");
+      })
+	  
+	  
+	     $('#claimBoth').on('click', function(e) {
+        // change state here
+		$(".sideImage").attr('src', officer.avolc.image)
+		$("#sideb").addClass("hidden");
+        // end by using lib.goTo
+		  lib.dialogue(e, "claimCalma2"),
+         $(".btn").addClass("hidden");
+		 
+		 $("#continue").removeClass("hidden");
+      })
+	  
+	     $('#duel2').on('click', function(e) {
+        // change state here
+		$(".face4").attr('src', '../Images/assets/Calma.png')
+        // end by using lib.goTo
+		  lib.dialogue(e, "duel2"),
+         $(".btn").addClass("hidden");
+		  $("#evasive2").removeClass("hidden");
+		  $("#defence2").removeClass("hidden");
+		   $("#offence2").removeClass("hidden");
+		
+      })
+		
+		
+		 $('#evasive2').on('click', function(e) {
+       
+		  lib.dialogue(e, "evasive2"),
+         $(".btn").addClass("hidden");
+		  $("#declineDuel3").removeClass("hidden");
+		 
+		
+      })
+	  
+	   $('#defence2').on('click', function(e) {
+       
+		  lib.dialogue(e, "defence2"),
+         $(".btn").addClass("hidden");
+		  $("#calmaClaim").removeClass("hidden");
+		 
+		
+      })
+	  
+	   $('#calmaClaim').on('click', function(e) {
+       
+		  lib.dialogue(e, "calmaClaim"),
+         $(".btn").addClass("hidden");
+		  $("#continue").removeClass("hidden");
+		 
+		
+      })
+		
+		
+		  $('#offence2').on('click', function(e) {
+       
+		  lib.dialogue(e, "offence2"),
+         $(".btn").addClass("hidden");
+		  $("#declineDuel3").removeClass("hidden");
+		 
+		
+      })
+	  
+	   $('#decline').on('click', function(e) {
+       $("#sideb").addClass("hidden");
+	   $("#side").addClass("hidden");
+		  lib.dialogue(e, "decline"),
+         $(".btn").addClass("hidden");
+		  $("#continue").removeClass("hidden");
+		 
+		
+      })
+	  
+	    $('#declineDuel3').on('click', function(e) {
+       $(".sideImage").attr('src', officer.ziggy.image)
+		  lib.dialogue(e, "claimCalma"),
+         $(".btn").addClass("hidden");
+		  $("#claimBoth").removeClass("hidden");
+		 $("#claimZiggy").removeClass("hidden");
+		 $("#claimCalma").removeClass("hidden");
+		 $("#decline").removeClass("hidden");
+		
+      })
+		
+		
+		$('#continue').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+			state.chapter.push("duels")
+        // end by using lib.goTo
+		  lib.goTo(state.destination[0] + '.html')
+        
+      
+      })
+    })
+	
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	img {
+	margin:auto;
+	}
+  </style>
+
+</head>
+<body>
+<div id="head">
+
+<h1>Crew event</h1>
+</div>
+<div id="side" class="">
+<img class="sideImage" src="../Images/assets/Ziggyface.png"></img>
+</div>
+<div id="sideb" class="hidden">
+   <img class="face4"  src="">
+</div>
+
+<div id="story-text">
+
+<p>Since our battle with the pirates, very few of the crew are skimping on their martial practise. <br>
+Every second morning, the deck is full with the clank and thunk of practise weapons hitting each other. <br>
+I’ve kept up as well on my own time, regularly sparring with whatever Arms officer is available.<br>
+It’s important to maintain my edge and quick step. <br>
+<span class="garsch">“You have a perceptive eye and quick feet Captain, always seem to know where I try to hit you.”</span><span class="tung">“Tangles Cap! I can never catch you when you decide to fight on your toes!”</span>  Officer <span class="tung">Tung</span> <span class="garsch">Garsch</span> comments, giving a frown during a breather. A cheer from down ship draw my attention and I take a few steps to watch. <br>
+Today seems a bit of an unusual day of practise. It seems many practise bouts are a little more than practise. In fact they are full blown duels going on with a few crowd of onlookers. <br>
+My sparring partner explains. <br>
+“Some of the crew insisted on upping the stakes. They are dueling over minor sidebets or having small tournaments. I see no harm in it, the weapons are blunt and the stakes make them try harder.” <br>
+</p>
+</div>
+<div id="tail">
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+
+<button class="btn btn-default hidden" id="continue"> Continue </button>
+<button class="btn btn-default" id="watch">Watch duels </button>
+<button class="btn btn-default" id="participate">Participate</button>
+
+<button class="btn btn-warning hidden" id="duelZig">Duel Ziggy</button>
+<button class="btn btn-default hidden" id="declineDuel">Decline Duel</button>
+
+<button class="btn btn-default hidden" id="evasive1">Evasion and Endurance</button>
+<button class="btn btn-default hidden" id="defence1">Defence and counters</button>
+<button class="btn btn-default hidden" id="offence1">Hard offense</button>
+
+<button class="btn btn-warning hidden" id="duel2">More duels</button>
+<button class="btn btn-default hidden" id="declineDuel2">Enough workout</button>
+
+<button class="btn btn-default hidden" id="evasive2">Evasion and Endurance</button>
+<button class="btn btn-default hidden" id="defence2">Defence and counters</button>
+<button class="btn btn-default hidden" id="offence2">Hard offense</button>
+
+<button class="btn btn-default hidden" id="declineDuel3">Enough workout</button>
+
+<button class="btn btn-default hidden" id="claimBoth">Claim both</button>
+<button class="btn btn-default hidden" id="claimZiggy">Claim Ziggy</button>
+<button class="btn btn-default hidden" id="claimCalma">Claim Calma</button>
+<button class="btn btn-default hidden" id="decline">Decline</button>
+
+<button class="btn btn-default hidden" id="ziggyClaim">Ziggys Claim</button>
+<button class="btn btn-default hidden" id="calmaClaim">Calmas Claim</button>
+
+<button class="btn btn-default hidden" id="yes">Yes</button>
+<button class="btn btn-warning hidden" id="notYet">Not yet</button>
+
+<button class="btn btn-default hidden" id="yes2">Enough!</button>
+<button class="btn btn-danger hidden" id="ziggyDigest">Agree</button>
+
+<span id="cadetButtons"> </span>
+<script>
+
+</script>
+</div>
+<div class="participate hidden"><p><strong>Duels</strong></p>
+<p>I walk down to the part of the deck where the duels are happening. It feels like an amusing opportunity to get involved with the crew and test my mettle more seriously. <br>
+The ring of onlookers part and for a moment looks tense, as if they’re about hurry away to do their duties. But I hold up a paw for pause. <br>
+“Tell me about this little sidebetting of yours, eh?” <br>
+Many Awes grin, the stakes have just gone up quite a bit. <br>
+“Well Captain, the rules are simple. You have to start at the bottom and fight you way up the rankings. To make a challenge you make a bet with the one above your rank.” Explained Low-officer Calma. <br>
+“Right now, starting at the bottom, the one above your rank is Cadet Ziggy.” She grinned. <br>
+“Hey! I am not the worst of this league!” Ziggy snapped, putting paws to her hips. <br>
+“No, just the worst present at the moment.” Calma replied with a teasing flick of her tail to the Cadet. Technically Ziggy outranked Calma, but it was clear this was quite a bit less formal event. <br>
+“Pheh… so want to fight me Captain? I’ll take you on! But if I win… You’re getting in MY belly.” Ziggy grinned wide. <br>
+“Hoo, bold and high demands from the Thunderhills upstart. What say you Captain, do you take that on?” Calma crossed her arms. <br>
+</p>
+</div>
+
+<div class="watch hidden"><p><strong>Watch duels </strong></p>
+<p>I watch as Ziggy enthusiastically duels older and more experienced crew, wielding two blades even though as far as I can tell is not as ambidextrous as she thinks she is. Her gusto and enthusiasm gives her opponents pause however, putting them on the defensive as she whirls and slices or braces both her blades in a dual overhead chop. That last move evoking quite a few chuckles from onlookers. <br>
+Her fights tended to follow the same pattern, and this time while fighting Calma, her weakness became even more painfully obvious. <br>
+Calma leisurely kept herself at range from the inaccurate whirling blades of the cadet. Then with an expert poke between wind-ups for heavier blows, Calma scored ‘hit’ after ‘hit’ on the cadet, until with five touches to none, she was beaten. <br>
+A dejected and frustrated Cadet Ziggy threw her blades to the ground, only to get instantly chided by more senior onlookers. Even practise blades are to be treated with respect and care. <br>
+She had much to learn both in combat and manners. For now it appeared she’d spend the rest of the day quite indisposed, as Calma grabbed her by the scruff and shunted the cadet into her sizable pouch. The prize of this fights side-bet no doubt. <br>
+</p>
+</div>
+
+<div class="declineDuel hidden"><p><strong>Hard offense</strong></p>
+<p>This is more than just martial practise, this a game of dare, bets and play of assertiveness between crew. Understanding the stakes, I decide its best to not get involved too much and decline the offer to partake. <br>
+“No, I think I shall not disrupt your little league. Do carry on however.” I grab the front of my cap and nod once before wandering off. <br>
+“Well, Captain didn’t want to waste their time on you Ziggy, but I don’t mind kicking your tail around.” Officer Calma spoke to the group before stepping into the ring. The following fight must have been quick, for Cadet Ziggy was absent from her usual shift that evening. <br>
+Enough dueling. <br>
+That is enough dueling for me, though it was an interesting experience. It helps the crew to see their Captain in action sometimes.</p>
+</div>
+
+<div class="duelZig hidden"><p><strong>Duel Ziggy</strong></p>
+<p>I square off against Ziggy in a small circle, but there is space enough to move around just enough to fight. Not always a luxury in real battle. <br>
+Fighting one on one is always about attacking and defending. The ways you choose to do so varies on weapons and how well you do on skill. Certain moves have the right counter. <br>
+We fight to three touches. <br>
+Ziggy is brandishing dual blades, she whirls them around in the air in front of her. While it looks intimidating and certainly would be stupid to approach, but from a fighters point of view, it’s a waste of energy. <br>
+Ziggy attacks first, she’s lunges, spinning and slashing her two blades haphazardly and throwing herself forward hard. There undoubtedly is offensive power in her unorthodox ‘technique’, but its raw and unrefined.</p>
+
+<p>How do I want to fight her?<br>
+</p>
+</div>
+
+<div class="evasive1 hidden"><p><strong>Evasion and Endurance</strong></p>
+<p>I shift my stance to stay on my toes and dance away from her lunges, working on wasting as little energy as possible while making her expend more. <br>
+Occasionally our blades clang as I have to block her increasingly frustrated and unguarded lunges.<br>
+Scoring touches on her passes quickly put me at a easy 3 to 0, though it takes a little while. In the end the Cadet is panting and barely able to stand. <br>
+“Putting all your effort in offence is only effective if you have the skills and techniques Ziggy. You might be able to overwhelm a weaker or less experienced opponent, but you are easy prey to a patient one.” <br>
+The dejected Cadet nods her head in understanding. She may be defeated and frustrated, but I can tell she is paying attention.</p>
+</div>
+
+<div class="defence1 hidden"><p><strong>Defence and counters</strong></p>
+<p>I hold my single blade in front of me and shift my stance slightly sideways and meet Ziggy’s storm of attacks head on. <br>
+Our blades flash and clank as I parry several hazardous and chaotic swings of her two blades. <br>
+Try as she might, can’t break through and whenever she is careless or oversteps I let my blade flash in to nick her or riposte one of her blades out of her paws. <br>
+She isn't entirely without triumph, her style of fighting is hard to read as she herself does not plan where to strike. But the fight ends with a comfortable 3 to 1. <br>
+“Putting all your effort in offence is only effective if you have the skills and techniques Ziggy. You might be able to overwhelm a weaker or less experienced opponent, but just flailing your swords around won't guarantee victory or mean you are not open yourself. <br>
+</p>
+</div>
+
+<div class="offence1 hidden"><p><strong>Hard offense</strong></p>
+<p>I give a smirk at Ziggys whirling blades, it looks like fun. I try to copy her offense and flash my blade in quick succession of slashes. <br>
+Ziggy is my no means intimidated by it, she is encouraged in fact and flail her blades at me even harder. I realize quickly that I’ve fallen into her little trap and that this perhaps is the hidden strength of her unusual technique. <br>
+The duel is over quickly with a 3-2 score to Ziggy, as she simply committed to the exchange full on and got in more hits only thanks to having two blades. <br>
+</p>
+</div>
+
+<div class="claimZiggy1 hidden"><p><strong>Claim on Cadet</strong></p>
+<p>Ziggy walks up to me and cocks head head at me curiously. <br>
+“Well Cap, you won. Due to our bet, ya get to eat me if ya want I guess!” <br>
+It was tempting. An opportunity to silence this noisy one, if only temporarily. Though somehow I almost worry she’ll find a way to cause mischief from under my belt somehow. <br>
+
+</p>
+</div>
+<div class="claimZiggy2 hidden"><p><strong>Claim on Cadet</strong></p>
+<p>
+“Well Ziggy, you’ll be working with me today.” I tell her conclusively and the Cadet huffs but otherwise does not object. She honors a bet made. <br>
+I hoist the Cadet up and shove her into a lazy yawn. With no resistance, it’s no big trick to gulp her down. Her legs merely kick in formality and reflex as I tilt my head back and let the lump of her body squeeze down and fill out my belly comfortably. <br>
+With a pleasant weight in my gut, I feel quite good about things. I give Ziggy's bulge a pat. Perhaps this will teach her to be less bold with her bets. <br>
+</p>
+</div>
+
+<div class="decline hidden"><p><strong>Decline</strong></p>
+<p>“As amusing as it would be to make claim to you due to these wagers, I have work to do and so do you.” I reply firmly. <br>
+Playing around with the crew briefly is one thing, but encouraging this behavior might make the crew get lax or careless. What the Captain does always tends to set an example afterall. <br>
+“Now when you’re done here, return to your duties.” I ordered. <br>
+The duelists saluted and before long, the little tournament had wrapped up for the day. <br>
+</p>
+</div>
+
+<div class="duel2 hidden"><p><strong>More duels</strong></p>
+<p>Low-Officer Calma is next in line to duel me. She smirks and adjusts her uniform slightly. <br>
+“I guess the honor is mine next. Don’t whoop my tail too hard Captain!” She raises her blade and takes a defensive stance. “We compete for the honor of our pouches.” She grins. <br>
+I can tell by her stance, shifting footing to her toes that she’s is downplaying how well she can do. It is likely she is quicker on her feet then her slightly rotund appearance makes her out to be. <br>
+</p>
+</div>
+
+<div class="evasive2 hidden"><p><strong>Evasion and Endurance</strong></p>
+<p>I copy her stance, which makes her raise her brow briefly before we both start to circle and lunge, using a similar technique of mobility and dodges to try to outpace each other. <br>
+It goes on a good while, as we both score touches, often simultaneously until we’re both at a equal 2-2. <br>
+I have to give her credit, she was a pretty good duelist. But the wind went out of her before it did me and I am just a little bit quicker then Calma in the final exchange and score a hit on her first. <br>
+A small cheer goes up from onlookers. It had been an intense bout and I sure was feeling the exhaustion now. <br>
+“Well… done. Captain…” Calma panted, even worse of. “I certainly see what I need to work on.” <br>
+“You’re fast and smart Calma. Well done yourself, I reply.” <br>
+</p>
+</div>
+
+<div class="defence2 hidden"><p><strong>Defence and counters</strong></p>
+<p>I shift to a sideways stance just as the duel starts, deciding to go defensive. <br>
+I easily parry Calmas first quick blows, but I find myself unable to return a hit on her due to her quick feet and evasive posture. Lunging after her would be playing her game and also disrupt my stance. <br>
+We trade a few exchange of blows, her attacks blocked while mine are dodged as she pulls out of reach. But each time she comes closer to a hit as she circles and have me defensively turning to meet her. <br>
+Finally Calma smirks, though I did not first realize it, she steps close and deliberately exchanges hits with me to a tied 2-2, by making herself look overextended and then returning a few nicks. <br>
+She circles me slowly, light on her toes, even though her breath is starting to come heavy. Suddenly she faints and steps on my tail, unbalancing my stance. I block her lunge, but while our blades are locked, she kicks at my knee with her other foot and with that I am open to attack and she scores her 3rd hit. <br>
+“Tangles…!” I curse with a grin, that had been a neat trick. It was a gamble that only would have worked once, but she made it count. <br>
+Calma takes a few deep breaths and then raises up the shake paws. <br>
+“Well fought Captain. Don’t think I can beat you in the long run. But for now, I win!”</p>
+</div>
+
+<div class="offence2 hidden"><p><strong>Hard offense</strong></p>
+<p>Ziggy had fought with a tiring offensive style. Perhaps I could show how an aggressive and quick blade should really be done. <br>
+As we took our positions Calma bounced on her feet, looking ready. I score a hit; it’s a fast forward lunge with the point of my blade. Calma bounces back in surprise much too late, a few in the audience gasp. It seems I executed the lunge well enough this time, the trick is always not to think about it, just to react in a move you’ve trained over and over. <br>
+I doubt it will work as well a second time, Calma is on her guard now. But she is unsettled now that she knows it’s in my arsenal. <br>
+I press her hard, chasing her around the circle. I feint another lunge, making her bounce to evade to where I want her to be and score another hit on her. <br>
+Flustered and panting harder Calma is now severely on the back foot. I decide to end it, if somewhat cheaply, pushing in close for a trade of hits, taking the victory with 3-1. <br>
+“By Avon’s step, you’re fast! I thought you’d skewered me for real there, ouch.” Calma rubbed at the spot I poked her. It would likely bruise. Even with a blunt blade, being too rough is dangerous. <br>
+“You’re surprisingly quick on your feet Calma. But you can’t always dodge faster than a sword!”</p>
+</div>
+
+<div class="claimCalma hidden"><p><strong>Claim on Calma</strong></p>
+<p>Ziggy walks up to me and cocks head head at me curiously. <br>
+“Well Cap, you won. Due to our bet, ya get to eat me if ya want I guess!” <br>
+It was tempting. An opportunity to silence this noisy one, if only temporarily. Though somehow I almost worry she’ll find a way to cause mischief from under my belt somehow. <br>
+<br>
+As I stand there and consider this, Calma clears her throat, appearing by my side. <br>
+“Are you not forgetting something else Captain? It was a battle of pouches. You’ve bested mine, so now I must submit to yours.” The rotund Awe huffed. That was quite honorable of her, I had not quite understood the stakes at play. I smirked thoughtfully. <br>
+</p>
+</div>
+
+<div class="claimCalma2 hidden"><p><strong>Claim on Calma</strong></p>
+<div class="ziggyBelly">
+<p>
+“Well Ziggy, you’ll be working with me today.” I tell her conclusively and the Cadet huffs but otherwise does not object. She honors a bet made. <br>
+I hoist the Cadet up and shove her into a lazy yawn. With no resistance, it’s no big trick to gulp her down. Her legs merely kick in formality and reflex as I tilt my head back and let the lump of her body squeeze down and fill out my belly comfortably. <br>
+With a pleasant weight in my gut, I feel quite good about things. I give Ziggy's bulge a pat. Perhaps this will teach her to be less bold with her bets. <br>
+</p>
+</div>
+
+<div class="pouchCalma">
+I wheel around to face Calma. <span class="ziggyBelly">I already had Ziggy in my gut, she was big for a cadet but not too much of hindrance.</span> A full pouch would not be amiss, it felt good to stretch it out now and then. Even if it made it quite hard to move around, especially considering Calma’s slight paunch. <br>
+“Very well, but only if your shift duties permits the absence.” I reply with a grin. <br>
+Needless to say, Calma turned up not soon after at my chambers. Stuffing her down into my pouch took some effort and pinched at the edges of the pouch-lip to get her wide behind through. <br>
+However, once past that, she fit in quite snugly between my thighs and sagged heavily against the floor in a pleasant way. <br>
+With <span class="ziggyBelly">both my belly full of cadet and </span>my pouch stuffed with a cheeky officer, I had a feeling this would not be a day I would get very much done. <br>
+<div class="pouched hidden">
+“Now we’re even.” I tell her, thinking back to that evening when I toured the ship incognito.<br>
+</div>
+Calma wiggled around, no doubt she was not very used to being in this position herself. She has quite a reputation about her regarding her pouch and slightly bullying ways. <br>
+Pouching another female was enough of a firm one-upmanship of social hierarchy between Awe. It would do her good to wiggle in the pouch of her better for a while.<br>
+<span class="ziggyBelly">Being so full, I did not get much done this day. In the end, playing around with wagers always turned things inefficient.</span>
+</p>
+</div>
+</div>
+
+
+<div class="calmaClaim hidden"><p><strong>Calmas claim</strong></p>
+<p>I turn to leave after congratulating her on her win. It seems I still had quite a bit of practise to do when once more a weight on my tail checks my progress. <br>
+“Hold on Captain. We made a bet remember? A competition about pouches.” She gave her belly and lip a firm pat. “When you’re free, come find me and we’ll get you acquainted to the Calma zone.” <br>
+I screw up my face slightly. Mostly about her choice of namesake for her pouch. But in the end I tip my hat in acknowledgement. At least she had the wisdom of not shoving me into her pouch in front of everyone. <br>
+Pouching another female was enough of a firm one-upmanship of social hierarchy between Awes then to add the authority issues of me being a captain into it. <br>
+Come evening, find her I did. Calma chuckled at the sight of me in less formal attire and then bodily grabbed me without further preamble and pushed me nose-first into her spacious pouch. <br>
+I gave a grunt as I curled up in her wooly soft depths while shoved at my legs and feet to squash me all in. <br>
+“Right where you belong!” Calma gave a chuckle. It was certainly not the first time she pouches an Awe. As rumours go, it was something she did often to anyone who crossed her or otherwise she felt like bullying slightly. It no doubt tickled her to no end to get to lord over her Captain too. <br>
+<div class="pouched hidden">
+“Not the first time you visit though, is it Captain?” She hefted me up and jostled me deeper into the very bottom of her pouchspace. Of Course she’d figured out ‘that’ little event by now.<br>
+</div>
+“We should make a habit out of this. Don’t you think?” She gave my back a solid pat. There was no denying it was comfortable, even if she was being overly smug about it all. <br>
+
+Calma would take her time about releasing me. Even going on shift with me swaying along during her duties. If anyone asked about her current pouch-occupant, she'd be coy and merely say. <br>
+
+"What yet looking at here is just the one in charge of the ship and the top brass." 
+</p>
+</div>
+
+<div class="ziggyClaim hidden"><p><strong>Ziggys claim</strong></p>
+<p>“It's almost as if you want inside my belly, captain!” The Cadet cackles as she suddenly lunges forward, face revealing her mischievous intentions clearly. <br>
+I try to avoid her lunge, but she's suddenly inside my space and yanking me forwards with her paws. I'm unbalanced from her grapple and fall right toward her gaping grinning mouth.</p>
+
+<p>There's a collective gasp from the small crowd, as she expertly chomps down on my head while kicking my feet from under me, starting to swallow me whole.<br>
+I try to resist initially, but cant stop her from devouring me. She also has retained the grip on one of her blades and I feel the cold metal against my side. It’s all part of the game for her. <br>
+Ziggy has bested me, even if I could possibly physically fight myself free, she has clearly won the duel.<br>
+Hot rippling muscles, 'gluck', 'gulp' and tug while forceful paws grip my shoulders and fur and wrest me down. I feel more then hear her moan as the throat vibrates around me as she takes pleasure in her meal and victory.</p>
+
+<p>As I slide into her stomach, getting my face squished against the groaning expanding chamber walls I am at least spared having to have to face seeing the faces of my crew at seeing their captain defeated and gobbled up the ships most junior and braggadocious officer.</p>
+
+<p>“Mmm-mmhh!” I hear Ziggy loudly enjoy herself as her mouth closes around my feet-paws and gives them a playful examination with her tongue. After sufficiently lathering them up and having her moment of smug fun she tilted her head back and swallowed me entirely into her stomach.</p>
+
+<p>The chamber alternated between contracting and expanding, only making enough room to fit me, no more. I felt paws pat at me and then the chamber jostled with Ziggy's loud muffled cackling laugh. Only to be interrupted by a quaking belch which caused the stomach to churn and tighten.</p>
+
+<p>Faintly I could hear the crowds careful cheer and clapping. The captain had just spectacularly lost in the first round of duels. Probably no one was quite sure what to think about it, had it been a staged fight or was Ziggy simply better?<br>
+I felt Ziggy carry me away a distance, she had her own opinion on the matter.<br>
+“Oh Captain, if ya wanted into my belly so bad, ya coulda just asked! Hehe, sorry cap! I'm just teasin'. Shall I let you out now? ”</p>
+</div>
+
+<div class="yes hidden"><p><strong></strong></p>
+<p>Ziggy, to her credit, hastens to obey. <br>
+Perhaps she realizes that she might have overstepped her bounds slightly, for when she coughs me up she does so in private and seems to flush as she cleans up my hat and hands it back.<br>
+“Ah, no hard feelings, eh, cap?” She shifted weight on her toes. “Them duels aint like real fights, you can win em with some cheap shots.” <br>
+I give her a quiet glare and put my hat back on. In the end I can't really blame her for something I agreed to. I should have expected her to make a display out of it. Doesn't mean I can’t give her some extra hard chores for the next few days. <br>
+“Quite, perhaps I’ll stick to real martial practise then a bunch of games.” I responded. <br>
+“Right you are, cap! Ye! Well, let me know if you ya need anything!” The Cadet scooted away, a giddy step in her feet. <br>
+She was a lively one, that cadet. I could forgive her for her boldness, knowing it might come to use to her as an officer one day. Even if my reputation has suffered a little.</p>
+
+</div>
+
+<div class="notYet hidden"><p><strong></strong></p>
+<p>“Not unless it's your choice, Cadet. You earned your prize.” I murmur from inside Ziggy's sagging gut. <br>
+Her paws wrapped around me and hoisted me closer against her belly in a squeeze, it made her stomach gwurble and groan around me.</p>
+
+<p>“I knew it! You did want it, because I know ya coulda trashed me!” Ziggy giggled gleefully. <br>
+I said nothing as I lay curled up inside her gut, feeling her body snug and tight around mine.<br>
+With her belly jostling and bouncing, Cadet Ziggy carried me across the deck, no doubt flaunting her gut proudly with a cheeky grin.<br>
+“Captain coming through!” She announced smartly as she walked through the passages and prompting people out the way. She bantered with the occasional crew-mate, stopping to discuss the duel or sometimes something completely inconsequential, taking her time before reaching my chambers.<br>
+Judging by the sudden tilt and tumble, she had lain herself down in my bed, belly up, to rest a while. <br>
+<div class="arnDigest hidden">
+“Heh... Maybe I'll do ya like the I did the first-mate. Getting a good start on gaining some more rank for my paunch aint I?”<br>
+Her paws gripped closer and kneaded at me firmly, she seemed almost to try push me deeper inside her by force right there and then. It made me grunt and huff at the confinement. <br>
+“Ye! First-mates and Captains need to stick together ya know!” She teased. “What do ya think about that? I may be biased, but being Ziggy-fluff ain't a bad assignment!” <br>
+</div>
+<div class="normal hidden">
+After a while of her gently drumming her paws on her belly and thus me she finally chuckles. <br>
+“Honestly, this is the first time I ever ate anyone of high rank ya know. It’s kind of awkward! Kinda hard to relax and savour it. Erh… So… Imma letcha out now Cap. Sorry for playing around with ya.” <br>
+Ziggy, good to her word, quickly released me and helped me get slightly tidied up. Though it would take a trip to the groomery later to be fully restored. <br>
+She was a lively one, that cadet. I could forgive her for her boldness, knowing it might come to use to her as an officer one day. Even if my reputation has suffered a little.</p>
+</div>
+</div>
+
+<div class="yes2 hidden"><p><strong></strong></p>
+<p>Ziggy, to her credit, hastens to obey. <br>
+Perhaps she realizes that she might have overstepped her bounds, for when she coughs me up she seems to flush brightly as she cleans up my hat and hands it back.<br>
+“Ah, no hard feelings, eh, cap?” She shifted weight on her toes. “I just, could'nt help myself to tease ya know. Also, them duels aint like real fights, you can win em with some cheap shots.” <br>
+I give her a quiet glare and put my hat back on. In the end I can't really blame her for something I agreed to. I should have expected her to make a display out of it. Doesn't mean I can’t give her some extra hard chores for the next few days. <br>
+“Quite, perhaps I’ll stick to real martial practise then a bunch of games.” I responded. <br>
+“Right you are, cap! Ye! Well, let me know if you ya need anything!” The Cadet scooted away, a giddy step in her feet. <br>
+She was a lively one, that cadet. I could forgive her for her boldness, knowing it might come to use to her as an officer one day. Even if my reputation has suffered a little.</p>
+</div>
+
+<div class="ziggyDigest hidden"><p><strong></strong></p>
+<p>“Ah, it's gonna be so good!” She exclaimed excitedly. “But first ya gotta tell everyone you want this so I don't get in no trouble. Oh and you gotta say it out loud to Glint and Valnos, say you want to be me, want me to digest you! Ohoh, the looks on their faces!”<br>
+She was quick to get out of the bed and not before long she found her fellow cadets and her paws hefted me up and dropped me to jostle and bounce me. <br>
+“Guess who I ate?” She smirked.<br>
+“Who?” Glints asked sceptically.<br>
+“Just someone who couldn't resist wanting to be me any longer... Captain Avolc herself.”<br>
+“Liar! Ziggy that's slander!” Glint protested angrily.<br>
+“You can be reported for that.” Valnos softer voice warned.<br>
+“Tell em!” A paw slapped the side of my head from outside.<br>
+“Stand down Cadets... Ziggy speaks truth.” I said.</p>
+
+<p>A dual gasp was heard and a bemused cackle from my devourer. She got the looks she came for, but she was not yet satisfied. <br>
+“Oh Glint. Would ya tell the priestess I'd like her to stop by and bless a uh... deepening. Gotta make sure I make it right, ya know. Absorb all the light and stuff.”<br>
+If the other cadet replied, it was probably with a dumbfounded or icy stare of protest, perhaps both, for I heard no reply. <br>
+By the time the Priestess and stopped by with her blessings, I was already being roiled around Ziggy’s stomach. Worked over by unfettered churning and groaning as the younger Awe delighted in the attention and fortune. She had helped herself to some spirits too, judging by the scent in her belly. To 'aid' her digestion along.<br>
+Such a strong personality had been hard to resist, such occasional unrestrained boldness and potential for growth had proven too big of a draw. <br>
+Though I was sure she would no doubt be insufferable about my addition to her person to her closest companions, I felt.. hopeful… that I’d contribute to maturing her. <br>
+As Ziggy’s stomach slowly shrunk in shape, her tail thickening along with her midsection and fur inevitably gaining thicker luster. Whatever maturity Ziggy absorbed from her former captain did not dilute her strong character noticeably. <br>
+Neither would the many fellow crew or officers who would, over time, inevitably follow. For if anything, Ziggy learns ever more that boldness pays off.<br>
+
+<img src='../Images/assets/Ziggyvore3.png' height="40%" width="40%"/>
+
+</p>
+</div>
+
+</body>
+</html>
