@@ -18,17 +18,25 @@
   <link rel="stylesheet" href="../../main.css"></link>
   <script>
 	state.delay = 0;
+	state.chapter[0] = ("Chapter2");
+	var example = [officer.avolc];
 	
-	    state.Glint.status = 'invisible';
+	state.Glint.status = 'invisible';
     state.Valnos.status = 'invisible';
 	state.Ziggy.status = 'invisible';
 	
 		
     $(document).ready(function() {
       // Put logic that is specific to this page here, mainly what happens when buttons to other
+	 if (state.events.indexOf("Chapter1") == -1) {
+		$(".chapter1").removeClass("hidden");
+		$(".chapter1yes").addClass("hidden");
+	}
+	 
       // rooms get clicked.
       $("#side").removeClass("hidden");
 	  $(".sideImage").attr('src', officer.avolc.image);
+	  
       $('#button-1').on('click', function(e) {
         // change state here
         // end by using lib.goTo
@@ -36,7 +44,17 @@
         $("#button-1").addClass("hidden");
 		
       })
+	 
 	  
+	   $('#instructions').on('click', function(e) {
+        // change state here
+		 $("#side").addClass("hidden");
+		 createOfficer4(example)
+        // end by using lib.goTo
+		lib.dialogue(e, "instructions"),
+        $("#button-1").addClass("hidden");
+		
+      })
 	  
 	    $('#load').on('click', function(e) {
 		state = JSON.parse(Cookies.get('save'));
@@ -54,10 +72,27 @@
 		Cookies.remove('save2', { path: '/' });
 		Cookies.remove('save3', { path: '/' });
 		Cookies.remove('save4', { path: '/' });
+		lib.clear();
+		location.reload(true);
     })
 		
 		$('#button-2').on('click', function() {
         // change state here
+		if (state.events.indexOf("Chapter1") == -1) {
+		state.events.push("valnosPrize")
+		state.events.push("deepening")
+		state.crewMorale = 5;
+		state.shipHealth = 7;
+		state.crewLoss = 16;
+		state.vore = 2;
+		state.piety = 2;
+		state.raptorians = 5;
+		state.rapNumber = 26;
+		state.injuries = 2;
+		removeOfficer(officer.tung);
+	}
+		
+		
         // end by using lib.goTo
 		state.chapter[0] = ("Thousand");
         lib.goTo('Thousand.html')
@@ -73,6 +108,11 @@
 	img {
 	margin:auto;
 	}
+	
+	.right {
+	float: right;
+	margin-right: 5em;
+	}
   </style>
 
 </head>
@@ -86,11 +126,18 @@
 </div>
 
 <div id="story-text">
-<p><strong>BETA BETA BETA BETA</strong></p>
+<div class="chapter1 hidden">
+<p><strong><p>Not detecting Chapter 1 completion. </strong> You will be given average stats to Crew, Ship and Supply conditions. <br>
+Missing officers: Officer Tung<br>
+Current First officer: Officer Arn.<br>
+You have not collected the Intel. <br>
+</p></p>
+</div>
+<div class="chapter1yes">
+<p><strong><p>Chapter 1 data detected.</strong> 
+</p></p>
+</div>
 
-<p><strong>You've found your way here. Be warned. </strong></p>
-
-<p><strong>Some events are still missing.</strong></p>
 
 <p>This is Chapter 2 of Aweworld.</p>
 
@@ -103,15 +150,37 @@
 
 <!--Put buttons to other rooms here. This is an HTML comment btw. -->
 <button class="btn btn-default hidden" id="button-1">  </button>
-<button class="btn btn-default" id="button-2">Thousand Islands</button>
-<button class="btn btn-default" id="load">(Test) Load Save</button>
-<button class="btn btn-default" id="clear">Clear Save (Deletes cookies)</button>
+<button class="btn btn-default" id="button-2">Start: Thousand Islands</button>
+<button class="btn btn-default" id="instructions">Instructions Chapter 2.</button>
+<button class="btn btn-default" id="load">Load Chapter 2 Save</button>
+<button class="btn btn-danger right" id="clear">Clear Save files (Deletes cookies)</button>
 <span id="cadetButtons"> </span>
 <script>
 
 </script>
 </div>
-<div class="envoy hidden"><p><strong>Envoy</strong></p>
+<div class="instructions hidden"><p><strong>Instructions</strong></p>
+<p>Through Chapter 2, you will be given the option to select an officer to perform a task, often related to a problem or investigation.<br>
+The Captain is not supposed to get their paws dirty themselves unless it's really necessary, they have a crew for that.</p>
+
+<p>Here is a quick example of stats you might see.</p>
+
+<span class="theOfficer officerObjects"></span>
+<script>
+$('#officerObject0').popover({title: example[0].name, trigger: "hover", placement: "top", container: "body"}); 
+
+
+
+</script>
+
+
+<p><strong>Martial</strong> - Represents a characters Combat and Tactical skills, or general physical prowess.<br>
+<strong>Diplomacy</strong> - Represents a characters Charm and Negotiating ability.<br>
+<strong>Technical</strong> - Represents a characters ability to perform complicated tasks or skill at their speciality.</p>
+
+<p>These stats are mere guidelines to a characters overall competence or experience. A character with higher stats is not always guaranteed to perform better than one with less however.<br>
+The characters quirks or personality always takes precedent. <br>
+</p>
 </div>
 </body>
 </html>

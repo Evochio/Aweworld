@@ -121,6 +121,7 @@
       })
 	  	$('#button-8').on('click', function(e) {
         // change state here
+		state.events.push("valnosPrize")
 		lib.dialogue(e, "russelChoice")
 		$("#side").removeClass("hidden");
 		$("#russel").removeClass("hidden");

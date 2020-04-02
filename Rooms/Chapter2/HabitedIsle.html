@@ -18,9 +18,13 @@
   <script>
   state.destination[0] = 'HabitedIsle'
 
+	if (state.chapter.indexOf("duels") == -1) {
+	lib.goTo('Duels.html')
+	}
   if (_.contains(state.chapter, "sickness") && state.chapter.indexOf("sickness2") == -1) {
 	lib.goTo('Sickness.html')
   }
+  
 
   state.Glint.status = 'available';
     state.Valnos.status = 'available';

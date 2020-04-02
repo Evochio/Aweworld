@@ -69,6 +69,9 @@ $(".days").text(state.days);
 	
       // Put logic that is specific to this page here, mainly what happens when buttons to other
       // rooms get clicked.
+	  
+	  state.events.push("Chapter1")
+	  
 	  if (_.contains(offList.deadRoster, "Arn")) {
 		$('.arnNo').removeClass('hidden');
 	
