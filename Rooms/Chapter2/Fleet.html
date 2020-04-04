@@ -106,9 +106,40 @@
         // end by using lib.goTo
 		lib.dialogue(e, "flag2")
 		$(".btn").addClass("hidden");
+		
+		 $("#flagQuestions1").removeClass("hidden");
+		 
+		 	if (_.contains(state.chapter, "morloPath")) {
+		 $("#flagQuestions2").removeClass("hidden");
+	  }
+		
         $("#flag3").removeClass("hidden");
 		
       })
+	  
+	   $('#flagQuestions1').on('click', function(e) {
+        // change state here
+	
+        // end by using lib.goTo
+		lib.dialogue(e, "flagQuestions1")
+		
+		
+		 $("#flagQuestions1").addClass("hidden");
+		 
+		
+      })
+	  
+	     $('#flagQuestions2').on('click', function(e) {
+        // change state here
+	
+        // end by using lib.goTo
+		lib.dialogue(e, "flagQuestions2")
+				
+		 $("#flagQuestions2").addClass("hidden");
+		 
+		
+      })
+	  
 	  
 	   $('#flag3').on('click', function(e) {
         // change state here
@@ -634,8 +665,13 @@ It seems Captain Koen knows where we’re going. It’s a jumble of island clust
 
 <button class="btn btn-default hidden" id="flag">The Fleet</button>
 <button class="btn btn-default hidden" id="flag2">The Flag-captain</button>
+
+<button class="btn btn-default hidden" id="flagQuestions1">Ask about Pirates</button>
+<button class="btn btn-default hidden" id="flagQuestions2">Ask about Treason</button>
+
 <button class="btn btn-default hidden" id="flag3">Continue</button>
 <button class="btn btn-default hidden" id="admiral">The Fleet-Admiral</button>
+
 <button class="btn btn-default hidden" id="admiral2">Continue</button>
 
 <button class="btn btn-default hidden" id="you">About You</button>
@@ -716,10 +752,32 @@ I salute her stiffly and she wearily returns it.<br>
 I nodded after her. “Have a lot of cadets in the fleet?” <br>
 “No, not so many anymore.” Flag-Captain replied, before adding. “Most have been promoted to officers early to fill vacancies.” <br>
 I scowled lightly at the Flag-Captain, briefly she looked wearier than ever.<span class="morlo hidden"> Her eyes also had that same quality as I had seen on much of Morlos crew.</span><span class="koen hidden">Infact, most of the crews in the fleet had a distant weary-eyed stare to their eyes. </span>Then she seemed to steel herself and her gaze became steely and more resolute, falling upon something in the distance. <br>
-“I must attend matters, Cadet Aliyah will fetch you when the Admiral is ready to see you.” The Flag-Captain walked off with brisk steps. I could not help feel slightly snubbed, but watching her, it seemed there was a lot on this Awes mind. Already she was gesticulating at a group of long-winged Awes, one of them promptly took off toward one of the ships in the formation to deliver a message.</p>
+<p>This was my chance to ask her a question or two, she looked like she was about to wander off. </p>
 </div>
 
+<div class="flagQuestions1 hidden"><p><strong></strong></p>
+<p>“These pirates that are pursuing the fleet and causing trouble. Do we know anything about them? Are they one organisation or what do they call themselves?” I ask the Flag-Captain. <br>
+She shook her head slowly and gave a shrug. <br>
+“Information is scarce or does not correspond. The few we capture have conflicting information, the islanders we interrogate know little or fear saying anything. “ The Flag-Captain eyes seemed to darken, it’s obviously an issue that’s been bothering her. <br>
+“Though they seem to sail together, they have neither banner or name so far. <br>
+What we do know is that the majority of them came from the northern parts of Thousand isles recently. Some of them are known pirates from the coast of the Empire, some are local. Someone has brought them together, someone with a lot clout or capital.”<br>
+“Could it be the Empire then? Or some faction in the Empire? A warlord?” I make a guess. <br>
+“Anything is possible Captain, one can speculate. What we do know of the Empire however speaks against them. They are an unstable giant, subtlety is not their game. If they want something, they make a decree and their many vassals flock to conquer it for the most prestige and glory.”<br>
+“We’ve considered it might be a warlord, at this point what else could it be? But uniting and controlling this many pirates? And doing so incognito without trying to make a name for themselves? They are either very very clever or there’s more to it. ” <br>
+</p>
+</div>
+
+<div class="flagQuestions2 hidden"><p><strong></strong></p>
+<p>“I’ve heard rumours of deserters and traitors. Is it true?” I ask Flag-Captain Marja. <br>
+“You came with Morlo, didn’t you?” The Flag-Captain nodded and then spoke firmly. “It’s not something we’re supposed to speak of Captain. The Admiral does not tolerate the topic to be brought up incase it encourages anyone else.” <br>
+“I see…” I answered uncertainly.<br>
+“Just be aware that after our first encounter with the pirate fleet and their weapons, we had some elements who firmly disagreed with the Fleet-Admirals response and direction to the threat.” The Flag-Captain warned and then made it clear there would be no further discussions about it.</p>
+</div>
+
+
 <div class="flag3 hidden"><p><strong></strong></p>
+<p>“I must attend matters, Cadet Aliyah will fetch you when the Admiral is ready to see you.” The Flag-Captain walked off with brisk steps. I could not help feel slightly snubbed, but watching her, it seemed there was a lot on this Awes mind. Already she was gesticulating at a group of long-winged Awes, one of them promptly took off toward one of the ships in the formation to deliver a message.</p>
+
 <p>I looked around the deck of the battleship ‘Unwavering’ some more while waiting. The size of this ship was impressive, everything felt scaled up from ‘Attentive’ who I remember had felt large when I first boarded it. <br>
 The crew gave me wide berth has they hurried to and fro on their errands. There was a hustle and promptness on this ship that my own did not have. The crew worked fast and hastily with their tasks, never quite pausing to talk except if to communicate something essential. I suppose being on the Flag-ship of 3rd fleet attracted only that kind of diligence. <br>
 It’s a short while later that the white-furred Cadet reemerged at my side with a polite bow. <br>

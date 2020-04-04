@@ -21,8 +21,69 @@
 		state.Valnos.status = 'available';
 		state.Ziggy.status = 'available';
 		state.Glint.status = 'invisible';
+		state.damageTaken = 6;
+		state.shipHealth -= (state.damageTaken / 2)
+
+
+		experience = function (x) {
+			y = x - 5;
+			$(".cadet").text(y);
+	}
+
+
+		displayVore = function () {
+$(".Vore").text(state.vore);
+	}
+		
+	displayRaptorians = function () {
+$(".Raptorians").text(state.rapNumber);
+	}
+		
+
+	voracity = function () {
+
+if (state.vore == 0) {
+	$(".voracity").text("You dont have the appetite for others. You'd rather see everyone make it through and dont mind giving second chances.")
+}
+else if (state.vore >= 6 && state.vore <= 7 ) {
+	$(".voracity").text("Your stomach rumbles audibly anytime you feel irritated. And your crew knows to be wary of that sound. Anyone is fair game!")
+  } 
+else if (state.vore >= 3 && state.vore <= 5 ) {
+	$(".voracity").text("Someone crosses you and they're as good as asking to become pudge under your belt!")
+  } 
+else if (state.vore >= 1 && state.vore <= 2 ) {
+	$(".voracity").text("You dont go out of your way to eat others. Sometimes you just have no choice.")
+  }
+}
 
     $(document).ready(function() {
+
+		if (state.damageTaken <= 5 ) {
+			$(".damageLow").removeClass("hidden");
+
+		}
+		else if ( state.damageTaken >= 10 ) {
+			$(".damageHigh").removeClass("hidden");
+		}
+		else {
+			$(".damageMid").removeClass("hidden");
+		}
+
+		if (state.shipHealth <= 0 ) {
+			$(".shipNone").removeClass("hidden");
+			$(".ship").addClass("hidden");	
+		}
+		else if (state.shipHealth <= 3 ) {
+			$(".shipLow").removeClass("hidden");
+
+		}
+		else if ( state.damageTaken >= 8 ) {
+			$(".shipHigh").removeClass("hidden");
+		}
+		else {
+			$(".shipMid").removeClass("hidden");
+		}
+
 	
 	 if (_.contains(state.chapter, "cadetsChoose")) {
 
@@ -121,7 +182,7 @@ The Flag-Captain spoke up, somehow having managed to look even more weary and ru
 “The pirates are on the back foot and we need a place to dock and repair. We shall press our advantage! We will be setting sail to Port Nowhere, to requisition their services and dig out the last vestiges of the pirate threat from these seas. It’s close and its two snacks in one gulp, Captains!” <br>
 The assembled Captains exchanged glances. Port Nowhere, a freeport of mixed repute. A floating nomadic city on the water. Nowhere as wealthy as the tradeports of the Kingdom, but said to be the largest place of illegitimate commerce between the west and east continents.</p>
 
-<p> “Emissary Chio here, whose house has a small stake in this city, has been informing me of the recent suspicious activities out of the northern quarters of the port.” The red feathered Kingdom Emissary at her side smiled at us. “He has promised the assistance of his house and its allies.” <br>
+<p> “Emissary Chio here, whose house has a small stake in this city, has been informing me of the recent suspicious activities out of the northern quarters of the port.” The red feathered Kingdom Emissary at her side smiled at us. “He has promised the support and assistance of his house and its allies to end this menace.” <br>
 <div class="intel hidden">
 “Likewise, Captain Avolcs recent acquisition of valuable Intel further points to much of the pirate activities being centered around this port. ” Eyes turned to me, not all happy. <br>
 </div>
@@ -145,14 +206,35 @@ The assembled Captains exchanged glances. Port Nowhere, a freeport of mixed repu
 </div>
 <div class="part2 hidden"><p><strong>Attentive</strong></p>
 <p>I return to ‘Attentive’ with a bit of a feeling of apprehension. It seemed this campaign was far from over. Winning did not mean going home. <br>
-Our ship was in a sorry state. Some of the lower decks are flooded and Awes have been bucketing out water since the end of the battle, but Officer Tick assured me it was contained to a few lower holds and that we were not taking on more. We can sail but until the breach is fully fixed, we’ll be doing it at a slight tilt. <br>
-The rest of the ship has mostly superficial scars and a lot of new drafty air holes. Our once proud armored bow is in tatters, the metal plates bent, loose or missing. But it did its job well. <br>
+
+	<p>
+	<span class="damageHigh hidden">The ‘Attentive’ was seriously battered in that battle.</span>
+
+	<span class="damageMid hidden">The ‘Attentive’ took quite a few knocks in that battle.</span>
+
+	<span class="damageLow hidden">The ‘Attentive’ made it out of that battle scuffed but surprisingly intact.</span>
+
+	<span class="shipHigh hidden">Out of the fleet, we are one the few ships still in good condition, however. Most of our sails will need patching, they have gained many tears in them from all manner of projectiles.</span>
+
+	<span class="shipMid hidden">Our ship matches the rest of the fleet well however, damaged but afloat. I just hope our toughness lasts.  <br>  A few of the lower decks are leaking and Awes have been bucketing out water since the end of the battle, but Officer Tick assured me it will be patched up, though he's clearly not happy about the state of things.</span>
+
+	<span class="shipLow hidden">Our ship is in much worse condition then much of the fleet however.  Some of the lower decks are flooded and Awes have been bucketing out water since the end of the battle, but Officer Tick assured me it was contained to a few lower holds and that we were not taking on more. We can sail but until the breach is fully fixed, we’ll be doing it at a slight tilt.</span>
+
+	<span class="shipNone hidden">Our ship seem more like a big hunk of floating debris. Everything is loose, leaking and creaking ominously. I am unsure how we have not broken apart and been forced to evacuate.  <br> Officer Tick is livid hot fury as he directs the desperate repairs, I think the only thing keeping us afloat and the sea out is that its afraid of touching him and boiling away.</span>
+</p>
+<p>
+<span class="ship">The rest of the ship has mostly superficial scars and a lot of new drafty air holes. Our once proud armored bow is in tatters, the metal plates bent, loose or missing. But it did its job well.</span> <br>
+<br>
 Much of the crew is lethargic, the fighting forces especially, sporting sizable full bellies from the many captured pirates. But they earned their rest and prize and we have a lot of prisoners to work our way through. Throughout the fleet, the countless pirate crews are stewing away in numerous Awe bellies or waiting their turn to do so in cramped briggs. <br>
 I had a large selection to pick from myself if I chose to.</p>
 
+<p>The Cadets have all made it through the battle, but I am informed Cadet Glint was hit and hurt. <br>
+	She is seeing pouch care and should be fine however, I am told Ziggy was there to rescue her. But peculiarly enough, the Cadet has taken no credit for it. <br>
+	</p>
+
 </div>
 
-<div class="part3 hidden"><p><strong>Attentive</strong></p>
+<div class="part3 hidden"><p><strong>Orders</strong></p>
 
 <p>At the dawn of the next day, the orders came. Messenger Stroke bowing and avoiding eye-contact as he handed the slip of paper over. <br>
 “Following ships and Captains are hereby assigned as ‘Forward Task-force’.</p>
@@ -175,7 +257,36 @@ Report to the flag-captain for further orders and prepare to set sail immediatel
 
 <div class="stats hidden"><p><strong>Attentive</strong></p>
 
+
+<p> Feel free to leave feedback at: aweworldgame@gmail.com or at  <a href="https://www.furaffinity.net/user/aweworld/" target="_blank">'Aweworld'</a>  on FA.</p> 
+
+<p> If you wish to support me, you can do so at. <a href="https://ko-fi.com/aweworld" target="_blank">'Aweworld Kofi'</a>   It'll mostly go toward paying artists (and my motivation). </p> 
+
+
 <p> Stats here </p>
+
+<b><p>Morale: </p></b>
+<p>Status: <span class="Crew-morale-description"><script>displayMoraleStatus()</script></span> </br>
+Morale points: <span class="morale"><script>displayMorale()</script></span> </p>
+
+<b><p> Ship Health: </p></b>
+<span class="Ship-Health-description"><script>displayShipStatus()</script></span> 
+
+<b><p> Injuries: </p></b>
+<span class="health"><script>displayHealth()</script></span>
+
+<b><p> Voracity: </p></b>
+<span class="Vore"><script>displayVore()</script> devoured.</span>
+<p><span class="voracity"><script>voracity()</script></span> </p>
+
+<b><p>Crew Lost: <p></b>
+	You lost <span class="crew"><script>displayCrew()</script></span> Crewmembers. <br>
+	You have <span class="Raptorians"><script>displayRaptorians()</script></span> Raptorians left. 
+
+	<b><p>Cadets: <p></b>
+		Cadet Valnos gained <span class="cadet"><script>experience(state.Valnos.Experience)</script></span> Experience points. <br>
+		Cadet Ziggy gained <span class="cadet"><script>experience(state.Ziggy.Experience)</script></span> Experience points. <br>
+		Cadet Glint gained <span class="cadet"><script>experience(state.Glint.Experience)</script></span> Experience points. <br>
 </div>
 <script>
 

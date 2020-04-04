@@ -122,9 +122,12 @@ $(".days").text(state.days);
 	  
 	  $('#button-1').on('click', function(e) {
         // change state here
-		
+		Cookies.set('save', JSON.stringify(xSave), { expires: 365, path: '/' });
+		Cookies.set('save2', JSON.stringify(offList.activeRoster), { expires: 365, path: '/' });
+		Cookies.set('save3', JSON.stringify(offList.deadRoster), { expires: 365, path: '/' });
+		Cookies.set('save4', JSON.stringify(offList.firstOfficer), { expires: 365, path: '/' });
         // end by using lib.goTo
-        lib.goTo('/index.html')
+        document.location.href = '../index.html'
 		
 		
 		

@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>Aweworld</title>
+
+  <link rel="stylesheet" href="../../main.css"></link>
+
+  <script src="../../jquery-3.2.1.js"></script>
+  <script src="../../underscore.js"></script>
+	<script src="../../bootstrap.min.js"></script>
+ <link rel="stylesheet" href="../../bootstrap.min.css"></link>
+  <link rel="stylesheet" href="../../bootstrap-theme.min.css"></link>
+  <script src="../../main.js"></script>
+  <script src="../../officers.js"></script>
+  <script src="../../jquery.cookie.js"></script>
+  <link rel="stylesheet" href="../../main.css"></link>
+  
+  <script>
+
+	
+	state.Glint.status = 'invisible';
+    state.Valnos.status = 'invisible';
+	state.Ziggy.status = 'invisible';
+
+
+
+    $(document).ready(function() {
+      // Put logic that is specific to this page here, mainly what happens when buttons to other
+      // rooms get clicked.
+	  
+	  
+	    $('#training').on('click', function(e) {
+        // change state here
+		
+        // end by using lib.goTo
+		  lib.dialogue(e, "training"),
+         $(".btn").addClass("hidden");
+		 $("#ziggy").removeClass("hidden");
+		  $("#summary").removeClass("hidden");
+		 $("#story-text").removeClass("extra");
+		
+      })
+	  
+	  
+	  
+	  
+	  	$('#ziggy').on('click', function(e) {
+        // change state here
+		 $(".sideImage").attr('src', officer.avolc.image)
+		$("#side").removeClass("hidden");
+		$("#sideb").removeClass("hidden");
+		 $(".face4").attr('src', '../Images/assets/Ziggyface.png')
+        // end by using lib.goTo
+		  lib.dialogue(e, "ziggy"),
+         $(".btn").addClass("hidden");
+		 
+		 $("#ziggyCadets").removeClass("hidden");
+		
+      })
+	  
+	  
+	  
+	    $('#ziggyCadets').on('click', function(e) {
+        // change state here
+	
+        // end by using lib.goTo
+		  lib.dialogue(e, "ziggyCadets"),
+         $(".btn").addClass("hidden");
+		 $("#ziggyTraining").removeClass("hidden");
+		 
+		 
+		
+      })
+	  
+	  
+	    $('#ziggyTraining').on('click', function(e) {
+        // change state here
+		
+        // end by using lib.goTo
+		  lib.dialogue(e, "ziggyTraining"),
+         $(".btn").addClass("hidden");
+		 $("#valnos").removeClass("hidden");
+		 
+		 
+		
+      })
+		
+		 $('#valnos').on('click', function(e) {
+        // change state here
+		$(".face4").attr('src', officer.valnos.image)
+        // end by using lib.goTo
+		  lib.dialogue(e, "valnos"),
+         $(".btn").addClass("hidden");
+		 $("#valnosCadets").removeClass("hidden");
+		 
+		 
+		
+      })
+	  
+	  
+	  	 $('#valnosCadets').on('click', function(e) {
+        // change state here
+		$(".face4").attr('src', officer.valnos.image)
+        // end by using lib.goTo
+		  lib.dialogue(e, "valnosCadets"),
+         $(".btn").addClass("hidden");
+		 $("#valnosTraining").removeClass("hidden");
+		 
+		 
+		
+      })
+	  
+	  
+	  	 $('#valnosTraining').on('click', function(e) {
+        // change state here
+		$(".face4").attr('src', officer.valnos.image)
+        // end by using lib.goTo
+		  lib.dialogue(e, "valnosTraining"),
+         $(".btn").addClass("hidden");
+		 $("#glint").removeClass("hidden");
+		 
+		 
+		
+      })
+	  
+	  
+	  
+	    $('#glint').on('click', function(e) {
+        // change state here
+		$(".face4").attr('src', officer.glint.image)
+        // end by using lib.goTo
+		  lib.dialogue(e, "glint"),
+         $(".btn").addClass("hidden");
+		 $("#glintCadets").removeClass("hidden");
+		 
+			
+      })
+	  
+	  
+	     $('#glintCadets').on('click', function(e) {
+        // change state here
+		
+        // end by using lib.goTo
+		  lib.dialogue(e, "glintCadets"),
+         $(".btn").addClass("hidden");
+		 $("#glintTraining").removeClass("hidden");
+		 
+			
+      })
+	  
+	  
+	     $('#glintTraining').on('click', function(e) {
+        // change state here
+		
+        // end by using lib.goTo
+		  lib.dialogue(e, "glintTraining"),
+         $(".btn").addClass("hidden");
+		 $("#glintCaptain").removeClass("hidden");
+		 
+			
+      })
+	  
+	     $('#glintCaptain').on('click', function(e) {
+        // change state here
+		
+        // end by using lib.goTo
+		  lib.dialogue(e, "glintCaptain"),
+         $(".btn").addClass("hidden");
+		 $("#continue").removeClass("hidden");
+		 
+			
+      })
+	  
+	   $('#summary').on('click', function(e) {
+        // change state here
+		
+        // end by using lib.goTo
+		  lib.dialogue(e, "summary"),
+         $(".btn").addClass("hidden");
+		 $("#continue").removeClass("hidden");
+		 
+		 
+		
+      })
+		
+		
+		$('#continue').on('click', function() {
+        // change state here
+        // end by using lib.goTo
+			state.chapter.push("cadetTraining");
+        // end by using lib.goTo
+		  lib.goTo(state.destination[0] + '.html')
+        
+      
+      })
+    })
+	
+  </script>
+  
+  <style>
+    /* Put styling that is specific to this page here. This is a CSS comment btw. */
+	img {
+	margin:auto;
+	}
+	
+	.extra {
+
+	background-image: none !important;
+	font-size: 130%;
+	text-align: justify;
+	background-color: #996633;
+	border: 6px solid #cb9969;
+	border-radius: 20px;
+	color: white;
+}
+	
+	
+  </style>
+
+</head>
+<body>
+<div id="head">
+
+<h1>Cadet event</h1>
+</div>
+<div id="side" class=" hidden">
+<img class="sideImage" src="../Images/assets/Ziggyface.png"></img>
+</div>
+<div id="sideb" class="hidden">
+   <img class="face4"  src="">
+</div>
+
+<div id="story-text" class="extra">
+<p>Glint awakens early, as always. There is little light in the chamber to reveal its morning, but there is always a shift in sound and movement in the ship around her that seems to rouse her.</p>
+
+<p>She grooms quickly and efficiently, makes her bed and dons her sailors uniform which she cleaned and straightened the night before. <br>
+She spares a glare at her two bunkmates, sleeping bellow and above her bed.</p>
+
+<p>Ziggy lays sprawled unnaturally, mouth open, like she had been thrown off a mountain. At least she was a quiet sleeper, unlike her conscious persona.</p>
+
+<p>At the top Valnos slept. Just a dark furred lump. She suspected he was awake and waiting for her to depart so he could take his turn in dressing in the small space of their cabin.</p>
+
+<p>Stepping out, the sound and murmurr of the ship was still subdued, it was still a while before it would be rousing to full day shift and the shift callers were out with their bells and hollering.</p>
+
+<p>The tight corridor took Glint to the main galley. There was always Awes here, having a bite to eat or passing through the side passage elsewhere. At this hour, only a few individual sleepy night-shifters sat by themselves, sipping broth before turning in to sleep.</p>
+
+<p>Further down the corridor was the groomery and then the stairs up to the main deck. <br>
+The air was cold and wet, a strong wind blew through Glints thick fur and few stray droplets into her eye. A usual greeting from the sea every morning.</p>
+
+<p>She watched the high rolling waves slosh and roll by. The ship was slicing through them at a high pace, despite only having quarter sails out. <br>
+Meant it would be a rocky day. Hopefully she'd have assignments to the rear of the ship, perhaps to the captains quarters, where it bounced less.</p>
+
+<p>Glint threw a glance at who was helming the ship and at charge of the deck at the moment. Luckily it was one of Officer Nyxies low-Officers, Officer Traslig she thought the name was. She wouldn't bother Glint and always kept to herself. <br>
+Low-Officers had lower authority then Officer Cadets like her in the official hierarchy of things, that didn't really matter much to anyone unofficially as she was not in charge of anything. Some Low-Officers were also quite serious about their position in charge of the helm and would delight at catching a cadet loitering on deck with little apparent things to do.</p>
+
+<p>This quiet moment. The one between responsibilities and social bustle of so many Awes all around on a small space, this tiny wind-driven wooden floating island in the middle of vast deadly ocean. <br>
+It was her moment alone.</p>
+
+<p>She closed her eyes and felt the wind through her fur. She shut out the sound of spray and splash of water. The flap and snap of sails were but drying washed blankets and linens. <br>
+It was morning back at the villa. She could smell the fresh bread behind all the salt. <br>
+The creak and whine of straining ropes were birds and bugs.</p>
+
+<p>Cling-clang, Cling-Clang. “Morning shift!” Cling-Clang Cling-Clang “Shift change!”</p>
+
+<p>Glint opened her eyes and let out a deep exhale. Another day starts. But today, she’d hopefully make progress. <br>
+</p>
+</div>
+<div id="tail">
+
+<!--Put buttons to other rooms here. This is an HTML comment btw. -->
+
+<button class="btn btn-default hidden" id="continue"> Continue </button>
+<button class="btn btn-default" id="training">Cadet Training </button>
+<button class="btn btn-default hidden" id="ziggy">Cadet Interviews </button>
+<button class="btn btn-default hidden" id="ziggyCadets">Other Cadets</button>
+<button class="btn btn-default hidden" id="ziggyTraining">Ziggys Training</button>
+
+<button class="btn btn-default hidden" id="valnos">Cadet Valnos</button>
+<button class="btn btn-default hidden" id="valnosCadets">Other Cadets</button>
+<button class="btn btn-default hidden" id="valnosTraining">Valnos Training</button>
+
+<button class="btn btn-default hidden" id="glint">Cadet Glint</button>
+<button class="btn btn-default hidden" id="glintCadets">Other Cadets</button>
+<button class="btn btn-default hidden" id="glintTraining">Glints Training</button>
+<button class="btn btn-default hidden" id="glintCaptain">Your path to Captain</button>
+
+<button class="btn btn-default hidden" id="valnos">Cadet Valnos</button>
+
+
+<button class="btn btn-default hidden" id="summary">(Skip) Interview summary</button>
+
+<span id="cadetButtons"> </span>
+<script>
+
+</script>
+</div>
+
+<div class="training hidden"><p><strong>Cadet Training</strong></p>
+<p>It is time to assign the Cadets training to other officers. They have learned much from Officer Tick in the time they’ve spent with him, they certainly seem to have more respect efforts that goes into maintaining a ship while at sea. However, unless they choose to, the purpose is not to make them into maintenance officers and for the sake of the health of everyone involved it’s time to shift them elsewhere.<br>
+I will have a one on one discussion about their future training. <br>
+Officer Cadets trained in the Academy are trained to be generalists, so that they can be pinholed into whatever the Admiralty needs and have shortage of when the time comes for assignment. <br>
+They do get a bit more personal choice of specialization in their final year at the Academy however and I believe, in this case, it’s best to let them continue focusing on whatever specialization that has their interest.</p>
+</div>
+
+<div class="ziggy hidden"><p><strong>Cadet Ziggy</strong></p>
+<p>“Ahoy Captain.” Ziggy announced her arrival. She is her usual confident self. She appears comfortable to be here and have this discussion, she probably knows what she wants to be doing, which is no surprise.<br>
+<p>“Have a seat Cadet. Let’s discuss the next step in your training.” I motion for a seat opposite of me and she lurches herself into a sagging sprawl.</p>
+
+<p>I frown at her posture, but the goal here is for them to be comfortable and open up. So I say nothing. <br>
+</p>
+</div>
+
+<div class="ziggyCadets hidden"><p><strong>Cadet Ziggy</strong></p>
+<p>“How do you feel about the other cadets Ziggy?” I asked her. <br>
+“Oh, Glinty and Vally. They’re sweet I guess, don’t have a problem with either!” Ziggy grinned. <br>
+“I overhear you bickering with Glint often.” I observed. <br>
+“Heh, yeah! Her tail is real easy to pull. I keep expecting her to trounce me, but she never does.” Ziggy's grin turned more toothy and mischievous, then she notices me less than approving expression and clears her throat. <br>
+“I’ll be nicer.” She mutters. “I mean, I like her and Valnos. They’re funny to be around, and not just to tease!” <br>
+“Thanks Ziggy, that’s all.”</p>
+</div>
+
+<div class="ziggyTraining hidden"><p><strong>Cadet Ziggy</strong></p>
+<p>
+ “Have you given thought on what officer you wish to train under or what interests you?” <br>
+“Yeh!” She replies, straightening a bit. “I want to be an Arms-officer of course. Fight and duel, lead troops in and out of danger!” <br>
+I nodded at this. I had expected that as her answer. She had bounced back quickly from her little slump after our first real combat encounter. It was worth bringing up. <br>
+“Do you feel ready for that? After our previous battle you were in a bit of a shock. Being an Arms-Officer means being able to keep your head cool and fur unbristled in the most intense situations.” I said and watched her carefully. <br>
+Some of the smirk and bravado went out of her, but I could tell she was comfortable speaking to me, at least in private like this. It was a bit of a subdued answer that followed, but her eyes remained focused.<br>
+<br>
+“You’re right cap. I talked big, but when the time came fight, Glint and Valnos were much braver than me. I flinched hard!” She furrowed her brow and crossed her arms. I can tell she had given this plenty of thought. She continued. <br>
+
+“You got scared.” I said. <br>
+“Ye! Kinda mades me realize i’m a big idiot ya know, thinking I was ready. I was not even ready up here!” She tapped the side of her head. <br>
+</p>
+<p>I nodded to her and listened. </p>
+<p>
+"First I was really set on Officer Ulv. She’s brave and strong, her ‘Gals’ are quite something! Really know how to fight!” Ziggy looked excited. <br>
+I nodded again, Ulv and Ziggy were both from Thunderhills, it was only natural they would connect. <br>
+“But you know… Officer Garsch. He’s like, old and stuff, he knows stuff. He’s clever about of he fights, always thinking. I keep losing duels or Glint yells at me for doing dumb stuff because I don’t do that! Also whenever he tells me what to do, it kinda like… makes sense. Right?” She twisted slightly.<br>
+</p>
+<p>“He’s very experienced, yes. An old instructor. ” I said, surprised. It took quite a bit honesty and introspection come to these conclusions. She was thinking more than she gave herself credit.</p>
+
+<p>“Ya, well. I know he’s a male and all. But, somehow he’s kinda like, the kind of Officer I want to be. Does that sound strange?” She looked to me, seeming a bit embarrassed. <br>
+“No Ziggy, not strange at all. He’s very capable. You want to train under Officer Garsch then?” I cocked my head at her. Ziggy need not be embarrassed, the old cultural stigma against males in positions of leadership was not one that would go away easily or quickly however. <br>
+It seemed the meritocracy of the Admiralty and the new youth were making strides against old taboos. <br>
+“Ye..” She nodded. “Yea I do. I want to be ‘capable’.” <br>
+ <br>
+Ziggy will henceforth work and train under Officer Garsch for her extra duties when not assigned to me. I am sure the old officer will not even flinch at the task and make sure do his best to increase her martial knowledge and skills.<br>
+</p>
+</div>
+
+<div class="glint hidden"><p><strong>Cadet Glint</strong></p>
+<p>As elegant and groomed as always, Glint first knocked politely and stepped in. <br>
+“Reporting in as requested Captain.” She announced. <br>
+“Have a seat.” I offer her and she complies, putting her cap into her lap. <br>
+“We’re here to discuss your progress and the next step in your training. Have you given any thought to who you would like to train under?” I tilt my head slowly. <br>
+“I have captain. “ Glint nodded. “I would like to work under you ofcourse!” <br>
+“Oh?” I raise my brow. <br>
+“Yes, unlike the other two, I intend to be a Captain myself one day! To study under you, in the ways of command and leadership. It would be very insightful! I am sure I have much to learn!” Glint smiled and purred contentedly. <br>
+I smiled at her slightly, holding up a paw. <br>
+“Let’s talk about your fellow Cadets first.” <br>
+</p>
+</div>
+<div class="glintCadets hidden"><p><strong>Cadet Glint</strong></p>
+<p>“How do you feel about your fellow Cadets Glint?” I shift to a more relaxed posture. Glint is searching my face for any clue in what kind of answer I might be looking for. So I just give her a sanguine smile. <br>
+“Oh, well… They’re capable in their own way. Useful.” She starts slowly, carefully. “I can cooperate with them fine, even if Ziggy is insufferable on purpose sometimes.” <br>
+I motion for her to go on. <br>
+“I mean, they might make decent officers one day. Ziggy is a fighter and Valnos is a bit bookish.” She chuckled a little. “Not sure I’d want under MY command though.” <br>
+“Why is that?” I rest my chin against my knuckles, listening intently. <br>
+“Well… Our history together might make it awkward. She fidgeted a little under my gaze, spurred on further. “They might be resentful. I mean, they’re not like you and me. Valnos is Male, of decent heritage mind, but he might understand. Ziggy though, is just raised from the rough. Right?” Glint blinked. <br>
+I sighed slightly at this, some suspicions confirmed. <br>
+</p>
+</div>
+<div class="glintTraining hidden"><p><strong>Cadet Glint</strong></p>
+<p>“Well, it is the Admiralty’s strong hope that cadets like you three develop into the role of leaders and eventual captains...” I started. <br>
+“So, I can train under you?” Glint perked up hopefully. <br>
+“No, Glint…” I try to explain. <br>
+“D-did Ziggy already ask? She got the position before me?!” Glint looks increasingly stressed, voice rising. “Have I not done things right?” <br>
+“No, be quiet.” I tell her firmly and she startles, eyes a little wider. “You all three already attend me for half your shift duties. There is little new for me to teach you on the second half.”<br>
+“But I thought…” Glint squeaked before I leaned forward to thump the table lightly in emphasis. <br>
+“Besides! It would be foolish of you to believe you could skip ahead to final step of command? You think you’re more ready, experienced or better then any of my officers?” I spoke calmly, looking at her intently. <br>
+Glint shifted anxiously. She visibly did not like screwing up in front of me, all this has made her very uncomfortable. <br>
+“No… I don’t think I am more experienced...” She squeaked, her fur bristled in nervousness. <br>
+“I think on some level you do. I believe that while that confidence is very helpful toward your goal, it is also getting in your way.” I explained calmly. “You have some very important things to learn before you can ever be considered for command.” <br>
+“Yes Captain.” Glint kept looking down, ashamed and quite flustered. I am not sure what hopes and ideas she had going into this meeting. Getting a dressing down was likely not one of them. <br>
+</p>
+</div>
+<div class="glintCaptain hidden"><p><strong>Cadet Glint</strong></p>
+<p>“Do you know what I was before a captain?” I asked her. <br>
+“No…” She looked up. <br>
+“I was a Cadet like you first, but we were new then, crews didn't know what to do with us. They just made me into a low-officer right away, and I stayed that way for 3 years before I was promoted to Arms-officer for 6 years. I was eventually jumped to First-officer and then Captain of the ship pretty quick after that, but that was due to unfortunate circumstances.” I explained. Thinking back now, it feels like all those years went by in a flash. <br>
+“That’s a long time…” Glint commented. “Even with your…?” <br>
+“My eye color? You really think heritage should have expedited my promotion? Let me ask you, do you respect me as your commanding captain because of my skill as one or because of my bloodline?”<br>
+“Your skill.” Glint replied carefully. But she was being guarded, I was unsure if she as being truthful. <br>
+“No one cares where and who you’re from out here. It does not make you a better officer.” I leaned back and watched the Cadet in silence. Wings sagging, she still seems subdued, but she is slowly sitting straighter.<br>
+“What was the unfortunate circumstance?” She asked in the end. <br>
+“Oh… They got eaten by a Wulf pirate. I’d have joined the stripes on his tail too had I not had all those years of experience.”</p>
+
+<p>“What should I do?” Asked Glint, looking clearly deflated. She appears to have had some different impressions about the outcome of this meeting.<br>
+“This is supposed to be your choice, but to start, I propose you work with the crew more, you have things to learn about those around you, especially if you intend to command them one day.” Command was her ambition, it sounded best to dangle that word for her. <br>
+Glint nodded carefully.<br>
+“Officer Mirr then?” She suggested. <br>
+“That is a sound place to start. It is more than just keeping track of shifts dealing with minor quarrels.” <br>
+<br>
+Hopefully working with Officer Mirr, managing the common crew and getting to know them would help humble Glint somewhat. Officer Mirr was also from similar high societies as Glint, but never made airs about it.<br>
+</p>
+</div>
+
+
+
+
+<div class="valnos hidden"><p><strong>Cadet Valnos</strong></p>
+<p>Valnos politely creeps in after knocking, giving a formal bow. <br>
+“Be seated Cadet Valnos.” I tell him calmly. <br>
+He sits and fidgets with his cap in his paws. He tends to have this very traditional male Awe anxiety about him, especially when he’s the focus of attention. <br>
+“Thank you Captain.” He squeaked.<br>
+</div>
+<div class="valnosCadets hidden"><p><strong>Cadet Valnos</strong></p>
+<p>“What do you think of your fellow cadets Valnos?” I ask him curiously. <br>
+“Oh, they’re interesting. Their bickering annoyed me at first, but I sort of got used to it.” He replied. <br>
+“Why do you think they bicker?” I smiled, crossing my arms. <br>
+“I am not sure, it might be some female thing? Uh, hierarchy is the word! They both want the top spot.” Valnos nodded. <br>
+“What about you?” I quirk my head at him. <br>
+“Mmmh, oh, they really don’t consider me as a rival I think.” Valnos’es brow furrowed and I sensed some frustration in him.<br>
+“Does that bother you?” I ask. <br>
+“Oh, uhm… I guess. I mean… they never really listen to me. I mean, they’re not mean and hear what I am saying, but… I don’t seem to have weight.” Valnos huffed, his wings tucking closer to his body.<br>
+“That’s a funny way to put it.” I comment, bemused. “I think however that you have more influence on those two then you think. It’s not really a race Valnos, but you’re more of a contender then you think.” <br>
+Valnos nodded at this, looking a little heartened. <br>
+</p>
+</div>
+<div class="valnosTraining hidden"><p><strong>Cadet Valnos</strong></p>
+<p>“Have you considered who you’d like to tutor under in the next step of your training?” <br>
+“I have.” He replied and paused. “Should I tell you?” <br>
+“Feel free.” I reassured him with a faint smile. <br>
+“I’d like to work with Scout-Master Krel.” He looked down, uncertain. <br>
+“Is that so?” I leaned forward, piqued. I had really thought he’d pick a more… sedentary position. Possibly with Logistics Officer Keeper. “You know you’re very unlikely to be made a Scout or Scout-master unless you’ve gone through the Scouts program.” <br>
+Valnos nodded in reply, looking up. <br>
+“I don’t really want to be a Scout per say. I could have, but I joined the Academy instead. I just think I have the most to learn tutoring under Scout-Master Krel.” Valnos brushes his bangs out of the way. <br>
+“Explain.” I encourage him, I want to hear his reasoning. <br>
+“Well… I… While I might never be as quick as them, as fast as them, or as quiet. If I could be a fraction of what they are, I could be more useful. I could be braver.” Valnos tries to explain. <br>
+“I am a bit surprised by your choice, but I think it can be arranged. It won't be easy, he’ll train you like he trains the other scouts.” I said. <br>
+“I have already asked him. I didn’t want to waste anyone's time. He said it’s okay if its okay with you.” Valnos smiled shyly. <br>
+“Very good, that speeds things up.” <br>
+With that, Cadet Valnos was assigned to train under the Scout-Master. It would be a difficult task, one I was not entirely certain young Valnos could handle. Time would tell however. <br>
+</p>
+</div>
+
+<div class="summary hidden"><p><strong>Summary</strong></p>
+<p>I had a chat with the three cadets. They all had their own ideas of what they wanted to do, most of them had given it pretty hard thought. <br>
+Cadet Ziggy has ended up tutoring under Officer Garsch. Perhaps he’ll teach her some discipline and how to use her head. <br>
+Cadet Glint will work under Officer Mirr a while, get herself better acquainted with the operations of a crew-officer an working with others. <br>
+Cadet Valnos has chosen to work under Scout-Master Krel. A difficult assignment but one he seemed eager to try.</p>
+</div>
+
+</div>
+
+</body>
+</html>
